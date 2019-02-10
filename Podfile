@@ -8,5 +8,6 @@ target 'Me' do
   	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
+	pod 'SnapKit', '~> 4.0.0'
 
 end
