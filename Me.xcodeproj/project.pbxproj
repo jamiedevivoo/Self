@@ -11,6 +11,7 @@
 		A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEDA22148D9300B7269F /* AppDelegate.swift */; };
 		A32CAEE222148D9400B7269F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32CAEE122148D9400B7269F /* Assets.xcassets */; };
 		A32CAEED22148D9C00B7269F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A32CAEEC22148D9C00B7269F /* GoogleService-Info.plist */; };
+		A32CAEEF22148FD000B7269F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEEE22148FD000B7269F /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A32CAEE122148D9400B7269F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A32CAEE622148D9400B7269F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A32CAEEC22148D9C00B7269F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A32CAEEE22148FD000B7269F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F8437A567AAAEE749A4689D0 /* Pods-me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.release.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				A32CAEDA22148D9300B7269F /* AppDelegate.swift */,
+				A32CAEEE22148FD000B7269F /* MainViewController.swift */,
 				A32CAEE122148D9400B7269F /* Assets.xcassets */,
 				A32CAEE622148D9400B7269F /* Info.plist */,
 				A32CAEEC22148D9C00B7269F /* GoogleService-Info.plist */,
@@ -210,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */,
+				A32CAEEF22148FD000B7269F /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
