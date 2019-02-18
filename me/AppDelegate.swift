@@ -7,29 +7,42 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Initialize the window
+        print("LOG: LAUNCHING!")
+        
         window = UIWindow.init(frame: UIScreen.main.bounds)
+        window?.backgroundColor = .white
         
-        // Set Background Color of window
-        window?.backgroundColor = UIColor.white
+        let mainTabBarController = MainTabBarController()
+        let mainNavigationController = MainNavigationController()
         
-        // Allocate memory for an instance of the 'MainViewController' class
+        let launchViewController = LaunchViewController()
+
         let mainViewController = MainViewController()
+        let profileViewController = ProfileViewController()
+        let settingsViewController = SettingsViewController()
         
-        // Set the root view controller of the app's window
-        window!.rootViewController = mainViewController
+        mainNavigationController.title = "Main NVC"
+        profileViewController.title = "Profile"
+        settingsViewController.title = "Settings"
         
-        // Make the window visible
-        window!.makeKeyAndVisible()
+        mainNavigationController.viewControllers = [mainViewController]
+        
+        mainTabBarController.viewControllers = [mainNavigationController, profileViewController, settingsViewController]
+        
+
+        window?.rootViewController = mainTabBarController
+        window?.makeKeyAndVisible()
+        
+        FirebaseApp.configure()
         
         return true
     }

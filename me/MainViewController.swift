@@ -6,28 +6,31 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("LOG: Main Screen")
+        
         let subViewOne = UIView()
         let subViewTwo = UIView()
         let subViewThree = UIView()
         let subViewFour = UIView()
-        
-        let button = UIButton()
+        let mainButton = UIButton()
         
         subViewOne.backgroundColor = .red
         subViewTwo.backgroundColor = .purple
         subViewThree.backgroundColor = .blue
         subViewFour.backgroundColor = .green
-        button.backgroundColor = .black
-        button.setTitle("Test Button", for: .normal)
+        
+        mainButton.backgroundColor = .black
+        mainButton.addTarget(self, action: #selector(MainViewController.buttonTapped), for: .touchUpInside)
+        mainButton.setTitle("Test Button", for: .normal)
 
         self.view.addSubview(subViewOne)
         self.view.addSubview(subViewTwo)
         self.view.addSubview(subViewThree)
         self.view.addSubview(subViewFour)
-        self.view.addSubview(button)
+        self.view.addSubview(mainButton)
         
         UIView.animate(withDuration: 1) {
-            button.snp.makeConstraints { (make) in
+            mainButton.snp.makeConstraints { (make) in
                 make.size.equalTo(100)
                 make.center.equalTo(self.view)
             }
@@ -54,6 +57,13 @@ class MainViewController: UIViewController {
         }
         
         self.view.layoutIfNeeded()
+    }
+    
+    
+    @objc func buttonTapped() {
+        print("Button Tapped")
+        let friendsProfileViewController = ProfileViewController()
+        navigationController?.pushViewController(friendsProfileViewController, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
