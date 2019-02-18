@@ -11,6 +11,7 @@
 		A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEDA22148D9300B7269F /* AppDelegate.swift */; };
 		A32CAEE222148D9400B7269F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32CAEE122148D9400B7269F /* Assets.xcassets */; };
 		A32CAEEF22148FD000B7269F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEEE22148FD000B7269F /* MainViewController.swift */; };
+		A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */; };
 		A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297012219FA5500AE8480 /* LoginViewController.swift */; };
 		A37297042219FC4E00AE8480 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297032219FC4E00AE8480 /* LaunchViewController.swift */; };
 		A37297062219FCC100AE8480 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297052219FCC100AE8480 /* AppManager.swift */; };
@@ -30,6 +31,7 @@
 		A32CAEE122148D9400B7269F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A32CAEE622148D9400B7269F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A32CAEEE22148FD000B7269F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		A37297012219FA5500AE8480 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A37297032219FC4E00AE8480 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		A37297052219FCC100AE8480 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				A372970B221A1C3900AE8480 /* MainNavigationController.swift */,
 				A37297012219FA5500AE8480 /* LoginViewController.swift */,
 				A372970D221A28EE00AE8480 /* RegisterViewController.swift */,
+				A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */,
 				A32CAEEE22148FD000B7269F /* MainViewController.swift */,
 				A372970F221A2AD800AE8480 /* ProfileViewController.swift */,
 				A3729711221A2B3500AE8480 /* SettingsViewController.swift */,
@@ -240,6 +243,7 @@
 				A37297062219FCC100AE8480 /* AppManager.swift in Sources */,
 				A372970A221A1BD700AE8480 /* MainTabBarController.swift in Sources */,
 				A3729712221A2B3500AE8480 /* SettingsViewController.swift in Sources */,
+				A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */,
 				A372970E221A28EE00AE8480 /* RegisterViewController.swift in Sources */,
 				A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */,
 				A372970C221A1C3900AE8480 /* MainNavigationController.swift in Sources */,
