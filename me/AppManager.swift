@@ -11,15 +11,48 @@ class AppManager {
     
     func showApp() {
         
-        var viewController: UIViewController
+        var newViewController: UIViewController
         
         if Auth.auth().currentUser == nil {
-            let viewController = LoginViewController()
+            
+            let loginNavigationController = MainNavigationController()
+                let loginViewController = LoginViewController()
+                loginViewController.title = "Login"
+            loginNavigationController.title = "Login"
+            loginNavigationController.viewControllers = [loginViewController]
+            
+            newViewController = loginNavigationController
+            print("LOG: USER NOT LOGGED IN")
         } else {
-            let viewController = MainViewController()
+            
+            let dashboardTabBarController = MainTabBarController()
+            
+                let homeNavigationController = MainNavigationController()
+                    let homeViewController = MainViewController()
+                    homeViewController.title = "Home"
+                homeNavigationController.title = "Home"
+                homeNavigationController.viewControllers = [homeViewController]
+
+            
+                let profileNavigationController = MainNavigationController()
+                    let profileViewController = ProfileViewController()
+                    profileViewController.title = "Your Profile"
+                profileNavigationController.title = "Your Profile"
+                profileNavigationController.viewControllers = [profileViewController]
+
+            
+                let settingsNavigationController = MainNavigationController()
+                    let settingsViewController = SettingsViewController()
+                    settingsViewController.title = "Settings"
+                settingsNavigationController.title = "Settings"
+                settingsNavigationController.viewControllers = [settingsViewController]
+    
+            dashboardTabBarController.viewControllers = [homeNavigationController, profileNavigationController, settingsNavigationController]
+            
+            newViewController = dashboardTabBarController
+            print("LOG: USER LOGGED IN")
         }
-        
-//       appContainer.present(viewController, animated: true, completion: nil)
+        appContainer.present(newViewController, animated: true, completion: nil)
         
     }
     

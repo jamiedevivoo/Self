@@ -3,56 +3,79 @@ import Firebase
 import SnapKit
 
 class LoginViewController: UIViewController {
+    
+    let emailTextField = UITextField()
+    let passwordTextField = UITextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let loginButton = UIButton()
+        let registerButton = UIButton()
+        
         print("LOG: Login Screen")
         
-        let emailTextField = UITextField()
-        let passwordTextField = UITextField()
-        let loginButton = UIButton()
+        emailTextField.backgroundColor = .gray
+        emailTextField.text = "email"
+        passwordTextField.backgroundColor = .gray
+        passwordTextField.text = "password"
         
-        loginButton.backgroundColor = .blue
         loginButton.setTitle("Login", for: .normal)
-        loginButton.addTarget(self, action: #selector(LoginViewController.login), for: .touchUpInside)
+        loginButton.setTitleColor(.blue, for: .normal)
+        loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         
-        UIView.animate(withDuration: 1) {
-            emailTextField.snp.makeConstraints { (make) in
-                make.width.equalTo(200)
-                make.height.equalTo(100)
-                make.center.equalTo(self.view)
-            }
-            passwordTextField.snp.makeConstraints { (make) in
-                make.width.equalTo(200)
-                make.height.equalTo(100)
-                make.center.equalTo(emailTextField).offset(20)
-            }
-            loginButton.snp.makeConstraints { (make) in
-                make.width.equalTo(200)
-                make.height.equalTo(100)
-                make.center.equalTo(passwordTextField).offset(20)
-            }
-        }
+        registerButton.setTitle("Register", for: .normal)
+        registerButton.setTitleColor(.red, for: .normal)
+        registerButton.addTarget(self, action: #selector(LoginViewController.registerButtonAction), for: .touchUpInside)
         
         self.view.addSubview(emailTextField)
         self.view.addSubview(passwordTextField)
         self.view.addSubview(loginButton)
+        self.view.addSubview(registerButton)
+
+        emailTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.centerX.centerY.equalTo(self.view)
+        }
+        passwordTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+        }
+        loginButton.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(40)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
+        }
+        registerButton.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(40)
+            make.top.equalTo(loginButton.snp.bottom).offset(30)
+        }
         
     }
-    
-    weak var emailTextField: UITextField!
-    weak var passwordTextField: UITextField!
-    
-    @objc func login(_ sender: Any) {
+
+    @objc func loginButtonAction(_ sender: Any) {
         
-        guard let email = self.emailTextField.text, let password = self.passwordTextField.text else { return }
-        
+        print("Log in with details: \(String(describing: emailTextField.text))  \(String(describing: passwordTextField.text))")
+
+        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             if let _ = user {
                 self.dismiss(animated: true, completion: nil)
             }
         }
     }
-
+    
+    @objc func registerButtonAction(_ sender: Any) {
+        print("Register Button Tapped")
+        let regiterViewController = RegisterViewController()
+        regiterViewController.title = "Register Today"
+        navigationController?.pushViewController(regiterViewController, animated: true)    }
 }

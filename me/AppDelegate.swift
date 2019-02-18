@@ -21,25 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         
-        let mainTabBarController = MainTabBarController()
-        let mainNavigationController = MainNavigationController()
-        
         let launchViewController = LaunchViewController()
 
-        let mainViewController = MainViewController()
-        let profileViewController = ProfileViewController()
-        let settingsViewController = SettingsViewController()
-        
-        mainNavigationController.title = "Main NVC"
-        profileViewController.title = "Profile"
-        settingsViewController.title = "Settings"
-        
-        mainNavigationController.viewControllers = [mainViewController]
-        
-        mainTabBarController.viewControllers = [mainNavigationController, profileViewController, settingsViewController]
-        
-
-        window?.rootViewController = mainTabBarController
+        window?.rootViewController = launchViewController
         window?.makeKeyAndVisible()
         
         FirebaseApp.configure()

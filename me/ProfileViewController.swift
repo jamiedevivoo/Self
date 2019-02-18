@@ -14,6 +14,8 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("LOG: Profile Screen")
 
         view.backgroundColor = .brown
         
