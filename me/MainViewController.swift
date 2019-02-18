@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
         
         mainButton.backgroundColor = .black
         mainButton.addTarget(self, action: #selector(MainViewController.buttonTapped), for: .touchUpInside)
-        mainButton.setTitle("Test Button", for: .normal)
+        mainButton.setTitle("View Friends Profile", for: .normal)
 
         self.view.addSubview(subViewOne)
         self.view.addSubview(subViewTwo)
@@ -31,7 +31,8 @@ class MainViewController: UIViewController {
         
         UIView.animate(withDuration: 1) {
             mainButton.snp.makeConstraints { (make) in
-                make.size.equalTo(100)
+                make.height.equalTo(100)
+                make.width.equalTo(200)
                 make.center.equalTo(self.view)
             }
             subViewOne.snp.makeConstraints { (make) in
