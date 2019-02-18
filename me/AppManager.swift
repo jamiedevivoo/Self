@@ -22,7 +22,7 @@ class AppManager {
             loginNavigationController.viewControllers = [loginViewController]
             
             newViewController = loginNavigationController
-            print("LOG: USER NOT LOGGED IN")
+            print("LOG: USER IS NOT LOGGED IN")
         } else {
             
             let dashboardTabBarController = MainTabBarController()
@@ -50,7 +50,7 @@ class AppManager {
             dashboardTabBarController.viewControllers = [homeNavigationController, profileNavigationController, settingsNavigationController]
             
             newViewController = dashboardTabBarController
-            print("LOG: USER LOGGED IN")
+            print("LOG: USER IS LOGGED IN")
         }
         appContainer.present(newViewController, animated: true, completion: nil)
         

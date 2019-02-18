@@ -13,7 +13,6 @@ class MainViewController: UIViewController {
         let subViewThree = UIView()
         let subViewFour = UIView()
         let mainButton = UIButton()
-        let logoutButton = UIButton()
         
         subViewOne.backgroundColor = .red
         subViewTwo.backgroundColor = .purple
@@ -23,27 +22,17 @@ class MainViewController: UIViewController {
         mainButton.backgroundColor = .black
         mainButton.addTarget(self, action: #selector(MainViewController.buttonTapped), for: .touchUpInside)
         mainButton.setTitle("Test Button", for: .normal)
-        
-        logoutButton.backgroundColor = .black
-        logoutButton.addTarget(self, action: #selector(MainViewController.logoutButton), for: .touchUpInside)
-        logoutButton.setTitle("Logout", for: .normal)
 
         self.view.addSubview(subViewOne)
         self.view.addSubview(subViewTwo)
         self.view.addSubview(subViewThree)
         self.view.addSubview(subViewFour)
         self.view.addSubview(mainButton)
-        self.view.addSubview(logoutButton)
         
         UIView.animate(withDuration: 1) {
             mainButton.snp.makeConstraints { (make) in
                 make.size.equalTo(100)
                 make.center.equalTo(self.view)
-            }
-            logoutButton.snp.makeConstraints { (make) in
-                make.size.equalTo(100)
-                make.centerX.equalTo(self.view)
-                make.top.equalTo(mainButton.snp.bottom).offset(20)
             }
             subViewOne.snp.makeConstraints { (make) in
                 make.size.equalTo(self.view).multipliedBy(0.5)
@@ -76,11 +65,6 @@ class MainViewController: UIViewController {
         let friendsProfileViewController = ProfileViewController()
         friendsProfileViewController.title = "Friends Profile"
         navigationController?.pushViewController(friendsProfileViewController, animated: true)
-    }
-    
-    @objc func logoutButton() {
-        print("Lougout Tapped")
-        AppManager.shared.logout()
     }
     
     override func didReceiveMemoryWarning() {
