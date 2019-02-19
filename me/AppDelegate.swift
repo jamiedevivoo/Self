@@ -9,14 +9,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        print("LOG: LAUNCHING!")
+        print("LOG: Launching App!")
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         
-        let launchViewController = LaunchViewController()
+        let appContainerViewController = AppContainerViewController()
 
-        window?.rootViewController = launchViewController
+        window?.rootViewController = appContainerViewController
         window?.makeKeyAndVisible()
         
         FirebaseApp.configure()

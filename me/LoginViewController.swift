@@ -74,14 +74,12 @@ class LoginViewController: UIViewController {
 
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             if let _ = error {
-                print(error)
                 let alertController = UIAlertController(title: "Details are Incorrect", message: "Please try again", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
-            }
-            if let _ = user {
+            } else {
                 self.dismiss(animated: true, completion: nil)
             }
         }

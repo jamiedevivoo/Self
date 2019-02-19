@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class LaunchViewController: UIViewController {
+class AppContainerViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

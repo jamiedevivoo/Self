@@ -79,8 +79,11 @@ class AccountSettingsViewController: UIViewController {
         
         let db = Firestore.firestore()
         let userData = ["name": name,
-                        "surname ": surname]
-        db.collection("users").document("jamie").updateData(userData)
+                        "surname ": surname,
+                        "age": "22"]
+        let uid:String = (AccountManager.shared.user?.uid)!
+        print(uid)
+        db.collection("users").document(uid).updateData(userData)
 
         Auth.auth().currentUser?.updateEmail(to: email) { (error) in
             if let _ = error {
