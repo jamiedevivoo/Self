@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
         print("LOG: Login Screen")
         
         emailTextField.backgroundColor = .gray
-        emailTextField.text = "email"
+        emailTextField.text = "email@email.com"
         passwordTextField.backgroundColor = .gray
         passwordTextField.text = "password"
         
@@ -67,6 +67,13 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
 
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
+            if let _ = error {
+                let alertController = UIAlertController(title: "Details are Incorrect", message: "Please try again", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
             if let _ = user {
                 self.dismiss(animated: true, completion: nil)
             }

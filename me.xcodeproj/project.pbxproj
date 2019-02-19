@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0133BF95A558A413460390CC /* Pods_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4819253A6EF56304B1310F1B /* Pods_me.framework */; };
+		A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B945C221C46A00011C0B5 /* AccountManager.swift */; };
 		A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEDA22148D9300B7269F /* AppDelegate.swift */; };
 		A32CAEE222148D9400B7269F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32CAEE122148D9400B7269F /* Assets.xcassets */; };
 		A32CAEEF22148FD000B7269F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEEE22148FD000B7269F /* MainViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		1923519CB64081F1E9663509 /* Pods-me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.debug.xcconfig"; sourceTree = "<group>"; };
 		4819253A6EF56304B1310F1B /* Pods_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A31B945C221C46A00011C0B5 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A32CAED722148D9300B7269F /* me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = me.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A32CAEDA22148D9300B7269F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A32CAEE122148D9400B7269F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				A32CAEDA22148D9300B7269F /* AppDelegate.swift */,
 				A37297052219FCC100AE8480 /* AppManager.swift */,
+				A31B945C221C46A00011C0B5 /* AccountManager.swift */,
 				A37297032219FC4E00AE8480 /* LaunchViewController.swift */,
 				A3729709221A1BD700AE8480 /* MainTabBarController.swift */,
 				A372970B221A1C3900AE8480 /* MainNavigationController.swift */,
@@ -250,6 +253,7 @@
 				A3729710221A2AD800AE8480 /* ProfileViewController.swift in Sources */,
 				A32CAEEF22148FD000B7269F /* MainViewController.swift in Sources */,
 				A37297042219FC4E00AE8480 /* LaunchViewController.swift in Sources */,
+				A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

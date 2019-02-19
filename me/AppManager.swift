@@ -30,8 +30,8 @@ class AppManager {
                 let homeNavigationController = MainNavigationController()
                     let homeViewController = MainViewController()
                     homeViewController.title = "Home"
-                homeNavigationController.title = "Home"
-                homeNavigationController.viewControllers = [homeViewController]
+                    homeNavigationController.title = "Home"
+                    homeNavigationController.viewControllers = [homeViewController]
 
             
                 let profileNavigationController = MainNavigationController()

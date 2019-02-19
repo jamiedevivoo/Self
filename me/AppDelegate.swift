@@ -1,6 +1,5 @@
 import UIKit
 import Firebase
-import FirebaseDatabase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         FirebaseApp.configure()
-//        let db = Firestore.firestore()
-        
+
         return true
     }
 
