@@ -17,12 +17,20 @@ class RegisterViewController: UIViewController {
         
         print("LOG: Login Screen")
         
-        emailTextField.backgroundColor = .gray
+        emailTextField.placeholder = "Email"
         emailTextField.text = "email"
-        passwordTextField.backgroundColor = .gray
+        emailTextField.borderStyle = .roundedRect
+        
+        passwordTextField.placeholder = "Password"
         passwordTextField.text = "password"
-        passwordConfirmTextField.backgroundColor = .gray
+        passwordTextField.borderStyle = .roundedRect
+        passwordTextField.isSecureTextEntry = true
+        
+        passwordConfirmTextField.placeholder = "Password"
         passwordConfirmTextField.text = "password"
+        passwordConfirmTextField.borderStyle = .roundedRect
+        passwordConfirmTextField.isSecureTextEntry = true
+
         
         registerButton.setTitle("Register", for: .normal)
         registerButton.setTitleColor(.blue, for: .normal)
@@ -76,11 +84,38 @@ class RegisterViewController: UIViewController {
         
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let _ = authResult {
+                    let user = Auth.auth().currentUser
+                    if let user = user {
+                        let uid = user.uid
+                        
+                        let db = Firestore.firestore()
+                        let userData = ["uid": uid]
+                        db.collection("users").document(uid).updateData(userData)
+                    }
+                    
                     self.dismiss(animated: true, completion: nil)
+                }
+                if let _ = error {
+                    if error != nil {
+                        
+                        if let errCode = AuthErrorCode(rawValue: error!._code) {
+                            
+                            switch errCode {
+                            case .invalidEmail:
+                                print("The email entered is invalid")
+                            case .emailAlreadyInUse:
+                                print("Email already in use")
+                            default:
+                                print("There was another error!")
+                            }
+                            
+                        }
+                    }
                 }
             }
             
         }
+        
         
     }
     

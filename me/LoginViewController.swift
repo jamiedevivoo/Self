@@ -15,10 +15,16 @@ class LoginViewController: UIViewController {
         
         print("LOG: Login Screen")
         
-        emailTextField.backgroundColor = .gray
         emailTextField.text = "email@email.com"
-        passwordTextField.backgroundColor = .gray
+        emailTextField.keyboardType = UIKeyboardType.emailAddress
+        emailTextField.placeholder = "Email Address"
+        emailTextField.borderStyle = .roundedRect
+        
         passwordTextField.text = "password"
+        passwordTextField.placeholder = "Password"
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.borderStyle = .roundedRect
+
         
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.blue, for: .normal)
@@ -68,6 +74,7 @@ class LoginViewController: UIViewController {
 
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             if let _ = error {
+                print(error)
                 let alertController = UIAlertController(title: "Details are Incorrect", message: "Please try again", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 

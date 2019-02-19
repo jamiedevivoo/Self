@@ -12,12 +12,16 @@ class MainViewController: UIViewController {
         let subViewTwo = UIView()
         let subViewThree = UIView()
         let subViewFour = UIView()
+        let welcomeText = UITextView()
         let mainButton = UIButton()
         
         subViewOne.backgroundColor = .red
         subViewTwo.backgroundColor = .purple
         subViewThree.backgroundColor = .blue
         subViewFour.backgroundColor = .green
+        
+        welcomeText.text = "Welcome " + (AccountManager.shared.user?.email)!
+        welcomeText.backgroundColor = .none
         
         mainButton.backgroundColor = .black
         mainButton.addTarget(self, action: #selector(MainViewController.buttonTapped), for: .touchUpInside)
@@ -28,8 +32,15 @@ class MainViewController: UIViewController {
         self.view.addSubview(subViewThree)
         self.view.addSubview(subViewFour)
         self.view.addSubview(mainButton)
+        self.view.addSubview(welcomeText)
         
         UIView.animate(withDuration: 1) {
+            welcomeText.snp.makeConstraints { (make) in
+                make.height.equalTo(100)
+                make.width.equalTo(200)
+                make.top.equalTo(self.view).offset(100)
+                make.centerX.equalTo(self.view)
+            }
             mainButton.snp.makeConstraints { (make) in
                 make.height.equalTo(100)
                 make.width.equalTo(200)

@@ -10,7 +10,6 @@ class LaunchViewController: UIViewController {
         
         AppManager.shared.appContainer = self
         AppManager.shared.showApp()
-
     }
 
 }

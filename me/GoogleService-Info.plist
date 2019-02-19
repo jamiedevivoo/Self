@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>929209306796-tpt34pknb2ggugja8n11re0fnf7hla00.apps.googleusercontent.com</string>
+	<string>312486763160-32qg9mm25setm2f1ljuqo9s97bvuarcf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.929209306796-tpt34pknb2ggugja8n11re0fnf7hla00</string>
+	<string>com.googleusercontent.apps.312486763160-32qg9mm25setm2f1ljuqo9s97bvuarcf</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBPuzONSHBPhgZrMfqdPYGdlNWzyWw4WlM</string>
+	<string>AIzaSyC7K8eze0kAK61N_Jtt7g9seiUlXd0Xa0I</string>
 	<key>GCM_SENDER_ID</key>
-	<string>929209306796</string>
+	<string>312486763160</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.jamiedevivo.me</string>
 	<key>PROJECT_ID</key>
-	<string>me-your-wellbeing-companion</string>
+	<string>me-emotional-companion</string>
 	<key>STORAGE_BUCKET</key>
-	<string>me-your-wellbeing-companion.appspot.com</string>
+	<string>me-emotional-companion.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:929209306796:ios:ec2dff81177a2b58</string>
+	<string>1:312486763160:ios:ec2dff81177a2b58</string>
 	<key>DATABASE_URL</key>
-	<string>https://me-your-wellbeing-companion.firebaseio.com</string>
+	<string>https://me-emotional-companion.firebaseio.com</string>
 </dict>
 </plist>

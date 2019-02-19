@@ -8,9 +8,12 @@ target 'me' do
   	pod 'Firebase'
   	pod 'Firebase/Core'
 	pod 'Firebase/Analytics'
-	pod 'Firebase/Database'
+	pod 'Firebase/Firestore'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Storage'
+	pod 'Firebase/MLVision'
+	pod 'Firebase/Performance'
+	pod 'Firebase/RemoteConfig'
 	pod 'SnapKit', '~> 4.0.0'
 
 end
