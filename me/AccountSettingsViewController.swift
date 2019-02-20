@@ -34,8 +34,8 @@ class AccountSettingsViewController: UIViewController {
             } else if let document = document {
                 let data = document.data()!
                 self.emailTextField.text = data["email"] as? String ?? ""
-                self.surnameTextField.text = data["name"] as? String ?? ""
-                self.nameTextField.text = data["surname"] as? String ?? ""
+                self.nameTextField.text = data["name"] as? String ?? ""
+                self.surnameTextField.text = data["surname"] as? String ?? ""
             }
         }
 
@@ -98,7 +98,6 @@ class AccountSettingsViewController: UIViewController {
             
                 let userData: [String:Any] = ["name": name,
                                 "surname ": surname,
-                                "age": "22",
                                 "email":email]
                 let uid:String = (AccountManager.shared.user?.uid)!
                 

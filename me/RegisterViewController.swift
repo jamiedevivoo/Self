@@ -21,19 +21,15 @@ class RegisterViewController: UIViewController {
         print("LOG: Login Screen")
         
         emailTextField.placeholder = "Email"
-        emailTextField.text = "email"
         emailTextField.borderStyle = .roundedRect
         
         passwordTextField.placeholder = "Password"
-        passwordTextField.text = "password"
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.isSecureTextEntry = true
         
         passwordConfirmTextField.placeholder = "Password"
-        passwordConfirmTextField.text = "password"
         passwordConfirmTextField.borderStyle = .roundedRect
         passwordConfirmTextField.isSecureTextEntry = true
-
         
         registerButton.setTitle("Register", for: .normal)
         registerButton.setTitleColor(.blue, for: .normal)

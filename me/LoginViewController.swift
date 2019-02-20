@@ -4,6 +4,7 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
+    let welcomeLabel = UILabel()
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
     
@@ -18,6 +19,10 @@ class LoginViewController: UIViewController {
         let registerButton = UIButton()
         
         print("LOG: Login Screen")
+        
+        welcomeLabel.text = "Welcome"
+        welcomeLabel.textAlignment = .center
+        welcomeLabel.textColor = .black
         
         emailTextField.text = "email@email.com"
         emailTextField.keyboardType = UIKeyboardType.emailAddress
@@ -34,15 +39,23 @@ class LoginViewController: UIViewController {
         loginButton.setTitleColor(.blue, for: .normal)
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         
-        registerButton.setTitle("Register", for: .normal)
+        registerButton.setTitle("Get started", for: .normal)
         registerButton.setTitleColor(.red, for: .normal)
         registerButton.addTarget(self, action: #selector(LoginViewController.registerButtonAction), for: .touchUpInside)
         
         self.view.addSubview(emailTextField)
         self.view.addSubview(passwordTextField)
+        self.view.addSubview(welcomeLabel)
         self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
-
+        
+        welcomeLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.top.equalTo(100)
+            make.height.equalTo(50)
+        }
+        
         emailTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
@@ -90,7 +103,7 @@ class LoginViewController: UIViewController {
     
     @objc func registerButtonAction(_ sender: Any) {
         print("Register Button Tapped")
-        let regiterViewController = RegisterViewController()
-        regiterViewController.title = "Register Today"
-        navigationController?.pushViewController(regiterViewController, animated: true)    }
+        let onboardingViewController = Onboarding1ViewController()
+        onboardingViewController.title = "Register"
+        navigationController?.pushViewController(onboardingViewController, animated: true)    }
 }
