@@ -6,9 +6,13 @@ class LoginViewController: UIViewController {
     
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
+    
+    var db:Firestore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Firestore.firestore()
         
         let loginButton = UIButton()
         let registerButton = UIButton()
@@ -76,7 +80,6 @@ class LoginViewController: UIViewController {
             if let _ = error {
                 let alertController = UIAlertController(title: "Details are Incorrect", message: "Please try again", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
             } else {

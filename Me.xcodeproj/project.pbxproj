@@ -18,7 +18,6 @@
 		A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */; };
 		A3514834221D8F19002BA1A4 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */; };
 		A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514835221D9064002BA1A4 /* SidebarViewController.swift */; };
-		A3514838221D909C002BA1A4 /* LoggedInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514837221D909C002BA1A4 /* LoggedInContainerViewController.swift */; };
 		A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297012219FA5500AE8480 /* LoginViewController.swift */; };
 		A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297032219FC4E00AE8480 /* AppContainerViewController.swift */; };
 		A37297062219FCC100AE8480 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297052219FCC100AE8480 /* AppManager.swift */; };
@@ -45,7 +44,6 @@
 		A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
 		A3514835221D9064002BA1A4 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		A3514837221D909C002BA1A4 /* LoggedInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInContainerViewController.swift; sourceTree = "<group>"; };
 		A37297012219FA5500AE8480 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A37297032219FC4E00AE8480 /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		A37297052219FCC100AE8480 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				A37297052219FCC100AE8480 /* AppManager.swift */,
 				A31B945C221C46A00011C0B5 /* AccountManager.swift */,
 				A37297032219FC4E00AE8480 /* AppContainerViewController.swift */,
-				A3514837221D909C002BA1A4 /* LoggedInContainerViewController.swift */,
 				A372970B221A1C3900AE8480 /* MainNavigationController.swift */,
 				A3729709221A1BD700AE8480 /* MainTabBarController.swift */,
 				A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */,
@@ -289,7 +286,6 @@
 				A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */,
 				A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */,
 				A3514834221D8F19002BA1A4 /* LoggedInViewController.swift in Sources */,
-				A3514838221D909C002BA1A4 /* LoggedInContainerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

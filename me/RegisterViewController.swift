@@ -7,9 +7,12 @@ class RegisterViewController: UIViewController {
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
     let passwordConfirmTextField = UITextField()
+    var db:Firestore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Firestore.firestore()
         
         view.backgroundColor = .white
 
@@ -82,16 +85,14 @@ class RegisterViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         } else {
         
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if let _ = authResult {
-                    let user = Auth.auth().currentUser
-                    if let user = user {
-                        let uid = user.uid
-                        
-                        let db = Firestore.firestore()
-                        let userData = ["uid": uid]
-                        db.collection("users").document(uid).updateData(userData)
-                    }
+            Auth.auth().createUser(withEmail: email, password: password) { user, error in
+                if let _ = user {
+                    
+                    let uid = user!.user.uid
+                    let email = user!.user.email
+                    let userData = ["uid": uid,
+                                    "email": email]
+                    self.db.collection("users").document(uid).setData(userData as [String : Any])
                     
                     self.dismiss(animated: true, completion: nil)
                 }

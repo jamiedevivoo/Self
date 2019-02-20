@@ -88,17 +88,20 @@ class AccountSettingsViewController: UIViewController {
 //            }
 //        }
         
-        let userData = ["name": name,
-                        "surname ": surname,
-                        "age": "22"]
-        let uid:String = (AccountManager.shared.user?.uid)!
-        
-        db.collection("users").document(uid).updateData(userData)
 
         Auth.auth().currentUser?.updateEmail(to: email) { (error) in
             if let _ = error {
-                print (error)
+                print ("\(String(describing: error))")
             } else {
+            
+                let userData = ["name": name,
+                                "surname ": surname,
+                                "age": "22",
+                                "email":email]
+                let uid:String = (AccountManager.shared.user?.uid)!
+                
+                self.db.collection("users").document(uid).updateData(userData)
+                
                 print("Updated Details: \(email) and \(name) and \(surname)")
             }
         }
