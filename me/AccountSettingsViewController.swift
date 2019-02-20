@@ -13,6 +13,8 @@ class AccountSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let user = User()
+        
         db = Firestore.firestore()
         
         print("LOG: Account Settings Screen")
@@ -28,16 +30,9 @@ class AccountSettingsViewController: UIViewController {
         surnameTextField.borderStyle = .roundedRect
         surnameTextField.placeholder = "Surname"
 
-        db.collection("users").document((AccountManager.shared.user?.uid)!).getDocument() { document, error in
-            if let error = error {
-                    print ("\(error)")
-            } else if let document = document {
-                let data = document.data()!
-                self.emailTextField.text = data["email"] as? String ?? ""
-                self.nameTextField.text = data["name"] as? String ?? ""
-                self.surnameTextField.text = data["surname"] as? String ?? ""
-            }
-        }
+        self.emailTextField.text = user?.email
+        self.nameTextField.text = user?.name
+        self.surnameTextField.text = user?.surname
 
         saveButton.setTitle("Save Details", for: .normal)
         saveButton.setTitleColor(.blue, for: .normal)

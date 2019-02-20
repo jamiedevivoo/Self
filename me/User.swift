@@ -1,16 +1,40 @@
+import Firebase
+
 class User {
     
-    var name: String
-    var lastname: String
-    let uid: String
-    let email: String
+    // MARK: - Properties
     
-    init?(uid:String, name:String,lastname:String,email:String) {
-        self.uid = uid
+    var db:Firestore!
+    var uid: String?
+    var name: String?
+    var surname: String?
+    var email: String?
+
+    
+    // MARK: Initialization
+    
+    init?(uid:String? = AccountManager.shared.user?.uid) {
+        self.uid = uid ?? (AccountManager.shared.user?.uid)!
+        getDetailsFrom(uid: self.uid!)
+    }
+
+    
+    // MARK: - Get User Details Function
+
+    private func getDetailsFrom(uid:String) {
+        print(uid)
+        self.db = Firestore.firestore()
+        db.collection("users").document(uid).getDocument() { document, error in
+            if let error = error {
+                print ("\(error)")
+            } else if let document = document {
+                let data = document.data()!
+                self.email = data["email"] as? String ?? ""
+                self.name = data["name"] as? String ?? ""
+                self.surname = data["surname"] as? String ?? ""
+            }
+        }
         
-        self.name = name
-        self.lastname = lastname
-        self.email = email
     }
     
 }
