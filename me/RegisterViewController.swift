@@ -90,9 +90,9 @@ class RegisterViewController: UIViewController {
                     
                     let uid = user!.user.uid
                     let email = user!.user.email
-                    let userData = ["uid": uid,
-                                    "email": email]
-                    self.db.collection("users").document(uid).setData(userData as [String : Any])
+                    let userData: [String:Any] = ["uid": uid,
+                                                  "email": email as Any]
+                    self.db.collection("users").document(uid).setData(userData)
                     
                     self.dismiss(animated: true, completion: nil)
                 }

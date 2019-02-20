@@ -22,20 +22,22 @@ class AccountSettingsViewController: UIViewController {
         let saveButton = UIButton()
         
         emailTextField.borderStyle = .roundedRect
+        emailTextField.placeholder = "Email Address"
         nameTextField.borderStyle = .roundedRect
+        nameTextField.placeholder = "First Name"
         surnameTextField.borderStyle = .roundedRect
-        
-        db.collection("users").getDocuments() { querySnapshot, error in
+        surnameTextField.placeholder = "Surname"
+
+        db.collection("users").document((AccountManager.shared.user?.uid)!).getDocument() { document, error in
             if let error = error {
-                    print ("\(error.localizedDescription)")
-            } else {
-                print(querySnapshot!.documents)
+                    print ("\(error)")
+            } else if let document = document {
+                let data = document.data()!
+                self.emailTextField.text = data["email"] as? String ?? ""
+                self.surnameTextField.text = data["name"] as? String ?? ""
+                self.nameTextField.text = data["surname"] as? String ?? ""
             }
         }
-        
-        nameTextField.text = "name"
-        surnameTextField.text = "surname"
-        emailTextField.text = AccountManager.shared.user?.email
 
         saveButton.setTitle("Save Details", for: .normal)
         saveButton.setTitleColor(.blue, for: .normal)
@@ -94,7 +96,7 @@ class AccountSettingsViewController: UIViewController {
                 print ("\(String(describing: error))")
             } else {
             
-                let userData = ["name": name,
+                let userData: [String:Any] = ["name": name,
                                 "surname ": surname,
                                 "age": "22",
                                 "email":email]
