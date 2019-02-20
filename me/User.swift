@@ -5,7 +5,7 @@ class User {
     // MARK: - Properties
     
     var db:Firestore!
-    var uid: String?
+    let uid: String?
     var name: String?
     var surname: String?
     var email: String?
@@ -15,13 +15,13 @@ class User {
     
     init?(uid:String? = AccountManager.shared.user?.uid) {
         self.uid = uid ?? (AccountManager.shared.user?.uid)!
-        getDetailsFrom(uid: self.uid!)
+        getDetailsUsing(uid: self.uid!)
     }
 
     
     // MARK: - Get User Details Function
 
-    private func getDetailsFrom(uid:String) {
+    private func getDetailsUsing(uid:String) {
         print(uid)
         self.db = Firestore.firestore()
         db.collection("users").document(uid).getDocument() { document, error in
