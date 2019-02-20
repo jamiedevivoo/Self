@@ -97,7 +97,7 @@ class AccountSettingsViewController: UIViewController {
 
         Auth.auth().currentUser?.updateEmail(to: email) { (error) in
             if let _ = error {
-                print (error)
+                print ("/(error?)")
             } else {
                 print("Updated Details: \(email) and \(name) and \(surname)")
             }
