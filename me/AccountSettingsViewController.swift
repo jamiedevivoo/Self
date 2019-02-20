@@ -7,10 +7,13 @@ class AccountSettingsViewController: UIViewController {
     let nameTextField = UITextField()
     let surnameTextField = UITextField()
     let emailTextField = UITextField()
-
+    
+    var db:Firestore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Firestore.firestore()
         
         print("LOG: Account Settings Screen")
         
@@ -21,6 +24,14 @@ class AccountSettingsViewController: UIViewController {
         emailTextField.borderStyle = .roundedRect
         nameTextField.borderStyle = .roundedRect
         surnameTextField.borderStyle = .roundedRect
+        
+        db.collection("users").getDocuments() { querySnapshot, error in
+            if let error = error {
+                    print ("\(error.localizedDescription)")
+            } else {
+                print(querySnapshot!.documents)
+            }
+        }
         
         nameTextField.text = "name"
         surnameTextField.text = "surname"
@@ -77,7 +88,6 @@ class AccountSettingsViewController: UIViewController {
 //            }
 //        }
         
-        let db = Firestore.firestore()
         let userData = ["name": name,
                         "surname ": surname,
                         "age": "22"]

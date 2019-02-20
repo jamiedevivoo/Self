@@ -71,4 +71,8 @@ class AppManager {
         appContainer.presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
+    func loadLoggedInView() {
+        
+    }
+    
 }

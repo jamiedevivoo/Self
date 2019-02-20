@@ -72,7 +72,7 @@ class RegisterViewController: UIViewController {
         
         print("Register with details: \(emailTextField.text!)  \(passwordTextField.text!)")
         
-        guard let email = emailTextField.text, let password = passwordTextField.text, let passwordConfirm = passwordConfirmTextField.text else { return }
+        guard let email: String = emailTextField.text, let password: String = passwordTextField.text, let passwordConfirm: String = passwordConfirmTextField.text else { return }
         
         if password != passwordConfirm {
             let alertController = UIAlertController(title: "Confirmed Password is Incorrect", message: "Please re-type password", preferredStyle: .alert)

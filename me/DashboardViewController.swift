@@ -30,7 +30,7 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         print("LOG: Dashboard Created")
         
-        let profile = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
+        let profile = UIBarButtonItem(title: "Your Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItems = [profile]
         
         // Profile Summary View
