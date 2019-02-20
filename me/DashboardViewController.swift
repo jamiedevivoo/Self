@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: LoggedInViewController {
     
     // Profile Summary Subview
     let profileSummarySubview = UIView()
@@ -29,9 +29,6 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LOG: Dashboard Created")
-        
-        let profile = UIBarButtonItem(title: "Your Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
-        navigationItem.rightBarButtonItems = [profile]
         
         // Profile Summary View
         profileSummarySubview.backgroundColor = .blue
@@ -68,14 +65,6 @@ class DashboardViewController: UIViewController {
         }
         
         self.view.layoutIfNeeded()
-    }
-    
-    @objc func profileButtonTapped() {
-        print("Profile Button Tapped")
-        let UserProfileViewController = ProfileViewController()
-        
-        UserProfileViewController.title = "Profile"
-        navigationController?.pushViewController(UserProfileViewController, animated: true)
     }
     
     @objc func buttonTapped() {

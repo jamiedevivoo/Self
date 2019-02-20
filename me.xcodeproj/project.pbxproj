@@ -16,6 +16,9 @@
 		A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEDA22148D9300B7269F /* AppDelegate.swift */; };
 		A32CAEE222148D9400B7269F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32CAEE122148D9400B7269F /* Assets.xcassets */; };
 		A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */; };
+		A3514834221D8F19002BA1A4 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */; };
+		A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514835221D9064002BA1A4 /* SidebarViewController.swift */; };
+		A3514838221D909C002BA1A4 /* LoggedInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514837221D909C002BA1A4 /* LoggedInContainerViewController.swift */; };
 		A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297012219FA5500AE8480 /* LoginViewController.swift */; };
 		A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297032219FC4E00AE8480 /* AppContainerViewController.swift */; };
 		A37297062219FCC100AE8480 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297052219FCC100AE8480 /* AppManager.swift */; };
@@ -40,6 +43,9 @@
 		A32CAEE122148D9400B7269F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A32CAEE622148D9400B7269F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
+		A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
+		A3514835221D9064002BA1A4 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		A3514837221D909C002BA1A4 /* LoggedInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInContainerViewController.swift; sourceTree = "<group>"; };
 		A37297012219FA5500AE8480 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A37297032219FC4E00AE8480 /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		A37297052219FCC100AE8480 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -98,8 +104,11 @@
 				A37297052219FCC100AE8480 /* AppManager.swift */,
 				A31B945C221C46A00011C0B5 /* AccountManager.swift */,
 				A37297032219FC4E00AE8480 /* AppContainerViewController.swift */,
-				A3729709221A1BD700AE8480 /* MainTabBarController.swift */,
+				A3514837221D909C002BA1A4 /* LoggedInContainerViewController.swift */,
 				A372970B221A1C3900AE8480 /* MainNavigationController.swift */,
+				A3729709221A1BD700AE8480 /* MainTabBarController.swift */,
+				A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */,
+				A3514835221D9064002BA1A4 /* SidebarViewController.swift */,
 				A31B9460221CB9900011C0B5 /* DashboardViewController.swift */,
 				A31B9462221CBCFC0011C0B5 /* StatsViewController.swift */,
 				A31B9464221CBD030011C0B5 /* ChallengesViewController.swift */,
@@ -272,12 +281,15 @@
 				A372970E221A28EE00AE8480 /* RegisterViewController.swift in Sources */,
 				A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */,
 				A31B946B221CE82C0011C0B5 /* User.swift in Sources */,
+				A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */,
 				A31B9461221CB9900011C0B5 /* DashboardViewController.swift in Sources */,
 				A31B9463221CBCFC0011C0B5 /* StatsViewController.swift in Sources */,
 				A372970C221A1C3900AE8480 /* MainNavigationController.swift in Sources */,
 				A3729710221A2AD800AE8480 /* ProfileViewController.swift in Sources */,
 				A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */,
 				A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */,
+				A3514834221D8F19002BA1A4 /* LoggedInViewController.swift in Sources */,
+				A3514838221D909C002BA1A4 /* LoggedInContainerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

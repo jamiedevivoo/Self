@@ -92,7 +92,7 @@ class AccountSettingsViewController: UIViewController {
                         "surname ": surname,
                         "age": "22"]
         let uid:String = (AccountManager.shared.user?.uid)!
-        print(uid)
+        
         db.collection("users").document(uid).updateData(userData)
 
         Auth.auth().currentUser?.updateEmail(to: email) { (error) in
@@ -102,6 +102,7 @@ class AccountSettingsViewController: UIViewController {
                 print("Updated Details: \(email) and \(name) and \(surname)")
             }
         }
+        
     
     }
 
