@@ -10,8 +10,7 @@ class User {
     var surname: String?
     var email: String?
 
-    
-    // MARK: Initialization
+    // MARK: - Initialization
     
     init?(uid:String? = AccountManager.shared.user?.uid) {
         self.uid = uid ?? (AccountManager.shared.user?.uid)!
@@ -19,7 +18,7 @@ class User {
     }
 
     
-    // MARK: - Get User Details Function
+    // MARK: - Functions
 
     private func getDetailsUsing(uid:String) {
         self.db = Firestore.firestore()

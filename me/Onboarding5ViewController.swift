@@ -41,7 +41,7 @@ class Onboarding5ViewController: OnboardingViewController {
     
     @objc func onboardingNext(_ sender: Any) {
         print("Register Button Tapped")
-        let nextOnboardingViewController = Onboarding1ViewController()
+        let nextOnboardingViewController = RegisterViewController()
         navigationController?.pushViewController(nextOnboardingViewController, animated: true)
     }
     
