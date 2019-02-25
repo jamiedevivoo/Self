@@ -10,7 +10,7 @@
 		0133BF95A558A413460390CC /* Pods_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4819253A6EF56304B1310F1B /* Pods_me.framework */; };
 		A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B945C221C46A00011C0B5 /* AccountManager.swift */; };
 		A31B9461221CB9900011C0B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B9460221CB9900011C0B5 /* HomeViewController.swift */; };
-		A31B9463221CBCFC0011C0B5 /* journalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B9462221CBCFC0011C0B5 /* journalViewController.swift */; };
+		A31B9463221CBCFC0011C0B5 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */; };
 		A31B9465221CBD030011C0B5 /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B9464221CBD030011C0B5 /* ChallengesViewController.swift */; };
 		A31B946B221CE82C0011C0B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B946A221CE82C0011C0B5 /* User.swift */; };
 		A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CAEDA22148D9300B7269F /* AppDelegate.swift */; };
@@ -41,7 +41,7 @@
 		4819253A6EF56304B1310F1B /* Pods_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A31B945C221C46A00011C0B5 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A31B9460221CB9900011C0B5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A31B9462221CBCFC0011C0B5 /* journalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalViewController.swift; sourceTree = "<group>"; };
+		A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A31B9464221CBD030011C0B5 /* ChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
 		A31B946A221CE82C0011C0B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A32CAED722148D9300B7269F /* me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = me.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +123,7 @@
 				A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */,
 				A3514835221D9064002BA1A4 /* SidebarViewController.swift */,
 				A31B9460221CB9900011C0B5 /* HomeViewController.swift */,
-				A31B9462221CBCFC0011C0B5 /* journalViewController.swift */,
+				A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */,
 				A31B9464221CBD030011C0B5 /* ChallengesViewController.swift */,
 				A372970F221A2AD800AE8480 /* ProfileViewController.swift */,
 				A3729711221A2B3500AE8480 /* SettingsViewController.swift */,
@@ -304,7 +304,7 @@
 				A31B946B221CE82C0011C0B5 /* User.swift in Sources */,
 				A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */,
 				A31B9461221CB9900011C0B5 /* HomeViewController.swift in Sources */,
-				A31B9463221CBCFC0011C0B5 /* journalViewController.swift in Sources */,
+				A31B9463221CBCFC0011C0B5 /* JournalViewController.swift in Sources */,
 				A372970C221A1C3900AE8480 /* MainNavigationController.swift in Sources */,
 				A3729710221A2AD800AE8480 /* ProfileViewController.swift in Sources */,
 				A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */,

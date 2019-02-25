@@ -36,8 +36,8 @@ class AppManager {
             
             let journalNavigationController = MainNavigationController()
             let journalViewController = JournalViewController()
-            journalViewController.title = "Stats"
-            journalNavigationController.title = "Stats"
+            journalViewController.title = "Journal"
+            journalNavigationController.title = "Journal"
             journalNavigationController.viewControllers = [journalViewController]
             
             let challengesNavigationController = MainNavigationController()

@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 
-class CommunitiesViewController: UIViewController {
+class CommunitiesViewController: LoggedInViewController {
 
         override func viewDidLoad() {
             super.viewDidLoad()
