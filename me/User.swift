@@ -22,7 +22,6 @@ class User {
     // MARK: - Get User Details Function
 
     private func getDetailsUsing(uid:String) {
-        print(uid)
         self.db = Firestore.firestore()
         db.collection("users").document(uid).getDocument() { document, error in
             if let error = error {

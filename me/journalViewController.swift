@@ -1,6 +1,6 @@
 import UIKit
 
-class StatsViewController: LoggedInViewController {
+class JournalViewController: LoggedInViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

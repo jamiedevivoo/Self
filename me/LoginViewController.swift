@@ -87,7 +87,15 @@ class LoginViewController: UIViewController {
         
         print("Log in with details: \(String(describing: emailTextField.text))  \(String(describing: passwordTextField.text))")
 
-        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        guard let email = emailTextField.text else {
+            print("Please enter an email")
+            return
+        }
+        guard let password = passwordTextField.text else {
+            print("Please enter a password")
+            return
+            
+        }
 
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             if let _ = error {

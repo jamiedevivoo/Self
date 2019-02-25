@@ -28,17 +28,17 @@ class AppManager {
             
             let homeTabBarController = MainTabBarController()
             
-            let dashboardNavigationController = MainNavigationController()
-            let dashboardViewController = DashboardViewController()
-            dashboardViewController.title = "Home"
-            dashboardNavigationController.title = "Home"
-            dashboardNavigationController.viewControllers = [dashboardViewController]
+            let homeNavigationController = MainNavigationController()
+            let homeViewController = HomeViewController()
+            homeViewController.title = "Home"
+            homeNavigationController.title = "Home"
+            homeNavigationController.viewControllers = [homeViewController]
             
-            let statsNavigationController = MainNavigationController()
-            let statsViewController = StatsViewController()
-            statsViewController.title = "Stats"
-            statsNavigationController.title = "Stats"
-            statsNavigationController.viewControllers = [statsViewController]
+            let journalNavigationController = MainNavigationController()
+            let journalViewController = JournalViewController()
+            journalViewController.title = "Stats"
+            journalNavigationController.title = "Stats"
+            journalNavigationController.viewControllers = [journalViewController]
             
             let challengesNavigationController = MainNavigationController()
             let challengesViewController = ChallengesViewController()
@@ -46,6 +46,11 @@ class AppManager {
             challengesNavigationController.title = "Challenges"
             challengesNavigationController.viewControllers = [challengesViewController]
             
+            let communitiesNavigationController = MainNavigationController()
+            let communitiesViewController = CommunitiesViewController()
+            communitiesViewController.title = "Communities"
+            communitiesNavigationController.title = "Communities"
+            communitiesNavigationController.viewControllers = [communitiesViewController]
             
             let profileNavigationController = MainNavigationController()
             let profileViewController = ProfileViewController()
@@ -59,7 +64,7 @@ class AppManager {
             settingsNavigationController.title = "Settings"
             settingsNavigationController.viewControllers = [settingsViewController]
             
-            homeTabBarController.viewControllers = [dashboardNavigationController, statsNavigationController, challengesNavigationController]
+            homeTabBarController.viewControllers = [communitiesNavigationController, journalNavigationController, challengesNavigationController, homeNavigationController]
             
             newViewController = homeTabBarController
         }

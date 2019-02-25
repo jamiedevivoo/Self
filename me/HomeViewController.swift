@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class DashboardViewController: LoggedInViewController {
+class HomeViewController: LoggedInViewController {
     
     // Profile Summary Subview
     let profileSummarySubview = UIView()
@@ -38,7 +38,7 @@ class DashboardViewController: LoggedInViewController {
         AwarenessCircle.layer.cornerRadius = 10
         nameLabel.text = (AccountManager.shared.user?.email)!
         mainButton.backgroundColor = .black
-        mainButton.addTarget(self, action: #selector(DashboardViewController.buttonTapped), for: .touchUpInside)
+        mainButton.addTarget(self, action: #selector(HomeViewController.buttonTapped), for: .touchUpInside)
         mainButton.setTitle("View Friends Profile", for: .normal)
         
         self.view.addSubview(profileSummarySubview)
