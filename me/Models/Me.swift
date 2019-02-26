@@ -10,9 +10,4 @@ import Foundation
 
 class Me {
     
-    var uid: String
-    
-    init(dictionary: [String: Any]) {
-        
-    }
 }

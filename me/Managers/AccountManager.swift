@@ -1,0 +1,7 @@
+import Firebase
+
+class AccountManager {
+
+    
+    
+}
