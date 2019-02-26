@@ -8,66 +8,63 @@ class AccountSettingsViewController: UIViewController {
     
     var db: Firestore!
     var ref: DocumentReference!
-    let nameTextField = UITextField()
-    let surnameTextField = UITextField()
-    let emailTextField = UITextField()
+    lazy var nameTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.borderStyle = .roundedRect
+        textfield.placeholder = "First Name"
+        return textfield
+    }()
+    lazy var surnameTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.borderStyle = .roundedRect
+        textfield.placeholder = "Surname"
+        return textfield
+    }()
+    lazy var emailTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.borderStyle = .roundedRect
+        textfield.placeholder = "Email Address"
+        return textfield
+    }()
     
     // MARK: - init
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
         db = Firestore.firestore()
 //        ref = db.reference()
         
-        addNameLabel()
-        addSurnameLabel()
-        addEmailLabel()
-    }
-    
-    // MARK: - Programmatic UI
-    
-    func addNameLabel() {
-        nameTextField.borderStyle = .roundedRect
-        nameTextField.placeholder = "First Name"
-
         self.view.addSubview(nameTextField)
-
+        self.view.addSubview(surnameTextField)
+        self.view.addSubview(emailTextField)
+        
         nameTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
             make.height.equalTo(35)
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
         }
-    }
-    
-    func addSurnameLabel() {
-        surnameTextField.borderStyle = .roundedRect
-        surnameTextField.placeholder = "Surname"
-
-        self.view.addSubview(surnameTextField)
-
+        
         surnameTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
             make.height.equalTo(35)
             make.top.equalTo(nameTextField.snp.bottom).offset(20)
         }
-    }
-    
-    func addEmailLabel() {
-        emailTextField.borderStyle = .roundedRect
-        emailTextField.placeholder = "Email Address"
         
-        self.view.addSubview(emailTextField)
-
         emailTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
             make.height.equalTo(35)
             make.centerX.centerY.equalTo(self.view)
         }
+        
     }
+    
+    // MARK: - Programmatic UI
     
     // MARK: - Actions
     

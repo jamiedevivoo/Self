@@ -1,74 +1,75 @@
 import UIKit
 import SnapKit
+import Firebase
 
 class HomeViewController: LoggedInViewController {
     
-    // Profile Summary Subview
-    let profileSummarySubview = UIView()
-    let focusCircle = UIView()
-    let EngagementCircle = UIView()
-    let PerspectiveCircle = UIView()
-    let AwarenessCircle = UIView()
-    let nameLabel = UILabel()
-    let userMeImageView = UIImageView()
-
-    // Task Subview
-    let taskSummarySubview = UIView()
-    let taskLabel = UILabel()
-
-    // Group Summary Subview
-    let socialSummarySubview = UIView()
-    let groupLabel = UILabel()
-    let mainButton = UIButton()
-
-    // Stat Summary Subview
-    let statSubview = UIView()
-    let statLabel = UILabel()
-
+    // MARK: - Properties
     
+    var db: Firestore!
+    var ref: DocumentReference!
+    
+    // MARK: - UI and Views
+    
+    lazy var mainButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(HomeViewController.buttonTapped), for: .touchUpInside)
+        button.setTitle("View Friends Profile", for: .normal)
+        return button
+    }()
+    
+    lazy var welcomeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Welcome!"
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
+    var user: User?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LOG: Dashboard Created")
-        
         navigationItem.title = "Home"
-
+        
+        db = Firestore.firestore()
+        let uid = Auth.auth().currentUser!.uid
+        db.collection("user").document(uid).getDocument() { document, error in
+            if let error = error {
+                print(error)
+            } else {
+                
+                self.user = User(snapshot: document as! DocumentSnapshot)
+            }
+        }
+        
+        welcomeLabel.text = "Welcome \(self.user?.name ?? "No Value")"
         
         // Profile Summary View
-        profileSummarySubview.backgroundColor = .blue
-        focusCircle.layer.cornerRadius = 10
-        EngagementCircle.layer.cornerRadius = 10
-        PerspectiveCircle.layer.cornerRadius = 10
-        AwarenessCircle.layer.cornerRadius = 10
-        nameLabel.text = (AccountManager.shared.user?.email)!
-        mainButton.backgroundColor = .black
-        mainButton.addTarget(self, action: #selector(HomeViewController.buttonTapped), for: .touchUpInside)
-        mainButton.setTitle("View Friends Profile", for: .normal)
         
-        self.view.addSubview(profileSummarySubview)
-        self.view.addSubview(focusCircle)
-        self.view.addSubview(EngagementCircle)
-        self.view.addSubview(PerspectiveCircle)
-        self.view.addSubview(AwarenessCircle)
-        self.view.addSubview(nameLabel)
-        self.view.addSubview(userMeImageView)
         self.view.addSubview(mainButton)
+        self.view.addSubview(welcomeLabel)
         
         UIView.animate(withDuration: 1) {
-            self.profileSummarySubview.snp.makeConstraints { (make) in
-                make.left.equalTo(self.view)
-                make.right.equalTo(self.view)
-                make.top.equalTo(self.view)
-                make.height.equalTo(self.view).multipliedBy(0.25)
-            }
             self.mainButton.snp.makeConstraints { (make) in
                 make.height.equalTo(100)
                 make.width.equalTo(200)
                 make.center.equalTo(self.view)
             }
+            self.welcomeLabel.snp.makeConstraints { (make) in
+                make.height.equalTo(100)
+                make.top.equalTo(100)
+                make.left.right.equalTo(0)
+            }
+            
         }
         
         self.view.layoutIfNeeded()
     }
+    
+    // MARK: - Actions
     
     @objc func buttonTapped() {
         print("Button Tapped")

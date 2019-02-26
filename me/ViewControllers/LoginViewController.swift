@@ -4,6 +4,8 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
+    let accountManager = AccountManager()
+
     let welcomeLabel = UILabel()
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
