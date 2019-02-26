@@ -4,11 +4,15 @@ import Firebase
 
 class AccountSettingsViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var db: Firestore!
     var ref: DocumentReference!
     let nameTextField = UITextField()
     let surnameTextField = UITextField()
     let emailTextField = UITextField()
+    
+    // MARK: - init
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +24,8 @@ class AccountSettingsViewController: UIViewController {
         addSurnameLabel()
         addEmailLabel()
     }
+    
+    // MARK: - Programmatic UI
     
     func addNameLabel() {
         nameTextField.borderStyle = .roundedRect
@@ -63,6 +69,27 @@ class AccountSettingsViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
+    //    @objc func saveButtonAction(_ sender: Any) {
+    //
+    //        guard let name = nameTextField.text, let surname = surnameTextField.text, let email = emailTextField.text else { return }
+    //
+    ////        let user = Auth.auth().currentUser
+    ////        var credential: AuthCredential
+    ////
+    ////        user?.reauthenticate(with: credential) { error in
+    ////            if let error = error {
+    ////                // An error happened.
+    ////            } else {
+    ////                // User re-authenticated.
+    ////            }
+    ////        }
+    
+    
+    // MARK: - Functions
+
+    
     
 //
 ////        let user = User()
@@ -100,20 +127,6 @@ class AccountSettingsViewController: UIViewController {
 //
 //    }
 //
-//    @objc func saveButtonAction(_ sender: Any) {
-//
-//        guard let name = nameTextField.text, let surname = surnameTextField.text, let email = emailTextField.text else { return }
-//
-////        let user = Auth.auth().currentUser
-////        var credential: AuthCredential
-////
-////        user?.reauthenticate(with: credential) { error in
-////            if let error = error {
-////                // An error happened.
-////            } else {
-////                // User re-authenticated.
-////            }
-////        }
 //
 //
 //        Auth.auth().currentUser?.updateEmail(to: email) { (error) in
