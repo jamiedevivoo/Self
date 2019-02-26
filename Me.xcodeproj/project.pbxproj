@@ -114,17 +114,17 @@
 			children = (
 				A32CAEDA22148D9300B7269F /* AppDelegate.swift */,
 				A37297052219FCC100AE8480 /* AppManager.swift */,
-				A36178F72224214A00B259C9 /* CommunitiesViewController.swift */,
 				A31B945C221C46A00011C0B5 /* AccountManager.swift */,
 				A31B946A221CE82C0011C0B5 /* User.swift */,
 				A37297032219FC4E00AE8480 /* AppContainerViewController.swift */,
-				A372970B221A1C3900AE8480 /* MainNavigationController.swift */,
 				A3729709221A1BD700AE8480 /* MainTabBarController.swift */,
+				A372970B221A1C3900AE8480 /* MainNavigationController.swift */,
 				A3514833221D8F19002BA1A4 /* LoggedInViewController.swift */,
 				A3514835221D9064002BA1A4 /* SidebarViewController.swift */,
 				A31B9460221CB9900011C0B5 /* HomeViewController.swift */,
 				A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */,
 				A31B9464221CBD030011C0B5 /* ChallengesViewController.swift */,
+				A36178F72224214A00B259C9 /* CommunitiesViewController.swift */,
 				A372970F221A2AD800AE8480 /* ProfileViewController.swift */,
 				A3729711221A2B3500AE8480 /* SettingsViewController.swift */,
 				A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */,
@@ -185,6 +185,7 @@
 				TargetAttributes = {
 					A32CAED622148D9300B7269F = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -441,6 +442,7 @@
 			baseConfigurationReference = 1923519CB64081F1E9663509 /* Pods-me.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95F452WV2M;
 				INFOPLIST_FILE = me/Info.plist;
@@ -450,6 +452,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamiedevivo.me;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -460,6 +463,7 @@
 			baseConfigurationReference = F8437A567AAAEE749A4689D0 /* Pods-me.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95F452WV2M;
 				INFOPLIST_FILE = me/Info.plist;

@@ -8,6 +8,8 @@ class CommunitiesViewController: LoggedInViewController {
             super.viewDidLoad()
             print("LOG: Communities Screen")
             view.backgroundColor = .yellow
+            navigationItem.title = "Communities"
+
         }
         
 }

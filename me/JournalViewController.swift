@@ -6,6 +6,8 @@ class JournalViewController: LoggedInViewController {
         super.viewDidLoad()
         print("LOG: Profile Screen Created")
         view.backgroundColor = .green
+        navigationItem.title = "Journal"
+
         
     }
 }

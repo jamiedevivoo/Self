@@ -30,6 +30,9 @@ class HomeViewController: LoggedInViewController {
         super.viewDidLoad()
         print("LOG: Dashboard Created")
         
+        navigationItem.title = "Home"
+
+        
         // Profile Summary View
         profileSummarySubview.backgroundColor = .blue
         focusCircle.layer.cornerRadius = 10
