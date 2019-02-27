@@ -4,46 +4,64 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
-    let accountManager = AccountManager()
+    // MARK: - Properties
+    
+    static var accountManager = AccountManager()
 
-    let welcomeLabel = UILabel()
-    let emailTextField = UITextField()
-    let passwordTextField = UITextField()
+    lazy var welcomeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Welcome"
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    lazy var emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.text = "email@email.com"
+        textField.keyboardType = UIKeyboardType.emailAddress
+        textField.placeholder = "Email Address"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    lazy var passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.text = "password"
+        textField.placeholder = "Password"
+        textField.isSecureTextEntry = true
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    lazy var loginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Login", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
+        return button
+    }()
+    lazy var registerButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Get started", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.addTarget(self, action: #selector(LoginViewController.registerButtonAction), for: .touchUpInside)
+        return button
+    }()
     
     var db:Firestore!
+    
+    // MARK: - Initialisers
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("LOG: Login Screen")
         
         db = Firestore.firestore()
         
-        let loginButton = UIButton()
-        let registerButton = UIButton()
-        
-        print("LOG: Login Screen")
-        
-        welcomeLabel.text = "Welcome"
-        welcomeLabel.textAlignment = .center
-        welcomeLabel.textColor = .black
-        
-        emailTextField.text = "email@email.com"
-        emailTextField.keyboardType = UIKeyboardType.emailAddress
-        emailTextField.placeholder = "Email Address"
-        emailTextField.borderStyle = .roundedRect
-        
-        passwordTextField.text = "password"
-        passwordTextField.placeholder = "Password"
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.borderStyle = .roundedRect
-
-        
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(.blue, for: .normal)
-        loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
-        
-        registerButton.setTitle("Get started", for: .normal)
-        registerButton.setTitleColor(.red, for: .normal)
-        registerButton.addTarget(self, action: #selector(LoginViewController.registerButtonAction), for: .touchUpInside)
+        setup()
+        setupConstraints()
+    }
+    
+    func setup() {
+        title = "Login"
         
         self.view.addSubview(emailTextField)
         self.view.addSubview(passwordTextField)
@@ -51,6 +69,9 @@ class LoginViewController: UIViewController {
         self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
         
+    }
+    
+    func setupConstraints() {
         welcomeLabel.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
@@ -82,9 +103,10 @@ class LoginViewController: UIViewController {
             make.height.equalTo(40)
             make.top.equalTo(loginButton.snp.bottom).offset(30)
         }
-        
     }
 
+    // MARK: - Actions
+    
     @objc func loginButtonAction(_ sender: Any) {
         
         print("Log in with details: \(String(describing: emailTextField.text))  \(String(describing: passwordTextField.text))")

@@ -17,9 +17,9 @@ class AppManager {
             
             let loginNavigationController = MainNavigationController()
                 let loginViewController = LoginViewController()
-                loginViewController.title = "Login"
-            loginNavigationController.title = "Login"
+
             loginNavigationController.viewControllers = [loginViewController]
+                loginNavigationController.title = "Login"
             
             newViewController = loginNavigationController
             print("LOG: USER IS NOT LOGGED IN")
