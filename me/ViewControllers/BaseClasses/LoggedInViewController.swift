@@ -18,6 +18,10 @@ class LoggedInViewController: UIViewController {
         navigationItem.leftBarButtonItems = [settings]
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+        
     @objc func sidebarButtonTapped() {
         print("Sidebar Button Tapped")
         let settingsViewController = SettingsViewController()

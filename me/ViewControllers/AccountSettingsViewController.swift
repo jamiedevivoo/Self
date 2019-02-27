@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 
-class AccountSettingsViewController: LoggedInViewController {
+class AccountSettingsViewController: SettingsBaseViewController {
     
     // MARK: - Properties
     var ref: DocumentReference!
@@ -46,6 +46,7 @@ class AccountSettingsViewController: LoggedInViewController {
         
         setup()
         setupConstraints()
+
     }
     
     // MARK: - Set Up View
@@ -53,6 +54,7 @@ class AccountSettingsViewController: LoggedInViewController {
     func setup() {
         title = "Account Settings"
         view.backgroundColor = .white
+        navigationItem.leftBarButtonItems = nil
         
         self.view.addSubview(topView)
         topView.addSubview(pageTipLabel)

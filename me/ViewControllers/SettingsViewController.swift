@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 
-class SettingsViewController: LoggedInViewController {
+class SettingsViewController: SettingsBaseViewController {
     
     // Mark: - Properties
     lazy var topView: UIView = {
@@ -57,6 +57,8 @@ class SettingsViewController: LoggedInViewController {
     func setup() {
         title = "Settings"
         view.backgroundColor = .gray
+        navigationItem.leftBarButtonItems = nil
+        self.tabBarController?.tabBar.isHidden = true
         
         self.view.addSubview(topView)
         topView.addSubview(pageTipLabel)

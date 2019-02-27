@@ -20,14 +20,6 @@ class HomeViewController: LoggedInViewController {
         return button
     }()
     
-    lazy var welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Welcome!"
-        label.textAlignment = .center
-        label.textColor = .black
-        return label
-    }()
-    
     lazy var profilesTableView: UITableView = {
         let table = UITableView()
         table.dataSource = self
@@ -44,9 +36,6 @@ class HomeViewController: LoggedInViewController {
         
         profilesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "profileCell")
         
-        setup()
-        setupConstraints()
-        
         db = Firestore.firestore()
         let uid = Auth.auth().currentUser!.uid
         db.collection("user").document(uid).getDocument() { document, error in
@@ -59,16 +48,17 @@ class HomeViewController: LoggedInViewController {
                 self.user = User(snapshot: document as! DocumentSnapshot)
             }
         
-        self.welcomeLabel.text = "Welcome \(self.user?.name ?? "No Value")"
         }
+        
+        setup()
+        setupConstraints()
     }
     
     func setup() {
-        navigationItem.title = "Home"
+        navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
         
         self.view.addSubview(profilesTableView)
         self.view.addSubview(mainButton)
-        self.view.addSubview(welcomeLabel)
     }
     
     func setupConstraints() {
@@ -79,11 +69,6 @@ class HomeViewController: LoggedInViewController {
             make.height.equalTo(100)
             make.width.equalTo(200)
             make.center.equalTo(self.view)
-        }
-        self.welcomeLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(100)
-            make.top.equalTo(100)
-            make.left.right.equalTo(0)
         }
     }
     // MARK: - Actions
