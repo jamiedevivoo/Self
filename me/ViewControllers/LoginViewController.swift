@@ -5,8 +5,6 @@ import SnapKit
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
-    
-    static var accountManager = AccountManager()
 
     lazy var welcomeLabel: UILabel = {
         let label = UILabel()
@@ -57,7 +55,7 @@ class LoginViewController: UIViewController {
         db = Firestore.firestore()
         
         setup()
-        setupConstraints()
+        addConstraints()
     }
     
     func setup() {
@@ -69,40 +67,6 @@ class LoginViewController: UIViewController {
         self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
         
-    }
-    
-    func setupConstraints() {
-        welcomeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.top.equalTo(100)
-            make.height.equalTo(50)
-        }
-        
-        emailTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.centerX.centerY.equalTo(self.view)
-        }
-        passwordTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
-        }
-        loginButton.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
-        }
-        registerButton.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(loginButton.snp.bottom).offset(30)
-        }
     }
 
     // MARK: - Action Functions
@@ -138,4 +102,44 @@ class LoginViewController: UIViewController {
         let onboardingViewController = RegisterViewController()
         onboardingViewController.title = "Register"
         navigationController?.pushViewController(onboardingViewController, animated: true)    }
+}
+
+
+extension LoginViewController: ConstraintBuilding {
+    
+    func addConstraints() {
+        welcomeLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.top.equalTo(100)
+            make.height.equalTo(50)
+        }
+        
+        emailTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.centerX.centerY.equalTo(self.view)
+        }
+        passwordTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+        }
+        loginButton.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(40)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
+        }
+        registerButton.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(40)
+            make.top.equalTo(loginButton.snp.bottom).offset(30)
+        }
+    }
+    
+    
 }

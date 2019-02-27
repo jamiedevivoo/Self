@@ -32,6 +32,7 @@
 		A3729710221A2AD800AE8480 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372970F221A2AD800AE8480 /* ProfileViewController.swift */; };
 		A3729712221A2B3500AE8480 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3729711221A2B3500AE8480 /* SettingsViewController.swift */; };
 		A38916752226DF4E007F4208 /* SettingsBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38916742226DF4E007F4208 /* SettingsBaseViewController.swift */; };
+		A38916772226ED16007F4208 /* ConstraintBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38916762226ED16007F4208 /* ConstraintBuilding.swift */; };
 		A3D3BDFE22258E4C00712941 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D3BDFD22258E4C00712941 /* Loader.swift */; };
 		A3EFADBF222629BC0038AB86 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADBE222629BC0038AB86 /* Community.swift */; };
 		A3EFADC1222629D30038AB86 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADC0222629D30038AB86 /* Challenge.swift */; };
@@ -68,6 +69,7 @@
 		A372970F221A2AD800AE8480 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A3729711221A2B3500AE8480 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A38916742226DF4E007F4208 /* SettingsBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBaseViewController.swift; sourceTree = "<group>"; };
+		A38916762226ED16007F4208 /* ConstraintBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintBuilding.swift; sourceTree = "<group>"; };
 		A3D3BDFD22258E4C00712941 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A3EFADBE222629BC0038AB86 /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		A3EFADC0222629D30038AB86 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				A338E7FF22255E1F0069004A /* User.swift */,
 				A31B946A221CE82C0011C0B5 /* Profile.swift */,
+				A38916762226ED16007F4208 /* ConstraintBuilding.swift */,
 				A338E80122256C3C0069004A /* Me.swift */,
 				A3EFADBE222629BC0038AB86 /* Community.swift */,
 				A3EFADC0222629D30038AB86 /* Challenge.swift */,
@@ -346,6 +349,7 @@
 				A338E80222256C3C0069004A /* Me.swift in Sources */,
 				A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */,
 				A31B946B221CE82C0011C0B5 /* Profile.swift in Sources */,
+				A38916772226ED16007F4208 /* ConstraintBuilding.swift in Sources */,
 				A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */,
 				A31B9461221CB9900011C0B5 /* HomeViewController.swift in Sources */,
 				A31B9463221CBCFC0011C0B5 /* JournalViewController.swift in Sources */,

@@ -1,23 +1,27 @@
 import Firebase
 
-protocol AccountDelegate {
-    
-}
+protocol AccountDelegate { }
 
 class AccountManager {
-
-//    func loadStuff(date: Date = Date(), completion: ([Bool]) -> ()) {
-//
-//    }
-//
-//    func loadProfiles(completion: ([Int]) -> ()) {
-//        //make firebase request....
-//
-//
-//        completion([1,2,3])
-//    }
-//
     
+    static let shared = AccountManager()
+    
+    let userRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid)
+    var user: User?
+    
+    private init() { }
+
+    func loadUser(completion: @escaping () -> ()) {
+        userRef.getDocument { snapshot, error in
+            self.user = User(snapshot: snapshot!)
+            completion()
+        }
+    }
+
+    func update(_ user: User? = AccountManager.shared.user) {
+        guard let user = user else { return }
+        userRef.setData(user.dictionary, merge: true) { _ in }
+    }
     
 }
 

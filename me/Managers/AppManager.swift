@@ -11,25 +11,27 @@ class AppManager {
     
     func showApp() {
         
-        var newViewController: UIViewController
         
         if Auth.auth().currentUser == nil {
             
             let loginNavigationController = MainNavigationController()
-                let loginViewController = LoginViewController()
+            let loginViewController = LoginViewController()
 
             loginNavigationController.viewControllers = [loginViewController]
-                loginNavigationController.title = "Login"
+            loginNavigationController.title = "Login"
             
-            newViewController = loginNavigationController
+            appContainer.present(loginNavigationController, animated: true, completion: nil)
             print("LOG: USER IS NOT LOGGED IN")
         } else {
             print("LOG: USER IS LOGGED IN")
             
-            let homeTabBarController = MainTabBarController()
-            newViewController = homeTabBarController
+            AccountManager.shared.loadUser { [unowned self] in
+                self.appContainer.present(MainTabBarController(), animated: true, completion: nil)
+                print(AccountManager.shared.user!)
+            }
+            
         }
-        appContainer.present(newViewController, animated: true, completion: nil)
+        
         
     }
     

@@ -5,7 +5,6 @@ import Firebase
 class AccountSettingsViewController: SettingsBaseViewController {
     
     // MARK: - Properties
-    var ref: DocumentReference!
     
     lazy var topView: UIView = {
         let view = UIView()
@@ -46,24 +45,11 @@ class AccountSettingsViewController: SettingsBaseViewController {
         super.viewDidLoad()
         setup()
         setupConstraints()
-        
-        db = Firestore.firestore()
-        let uid = Auth.auth().currentUser!.uid
-        db.collection("user").document(uid).getDocument() { document, error in
-            if let error = error {
-                print(error)
-            } else {
-                if let document = document {
-                    self.user = User(snapshot: document)
-                }
-                self.user = User(snapshot: document! as DocumentSnapshot)
-                self.updateFields()
-            }
-        }
+
+        self.user = AccountManager.shared.user
     }
     
     // MARK: - Set Up View
-    
     func setup() {
         title = "Account Settings"
         view.backgroundColor = .white
@@ -119,6 +105,8 @@ class AccountSettingsViewController: SettingsBaseViewController {
         if let email = self.user?.email {
             self.emailTextField.text = "\(email)"
         }
+        
+        AccountManager.shared.update(user)
     }
     
     // MARK: - Actions
