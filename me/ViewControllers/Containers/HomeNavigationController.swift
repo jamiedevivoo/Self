@@ -27,7 +27,7 @@ class HomeNavigationController: UINavigationController {
     // Mark: - Functions
     
     func setup() {
-        navigationController?.navigationItem.leftBarButtonItems = [sidebarIcon]
+        visibleViewController?.navigationItem.leftBarButtonItems = [sidebarIcon]
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
@@ -38,7 +38,7 @@ class HomeNavigationController: UINavigationController {
     // MARK: - Actions
     
     @objc func sidebarButtonTapped() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
+        pushViewController(SettingsViewController(), animated: true)
     }
     
 }

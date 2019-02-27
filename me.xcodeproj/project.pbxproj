@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		0133BF95A558A413460390CC /* Pods_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4819253A6EF56304B1310F1B /* Pods_me.framework */; };
 		A3149CF62226F728008447E7 /* LaunchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3149CF52226F728008447E7 /* LaunchNavigationController.swift */; };
+		A3149CFF222710C6008447E7 /* MoodOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3149CFE222710C6008447E7 /* MoodOnboardingViewController.swift */; };
+		A3149D01222710D2008447E7 /* MeOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3149D00222710D2008447E7 /* MeOnboardingViewController.swift */; };
+		A3149D03222710E2008447E7 /* NameOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3149D02222710E2008447E7 /* NameOnboardingViewController.swift */; };
+		A3149D05222710EB008447E7 /* AccountOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3149D04222710EB008447E7 /* AccountOnboardingViewController.swift */; };
+		A3149D07222710F5008447E7 /* WellbeingOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3149D06222710F5008447E7 /* WellbeingOnboardingViewController.swift */; };
+		A3149D092227113E008447E7 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3149D082227113E008447E7 /* Onboarding.swift */; };
 		A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B945C221C46A00011C0B5 /* AccountManager.swift */; };
 		A31B9461221CB9900011C0B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B9460221CB9900011C0B5 /* HomeViewController.swift */; };
 		A31B9463221CBCFC0011C0B5 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */; };
@@ -19,7 +25,7 @@
 		A338E80222256C3C0069004A /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338E80122256C3C0069004A /* Me.swift */; };
 		A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */; };
 		A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514835221D9064002BA1A4 /* SidebarViewController.swift */; };
-		A351483A221DB802002BA1A4 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514839221DB802002BA1A4 /* OnboardingViewController.swift */; };
+		A351483A221DB802002BA1A4 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514839221DB802002BA1A4 /* OnboardingController.swift */; };
 		A36178F82224214A00B259C9 /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36178F72224214A00B259C9 /* CommunitiesViewController.swift */; };
 		A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297012219FA5500AE8480 /* LoginViewController.swift */; };
 		A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297032219FC4E00AE8480 /* AppContainerViewController.swift */; };
@@ -42,6 +48,12 @@
 		1923519CB64081F1E9663509 /* Pods-me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.debug.xcconfig"; sourceTree = "<group>"; };
 		4819253A6EF56304B1310F1B /* Pods_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3149CF52226F728008447E7 /* LaunchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchNavigationController.swift; sourceTree = "<group>"; };
+		A3149CFE222710C6008447E7 /* MoodOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodOnboardingViewController.swift; sourceTree = "<group>"; };
+		A3149D00222710D2008447E7 /* MeOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeOnboardingViewController.swift; sourceTree = "<group>"; };
+		A3149D02222710E2008447E7 /* NameOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOnboardingViewController.swift; sourceTree = "<group>"; };
+		A3149D04222710EB008447E7 /* AccountOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountOnboardingViewController.swift; sourceTree = "<group>"; };
+		A3149D06222710F5008447E7 /* WellbeingOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellbeingOnboardingViewController.swift; sourceTree = "<group>"; };
+		A3149D082227113E008447E7 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		A31B945C221C46A00011C0B5 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A31B9460221CB9900011C0B5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +66,7 @@
 		A338E80122256C3C0069004A /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		A3514835221D9064002BA1A4 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		A3514839221DB802002BA1A4 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		A3514839221DB802002BA1A4 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		A36178F72224214A00B259C9 /* CommunitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
 		A37297012219FA5500AE8480 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A37297032219FC4E00AE8480 /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
@@ -98,19 +110,15 @@
 		A3149CF72226FA6B008447E7 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				A3514839221DB802002BA1A4 /* OnboardingViewController.swift */,
+				A3514839221DB802002BA1A4 /* OnboardingController.swift */,
+				A3149CFE222710C6008447E7 /* MoodOnboardingViewController.swift */,
+				A3149D00222710D2008447E7 /* MeOnboardingViewController.swift */,
+				A3149D02222710E2008447E7 /* NameOnboardingViewController.swift */,
+				A3149D04222710EB008447E7 /* AccountOnboardingViewController.swift */,
+				A3149D06222710F5008447E7 /* WellbeingOnboardingViewController.swift */,
 				A372970D221A28EE00AE8480 /* RegisterViewController.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		A3149CF92226FA93008447E7 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				A3729711221A2B3500AE8480 /* SettingsViewController.swift */,
-				A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		A3149CFA2226FAAD008447E7 /* Containers */ = {
@@ -128,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				A3EFADC3222695BB0038AB86 /* UIColour.swift */,
+				A3149D082227113E008447E7 /* Onboarding.swift */,
 				A38916762226ED16007F4208 /* ConstraintBuilding.swift */,
 			);
 			path = Extensions;
@@ -192,7 +201,6 @@
 			children = (
 				A3149CFA2226FAAD008447E7 /* Containers */,
 				A3149CF72226FA6B008447E7 /* Onboarding */,
-				A3149CF92226FA93008447E7 /* Settings */,
 				A3514835221D9064002BA1A4 /* SidebarViewController.swift */,
 				A31B9460221CB9900011C0B5 /* HomeViewController.swift */,
 				A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */,
@@ -200,6 +208,8 @@
 				A36178F72224214A00B259C9 /* CommunitiesViewController.swift */,
 				A372970F221A2AD800AE8480 /* ProfileViewController.swift */,
 				A37297012219FA5500AE8480 /* LoginViewController.swift */,
+				A3729711221A2B3500AE8480 /* SettingsViewController.swift */,
+				A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */,
 				A3149CFB2226FAC6008447E7 /* Extensions */,
 			);
 			path = ViewControllers;
@@ -355,6 +365,8 @@
 			files = (
 				A3EFADC4222695BB0038AB86 /* UIColour.swift in Sources */,
 				A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */,
+				A3149D07222710F5008447E7 /* WellbeingOnboardingViewController.swift in Sources */,
+				A3149D03222710E2008447E7 /* NameOnboardingViewController.swift in Sources */,
 				A37297062219FCC100AE8480 /* AppManager.swift in Sources */,
 				A3EFADC62226ACA90038AB86 /* FirebaseAPI.swift in Sources */,
 				A31B9465221CBD030011C0B5 /* ChallengesViewController.swift in Sources */,
@@ -363,10 +375,13 @@
 				A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */,
 				A372970E221A28EE00AE8480 /* RegisterViewController.swift in Sources */,
 				A3D3BDFE22258E4C00712941 /* Loader.swift in Sources */,
-				A351483A221DB802002BA1A4 /* OnboardingViewController.swift in Sources */,
+				A3149D05222710EB008447E7 /* AccountOnboardingViewController.swift in Sources */,
+				A351483A221DB802002BA1A4 /* OnboardingController.swift in Sources */,
+				A3149D092227113E008447E7 /* Onboarding.swift in Sources */,
 				A338E80222256C3C0069004A /* Me.swift in Sources */,
 				A32CAEDB22148D9300B7269F /* AppDelegate.swift in Sources */,
 				A38916772226ED16007F4208 /* ConstraintBuilding.swift in Sources */,
+				A3149D01222710D2008447E7 /* MeOnboardingViewController.swift in Sources */,
 				A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */,
 				A31B9461221CB9900011C0B5 /* HomeViewController.swift in Sources */,
 				A31B9463221CBCFC0011C0B5 /* JournalViewController.swift in Sources */,
@@ -374,6 +389,7 @@
 				A372970C221A1C3900AE8480 /* HomeNavigationController.swift in Sources */,
 				A3729710221A2AD800AE8480 /* ProfileViewController.swift in Sources */,
 				A3EFADBF222629BC0038AB86 /* Community.swift in Sources */,
+				A3149CFF222710C6008447E7 /* MoodOnboardingViewController.swift in Sources */,
 				A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */,
 				A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */,
 				A338E80022255E1F0069004A /* User.swift in Sources */,

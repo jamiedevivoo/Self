@@ -10,9 +10,9 @@ class HomeTabBarController: UITabBarController {
         setup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        self.tabBarController?.tabBar.isHidden = false
+//    }
     
     func setup() {
         view.backgroundColor = .white

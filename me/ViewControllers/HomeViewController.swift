@@ -4,6 +4,7 @@ import Firebase
 
 class HomeViewController: UIViewController {
     
+    
     // MARK: - Properties
     
     let profiles = FirebaseAPI.getProfiles()
@@ -32,35 +33,30 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.user = AccountManager.shared.user
-        self.navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
-
-        profilesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "profileCell")
-        
         setup()
         addConstraints()
     }
     
     func setup() {
+        self.user = AccountManager.shared.user
+        self.navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
         
+        profilesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "profileCell")
+        profilesTableView.tableFooterView = UIView()
+    
         self.view.addSubview(profilesTableView)
         self.view.addSubview(mainButton)
     }
+    
+    
     // MARK: - Actions
     
     @objc func buttonTapped() {
-        print("Button Tapped")
-        let friendsProfileViewController = ProfileViewController()
-        friendsProfileViewController.view.backgroundColor = .yellow
-        friendsProfileViewController.title = "Friends Profile"
-        navigationController?.pushViewController(friendsProfileViewController, animated: true)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
 }
+
 extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

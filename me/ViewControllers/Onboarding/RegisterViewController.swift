@@ -45,7 +45,7 @@ class RegisterViewController: UIViewController {
         print("LOG: Login Screen")
         
         setup()
-        setupConstraints()
+        addConstraints()
     }
     
     func setup() {
@@ -57,33 +57,6 @@ class RegisterViewController: UIViewController {
         self.view.addSubview(passwordTextField)
         self.view.addSubview(passwordConfirmTextField)
         self.view.addSubview(registerButton)
-    }
-    
-    func setupConstraints() {
-        emailTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.centerX.centerY.equalTo(self.view)
-        }
-        passwordTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
-        }
-        passwordConfirmTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
-        }
-        registerButton.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(passwordConfirmTextField.snp.bottom).offset(30)
-        }
     }
     
     // MARK: - Action Functions
@@ -107,13 +80,24 @@ class RegisterViewController: UIViewController {
         }
         
         if password != passwordConfirm {
-            let alertController = UIAlertController(title: "Confirmed Password is Incorrect", message: "Please re-type password", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            let alertController = UIAlertController(
+                title: "Confirmed Password is Incorrect",
+                message: "Please re-type password",
+                preferredStyle: .alert
+            )
+            
+            let defaultAction = UIAlertAction(
+                title: "OK",
+                style: .cancel,
+                handler: nil
+            )
             
             alertController.addAction(defaultAction)
+            
             self.present(alertController, animated: true, completion: nil)
+            
         } else {
-        
             Auth.auth().createUser(withEmail: email, password: password) { user, error in
                 if let _ = user {
                     
@@ -149,4 +133,33 @@ class RegisterViewController: UIViewController {
         
     }
     
+}
+
+extension RegisterViewController: ConstraintBuilding {
+    func addConstraints() {
+        emailTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.centerX.centerY.equalTo(self.view)
+        }
+        passwordTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+        }
+        passwordConfirmTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(40)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
+        }
+        registerButton.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(40)
+            make.top.equalTo(passwordConfirmTextField.snp.bottom).offset(30)
+        }
+    }
 }

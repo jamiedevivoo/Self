@@ -2,6 +2,12 @@ import Firebase
 
 class FirebaseAPI {
     
+    static let shared = FirebaseAPI()
+    
+    let db = Firestore.firestore()
+    
+    private init() { }
+    
     //Test
     static func getProfiles() -> [User]{
         let user:Dictionary = [

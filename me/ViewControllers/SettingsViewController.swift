@@ -4,7 +4,9 @@ import Firebase
 
 class SettingsViewController: UIViewController {
     
+    
     // Mark: - Properties
+    
     lazy var topView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.app.background.gray
@@ -43,26 +45,27 @@ class SettingsViewController: UIViewController {
     
     var settingOptions = ["Profile Settings","Account Settings","App Settings","Logout"]
     
+    
     // MARK: - Init
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LOG: Settings Screen")
         
         settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "settingCell")
-
+        settingsTableView.tableFooterView = UIView()
+        
         setup()
-        setupConstraints()
+        addConstraints()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-    }
+    
+    // MARK: - Functions
     
     func setup() {
         title = "Settings"
         view.backgroundColor = .gray
         navigationItem.leftBarButtonItems = nil
-        self.tabBarController?.tabBar.isHidden = true
         
         self.view.addSubview(topView)
         topView.addSubview(pageTipLabel)
@@ -71,7 +74,37 @@ class SettingsViewController: UIViewController {
         self.view.addSubview(accountSettingsButton)
     }
     
-    func setupConstraints() {
+    
+    // MARK: - Action Functions
+    
+    @objc func logoutButtonAction() {
+        print("Lougout Tapped")
+        AppManager.shared.logout()
+    }
+    @objc func accountSettingsButtonAction() {
+        print("Account Settings Tapped")
+
+        navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
+    }
+    
+}
+
+extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settingOptions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
+        cell.textLabel?.text = settingOptions[indexPath.row]
+        return cell
+    }
+
+}
+
+extension SettingsViewController: ConstraintBuilding {
+    func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
             make.width.equalTo(self.view)
@@ -97,32 +130,5 @@ class SettingsViewController: UIViewController {
             make.centerX.equalTo(self.view)
             make.top.equalTo(accountSettingsButton.snp.bottom).offset(20)
         }
-    }
-    
-    // MARK: - Action Functions
-    @objc func logoutButtonAction() {
-        print("Lougout Tapped")
-        AppManager.shared.logout()
-    }
-    @objc func accountSettingsButtonAction() {
-        print("Account Settings Tapped")
-        
-        let accountSettingsViewController = AccountSettingsViewController()
-        accountSettingsViewController.title = "Account Settings"
-        navigationController?.pushViewController(accountSettingsViewController, animated: true)
-    }
-    
-}
-
-extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingOptions.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
-        cell.textLabel?.text = settingOptions[indexPath.row]
-        return cell
     }
 }

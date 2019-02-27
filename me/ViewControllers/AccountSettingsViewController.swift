@@ -10,7 +10,7 @@ class AccountSettingsViewController: UIViewController {
     var user: User?
     
     
-    // MARK: - Views
+    // MARK: - SubViews
     
     lazy var topView: UIView = {
         let view = UIView()
@@ -45,24 +45,21 @@ class AccountSettingsViewController: UIViewController {
     }()
     
     
-    // MARK: - Init / viewDidLoad
+    // MARK: - Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.user = AccountManager.shared.user
-        setup()
+        setupView()
         addConstraints()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
+        self.user = AccountManager.shared.user
+        updateFields()
     }
     
     
     // MARK: - Functions
     
-    func setup() {
+    func setupView() {
         title = "Account Settings"
         view.backgroundColor = .white
         navigationItem.leftBarButtonItems = nil
@@ -85,7 +82,7 @@ class AccountSettingsViewController: UIViewController {
             self.emailTextField.text = "\(email)"
         }
         
-        AccountManager.shared.update(user)
+//        AccountManager.shared.update(user)
     }
     
     // MARK: - Actions
