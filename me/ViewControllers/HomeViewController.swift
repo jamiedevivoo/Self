@@ -45,17 +45,14 @@ class HomeViewController: LoggedInViewController {
                 if let document = document {
                     self.user = User(snapshot: document)
                 }
-                self.user = User(snapshot: document as! DocumentSnapshot)
             }
-        
+            self.navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
         }
-        
         setup()
         setupConstraints()
     }
     
     func setup() {
-        navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
         
         self.view.addSubview(profilesTableView)
         self.view.addSubview(mainButton)

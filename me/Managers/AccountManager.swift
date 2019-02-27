@@ -1,5 +1,9 @@
 import Firebase
 
+protocol AccountDelegate {
+    
+}
+
 class AccountManager {
 
 //    func loadStuff(date: Date = Date(), completion: ([Bool]) -> ()) {

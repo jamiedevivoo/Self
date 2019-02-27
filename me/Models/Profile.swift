@@ -6,7 +6,7 @@ class Profile {
     var me: Me?
     
     init(snapshot: DocumentSnapshot) {
-        let userData = snapshot.data() as! [String: Any]
+        let userData = snapshot.data()! as [String: Any]
         self.uid = snapshot.documentID
         self.name = userData["name"] as? String ?? ""
     }

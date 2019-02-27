@@ -39,14 +39,27 @@ class AccountSettingsViewController: SettingsBaseViewController {
         return textField
     }()
     
+    var user: User?
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
         setupConstraints()
-
+        
+        db = Firestore.firestore()
+        let uid = Auth.auth().currentUser!.uid
+        db.collection("user").document(uid).getDocument() { document, error in
+            if let error = error {
+                print(error)
+            } else {
+                if let document = document {
+                    self.user = User(snapshot: document)
+                }
+                self.user = User(snapshot: document! as DocumentSnapshot)
+                self.updateFields()
+            }
+        }
     }
     
     // MARK: - Set Up View
@@ -95,6 +108,18 @@ class AccountSettingsViewController: SettingsBaseViewController {
         }
     }
     
+    
+    func updateFields() {
+        if let name = self.user?.name {
+            self.nameTextField.text = "\(name)"
+        }
+        if let surname = self.user?.surname {
+            self.surnameTextField.text = "\(surname)"
+        }
+        if let email = self.user?.email {
+            self.emailTextField.text = "\(email)"
+        }
+    }
     
     // MARK: - Actions
     

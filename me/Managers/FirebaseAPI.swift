@@ -1,3 +1,5 @@
+import Firebase
+
 class FirebaseAPI {
     
     //Test
