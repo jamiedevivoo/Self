@@ -2,45 +2,75 @@ import UIKit
 import SnapKit
 import Firebase
 
-class AccountSettingsViewController: UIViewController {
+class AccountSettingsViewController: LoggedInViewController {
     
     // MARK: - Properties
-    
-    var db: Firestore!
     var ref: DocumentReference!
+    
+    lazy var topView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.appColor.gray
+        return view
+    }()
+    lazy var pageTipLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Use this page to modify your account and app settings."
+        label.textAlignment = .left
+        label.textColor = .darkText
+        label.numberOfLines = 0
+        return label
+    }()
     lazy var nameTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.borderStyle = .roundedRect
-        textfield.placeholder = "First Name"
-        return textfield
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.placeholder = "First Name"
+        return textField
     }()
     lazy var surnameTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.borderStyle = .roundedRect
-        textfield.placeholder = "Surname"
-        return textfield
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.placeholder = "Surname"
+        return textField
     }()
     lazy var emailTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.borderStyle = .roundedRect
-        textfield.placeholder = "Email Address"
-        return textfield
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.placeholder = "Email Address"
+        return textField
     }()
     
-    // MARK: - init
-
+    // MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+        setupConstraints()
+    }
+    
+    // MARK: - Set Up View
+    
+    func setup() {
+        title = "Account Settings"
         view.backgroundColor = .white
         
-        db = Firestore.firestore()
-//        ref = db.reference()
-        
+        self.view.addSubview(topView)
+        topView.addSubview(pageTipLabel)
         self.view.addSubview(nameTextField)
         self.view.addSubview(surnameTextField)
         self.view.addSubview(emailTextField)
-        
+    }
+    
+    func setupConstraints() {
+        topView.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(200)
+        }
+        pageTipLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(topView.snp.left).offset(20)
+            make.right.equalTo(topView.snp.right).offset(-20)
+            make.top.equalTo(topView.snp.top).offset(100)
+        }
         nameTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
@@ -61,8 +91,14 @@ class AccountSettingsViewController: UIViewController {
             make.height.equalTo(35)
             make.centerX.centerY.equalTo(self.view)
         }
-        
     }
+    
+    
+    
+    
+    
+    
+    
     
     // MARK: - Programmatic UI
     

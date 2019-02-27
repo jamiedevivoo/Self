@@ -6,7 +6,6 @@ class HomeViewController: LoggedInViewController {
     
     // MARK: - Properties
     
-    var db: Firestore!
     var ref: DocumentReference!
     
     // MARK: - UI and Views

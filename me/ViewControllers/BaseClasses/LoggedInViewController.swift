@@ -1,13 +1,16 @@
 import UIKit
+import SnapKit
+import Firebase
 
 class LoggedInViewController: UIViewController {
     
-
+    let uid: String = Auth.auth().currentUser!.uid
+    var db: Firestore = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        let sidebar = SidebarViewController()
-        
 //        self.present(sidebar, animated: true, completion: nil)
 
         
