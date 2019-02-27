@@ -8,80 +8,76 @@ class RegisterViewController: UIViewController {
     var db:Firestore!
     
     // MARK: - Objects
-    let emailTextField = UITextField()
-    let passwordTextField = UITextField()
-    let passwordConfirmTextField = UITextField()
-    let registerButton = UIButton()
+    lazy var emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Email"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    lazy var passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Password"
+        textField.borderStyle = .roundedRect
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    lazy var passwordConfirmTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Password"
+        textField.borderStyle = .roundedRect
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    lazy var registerButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(RegisterViewController.registerButtonAction), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         db = Firestore.firestore()
+        print("LOG: Login Screen")
+        
+        setup()
+        setupConstraints()
+    }
+    
+    func setup() {
+        title = "Register"
         
         view.backgroundColor = .white
 
-        print("LOG: Login Screen")
-        
-        addEmailTextField()
-        addPasswordTextField()
-        addConfirmPasswordTextField()
-        addRegisterButton()
-        
+        self.view.addSubview(emailTextField)
+        self.view.addSubview(passwordTextField)
+        self.view.addSubview(passwordConfirmTextField)
+        self.view.addSubview(registerButton)
     }
     
-    // MARK: - Elements and UI
-    func addEmailTextField() {
-        emailTextField.placeholder = "Email"
-        emailTextField.borderStyle = .roundedRect
-        
-        self.view.addSubview(emailTextField)
-        
+    func setupConstraints() {
         emailTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
             make.height.equalTo(35)
             make.centerX.centerY.equalTo(self.view)
         }
-    }
-    
-    func addPasswordTextField() {
-        passwordTextField.placeholder = "Password"
-        passwordTextField.borderStyle = .roundedRect
-        passwordTextField.isSecureTextEntry = true
-        
-        self.view.addSubview(passwordTextField)
-
         passwordTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
             make.height.equalTo(35)
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
         }
-    }
-    
-    func addConfirmPasswordTextField() {
-        passwordConfirmTextField.placeholder = "Password"
-        passwordConfirmTextField.borderStyle = .roundedRect
-        passwordConfirmTextField.isSecureTextEntry = true
-        
-        self.view.addSubview(passwordConfirmTextField)
-        
         passwordConfirmTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
             make.height.equalTo(40)
             make.top.equalTo(passwordTextField.snp.bottom).offset(30)
         }
-    }
-    
-    func addRegisterButton() {
-        registerButton.setTitle("Register", for: .normal)
-        registerButton.setTitleColor(.blue, for: .normal)
-        registerButton.addTarget(self, action: #selector(RegisterViewController.registerButtonAction), for: .touchUpInside)
-        
-        self.view.addSubview(registerButton)
-        
         registerButton.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
@@ -90,7 +86,8 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    // MARK: - Functions
+    // MARK: - Action Functions
+    
     @objc func registerButtonAction(_ sender: Any) {
         
         print("Register with details: \(emailTextField.text!)  \(passwordTextField.text!)")

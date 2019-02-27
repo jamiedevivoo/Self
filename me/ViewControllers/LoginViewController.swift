@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    // MARK: - Actions
+    // MARK: - Action Functions
     
     @objc func loginButtonAction(_ sender: Any) {
         
@@ -135,7 +135,7 @@ class LoginViewController: UIViewController {
     
     @objc func registerButtonAction(_ sender: Any) {
         print("Register Button Tapped")
-        let onboardingViewController = OnboardingViewController()
+        let onboardingViewController = RegisterViewController()
         onboardingViewController.title = "Register"
         navigationController?.pushViewController(onboardingViewController, animated: true)    }
 }
