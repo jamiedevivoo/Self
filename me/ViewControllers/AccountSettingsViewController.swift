@@ -9,7 +9,7 @@ class AccountSettingsViewController: LoggedInViewController {
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.appColor.gray
+        view.backgroundColor = UIColor.app.background.gray
         return view
     }()
     lazy var pageTipLabel: UILabel = {
@@ -94,30 +94,22 @@ class AccountSettingsViewController: LoggedInViewController {
     }
     
     
-    
-    
-    
-    
-    
-    
-    // MARK: - Programmatic UI
-    
     // MARK: - Actions
     
-    //    @objc func saveButtonAction(_ sender: Any) {
-    //
-    //        guard let name = nameTextField.text, let surname = surnameTextField.text, let email = emailTextField.text else { return }
-    //
-    ////        let user = Auth.auth().currentUser
-    ////        var credential: AuthCredential
-    ////
-    ////        user?.reauthenticate(with: credential) { error in
-    ////            if let error = error {
-    ////                // An error happened.
-    ////            } else {
-    ////                // User re-authenticated.
-    ////            }
-    ////        }
+//        @objc func saveButtonAction(_ sender: Any) {
+//    
+//            guard let name = nameTextField.text, let surname = surnameTextField.text, let email = emailTextField.text else { return }
+//    
+//    //        let user = Auth.auth().currentUser
+//    //        var credential: AuthCredential
+//    //
+//    //        user?.reauthenticate(with: credential) { error in
+//    //            if let error = error {
+//    //                // An error happened.
+//    //            } else {
+//    //                // User re-authenticated.
+//    //            }
+//    //        }
     
     
     // MARK: - Functions

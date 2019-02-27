@@ -1,8 +1,12 @@
 import UIKit
 
 extension UIColor {
-        struct appColor {
+    struct app {
+        struct background {
             static let gray = UIColor(red: 0.95, green: 0.95, blue: 0.98, alpha: 1)
-            //R:239, G: 240, B: 241, A:1
         }
+        struct text {
+            static let blue = UIColor(red: 0.2, green: 0.2, blue:0.9, alpha: 1)
+        }
+    }
 }

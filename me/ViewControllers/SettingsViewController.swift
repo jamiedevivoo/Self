@@ -7,7 +7,7 @@ class SettingsViewController: LoggedInViewController {
     // Mark: - Properties
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.appColor.gray
+        view.backgroundColor = UIColor.app.background.gray
         return view
     }()
     lazy var pageTipLabel: UILabel = {
@@ -34,10 +34,21 @@ class SettingsViewController: LoggedInViewController {
         return button
     }()
     
+    lazy var settingsTableView: UITableView = {
+        let table = UITableView()
+        table.isScrollEnabled = false
+        table.dataSource = self
+        return table
+    }()
+    
+    var settingOptions = ["Profile Settings","Account Settings","App Settings","Logout"]
+    
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LOG: Settings Screen")
+        
+        settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "settingCell")
 
         setup()
         setupConstraints()
@@ -46,14 +57,17 @@ class SettingsViewController: LoggedInViewController {
     func setup() {
         title = "Settings"
         view.backgroundColor = .gray
+        
         self.view.addSubview(topView)
         topView.addSubview(pageTipLabel)
+        self.view.addSubview(settingsTableView)
         self.view.addSubview(logoutButton)
         self.view.addSubview(accountSettingsButton)
     }
     
     func setupConstraints() {
         topView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
             make.width.equalTo(self.view)
             make.height.equalTo(200)
         }
@@ -61,6 +75,11 @@ class SettingsViewController: LoggedInViewController {
             make.left.equalTo(topView.snp.left).offset(20)
             make.right.equalTo(topView.snp.right).offset(-20)
             make.top.equalTo(topView.snp.top).offset(100)
+        }
+        settingsTableView.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view)
+            make.top.equalTo(topView.snp.bottom)
+            make.bottom.equalTo(self.view.snp.bottom)
         }
         accountSettingsButton.snp.makeConstraints { (make) in
             make.width.equalTo(200)
@@ -87,4 +106,17 @@ class SettingsViewController: LoggedInViewController {
         navigationController?.pushViewController(accountSettingsViewController, animated: true)
     }
     
+}
+
+extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settingOptions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
+        cell.textLabel?.text = settingOptions[indexPath.row]
+        return cell
+    }
 }

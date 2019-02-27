@@ -49,6 +49,8 @@ class MainTabBarController: UITabBarController {
 //        settingsNavigationController.viewControllers = [settingsViewController]
         
         viewControllers = [communitiesNavigationController, journalNavigationController, challengesNavigationController, homeNavigationController]
+        selectedIndex = 3
     }
+    
     
 }

@@ -35,6 +35,7 @@
 		A3EFADBF222629BC0038AB86 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADBE222629BC0038AB86 /* Community.swift */; };
 		A3EFADC1222629D30038AB86 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADC0222629D30038AB86 /* Challenge.swift */; };
 		A3EFADC4222695BB0038AB86 /* UIColour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADC3222695BB0038AB86 /* UIColour.swift */; };
+		A3EFADC62226ACA90038AB86 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADC52226ACA90038AB86 /* FirebaseAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		A3EFADBE222629BC0038AB86 /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		A3EFADC0222629D30038AB86 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		A3EFADC3222695BB0038AB86 /* UIColour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColour.swift; sourceTree = "<group>"; };
+		A3EFADC52226ACA90038AB86 /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		F8437A567AAAEE749A4689D0 /* Pods-me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.release.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 			children = (
 				A37297052219FCC100AE8480 /* AppManager.swift */,
 				A31B945C221C46A00011C0B5 /* AccountManager.swift */,
+				A3EFADC52226ACA90038AB86 /* FirebaseAPI.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				A3EFADC4222695BB0038AB86 /* UIColour.swift in Sources */,
 				A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */,
 				A37297062219FCC100AE8480 /* AppManager.swift in Sources */,
+				A3EFADC62226ACA90038AB86 /* FirebaseAPI.swift in Sources */,
 				A31B9465221CBD030011C0B5 /* ChallengesViewController.swift in Sources */,
 				A372970A221A1BD700AE8480 /* MainTabBarController.swift in Sources */,
 				A3729712221A2B3500AE8480 /* SettingsViewController.swift in Sources */,
