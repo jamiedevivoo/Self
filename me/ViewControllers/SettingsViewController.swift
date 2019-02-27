@@ -6,7 +6,6 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("LOG: Settings Screen")
 
         view.backgroundColor = .gray

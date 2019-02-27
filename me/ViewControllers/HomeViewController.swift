@@ -40,13 +40,15 @@ class HomeViewController: LoggedInViewController {
             if let error = error {
                 print(error)
             } else {
-                
+                if let document = document {
+                    self.user = User(snapshot: document)
+                }
                 self.user = User(snapshot: document as! DocumentSnapshot)
             }
+        
+        self.welcomeLabel.text = "Welcome \(self.user?.name ?? "No Value")"
         }
-        
-        welcomeLabel.text = "Welcome \(self.user?.name ?? "No Value")"
-        
+
         // Profile Summary View
         
         self.view.addSubview(mainButton)

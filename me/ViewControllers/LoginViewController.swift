@@ -113,7 +113,7 @@ class LoginViewController: UIViewController {
     
     @objc func registerButtonAction(_ sender: Any) {
         print("Register Button Tapped")
-        let onboardingViewController = Onboarding1ViewController()
+        let onboardingViewController = OnboardingViewController()
         onboardingViewController.title = "Register"
         navigationController?.pushViewController(onboardingViewController, animated: true)    }
 }
