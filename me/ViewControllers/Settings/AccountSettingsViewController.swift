@@ -2,9 +2,15 @@ import UIKit
 import SnapKit
 import Firebase
 
-class AccountSettingsViewController: SettingsBaseViewController {
+class AccountSettingsViewController: UIViewController {
+    
     
     // MARK: - Properties
+    
+    var user: User?
+    
+    
+    // MARK: - Views
     
     lazy var topView: UIView = {
         let view = UIView()
@@ -38,18 +44,24 @@ class AccountSettingsViewController: SettingsBaseViewController {
         return textField
     }()
     
-    var user: User?
-    // MARK: - viewDidLoad
+    
+    // MARK: - Init / viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        setupConstraints()
-
+        
         self.user = AccountManager.shared.user
+        setup()
+        addConstraints()
     }
     
-    // MARK: - Set Up View
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    
+    // MARK: - Functions
+    
     func setup() {
         title = "Account Settings"
         view.backgroundColor = .white
@@ -61,39 +73,6 @@ class AccountSettingsViewController: SettingsBaseViewController {
         self.view.addSubview(surnameTextField)
         self.view.addSubview(emailTextField)
     }
-    
-    func setupConstraints() {
-        topView.snp.makeConstraints { (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(200)
-        }
-        pageTipLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(topView.snp.left).offset(20)
-            make.right.equalTo(topView.snp.right).offset(-20)
-            make.top.equalTo(topView.snp.top).offset(100)
-        }
-        nameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
-        }
-        
-        surnameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
-        }
-        
-        emailTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.centerX.centerY.equalTo(self.view)
-        }
-    }
-    
     
     func updateFields() {
         if let name = self.user?.name {
@@ -188,4 +167,38 @@ class AccountSettingsViewController: SettingsBaseViewController {
 //
 //    }
 
+}
+
+extension AccountSettingsViewController: ConstraintBuilding {
+    func addConstraints() {
+        topView.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(200)
+        }
+        pageTipLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(topView.snp.left).offset(20)
+            make.right.equalTo(topView.snp.right).offset(-20)
+            make.top.equalTo(topView.snp.top).offset(100)
+        }
+        nameTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+        }
+        
+        surnameTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.top.equalTo(nameTextField.snp.bottom).offset(20)
+        }
+        
+        emailTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.centerX.centerY.equalTo(self.view)
+        }
+    }
 }

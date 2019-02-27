@@ -13,8 +13,14 @@ class AccountManager {
 
     func loadUser(completion: @escaping () -> ()) {
         userRef.getDocument { snapshot, error in
-            self.user = User(snapshot: snapshot!)
-            completion()
+            if let error = error {
+                print(error)
+            } else {
+                if let snapshot = snapshot {
+                    self.user = User(snapshot: snapshot)
+                    completion()
+                }
+            }
         }
     }
 

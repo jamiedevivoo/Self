@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 
-class SettingsViewController: SettingsBaseViewController {
+class SettingsViewController: UIViewController {
     
     // Mark: - Properties
     lazy var topView: UIView = {
@@ -52,6 +52,10 @@ class SettingsViewController: SettingsBaseViewController {
 
         setup()
         setupConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     func setup() {

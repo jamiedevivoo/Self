@@ -1,6 +1,6 @@
 import Firebase
 
-class User: Profile, CustomStringConvertible {
+class User: CustomStringConvertible {
     
     var description: String {
         return "User: name: \(surname), email: \(email)"
@@ -13,8 +13,11 @@ class User: Profile, CustomStringConvertible {
         ]
     }
     
+    var uid: String
+    var name: String
     var surname: String!
     var email: String!
+    var me: Me?
     
 //    init() {
 //        let currentUser = Auth.auth().currentUser
@@ -23,13 +26,24 @@ class User: Profile, CustomStringConvertible {
 //        
 //    }
     
-    
-    override init(snapshot: DocumentSnapshot) {
-        self.surname = "Name"
-        self.email = "Email"
-        super.init(snapshot: snapshot)
+    init(snapshot: DocumentSnapshot) {
+        let userData = snapshot.data()! as [String: Any]
+        self.uid = snapshot.documentID
+        self.name = userData["name"] as? String ?? ""
     }
-
     
+    init(dictionary: [String: String]) {
+        self.uid = dictionary["uid"]!
+        self.name = dictionary["name"] ?? ""
+    }
+    
+    private init(user: User) {
+        self.uid = user.uid
+        self.name = user.name
+    }
+    
+//    func author() -> [String: String] {
+//        return ["uid": uid, "name": name]
+//    }
     
 }

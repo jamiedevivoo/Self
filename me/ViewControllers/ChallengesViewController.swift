@@ -1,6 +1,6 @@
 import UIKit
 
-class ChallengesViewController: LoggedInViewController {
+class ChallengesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

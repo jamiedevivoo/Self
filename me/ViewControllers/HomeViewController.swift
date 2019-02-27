@@ -2,13 +2,13 @@ import UIKit
 import SnapKit
 import Firebase
 
-class HomeViewController: LoggedInViewController {
+class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    var ref: DocumentReference!
-    
     let profiles = FirebaseAPI.getProfiles()
+    var user: User?
+
     
     // MARK: - UI and Views
     
@@ -26,47 +26,25 @@ class HomeViewController: LoggedInViewController {
         return table
     }()
     
-    var user: User?
     
     // MARK: - Init and ViewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("LOG: Dashboard Created")
         
+        self.user = AccountManager.shared.user
+        self.navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
+
         profilesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "profileCell")
         
-        db = Firestore.firestore()
-        let uid = Auth.auth().currentUser!.uid
-        db.collection("user").document(uid).getDocument() { document, error in
-            if let error = error {
-                print(error)
-            } else {
-                if let document = document {
-                    self.user = User(snapshot: document)
-                }
-            }
-            self.navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
-        }
         setup()
-        setupConstraints()
+        addConstraints()
     }
     
     func setup() {
         
         self.view.addSubview(profilesTableView)
         self.view.addSubview(mainButton)
-    }
-    
-    func setupConstraints() {
-        self.profilesTableView.snp.makeConstraints{ (make) in
-            make.size.equalTo(self.view)
-        }
-        self.mainButton.snp.makeConstraints { (make) in
-            make.height.equalTo(100)
-            make.width.equalTo(200)
-            make.center.equalTo(self.view)
-        }
     }
     // MARK: - Actions
     
@@ -93,5 +71,18 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath)
         cell.textLabel?.text = profiles[indexPath.row].name
         return cell
+    }
+}
+
+extension HomeViewController: ConstraintBuilding {
+    func addConstraints() {
+        self.profilesTableView.snp.makeConstraints{ (make) in
+            make.size.equalTo(self.view)
+        }
+        self.mainButton.snp.makeConstraints { (make) in
+            make.height.equalTo(100)
+            make.width.equalTo(200)
+            make.center.equalTo(self.view)
+        }
     }
 }

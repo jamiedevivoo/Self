@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 
-class ProfileViewController: LoggedInViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
