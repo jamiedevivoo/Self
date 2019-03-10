@@ -27,6 +27,8 @@
 		A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514835221D9064002BA1A4 /* SidebarViewController.swift */; };
 		A351483A221DB802002BA1A4 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514839221DB802002BA1A4 /* OnboardingController.swift */; };
 		A36178F82224214A00B259C9 /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36178F72224214A00B259C9 /* CommunitiesViewController.swift */; };
+		A3673E3A2235807200A96997 /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3673E392235807200A96997 /* AppSettingsViewController.swift */; };
+		A3673E3C2235809500A96997 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3673E3B2235809500A96997 /* ProfileSettingsViewController.swift */; };
 		A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297012219FA5500AE8480 /* LoginViewController.swift */; };
 		A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297032219FC4E00AE8480 /* AppContainerViewController.swift */; };
 		A37297062219FCC100AE8480 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37297052219FCC100AE8480 /* AppManager.swift */; };
@@ -68,6 +70,8 @@
 		A3514835221D9064002BA1A4 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		A3514839221DB802002BA1A4 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		A36178F72224214A00B259C9 /* CommunitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
+		A3673E392235807200A96997 /* AppSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
+		A3673E3B2235809500A96997 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		A37297012219FA5500AE8480 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A37297032219FC4E00AE8480 /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		A37297052219FCC100AE8480 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 				A37297012219FA5500AE8480 /* LoginViewController.swift */,
 				A3729711221A2B3500AE8480 /* SettingsViewController.swift */,
 				A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */,
+				A3673E392235807200A96997 /* AppSettingsViewController.swift */,
+				A3673E3B2235809500A96997 /* ProfileSettingsViewController.swift */,
 				A3149CFB2226FAC6008447E7 /* Extensions */,
 			);
 			path = ViewControllers;
@@ -370,12 +376,14 @@
 				A37297062219FCC100AE8480 /* AppManager.swift in Sources */,
 				A3EFADC62226ACA90038AB86 /* FirebaseAPI.swift in Sources */,
 				A31B9465221CBD030011C0B5 /* ChallengesViewController.swift in Sources */,
+				A3673E3C2235809500A96997 /* ProfileSettingsViewController.swift in Sources */,
 				A372970A221A1BD700AE8480 /* HomeTabBarController.swift in Sources */,
 				A3729712221A2B3500AE8480 /* SettingsViewController.swift in Sources */,
 				A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */,
 				A372970E221A28EE00AE8480 /* RegisterViewController.swift in Sources */,
 				A3D3BDFE22258E4C00712941 /* Loader.swift in Sources */,
 				A3149D05222710EB008447E7 /* AccountOnboardingViewController.swift in Sources */,
+				A3673E3A2235807200A96997 /* AppSettingsViewController.swift in Sources */,
 				A351483A221DB802002BA1A4 /* OnboardingController.swift in Sources */,
 				A3149D092227113E008447E7 /* Onboarding.swift in Sources */,
 				A338E80222256C3C0069004A /* Me.swift in Sources */,
