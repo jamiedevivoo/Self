@@ -10,10 +10,6 @@ class HomeTabBarController: UITabBarController {
         setup()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        self.tabBarController?.tabBar.isHidden = false
-//    }
-    
     func setup() {
         view.backgroundColor = .white
     }
@@ -52,7 +48,7 @@ class HomeTabBarController: UITabBarController {
             return navigationController
         }()
         
-        viewControllers = [communitiesNavigationController, journalNavigationController, challengesNavigationController, homeNavigationController]
-        selectedIndex = 3
+        self.viewControllers = [communitiesNavigationController, journalNavigationController, challengesNavigationController, homeNavigationController]
+        self.selectedIndex = 3
     }
 }

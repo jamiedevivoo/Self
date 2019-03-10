@@ -10,7 +10,7 @@ extension UIColor {
             static let secondary = UIColor(red: 184/255, green: 003/255, blue: 255/255, alpha: 1)
         }
         struct text {
-            static let primary = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+            static let primary = UIColor(red: 010/255, green: 028/255, blue: 039/255, alpha: 1)
             static let secondary = UIColor(red: 0.2, green: 0.2, blue:0.9, alpha: 1)
         }
         struct defined {

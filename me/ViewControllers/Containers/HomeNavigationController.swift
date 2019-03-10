@@ -12,6 +12,8 @@ class HomeNavigationController: UINavigationController {
         button.style = .plain
         button.target = self
         button.action = #selector(sidebarButtonTapped)
+        button.image = UIImage(named: "userIco")
+        button.tintColor = UIColor.app.text.primary
         return button
     }()
     
@@ -22,7 +24,6 @@ class HomeNavigationController: UINavigationController {
         super.viewDidLoad()
         setup()
     }
-    
     
     // Mark: - Functions
     
@@ -39,6 +40,8 @@ class HomeNavigationController: UINavigationController {
     
     @objc func sidebarButtonTapped() {
         pushViewController(SettingsViewController(), animated: true)
+//        tabBarController?.tabBar.isHidden = true
     }
     
 }
+
