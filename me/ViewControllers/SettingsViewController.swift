@@ -40,6 +40,7 @@ class SettingsViewController: UIViewController {
         let table = UITableView()
         table.isScrollEnabled = false
         table.dataSource = self
+        table.delegate = self
         return table
     }()
     
@@ -93,17 +94,18 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ settingsTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingOptions.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
+    func tableView(_ settingsTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
         cell.textLabel?.text = settingOptions[indexPath.row]
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ settingsTableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell Selected")
         navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
     }
 
