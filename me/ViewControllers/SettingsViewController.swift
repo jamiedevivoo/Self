@@ -70,20 +70,22 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ settingsTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
-        cell.textLabel?.text = settingOptions[indexPath.row]
+        let settingTitle = settingOptions[indexPath.row]
+        cell.textLabel?.text = settingTitle
+        if settingTitle == "Logout" { cell.textLabel?.textColor = .red }
         return cell
     }
     
     func tableView(_ settingsTableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Cell Selected \(indexPath)")
         
-        if (indexPath.row == 0) {
+        if indexPath.row == 0 {
             navigationController?.pushViewController(ProfileSettingsViewController(), animated: true);
-        } else if (indexPath.row == 1) {
+        } else if indexPath.row == 1 {
             navigationController?.pushViewController(AccountSettingsViewController(), animated: true);
-        } else if (indexPath.row == 2) {
+        } else if indexPath.row == 2 {
             navigationController?.pushViewController(AppSettingsViewController(), animated: true);
-        } else if (indexPath.row == 3) {
+        } else if indexPath.row == 3 {
             AppManager.shared.logout()
         }
     }
