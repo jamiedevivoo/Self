@@ -30,9 +30,35 @@ class HomeViewController: UIViewController {
     
     func setup() {
         self.user = AccountManager.shared.user
-        self.navigationItem.title = "Welcome \(self.user?.name ?? "No Value")"
+        self.navigationItem.title = greeting() + " \(self.user?.name ?? "No Value")!"
     
         self.view.addSubview(topView)
+    }
+    
+    func greeting() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        print(hour)
+        
+        switch hour {
+        case 00...01:
+            return "Night"
+        case 01...04:
+            return "Night"
+        case 04...06:
+            return "Early Morning"
+        case 06...10:
+            return "Morning"
+        case 10...13:
+            return "Morning"
+        case 13...17:
+            return "Afternoon"
+        case 17...22:
+            return "Evening"
+        case 22...24:
+            return "Night"
+        default:
+            return "Welcome"
+        }
     }
     
 }
@@ -41,7 +67,7 @@ extension HomeViewController: ConstraintBuilding {
     func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
-            make.height.equalTo(200)
+            make.height.greaterThanOrEqualTo(300)
         }
         
     }

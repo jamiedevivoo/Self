@@ -12,7 +12,6 @@ class HomeNavigationController: UINavigationController {
         button.style = .plain
         button.target = self
         button.action = #selector(sidebarButtonTapped)
-        button.image = UIImage(named: "userIco")
         button.tintColor = UIColor.app.text.primary
         return button
     }()
