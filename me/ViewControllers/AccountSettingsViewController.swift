@@ -14,7 +14,7 @@ class AccountSettingsViewController: UIViewController {
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.gray
+        view.backgroundColor = UIColor.app.background.primary
         return view
     }()
     lazy var pageTipLabel: UILabel = {
@@ -23,6 +23,7 @@ class AccountSettingsViewController: UIViewController {
         label.textAlignment = .left
         label.textColor = .darkText
         label.numberOfLines = 0
+        
         return label
     }()
     lazy var nameTextField: UITextField = {

@@ -5,11 +5,11 @@ import Firebase
 class SettingsViewController: UIViewController {
     
     
-    // Mark: - Properties
+    // MARK: - Properties
     
-    lazy var topView: UIView = {
+    lazy var topDescriptionView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.gray
+        view.backgroundColor = UIColor.app.background.primary
         return view
     }()
     lazy var pageTipLabel: UILabel = {
@@ -67,15 +67,15 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = .gray
         navigationItem.leftBarButtonItems = nil
         
-        self.view.addSubview(topView)
-        topView.addSubview(pageTipLabel)
+        self.view.addSubview(topDescriptionView)
+        topDescriptionView.addSubview(pageTipLabel)
         self.view.addSubview(settingsTableView)
         self.view.addSubview(logoutButton)
         self.view.addSubview(accountSettingsButton)
     }
     
     
-    // MARK: - Action Functions
+    // MARK: - Actions
     
     @objc func logoutButtonAction() {
         print("Lougout Tapped")
@@ -89,6 +89,8 @@ class SettingsViewController: UIViewController {
     
 }
 
+// MARK: - Extension: Table View Controller
+
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,24 +102,30 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = settingOptions[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
+    }
 
 }
 
+// MARK: - Extension: Constraints Building
+
 extension SettingsViewController: ConstraintBuilding {
     func addConstraints() {
-        topView.snp.makeConstraints { (make) in
+        topDescriptionView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
             make.width.equalTo(self.view)
             make.height.equalTo(200)
         }
         pageTipLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(topView.snp.left).offset(20)
-            make.right.equalTo(topView.snp.right).offset(-20)
-            make.top.equalTo(topView.snp.top).offset(100)
+            make.left.equalTo(topDescriptionView.snp.left).offset(20)
+            make.right.equalTo(topDescriptionView.snp.right).offset(-20)
+            make.top.equalTo(topDescriptionView.snp.top).offset(100)
         }
         settingsTableView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
-            make.top.equalTo(topView.snp.bottom)
+            make.top.equalTo(topDescriptionView.snp.bottom)
             make.bottom.equalTo(self.view.snp.bottom)
         }
         accountSettingsButton.snp.makeConstraints { (make) in
