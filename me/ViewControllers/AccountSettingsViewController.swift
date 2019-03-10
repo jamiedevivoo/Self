@@ -14,12 +14,12 @@ class AccountSettingsViewController: UIViewController {
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.secondary
+        view.backgroundColor = UIColor.app.background.primary
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
-        label.text = "Use this page to modify your account and app settings."
+        label.text = "Use this page to modify the settings related to your account."
         label.textAlignment = .left
         label.textColor = .darkText
         label.numberOfLines = 0
@@ -171,7 +171,7 @@ extension AccountSettingsViewController: ConstraintBuilding {
     func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
-            make.height.equalTo(200)
+            make.height.greaterThanOrEqualTo(pageTipLabel.snp.height).offset(150)
         }
         pageTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(topView.snp.left).offset(20)

@@ -19,30 +19,12 @@ class AppSettingsViewController: UIViewController {
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
-        label.text = "Use this page to modify your account and app settings."
+        label.text = "Use this page to modify app related settings."
         label.textAlignment = .left
         label.textColor = .darkText
         label.numberOfLines = 0
         
         return label
-    }()
-    lazy var nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "First Name"
-        return textField
-    }()
-    lazy var surnameTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Surname"
-        return textField
-    }()
-    lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Email Address"
-        return textField
     }()
     
     
@@ -54,7 +36,6 @@ class AppSettingsViewController: UIViewController {
         setupView()
         addConstraints()
         self.user = AccountManager.shared.user
-        updateFields()
     }
     
     
@@ -67,24 +48,9 @@ class AppSettingsViewController: UIViewController {
         
         self.view.addSubview(topView)
         topView.addSubview(pageTipLabel)
-        self.view.addSubview(nameTextField)
-        self.view.addSubview(surnameTextField)
-        self.view.addSubview(emailTextField)
     }
+
     
-    func updateFields() {
-        if let name = self.user?.name {
-            self.nameTextField.text = "\(name)"
-        }
-        if let surname = self.user?.surname {
-            self.surnameTextField.text = "\(surname)"
-        }
-        if let email = self.user?.email {
-            self.emailTextField.text = "\(email)"
-        }
-        
-        //        AccountManager.shared.update(user)
-    }
     
     // MARK: - Actions
     
@@ -171,32 +137,12 @@ extension AppSettingsViewController: ConstraintBuilding {
     func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
-            make.height.equalTo(200)
+            make.height.greaterThanOrEqualTo(pageTipLabel.snp.height).offset(150)
         }
         pageTipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(topView.snp.left).offset(20)
             make.right.equalTo(topView.snp.right).offset(-20)
             make.top.equalTo(topView.snp.top).offset(100)
-        }
-        nameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
-        }
-        
-        surnameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
-        }
-        
-        emailTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.centerX.centerY.equalTo(self.view)
         }
     }
 }

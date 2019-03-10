@@ -18,6 +18,21 @@ class HomeViewController: UIViewController {
         view.backgroundColor = UIColor.app.background.primary
         return view
     }()
+    
+    lazy var messageBox: UIView = {
+        let view = UIView()
+        view.layer.borderWidth = 2
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        return view
+    }()
+    
+    lazy var messageText: UILabel = {
+        let label = UILabel()
+        label.text = greeting() + " \(self.user?.name ?? "No Value")!"
+        label.textAlignment = .center
+        return label
+    }()
 
     // MARK: - Init and ViewDidLoad
 
@@ -33,11 +48,13 @@ class HomeViewController: UIViewController {
         self.navigationItem.title = greeting() + " \(self.user?.name ?? "No Value")!"
     
         self.view.addSubview(topView)
+        topView.addSubview(messageBox)
+        messageBox.addSubview(messageText)
+
     }
     
     func greeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
-        print(hour)
         
         switch hour {
         case 00...01:
@@ -68,6 +85,18 @@ extension HomeViewController: ConstraintBuilding {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
             make.height.greaterThanOrEqualTo(300)
+        }
+        messageBox.snp.makeConstraints { (make) in
+            make.height.greaterThanOrEqualTo(100)
+            make.width.equalTo(topView.snp.width).inset(20)
+            make.centerX.equalTo(topView)
+            make.centerY.equalTo(topView.snp.bottomMargin)
+        }
+        messageText.snp.makeConstraints { (make) in
+            make.height.equalTo(messageBox.snp.height).inset(10)
+            make.width.equalTo(messageBox.snp.width).inset(10)
+            make.centerX.equalTo(messageBox)
+            make.centerY.equalTo(messageBox)
         }
         
     }

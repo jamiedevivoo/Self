@@ -1,12 +1,15 @@
 import UIKit
 
-class WellbeingOnboardingViewController: UIViewController, Onboarding {
+class WellbeingOnboardingViewController: UIViewController {
     
-    var onboardingIndex: Int = 0
+    let onboardingIndex = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
 
+}
+
+extension WellbeingOnboardingViewController: Onboarding {
 }

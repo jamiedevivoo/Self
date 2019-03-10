@@ -44,6 +44,7 @@
 		A3EFADC1222629D30038AB86 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADC0222629D30038AB86 /* Challenge.swift */; };
 		A3EFADC4222695BB0038AB86 /* UIColour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADC3222695BB0038AB86 /* UIColour.swift */; };
 		A3EFADC62226ACA90038AB86 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFADC52226ACA90038AB86 /* FirebaseAPI.swift */; };
+		A3F38ABB2235AAD0002AA52F /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F38ABA2235AAD0002AA52F /* MessageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		A3EFADC0222629D30038AB86 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		A3EFADC3222695BB0038AB86 /* UIColour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColour.swift; sourceTree = "<group>"; };
 		A3EFADC52226ACA90038AB86 /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
+		A3F38ABA2235AAD0002AA52F /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		F8437A567AAAEE749A4689D0 /* Pods-me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.release.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,8 +120,8 @@
 				A3149CFE222710C6008447E7 /* MoodOnboardingViewController.swift */,
 				A3149D00222710D2008447E7 /* MeOnboardingViewController.swift */,
 				A3149D02222710E2008447E7 /* NameOnboardingViewController.swift */,
-				A3149D04222710EB008447E7 /* AccountOnboardingViewController.swift */,
 				A3149D06222710F5008447E7 /* WellbeingOnboardingViewController.swift */,
+				A3149D04222710EB008447E7 /* AccountOnboardingViewController.swift */,
 				A372970D221A28EE00AE8480 /* RegisterViewController.swift */,
 			);
 			path = Onboarding;
@@ -184,6 +186,7 @@
 			children = (
 				A37297052219FCC100AE8480 /* AppManager.swift */,
 				A31B945C221C46A00011C0B5 /* AccountManager.swift */,
+				A3F38ABA2235AAD0002AA52F /* MessageManager.swift */,
 				A3EFADC52226ACA90038AB86 /* FirebaseAPI.swift */,
 			);
 			path = Managers;
@@ -401,6 +404,7 @@
 				A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */,
 				A31B945D221C46A00011C0B5 /* AccountManager.swift in Sources */,
 				A338E80022255E1F0069004A /* User.swift in Sources */,
+				A3F38ABB2235AAD0002AA52F /* MessageManager.swift in Sources */,
 				A3EFADC1222629D30038AB86 /* Challenge.swift in Sources */,
 				A36178F82224214A00B259C9 /* CommunitiesViewController.swift in Sources */,
 			);
