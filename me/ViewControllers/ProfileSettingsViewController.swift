@@ -61,7 +61,7 @@ class ProfileSettingsViewController: UIViewController {
     // MARK: - Functions
     
     func setupView() {
-        title = "App Settings"
+        title = "Profile Settings"
         view.backgroundColor = .white
         navigationItem.leftBarButtonItems = nil
         

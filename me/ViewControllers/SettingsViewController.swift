@@ -20,21 +20,6 @@ class SettingsViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    lazy var accountSettingsButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.addTarget(self, action: #selector(SettingsViewController.accountSettingsButtonAction), for: .touchUpInside)
-        button.setTitle("Account Settings", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
-    lazy var logoutButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .black
-        button.addTarget(self, action: #selector(SettingsViewController.logoutButtonAction), for: .touchUpInside)
-        button.setTitle("Logout", for: .normal)
-        return button
-    }()
     
     lazy var settingsTableView: UITableView = {
         let table = UITableView()
@@ -71,21 +56,6 @@ class SettingsViewController: UIViewController {
         self.view.addSubview(topDescriptionView)
         topDescriptionView.addSubview(pageTipLabel)
         self.view.addSubview(settingsTableView)
-        self.view.addSubview(logoutButton)
-        self.view.addSubview(accountSettingsButton)
-    }
-    
-    
-    // MARK: - Actions
-    
-    @objc func logoutButtonAction() {
-        print("Lougout Tapped")
-        AppManager.shared.logout()
-    }
-    @objc func accountSettingsButtonAction() {
-        print("Account Settings Tapped")
-
-        navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
     }
     
 }
@@ -105,8 +75,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ settingsTableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cell Selected")
-        navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
+        print("Cell Selected \(indexPath)")
+        
+        if (indexPath.row == 0) {
+            navigationController?.pushViewController(ProfileSettingsViewController(), animated: true);
+        } else if (indexPath.row == 1) {
+            navigationController?.pushViewController(AccountSettingsViewController(), animated: true);
+        } else if (indexPath.row == 2) {
+            navigationController?.pushViewController(AppSettingsViewController(), animated: true);
+        } else if (indexPath.row == 3) {
+            AppManager.shared.logout()
+        }
     }
 
 }
@@ -129,16 +108,6 @@ extension SettingsViewController: ConstraintBuilding {
             make.width.equalTo(self.view)
             make.top.equalTo(topDescriptionView.snp.bottom)
             make.bottom.equalTo(self.view.snp.bottom)
-        }
-        accountSettingsButton.snp.makeConstraints { (make) in
-            make.width.equalTo(200)
-            make.height.equalTo(100)
-            make.center.equalTo(self.view)
-        }
-        logoutButton.snp.makeConstraints { (make) in
-            make.size.equalTo(100)
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(accountSettingsButton.snp.bottom).offset(20)
         }
     }
 }
