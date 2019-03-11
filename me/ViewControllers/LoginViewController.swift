@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 import SnapKit
-import MaterialComponents.MaterialBottomNavigation
+import MaterialComponents
 
 class LoginViewController: UIViewController {
     
