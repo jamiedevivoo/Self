@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
     
     func setup() {
         self.user = AccountManager.shared.user
-        self.navigationItem.title = greeting() + " \(self.user?.name ?? "No Value")!"
+        self.navigationItem.title = "Home"
     
         self.view.addSubview(topView)
         topView.addSubview(messageBox)

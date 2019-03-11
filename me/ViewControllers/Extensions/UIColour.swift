@@ -1,6 +1,7 @@
 import UIKit
 
-// Note: Colours are stored as decimals (0.0 - 1.0), however RGBA values are storred as ranges from 0 to 255. By storing these as calculations we can view them as their RGBA values but the code will compile them to decimals.
+// Note: Colours are stored as decimals (0.0 - 1.0), however RGBA values are storred as ranges from 0 to 255.
+// By storing these as calculations we can view them as their RGBA values but the code will calculate them into decimals when it compiles.
 
 extension UIColor {
     struct app {

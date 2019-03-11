@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController {
         return table
     }()
     
-    var settingOptions = ["Profile Settings","Account Settings","App Settings","Logout"]
+    var settingOptions = ["Account Settings","App Settings","Logout"]
     
     
     // MARK: - Init
@@ -80,12 +80,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         print("Cell Selected \(indexPath)")
         
         if indexPath.row == 0 {
-            navigationController?.pushViewController(ProfileSettingsViewController(), animated: true);
-        } else if indexPath.row == 1 {
             navigationController?.pushViewController(AccountSettingsViewController(), animated: true);
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 1 {
             navigationController?.pushViewController(AppSettingsViewController(), animated: true);
-        } else if indexPath.row == 3 {
+        } else if indexPath.row == 2 {
             AppManager.shared.logout()
         }
     }

@@ -26,6 +26,7 @@
 		A347D6E3221B5CAC0011B98E /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */; };
 		A3514836221D9064002BA1A4 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514835221D9064002BA1A4 /* SidebarViewController.swift */; };
 		A351483A221DB802002BA1A4 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3514839221DB802002BA1A4 /* OnboardingController.swift */; };
+		A35AF8342236DBF6007E491D /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35AF8332236DBF6007E491D /* UIFont.swift */; };
 		A36178F82224214A00B259C9 /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36178F72224214A00B259C9 /* CommunitiesViewController.swift */; };
 		A3673E3A2235807200A96997 /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3673E392235807200A96997 /* AppSettingsViewController.swift */; };
 		A3673E3C2235809500A96997 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3673E3B2235809500A96997 /* ProfileSettingsViewController.swift */; };
@@ -36,7 +37,6 @@
 		A372970A221A1BD700AE8480 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3729709221A1BD700AE8480 /* HomeTabBarController.swift */; };
 		A372970C221A1C3900AE8480 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372970B221A1C3900AE8480 /* HomeNavigationController.swift */; };
 		A372970E221A28EE00AE8480 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372970D221A28EE00AE8480 /* RegisterViewController.swift */; };
-		A3729710221A2AD800AE8480 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372970F221A2AD800AE8480 /* ProfileViewController.swift */; };
 		A3729712221A2B3500AE8480 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3729711221A2B3500AE8480 /* SettingsViewController.swift */; };
 		A38916772226ED16007F4208 /* ConstraintBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38916762226ED16007F4208 /* ConstraintBuilding.swift */; };
 		A3D3BDFE22258E4C00712941 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D3BDFD22258E4C00712941 /* Loader.swift */; };
@@ -70,6 +70,7 @@
 		A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		A3514835221D9064002BA1A4 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		A3514839221DB802002BA1A4 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
+		A35AF8332236DBF6007E491D /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		A36178F72224214A00B259C9 /* CommunitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
 		A3673E392235807200A96997 /* AppSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
 		A3673E3B2235809500A96997 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		A3729709221A1BD700AE8480 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		A372970B221A1C3900AE8480 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		A372970D221A28EE00AE8480 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		A372970F221A2AD800AE8480 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A3729711221A2B3500AE8480 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A38916762226ED16007F4208 /* ConstraintBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintBuilding.swift; sourceTree = "<group>"; };
 		A3D3BDFD22258E4C00712941 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -142,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				A3EFADC3222695BB0038AB86 /* UIColour.swift */,
+				A35AF8332236DBF6007E491D /* UIFont.swift */,
 				A3149D082227113E008447E7 /* Onboarding.swift */,
 				A38916762226ED16007F4208 /* ConstraintBuilding.swift */,
 			);
@@ -213,7 +214,6 @@
 				A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */,
 				A31B9464221CBD030011C0B5 /* ChallengesViewController.swift */,
 				A36178F72224214A00B259C9 /* CommunitiesViewController.swift */,
-				A372970F221A2AD800AE8480 /* ProfileViewController.swift */,
 				A37297012219FA5500AE8480 /* LoginViewController.swift */,
 				A3729711221A2B3500AE8480 /* SettingsViewController.swift */,
 				A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */,
@@ -375,6 +375,7 @@
 				A3EFADC4222695BB0038AB86 /* UIColour.swift in Sources */,
 				A37297022219FA5500AE8480 /* LoginViewController.swift in Sources */,
 				A3149D07222710F5008447E7 /* WellbeingOnboardingViewController.swift in Sources */,
+				A35AF8342236DBF6007E491D /* UIFont.swift in Sources */,
 				A3149D03222710E2008447E7 /* NameOnboardingViewController.swift in Sources */,
 				A37297062219FCC100AE8480 /* AppManager.swift in Sources */,
 				A3EFADC62226ACA90038AB86 /* FirebaseAPI.swift in Sources */,
@@ -398,7 +399,6 @@
 				A31B9463221CBCFC0011C0B5 /* JournalViewController.swift in Sources */,
 				A3149CF62226F728008447E7 /* LaunchNavigationController.swift in Sources */,
 				A372970C221A1C3900AE8480 /* HomeNavigationController.swift in Sources */,
-				A3729710221A2AD800AE8480 /* ProfileViewController.swift in Sources */,
 				A3EFADBF222629BC0038AB86 /* Community.swift in Sources */,
 				A3149CFF222710C6008447E7 /* MoodOnboardingViewController.swift in Sources */,
 				A37297042219FC4E00AE8480 /* AppContainerViewController.swift in Sources */,

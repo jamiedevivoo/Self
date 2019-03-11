@@ -13,11 +13,15 @@ class LoginViewController: UIViewController {
         label.textColor = .black
         return label
     }()
+    
+    
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.text = "email@email.com"
-        textField.keyboardType = UIKeyboardType.emailAddress
         textField.placeholder = "Email Address"
+        textField.keyboardType = UIKeyboardType.emailAddress
+        textField.textColor = UIColor.app.text.primary
+        textField.minimumFontSize = 17.0
         textField.borderStyle = .roundedRect
         return textField
     }()
@@ -27,14 +31,26 @@ class LoginViewController: UIViewController {
         textField.placeholder = "Password"
         textField.isSecureTextEntry = true
         textField.borderStyle = .roundedRect
+        textField.textColor = UIColor.app.text.primary
+        textField.minimumFontSize = 17.0
         return textField
     }()
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(UIColor.app.text.primary, for: .normal)
+        button.backgroundColor = .clear
+        button.layer.borderWidth = 1.0
         button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         return button
+    }()
+    private lazy var loginStackView: UIStackView = { [unowned self] in
+        let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.loginButton])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 10.0
+        return stackView
     }()
     lazy var registerButton: UIButton = {
         let button = UIButton()
@@ -43,6 +59,7 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(LoginViewController.registerButtonAction), for: .touchUpInside)
         return button
     }()
+    
     
     var db:Firestore!
     
@@ -60,11 +77,10 @@ class LoginViewController: UIViewController {
     
     func setup() {
         title = "Login"
+        view.backgroundColor = UIColor.app.background.primary
         
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(passwordTextField)
+        self.view.addSubview(loginStackView)
         self.view.addSubview(welcomeLabel)
-        self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
         
     }
@@ -99,7 +115,7 @@ class LoginViewController: UIViewController {
     
     @objc func registerButtonAction(_ sender: Any) {
         print("Register Button Tapped")
-        let onboardingViewController = RegisterViewController()
+        let onboardingViewController = OnboardingController()
         onboardingViewController.title = "Register"
         navigationController?.pushViewController(onboardingViewController, animated: true)    }
 }
@@ -114,24 +130,11 @@ extension LoginViewController: ConstraintBuilding {
             make.top.equalTo(100)
             make.height.equalTo(50)
         }
-        
-        emailTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.centerX.centerY.equalTo(self.view)
-        }
-        passwordTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
-        }
-        loginButton.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
+        loginStackView.snp.remakeConstraints { (make) in
+            make.left.equalToSuperview().offset(50)
+            make.right.equalToSuperview().inset(50)
+            make.center.equalToSuperview()
+            
         }
         registerButton.snp.makeConstraints { (make) in
             make.left.equalTo(100)

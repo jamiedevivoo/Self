@@ -3,6 +3,7 @@ import UIKit
 class NameOnboardingViewController: UIViewController {
     
     let onboardingIndex = 2
+    var name: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,4 +13,7 @@ class NameOnboardingViewController: UIViewController {
 }
 
 extension NameOnboardingViewController: Onboarding {
+}
+extension NameOnboardingViewController: OnboardingNameViewDelegate {
+    
 }
