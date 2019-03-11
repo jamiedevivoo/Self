@@ -15,5 +15,6 @@ target 'me' do
 	pod 'Firebase/Performance'
 	pod 'Firebase/RemoteConfig'
 	pod 'SnapKit', '~> 4.0.0'
+	pod 'MaterialComponents'
 
 end

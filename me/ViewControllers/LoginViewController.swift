@@ -1,19 +1,11 @@
 import UIKit
 import Firebase
 import SnapKit
+import MaterialComponents.MaterialBottomNavigation
 
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
-
-    lazy var welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Welcome"
-        label.textAlignment = .center
-        label.textColor = .black
-        return label
-    }()
-    
     
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
@@ -21,44 +13,53 @@ class LoginViewController: UIViewController {
         textField.placeholder = "Email Address"
         textField.keyboardType = UIKeyboardType.emailAddress
         textField.textColor = UIColor.app.text.primary
-        textField.minimumFontSize = 17.0
+        textField.minimumFontSize = 25.0
         textField.borderStyle = .roundedRect
+        textField.layer.cornerRadius = 15
+        textField.clipsToBounds = true
         return textField
     }()
     lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.text = "password"
         textField.placeholder = "Password"
+        textField.keyboardType = UIKeyboardType.default
         textField.isSecureTextEntry = true
-        textField.borderStyle = .roundedRect
         textField.textColor = UIColor.app.text.primary
-        textField.minimumFontSize = 17.0
+        textField.minimumFontSize = 25.0
+        textField.borderStyle = .roundedRect
+        textField.layer.cornerRadius = 15
+        textField.clipsToBounds = true
         return textField
     }()
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.setTitleColor(UIColor.app.text.primary, for: .normal)
-        button.backgroundColor = .clear
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .blue
         button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = 15
+        button.layer.borderColor = UIColor.blue.cgColor
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         return button
-    }()
-    private lazy var loginStackView: UIStackView = { [unowned self] in
-        let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.loginButton])
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
-        stackView.spacing = 10.0
-        return stackView
     }()
     lazy var registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("Get started", for: .normal)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(LoginViewController.registerButtonAction), for: .touchUpInside)
         return button
     }()
+    private lazy var loginStackView: UIStackView = { [unowned self] in
+        let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.loginButton, self.registerButton])
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .fill
+        stackView.spacing = 10.0
+        return stackView
+    }()
+
     
     
     var db:Firestore!
@@ -76,13 +77,10 @@ class LoginViewController: UIViewController {
     }
     
     func setup() {
-        title = "Login"
+        title = "Welcome to Me"
         view.backgroundColor = UIColor.app.background.primary
         
         self.view.addSubview(loginStackView)
-        self.view.addSubview(welcomeLabel)
-        self.view.addSubview(registerButton)
-        
     }
 
     // MARK: - Action Functions
@@ -124,24 +122,22 @@ class LoginViewController: UIViewController {
 extension LoginViewController: ConstraintBuilding {
     
     func addConstraints() {
-        welcomeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.top.equalTo(100)
-            make.height.equalTo(50)
-        }
-        loginStackView.snp.remakeConstraints { (make) in
+        loginStackView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().inset(50)
             make.center.equalToSuperview()
-            
+            make.height.equalToSuperview().multipliedBy(0.22)
         }
-        registerButton.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(loginButton.snp.bottom).offset(30)
+        emailTextField.snp.makeConstraints { (make) in
+            make.height.equalTo(50.0)
         }
+        passwordTextField.snp.makeConstraints { (make) in
+            make.height.equalTo(50.0)
+        }
+        loginButton.snp.makeConstraints { (make) in
+            make.height.equalTo(50.0)
+        }
+
     }
     
 }
