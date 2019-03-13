@@ -12,6 +12,7 @@ class HomeTabBarController: UITabBarController {
     
     func setup() {
         view.backgroundColor = .white
+        tabBar.barTintColor = .white
     }
     
     fileprivate func checkLoggedInUserStatus() {

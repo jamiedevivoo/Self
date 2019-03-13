@@ -113,32 +113,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A3149CF72226FA6B008447E7 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				A3514839221DB802002BA1A4 /* OnboardingController.swift */,
-				A3149CFE222710C6008447E7 /* MoodOnboardingViewController.swift */,
-				A3149D00222710D2008447E7 /* MeOnboardingViewController.swift */,
-				A3149D02222710E2008447E7 /* NameOnboardingViewController.swift */,
-				A3149D06222710F5008447E7 /* WellbeingOnboardingViewController.swift */,
-				A3149D04222710EB008447E7 /* AccountOnboardingViewController.swift */,
-				A372970D221A28EE00AE8480 /* RegisterViewController.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		A3149CFA2226FAAD008447E7 /* Containers */ = {
-			isa = PBXGroup;
-			children = (
-				A37297032219FC4E00AE8480 /* AppContainerViewController.swift */,
-				A3149CF52226F728008447E7 /* LaunchNavigationController.swift */,
-				A3729709221A1BD700AE8480 /* HomeTabBarController.swift */,
-				A372970B221A1C3900AE8480 /* HomeNavigationController.swift */,
-			);
-			path = Containers;
-			sourceTree = "<group>";
-		};
-		A3149CFB2226FAC6008447E7 /* Extensions */ = {
+		A3149CFB2226FAC6008447E7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				A3EFADC3222695BB0038AB86 /* UIColour.swift */,
@@ -146,7 +121,7 @@
 				A3149D082227113E008447E7 /* Onboarding.swift */,
 				A38916762226ED16007F4208 /* ConstraintBuilding.swift */,
 			);
-			path = Extensions;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		A32CAECE22148D9300B7269F = {
@@ -171,15 +146,29 @@
 			isa = PBXGroup;
 			children = (
 				A32CAEDA22148D9300B7269F /* AppDelegate.swift */,
-				A3D3BDFD22258E4C00712941 /* Loader.swift */,
 				A3D3BDFF222593DA00712941 /* Managers */,
 				A3D3BE00222593E900712941 /* Models */,
-				A3D3BE022225940D00712941 /* ViewControllers */,
+				A34CB75B22381BB900691056 /* Views */,
+				A3D3BE022225940D00712941 /* Controllers */,
 				A32CAEE122148D9400B7269F /* Assets.xcassets */,
 				A32CAEE622148D9400B7269F /* Info.plist */,
 				A3729707221A1A9300AE8480 /* GoogleService-Info.plist */,
 			);
 			path = me;
+			sourceTree = "<group>";
+		};
+		A34CB75B22381BB900691056 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3D3BDFD22258E4C00712941 /* Loader.swift */,
+				A3149CFE222710C6008447E7 /* MoodOnboardingViewController.swift */,
+				A3149D00222710D2008447E7 /* MeOnboardingViewController.swift */,
+				A3149D02222710E2008447E7 /* NameOnboardingViewController.swift */,
+				A3149D06222710F5008447E7 /* WellbeingOnboardingViewController.swift */,
+				A3149D04222710EB008447E7 /* AccountOnboardingViewController.swift */,
+				A372970D221A28EE00AE8480 /* RegisterViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A3D3BDFF222593DA00712941 /* Managers */ = {
@@ -204,11 +193,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A3D3BE022225940D00712941 /* ViewControllers */ = {
+		A3D3BE022225940D00712941 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A3149CFA2226FAAD008447E7 /* Containers */,
-				A3149CF72226FA6B008447E7 /* Onboarding */,
+				A37297032219FC4E00AE8480 /* AppContainerViewController.swift */,
+				A3149CF52226F728008447E7 /* LaunchNavigationController.swift */,
+				A3729709221A1BD700AE8480 /* HomeTabBarController.swift */,
+				A372970B221A1C3900AE8480 /* HomeNavigationController.swift */,
+				A3514839221DB802002BA1A4 /* OnboardingController.swift */,
 				A3514835221D9064002BA1A4 /* SidebarViewController.swift */,
 				A31B9460221CB9900011C0B5 /* HomeViewController.swift */,
 				A31B9462221CBCFC0011C0B5 /* JournalViewController.swift */,
@@ -219,9 +211,9 @@
 				A347D6E2221B5CAC0011B98E /* AccountSettingsViewController.swift */,
 				A3673E392235807200A96997 /* AppSettingsViewController.swift */,
 				A3673E3B2235809500A96997 /* ProfileSettingsViewController.swift */,
-				A3149CFB2226FAC6008447E7 /* Extensions */,
+				A3149CFB2226FAC6008447E7 /* Helpers */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		F0837E9680054EC36896EC9B /* Frameworks */ = {
@@ -270,7 +262,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A32CAED222148D9300B7269F /* Build configuration list for PBXProject "Me" */;
+			buildConfigurationList = A32CAED222148D9300B7269F /* Build configuration list for PBXProject "me" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -585,7 +577,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A32CAED222148D9300B7269F /* Build configuration list for PBXProject "Me" */ = {
+		A32CAED222148D9300B7269F /* Build configuration list for PBXProject "me" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A32CAEE722148D9400B7269F /* Debug */,

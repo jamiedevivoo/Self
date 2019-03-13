@@ -7,6 +7,12 @@ class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
+    lazy var logoView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "logo")
+        return imageView
+    }()
+    
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.text = "email@email.com"
@@ -16,7 +22,7 @@ class LoginViewController: UIViewController {
         textField.minimumFontSize = 25.0
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 15
-        textField.clipsToBounds = true
+//        textField.clipsToBounds = true
         return textField
     }()
     lazy var passwordTextField: UITextField = {
@@ -29,7 +35,6 @@ class LoginViewController: UIViewController {
         textField.minimumFontSize = 25.0
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 15
-        textField.clipsToBounds = true
         return textField
     }()
     lazy var loginButton: UIButton = {
@@ -40,7 +45,6 @@ class LoginViewController: UIViewController {
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 15
         button.layer.borderColor = UIColor.blue.cgColor
-        button.clipsToBounds = true
         button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         return button
     }()
@@ -52,7 +56,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     private lazy var loginStackView: UIStackView = { [unowned self] in
-        let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.loginButton, self.registerButton])
+        let stackView = UIStackView(arrangedSubviews: [self.logoView, self.emailTextField, self.passwordTextField, self.loginButton, self.registerButton])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.alignment = .fill
@@ -78,7 +82,7 @@ class LoginViewController: UIViewController {
     
     func setup() {
         title = "Welcome to Me"
-        view.backgroundColor = UIColor.app.background.primary
+        view.backgroundColor = UIColor.app.standard.background
         
         self.view.addSubview(loginStackView)
     }
@@ -122,6 +126,10 @@ class LoginViewController: UIViewController {
 extension LoginViewController: ConstraintBuilding {
     
     func addConstraints() {
+        logoView.snp.makeConstraints { (make) in
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+        }
         loginStackView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().inset(50)

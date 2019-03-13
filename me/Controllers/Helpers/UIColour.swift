@@ -5,6 +5,9 @@ import UIKit
 
 extension UIColor {
     struct app {
+        struct standard {
+            static let background = UIColor(red: 253/255, green: 245/255, blue: 235/255, alpha: 1)
+        }
         struct background {
             static let gray = UIColor(red: 0.95, green: 0.95, blue: 0.98, alpha: 1)
             static let primary = UIColor(red: 255/255, green: 219/255, blue: 003/255, alpha: 1)
