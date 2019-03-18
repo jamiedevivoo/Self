@@ -1,5 +1,5 @@
 import UIKit
 
-extension UIColor {
+extension UIFont {
 
 }

@@ -64,6 +64,7 @@ class AccountSettingsViewController: UIViewController {
         title = "Account Settings"
         view.backgroundColor = .white
         navigationItem.leftBarButtonItems = nil
+        navigationItem.rightBarButtonItem = nil
         
         self.view.addSubview(topView)
         topView.addSubview(pageTipLabel)

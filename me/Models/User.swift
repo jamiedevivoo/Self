@@ -30,7 +30,7 @@ class User: CustomStringConvertible {
     init(snapshot: DocumentSnapshot) {
         let userData = snapshot.data()! as [String: Any]
         self.uid = snapshot.documentID
-        self.name = userData["name"] as? String ?? ""
+        self.name = userData["firstname"] as? String ?? ""
         self.surname = userData["surname"] as? String ?? ""
         self.email = userData["email"] as? String ?? ""
     }

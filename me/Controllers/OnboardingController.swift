@@ -30,15 +30,13 @@ class OnboardingController: UIViewController {
 extension OnboardingController: OnboardingMoodViewDelegate {
     func childViewControllerWillDismiss(childViewController: MoodOnboardingViewController)
     {
-        print("MOOD Contorller to be dismissed BYEEEEE")
-        print("\(name)")
+        print("\(name ?? "No Name")")
         mood = childViewController.mood
     }
 }
 extension OnboardingController: OnboardingNameViewDelegate {
     func childViewControllerWillDismiss(childViewController: NameOnboardingViewController)
     {
-        print("NAME Contorller to be dismissed BYEEEEE")
         name = childViewController.name
     }
 }
