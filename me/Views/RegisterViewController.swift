@@ -100,7 +100,6 @@ class RegisterViewController: UIViewController {
         } else {
             Auth.auth().createUser(withEmail: email, password: password) { user, error in
                 if let _ = user {
-                    
                     let uid = user!.user.uid
                     let email = user!.user.email
                     let userData: [String:Any] = ["uid": uid,

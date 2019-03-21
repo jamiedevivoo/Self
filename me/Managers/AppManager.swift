@@ -9,6 +9,14 @@ class AppManager {
     static let shared = AppManager()
     var appContainer: AppContainerViewController!
     
+    enum State {
+        case unregistered
+        case loggedIn(User)
+        case sessionExpired(User)
+    }
+    
+    var state: State = .unregistered
+    
     
     // MARK: - Init
     private init() { }
