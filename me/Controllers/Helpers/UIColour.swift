@@ -2,6 +2,12 @@ import UIKit
 
 extension UIColor {
     struct app {
+        struct dark {
+        
+        }
+        struct light {
+        
+        }
         struct standard {
             static let background = UIColor(red: 253/255, green: 245/255, blue: 235/255, alpha: 1)
         }
