@@ -125,10 +125,6 @@ class LoginViewController: UIViewController {
 extension LoginViewController: ConstraintBuilding {
     
     func addConstraints() {
-        logoView.snp.makeConstraints { (make) in
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-        }
         loginStackView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().inset(50)
@@ -142,6 +138,9 @@ extension LoginViewController: ConstraintBuilding {
             make.height.equalTo(50.0)
         }
         loginButton.snp.makeConstraints { (make) in
+            make.height.equalTo(50.0)
+        }
+        registerButton.snp.makeConstraints { (make) in
             make.height.equalTo(50.0)
         }
 

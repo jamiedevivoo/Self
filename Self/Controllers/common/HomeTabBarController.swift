@@ -13,6 +13,9 @@ class HomeTabBarController: UITabBarController {
     func setup() {
         view.backgroundColor = .white
         tabBar.barTintColor = .white
+        tabBar.layer.borderWidth = 0.50
+        tabBar.layer.borderColor = UIColor.white.cgColor
+        tabBar.clipsToBounds = true
     }
     
     fileprivate func checkLoggedInUserStatus() {
