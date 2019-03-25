@@ -26,33 +26,29 @@ class HomeTabBarController: UITabBarController {
         
         let homeNavigationController: HomeNavigationController = {
             let navigationController = HomeNavigationController()
-            navigationController.title = "Home"
             navigationController.viewControllers = [HomeViewController()]
+            navigationController.title = "Home"
+            navigationController.tabBarItem?.image = UIImage(named: "home")
             return navigationController
         }()
         
         let journalNavigationController: HomeNavigationController = {
             let navigationController = HomeNavigationController()
-            navigationController.title = "Journal"
             navigationController.viewControllers = [JournalViewController()]
+            navigationController.title = "Journal"
+            navigationController.tabBarItem?.image = UIImage(named: "for_you")
             return navigationController
         }()
         
         let challengesNavigationController: HomeNavigationController = {
             let navigationController = HomeNavigationController()
-            navigationController.title = "Challenges"
             navigationController.viewControllers = [ChallengesViewController()]
+            navigationController.title = "Challenges"
+            navigationController.tabBarItem?.image = UIImage(named: "globe")
             return navigationController
         }()
         
-        let communitiesNavigationController: HomeNavigationController = {
-            let navigationController = HomeNavigationController()
-            navigationController.title = "Communities"
-            navigationController.viewControllers = [CommunitiesViewController()]
-            return navigationController
-        }()
-        
-        self.viewControllers = [communitiesNavigationController, journalNavigationController, challengesNavigationController, homeNavigationController]
-        self.selectedIndex = 3
+        self.viewControllers = [journalNavigationController, homeNavigationController, challengesNavigationController,]
+        self.selectedIndex = 1
     }
 }

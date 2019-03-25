@@ -28,6 +28,7 @@ class HomeNavigationController: UINavigationController {
     
     func setup() {
         visibleViewController?.navigationItem.leftBarButtonItems = [sidebarIcon]
+        
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
