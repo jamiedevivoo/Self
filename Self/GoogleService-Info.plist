@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>312486763160-32qg9mm25setm2f1ljuqo9s97bvuarcf.apps.googleusercontent.com</string>
+	<string>312486763160-sqjoo1ak97o0pfefpu9r0pvtmnmin2re.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.312486763160-32qg9mm25setm2f1ljuqo9s97bvuarcf</string>
+	<string>com.googleusercontent.apps.312486763160-sqjoo1ak97o0pfefpu9r0pvtmnmin2re</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC7K8eze0kAK61N_Jtt7g9seiUlXd0Xa0I</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.jamiedevivo.me</string>
+	<string>com.jamiedevivo.self</string>
 	<key>PROJECT_ID</key>
 	<string>me-emotional-companion</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:312486763160:ios:ec2dff81177a2b58</string>
+	<string>1:312486763160:ios:389316f08ef0dc52</string>
 	<key>DATABASE_URL</key>
 	<string>https://me-emotional-companion.firebaseio.com</string>
 </dict>
