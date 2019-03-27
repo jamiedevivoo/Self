@@ -18,13 +18,13 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     
     lazy var registerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Get Started", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .blue
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 15
         button.layer.borderColor = UIColor.blue.cgColor
-        button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(LaunchViewController.navigateToRegister), for: .touchUpInside)
         return button
     }()
     
@@ -36,7 +36,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 15
         button.layer.borderColor = UIColor.blue.cgColor
-        button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(LaunchViewController.navigateToLogin), for: .touchUpInside)
         return button
     }()
     
@@ -104,7 +104,13 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = Int(pageIndex)
     }
     
-
+    @objc func navigateToLogin(_ sender: Any) {
+        navigationController?.pushViewController(LoginViewController(), animated: true)
+    }
+    @objc func navigateToRegister(_ sender: Any) {
+        navigationController?.pushViewController(OnboardingController(), animated: true)
+    }
+    
 }
 
 extension LaunchViewController: ConstraintBuilding {

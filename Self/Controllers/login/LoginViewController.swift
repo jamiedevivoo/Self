@@ -6,12 +6,6 @@ class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
-    lazy var logoView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "logo")
-        return imageView
-    }()
-    
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.text = "email@email.com"
@@ -47,15 +41,8 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         return button
     }()
-    lazy var registerButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Get started", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(LoginViewController.registerButtonAction), for: .touchUpInside)
-        return button
-    }()
     private lazy var loginStackView: UIStackView = { [unowned self] in
-        let stackView = UIStackView(arrangedSubviews: [self.logoView, self.emailTextField, self.passwordTextField, self.loginButton, self.registerButton])
+        let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.loginButton])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.alignment = .fill
@@ -63,15 +50,12 @@ class LoginViewController: UIViewController {
         return stackView
     }()
 
-    
-    
     var db:Firestore!
     
     // MARK: - Initialisers
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("LOG: Login Screen")
         
         db = Firestore.firestore()
         
@@ -80,7 +64,7 @@ class LoginViewController: UIViewController {
     }
     
     func setup() {
-        title = "Welcome to Me"
+        title = "Login"
         view.backgroundColor = UIColor.app.standard.background
         
         self.view.addSubview(loginStackView)
@@ -113,14 +97,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    @objc func registerButtonAction(_ sender: Any) {
-        print("Register Button Tapped")
-        let onboardingViewController = OnboardingController()
-        onboardingViewController.title = "Register"
-        navigationController?.pushViewController(onboardingViewController, animated: true)    }
 }
-
 
 extension LoginViewController: ConstraintBuilding {
     
@@ -138,9 +115,6 @@ extension LoginViewController: ConstraintBuilding {
             make.height.equalTo(50.0)
         }
         loginButton.snp.makeConstraints { (make) in
-            make.height.equalTo(50.0)
-        }
-        registerButton.snp.makeConstraints { (make) in
             make.height.equalTo(50.0)
         }
 

@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class LaunchNavigationController: UINavigationController {
+class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewControllers = [LaunchViewController()]
@@ -9,7 +9,7 @@ class LaunchNavigationController: UINavigationController {
     }
     
     func setup() {
-        title = "Login"
+        title = "Self"
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()

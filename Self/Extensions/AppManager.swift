@@ -26,7 +26,7 @@ class AppManager {
     
     func showApp() {
         if Auth.auth().currentUser == nil {
-            appContainer.present(LaunchNavigationController(), animated: true, completion: nil)
+            appContainer.present(NavigationController(), animated: true, completion: nil)
         } else {
             AccountManager.shared.loadUser { [unowned self] in
                 self.appContainer.present(HomeTabBarController(), animated: true, completion: nil)

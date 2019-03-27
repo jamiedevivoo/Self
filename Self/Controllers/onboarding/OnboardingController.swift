@@ -30,7 +30,7 @@ class OnboardingController: UIViewController {
     // MARK: - Functions
     
     func setupView() {
-        title = "Onboarding"
+        title = "Get Started"
         view.backgroundColor = .white
         navigationItem.leftBarButtonItems = nil
         
