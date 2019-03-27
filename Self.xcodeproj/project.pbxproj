@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		360EC41E9D53E4791E09F0D7 /* Pods_Self.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133C9E098A01664EBB5E301E /* Pods_Self.framework */; };
+		A316E709224AF18F00283547 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* LaunchViewController.swift */; };
 		A334098E2245701D004CBB2A /* WellbeingOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */; };
 		A334098F2245701D004CBB2A /* MoodOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */; };
-		A33409902245701D004CBB2A /* NameOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* NameOnboardingViewController.swift */; };
+		A33409902245701D004CBB2A /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* OnboardingSlide.swift */; };
 		A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098B2245701C004CBB2A /* RegisterViewController.swift */; };
 		A33409922245701D004CBB2A /* AccountOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098C2245701D004CBB2A /* AccountOnboardingViewController.swift */; };
 		A33409932245701D004CBB2A /* MeOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098D2245701D004CBB2A /* MeOnboardingViewController.swift */; };
@@ -51,9 +52,10 @@
 /* Begin PBXFileReference section */
 		133C9E098A01664EBB5E301E /* Pods_Self.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Self.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3195708A3A9E109844A87C3E /* Pods-Self.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.release.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.release.xcconfig"; sourceTree = "<group>"; };
+		A316E708224AF18F00283547 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellbeingOnboardingViewController.swift; sourceTree = "<group>"; };
 		A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodOnboardingViewController.swift; sourceTree = "<group>"; };
-		A334098A2245701B004CBB2A /* NameOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameOnboardingViewController.swift; sourceTree = "<group>"; };
+		A334098A2245701B004CBB2A /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		A334098B2245701C004CBB2A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A334098C2245701D004CBB2A /* AccountOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboardingViewController.swift; sourceTree = "<group>"; };
 		A334098D2245701D004CBB2A /* MeOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeOnboardingViewController.swift; sourceTree = "<group>"; };
@@ -115,13 +117,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A316E707224AF16D00283547 /* launch */ = {
+			isa = PBXGroup;
+			children = (
+				A316E708224AF18F00283547 /* LaunchViewController.swift */,
+			);
+			path = launch;
+			sourceTree = "<group>";
+		};
 		A334098722457010004CBB2A /* onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				A334098A2245701B004CBB2A /* OnboardingSlide.swift */,
 				A334098C2245701D004CBB2A /* AccountOnboardingViewController.swift */,
 				A334098D2245701D004CBB2A /* MeOnboardingViewController.swift */,
 				A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */,
-				A334098A2245701B004CBB2A /* NameOnboardingViewController.swift */,
 				A334098B2245701C004CBB2A /* RegisterViewController.swift */,
 				A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */,
 			);
@@ -278,6 +288,7 @@
 		A35EA87022456FC900592D88 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A316E707224AF16D00283547 /* launch */,
 				A334099622457033004CBB2A /* login */,
 				A334098722457010004CBB2A /* onboarding */,
 				A35EA87222456FE100592D88 /* common */,
@@ -467,7 +478,8 @@
 				A35EA86922456FB800592D88 /* Onboarding.swift in Sources */,
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
 				A35EA86E22456FB800592D88 /* ConstraintBuilding.swift in Sources */,
-				A33409902245701D004CBB2A /* NameOnboardingViewController.swift in Sources */,
+				A33409902245701D004CBB2A /* OnboardingSlide.swift in Sources */,
+				A316E709224AF18F00283547 /* LaunchViewController.swift in Sources */,
 				A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */,
 				A33409B6224570DA004CBB2A /* HomeNavigationController.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,

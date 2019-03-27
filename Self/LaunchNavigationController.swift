@@ -4,7 +4,7 @@ import SnapKit
 class LaunchNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [LoginViewController()]
+        viewControllers = [LaunchViewController()]
         setup()
     }
     

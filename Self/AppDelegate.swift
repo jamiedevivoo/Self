@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         
-        let appContainerViewController = AppContainerViewController()
+        let appContainerViewController = LaunchViewController()
 
         window?.rootViewController = appContainerViewController
         window?.makeKeyAndVisible()
