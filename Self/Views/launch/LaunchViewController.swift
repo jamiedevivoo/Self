@@ -10,6 +10,9 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     
     lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
+        pageControl.tintColor = .red
+        pageControl.pageIndicatorTintColor = .black
+        pageControl.currentPageIndicatorTintColor = .green
         return pageControl
     }()
     
@@ -48,13 +51,13 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         view.addSubview(pageControl)
         view.addSubview(loginButton)
         view.addSubview(registerButton)
+        view.bringSubviewToFront(pageControl)
         
         onboardingSlides = createOnboardingFlow()
         setupOnboardingScrollView(slides: onboardingSlides)
         
         pageControl.numberOfPages = onboardingSlides.count
         pageControl.currentPage = 0
-        view.bringSubviewToFront(pageControl)
         
         addConstraints()
 
@@ -100,6 +103,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
+    
 
 }
 
@@ -112,10 +116,10 @@ extension LaunchViewController: ConstraintBuilding {
             make.bottom.equalTo(250)
         }
         pageControl.snp.makeConstraints { (make) in
-            make.top.equalTo(scrollView.snp.bottom)
+            make.bottom.equalTo(registerButton.snp.top)
             make.width.equalToSuperview()
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
+            make.height.equalTo(100)
+            make.left.equalToSuperview()
         }
         registerButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(loginButton.snp.top).inset(-20)
