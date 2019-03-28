@@ -119,7 +119,7 @@ class HomeViewController: UIViewController {
         button.clipsToBounds = true
         button.layer.backgroundColor = UIColor.white.cgColor
         button.layer.borderColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1).cgColor
-        button.addTarget(self, action: #selector(HomeViewController.messageResponse), for: .touchUpInside)
+        button.addTarget(self, action: #selector(HomeViewController.logNewMood), for: .touchUpInside)
         return button
     }()
     
@@ -190,6 +190,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func logNewMood() {
+            print("Button Clicked")
         
     }
     

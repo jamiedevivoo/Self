@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     lazy var background: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
@@ -23,6 +23,8 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.delegate = self
+        
         setUpTabBarViewControllers()
         setup()
     }
@@ -36,13 +38,39 @@ class TabBarController: UITabBarController {
         view.layer.addSublayer(background)
     }
     
-    fileprivate func checkLoggedInUserStatus() {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
+        let backgroundPaths = CGMutablePath()
+        
+        if tabBarController.selectedIndex == 0 {
+            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 400,y: 150), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 700), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            backgroundPaths.addPath(circleOne.cgPath)
+            backgroundPaths.addPath(circleTwo.cgPath)
+        } else if tabBarController.selectedIndex == 1 {
+            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            backgroundPaths.addPath(circleOne.cgPath)
+            backgroundPaths.addPath(circleTwo.cgPath)
+        } else if tabBarController.selectedIndex == 2 {
+            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 50,y: 100), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 700), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            backgroundPaths.addPath(circleOne.cgPath)
+            backgroundPaths.addPath(circleTwo.cgPath)
+        }
+        
+        UIView.animate(withDuration: 10.0) {
+            self.background.path = backgroundPaths
+        }
+
+    }
+    
+    fileprivate func checkLoggedInUserStatus() {
     }
     
     fileprivate func setUpTabBarViewControllers() {
         
-        let homeNavigationController: DashboardNavigationController = {
+        let homeNavigationController: UIViewController = {
             let navigationController = DashboardNavigationController()
             navigationController.viewControllers = [HomeViewController()]
             navigationController.title = "Home"
@@ -50,7 +78,7 @@ class TabBarController: UITabBarController {
             return navigationController
         }()
         
-        let journalNavigationController: DashboardNavigationController = {
+        let journalNavigationController: UIViewController = {
             let navigationController = DashboardNavigationController()
             navigationController.viewControllers = [JournalViewController()]
             navigationController.title = "Journal"
@@ -58,7 +86,7 @@ class TabBarController: UITabBarController {
             return navigationController
         }()
         
-        let challengesNavigationController: DashboardNavigationController = {
+        let challengesNavigationController: UIViewController = {
             let navigationController = DashboardNavigationController()
             navigationController.viewControllers = [ChallengesViewController()]
             navigationController.title = "Challenges"
