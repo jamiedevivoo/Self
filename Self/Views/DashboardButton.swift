@@ -12,14 +12,13 @@ class DashboardButton: UIButton {
     }
 
     private func styleButton() {
-        self.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
-        self.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
-        self.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        self.setTitleColor(UIColor.app.standard.buttonText(), for: .normal)
+        self.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 15,bottom: 6,right: 15)
+        self.backgroundColor = UIColor.app.standard.button().withAlphaComponent(0.8)
         self.layer.borderWidth = 1.0
         self.layer.cornerRadius = 15
         self.clipsToBounds = false
-        self.layer.backgroundColor = UIColor.white.cgColor
-        self.layer.borderColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1).cgColor
+        self.layer.borderColor = UIColor.app.standard.button().cgColor
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.1
         self.layer.shadowRadius = 1

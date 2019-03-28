@@ -12,9 +12,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         circlePaths.addPath(circleOnePath.cgPath)
         circlePaths.addPath(circleTwoPath.cgPath)
         
-        shapeLayer.fillColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 0.5).cgColor
-//        shapeLayer.strokeColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 0.5).cgColor
-//        shapeLayer.lineWidth = 3.0
+        shapeLayer.fillColor = UIColor.app.standard.other().cgColor
         shapeLayer.path = circlePaths
         shapeLayer.zPosition = -1
         return shapeLayer
@@ -30,11 +28,16 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func setup() {
-        view.backgroundColor = .white
-        tabBar.barTintColor = .white
-        tabBar.layer.borderWidth = 0.50
-        tabBar.layer.borderColor = UIColor.white.cgColor
+        view.backgroundColor = UIColor.app.standard.background()
+        
         tabBar.clipsToBounds = true
+        tabBar.layer.borderWidth = 0
+        tabBar.layer.borderColor = UIColor.app.standard.background().cgColor
+        
+        tabBar.layer.backgroundColor = UIColor.app.standard.button().cgColor
+        tabBar.barTintColor =  UIColor.app.standard.background()
+        tabBar.tintColor = UIColor.app.standard.buttonText()
+        tabBar.unselectedItemTintColor = UIColor.app.standard.solidText()
         view.layer.addSublayer(background)
     }
     

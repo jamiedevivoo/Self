@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Your Recommended Actions"
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
-        label.textColor = .gray
+        label.textColor = UIColor.app.standard.solidText()
         return label
     }()
     
@@ -48,12 +48,14 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = greeting() + ","
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.ultraLight)
+        label.textColor = UIColor.app.standard.solidText()
         return label
     }()
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
+        label.textColor = UIColor.app.standard.solidText()
         label.text = user?.name
         return label
     }()
@@ -62,6 +64,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.light)
         label.text = "Did you know Mondays are your happiest days? Let’s rock today!"
+        label.textColor = UIColor.app.standard.solidText()
         label.numberOfLines = 0
         return label
     }()
@@ -106,7 +109,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.user = AccountManager.shared.user
-        self.navigationItem.titleView?.isHidden = true
         addSubViews()
         addConstraints()
     }
