@@ -45,7 +45,7 @@
 		A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86222456FB500592D88 /* AccountManager.swift */; };
 		A35EA86C22456FB800592D88 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86322456FB600592D88 /* FirebaseAPI.swift */; };
 		A35EA86D22456FB800592D88 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86422456FB600592D88 /* AppManager.swift */; };
-		A35EA86E22456FB800592D88 /* ConstraintBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86522456FB700592D88 /* ConstraintBuilding.swift */; };
+		A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86522456FB700592D88 /* ViewBuilding.swift */; };
 		A35EA86F22456FB800592D88 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86622456FB800592D88 /* MessageManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,7 +91,7 @@
 		A35EA86222456FB500592D88 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A35EA86322456FB600592D88 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		A35EA86422456FB600592D88 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
-		A35EA86522456FB700592D88 /* ConstraintBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintBuilding.swift; sourceTree = "<group>"; };
+		A35EA86522456FB700592D88 /* ViewBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBuilding.swift; sourceTree = "<group>"; };
 		A35EA86622456FB800592D88 /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		A774790F0D0CC9D95855193F /* Pods-Self.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,7 +274,7 @@
 			children = (
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
 				A35EA86422456FB600592D88 /* AppManager.swift */,
-				A35EA86522456FB700592D88 /* ConstraintBuilding.swift */,
+				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
 				A35EA86322456FB600592D88 /* FirebaseAPI.swift */,
 				A35EA86622456FB800592D88 /* MessageManager.swift */,
 				A35EA86022456FB400592D88 /* Onboarding.swift */,
@@ -477,7 +477,7 @@
 				A35EA85A22456F9700592D88 /* Community.swift in Sources */,
 				A35EA86922456FB800592D88 /* Onboarding.swift in Sources */,
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
-				A35EA86E22456FB800592D88 /* ConstraintBuilding.swift in Sources */,
+				A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */,
 				A33409902245701D004CBB2A /* OnboardingSlide.swift in Sources */,
 				A316E709224AF18F00283547 /* LaunchViewController.swift in Sources */,
 				A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */,
@@ -641,7 +641,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jamiedevivo.self;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jamiedevivo.self-com.jamiedevivo.self-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -662,7 +662,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jamiedevivo.self;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jamiedevivo.self-com.jamiedevivo.self-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

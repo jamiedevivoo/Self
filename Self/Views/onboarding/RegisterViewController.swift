@@ -4,9 +4,6 @@ import SnapKit
 
 class RegisterViewController: UIViewController {
     
-    // MARK: - Properties
-    var db:Firestore!
-    
     // MARK: - Objects
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
@@ -36,31 +33,22 @@ class RegisterViewController: UIViewController {
         return button
     }()
     
-    // MARK: - Initialization
+    // MARK: - Properties
+    var db:Firestore!
     
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Register"
+        view.backgroundColor = .white
         db = Firestore.firestore()
-        print("LOG: Login Screen")
         
-        setup()
+        addSubViews()
         addConstraints()
     }
     
-    func setup() {
-        title = "Register"
-        
-        view.backgroundColor = .white
-
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(passwordConfirmTextField)
-        self.view.addSubview(registerButton)
-    }
-    
     // MARK: - Action Functions
-    
     @objc func registerButtonAction(_ sender: Any) {
         
         print("Register with details: \(emailTextField.text!)  \(passwordTextField.text!)")
@@ -134,7 +122,14 @@ class RegisterViewController: UIViewController {
     
 }
 
-extension RegisterViewController: ConstraintBuilding {
+extension RegisterViewController: ViewBuilding {
+    func addSubViews() {
+        self.view.addSubview(emailTextField)
+        self.view.addSubview(passwordTextField)
+        self.view.addSubview(passwordConfirmTextField)
+        self.view.addSubview(registerButton)
+    }
+    
     func addConstraints() {
         emailTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)

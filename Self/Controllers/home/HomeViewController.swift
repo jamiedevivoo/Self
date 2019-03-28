@@ -39,18 +39,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
-        addConstraints()
-    }
-    
-    func setup() {
         self.user = AccountManager.shared.user
         self.navigationItem.title = "Home"
-    
-        self.view.addSubview(topView)
-        topView.addSubview(messageBox)
-        messageBox.addSubview(messageText)
-
+        
+        addSubViews()
+        addConstraints()
     }
     
     func greeting() -> String {
@@ -80,7 +73,13 @@ class HomeViewController: UIViewController {
     
 }
 
-extension HomeViewController: ConstraintBuilding {
+extension HomeViewController: ViewBuilding {
+    func addSubViews() {
+        self.view.addSubview(topView)
+        topView.addSubview(messageBox)
+        messageBox.addSubview(messageText)
+    }
+    
     func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)

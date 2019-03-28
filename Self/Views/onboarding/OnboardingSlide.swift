@@ -32,17 +32,22 @@ class OnboardingSlide: UIView {
         setupView()
     }
     
-    private func setupView() {
+    internal func setupView() {
         backgroundColor = .white
-        addSubview(image)
-        addSubview(headline)
-        addSubview(desc)
+        addSubViews()
         addConstraints()
     }
     
 }
 
-extension OnboardingSlide: ConstraintBuilding {
+extension OnboardingSlide: ViewBuilding {
+    
+    func addSubViews() {
+        backgroundColor = .clear
+        addSubview(image)
+        addSubview(headline)
+        addSubview(desc)
+    }
     func addConstraints() {
         image.snp.makeConstraints { (make) in
             make.width.equalTo(200)

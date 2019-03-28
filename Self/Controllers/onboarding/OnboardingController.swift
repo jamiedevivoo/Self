@@ -22,21 +22,16 @@ class OnboardingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        title = "Get Started"
+        view.backgroundColor = .white
+        navigationItem.leftBarButtonItems = nil
+        
+        addSubViews()
         addConstraints()
     }
     
     
     // MARK: - Functions
-    
-    func setupView() {
-        title = "Get Started"
-        view.backgroundColor = .white
-        navigationItem.leftBarButtonItems = nil
-        
-        self.view.addSubview(scrollView)
-        self.view.addSubview(pageControl)
-    }
 
     // Needs to display the initial onboardingviewcontroller.
     // The specific onboarding viewcontroller will handle the subviews on the screen and DataHandling
@@ -75,7 +70,12 @@ class OnboardingController: UIViewController {
 //        passwordConfirm = childViewController.passwordConfirm
 //    }
 //}
-extension OnboardingController: ConstraintBuilding {
+extension OnboardingController: ViewBuilding {
+    func addSubViews() {
+        self.view.addSubview(scrollView)
+        self.view.addSubview(pageControl)
+    }
+    
     func addConstraints() {
         scrollView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)

@@ -33,22 +33,17 @@ class AppSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        title = "App Settings"
+        view.backgroundColor = .white
+        navigationItem.leftBarButtonItems = nil
+        
+        addSubViews()
         addConstraints()
         self.user = AccountManager.shared.user
     }
     
     
     // MARK: - Functions
-    
-    func setupView() {
-        title = "App Settings"
-        view.backgroundColor = .white
-        navigationItem.leftBarButtonItems = nil
-        
-        self.view.addSubview(topView)
-        topView.addSubview(pageTipLabel)
-    }
 
     
     
@@ -133,7 +128,12 @@ class AppSettingsViewController: UIViewController {
     
 }
 
-extension AppSettingsViewController: ConstraintBuilding {
+extension AppSettingsViewController: ViewBuilding {
+    func addSubViews() {
+        self.view.addSubview(topView)
+        topView.addSubview(pageTipLabel)
+    }
+    
     func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)

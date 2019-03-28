@@ -1,3 +1,0 @@
-protocol ConstraintBuilding {
-    func addConstraints()
-}

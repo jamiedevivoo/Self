@@ -51,27 +51,20 @@ class AccountSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        title = "Account Settings"
+        view.backgroundColor = .white
+        navigationItem.leftBarButtonItems = nil
+        navigationItem.rightBarButtonItem = nil
+        
+        addSubViews()
         addConstraints()
+        
         self.user = AccountManager.shared.user
         updateFields()
     }
     
     
     // MARK: - Functions
-    
-    func setupView() {
-        title = "Account Settings"
-        view.backgroundColor = .white
-        navigationItem.leftBarButtonItems = nil
-        navigationItem.rightBarButtonItem = nil
-        
-        self.view.addSubview(topView)
-        topView.addSubview(pageTipLabel)
-        self.view.addSubview(nameTextField)
-        self.view.addSubview(surnameTextField)
-        self.view.addSubview(emailTextField)
-    }
     
     func updateFields() {
         if let name = self.user?.name {
@@ -168,7 +161,16 @@ class AccountSettingsViewController: UIViewController {
 
 }
 
-extension AccountSettingsViewController: ConstraintBuilding {
+extension AccountSettingsViewController: ViewBuilding {
+    
+    func addSubViews() {
+        self.view.addSubview(topView)
+        topView.addSubview(pageTipLabel)
+        self.view.addSubview(nameTextField)
+        self.view.addSubview(surnameTextField)
+        self.view.addSubview(emailTextField)
+    }
+    
     func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)

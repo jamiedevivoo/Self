@@ -36,23 +36,16 @@ class MoodOnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        title = "How are you?"
+        view.backgroundColor = .white
+        navigationItem.leftBarButtonItems = nil
+        
+        addSubViews()
         addConstraints()
     }
     
     
     // MARK: - Functions
-    
-    func setupView() {
-        title = "How are you?"
-        view.backgroundColor = .white
-        navigationItem.leftBarButtonItems = nil
-        
-        self.view.addSubview(topView)
-        topView.addSubview(pageTipLabel)
-        self.view.addSubview(moodTextField)
-        self.view.addSubview(onboardingNextButton)
-    }
     
     @objc func onboardingNextButtonAction(_ sender: Any) {
         print("Bye Mood Controller")
@@ -66,7 +59,14 @@ extension MoodOnboardingViewController: Onboarding {
 extension MoodOnboardingViewController: OnboardingMoodViewDelegate {
 }
 
-extension MoodOnboardingViewController: ConstraintBuilding {
+extension MoodOnboardingViewController: ViewBuilding {
+    func addSubViews() {
+        self.view.addSubview(topView)
+        topView.addSubview(pageTipLabel)
+        self.view.addSubview(moodTextField)
+        self.view.addSubview(onboardingNextButton)
+    }
+    
     func addConstraints() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)

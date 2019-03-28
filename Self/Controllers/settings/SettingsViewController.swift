@@ -36,27 +36,20 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("LOG: Settings Screen")
+        
+        title = "Settings"
+        view.backgroundColor = .gray
+        navigationItem.leftBarButtonItems = nil
         
         settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "settingCell")
         settingsTableView.tableFooterView = UIView()
         
-        setup()
+        addSubViews()
         addConstraints()
     }
     
     
     // MARK: - Functions
-    
-    func setup() {
-        title = "Settings"
-        view.backgroundColor = .gray
-        navigationItem.leftBarButtonItems = nil
-        
-        self.view.addSubview(topDescriptionView)
-        topDescriptionView.addSubview(pageTipLabel)
-        self.view.addSubview(settingsTableView)
-    }
     
 }
 
@@ -92,7 +85,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
 // MARK: - Extension: Constraints Building
 
-extension SettingsViewController: ConstraintBuilding {
+extension SettingsViewController: ViewBuilding {
+    func addSubViews() {
+        self.view.addSubview(topDescriptionView)
+        topDescriptionView.addSubview(pageTipLabel)
+        self.view.addSubview(settingsTableView)
+    }
+    
     func addConstraints() {
         topDescriptionView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
