@@ -59,6 +59,9 @@ class LoginViewController: UIViewController {
         
         db = Firestore.firestore()
         
+        title = "Login"
+        view.backgroundColor = UIColor.app.standard.background
+        
         addSubViews()
         addConstraints()
     }
@@ -94,9 +97,6 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: ViewBuilding {
     func addSubViews() {
-        title = "Login"
-        view.backgroundColor = UIColor.app.standard.background
-        
         self.view.addSubview(loginStackView)
     }
     

@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class HomeTabBarController: UITabBarController {
+class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

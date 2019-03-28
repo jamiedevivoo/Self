@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		360EC41E9D53E4791E09F0D7 /* Pods_Self.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133C9E098A01664EBB5E301E /* Pods_Self.framework */; };
+		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
 		A316E709224AF18F00283547 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* LaunchViewController.swift */; };
 		A334098E2245701D004CBB2A /* WellbeingOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */; };
 		A334098F2245701D004CBB2A /* MoodOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */; };
@@ -28,8 +29,7 @@
 		A33409B2224570D2004CBB2A /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B1224570D2004CBB2A /* ChallengesViewController.swift */; };
 		A33409B6224570DA004CBB2A /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B3224570D8004CBB2A /* HomeNavigationController.swift */; };
 		A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B4224570D9004CBB2A /* SidebarViewController.swift */; };
-		A33409B8224570DA004CBB2A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B5224570DA004CBB2A /* HomeTabBarController.swift */; };
-		A3438E8B22456AB8004D21BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3438E8A22456AB8004D21BB /* GoogleService-Info.plist */; };
+		A33409B8224570DA004CBB2A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B5224570DA004CBB2A /* TabBarController.swift */; };
 		A3438E9722456B86004D21BB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E8F22456B86004D21BB /* NavigationController.swift */; };
 		A3438E9822456B86004D21BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E9022456B86004D21BB /* AppDelegate.swift */; };
 		A3438E9A22456B86004D21BB /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E9222456B86004D21BB /* AppContainerViewController.swift */; };
@@ -52,6 +52,7 @@
 /* Begin PBXFileReference section */
 		133C9E098A01664EBB5E301E /* Pods_Self.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Self.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3195708A3A9E109844A87C3E /* Pods-Self.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.release.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.release.xcconfig"; sourceTree = "<group>"; };
+		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A316E708224AF18F00283547 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellbeingOnboardingViewController.swift; sourceTree = "<group>"; };
 		A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodOnboardingViewController.swift; sourceTree = "<group>"; };
@@ -72,9 +73,8 @@
 		A33409B1224570D2004CBB2A /* ChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
 		A33409B3224570D8004CBB2A /* HomeNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		A33409B4224570D9004CBB2A /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		A33409B5224570DA004CBB2A /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		A33409B5224570DA004CBB2A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A3438E7522456A1C004D21BB /* Self.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Self.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3438E8A22456AB8004D21BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3438E8F22456B86004D21BB /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		A3438E9022456B86004D21BB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3438E9222456B86004D21BB /* AppContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				A33409B3224570D8004CBB2A /* HomeNavigationController.swift */,
-				A33409B5224570DA004CBB2A /* HomeTabBarController.swift */,
+				A33409B5224570DA004CBB2A /* TabBarController.swift */,
 				A33409B4224570D9004CBB2A /* SidebarViewController.swift */,
 			);
 			path = common;
@@ -243,8 +243,8 @@
 				A35EA85D22456FA700592D88 /* Extensions */,
 				A35EA87022456FC900592D88 /* Views */,
 				A35EA87122456FD500592D88 /* Controllers */,
-				A3438E8A22456AB8004D21BB /* GoogleService-Info.plist */,
 				A3438E9E22456BDA004D21BB /* Info.plist */,
+				A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */,
 				A3438E9C22456BBC004D21BB /* Assets.xcassets */,
 			);
 			path = Self;
@@ -388,8 +388,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3438E8B22456AB8004D21BB /* GoogleService-Info.plist in Resources */,
 				A3438E9D22456BBC004D21BB /* Assets.xcassets in Resources */,
+				A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +483,7 @@
 				A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */,
 				A33409B6224570DA004CBB2A /* HomeNavigationController.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
-				A33409B8224570DA004CBB2A /* HomeTabBarController.swift in Sources */,
+				A33409B8224570DA004CBB2A /* TabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* JournalViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				A33409A7224570AF004CBB2A /* OnboardingController.swift in Sources */,

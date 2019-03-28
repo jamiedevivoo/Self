@@ -70,32 +70,31 @@ class AccountSettingsViewController: UIViewController {
         if let name = self.user?.name {
             self.nameTextField.text = "\(name)"
         }
-        if let surname = self.user?.surname {
+        if let surname = self.user?.lastname {
             self.surnameTextField.text = "\(surname)"
         }
         if let email = self.user?.email {
             self.emailTextField.text = "\(email)"
         }
-        
-//        AccountManager.shared.update(user)
     }
     
     // MARK: - Actions
     
-//        @objc func saveButtonAction(_ sender: Any) {
+        @objc func saveButtonAction(_ sender: Any) {
 //    
-//            guard let name = nameTextField.text, let surname = surnameTextField.text, let email = emailTextField.text else { return }
+//            guard self.user.name = nameTextField!.text, self.user.lastname = surnameTextField!.text, let self.user.email = emailTextField!.text else { return }
 //    
-//    //        let user = Auth.auth().currentUser
-//    //        var credential: AuthCredential
-//    //
-//    //        user?.reauthenticate(with: credential) { error in
-//    //            if let error = error {
-//    //                // An error happened.
-//    //            } else {
-//    //                // User re-authenticated.
-//    //            }
-//    //        }
+//            let user = Auth.auth().currentUser
+//            var credential: AuthCredential
+    
+//            user?.reauthenticateAndRetrieveData(WithCredential:completion: credential) { error in
+//                if let error = error {
+//                    // An error happened.
+//                } else {
+//                    // User re-authenticated.
+//                }
+//            }
+    }
     
     
     // MARK: - Functions

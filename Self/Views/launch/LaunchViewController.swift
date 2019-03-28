@@ -74,7 +74,6 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         
         addSubViews()
         addConstraints()
-        
     }
     
     func createOnboardingFlow() -> [OnboardingSlide] {
@@ -147,7 +146,7 @@ extension LaunchViewController: ViewBuilding {
         pageControl.snp.makeConstraints { (make) in
             make.bottom.equalTo(registerButton.snp.top).inset(-100)
             make.width.equalToSuperview()
-            make.height.equalTo(100)
+            make.height.equalTo(50)
             make.left.equalToSuperview()
         }
         registerButton.snp.makeConstraints { (make) in
