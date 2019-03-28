@@ -67,88 +67,36 @@ class HomeViewController: UIViewController {
     }()
     
     lazy var messageResponseOne: UIButton = {
-        let button = UIButton()
+        let button = DashboardButton()
         button.setTitle("💪", for: .normal)
-        button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
-        button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
-        button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = false
-        button.layer.backgroundColor = UIColor.white.cgColor
-        button.layer.borderColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1).cgColor
         button.addTarget(self, action: #selector(HomeViewController.logNewMood), for: .touchUpInside)
-        
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.1
-        button.layer.shadowRadius = 1
-        button.layer.shadowOffset = CGSize(width: 0,height: 1.5)
-
         return button
     }()
     
     lazy var messageResponseTwo: UIButton = {
-        let button = UIButton()
+        let button = DashboardButton()
         button.setTitle("😔", for: .normal)
-        button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
-        button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
-        button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = false
-        button.layer.backgroundColor = UIColor.white.cgColor
-        button.layer.borderColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1).cgColor
         button.addTarget(self, action: #selector(HomeViewController.messageResponse), for: .touchUpInside)
-        
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.1
-        button.layer.shadowRadius = 1
-        button.layer.shadowOffset = CGSize(width: 0,height: 1.5)
-        
         return button
     }()
     
     lazy var moodButton: UIButton = {
-        let button = UIButton()
+        let button = DashboardButton()
         button.setTitle("+ Log a mood", for: .normal)
-        button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
-        button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-        button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.layer.backgroundColor = UIColor.white.cgColor
-        button.layer.borderColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1).cgColor
         button.addTarget(self, action: #selector(HomeViewController.logNewMood), for: .touchUpInside)
         return button
     }()
     
     lazy var revealChallengesButton: UIButton = {
-        let button = UIButton()
+        let button = DashboardButton()
         button.setTitle("+ Reveal today's challenges", for: .normal)
-        button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
-        button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
-        button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.layer.backgroundColor = UIColor.white.cgColor
-        button.layer.borderColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1).cgColor
         button.addTarget(self, action: #selector(HomeViewController.messageResponse), for: .touchUpInside)
         return button
     }()
     
     lazy var newHighlightButton: UIButton = {
-        let button = UIButton()
+        let button = DashboardButton()
         button.setTitle("+ View new highlight", for: .normal)
-        button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
-        button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
-        button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.layer.backgroundColor = UIColor.white.cgColor
-        button.layer.borderColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1).cgColor
         button.addTarget(self, action: #selector(HomeViewController.messageResponse), for: .touchUpInside)
         return button
     }()
@@ -158,8 +106,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.user = AccountManager.shared.user
-        self.navigationItem.title = "Home"
-        
+        self.navigationItem.titleView?.isHidden = true
         addSubViews()
         addConstraints()
     }
@@ -190,8 +137,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func logNewMood() {
-            print("Button Clicked")
-        
+        navigationController?.pushViewController(AddMoodViewController(), animated: false)
+        navigationController?.navigationBar.isHidden = false
     }
     
     @objc func messageResponse() {

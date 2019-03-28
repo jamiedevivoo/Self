@@ -6,15 +6,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     lazy var background: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
         
-        let circleOnePath = UIBezierPath(arcCenter: CGPoint(x: 100,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        let circleOnePath = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         let circleTwoPath = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         let circlePaths = CGMutablePath()
         circlePaths.addPath(circleOnePath.cgPath)
         circlePaths.addPath(circleTwoPath.cgPath)
         
-        shapeLayer.fillColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 1).cgColor
-        shapeLayer.strokeColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 1).cgColor
-        shapeLayer.lineWidth = 3.0
+        shapeLayer.fillColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 0.5).cgColor
+//        shapeLayer.strokeColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 0.5).cgColor
+//        shapeLayer.lineWidth = 3.0
         shapeLayer.path = circlePaths
         shapeLayer.zPosition = -1
         return shapeLayer
@@ -43,8 +43,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let newBackgroundPaths = CGMutablePath()
         
         if tabBarController.selectedIndex == 0 {
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 400,y: 150), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 700), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 450,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             newBackgroundPaths.addPath(circleOne.cgPath)
             newBackgroundPaths.addPath(circleTwo.cgPath)
         } else if tabBarController.selectedIndex == 1 {
@@ -53,8 +53,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             newBackgroundPaths.addPath(circleOne.cgPath)
             newBackgroundPaths.addPath(circleTwo.cgPath)
         } else if tabBarController.selectedIndex == 2 {
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 50,y: 100), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 700), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleOne = UIBezierPath(arcCenter: CGPoint(x: -50,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             newBackgroundPaths.addPath(circleOne.cgPath)
             newBackgroundPaths.addPath(circleTwo.cgPath)
         }
@@ -63,9 +63,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         backgroundAnimation.fromValue = self.background.path
         backgroundAnimation.toValue = newBackgroundPaths
         backgroundAnimation.duration = 0.3
-        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         self.background.path = newBackgroundPaths
-        print("\(self.background.path,newBackgroundPaths)")
         self.background.add(backgroundAnimation, forKey: "path");
 
     }
@@ -75,7 +74,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let toView = viewController.view
         
         if fromView !== toView {
-            UIView.transition(from: fromView!, to: toView!, duration: 0.2, options: [.transitionCrossDissolve], completion: nil)
+            UIView.transition(from: fromView!, to: toView!, duration: 0.2, options: [.transitionCrossDissolve, .curveEaseInOut], completion: nil)
         } else {
             
         }

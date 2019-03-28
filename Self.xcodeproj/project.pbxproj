@@ -47,6 +47,8 @@
 		A35EA86D22456FB800592D88 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86422456FB600592D88 /* AppManager.swift */; };
 		A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86522456FB700592D88 /* ViewBuilding.swift */; };
 		A35EA86F22456FB800592D88 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86622456FB800592D88 /* MessageManager.swift */; };
+		A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */; };
+		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +95,8 @@
 		A35EA86422456FB600592D88 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A35EA86522456FB700592D88 /* ViewBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBuilding.swift; sourceTree = "<group>"; };
 		A35EA86622456FB800592D88 /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoodViewController.swift; sourceTree = "<group>"; };
+		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A774790F0D0CC9D95855193F /* Pods-Self.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				A33409AC224570BC004CBB2A /* HomeViewController.swift */,
+				A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				A334099622457033004CBB2A /* login */,
 				A334098722457010004CBB2A /* onboarding */,
 				A35EA87222456FE100592D88 /* common */,
+				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -486,6 +492,7 @@
 				A33409B8224570DA004CBB2A /* TabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* JournalViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
+				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,
 				A33409A7224570AF004CBB2A /* OnboardingController.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,
 				A35EA86722456FB800592D88 /* State.swift in Sources */,
@@ -499,6 +506,7 @@
 				A33409A2224570A4004CBB2A /* ProfileSettingsViewController.swift in Sources */,
 				A35EA85C22456F9700592D88 /* Me.swift in Sources */,
 				A35EA85922456F9700592D88 /* User.swift in Sources */,
+				A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */,
 				A334098F2245701D004CBB2A /* MoodOnboardingViewController.swift in Sources */,
 				A35EA86822456FB800592D88 /* UIFont.swift in Sources */,
 				A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */,

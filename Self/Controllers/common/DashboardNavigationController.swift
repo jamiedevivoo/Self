@@ -1,14 +1,14 @@
 import UIKit
 import SnapKit
 
-class DashboardNavigationController: UINavigationController {
+class DashboardNavigationController: UINavigationController, UINavigationControllerDelegate {
     
     
     // MARK: - Views
     
     lazy var sidebarIcon: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.title = "Sidebar"
+        button.image = UIImage(named: "menu")
         button.style = .plain
         button.target = self
         button.action = #selector(sidebarButtonTapped)
@@ -21,25 +21,27 @@ class DashboardNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         setup()
     }
     
     // Mark: - Functions
     
     func setup() {
-        visibleViewController?.navigationItem.leftBarButtonItems = [sidebarIcon]
-                
+        visibleViewController?.navigationItem.rightBarButtonItems = [sidebarIcon]
+//        navigationBar.isHidden = true
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
     }
+
     
     
     // MARK: - Actions
     
     @objc func sidebarButtonTapped() {
-        pushViewController(SettingsViewController(), animated: true)
+    pushViewController(SettingsViewController(), animated: true)
 //        tabBarController?.tabBar.isHidden = true
     }
     
