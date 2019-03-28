@@ -4,7 +4,6 @@ extension UIColor {
 
     struct app {
         struct standard {
-            
             static func background() -> UIColor {
                 switch Calendar.current.component(.hour, from: Date()) {
                 case 08...18:

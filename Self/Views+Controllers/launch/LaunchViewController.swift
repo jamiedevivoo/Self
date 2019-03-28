@@ -58,7 +58,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         return shapeLayer
     }()
     
-    var onboardingSlides:[OnboardingSlide] = [];
+    var onboardingSlides:[OnboardingSlideView] = [];
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,23 +76,23 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         addConstraints()
     }
     
-    func createOnboardingFlow() -> [OnboardingSlide] {
-        let onboardingSlideOne: OnboardingSlide = {
-            let onboardingSlide = OnboardingSlide()
+    func createOnboardingFlow() -> [OnboardingSlideView] {
+        let onboardingSlideOne: OnboardingSlideView = {
+            let onboardingSlide = OnboardingSlideView()
             onboardingSlide.image.image = UIImage(named: "home")
             onboardingSlide.headline.text = "Personal"
             onboardingSlide.desc.text = "Self is all about you, it's your personal assistant.Every day you'll get a unique message based on what you share and what it learns."
             return onboardingSlide
         }()
-        let onboardingSlideTwo: OnboardingSlide = {
-            let onboardingSlide = OnboardingSlide()
+        let onboardingSlideTwo: OnboardingSlideView = {
+            let onboardingSlide = OnboardingSlideView()
             onboardingSlide.image.image = UIImage(named: "globe")
             onboardingSlide.headline.text = "Challenges"
             onboardingSlide.desc.text = "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
             return onboardingSlide
         }()
-        let onboardingSlideThree: OnboardingSlide = {
-            let onboardingSlide = OnboardingSlide()
+        let onboardingSlideThree: OnboardingSlideView = {
+            let onboardingSlide = OnboardingSlideView()
             onboardingSlide.image.image = UIImage(named: "for_you")
             onboardingSlide.headline.text = "Journal"
             onboardingSlide.desc.text = "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
@@ -101,7 +101,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         return [onboardingSlideOne, onboardingSlideTwo, onboardingSlideThree]
     }
     
-    func setupOnboardingScrollView(slides : [OnboardingSlide]) {
+    func setupOnboardingScrollView(slides : [OnboardingSlideView]) {
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: view.frame.height)
         scrollView.isPagingEnabled = true

@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
+class DashboardTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     lazy var background: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
@@ -32,10 +32,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         tabBar.clipsToBounds = true
         tabBar.layer.borderWidth = 0
-        tabBar.layer.borderColor = UIColor.app.standard.background().cgColor
-        
-        tabBar.layer.backgroundColor = UIColor.app.standard.button().cgColor
-        tabBar.barTintColor =  UIColor.app.standard.background()
+        tabBar.layer.borderColor = UIColor.app.standard.other().cgColor
+        tabBar.layer.backgroundColor = UIColor.app.standard.other().cgColor
+        tabBar.barTintColor =  UIColor.app.standard.other()
         tabBar.tintColor = UIColor.app.standard.buttonText()
         tabBar.unselectedItemTintColor = UIColor.app.standard.solidText()
         view.layer.addSublayer(background)
@@ -46,18 +45,21 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let newBackgroundPaths = CGMutablePath()
         
         if tabBarController.selectedIndex == 0 {
+            // Highlights
             let circleOne = UIBezierPath(arcCenter: CGPoint(x: 450,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             newBackgroundPaths.addPath(circleOne.cgPath)
             newBackgroundPaths.addPath(circleTwo.cgPath)
         } else if tabBarController.selectedIndex == 1 {
+            // Home
             let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             newBackgroundPaths.addPath(circleOne.cgPath)
             newBackgroundPaths.addPath(circleTwo.cgPath)
         } else if tabBarController.selectedIndex == 2 {
+            // Challenges
             let circleOne = UIBezierPath(arcCenter: CGPoint(x: -50,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             newBackgroundPaths.addPath(circleOne.cgPath)
             newBackgroundPaths.addPath(circleTwo.cgPath)
         }
@@ -101,15 +103,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let journalNavigationController: UIViewController = {
             let navigationController = DashboardNavigationController()
             navigationController.viewControllers = [JournalViewController()]
-            navigationController.title = "Journal"
+            navigationController.title = "Highlights"
             navigationController.tabBarItem?.image = UIImage(named: "for_you")
             return navigationController
         }()
         
         let challengesNavigationController: UIViewController = {
             let navigationController = DashboardNavigationController()
-            navigationController.viewControllers = [ChallengesViewController()]
-            navigationController.title = "Challenges"
+            navigationController.viewControllers = [ActionsViewController()]
+            navigationController.title = "Actions"
             navigationController.tabBarItem?.image = UIImage(named: "globe")
             return navigationController
         }()

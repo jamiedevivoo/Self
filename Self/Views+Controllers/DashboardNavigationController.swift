@@ -12,7 +12,7 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
         button.style = .plain
         button.target = self
         button.action = #selector(sidebarButtonTapped)
-        button.tintColor = UIColor.app.text.primary
+        button.tintColor = UIColor.app.standard.solidText()
         return button
     }()
     
@@ -46,4 +46,5 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
     }
     
 }
+
 

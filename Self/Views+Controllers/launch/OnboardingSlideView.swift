@@ -1,6 +1,6 @@
 import UIKit
 
-class OnboardingSlide: UIView {
+class OnboardingSlideView: UIView {
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
@@ -40,7 +40,7 @@ class OnboardingSlide: UIView {
     
 }
 
-extension OnboardingSlide: ViewBuilding {
+extension OnboardingSlideView: ViewBuilding {
     
     func addSubViews() {
         backgroundColor = .clear

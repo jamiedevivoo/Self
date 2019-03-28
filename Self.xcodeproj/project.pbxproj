@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,7 @@
 		A316E709224AF18F00283547 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* LaunchViewController.swift */; };
 		A334098E2245701D004CBB2A /* WellbeingOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */; };
 		A334098F2245701D004CBB2A /* MoodOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */; };
-		A33409902245701D004CBB2A /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* OnboardingSlide.swift */; };
+		A33409902245701D004CBB2A /* OnboardingSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* OnboardingSlideView.swift */; };
 		A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098B2245701C004CBB2A /* RegisterViewController.swift */; };
 		A33409922245701D004CBB2A /* AccountOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098C2245701D004CBB2A /* AccountOnboardingViewController.swift */; };
 		A33409932245701D004CBB2A /* MeOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098D2245701D004CBB2A /* MeOnboardingViewController.swift */; };
@@ -26,18 +26,16 @@
 		A33409AB224570B6004CBB2A /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AA224570B6004CBB2A /* JournalViewController.swift */; };
 		A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* HomeViewController.swift */; };
 		A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */; };
-		A33409B2224570D2004CBB2A /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B1224570D2004CBB2A /* ChallengesViewController.swift */; };
+		A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B1224570D2004CBB2A /* ActionsViewController.swift */; };
 		A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */; };
 		A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B4224570D9004CBB2A /* SidebarViewController.swift */; };
-		A33409B8224570DA004CBB2A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B5224570DA004CBB2A /* TabBarController.swift */; };
-		A3438E9722456B86004D21BB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E8F22456B86004D21BB /* NavigationController.swift */; };
+		A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B5224570DA004CBB2A /* DashboardTabBarController.swift */; };
 		A3438E9822456B86004D21BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E9022456B86004D21BB /* AppDelegate.swift */; };
 		A3438E9A22456B86004D21BB /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E9222456B86004D21BB /* AppContainerViewController.swift */; };
 		A3438E9D22456BBC004D21BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3438E9C22456BBC004D21BB /* Assets.xcassets */; };
 		A35EA85922456F9700592D88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85522456F9500592D88 /* User.swift */; };
 		A35EA85A22456F9700592D88 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85622456F9600592D88 /* Community.swift */; };
 		A35EA85B22456F9700592D88 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85722456F9600592D88 /* Challenge.swift */; };
-		A35EA85C22456F9700592D88 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85822456F9700592D88 /* Me.swift */; };
 		A35EA86722456FB800592D88 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85E22456FB300592D88 /* State.swift */; };
 		A35EA86822456FB800592D88 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85F22456FB300592D88 /* UIFont.swift */; };
 		A35EA86922456FB800592D88 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86022456FB400592D88 /* Onboarding.swift */; };
@@ -49,6 +47,7 @@
 		A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */; };
 		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 		A3CF950B224D4B4600D0EC31 /* ColourTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* ColourTheme.swift */; };
+		A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950C224D7EEB00D0EC31 /* Highlight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +57,7 @@
 		A316E708224AF18F00283547 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellbeingOnboardingViewController.swift; sourceTree = "<group>"; };
 		A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodOnboardingViewController.swift; sourceTree = "<group>"; };
-		A334098A2245701B004CBB2A /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
+		A334098A2245701B004CBB2A /* OnboardingSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlideView.swift; sourceTree = "<group>"; };
 		A334098B2245701C004CBB2A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A334098C2245701D004CBB2A /* AccountOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboardingViewController.swift; sourceTree = "<group>"; };
 		A334098D2245701D004CBB2A /* MeOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeOnboardingViewController.swift; sourceTree = "<group>"; };
@@ -72,12 +71,11 @@
 		A33409AA224570B6004CBB2A /* JournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A33409AC224570BC004CBB2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
-		A33409B1224570D2004CBB2A /* ChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
+		A33409B1224570D2004CBB2A /* ActionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationController.swift; sourceTree = "<group>"; };
 		A33409B4224570D9004CBB2A /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		A33409B5224570DA004CBB2A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A33409B5224570DA004CBB2A /* DashboardTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		A3438E7522456A1C004D21BB /* Self.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Self.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3438E8F22456B86004D21BB /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		A3438E9022456B86004D21BB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3438E9222456B86004D21BB /* AppContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		A3438E9C22456BBC004D21BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 		A35EA85522456F9500592D88 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A35EA85622456F9600592D88 /* Community.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		A35EA85722456F9600592D88 /* Challenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
-		A35EA85822456F9700592D88 /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		A35EA85E22456FB300592D88 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A35EA85F22456FB300592D88 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		A35EA86022456FB400592D88 /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
@@ -97,6 +94,7 @@
 		A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoodViewController.swift; sourceTree = "<group>"; };
 		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* ColourTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourTheme.swift; sourceTree = "<group>"; };
+		A3CF950C224D7EEB00D0EC31 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		A774790F0D0CC9D95855193F /* Pods-Self.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,54 +122,23 @@
 		A316E707224AF16D00283547 /* launch */ = {
 			isa = PBXGroup;
 			children = (
+				A33409A6224570AF004CBB2A /* OnboardingController.swift */,
+				A33409A8224570B3004CBB2A /* LoginViewController.swift */,
 				A316E708224AF18F00283547 /* LaunchViewController.swift */,
-			);
-			path = launch;
-			sourceTree = "<group>";
-		};
-		A334098722457010004CBB2A /* onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				A334098A2245701B004CBB2A /* OnboardingSlide.swift */,
+				A334098A2245701B004CBB2A /* OnboardingSlideView.swift */,
 				A334098C2245701D004CBB2A /* AccountOnboardingViewController.swift */,
 				A334098D2245701D004CBB2A /* MeOnboardingViewController.swift */,
 				A33409892245701A004CBB2A /* MoodOnboardingViewController.swift */,
 				A334098B2245701C004CBB2A /* RegisterViewController.swift */,
 				A33409882245701A004CBB2A /* WellbeingOnboardingViewController.swift */,
 			);
-			path = onboarding;
-			sourceTree = "<group>";
-		};
-		A334099622457033004CBB2A /* login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = login;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		A33409972245704D004CBB2A /* common */ = {
-			isa = PBXGroup;
-			children = (
-				A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */,
-				A3438E8F22456B86004D21BB /* NavigationController.swift */,
-				A33409B5224570DA004CBB2A /* TabBarController.swift */,
-				A33409B4224570D9004CBB2A /* SidebarViewController.swift */,
-			);
-			path = common;
-			sourceTree = "<group>";
-		};
-		A33409982245707B004CBB2A /* communities */ = {
-			isa = PBXGroup;
-			children = (
-				A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */,
-			);
-			path = communities;
+			path = launch;
 			sourceTree = "<group>";
 		};
 		A33409992245707F004CBB2A /* home */ = {
 			isa = PBXGroup;
 			children = (
+				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
 				A33409AC224570BC004CBB2A /* HomeViewController.swift */,
 				A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */,
 			);
@@ -186,39 +153,25 @@
 			path = journal;
 			sourceTree = "<group>";
 		};
-		A334099B22457088004CBB2A /* login */ = {
-			isa = PBXGroup;
-			children = (
-				A33409A8224570B3004CBB2A /* LoginViewController.swift */,
-			);
-			path = login;
-			sourceTree = "<group>";
-		};
-		A334099C2245708C004CBB2A /* onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				A33409A6224570AF004CBB2A /* OnboardingController.swift */,
-			);
-			path = onboarding;
-			sourceTree = "<group>";
-		};
 		A334099D22457091004CBB2A /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				A33409B4224570D9004CBB2A /* SidebarViewController.swift */,
 				A334099F224570A2004CBB2A /* AccountSettingsViewController.swift */,
 				A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */,
 				A334099E224570A2004CBB2A /* ProfileSettingsViewController.swift */,
 				A33409A0224570A3004CBB2A /* SettingsViewController.swift */,
+				A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
 		};
-		A33409B0224570C8004CBB2A /* challenges */ = {
+		A33409B0224570C8004CBB2A /* actions */ = {
 			isa = PBXGroup;
 			children = (
-				A33409B1224570D2004CBB2A /* ChallengesViewController.swift */,
+				A33409B1224570D2004CBB2A /* ActionsViewController.swift */,
 			);
-			path = challenges;
+			path = actions;
 			sourceTree = "<group>";
 		};
 		A3438E6C22456A1C004D21BB = {
@@ -242,12 +195,10 @@
 		A3438E7722456A1C004D21BB /* Self */ = {
 			isa = PBXGroup;
 			children = (
-				A3438E9222456B86004D21BB /* AppContainerViewController.swift */,
 				A3438E9022456B86004D21BB /* AppDelegate.swift */,
+				A35EA85D22456FA700592D88 /* Extensions+Helpers */,
 				A35EA85322456F5A00592D88 /* Models */,
-				A35EA85D22456FA700592D88 /* Extensions */,
-				A35EA87022456FC900592D88 /* Views */,
-				A35EA87122456FD500592D88 /* Controllers */,
+				A35EA87122456FD500592D88 /* Views+Controllers */,
 				A3438E9E22456BDA004D21BB /* Info.plist */,
 				A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */,
 				A3438E9C22456BBC004D21BB /* Assets.xcassets */,
@@ -258,23 +209,15 @@
 		A35EA85322456F5A00592D88 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A35EA85422456F8900592D88 /* common */,
+				A35EA85722456F9600592D88 /* Challenge.swift */,
+				A35EA85622456F9600592D88 /* Community.swift */,
+				A3CF950C224D7EEB00D0EC31 /* Highlight.swift */,
+				A35EA85522456F9500592D88 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A35EA85422456F8900592D88 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				A35EA85722456F9600592D88 /* Challenge.swift */,
-				A35EA85622456F9600592D88 /* Community.swift */,
-				A35EA85822456F9700592D88 /* Me.swift */,
-				A35EA85522456F9500592D88 /* User.swift */,
-			);
-			path = common;
-			sourceTree = "<group>";
-		};
-		A35EA85D22456FA700592D88 /* Extensions */ = {
+		A35EA85D22456FA700592D88 /* Extensions+Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
@@ -287,37 +230,26 @@
 				A35EA85F22456FB300592D88 /* UIFont.swift */,
 				A3CF950A224D4B4600D0EC31 /* ColourTheme.swift */,
 			);
-			path = Extensions;
+			path = "Extensions+Helpers";
 			sourceTree = "<group>";
 		};
-		A35EA87022456FC900592D88 /* Views */ = {
+		A35EA87122456FD500592D88 /* Views+Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A3438E9222456B86004D21BB /* AppContainerViewController.swift */,
+				A33409B5224570DA004CBB2A /* DashboardTabBarController.swift */,
+				A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */,
 				A316E707224AF16D00283547 /* launch */,
-				A334099622457033004CBB2A /* login */,
-				A334098722457010004CBB2A /* onboarding */,
-				A35EA87222456FE100592D88 /* common */,
-				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A35EA87122456FD500592D88 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A334099D22457091004CBB2A /* settings */,
-				A334099C2245708C004CBB2A /* onboarding */,
-				A334099B22457088004CBB2A /* login */,
-				A334099A22457083004CBB2A /* journal */,
 				A33409992245707F004CBB2A /* home */,
-				A33409982245707B004CBB2A /* communities */,
-				A33409B0224570C8004CBB2A /* challenges */,
-				A33409972245704D004CBB2A /* common */,
+				A334099A22457083004CBB2A /* journal */,
+				A33409B0224570C8004CBB2A /* actions */,
+				A334099D22457091004CBB2A /* settings */,
+				A3CF950E224D7F1100D0EC31 /* common */,
 			);
-			path = Controllers;
+			path = "Views+Controllers";
 			sourceTree = "<group>";
 		};
-		A35EA87222456FE100592D88 /* common */ = {
+		A3CF950E224D7F1100D0EC31 /* common */ = {
 			isa = PBXGroup;
 			children = (
 				A334099422457023004CBB2A /* Loader.swift */,
@@ -372,7 +304,7 @@
 				};
 			};
 			buildConfigurationList = A3438E7022456A1C004D21BB /* Build configuration list for PBXProject "Self" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -479,18 +411,18 @@
 				A3CF950B224D4B4600D0EC31 /* ColourTheme.swift in Sources */,
 				A334098E2245701D004CBB2A /* WellbeingOnboardingViewController.swift in Sources */,
 				A3438E9822456B86004D21BB /* AppDelegate.swift in Sources */,
-				A3438E9722456B86004D21BB /* NavigationController.swift in Sources */,
 				A3438E9A22456B86004D21BB /* AppContainerViewController.swift in Sources */,
 				A35EA85A22456F9700592D88 /* Community.swift in Sources */,
 				A35EA86922456FB800592D88 /* Onboarding.swift in Sources */,
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
 				A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */,
-				A33409902245701D004CBB2A /* OnboardingSlide.swift in Sources */,
+				A33409902245701D004CBB2A /* OnboardingSlideView.swift in Sources */,
+				A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */,
 				A316E709224AF18F00283547 /* LaunchViewController.swift in Sources */,
 				A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */,
 				A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
-				A33409B8224570DA004CBB2A /* TabBarController.swift in Sources */,
+				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* JournalViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,
@@ -504,7 +436,6 @@
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
 				A35EA86F22456FB800592D88 /* MessageManager.swift in Sources */,
 				A33409A2224570A4004CBB2A /* ProfileSettingsViewController.swift in Sources */,
-				A35EA85C22456F9700592D88 /* Me.swift in Sources */,
 				A35EA85922456F9700592D88 /* User.swift in Sources */,
 				A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */,
 				A334098F2245701D004CBB2A /* MoodOnboardingViewController.swift in Sources */,
@@ -512,7 +443,7 @@
 				A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */,
 				A33409932245701D004CBB2A /* MeOnboardingViewController.swift in Sources */,
 				A35EA86C22456FB800592D88 /* FirebaseAPI.swift in Sources */,
-				A33409B2224570D2004CBB2A /* ChallengesViewController.swift in Sources */,
+				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
 				A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,7 +580,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jamiedevivo.self-com.jamiedevivo.self-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamiedevivo.self;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -670,7 +601,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jamiedevivo.self-com.jamiedevivo.self-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamiedevivo.self;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

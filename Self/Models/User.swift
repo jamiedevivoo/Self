@@ -18,7 +18,6 @@ class User: CustomStringConvertible {
     var name: String
     var lastname: String
     var email: String
-    var me: Me?
     
 //    init() {
 //        let currentUser = Auth.auth().currentUser
