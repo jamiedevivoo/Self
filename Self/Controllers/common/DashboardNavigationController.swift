@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class HomeNavigationController: UINavigationController {
+class DashboardNavigationController: UINavigationController {
     
     
     // MARK: - Views
@@ -28,7 +28,7 @@ class HomeNavigationController: UINavigationController {
     
     func setup() {
         visibleViewController?.navigationItem.leftBarButtonItems = [sidebarIcon]
-        
+                
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()

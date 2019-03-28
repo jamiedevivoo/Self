@@ -6,19 +6,11 @@ class HomeViewController: UIViewController {
     
     
     // MARK: - Properties
-    
     let profiles = FirebaseAPI.getProfiles()
     var user: User?
 
     
     // MARK: - UI and Views
-    
-    lazy var topView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.app.background.primary
-        return view
-    }()
-    
     lazy var messageView: UIView = {
         let stackView = UIView()
         return stackView
@@ -44,29 +36,37 @@ class HomeViewController: UIViewController {
         return stackView
     }()
     
+    lazy var actionHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Your Recommended Actions"
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
+        label.textColor = .gray
+        return label
+    }()
+    
     lazy var greetingLabel: UILabel = {
         let label = UILabel()
         label.text = greeting() + ","
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.thin)
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.ultraLight)
         return label
     }()
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 46)
+        label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
         label.text = user?.name
         return label
     }()
     
     lazy var messageLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.light)
         label.text = "Did you know Mondays are your happiest days? Let’s rock today!"
         label.numberOfLines = 0
         return label
     }()
     
-    lazy var messageActionOne: UIButton = {
+    lazy var messageResponseOne: UIButton = {
         let button = UIButton()
         button.setTitle("💪", for: .normal)
         button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
@@ -87,7 +87,7 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    lazy var messageActionTwo: UIButton = {
+    lazy var messageResponseTwo: UIButton = {
         let button = UIButton()
         button.setTitle("😔", for: .normal)
         button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
@@ -125,7 +125,7 @@ class HomeViewController: UIViewController {
     
     lazy var revealChallengesButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Reveal today's challenges", for: .normal)
+        button.setTitle("+ Reveal today's challenges", for: .normal)
         button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
         button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
         button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
@@ -140,7 +140,7 @@ class HomeViewController: UIViewController {
     
     lazy var newHighlightButton: UIButton = {
         let button = UIButton()
-        button.setTitle("View new highlight", for: .normal)
+        button.setTitle("+ View new highlight", for: .normal)
         button.setTitleColor(UIColor(red: 94/255, green: 86/255, blue: 113/255, alpha: 1), for: .normal)
         button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 10,bottom: 6,right: 10)
         button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
@@ -152,33 +152,8 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(HomeViewController.messageResponse), for: .touchUpInside)
         return button
     }()
-    
-    lazy var messageBox: UIView = {
-        let view = UIView()
-        view.layer.borderWidth = 2
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 20
-        return view
-    }()
-    
-    lazy var shapeLayer: CAShapeLayer = {
-        let shapeLayer = CAShapeLayer()
-        
-        let circleOnePath = UIBezierPath(arcCenter: CGPoint(x: 100,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circleTwoPath = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circlePaths = CGMutablePath()
-        circlePaths.addPath(circleOnePath.cgPath)
-        circlePaths.addPath(circleTwoPath.cgPath)
-        
-        shapeLayer.fillColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 1).cgColor
-        shapeLayer.strokeColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 1).cgColor
-        shapeLayer.lineWidth = 3.0
-        shapeLayer.path = circlePaths
-        return shapeLayer
-    }()
 
     // MARK: - Init and ViewDidLoad
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -194,9 +169,9 @@ class HomeViewController: UIViewController {
         
         switch hour {
         case 00...01:
-            return "Night"
+            return "Good Night"
         case 01...04:
-            return "Night"
+            return "Good Night"
         case 04...06:
             return "Early Morning"
         case 06...10:
@@ -204,11 +179,11 @@ class HomeViewController: UIViewController {
         case 10...13:
             return "Good Morning"
         case 13...17:
-            return "Afternoon"
+            return "Good Afternoon"
         case 17...22:
-            return "Evening"
+            return "Good Evening"
         case 22...24:
-            return "Night"
+            return "Good Night"
         default:
             return "Welcome"
         }
@@ -225,26 +200,26 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: ViewBuilding {
-    func addSubViews() {
-        view.layer.addSublayer(shapeLayer)
-        
+    func addSubViews() {        
         view.addSubview(messageView)
         messageView.addSubview(greetingLabel)
         messageView.addSubview(nameLabel)
         messageView.addSubview(messageLabel)
         
         messageView.addSubview(messageResponseButtonStack)
-        messageResponseButtonStack.addArrangedSubview(messageActionOne)
-        messageResponseButtonStack.addArrangedSubview(messageActionTwo)
+        messageResponseButtonStack.addArrangedSubview(messageResponseOne)
+        messageResponseButtonStack.addArrangedSubview(messageResponseTwo)
         
         view.addSubview(actionButtonStack)
         actionButtonStack.addArrangedSubview(moodButton)
         actionButtonStack.addArrangedSubview(revealChallengesButton)
         actionButtonStack.addArrangedSubview(newHighlightButton)
+        
+        view.addSubview(actionHeaderLabel)
     }
     
     func addConstraints() {
-        messageView.snp.makeConstraints{ (make) in
+        messageView.snp.makeConstraints { (make) in
             make.left.equalTo(20)
             make.centerY.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.7)
@@ -271,9 +246,13 @@ extension HomeViewController: ViewBuilding {
                 make.width.equalToSuperview()
             }
         actionButtonStack.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().inset(50)
+            make.bottom.equalToSuperview()
             make.left.equalTo(20)
             make.width.equalToSuperview()
+        }
+        actionHeaderLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(actionButtonStack.snp.top).offset(-20)
+            make.left.equalToSuperview().offset(20)
         }
     }
 }

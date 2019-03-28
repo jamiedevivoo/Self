@@ -27,7 +27,7 @@
 		A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* HomeViewController.swift */; };
 		A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */; };
 		A33409B2224570D2004CBB2A /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B1224570D2004CBB2A /* ChallengesViewController.swift */; };
-		A33409B6224570DA004CBB2A /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B3224570D8004CBB2A /* HomeNavigationController.swift */; };
+		A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */; };
 		A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B4224570D9004CBB2A /* SidebarViewController.swift */; };
 		A33409B8224570DA004CBB2A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B5224570DA004CBB2A /* TabBarController.swift */; };
 		A3438E9722456B86004D21BB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E8F22456B86004D21BB /* NavigationController.swift */; };
@@ -71,7 +71,7 @@
 		A33409AC224570BC004CBB2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
 		A33409B1224570D2004CBB2A /* ChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
-		A33409B3224570D8004CBB2A /* HomeNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
+		A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationController.swift; sourceTree = "<group>"; };
 		A33409B4224570D9004CBB2A /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		A33409B5224570DA004CBB2A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A3438E7522456A1C004D21BB /* Self.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Self.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +149,7 @@
 		A33409972245704D004CBB2A /* common */ = {
 			isa = PBXGroup;
 			children = (
-				A33409B3224570D8004CBB2A /* HomeNavigationController.swift */,
+				A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */,
 				A33409B5224570DA004CBB2A /* TabBarController.swift */,
 				A33409B4224570D9004CBB2A /* SidebarViewController.swift */,
 			);
@@ -481,7 +481,7 @@
 				A33409902245701D004CBB2A /* OnboardingSlide.swift in Sources */,
 				A316E709224AF18F00283547 /* LaunchViewController.swift in Sources */,
 				A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */,
-				A33409B6224570DA004CBB2A /* HomeNavigationController.swift in Sources */,
+				A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
 				A33409B8224570DA004CBB2A /* TabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* JournalViewController.swift in Sources */,
