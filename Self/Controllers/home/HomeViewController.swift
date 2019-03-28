@@ -247,7 +247,7 @@ extension HomeViewController: ViewBuilding {
                 make.width.equalToSuperview()
             }
         actionButtonStack.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottom).inset(120)
             make.left.equalTo(20)
             make.width.equalToSuperview()
         }

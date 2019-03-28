@@ -40,29 +40,47 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
-        let backgroundPaths = CGMutablePath()
+        let newBackgroundPaths = CGMutablePath()
         
         if tabBarController.selectedIndex == 0 {
             let circleOne = UIBezierPath(arcCenter: CGPoint(x: 400,y: 150), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 700), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            backgroundPaths.addPath(circleOne.cgPath)
-            backgroundPaths.addPath(circleTwo.cgPath)
+            newBackgroundPaths.addPath(circleOne.cgPath)
+            newBackgroundPaths.addPath(circleTwo.cgPath)
         } else if tabBarController.selectedIndex == 1 {
             let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            backgroundPaths.addPath(circleOne.cgPath)
-            backgroundPaths.addPath(circleTwo.cgPath)
+            newBackgroundPaths.addPath(circleOne.cgPath)
+            newBackgroundPaths.addPath(circleTwo.cgPath)
         } else if tabBarController.selectedIndex == 2 {
             let circleOne = UIBezierPath(arcCenter: CGPoint(x: 50,y: 100), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 700), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            backgroundPaths.addPath(circleOne.cgPath)
-            backgroundPaths.addPath(circleTwo.cgPath)
+            newBackgroundPaths.addPath(circleOne.cgPath)
+            newBackgroundPaths.addPath(circleTwo.cgPath)
         }
         
-        UIView.animate(withDuration: 10.0) {
-            self.background.path = backgroundPaths
-        }
+        let backgroundAnimation = CABasicAnimation(keyPath: "path")
+        backgroundAnimation.fromValue = self.background.path
+        backgroundAnimation.toValue = newBackgroundPaths
+        backgroundAnimation.duration = 0.3
+        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        self.background.path = newBackgroundPaths
+        print("\(self.background.path,newBackgroundPaths)")
+        self.background.add(backgroundAnimation, forKey: "path");
 
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let fromView = selectedViewController?.view
+        let toView = viewController.view
+        
+        if fromView !== toView {
+            UIView.transition(from: fromView!, to: toView!, duration: 0.2, options: [.transitionCrossDissolve], completion: nil)
+        } else {
+            
+        }
+        
+        return true
     }
     
     fileprivate func checkLoggedInUserStatus() {
