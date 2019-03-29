@@ -41,6 +41,7 @@ class RegisterViewController: UIViewController {
     
     // MARK: - Properties
     var db:Firestore!
+    var user: User!
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -55,60 +56,44 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Action Functions
+    
+    func showError(errorDesc: String) {
+        let errorAlert: UIAlertController = {
+            let alertController = UIAlertController()
+            alertController.title = errorDesc
+            alertController.message = "Please try again"
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            return alertController
+        }()
+        self.present(errorAlert, animated: true, completion: nil)
+    }
+    
     @objc func registerButtonAction(_ sender: Any) {
         
         print("Register with details: \(emailTextField.text!)  \(passwordTextField.text!)")
         
         guard let name: String = nameTextField.text else {
-            let errorAlert: UIAlertController = {
-                let alertController = UIAlertController()
-                alertController.title = "Missing Name"
-                alertController.message = "Please try again"
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                return alertController
-            }()
-            self.present(errorAlert, animated: true, completion: nil)
+            showError(errorDesc: "Missing Name")
             return
         }
         
         guard let email: String = emailTextField.text  else {
-            let errorAlert: UIAlertController = {
-                let alertController = UIAlertController()
-                alertController.title = "Missing Email"
-                alertController.message = "Please try again"
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                return alertController
-            }()
-            self.present(errorAlert, animated: true, completion: nil)
+            showError(errorDesc: "Missing Email")
             return
         }
             
-        guard let password: String = passwordTextField.text, let passwordConfirm: String = passwordConfirmTextField.text else {
-            let errorAlert: UIAlertController = {
-                let alertController = UIAlertController()
-                alertController.title = "Missing Password"
-                alertController.message = "Please try again"
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                return alertController
-            }()
-            self.present(errorAlert, animated: true, completion: nil)
+        guard let password: String = passwordTextField.text else {
+            showError(errorDesc: "Missing Password")
             return
         }
         
-        guard password == passwordConfirm else {
-            let errorAlert: UIAlertController = {
-                let alertController = UIAlertController()
-                alertController.title = "Passwords don't match"
-                alertController.message = "Please try again"
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                return alertController
-            }()
-            self.present(errorAlert, animated: true, completion: nil)
+        guard password == passwordConfirmTextField.text else {
+            showError(errorDesc: "Passwords do not match")
             return
         }
         
-        let user = User(dictionary: ["email": "\(self.nameTextField.text)",
-                                     "name": "\(self.nameTextField.text)"])
+        user.name = name
+        user.email = email
         
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             

@@ -31,13 +31,10 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
     }
-
-    
     
     // MARK: - Functions
     @objc func sidebarButtonTapped() {
     pushViewController(SettingsViewController(), animated: true)
 //        tabBarController?.tabBar.isHidden = true
     }
-    
 }

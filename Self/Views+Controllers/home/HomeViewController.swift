@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
     
     lazy var greetingLabel: UILabel = {
         let label = UILabel()
-        label.text = greeting() + ","
+        label.text = message.greeting ?? "" + ","
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.ultraLight)
         label.textColor = UIColor.app.standard.solidText()
         return label
@@ -100,42 +100,20 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     var user: User?
+    var message = Message()
 
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(self.message)
         self.user = AccountManager.shared.user
+        
         addSubViews()
         addConstraints()
     }
     
     // MARK: - Functions
-    func greeting() -> String {
-        let hour = Calendar.current.component(.hour, from: Date())
-        
-        switch hour {
-        case 00...01:
-            return "Good Night"
-        case 01...04:
-            return "Good Night"
-        case 04...06:
-            return "Early Morning"
-        case 06...10:
-            return "Good Morning"
-        case 10...13:
-            return "Good Morning"
-        case 13...17:
-            return "Good Afternoon"
-        case 17...22:
-            return "Good Evening"
-        case 22...24:
-            return "Good Night"
-        default:
-            return "Welcome"
-        }
-    }
-    
     @objc func logNewMood() {
         navigationController?.pushViewController(AddMoodViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
