@@ -2,14 +2,17 @@ import Firebase
 
 class AccountManager {
     
+    // MARK: - Properties
     static let shared = AccountManager()
-        
-    let userRef = FirebaseAPI.shared.db.collection("user").document(Auth.auth().currentUser!.uid)
+    
+    let userRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid)
 
     var user: User?
 
+    // MARK: - Init
     private init() { }
 
+    // MARK - Functions
     func loadUser(completion: @escaping () -> ()) {
         userRef.getDocument { snapshot, error in
             if let error = error {

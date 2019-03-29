@@ -4,13 +4,7 @@ import Firebase
 
 class HomeViewController: UIViewController {
     
-    
-    // MARK: - Properties
-    let profiles = FirebaseAPI.getProfiles()
-    var user: User?
-
-    
-    // MARK: - UI and Views
+    // MARK: - Views
     lazy var messageView: UIView = {
         let stackView = UIView()
         return stackView
@@ -103,8 +97,11 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(HomeViewController.messageResponse), for: .touchUpInside)
         return button
     }()
+    
+    // MARK: - Properties
+    var user: User?
 
-    // MARK: - Init and ViewDidLoad
+    // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,6 +110,7 @@ class HomeViewController: UIViewController {
         addConstraints()
     }
     
+    // MARK: - Functions
     func greeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         
@@ -144,11 +142,11 @@ class HomeViewController: UIViewController {
     }
     
     @objc func messageResponse() {
-        
     }
     
 }
 
+// MARK: -
 extension HomeViewController: ViewBuilding {
     func addSubViews() {        
         view.addSubview(messageView)

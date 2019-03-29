@@ -57,7 +57,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         shapeLayer.path = circlePaths
         return shapeLayer
     }()
-    
+        
     var onboardingSlides:[OnboardingSlideView] = [];
 
     override func viewDidLoad() {

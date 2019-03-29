@@ -2,36 +2,32 @@ import Firebase
 
 class User: CustomStringConvertible {
     
+    // MARK: - Describe Properties
     var description: String {
         return "User: name: \(name), email: \(email)"
     }
     
     var dictionary: [String: Any] {
         return [
+            "uid": uid,
             "name": name,
-            "email": email,
-            "lastname": lastname
+            "email": email
         ]
     }
-    
+
+    // MARK: - Properties
     var uid: String
     var name: String
-    var lastname: String
     var email: String
+    var lastname: String?
     
-//    init() {
-//        let currentUser = Auth.auth().currentUser
-//        super.init(snapshot: <#T##DocumentSnapshot#>)
-//        self.uid = currentUser!.uid
-//        
-//    }
-    
+    // MARK: - Init
     init(snapshot: DocumentSnapshot) {
         let userData = snapshot.data()! as [String: Any]
         self.uid = snapshot.documentID
         self.name = userData["firstname"] as? String ?? ""
-        self.lastname = userData["lastname"] as? String ?? ""
         self.email = userData["email"] as? String ?? ""
+        self.lastname = userData["lastname"] as? String ?? ""
     }
     
     init(dictionary: [String: String]) {
@@ -41,12 +37,19 @@ class User: CustomStringConvertible {
         self.email = dictionary["email"] ?? ""
     }
     
+//    init(authUser: UserInfo) {
+//        self.uid = authUser.uid
+//    }
+    
     private init(user: User) {
         self.uid = user.uid
         self.name = user.name
-        self.lastname = user.uid
+        self.lastname = user.lastname
         self.email = user.email
     }
+    
+    // MARK: - Functions
+    // Only functions for Outputing User Data belong here, Database functions are stored in Account Manager
     
 //    func author() -> [String: String] {
 //        return ["uid": uid, "name": name]

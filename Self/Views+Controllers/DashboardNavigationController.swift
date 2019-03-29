@@ -5,7 +5,6 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
     
     
     // MARK: - Views
-    
     lazy var sidebarIcon: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(named: "menu")
@@ -17,15 +16,12 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
     }()
     
     
-    // MARK: - Init and viewDidLoad
-    
+    // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         setup()
     }
-    
-    // Mark: - Functions
     
     func setup() {
         visibleViewController?.navigationItem.rightBarButtonItems = [sidebarIcon]
@@ -38,13 +34,10 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
 
     
     
-    // MARK: - Actions
-    
+    // MARK: - Functions
     @objc func sidebarButtonTapped() {
     pushViewController(SettingsViewController(), animated: true)
 //        tabBarController?.tabBar.isHidden = true
     }
     
 }
-
-

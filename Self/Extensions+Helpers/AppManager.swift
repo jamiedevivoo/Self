@@ -3,9 +3,7 @@ import Firebase
 
 class AppManager {
     
-    
     // MARK: - Properties
-    
     static let shared = AppManager()
     var appContainer: AppContainerViewController!
     
@@ -14,23 +12,18 @@ class AppManager {
         case loggedIn(User)
         case sessionExpired(User)
     }
-    
     var state: State = .unregistered
     
     enum ColorMode {
         case light
         case dark
     }
-    
     var colorMode: ColorMode = .light
-    
 
     // MARK: - Init
     private init() { }
     
-    
     // MARK: - Functions
-    
     func showApp() {
         if Auth.auth().currentUser == nil {
             

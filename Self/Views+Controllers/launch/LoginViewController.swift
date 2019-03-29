@@ -4,8 +4,7 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
-    // MARK: - Properties
-    
+    // MARK: - Views
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.text = "email@email.com"
@@ -49,11 +48,11 @@ class LoginViewController: UIViewController {
         stackView.spacing = 10.0
         return stackView
     }()
-
+    
+    // MARK: - Properties
     var db:Firestore!
     
     // MARK: - Initialisers
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,8 +65,7 @@ class LoginViewController: UIViewController {
         addConstraints()
     }
 
-    // MARK: - Action Functions
-    
+    // MARK: - Functions
     @objc func loginButtonAction(_ sender: Any) {
         
         print("Log in with details: \(String(describing: emailTextField.text))  \(String(describing: passwordTextField.text))")
@@ -81,20 +79,27 @@ class LoginViewController: UIViewController {
             return
             
         }
-
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
-            if let _ = error {
-                let alertController = UIAlertController(title: "Details are Incorrect", message: "Please try again", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            } else {
-                self.dismiss(animated: true, completion: nil)
+        
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            
+            guard let _ = authResult, error == nil else {
+                let errorAlert: UIAlertController = {
+                    let alertController = UIAlertController()
+                    alertController.title = error!.localizedDescription
+                    alertController.message = "Please try again"
+                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    return alertController
+                }()
+                self.present(errorAlert, animated: true, completion: nil)
+                return
             }
+            
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
 
+// MARK: -
 extension LoginViewController: ViewBuilding {
     func addSubViews() {
         self.view.addSubview(loginStackView)

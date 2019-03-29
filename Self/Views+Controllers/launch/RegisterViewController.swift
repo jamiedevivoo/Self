@@ -5,6 +5,12 @@ import SnapKit
 class RegisterViewController: UIViewController {
     
     // MARK: - Objects
+    lazy var nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Name"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
@@ -53,67 +59,83 @@ class RegisterViewController: UIViewController {
         
         print("Register with details: \(emailTextField.text!)  \(passwordTextField.text!)")
         
-        guard let email: String = emailTextField.text else {
-            print("Please enter an email")
-            return
-        }
-            
-        guard let password: String = passwordTextField.text else {
-            print("Please enter a password")
-            return
-        }
-        guard let passwordConfirm: String = passwordConfirmTextField.text else {
-            print("Please enter a password")
+        guard let name: String = nameTextField.text else {
+            let errorAlert: UIAlertController = {
+                let alertController = UIAlertController()
+                alertController.title = "Missing Name"
+                alertController.message = "Please try again"
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                return alertController
+            }()
+            self.present(errorAlert, animated: true, completion: nil)
             return
         }
         
-        if password != passwordConfirm {
+        guard let email: String = emailTextField.text  else {
+            let errorAlert: UIAlertController = {
+                let alertController = UIAlertController()
+                alertController.title = "Missing Email"
+                alertController.message = "Please try again"
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                return alertController
+            }()
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
             
-            let alertController = UIAlertController(
-                title: "Confirmed Password is Incorrect",
-                message: "Please re-type password",
-                preferredStyle: .alert
-            )
+        guard let password: String = passwordTextField.text, let passwordConfirm: String = passwordConfirmTextField.text else {
+            let errorAlert: UIAlertController = {
+                let alertController = UIAlertController()
+                alertController.title = "Missing Password"
+                alertController.message = "Please try again"
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                return alertController
+            }()
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
+        
+        guard password == passwordConfirm else {
+            let errorAlert: UIAlertController = {
+                let alertController = UIAlertController()
+                alertController.title = "Passwords don't match"
+                alertController.message = "Please try again"
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                return alertController
+            }()
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
+        
+        let user = User(dictionary: ["email": "\(self.nameTextField.text)",
+                                     "name": "\(self.nameTextField.text)"])
+        
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             
-            let defaultAction = UIAlertAction(
-                title: "OK",
-                style: .cancel,
-                handler: nil
-            )
-            
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-            
-        } else {
-            Auth.auth().createUser(withEmail: email, password: password) { user, error in
-                if let _ = user {
-                    let uid = user!.user.uid
-                    let email = user!.user.email
-                    let userData: [String:Any] = ["uid": uid,
-                                                  "email": email as Any]
-                    self.db.collection("user").document(uid).setData(userData)
-                    
-                    self.dismiss(animated: true, completion: nil)
-                }
-                if let _ = error {
-                    if error != nil {
-                        
-                        if let errCode = AuthErrorCode(rawValue: error!._code) {
-                            
-                            switch errCode {
-                            case .invalidEmail:
-                                print("The email entered is invalid")
-                            case .emailAlreadyInUse:
-                                print("Email already in use")
-                            default:
-                                print("There was another error!")
-                            }
-                            
-                        }
-                    }
-                }
+            guard let registeredCredentials = authResult, error == nil else {
+                let errorAlert: UIAlertController = {
+                    let alertController = UIAlertController()
+                    alertController.title = error!.localizedDescription
+                    alertController.message = "Please try again"
+                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    return alertController
+                }()
+                self.present(errorAlert, animated: true, completion: nil)
+                return
             }
+            
+//                let user = User(dictionary: ["uid": registeredCredentials.user.uid,
+//                                             "email": "\(registeredCredentials.user.email)",
+//                                             "name": "\(self.nameTextField.text)"])
+            
+//                let user = User(user: registeredCredentials.user)
+//                print(user)
+
+//              self.db.collection("user").document(uid).setData(userData)
+//            print(Auth.auth().currentUser!.uid)
+//            AccountManager.shared.update()
+//
+                self.dismiss(animated: true, completion: nil)
             
         }
         
@@ -124,6 +146,7 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController: ViewBuilding {
     func addSubViews() {
+        self.view.addSubview(nameTextField)
         self.view.addSubview(emailTextField)
         self.view.addSubview(passwordTextField)
         self.view.addSubview(passwordConfirmTextField)
@@ -131,11 +154,17 @@ extension RegisterViewController: ViewBuilding {
     }
     
     func addConstraints() {
-        emailTextField.snp.makeConstraints { (make) in
+        nameTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)
             make.right.equalTo(-100)
             make.height.equalTo(35)
             make.centerX.centerY.equalTo(self.view)
+        }
+        emailTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(100)
+            make.right.equalTo(-100)
+            make.height.equalTo(35)
+            make.top.equalTo(nameTextField.snp.bottom).offset(20)
         }
         passwordTextField.snp.makeConstraints { (make) in
             make.left.equalTo(100)

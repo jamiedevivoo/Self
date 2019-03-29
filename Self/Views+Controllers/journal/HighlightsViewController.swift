@@ -1,6 +1,8 @@
 import UIKit
+import Firebase
+import SnapKit
 
-class JournalViewController: UIViewController {
+class HighlightsViewController: UIViewController {
     
     lazy var achievementsView: UIView = {
         let view = UIView()
@@ -24,16 +26,21 @@ class JournalViewController: UIViewController {
         let stackView = UIStackView()
         return stackView
     }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addSubViews()
         addConstraints()
     }
     
+//    func getHighlights() {
+//        let citiesRef = db.collection("cities")
+//    }
+    
 }
 
-extension JournalViewController: ViewBuilding {
+extension HighlightsViewController: ViewBuilding {
     func addSubViews() {
         view.addSubview(achievementsView)
         view.addSubview(insightsView)

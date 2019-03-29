@@ -25,7 +25,7 @@ class OnboardingController: UIViewController {
         title = "Get Started"
         view.backgroundColor = .white
         navigationItem.leftBarButtonItems = nil
-        
+        self.present(RegisterViewController(), animated: true, completion: nil)
         addSubViews()
         addConstraints()
     }
