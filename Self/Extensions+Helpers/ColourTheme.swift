@@ -6,7 +6,7 @@ extension UIColor {
         struct standard {
             static func background() -> UIColor {
                 switch Calendar.current.component(.hour, from: Date()) {
-                case 08...18:
+                case 08...16:
                     return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
                 default:
                     return UIColor(red: 029/255, green: 038/255, blue: 095/255, alpha: 1)
@@ -14,7 +14,7 @@ extension UIColor {
             }
             static func other() -> UIColor {
                 switch Calendar.current.component(.hour, from: Date()) {
-                case 08...18:
+                case 08...16:
                     return UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 1)
                 default:
                     return UIColor(red: 019/255, green: 025/255, blue: 083/255, alpha: 1)
@@ -22,7 +22,7 @@ extension UIColor {
             }
             static func solidText() -> UIColor {
                 switch Calendar.current.component(.hour, from: Date()) {
-                case 08...18:
+                case 08...16:
                     return UIColor(red: 010/255, green: 010/255, blue: 050/255, alpha: 1)
                 default:
                     return UIColor(red: 150/255, green: 166/255, blue: 254/255, alpha: 1)
@@ -30,7 +30,7 @@ extension UIColor {
             }
             static func button() -> UIColor {
                 switch Calendar.current.component(.hour, from: Date()) {
-                case 08...18:
+                case 08...16:
                     return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
                 default:
                     return UIColor(red: 059/255, green: 050/255, blue: 131/255, alpha: 1)
@@ -38,7 +38,7 @@ extension UIColor {
             }
             static func buttonText() -> UIColor {
                 switch Calendar.current.component(.hour, from: Date()) {
-                case 08...18:
+                case 08...16:
                     return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 1)
                 default:
                     return UIColor(red: 241/255, green: 136/255, blue: 132/255, alpha: 1)
