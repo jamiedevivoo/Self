@@ -18,7 +18,7 @@ class HighlightsViewController: UIViewController {
         let label = UILabel()
         label.text = "Your Highlights 💪"
         label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
-        label.textColor = UIColor.app.standard.solidText()
+        label.textColor = UIColor.app.solidText()
         return label
     }()
     

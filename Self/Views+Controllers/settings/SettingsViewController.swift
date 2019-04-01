@@ -9,7 +9,7 @@ class SettingsViewController: UIViewController {
     
     lazy var topDescriptionView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.primary
+        view.backgroundColor = UIColor.app.background()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
@@ -77,7 +77,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.row == 1 {
             navigationController?.pushViewController(AppSettingsViewController(), animated: true);
         } else if indexPath.row == 2 {
-            AppManager.shared.logout()
+            AccountManager.shared.logout()
         }
     }
 

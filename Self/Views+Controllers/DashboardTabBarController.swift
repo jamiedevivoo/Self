@@ -13,7 +13,7 @@ class DashboardTabBarController: UITabBarController {
         circlePaths.addPath(circleOnePath.cgPath)
         circlePaths.addPath(circleTwoPath.cgPath)
         
-        shapeLayer.fillColor = UIColor.app.standard.other().cgColor
+        shapeLayer.fillColor = UIColor.app.other().cgColor
         shapeLayer.path = circlePaths
         shapeLayer.zPosition = -1
         return shapeLayer
@@ -57,15 +57,15 @@ class DashboardTabBarController: UITabBarController {
     }
         
     func setup() {
-        view.backgroundColor = UIColor.app.standard.background()
+        view.backgroundColor = UIColor.app.background()
         
         tabBar.clipsToBounds = true
         tabBar.layer.borderWidth = 0
-        tabBar.layer.borderColor = UIColor.app.standard.other().cgColor
-        tabBar.layer.backgroundColor = UIColor.app.standard.other().cgColor
-        tabBar.barTintColor =  UIColor.app.standard.other()
-        tabBar.tintColor = UIColor.app.standard.buttonText()
-        tabBar.unselectedItemTintColor = UIColor.app.standard.solidText()
+        tabBar.layer.borderColor = UIColor.app.other().cgColor
+        tabBar.layer.backgroundColor = UIColor.app.other().cgColor
+        tabBar.barTintColor =  UIColor.app.other()
+        tabBar.tintColor = UIColor.app.buttonText()
+        tabBar.unselectedItemTintColor = UIColor.app.solidText()
         view.layer.addSublayer(background)
         
         self.view.addGestureRecognizer(leftSwipe)

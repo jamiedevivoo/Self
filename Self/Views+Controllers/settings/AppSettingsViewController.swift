@@ -7,14 +7,14 @@ class AppSettingsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var user: User?
+    var user: UserInfo?
     
     
     // MARK: - SubViews
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.primary
+        view.backgroundColor = UIColor.app.other()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
@@ -39,7 +39,7 @@ class AppSettingsViewController: UIViewController {
         
         addSubViews()
         addConstraints()
-        self.user = AccountManager.shared.user
+
     }
     
     

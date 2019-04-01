@@ -51,14 +51,14 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         circlePaths.addPath(circleOnePath.cgPath)
         circlePaths.addPath(circleTwoPath.cgPath)
         
-        shapeLayer.fillColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 1).cgColor
-        shapeLayer.strokeColor = UIColor(red: 255/255, green: 244/255, blue: 240/255, alpha: 1).cgColor
+        shapeLayer.fillColor = UIColor.app.other().cgColor
+        shapeLayer.strokeColor = UIColor.app.other().cgColor
         shapeLayer.lineWidth = 3.0
         shapeLayer.path = circlePaths
         return shapeLayer
     }()
         
-    var onboardingSlides:[OnboardingSlideView] = [];
+    var onboardingSlides:[LaunchSlideView] = [];
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,24 +76,24 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         addConstraints()
     }
     
-    func createOnboardingFlow() -> [OnboardingSlideView] {
-        let onboardingSlideOne: OnboardingSlideView = {
-            let onboardingSlide = OnboardingSlideView()
-            onboardingSlide.image.image = UIImage(named: "home")
+    func createOnboardingFlow() -> [LaunchSlideView] {
+        let onboardingSlideOne: LaunchSlideView = {
+            let onboardingSlide = LaunchSlideView()
+            onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.headline.text = "Personal"
             onboardingSlide.desc.text = "Self is all about you, it's your personal assistant.Every day you'll get a unique message based on what you share and what it learns."
             return onboardingSlide
         }()
-        let onboardingSlideTwo: OnboardingSlideView = {
-            let onboardingSlide = OnboardingSlideView()
-            onboardingSlide.image.image = UIImage(named: "globe")
+        let onboardingSlideTwo: LaunchSlideView = {
+            let onboardingSlide = LaunchSlideView()
+            onboardingSlide.image.image = UIImage(named: "globe")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.headline.text = "Challenges"
             onboardingSlide.desc.text = "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
             return onboardingSlide
         }()
-        let onboardingSlideThree: OnboardingSlideView = {
-            let onboardingSlide = OnboardingSlideView()
-            onboardingSlide.image.image = UIImage(named: "for_you")
+        let onboardingSlideThree: LaunchSlideView = {
+            let onboardingSlide = LaunchSlideView()
+            onboardingSlide.image.image = UIImage(named: "for_you")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.headline.text = "Journal"
             onboardingSlide.desc.text = "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
             return onboardingSlide
@@ -101,7 +101,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         return [onboardingSlideOne, onboardingSlideTwo, onboardingSlideThree]
     }
     
-    func setupOnboardingScrollView(slides : [OnboardingSlideView]) {
+    func setupOnboardingScrollView(slides : [LaunchSlideView]) {
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: view.frame.height)
         scrollView.isPagingEnabled = true

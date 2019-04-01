@@ -7,10 +7,14 @@ class AccountManager {
     
     let userRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid)
 
-    var user: User?
+    var user: UserInfo?
 
     // MARK: - Init
-    private init() { }
+    private init() {
+        if Auth.auth().currentUser !== nil {
+//            self.state = .loggedIn(UserInfo(dictionary: ["uid" : "dhehqifu", "email":"edA"]))
+        }
+    }
 
     // MARK - Functions
     func loadUser(completion: @escaping () -> ()) {
@@ -19,16 +23,29 @@ class AccountManager {
                 print(error)
             } else {
                 if let snapshot = snapshot {
-                    self.user = User(snapshot: snapshot)
+                    self.user = UserInfo(snapshot: snapshot)
                     completion()
                 }
             }
         }
     }
 
-    func update(_ user: User? = AccountManager.shared.user) {
+    func update(_ user: UserInfo? = AccountManager.shared.user) {
         guard let user = user else { return }
         userRef.setData(user.dictionary, merge: true) { _ in }
     }
+    
+    func logout() {
+        try! Auth.auth().signOut()
+        AppManager.shared.state = .unregistered
+    }
+    
+}
+
+extension AccountManager {
+    
+}
+
+extension AccountManager {
     
 }

@@ -1,9 +1,10 @@
 import UIKit
 
-class OnboardingSlideView: UIView {
+class LaunchSlideView: UIView {
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
+        imageView.tintColor = UIColor.app.solidText()
         return imageView
     }()
     
@@ -11,6 +12,7 @@ class OnboardingSlideView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = UIColor.app.solidText()
         return label
     }()
     
@@ -19,6 +21,7 @@ class OnboardingSlideView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        label.textColor = UIColor.app.solidText()
         return label
     }()
     
@@ -40,7 +43,7 @@ class OnboardingSlideView: UIView {
     
 }
 
-extension OnboardingSlideView: ViewBuilding {
+extension LaunchSlideView: ViewBuilding {
     
     func addSubViews() {
         backgroundColor = .clear

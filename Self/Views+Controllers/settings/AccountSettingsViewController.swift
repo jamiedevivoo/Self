@@ -7,14 +7,14 @@ class AccountSettingsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var user: User?
+    var user: UserInfo?
     
     
     // MARK: - SubViews
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.primary
+        view.backgroundColor = UIColor.app.background()
         return view
     }()
     lazy var pageTipLabel: UILabel = {

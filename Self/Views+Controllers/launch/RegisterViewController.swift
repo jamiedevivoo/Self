@@ -41,7 +41,7 @@ class RegisterViewController: UIViewController {
     
     // MARK: - Properties
     var db:Firestore!
-    var user: User!
+    var user: UserInfo!
     
     // MARK: - Initialization
     override func viewDidLoad() {

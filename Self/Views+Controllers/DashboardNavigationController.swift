@@ -11,7 +11,7 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
         button.style = .plain
         button.target = self
         button.action = #selector(sidebarButtonTapped)
-        button.tintColor = UIColor.app.standard.solidText()
+        button.tintColor = UIColor.app.solidText()
         return button
     }()
     

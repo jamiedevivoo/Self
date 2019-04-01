@@ -8,7 +8,8 @@ class AppContainerViewController: UIViewController {
                 
         AppManager.shared.appContainer = self
         AppManager.shared.showApp()
-        view.backgroundColor = UIColor.app.standard.background()
+        
+        view.backgroundColor = UIColor.app.background()
     }
 
 }

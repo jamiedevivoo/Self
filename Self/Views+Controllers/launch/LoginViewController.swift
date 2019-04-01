@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
         textField.text = "email@email.com"
         textField.placeholder = "Email Address"
         textField.keyboardType = UIKeyboardType.emailAddress
-        textField.textColor = UIColor.app.text.primary
+        textField.textColor = UIColor.app.solidText()
         textField.minimumFontSize = 25.0
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 15
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         textField.placeholder = "Password"
         textField.keyboardType = UIKeyboardType.default
         textField.isSecureTextEntry = true
-        textField.textColor = UIColor.app.text.primary
+        textField.textColor = UIColor.app.solidText()
         textField.minimumFontSize = 25.0
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 15
@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
         db = Firestore.firestore()
         
         title = "Login"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.app.background()
         
         addSubViews()
         addConstraints()
@@ -93,8 +93,7 @@ class LoginViewController: UIViewController {
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
-            
-            self.dismiss(animated: true, completion: nil)
+            AppManager.shared.state = .loggedIn((authResult?.user)!)
         }
     }
 }

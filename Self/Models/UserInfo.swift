@@ -1,6 +1,6 @@
 import Firebase
 
-class User: CustomStringConvertible {
+class UserInfo: CustomStringConvertible {
     
     // MARK: - Describe Properties
     var description: String {
@@ -17,7 +17,7 @@ class User: CustomStringConvertible {
 
     // MARK: - Properties
     var uid: String
-    var name: String
+    var name: String?
     var email: String
     var lastname: String?
     
@@ -41,11 +41,16 @@ class User: CustomStringConvertible {
 //        self.uid = authUser.uid
 //    }
     
-    private init(user: User) {
-        self.uid = user.uid
-        self.name = user.name
-        self.lastname = user.lastname
-        self.email = user.email
+    private init(userInfo: UserInfo) {
+        self.uid = userInfo.uid
+        self.name = userInfo.name
+        self.lastname = userInfo.lastname
+        self.email = userInfo.email
+    }
+    
+    private init(authUser: User) {
+        self.uid = authUser.uid
+        self.email = authUser.email!
     }
     
     // MARK: - Functions

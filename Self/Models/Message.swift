@@ -2,13 +2,23 @@ import Firebase
 
 class Message {
     
+    enum MessageType {
+        case time
+        case insight
+        case mood
+        case urgent
+        case other
+    }
+    
     let userRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid)
     
-    var user: User?
+    var user: UserInfo?
     
     var greeting: String?
     var message: String?
     var actions: [UIButton]?
+    
+    var type: MessageType = .time
     
     init() {
         create()
