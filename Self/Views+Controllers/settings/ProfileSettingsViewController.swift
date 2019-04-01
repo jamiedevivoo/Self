@@ -14,14 +14,14 @@ class ProfileSettingsViewController: UIViewController {
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.other()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to edit your profile."
         label.textAlignment = .left
-        label.textColor = .darkText
+        label.textColor = UIColor.app.solidText()
         label.numberOfLines = 0
         
         return label
@@ -34,7 +34,7 @@ class ProfileSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Profile Settings"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.app.background()
         navigationItem.leftBarButtonItems = nil
         
         addSubViews()

@@ -20,11 +20,11 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         let button = UIButton()
         button.setTitle("Get Started", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor.app.pinkColor()
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
-        button.layer.borderColor = UIColor.blue.cgColor
+        button.layer.borderColor = UIColor.app.pinkColor().cgColor
         button.addTarget(self, action: #selector(LaunchViewController.navigateToRegister), for: .touchUpInside)
         return button
     }()
@@ -32,12 +32,12 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.backgroundColor = .white
-        button.layer.borderWidth = 1.0
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .clear
+        button.layer.borderWidth = 2
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
-        button.layer.borderColor = UIColor.blue.cgColor
+        button.layer.borderColor = UIColor.app.pinkColor().cgColor
         button.addTarget(self, action: #selector(LaunchViewController.navigateToLogin), for: .touchUpInside)
         return button
     }()

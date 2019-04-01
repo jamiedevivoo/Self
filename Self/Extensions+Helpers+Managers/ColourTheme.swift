@@ -44,5 +44,13 @@ extension UIColor {
                 return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 1)
             }
         }
+        static func pinkColor() -> UIColor {
+            switch AppManager.shared.colorMode {
+            case .dark:
+                return UIColor(red: 220/255, green: 074/255, blue: 97/255, alpha: 1)
+            default:
+                return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 1)
+            }
+        }
     }
 }

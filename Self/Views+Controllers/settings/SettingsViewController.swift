@@ -9,20 +9,21 @@ class SettingsViewController: UIViewController {
     
     lazy var topDescriptionView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.other()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to modify your account and app settings."
         label.textAlignment = .left
-        label.textColor = .darkText
+        label.textColor = UIColor.app.solidText()
         label.numberOfLines = 0
         return label
     }()
     
     lazy var settingsTableView: UITableView = {
         let table = UITableView()
+        table.backgroundColor = UIColor.app.background()
         table.isScrollEnabled = false
         table.dataSource = self
         table.delegate = self
@@ -38,7 +39,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Settings"
-        view.backgroundColor = .gray
+        view.backgroundColor = UIColor.app.background()
         navigationItem.leftBarButtonItems = nil
         
         settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "settingCell")
@@ -65,6 +66,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
         let settingTitle = settingOptions[indexPath.row]
         cell.textLabel?.text = settingTitle
+        cell.backgroundColor = UIColor.app.background()
         if settingTitle == "Logout" { cell.textLabel?.textColor = .red }
         return cell
     }

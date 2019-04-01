@@ -35,6 +35,9 @@ class AppManager {
 
     // MARK: - Init
     private init() {
+        if Auth.auth().currentUser !== nil {
+            self.state = .loggedIn(Auth.auth().currentUser!)
+        }
     }
     
     // MARK: - Functions
@@ -53,7 +56,8 @@ class AppManager {
                 let navigationController = UINavigationController()
                 navigationController.title = "Self"
                 navigationController.view.backgroundColor = UIColor.app.background()
-                navigationController.navigationBar.barTintColor = .white
+                navigationController.navigationBar.barTintColor = UIColor.app.solidText()
+                navigationController.navigationBar.tintColor = UIColor.app.solidText()
                 navigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                 navigationController.navigationBar.shadowImage = UIImage()
                 navigationController.navigationBar.isTranslucent = true

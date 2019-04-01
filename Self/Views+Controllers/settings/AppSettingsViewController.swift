@@ -21,7 +21,7 @@ class AppSettingsViewController: UIViewController {
         let label = UILabel()
         label.text = "Use this page to modify app related settings."
         label.textAlignment = .left
-        label.textColor = .darkText
+        label.textColor = UIColor.app.solidText()
         label.numberOfLines = 0
         
         return label
@@ -34,7 +34,7 @@ class AppSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "App Settings"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.app.background()
         navigationItem.leftBarButtonItems = nil
         
         addSubViews()
