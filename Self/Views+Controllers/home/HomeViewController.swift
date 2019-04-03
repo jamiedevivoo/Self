@@ -5,7 +5,7 @@ import Firebase
 class HomeViewController: UIViewController {
     
     // MARK: - Views
-    lazy var messageView: UIView = {
+    lazy var messageContainerView: UIView = {
         let stackView = UIView()
         return stackView
     }()
@@ -127,12 +127,12 @@ class HomeViewController: UIViewController {
 // MARK: -
 extension HomeViewController: ViewBuilding {
     func addSubViews() {        
-        view.addSubview(messageView)
-        messageView.addSubview(greetingLabel)
-        messageView.addSubview(nameLabel)
-        messageView.addSubview(messageLabel)
+        view.addSubview(messageContainerView)
+        messageContainerView.addSubview(greetingLabel)
+        messageContainerView.addSubview(nameLabel)
+        messageContainerView.addSubview(messageLabel)
+        messageContainerView.addSubview(messageResponseButtonStack)
         
-        messageView.addSubview(messageResponseButtonStack)
         messageResponseButtonStack.addArrangedSubview(messageResponseOne)
         messageResponseButtonStack.addArrangedSubview(messageResponseTwo)
         
@@ -145,11 +145,12 @@ extension HomeViewController: ViewBuilding {
     }
     
     func addConstraints() {
-        messageView.snp.makeConstraints { (make) in
+        messageContainerView.snp.makeConstraints { (make) in
+            make.top.greaterThanOrEqualToSuperview()
             make.left.equalTo(20)
-            make.centerY.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.7)
-            make.bottom.equalTo(moodButton.snp.top)
+            make.height.greaterThanOrEqualTo(100)
+            make.bottom.greaterThanOrEqualTo(actionHeaderLabel.snp.top).inset(-50)
         }
             greetingLabel.snp.makeConstraints { (make) in
                 make.left.equalToSuperview()
@@ -175,6 +176,7 @@ extension HomeViewController: ViewBuilding {
             make.bottom.equalTo(view.snp.bottom).inset(120)
             make.left.equalTo(20)
             make.width.equalToSuperview()
+            make.height.greaterThanOrEqualTo(50)
         }
         actionHeaderLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(actionButtonStack.snp.top).offset(-20)

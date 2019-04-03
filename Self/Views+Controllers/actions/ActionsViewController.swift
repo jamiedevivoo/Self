@@ -63,6 +63,7 @@ class ActionsViewController: UIViewController {
     lazy var actionCardDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Walking is good for you."
+        label.numberOfLines = 0
         return label
     }()
     
@@ -87,7 +88,7 @@ extension ActionsViewController: ViewBuilding {
         
         view.addSubview(actionsScrollView)
             actionsScrollView.addSubview(actionCardStack)
-                actionCardStack.addArrangedSubview(actionCardView)
+                actionCardStack.addSubview(actionCardView)
                     actionCardView.addSubview(actionCardTagsStack)
                         actionCardTagsStack.addArrangedSubview(actionCardTagButton)
                     actionCardView.addSubview(actionCardTitleLabel)
