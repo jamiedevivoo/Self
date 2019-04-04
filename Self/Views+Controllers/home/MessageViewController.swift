@@ -11,7 +11,11 @@ import SnapKit
 
 class MessageViewController: UIViewController {
     
-    let messageView = UIView()
+    lazy var messageView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
+    }()
     
     lazy var greetingLabel: UILabel = {
         let label = UILabel()
@@ -32,7 +36,7 @@ class MessageViewController: UIViewController {
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.light)
-        label.text = "Did you know Mondays are your happiest days? Let’s rock today!"
+        label.text = message.messageText
         label.textColor = UIColor.app.solidText()
         label.numberOfLines = 0
         return label
@@ -47,20 +51,6 @@ class MessageViewController: UIViewController {
         return stackView
     }()
     
-    lazy var messageResponseOne: UIButton = {
-        let button = DashboardButton()
-        button.setTitle("💪", for: .normal)
-        button.addTarget(self, action: #selector(MessageViewController.logNewMood), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var messageResponseTwo: UIButton = {
-        let button = DashboardButton()
-        button.setTitle("😔", for: .normal)
-        button.addTarget(self, action: #selector(MessageViewController.messageResponse), for: .touchUpInside)
-        return button
-    }()
-    
     // MARK: - Properties
     var user: UserInfo?
     var message = Message()
@@ -69,9 +59,22 @@ class MessageViewController: UIViewController {
         super.viewDidLoad()
         addSubViews()
         addConstraints()
+        createResponses()
     }
     
     // MARK: - Functions
+    
+    func createResponses() {
+        guard let messageActions = message.actions else {
+            return
+        }
+        for action in messageActions {
+            let button = DashboardButton()
+            button.setTitle(action, for: .normal)
+            button.addTarget(self, action: #selector(MessageViewController.logNewMood), for: .touchUpInside)
+            messageResponseButtonStack.addArrangedSubview(button)
+        }
+    }
     
     @objc func logNewMood() {
         navigationController?.pushViewController(AddMoodViewController(), animated: false)
@@ -86,19 +89,17 @@ extension MessageViewController: ViewBuilding {
     func addSubViews() {
         
         self.view.addSubview(messageView)
-            messageView.addSubview(greetingLabel)
-            messageView.addSubview(nameLabel)
-            messageView.addSubview(messageLabel)
-            messageView.addSubview(messageResponseButtonStack)
-                messageResponseButtonStack.addArrangedSubview(messageResponseOne)
-                messageResponseButtonStack.addArrangedSubview(messageResponseTwo)
+            messageView.addArrangedSubview(greetingLabel)
+            messageView.addArrangedSubview(nameLabel)
+            messageView.addArrangedSubview(messageLabel)
+            messageView.addArrangedSubview(messageResponseButtonStack)
     }
     
     func addConstraints() {
         messageView.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.view.snp.centerY)
-            make.height.greaterThanOrEqualTo(100)
             make.left.right.equalToSuperview()
+            make.height.greaterThanOrEqualTo(100)
         }
             greetingLabel.snp.makeConstraints { (make) in
                 make.left.equalToSuperview()
@@ -117,7 +118,7 @@ extension MessageViewController: ViewBuilding {
             }
             messageResponseButtonStack.snp.makeConstraints { (make) in
                 make.left.equalToSuperview()
-                make.top.equalTo(messageLabel.snp.bottom).offset(10)
+                make.top.equalTo(messageLabel.snp.bottom).offset(20)
                 make.width.equalToSuperview()
             }
     }

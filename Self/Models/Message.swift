@@ -15,8 +15,8 @@ class Message {
     var user: UserInfo?
     
     var greeting: String?
-    var message: String?
-    var actions: [UIButton]?
+    var messageText: String?
+    var actions: [String]?
     
     var type: MessageType = .time
     
@@ -26,8 +26,8 @@ class Message {
     
     func create() {
         self.greeting = createGreeting()
-        self.message = "Did you know Mondays are your happiest days? Let’s rock today!"
-        self.actions = [UIButton()]
+        self.messageText = "Did you know Mondays are your happiest days? Let’s rock today!"
+        self.actions = ["💪","😔"]
     }
     
     func createGreeting() -> String {
