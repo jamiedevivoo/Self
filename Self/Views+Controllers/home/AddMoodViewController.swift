@@ -19,15 +19,25 @@ class AddMoodViewController: UIViewController {
     
     lazy var emotionLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor.app.solidText()
+        label.text = "How are you?"
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
         return label
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(emotionLabel)
+        
+        emotionLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        emotionLabel.snp.remakeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -35,8 +45,9 @@ class AddMoodViewController: UIViewController {
         let location = touch.location(in: self.view)
         let moodRatings = calculateMood(x: location.x, y: location.y)
         let emotion = getClosestEmotion(moodRatings: moodRatings, emotions: emotions)
-        emotionLabel.text = emotion?.name
-        emotionLabel.frame.origin = location
+        emotionLabel.text = emotion?.adj
+        emotionLabel.frame.origin.x = location.x
+        emotionLabel.frame.origin.y = location.y - 50
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

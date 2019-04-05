@@ -91,7 +91,8 @@ class DashboardTabBarController: UITabBarController {
     }
     
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        if sender.view ==  self.view {
+        // FIXME: Needs to compare the view the gesture occured in to tab bar root view controllers
+        if sender.view == self.view {
             if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
                 animateToTab(toIndex: self.selectedIndex + 1)
                 self.selectedIndex += 1
