@@ -31,21 +31,24 @@ class LoginViewController: UIViewController {
     }()
     lazy var loginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor.app.pinkColor()
         button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 15
-        button.layer.borderColor = UIColor.blue.cgColor
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        button.layer.borderColor = UIColor.app.pinkColor().cgColor
         button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         return button
     }()
     private lazy var loginStackView: UIStackView = { [unowned self] in
         let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.loginButton])
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .fill
-        stackView.spacing = 10.0
+        stackView.alignment = .leading // .leading .firstBaseline .center .trailing .lastBaseline
+        stackView.distribution = .equalCentering // .fillEqually .fillProportionally .equalSpacing .equalCentering
+        stackView.isBaselineRelativeArrangement = false
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.spacing = UIStackView.spacingUseSystem
         return stackView
     }()
     
@@ -110,16 +113,18 @@ extension LoginViewController: ViewBuilding {
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().inset(50)
             make.center.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.22)
         }
         emailTextField.snp.makeConstraints { (make) in
-            make.height.equalTo(50.0)
+            make.height.equalTo(60.0)
+            make.width.equalToSuperview()
         }
         passwordTextField.snp.makeConstraints { (make) in
-            make.height.equalTo(50.0)
+            make.height.equalTo(60.0)
+            make.width.equalToSuperview()
         }
         loginButton.snp.makeConstraints { (make) in
-            make.height.equalTo(50.0)
+            make.height.equalTo(60)
+            make.width.equalToSuperview()
         }
 
     }

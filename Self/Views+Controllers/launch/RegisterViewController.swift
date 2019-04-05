@@ -34,10 +34,25 @@ class RegisterViewController: UIViewController {
     lazy var registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.app.pinkColor()
+        button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        button.layer.borderColor = UIColor.app.pinkColor().cgColor
         button.addTarget(self, action: #selector(RegisterViewController.registerButtonAction), for: .touchUpInside)
         return button
     }()
+    private lazy var registerStackView: UIStackView = { [unowned self] in
+        let stackView = UIStackView(arrangedSubviews: [self.nameTextField, self.emailTextField, self.passwordTextField, self.passwordConfirmTextField, self.registerButton])
+        stackView.axis = .vertical
+        stackView.alignment = .leading // .leading .firstBaseline .center .trailing .lastBaseline
+        stackView.distribution = .equalCentering // .fillEqually .fillProportionally .equalSpacing .equalCentering
+        stackView.isBaselineRelativeArrangement = false
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.spacing = UIStackView.spacingUseSystem
+        return stackView
+        }()
     
     // MARK: - Properties
     var db:Firestore!
@@ -131,43 +146,34 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController: ViewBuilding {
     func addSubViews() {
-        self.view.addSubview(nameTextField)
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(passwordConfirmTextField)
-        self.view.addSubview(registerButton)
+        self.view.addSubview(registerStackView)
     }
     
     func addConstraints() {
+        registerStackView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(50)
+            make.right.equalToSuperview().inset(50)
+            make.center.equalToSuperview()
+        }
         nameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.centerX.centerY.equalTo(self.view)
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
         }
         emailTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
         }
         passwordTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
         }
         passwordConfirmTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
         }
         registerButton.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(40)
-            make.top.equalTo(passwordConfirmTextField.snp.bottom).offset(30)
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
         }
     }
 }

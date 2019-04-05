@@ -27,7 +27,7 @@ class Message {
     func create() {
         self.greeting = createGreeting()
         self.messageText = "Did you know Mondays are your happiest days? Let’s rock today!"
-        self.actions = ["💪","😔"]
+        self.actions = ["💪","😔","Hey"]
     }
     
     func createGreeting() -> String {

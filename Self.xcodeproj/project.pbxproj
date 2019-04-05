@@ -19,7 +19,6 @@
 		A33409A3224570A4004CBB2A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334099F224570A2004CBB2A /* AccountSettingsViewController.swift */; };
 		A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A0224570A3004CBB2A /* SettingsViewController.swift */; };
 		A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */; };
-		A33409A7224570AF004CBB2A /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A6224570AF004CBB2A /* OnboardingController.swift */; };
 		A33409A9224570B3004CBB2A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A8224570B3004CBB2A /* LoginViewController.swift */; };
 		A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AA224570B6004CBB2A /* HighlightsViewController.swift */; };
 		A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* HomeViewController.swift */; };
@@ -60,7 +59,6 @@
 		A334099F224570A2004CBB2A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		A33409A0224570A3004CBB2A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
-		A33409A6224570AF004CBB2A /* OnboardingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		A33409A8224570B3004CBB2A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A33409AA224570B6004CBB2A /* HighlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightsViewController.swift; sourceTree = "<group>"; };
 		A33409AC224570BC004CBB2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 			children = (
 				A316E708224AF18F00283547 /* LaunchViewController.swift */,
 				A334098A2245701B004CBB2A /* LaunchSlideView.swift */,
-				A33409A6224570AF004CBB2A /* OnboardingController.swift */,
 				A33409A8224570B3004CBB2A /* LoginViewController.swift */,
 				A334098B2245701C004CBB2A /* RegisterViewController.swift */,
 			);
@@ -128,9 +125,9 @@
 			children = (
 				A33409AC224570BC004CBB2A /* HomeViewController.swift */,
 				A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */,
-				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
-				A30EC35222564FC60092A4E2 /* ActionListViewController.swift */,
 				A30EC35422565BEF0092A4E2 /* MessageViewController.swift */,
+				A30EC35222564FC60092A4E2 /* ActionListViewController.swift */,
+				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -416,7 +413,6 @@
 				A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,
-				A33409A7224570AF004CBB2A /* OnboardingController.swift in Sources */,
 				A30EC35322564FC60092A4E2 /* ActionListViewController.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,
 				A33409A3224570A4004CBB2A /* AccountSettingsViewController.swift in Sources */,

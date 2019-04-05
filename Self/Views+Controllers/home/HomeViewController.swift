@@ -19,14 +19,6 @@ class HomeViewController: UIViewController {
         return viewController
     }()
     
-//    lazy var messageView: MessageView = {
-//        let messageView = MessageView()
-//        messageView.greetingLabel.text = message.greeting ?? "" + ","
-//        messageView.nameLabel.text = user?.name
-//        return messageView
-//    }()
-    
-    
     // MARK: - Properties
     var user: UserInfo?
 
@@ -44,7 +36,7 @@ class HomeViewController: UIViewController {
 
 // MARK: -
 extension HomeViewController: ViewBuilding, AddingChildViewControllers {
-        
+    
     func addChildViewController(viewController: UIViewController) {
         addChild(viewController)
         viewController.didMove(toParent: self)

@@ -5,6 +5,9 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.bounces = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
@@ -32,7 +35,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(UIColor.app.pinkColor(), for: .normal)
         button.backgroundColor = .clear
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 30
@@ -57,7 +60,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         shapeLayer.path = circlePaths
         return shapeLayer
     }()
-        
+    
     var onboardingSlides:[LaunchSlideView] = [];
 
     override func viewDidLoad() {
@@ -66,8 +69,8 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         title = "Welcome to Self"
         scrollView.delegate = self
         
-        onboardingSlides = createOnboardingFlow()
-        setupOnboardingScrollView(slides: onboardingSlides)
+        onboardingSlides = createOnboardingScreens()
+        addOnboardingScreensToScrollView(slides: onboardingSlides)
         
         pageControl.numberOfPages = onboardingSlides.count
         pageControl.currentPage = 0
@@ -76,14 +79,17 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         addConstraints()
     }
     
-    func createOnboardingFlow() -> [LaunchSlideView] {
+    func createOnboardingScreens() -> [LaunchSlideView] {
+        
         let onboardingSlideOne: LaunchSlideView = {
             let onboardingSlide = LaunchSlideView()
+            onboardingSlide.frame.size.height = scrollView.frame.size.height
             onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.headline.text = "Personal"
-            onboardingSlide.desc.text = "Self is all about you, it's your personal assistant.Every day you'll get a unique message based on what you share and what it learns."
+            onboardingSlide.desc.text = "Self is all about you, it's your personal assistant. Every day you'll get a unique message based on what you share and what it learns."
             return onboardingSlide
         }()
+        
         let onboardingSlideTwo: LaunchSlideView = {
             let onboardingSlide = LaunchSlideView()
             onboardingSlide.image.image = UIImage(named: "globe")!.withRenderingMode(.alwaysTemplate)
@@ -91,6 +97,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
             onboardingSlide.desc.text = "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
             return onboardingSlide
         }()
+        
         let onboardingSlideThree: LaunchSlideView = {
             let onboardingSlide = LaunchSlideView()
             onboardingSlide.image.image = UIImage(named: "for_you")!.withRenderingMode(.alwaysTemplate)
@@ -98,12 +105,12 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
             onboardingSlide.desc.text = "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
             return onboardingSlide
         }()
+        
         return [onboardingSlideOne, onboardingSlideTwo, onboardingSlideThree]
     }
     
-    func setupOnboardingScrollView(slides : [LaunchSlideView]) {
-        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: view.frame.height)
+    func addOnboardingScreensToScrollView(slides : [LaunchSlideView]) {
+        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
         scrollView.isPagingEnabled = true
         
         for i in 0 ..< slides.count {
@@ -120,8 +127,9 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     @objc func navigateToLogin(_ sender: Any) {
         navigationController?.pushViewController(LoginViewController(), animated: true)
     }
+    
     @objc func navigateToRegister(_ sender: Any) {
-        navigationController?.pushViewController(OnboardingController(), animated: true)
+        navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     
 }
@@ -139,15 +147,14 @@ extension LaunchViewController: ViewBuilding {
     func addConstraints() {
         scrollView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
-            make.top.equalTo(150)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(300)
+            make.bottom.equalTo(pageControl.snp.top).offset(10)
         }
         pageControl.snp.makeConstraints { (make) in
-            make.bottom.equalTo(registerButton.snp.top).inset(-100)
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
-            make.left.equalToSuperview()
+            make.bottom.equalTo(registerButton.snp.top).offset(-25)
+            make.height.equalTo(10)
+            make.left.right.equalToSuperview()
         }
         registerButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(loginButton.snp.top).inset(-20)
@@ -156,7 +163,7 @@ extension LaunchViewController: ViewBuilding {
             make.centerX.equalToSuperview()
         }
         loginButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().inset(50)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(60)
             make.centerX.equalToSuperview()

@@ -2,6 +2,8 @@ import UIKit
 
 class LaunchSlideView: UIView {
     
+    let container = UIStackView()
+    
     lazy var image: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = UIColor.app.solidText()
@@ -47,16 +49,21 @@ extension LaunchSlideView: ViewBuilding {
     
     func addSubViews() {
         backgroundColor = .clear
-        addSubview(image)
-        addSubview(headline)
-        addSubview(desc)
+        addSubview(container)
+        container.addSubview(image)
+        container.addSubview(headline)
+        container.addSubview(desc)
     }
     func addConstraints() {
-        image.snp.makeConstraints { (make) in
-            make.width.equalTo(200)
-            make.height.equalTo(200)
+        container.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(50)
+            make.width.equalToSuperview()
+        }
+        image.snp.makeConstraints { (make) in
+            make.width.equalTo(150)
+            make.height.equalTo(150)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(20)
         }
         headline.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.8)

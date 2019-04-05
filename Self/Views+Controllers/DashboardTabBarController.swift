@@ -61,9 +61,9 @@ class DashboardTabBarController: UITabBarController {
         
         tabBar.clipsToBounds = true
         tabBar.layer.borderWidth = 0
-        tabBar.layer.borderColor = UIColor.app.other().cgColor
-        tabBar.layer.backgroundColor = UIColor.app.other().cgColor
-        tabBar.barTintColor =  UIColor.app.other()
+        tabBar.layer.borderColor = UIColor.app.background().cgColor
+        tabBar.layer.backgroundColor = UIColor.app.background().cgColor
+        tabBar.barTintColor =  UIColor.app.background()
         tabBar.tintColor = UIColor.app.buttonText()
         tabBar.unselectedItemTintColor = UIColor.app.solidText()
         view.layer.addSublayer(background)
