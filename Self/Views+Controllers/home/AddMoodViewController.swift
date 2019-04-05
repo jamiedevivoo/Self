@@ -1,11 +1,27 @@
 import UIKit
 import SnapKit
 
+struct Emotion: Hashable {
+    var name: String
+    var adj: String
+    var valence: CGFloat
+    var arousal: CGFloat
+}
+
 class AddMoodViewController: UIViewController {
     
-    let anger = ["Valence":-1,"Arousal":1] as [String:CGFloat]
-    let excited = ["Valence":1,"Arousal":1] as [String:CGFloat]
+    let emotions = [
+    Emotion.init(name: "Anger", adj: "angry", valence: 1, arousal: -1),
+    Emotion.init(name: "Boredom", adj: "bord", valence: 0.5, arousal: -1),
+    Emotion.init(name: "Excitement", adj: "excited", valence: 1, arousal: 1),
+    Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
+    ]
     
+    lazy var emotionLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -15,41 +31,46 @@ class AddMoodViewController: UIViewController {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        let touch = touches.first!
+        let location = touch.location(in: self.view)
+        let moodRatings = calculateMood(x: location.x, y: location.y)
+        let emotion = getClosestEmotion(moodRatings: moodRatings, emotions: emotions)
+        emotionLabel.text = emotion?.name
+        emotionLabel.frame.origin = location
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let location = touch.location(in: self.view)
-        let mood = calculateMood(x: location.x, y: location.y)
-        print(mood)
-        print(getClosestEmotion(mood: mood, emotions: [anger,excited]))
+        let moodRatings = calculateMood(x: location.x, y: location.y)
+        let emotion = getClosestEmotion(moodRatings: moodRatings, emotions: emotions)
     }
     
     func calculateMood(x: CGFloat, y: CGFloat) -> Dictionary<String, CGFloat> {
-        let arousal = -convertToScale(coordinate: y, scale: self.view.frame.height)
-        let valence = convertToScale(coordinate: x, scale: self.view.frame.width)
+        let arousal = -convertCoordinateToRating(coordinate: y, range: self.view.frame.height)
+        let valence = convertCoordinateToRating(coordinate: x, range: self.view.frame.width)
         let mood = ["Valence":valence,"Arousal":arousal]
         return mood
     }
     
-    func convertToScale(coordinate: CGFloat, scale: CGFloat) -> CGFloat {
-        let scale = scale / 2
-        let position = (coordinate - scale) / scale
-        let grade = CGFloat(round(100*position)/100)
-        return grade
+    func convertCoordinateToRating(coordinate: CGFloat, range: CGFloat) -> CGFloat {
+        let scale = range / 2
+        let rating = (coordinate - scale) / scale
+        let ratingRounded = CGFloat(round(100*rating)/100)
+        return ratingRounded
     }
     
-    func getClosestEmotion(mood: Dictionary<String, CGFloat>, emotions: [[String:CGFloat]]) -> [[String:CGFloat]] {
-        var emotions = emotions
-        for emotion in emotions {
-            let valenceDifference = abs(mood["Valence"]! - emotion["Valence"]!)
-            let arousalDifference = abs(mood["Arousal"]! - emotion["Arousal"]!)
-            let sum = valenceDifference + arousalDifference
-            emotion["differenceToUser"] = sum
-        }
+    func getClosestEmotion(moodRatings: Dictionary<String, CGFloat>, emotions: [Emotion]) -> Emotion? {
+        var emotionIntensity = [Emotion:CGFloat]()
         
-        return emotions.sorted {$0["differenceToUser"]! < $1["differenceToUser"]!}
+        for emotion in emotions {
+            let valenceDifference = abs(moodRatings["Valence"]! - emotion.valence)
+            let arousalDifference = abs(moodRatings["Arousal"]! - emotion.arousal)
+            let sum = valenceDifference + arousalDifference
+            emotionIntensity[emotion] = sum
+        }
+        let closestEmotion = emotionIntensity.min { a, b in a.value < b.value }
+        return closestEmotion!.key
     }
 
 }
