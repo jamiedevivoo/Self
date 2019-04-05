@@ -95,22 +95,18 @@ extension MessageViewController: ViewBuilding {
         }
             greetingLabel.snp.makeConstraints { (make) in
                 make.left.equalToSuperview()
-                make.top.equalToSuperview()
                 make.width.equalToSuperview()
             }
             nameLabel.snp.makeConstraints { (make) in
                 make.left.equalToSuperview()
-                make.top.equalTo(greetingLabel.snp.bottom).inset(5)
                 make.width.equalToSuperview()
             }
             messageLabel.snp.makeConstraints { (make) in
                 make.left.equalToSuperview()
-                make.top.equalTo(nameLabel.snp.bottom).offset(10)
                 make.width.equalToSuperview()
             }
             messageResponseButtonStack.snp.makeConstraints { (make) in
                 make.left.equalToSuperview()
-                make.top.equalTo(messageLabel.snp.bottom).offset(20)
                 make.width.equalToSuperview()
             }
     }

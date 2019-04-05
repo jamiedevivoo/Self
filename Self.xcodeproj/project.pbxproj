@@ -126,10 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				A33409AC224570BC004CBB2A /* HomeViewController.swift */,
-				A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */,
 				A30EC35422565BEF0092A4E2 /* MessageViewController.swift */,
 				A30EC35222564FC60092A4E2 /* ActionListViewController.swift */,
 				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
+				A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";

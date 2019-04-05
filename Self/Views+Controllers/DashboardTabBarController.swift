@@ -91,13 +91,15 @@ class DashboardTabBarController: UITabBarController {
     }
     
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
-            animateToTab(toIndex: self.selectedIndex + 1)
-            self.selectedIndex += 1
-        }
-        if sender.direction == .right && (selectedIndex - 1) >= 0 {
-            animateToTab(toIndex: self.selectedIndex - 1)
-            self.selectedIndex -= 1
+        if sender.view ==  self.view {
+            if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
+                animateToTab(toIndex: self.selectedIndex + 1)
+                self.selectedIndex += 1
+            }
+            if sender.direction == .right && (selectedIndex - 1) >= 0 {
+                animateToTab(toIndex: self.selectedIndex - 1)
+                self.selectedIndex -= 1
+            }
         }
     }
     
