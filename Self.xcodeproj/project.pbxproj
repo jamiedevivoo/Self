@@ -37,6 +37,7 @@
 		A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86222456FB500592D88 /* AccountManager.swift */; };
 		A35EA86D22456FB800592D88 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86422456FB600592D88 /* AppManager.swift */; };
 		A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86522456FB700592D88 /* ViewBuilding.swift */; };
+		A39DDD2022577EAD00B6A24F /* BackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39DDD1F22577EAD00B6A24F /* BackgroundController.swift */; };
 		A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */; };
 		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 		A3CF950B224D4B4600D0EC31 /* ColourTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* ColourTheme.swift */; };
@@ -79,6 +80,7 @@
 		A35EA86222456FB500592D88 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A35EA86422456FB600592D88 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A35EA86522456FB700592D88 /* ViewBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBuilding.swift; sourceTree = "<group>"; };
+		A39DDD1F22577EAD00B6A24F /* BackgroundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundController.swift; sourceTree = "<group>"; };
 		A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoodViewController.swift; sourceTree = "<group>"; };
 		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* ColourTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourTheme.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				A35EA86022456FB400592D88 /* Onboarding.swift */,
 				A3CF950A224D4B4600D0EC31 /* ColourTheme.swift */,
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
+				A39DDD1F22577EAD00B6A24F /* BackgroundController.swift */,
 			);
 			path = "Extensions+Helpers+Managers";
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
 				A33409A2224570A4004CBB2A /* ProfileSettingsViewController.swift in Sources */,
 				A35EA85922456F9700592D88 /* UserInfo.swift in Sources */,
+				A39DDD2022577EAD00B6A24F /* BackgroundController.swift in Sources */,
 				A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */,
 				A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */,
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,

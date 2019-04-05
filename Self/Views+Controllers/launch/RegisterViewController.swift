@@ -63,8 +63,9 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Register"
-        view.backgroundColor = .white
+        
         db = Firestore.firestore()
+        view.backgroundColor = UIColor.app.background()
         
         addSubViews()
         addConstraints()

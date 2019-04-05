@@ -45,22 +45,6 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    lazy var shapeLayer: CAShapeLayer = {
-        let shapeLayer = CAShapeLayer()
-        
-        let circleOnePath = UIBezierPath(arcCenter: CGPoint(x: 400,y: 200), radius: CGFloat(250), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circleTwoPath = UIBezierPath(arcCenter: CGPoint(x: 0,y: 600), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circlePaths = CGMutablePath()
-        circlePaths.addPath(circleOnePath.cgPath)
-        circlePaths.addPath(circleTwoPath.cgPath)
-        
-        shapeLayer.fillColor = UIColor.app.other().cgColor
-        shapeLayer.strokeColor = UIColor.app.other().cgColor
-        shapeLayer.lineWidth = 3.0
-        shapeLayer.path = circlePaths
-        return shapeLayer
-    }()
-    
     var onboardingSlides:[LaunchSlideView] = [];
 
     override func viewDidLoad() {
@@ -71,6 +55,9 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         
         onboardingSlides = createOnboardingScreens()
         addOnboardingScreensToScrollView(slides: onboardingSlides)
+        
+        BackgroundController.shared.backgroundContainer = self
+        BackgroundController.shared.addBackground()
         
         pageControl.numberOfPages = onboardingSlides.count
         pageControl.currentPage = 0
@@ -126,6 +113,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     
     @objc func navigateToLogin(_ sender: Any) {
         navigationController?.pushViewController(LoginViewController(), animated: true)
+        BackgroundController.shared.fillScreen()
     }
     
     @objc func navigateToRegister(_ sender: Any) {
@@ -136,7 +124,6 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
 
 extension LaunchViewController: ViewBuilding {
     func addSubViews() {
-        view.layer.addSublayer(shapeLayer)
         view.addSubview(scrollView)
         view.addSubview(loginButton)
         view.addSubview(registerButton)

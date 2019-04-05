@@ -60,9 +60,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         db = Firestore.firestore()
+        view.backgroundColor = UIColor.app.background()
         
         title = "Login"
-        view.backgroundColor = UIColor.app.background()
         
         addSubViews()
         addConstraints()

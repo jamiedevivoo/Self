@@ -4,21 +4,6 @@ import SnapKit
 class DashboardTabBarController: UITabBarController {
     
     // MARK: - Views
-    lazy var background: CAShapeLayer = {
-        let shapeLayer = CAShapeLayer()
-        
-        let circleOnePath = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circleTwoPath = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circlePaths = CGMutablePath()
-        circlePaths.addPath(circleOnePath.cgPath)
-        circlePaths.addPath(circleTwoPath.cgPath)
-        
-        shapeLayer.fillColor = UIColor.app.other().cgColor
-        shapeLayer.path = circlePaths
-        shapeLayer.zPosition = -1
-        return shapeLayer
-    }()
-    
     lazy var leftSwipe: UISwipeGestureRecognizer = {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
@@ -37,28 +22,20 @@ class DashboardTabBarController: UITabBarController {
         super.viewDidLoad()
         
         self.delegate = self
-        
+        setupView()
         setUpTabBarViewControllers()
-        setup()
+        styleTabBar()
     }
     
-    override var selectedViewController: UIViewController? {
-        didSet {
-            animateBackground(selectedIndex)
-            animateToTab(toIndex: selectedIndex)
-        }
-    }
-
-    override var selectedIndex: Int {
-        didSet {
-            animateBackground(selectedIndex)
-            animateToTab(toIndex: selectedIndex)
-        }
-    }
+    func setupView() {
+        self.view.addGestureRecognizer(leftSwipe)
+        self.view.addGestureRecognizer(rightSwipe)
         
-    func setup() {
-        view.backgroundColor = UIColor.app.background()
-        
+        BackgroundController.shared.backgroundContainer = self
+        BackgroundController.shared.addBackground()
+    }
+    
+    func styleTabBar() {
         tabBar.clipsToBounds = true
         tabBar.layer.borderWidth = 0
         tabBar.layer.borderColor = UIColor.app.background().cgColor
@@ -66,10 +43,6 @@ class DashboardTabBarController: UITabBarController {
         tabBar.barTintColor =  UIColor.app.background()
         tabBar.tintColor = UIColor.app.buttonText()
         tabBar.unselectedItemTintColor = UIColor.app.solidText()
-        view.layer.addSublayer(background)
-        
-        self.view.addGestureRecognizer(leftSwipe)
-        self.view.addGestureRecognizer(rightSwipe)
     }
     
     func setUpTabBarViewControllers() {
@@ -102,38 +75,21 @@ class DashboardTabBarController: UITabBarController {
         self.selectedIndex = 1
     }
     
-    func animateBackground(_ selectedIndex: Int) {
-        let newBackgroundPaths = CGMutablePath()
-        if selectedIndex == 0 {
-            // Highlights
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 450,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newBackgroundPaths.addPath(circleOne.cgPath)
-            newBackgroundPaths.addPath(circleTwo.cgPath)
-        } else if selectedIndex == 1 {
-            // Home
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newBackgroundPaths.addPath(circleOne.cgPath)
-            newBackgroundPaths.addPath(circleTwo.cgPath)
-        } else if selectedIndex == 2 {
-            // Challenges
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: -50,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newBackgroundPaths.addPath(circleOne.cgPath)
-            newBackgroundPaths.addPath(circleTwo.cgPath)
+    // MARK: - Functions
+    override var selectedViewController: UIViewController? {
+        didSet {
+            BackgroundController.shared.tabSwitchAnimation(selectedIndex)
+            animateToTab(toIndex: selectedIndex)
         }
-        
-        let backgroundAnimation = CABasicAnimation(keyPath: "path")
-        backgroundAnimation.fromValue = self.background.path
-        backgroundAnimation.toValue = newBackgroundPaths
-        backgroundAnimation.duration = 0.3
-        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        self.background.path = newBackgroundPaths
-        self.background.add(backgroundAnimation, forKey: "path")
     }
     
-    // MARK: - Functions
+    override var selectedIndex: Int {
+        didSet {
+            BackgroundController.shared.tabSwitchAnimation(selectedIndex)
+            animateToTab(toIndex: selectedIndex)
+        }
+    }
+    
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
         if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
             animateToTab(toIndex: self.selectedIndex + 1)
