@@ -32,7 +32,6 @@ class Message {
     
     func createGreeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
-        
         switch hour {
         case 00...03:
             return "zzz"

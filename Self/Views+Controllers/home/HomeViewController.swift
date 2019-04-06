@@ -27,11 +27,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.user = AccountManager.shared.user
-        
         addSubViews()
         addConstraints()
     }
-        
 }
 
 // MARK: -

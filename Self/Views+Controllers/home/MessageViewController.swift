@@ -57,9 +57,7 @@ class MessageViewController: UIViewController {
     // MARK: - Functions
     
     func createResponses() {
-        guard let messageActions = message.actions else {
-            return
-        }
+        guard let messageActions = message.actions else { return }
         for action in messageActions {
             let button = DashboardButton()
             button.setTitle(action, for: .normal)
@@ -74,6 +72,7 @@ class MessageViewController: UIViewController {
     }
     
     @objc func messageResponse() {
+        
     }
     
 }

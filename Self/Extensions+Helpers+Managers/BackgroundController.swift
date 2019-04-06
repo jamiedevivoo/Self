@@ -91,4 +91,21 @@ class BackgroundController {
         background.add(backgroundAnimation, forKey: "path")
     }
     
+    func resetBackground() {
+        let newBackgroundPaths = CGMutablePath()
+        
+        let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        newBackgroundPaths.addPath(circleOne.cgPath)
+        newBackgroundPaths.addPath(circleTwo.cgPath)
+        
+        let backgroundAnimation = CABasicAnimation(keyPath: "path")
+        backgroundAnimation.fromValue = background.path
+        backgroundAnimation.toValue = newBackgroundPaths
+        backgroundAnimation.duration = 0.3
+        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        background.path = newBackgroundPaths
+        background.add(backgroundAnimation, forKey: "path")
+    }
+    
 }

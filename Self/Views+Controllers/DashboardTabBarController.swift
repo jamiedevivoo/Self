@@ -46,64 +46,31 @@ class DashboardTabBarController: UITabBarController {
     }
     
     func setUpTabBarViewControllers() {
-        
-        let homeNavigationController: UIViewController = {
-            let navigationController = DashboardNavigationController()
-            navigationController.viewControllers = [HomeViewController()]
-            navigationController.title = "Home"
-            navigationController.tabBarItem?.image = UIImage(named: "home")
-            return navigationController
-        }()
-        
-        let highlightsNavigationController: UIViewController = {
-            let navigationController = DashboardNavigationController()
-            navigationController.viewControllers = [HighlightsViewController()]
-            navigationController.title = "Highlights"
-            navigationController.tabBarItem?.image = UIImage(named: "for_you")
-            return navigationController
-        }()
-        
-        let actionsNavigationController: UIViewController = {
-            let navigationController = DashboardNavigationController()
-            navigationController.viewControllers = [ActionsViewController()]
-            navigationController.title = "Actions"
-            navigationController.tabBarItem?.image = UIImage(named: "globe")
-            return navigationController
-        }()
+        let homeNavigationController = DashboardNavigationController(rootViewController: HomeViewController())
+        homeNavigationController.title = "Home"
+        homeNavigationController.tabBarItem?.image = UIImage(named: "home")
+        let highlightsNavigationController = DashboardNavigationController(rootViewController: HighlightsViewController())
+        highlightsNavigationController.title = "Highlights"
+        highlightsNavigationController.tabBarItem?.image = UIImage(named: "for_you")
+        let actionsNavigationController = DashboardNavigationController(rootViewController: ActionsViewController())
+        actionsNavigationController.title = "Actions"
+        actionsNavigationController.tabBarItem?.image = UIImage(named: "globe")
         
         self.viewControllers = [highlightsNavigationController, homeNavigationController, actionsNavigationController,]
         self.selectedIndex = 1
     }
     
     // MARK: - Functions
-    override var selectedViewController: UIViewController? {
-        didSet {
-            BackgroundController.shared.tabSwitchAnimation(selectedIndex)
-            animateToTab(toIndex: selectedIndex)
-        }
-    }
-    
-    override var selectedIndex: Int {
-        didSet {
-            BackgroundController.shared.tabSwitchAnimation(selectedIndex)
-            animateToTab(toIndex: selectedIndex)
-        }
-    }
-    
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
         // FIXME: Needs to compare the view the gesture occured in to tab bar root view controllers and only move on if they're equal
-        if sender.view == self.view {
-            if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
-                animateToTab(toIndex: self.selectedIndex + 1)
-                self.selectedIndex += 1
-            }
-            if sender.direction == .right && (selectedIndex - 1) >= 0 {
-                animateToTab(toIndex: self.selectedIndex - 1)
-                self.selectedIndex -= 1
-            }
+        guard sender.view == self.view else { return }
+        if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
+            transitionViewController(toIndex: self.selectedIndex + 1)
+        }
+        if sender.direction == .right && (selectedIndex - 1) >= 0 {
+            transitionViewController(toIndex: self.selectedIndex - 1)
         }
     }
-    
 }
 
 // MARK: - TabBar Delegate
@@ -112,12 +79,11 @@ extension DashboardTabBarController: UITabBarControllerDelegate  {
         guard let tabViewControllers = tabBarController.viewControllers,
             let toIndex = tabViewControllers.index(of: viewController)
         else { return false }
-        animateToTab(toIndex: toIndex)
+        transitionViewController(toIndex: toIndex)
         return true
     }
     
-    func animateToTab(toIndex: Int) {
-        print(toIndex)
+    func transitionViewController(toIndex: Int) {
         guard let tabViewControllers = viewControllers,
             let selectedVC = selectedViewController,
             let oldView = selectedVC.view,
@@ -135,7 +101,8 @@ extension DashboardTabBarController: UITabBarControllerDelegate  {
         
         // Temperarily disable tabbar during animation
         view.isUserInteractionEnabled = false
-        
+
+        BackgroundController.shared.tabSwitchAnimation(toIndex)
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        usingSpringWithDamping: 1,
@@ -143,8 +110,8 @@ extension DashboardTabBarController: UITabBarControllerDelegate  {
                        options: [.curveEaseOut, .transitionCrossDissolve, .preferredFramesPerSecond60],
                        animations: {
                             oldView.center = CGPoint(x: oldView.center.x - offset, y: oldView.center.y)
-                            newView.center = CGPoint(x: newView.center.x - offset, y: newView.center.y)
                             oldView.layer.opacity = 0
+                            newView.center = CGPoint(x: newView.center.x - offset, y: newView.center.y)
                             newView.layer.opacity = 1
         }, completion: { finished in
             oldView.removeFromSuperview()
