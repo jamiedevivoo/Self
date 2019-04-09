@@ -4,7 +4,6 @@ import Firebase
 
 class HomeViewController: UIViewController {
     
-    // MARK: - Views
     lazy var actionListViewController: ActionListViewController = {
         let viewController = ActionListViewController()
         viewController.user = self.user
@@ -19,20 +18,21 @@ class HomeViewController: UIViewController {
         return viewController
     }()
     
-    // MARK: - Properties
     var user: UserInfo?
 
-    // MARK: - Init
+}
+
+// MARK: - Init
+extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.user = AccountManager.shared.user
         addSubViews()
         addConstraints()
     }
 }
 
-// MARK: -
+// MARK: - View Building
 extension HomeViewController: ViewBuilding, AddingChildViewControllers {
     
     func addChildViewController(viewController: UIViewController) {

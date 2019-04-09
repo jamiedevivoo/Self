@@ -9,15 +9,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
-        window?.backgroundColor = .white
-        
-        let appContainerViewController = AppContainerViewController()
-
-        window?.rootViewController = appContainerViewController
+        window?.rootViewController = AppContainerViewController()
         window?.makeKeyAndVisible()
-        
         FirebaseApp.configure()
-        
         return true
     }
 

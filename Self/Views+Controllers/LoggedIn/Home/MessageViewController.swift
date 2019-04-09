@@ -43,25 +43,27 @@ class MessageViewController: UIViewController {
         return stackView
     }()
     
-    // MARK: - Properties
     var user: UserInfo?
     var message = Message()
     
+}
+
+// MARK: - Init
+extension MessageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
         addConstraints()
         createResponses()
     }
-    
-    // MARK: - Functions
-    
+}
+
+// MARK: - Functions
+extension MessageViewController {
     func createResponses() {
         guard let messageActions = message.actions else { return }
         for action in messageActions {
-            let button = DashboardButton()
-            button.setTitle(action, for: .normal)
-            button.addTarget(self, action: #selector(MessageViewController.logNewMood), for: .touchUpInside)
+            let button = DashboardButton(title: action, action: #selector(MessageViewController.logNewMood))
             messageResponseButtonStack.addArrangedSubview(button)
         }
     }
@@ -74,8 +76,9 @@ class MessageViewController: UIViewController {
     @objc func messageResponse() {
         
     }
-    
 }
+
+// MARK: - View Building
 extension MessageViewController: ViewBuilding {
     func addSubViews() {
         

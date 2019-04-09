@@ -1,111 +1,102 @@
-import Foundation
 import UIKit
 
 class BackgroundController {
     
-    static let shared = BackgroundController()
-    var backgroundContainer: UIViewController?
+    static let shared = BackgroundController() // Singleton
+    var backgroundContainer: UIViewController? {
+        didSet {
+            BackgroundController.shared.addBackgroundToView()
+        }
+    }
     
-    lazy var background: CAShapeLayer = {
+    private lazy var background: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
-        
-        let circleOnePath = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circleTwoPath = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circlePaths = CGMutablePath()
-        circlePaths.addPath(circleOnePath.cgPath)
-        circlePaths.addPath(circleTwoPath.cgPath)
-        
         shapeLayer.fillColor = UIColor.app.other().cgColor
-        shapeLayer.path = circlePaths
+        shapeLayer.path = getBackgroundPath(for: .homeScreen)
         shapeLayer.zPosition = -1
         return shapeLayer
     }()
     
-    // MARK: - Init
-    func addBackground() {
+}
+
+// MARK: - Setup Functions
+extension BackgroundController {
+    func addBackgroundToView() {
         self.backgroundContainer?.view.layer.addSublayer(background)
         self.backgroundContainer?.view.backgroundColor = UIColor.app.background()
     }
+}
+
+// MARK: - Animation Functions
+extension BackgroundController {
     
-    func tabSwitchAnimation(_ selectedIndex: Int) {
-        let newBackgroundPaths = CGMutablePath()
-        if selectedIndex == 0 {
-            // Highlights
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 450,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newBackgroundPaths.addPath(circleOne.cgPath)
-            newBackgroundPaths.addPath(circleTwo.cgPath)
-        } else if selectedIndex == 1 {
-            // Home
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newBackgroundPaths.addPath(circleOne.cgPath)
-            newBackgroundPaths.addPath(circleTwo.cgPath)
-        } else if selectedIndex == 2 {
-            // Challenges
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: -50,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newBackgroundPaths.addPath(circleOne.cgPath)
-            newBackgroundPaths.addPath(circleTwo.cgPath)
-        }
+    private func animateBackground(_ newBackgroundPaths: CGPath, animationDuration: CFTimeInterval = 0.3) {
+        
         let backgroundAnimation = CABasicAnimation(keyPath: "path")
-        backgroundAnimation.fromValue = background.path
+        backgroundAnimation.fromValue = self.background.path
         backgroundAnimation.toValue = newBackgroundPaths
-        backgroundAnimation.duration = 0.3
+        backgroundAnimation.duration = animationDuration
         backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        background.path = newBackgroundPaths
-        background.add(backgroundAnimation, forKey: "path")
+        
+        self.background.path = newBackgroundPaths
+        self.background.add(backgroundAnimation, forKey: "path")
+    }
+    
+    func animateBackgroundToTabOption(_ selectedIndex: Int) {
+        switch selectedIndex {
+            case 0: animateBackground(getBackgroundPath(for: .highlightsScreen))
+            case 2: animateBackground(getBackgroundPath(for: .actionsScreen))
+            default: animateBackground(getBackgroundPath(for: .homeScreen))
+        }
     }
     
     func clearScreen() {
-        let newBackgroundPaths = CGMutablePath()
-        
-        let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        newBackgroundPaths.addPath(circleOne.cgPath)
-        newBackgroundPaths.addPath(circleTwo.cgPath)
-        
-        let backgroundAnimation = CABasicAnimation(keyPath: "path")
-        backgroundAnimation.fromValue = background.path
-        backgroundAnimation.toValue = newBackgroundPaths
-        backgroundAnimation.duration = 0.3
-        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        background.path = newBackgroundPaths
-        background.add(backgroundAnimation, forKey: "path")
+        animateBackground(getBackgroundPath(for: .hidden))
     }
-    
     func fillScreen() {
-        let newBackgroundPaths = CGMutablePath()
-
-            let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(1000), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newBackgroundPaths.addPath(circleOne.cgPath)
-            newBackgroundPaths.addPath(circleTwo.cgPath)
-     
-        let backgroundAnimation = CABasicAnimation(keyPath: "path")
-        backgroundAnimation.fromValue = background.path
-        backgroundAnimation.toValue = newBackgroundPaths
-        backgroundAnimation.duration = 0.3
-        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        background.path = newBackgroundPaths
-        background.add(backgroundAnimation, forKey: "path")
+        animateBackground(getBackgroundPath(for: .fullScreen))
     }
     
     func resetBackground() {
-        let newBackgroundPaths = CGMutablePath()
-        
-        let circleOne = UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        let circleTwo = UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-        newBackgroundPaths.addPath(circleOne.cgPath)
-        newBackgroundPaths.addPath(circleTwo.cgPath)
-        
-        let backgroundAnimation = CABasicAnimation(keyPath: "path")
-        backgroundAnimation.fromValue = background.path
-        backgroundAnimation.toValue = newBackgroundPaths
-        backgroundAnimation.duration = 0.3
-        backgroundAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        background.path = newBackgroundPaths
-        background.add(backgroundAnimation, forKey: "path")
+        animateBackground(getBackgroundPath(for: .homeScreen), animationDuration: 1)
     }
     
 }
+
+// MARK: - Background Settings
+extension BackgroundController {
+    
+    enum BackgroundOption {
+        case homeScreen
+        case highlightsScreen
+        case actionsScreen
+        case fullScreen
+        case hidden
+    }
+    
+    private func getBackgroundPath(for option:BackgroundOption) -> CGPath {
+        let backgroundPath = CGMutablePath()
+
+        switch option {
+        case .homeScreen:
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+        case .highlightsScreen:
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 450,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+        case .actionsScreen:
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: -50,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+        case .fullScreen:
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(1000), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+        default: // .hidden
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+        }
+        
+        return backgroundPath
+    }
+    
+}
+

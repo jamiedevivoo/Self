@@ -41,11 +41,3 @@ class AccountManager {
     }
     
 }
-
-extension AccountManager {
-    
-}
-
-extension AccountManager {
-    
-}

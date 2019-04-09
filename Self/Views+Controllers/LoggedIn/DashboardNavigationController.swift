@@ -1,8 +1,7 @@
 import UIKit
 import SnapKit
 
-class DashboardNavigationController: UINavigationController, UINavigationControllerDelegate {
-    
+class DashboardNavigationController: UINavigationController {
     
     // MARK: - Views
     lazy var sidebarIcon: UIBarButtonItem = {
@@ -14,9 +13,11 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
         button.tintColor = UIColor.app.solidText()
         return button
     }()
-    
-    
-    // MARK: - Init
+}
+
+// MARK: - Init and Setup
+extension DashboardNavigationController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
@@ -25,16 +26,23 @@ class DashboardNavigationController: UINavigationController, UINavigationControl
     
     func setup() {
         visibleViewController?.navigationItem.rightBarButtonItems = [sidebarIcon]
-//        navigationBar.isHidden = true
+        //        navigationBar.isHidden = true
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
     }
-    
-    // MARK: - Functions
+}
+
+// MARK: - Functions
+extension DashboardNavigationController {
     @objc func sidebarButtonTapped() {
-    pushViewController(SettingsViewController(), animated: true)
-//        tabBarController?.tabBar.isHidden = true
+        pushViewController(SettingsViewController(), animated: true)
+        //        tabBarController?.tabBar.isHidden = true
     }
+}
+
+// MARK: - Navigation Controller Delegate
+extension DashboardNavigationController: UINavigationControllerDelegate {
+    
 }

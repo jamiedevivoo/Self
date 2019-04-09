@@ -20,20 +20,20 @@ class HighlightsViewController: UIViewController {
         let stackView = UIStackView()
         return stackView
     }()
-        
+    
+}
+
+// MARK: - Init
+extension HighlightsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addSubViews()
         addConstraints()
     }
-    
-//    func getHighlights() {
-//        let citiesRef = db.collection("cities")
-//    }
-    
 }
 
+// MARK: - View Building
 extension HighlightsViewController: ViewBuilding {
     func addSubViews() {
         view.addSubview(highlightLabel)

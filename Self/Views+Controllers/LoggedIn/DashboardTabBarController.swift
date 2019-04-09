@@ -3,7 +3,6 @@ import SnapKit
 
 class DashboardTabBarController: UITabBarController {
     
-    // MARK: - Views
     lazy var leftSwipe: UISwipeGestureRecognizer = {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
@@ -16,25 +15,23 @@ class DashboardTabBarController: UITabBarController {
         swipeGesture.direction = .right
         return swipeGesture
     }()
-    
-    // MARK: - Init
+}
+
+// MARK: - INIT
+extension DashboardTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.delegate = self
-        setupView()
         setUpTabBarViewControllers()
         styleTabBar()
-    }
-    
-    func setupView() {
+        BackgroundController.shared.backgroundContainer = self
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
-        
-        BackgroundController.shared.backgroundContainer = self
-        BackgroundController.shared.addBackground()
     }
-    
+}
+
+// MARK: - Setup
+extension DashboardTabBarController {
     func styleTabBar() {
         tabBar.clipsToBounds = true
         tabBar.layer.borderWidth = 0
@@ -56,11 +53,13 @@ class DashboardTabBarController: UITabBarController {
         actionsNavigationController.title = "Actions"
         actionsNavigationController.tabBarItem?.image = UIImage(named: "globe")
         
-        self.viewControllers = [highlightsNavigationController, homeNavigationController, actionsNavigationController,]
+        self.viewControllers = [highlightsNavigationController, homeNavigationController, actionsNavigationController]
         self.selectedIndex = 1
     }
-    
-    // MARK: - Functions
+}
+
+// MARK: - Handle Swipes
+extension DashboardTabBarController {
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
         // FIXME: Needs to compare the view the gesture occured in to tab bar root view controllers and only move on if they're equal
         guard sender.view == self.view else { return }
@@ -82,7 +81,10 @@ extension DashboardTabBarController: UITabBarControllerDelegate  {
         transitionViewController(toIndex: toIndex)
         return true
     }
-    
+}
+
+// MARK: - Animate ViewControllers
+extension DashboardTabBarController {
     func transitionViewController(toIndex: Int) {
         guard let tabViewControllers = viewControllers,
             let selectedVC = selectedViewController,
@@ -90,29 +92,26 @@ extension DashboardTabBarController: UITabBarControllerDelegate  {
             let newView = tabViewControllers[toIndex].view,
             let fromIndex = tabViewControllers.index(of: selectedVC),
             fromIndex != toIndex
-        else { return }
+            else { return }
         
         oldView.superview?.addSubview(newView)
-        
         let screenWidth = UIScreen.main.bounds.size.width
         let scrollRight = toIndex > fromIndex
         let offset = (scrollRight ? screenWidth : -screenWidth)
         newView.center = CGPoint(x: oldView.center.x + offset, y: newView.center.y)
-        
-        // Temperarily disable tabbar during animation
         view.isUserInteractionEnabled = false
 
-        BackgroundController.shared.tabSwitchAnimation(toIndex)
+        BackgroundController.shared.animateBackgroundToTabOption(toIndex)
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 0,
                        options: [.curveEaseOut, .transitionCrossDissolve, .preferredFramesPerSecond60],
                        animations: {
-                            oldView.center = CGPoint(x: oldView.center.x - offset, y: oldView.center.y)
-                            oldView.layer.opacity = 0
-                            newView.center = CGPoint(x: newView.center.x - offset, y: newView.center.y)
-                            newView.layer.opacity = 1
+                        oldView.center = CGPoint(x: oldView.center.x - offset, y: oldView.center.y)
+                        oldView.layer.opacity = 0
+                        newView.center = CGPoint(x: newView.center.x - offset, y: newView.center.y)
+                        newView.layer.opacity = 1
         }, completion: { finished in
             oldView.removeFromSuperview()
             self.selectedIndex = toIndex

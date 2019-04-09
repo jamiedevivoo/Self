@@ -6,8 +6,8 @@ class ActionListViewController: UIViewController {
     lazy var actionButtonStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .leading // .leading .firstBaseline .center .trailing .lastBaseline
-        stackView.distribution = .equalCentering // .fillEqually .fillProportionally .equalSpacing .equalCentering
+        stackView.alignment = .leading
+        stackView.distribution = .equalCentering
         stackView.isBaselineRelativeArrangement = false
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.spacing = UIStackView.spacingUseSystem
@@ -19,17 +19,22 @@ class ActionListViewController: UIViewController {
     lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(ActionListViewController.messageResponse))
     lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(ActionListViewController.messageResponse))
     
-    // MARK: - Properties
     var user: UserInfo?
     
+}
+
+// MARK: - Init
+extension ActionListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addSubViews()
         addConstraints()
     }
-    
-    // MARK: - Functions
+}
+
+// MARK: - Functions
+extension ActionListViewController {
     @objc func logNewMood() {
         navigationController?.pushViewController(AddMoodViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
@@ -37,9 +42,9 @@ class ActionListViewController: UIViewController {
     
     @objc func messageResponse() {
     }
-    
 }
 
+// MARK: - View Building
 extension ActionListViewController: ViewBuilding {
     func addSubViews() {
         self.view.addSubview(actionHeaderLabel)
@@ -51,16 +56,17 @@ extension ActionListViewController: ViewBuilding {
     }
     
     func addConstraints() {
+        actionHeaderLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(actionButtonStack.snp.top).offset(-20)
+            make.left.right.equalToSuperview()
+            make.height.greaterThanOrEqualTo(20)
+        }
+        
         actionButtonStack.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.view.snp.bottom)
             make.left.right.equalToSuperview()
             make.width.equalToSuperview()
             make.height.greaterThanOrEqualTo(50)
-        }
-        actionHeaderLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(actionButtonStack.snp.top).offset(-20)
-            make.left.right.equalToSuperview()
-            make.height.greaterThanOrEqualTo(20)
         }
     }
 }

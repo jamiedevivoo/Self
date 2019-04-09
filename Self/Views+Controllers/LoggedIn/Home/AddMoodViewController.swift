@@ -11,11 +11,11 @@ struct Emotion: Hashable {
 class AddMoodViewController: UIViewController {
     
     let emotions = [
-    Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
-    Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
-    Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
-    Emotion.init(name: "Depression", adj: " ", valence: -0.8, arousal: -0.8),
-    Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
+        Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
+        Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
+        Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
+        Emotion.init(name: "Depression", adj: " ", valence: -0.8, arousal: -0.8),
+        Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
     ]
     
     lazy var emotionPickerLabel: UILabel = {
@@ -141,3 +141,5 @@ class AddMoodViewController: UIViewController {
     }
 
 }
+
+// MARK: - View Building

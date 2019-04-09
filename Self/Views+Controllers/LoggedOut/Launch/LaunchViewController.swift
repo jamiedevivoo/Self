@@ -57,7 +57,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         addOnboardingScreensToScrollView(slides: onboardingSlides)
         
         BackgroundController.shared.backgroundContainer = self
-        BackgroundController.shared.addBackground()
+        BackgroundController.shared.addBackgroundToView()
         
         pageControl.numberOfPages = onboardingSlides.count
         pageControl.currentPage = 0
