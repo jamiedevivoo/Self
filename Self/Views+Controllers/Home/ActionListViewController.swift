@@ -14,34 +14,10 @@ class ActionListViewController: UIViewController {
         return stackView
     }()
     
-    lazy var actionHeaderLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Your Recommended Actions"
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
-        label.textColor = UIColor.app.solidText()
-        return label
-    }()
-    
-    lazy var moodButton: UIButton = {
-        let button = DashboardButton()
-        button.setTitle("+ Log a mood", for: .normal)
-        button.addTarget(self, action: #selector(ActionListViewController.logNewMood), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var revealChallengesButton: UIButton = {
-        let button = DashboardButton()
-        button.setTitle("+ Reveal today's challenges", for: .normal)
-        button.addTarget(self, action: #selector(ActionListViewController.messageResponse), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var newHighlightButton: UIButton = {
-        let button = DashboardButton()
-        button.setTitle("+ View new highlight", for: .normal)
-        button.addTarget(self, action: #selector(ActionListViewController.messageResponse), for: .touchUpInside)
-        return button
-    }()
+    lazy var actionHeaderLabel = SectionHeaderLabel(title: "Your Recommended Actions")
+    lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(ActionListViewController.logNewMood))
+    lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(ActionListViewController.messageResponse))
+    lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(ActionListViewController.messageResponse))
     
     // MARK: - Properties
     var user: UserInfo?

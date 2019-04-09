@@ -3,13 +3,8 @@ import SnapKit
 
 class ActionsViewController: UIViewController {
     
-    lazy var actionsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Your Actions 🙌"
-        label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
-        label.textColor = UIColor.app.solidText()
-        return label
-    }()
+    lazy var actionsLabel = ScreenHeaderLabel(title: "Your Actions 🙌")
+
     lazy var actionsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
@@ -68,7 +63,7 @@ extension ActionsViewController: ViewBuilding {
     
     func addConstraints() {
         actionsLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().inset(20)
             make.height.lessThanOrEqualTo(50)

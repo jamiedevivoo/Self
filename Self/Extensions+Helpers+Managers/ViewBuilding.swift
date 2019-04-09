@@ -14,3 +14,6 @@ protocol AddingChildViewControllers {
     //        actionListViewController.didMove(toParent: self)
     //    }
 }
+protocol subclassSetup {
+    func setupSubclass()
+}

@@ -14,7 +14,7 @@ class AddMoodViewController: UIViewController {
     Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
     Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
     Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
-    Emotion.init(name: "Depression", adj: "depressed", valence: -0.8, arousal: -0.8),
+    Emotion.init(name: "Depression", adj: " ", valence: -0.8, arousal: -0.8),
     Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
     ]
     

@@ -3,15 +3,24 @@ import UIKit
 class DashboardButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        styleButton()
+        setupSubclass()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        styleButton()
+        setupSubclass()
     }
+}
 
-    private func styleButton() {
+extension DashboardButton: subclassSetup {
+    
+    convenience init(title:String, action: Selector) {
+        self.init()
+        setTitle(title, for: .normal)
+        addTarget(nil, action: action, for: .touchUpInside)
+    }
+    
+    func setupSubclass() {
         self.setTitleColor(UIColor.app.buttonText(), for: .normal)
         self.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 15,bottom: 6,right: 15)
         self.backgroundColor = UIColor.app.button().withAlphaComponent(0.8)

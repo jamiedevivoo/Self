@@ -19,6 +19,7 @@ class AppManager {
     static let shared = AppManager()
     var appContainer: AppContainerViewController!
 
+    // Set state to unregistered
     var state: State = .unregistered  {
         didSet(oldState) {
             self.appContainer.dismiss(animated: true, completion: nil)
@@ -43,6 +44,7 @@ class AppManager {
     // MARK: - Functions
     func showApp() {
         switch self.state {
+            
         case .loggedIn(_):
             AccountManager.shared.loadUser { [unowned self] in
                 self.appContainer.present(DashboardTabBarController(), animated: true, completion: nil)

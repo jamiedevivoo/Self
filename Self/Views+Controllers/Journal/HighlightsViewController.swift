@@ -14,13 +14,7 @@ class HighlightsViewController: UIViewController {
         return view
     }()
     
-    lazy var highlightLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Your Highlights 💪"
-        label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
-        label.textColor = UIColor.app.solidText()
-        return label
-    }()
+    lazy var highlightLabel = ScreenHeaderLabel(title: "Your Highlights 💪")
     
     lazy var highlightStack: UIStackView = {
         let stackView = UIStackView()
@@ -42,6 +36,7 @@ class HighlightsViewController: UIViewController {
 
 extension HighlightsViewController: ViewBuilding {
     func addSubViews() {
+        view.addSubview(highlightLabel)
         view.addSubview(achievementsView)
         view.addSubview(insightsView)
         view.addSubview(highlightLabel)
@@ -50,7 +45,7 @@ extension HighlightsViewController: ViewBuilding {
     
     func addConstraints() {
         highlightLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(20)
         }
