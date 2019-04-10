@@ -418,7 +418,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Self/Pods-Self-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Self/Pods-Self-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
@@ -451,7 +451,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Self/Pods-Self-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Self/Pods-Self-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C90B05CD96C5495D117AB362 /* [CP] Check Pods Manifest.lock */ = {

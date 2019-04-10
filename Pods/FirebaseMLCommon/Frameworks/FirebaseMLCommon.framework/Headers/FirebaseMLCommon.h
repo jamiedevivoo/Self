@@ -1,4 +1,4 @@
-#import "FIRCloudModelSource.h"
-#import "FIRLocalModelSource.h"
+#import "FIRLocalModel.h"
 #import "FIRModelDownloadConditions.h"
 #import "FIRModelManager.h"
+#import "FIRRemoteModel.h"

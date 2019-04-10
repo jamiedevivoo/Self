@@ -7,7 +7,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * @enum VisionBarcodeValueType
- * This enum specifies a barcode's value format. For example, TEXT, PRODUCT, URL, etc.
+ * Barcode's value format. For example, TEXT, PRODUCT, URL, etc.
  */
 typedef NS_ENUM(NSInteger, FIRVisionBarcodeValueType) {
   /**
@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, FIRVisionBarcodeValueType) {
 
 /**
  * @enum VisionBarcodeAddressType
- * This enum specifies address type.
+ * Address type.
  */
 typedef NS_ENUM(NSInteger, FIRVisionBarcodeAddressType) {
   /**
@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, FIRVisionBarcodeAddressType) {
 
 /**
  * @enum VisionBarcodeEmailType
- * This enum specifies the email type for VisionBarcodeEmail.
+ * Email type for VisionBarcodeEmail.
  */
 typedef NS_ENUM(NSInteger, FIRVisionBarcodeEmailType) {
   /**
@@ -104,7 +104,7 @@ typedef NS_ENUM(NSInteger, FIRVisionBarcodeEmailType) {
 
 /**
  * @enum VisionBarcodePhoneType
- * This enum specifies the phone type for VisionBarcodePhone.
+ * Phone type for VisionBarcodePhone.
  */
 typedef NS_ENUM(NSInteger, FIRVisionBarcodePhoneType) {
   /**
@@ -131,7 +131,7 @@ typedef NS_ENUM(NSInteger, FIRVisionBarcodePhoneType) {
 
 /**
  * @enum VisionBarcodeWiFiEncryptionType
- * This enum specifies the Wi-Fi encryption type for VisionBarcodeWiFi.
+ * Wi-Fi encryption type for VisionBarcodeWiFi.
  */
 typedef NS_ENUM(NSInteger, FIRVisionBarcodeWiFiEncryptionType) {
   /**

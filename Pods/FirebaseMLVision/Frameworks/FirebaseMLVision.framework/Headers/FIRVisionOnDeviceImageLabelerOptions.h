@@ -2,9 +2,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * Options for an on-device image labeler.
- */
+/** Options for an on-device image labeler. */
 NS_SWIFT_NAME(VisionOnDeviceImageLabelerOptions)
 @interface FIRVisionOnDeviceImageLabelerOptions : NSObject
 

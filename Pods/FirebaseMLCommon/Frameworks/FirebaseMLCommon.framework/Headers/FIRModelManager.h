@@ -1,71 +1,69 @@
 #import <Foundation/Foundation.h>
 
-@class FIRCloudModelSource;
-@class FIRLocalModelSource;
+@class FIRLocalModel;
+@class FIRRemoteModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * A Firebase model manager for both local and cloud models.
- */
+/** Manages models that are used by MLKit features. */
 NS_SWIFT_NAME(ModelManager)
 @interface FIRModelManager : NSObject
 
 /**
- * Gets the model manager for the default Firebase app. The default Firebase app instance must be
- * configured before calling this method; otherwise raises `FIRAppNotConfigured` exception. The
- * returned model manager is thread safe. Models hosted in non-default Firebase apps are currently
- * not supported.
+ * Returns the `ModelManager` instance for the default Firebase app. The default Firebase app
+ * instance must be configured before calling this method; otherwise, raises `FIRAppNotConfigured`
+ * exception. Models hosted in non-default Firebase apps are currently not supported. The returned
+ * model manager is thread safe.
  *
- * @return A model manager for the default Firebase app.
+ * @return The `ModelManager` instance for the default Firebase app.
  */
 + (instancetype)modelManager NS_SWIFT_NAME(modelManager());
 
-/** Unavailable. Use the `modelManager` class method. */
+/** Unavailable. Use the `modelManager()` class method. */
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
- * Registers a cloud model. The model name is unique to each cloud model and can only be registered
- * once with a given instance of the `ModelManager`. The model name should be the same name used
- * when uploading the model to the Firebase Console. It's OK to separately register a cloud model
- * and a local model with the same name for a given instance of the `ModelManager`.
+ * Registers a remote model. The model name is unique to each remote model and can only be
+ * registered once with a given instance of `ModelManager`. The model name should be the same name
+ * used when the model was uploaded to the Firebase Console. It's OK to separately register a remote
+ * and local model with the same name for a given instance of `ModelManager`.
  *
- * @param cloudModelSource The cloud model source to register.
- * @return Whether the registration was successful. Returns `NO` if the given `cloudModelSource` is
+ * @param remoteModel The remote model to register.
+ * @return Whether the registration was successful. Returns `NO` if the given `remoteModel` is
  *     invalid or has already been registered.
  */
-- (BOOL)registerCloudModelSource:(FIRCloudModelSource *)cloudModelSource;
+- (BOOL)registerRemoteModel:(FIRRemoteModel *)remoteModel;
 
 /**
  * Registers a local model. The model name is unique to each local model and can only be registered
- * once with a given instance of the `ModelManager`. It's OK to separately register a cloud model
- * and a local model with the same name for a given instance of the `ModelManager`.
+ * once with a given instance of `ModelManager`. It's OK to separately register a remote and local
+ * model with the same name for a given instance of `ModelManager`.
  *
- * @param localModelSource The local model source to register.
- * @return Whether the registration was successful. Returns `NO` if the given `localModelSource` is
+ * @param localModel The local model to register.
+ * @return Whether the registration was successful. Returns `NO` if the given `localModel` is
  *     invalid or has already been registered.
  */
-- (BOOL)registerLocalModelSource:(FIRLocalModelSource *)localModelSource;
+- (BOOL)registerLocalModel:(FIRLocalModel *)localModel;
 
 /**
- * Gets the registered cloud model with the given name. Returns `nil` if the model was never
+ * Returns the registered remote model with the given name. Returns `nil` if the model was never
  * registered with this model manager.
  *
- * @param name Name of the cloud model.
- * @return The cloud model that was registered with the given name. Returns `nil` if the model was
+ * @param name Name of the remote model.
+ * @return The remote model that was registered with the given name. Returns `nil` if the model was
  *     never registered with this model manager.
  */
-- (nullable FIRCloudModelSource *)cloudModelSourceForModelName:(NSString *)name;
+- (nullable FIRRemoteModel *)remoteModelWithName:(NSString *)name;
 
 /**
- * Gets the registered local model with the given name. Returns `nil` if the model was never
+ * Returns the registered local model with the given name. Returns `nil` if the model was never
  * registered with this model manager.
  *
  * @param name Name of the local model.
  * @return The local model that was registered with the given name. Returns `nil` if the model was
  *     never registered with this model manager.
  */
-- (nullable FIRLocalModelSource *)localModelSourceForModelName:(NSString *)name;
+- (nullable FIRLocalModel *)localModelWithName:(NSString *)name;
 
 @end
 
