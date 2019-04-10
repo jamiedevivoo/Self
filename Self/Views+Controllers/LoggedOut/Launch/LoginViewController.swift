@@ -96,7 +96,6 @@ class LoginViewController: UIViewController {
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
-            AppManager.shared.state = .loggedIn((authResult?.user)!)
         }
     }
 }

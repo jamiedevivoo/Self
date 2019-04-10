@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         return viewController
     }()
     
-    var user: UserInfo?
+    var user: UserData?
 
 }
 

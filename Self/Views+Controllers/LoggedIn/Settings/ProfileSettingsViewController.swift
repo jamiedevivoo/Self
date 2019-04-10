@@ -7,7 +7,7 @@ class ProfileSettingsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var user: UserInfo?
+    var user: UserData?
     
     
     // MARK: - SubViews

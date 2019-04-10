@@ -24,7 +24,7 @@ extension DashboardTabBarController {
         self.delegate = self
         setUpTabBarViewControllers()
         styleTabBar()
-        BackgroundController.shared.backgroundContainer = self
+        BackgroundManager.shared.backgroundContainer = self
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
     }
@@ -101,7 +101,7 @@ extension DashboardTabBarController {
         newView.center = CGPoint(x: oldView.center.x + offset, y: newView.center.y)
         view.isUserInteractionEnabled = false
 
-        BackgroundController.shared.animateBackgroundToTabOption(toIndex)
+        BackgroundManager.shared.animateBackgroundToTabOption(toIndex)
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        usingSpringWithDamping: 1,

@@ -43,7 +43,7 @@ class MessageViewController: UIViewController {
         return stackView
     }()
     
-    var user: UserInfo?
+    var user: UserData?
     var message = Message()
     
 }

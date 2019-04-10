@@ -56,9 +56,12 @@ class RegisterViewController: UIViewController {
     
     // MARK: - Properties
     var db:Firestore!
-    var user: UserInfo!
     
-    // MARK: - Initialization
+}
+
+// MARK: - Init
+
+extension RegisterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,20 +73,10 @@ class RegisterViewController: UIViewController {
         addSubViews()
         addConstraints()
     }
-    
-    // MARK: - Action Functions
-    
-    func showError(errorDesc: String) {
-        let errorAlert: UIAlertController = {
-            let alertController = UIAlertController()
-            alertController.title = errorDesc
-            alertController.message = "Please try again"
-            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return alertController
-        }()
-        self.present(errorAlert, animated: true, completion: nil)
-    }
-    
+}
+
+// MARK: - Register User
+extension RegisterViewController {
     @objc func registerButtonAction(_ sender: Any) {
         
         print("Register with details: \(emailTextField.text!)  \(passwordTextField.text!)")
@@ -108,36 +101,17 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        user.name = name
-        user.email = email
-        
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            
             guard let registeredCredentials = authResult, error == nil else {
-                let errorAlert: UIAlertController = {
-                    let alertController = UIAlertController()
-                    alertController.title = error!.localizedDescription
-                    alertController.message = "Please try again"
-                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    return alertController
-                }()
-                self.present(errorAlert, animated: true, completion: nil)
+                self.showError(errorDesc: error!.localizedDescription)
                 return
             }
             
-//                let user = User(dictionary: ["uid": registeredCredentials.user.uid,
-//                                             "email": "\(registeredCredentials.user.email)",
-//                                             "name": "\(self.nameTextField.text)"])
-            
-//                let user = User(user: registeredCredentials.user)
-//                print(user)
-
-//              self.db.collection("user").document(uid).setData(userData)
-//            print(Auth.auth().currentUser!.uid)
-//            AccountManager.shared.update()
-//
-                self.dismiss(animated: true, completion: nil)
-            
+            let user = UserData(dictionary: ["uid": registeredCredentials.user.uid,
+                                             "email": "\(registeredCredentials.user.email)",
+                                            "name": "\(self.nameTextField.text)"])
+            print(user)
+            AccountManager.shared.update(user)
         }
         
         
@@ -145,6 +119,21 @@ class RegisterViewController: UIViewController {
     
 }
 
+// MARK: - Functions
+extension RegisterViewController {
+    func showError(errorDesc: String) {
+        let errorAlert: UIAlertController = {
+            let alertController = UIAlertController()
+            alertController.title = errorDesc
+            alertController.message = "Please try again"
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            return alertController
+        }()
+        self.present(errorAlert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - View Building
 extension RegisterViewController: ViewBuilding {
     func addSubViews() {
         self.view.addSubview(registerStackView)

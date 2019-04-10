@@ -1,11 +1,12 @@
 import UIKit
 
-class BackgroundController {
+class BackgroundManager {
     
-    static let shared = BackgroundController() // Singleton
+    static let shared = BackgroundManager() // Singleton
     var backgroundContainer: UIViewController? {
         didSet {
-            BackgroundController.shared.addBackgroundToView()
+            BackgroundManager.shared.addBackgroundToView()
+            resetBackground()
         }
     }
     
@@ -20,7 +21,7 @@ class BackgroundController {
 }
 
 // MARK: - Setup Functions
-extension BackgroundController {
+extension BackgroundManager {
     func addBackgroundToView() {
         self.backgroundContainer?.view.layer.addSublayer(background)
         self.backgroundContainer?.view.backgroundColor = UIColor.app.background()
@@ -28,7 +29,7 @@ extension BackgroundController {
 }
 
 // MARK: - Animation Functions
-extension BackgroundController {
+extension BackgroundManager {
     
     private func animateBackground(_ newBackgroundPaths: CGPath, animationDuration: CFTimeInterval = 0.3) {
         
@@ -64,7 +65,7 @@ extension BackgroundController {
 }
 
 // MARK: - Background Settings
-extension BackgroundController {
+extension BackgroundManager {
     
     enum BackgroundOption {
         case homeScreen

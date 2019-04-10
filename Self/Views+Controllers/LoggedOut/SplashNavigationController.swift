@@ -1,14 +1,6 @@
-//
-//  LaunchNavigationController.swift
-//  Self
-//
-//  Created by Jamie De Vivo (i7436295) on 09/04/2019.
-//  Copyright © 2019 Jamie De Vivo. All rights reserved.
-//
-
 import UIKit
 
-class LaunchNavigationController: UINavigationController {
+class SplashNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +11,7 @@ class LaunchNavigationController: UINavigationController {
             navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
             navigationBar.shadowImage = UIImage()
             navigationBar.isTranslucent = true
-            viewControllers = [LaunchViewController()]
+            viewControllers = [SplashViewController()]
     }
     
 

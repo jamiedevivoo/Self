@@ -19,7 +19,7 @@ class ActionListViewController: UIViewController {
     lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(ActionListViewController.messageResponse))
     lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(ActionListViewController.messageResponse))
     
-    var user: UserInfo?
+    var user: UserData?
     
 }
 
@@ -41,6 +41,7 @@ extension ActionListViewController {
     }
     
     @objc func messageResponse() {
+        AccountManager.shared.logout()
     }
 }
 

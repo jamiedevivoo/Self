@@ -28,7 +28,7 @@ class SplashViewController: UIViewController, UIScrollViewDelegate {
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
         button.layer.borderColor = UIColor.app.pinkColor().cgColor
-        button.addTarget(self, action: #selector(LaunchViewController.navigateToRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(SplashViewController.navigateToRegister), for: .touchUpInside)
         return button
     }()
     
@@ -41,7 +41,7 @@ class SplashViewController: UIViewController, UIScrollViewDelegate {
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
         button.layer.borderColor = UIColor.app.pinkColor().cgColor
-        button.addTarget(self, action: #selector(LaunchViewController.navigateToLogin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(SplashViewController.navigateToLogin), for: .touchUpInside)
         return button
     }()
     
@@ -56,8 +56,8 @@ class SplashViewController: UIViewController, UIScrollViewDelegate {
         onboardingSlides = createOnboardingScreens()
         addOnboardingScreensToScrollView(slides: onboardingSlides)
         
-        BackgroundController.shared.backgroundContainer = self
-        BackgroundController.shared.addBackgroundToView()
+        BackgroundManager.shared.backgroundContainer = self
+        BackgroundManager.shared.addBackgroundToView()
         
         pageControl.numberOfPages = onboardingSlides.count
         pageControl.currentPage = 0
@@ -113,7 +113,7 @@ class SplashViewController: UIViewController, UIScrollViewDelegate {
     
     @objc func navigateToLogin(_ sender: Any) {
         navigationController?.pushViewController(LoginViewController(), animated: true)
-        BackgroundController.shared.fillScreen()
+        BackgroundManager.shared.fillScreen()
     }
     
     @objc func navigateToRegister(_ sender: Any) {
@@ -122,7 +122,7 @@ class SplashViewController: UIViewController, UIScrollViewDelegate {
     
 }
 
-extension LaunchViewController: ViewBuilding {
+extension SplashViewController: ViewBuilding {
     func addSubViews() {
         view.addSubview(scrollView)
         view.addSubview(loginButton)

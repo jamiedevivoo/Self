@@ -1,4 +1,3 @@
-
 import Firebase
 
 class Mood {
