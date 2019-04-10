@@ -76,7 +76,7 @@ extension DashboardTabBarController {
 extension DashboardTabBarController: UITabBarControllerDelegate  {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         guard let tabViewControllers = tabBarController.viewControllers,
-            let toIndex = tabViewControllers.index(of: viewController)
+            let toIndex = tabViewControllers.firstIndex(of: viewController)
         else { return false }
         transitionViewController(toIndex: toIndex)
         return true
@@ -90,7 +90,7 @@ extension DashboardTabBarController {
             let selectedVC = selectedViewController,
             let oldView = selectedVC.view,
             let newView = tabViewControllers[toIndex].view,
-            let fromIndex = tabViewControllers.index(of: selectedVC),
+            let fromIndex = tabViewControllers.firstIndex(of: selectedVC),
             fromIndex != toIndex
             else { return }
         
