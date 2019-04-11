@@ -19,7 +19,7 @@ struct AccountNotificationConsents {
 
 // MARK: - Convenience Iniitialiser
 extension AccountNotificationConsents {
-    init(accountNotificationConsentPairs: [String:Any]) {
+    init(_ accountNotificationConsentPairs: [String:Any]) {
         let allowActions = accountNotificationConsentPairs["allow_actions"] as? Bool
         let allowInsights = accountNotificationConsentPairs["allow_insights"] as? Bool
         let allowMoods = accountNotificationConsentPairs["allow_moods"] as? Bool

@@ -17,21 +17,6 @@ class AccountManager {
     
 }
 
-// MARK: - Manage Instance
-extension AccountManager {
-    static func shared() -> AccountManager {
-        guard let shared = sharedInstance else {
-            sharedInstance = AccountManager()
-            return sharedInstance!
-        }
-        return shared
-    }
-    
-    static func destroy() {
-        sharedInstance = nil
-    }
-}
-
 // MARK: - Manage Account
 extension AccountManager {
     func loadAccount(completion: @escaping () -> ()) {
@@ -46,10 +31,28 @@ extension AccountManager {
         }
     }
 
-    func updateAccount() {
-        guard let account = account else { return }
-            accountRef.setData(account.dictionary, merge: true) { _ in
+    func updateAccount(newAccount:Account? = nil) {
+        if let newAccount = newAccount {
+            AccountManager.shared().account = newAccount
         }
+        accountRef.setData(AccountManager.shared().account!.dictionary, merge: true) { _ in
+            print(AccountManager.shared().account!.dictionary)
+        }
+    }
+}
+
+// MARK: - Manage Instance
+extension AccountManager {
+    static func shared() -> AccountManager {
+        guard let shared = sharedInstance else {
+            sharedInstance = AccountManager()
+            return sharedInstance!
+        }
+        return shared
+    }
+    
+    static func destroy() {
+        sharedInstance = nil
     }
 }
 

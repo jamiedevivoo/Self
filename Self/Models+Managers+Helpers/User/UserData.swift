@@ -1,13 +1,9 @@
 import Firebase
 
 class UserData {
-    
-    let uid: UIDString
-    var name: NameString
+    var name: NameString!
 
-    private init(uid: UIDString, name: NameString) {
-        print("Creating UserData")
-        self.uid = uid
+    private init(name: NameString!) {
         self.name = name
     }
 }
@@ -16,26 +12,21 @@ class UserData {
 extension UserData {
     
     convenience init(withDictionary dictionary: [UserProperty: String]) {
-        self.init(uid: dictionary[.uid]!,
-                  name: dictionary[.name]!)
+        self.init(name: dictionary[.name])
     }
     
     convenience init(withSnapshot snapshot: DocumentSnapshot) {
-        let accountData = snapshot.data()! as [String: Any]
-        self.init(uid: snapshot.documentID,
-                  name: accountData["name"]! as! NameString)
+        self.init(name: (snapshot.get("name") as! NameString))
     }
     
     convenience init(withUser userData: UserData) {
-        self.init(uid: userData.uid,
-                  name: userData.name)
+        self.init(name: userData.name)
     }
 }
 
 // Dictionary Keys
 extension UserData {
     enum UserProperty: String, CaseIterable, DefinedDictionaryKeys { //CustomStringConvertable
-        case uid = "uid"
         case name = "name"
         
         var key: String {
@@ -54,7 +45,6 @@ extension UserData: CustomStringConvertible, DictionaryConvertable {
         var dictionary = [String : Any]()
         for property in UserProperty.allCases {
             switch property {
-                case .uid: dictionary[property.key] = uid
                 case .name: dictionary[property.key] = name
             }
         }

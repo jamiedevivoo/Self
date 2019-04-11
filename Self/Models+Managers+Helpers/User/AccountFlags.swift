@@ -13,7 +13,7 @@ struct AccountFlags {
 
 // MARK: - Convenience Iniitialiser
 extension AccountFlags {
-    init(accountFlagPairs: [String:Any]) {
+    init(_ accountFlagPairs: [String:Any]) {
         let tutorialIsActive = accountFlagPairs["tutorial_active"] as? Bool
         let verified = accountFlagPairs["verified"] as? Bool
         self.init(tutorialIsActive: tutorialIsActive, verified: verified)

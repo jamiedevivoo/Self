@@ -18,18 +18,25 @@ class AccountPreferences {
 
 // Mark: - Convenience Initialisers
 extension AccountPreferences {
-    convenience init(accountSettingPairs: [String:Any], accountFlagPairs: [String:Any], accountNotificationConsentPairs: [String:Any]) {
-        let accountFlags = AccountFlags(accountFlagPairs: accountFlagPairs)
-        let accountNotificationConsents = AccountNotificationConsents(accountNotificationConsentPairs: accountNotificationConsentPairs)
+    convenience init(accountSettingPairs: [String:Any],
+                     accountFlagPairs: [String:Any],
+                     accountNotificationConsentPairs: [String:Any]) {
+        
+        let accountFlags = AccountFlags(accountFlagPairs)
+        let accountNotificationConsents = AccountNotificationConsents(accountNotificationConsentPairs)
         
         let userColorMode = UserSpecifiedColorMode.matchCase(string: accountSettingPairs["color_mode"] as! String)
-        self.init(accountFlags: accountFlags, accountNotificationConsents: accountNotificationConsents, userColorMode: userColorMode)
+        
+        self.init(accountFlags: accountFlags,
+                  accountNotificationConsents: accountNotificationConsents,
+                  userColorMode: userColorMode)
     }
     
     convenience init(withSnapshot snapshot: DocumentSnapshot) {
-        let accountSettingPairs = snapshot.get("settings") as! [String:Any]
-        let accountFlagPairs = snapshot.get("settings.flags") as! [String:Any]
-        let accountNotificationConsentPairs = snapshot.get("settings.notification_consent") as! [String:Any]
+        let accountSettingPairs = snapshot.get("preferences") as! [String:Any]
+        print(accountSettingPairs)
+        let accountFlagPairs = snapshot.get("preferences.flags") as! [String:Any]
+        let accountNotificationConsentPairs = snapshot.get("preferences.notification_consent") as! [String:Any]
         
         self.init(accountSettingPairs: accountSettingPairs,
                   accountFlagPairs: accountFlagPairs,
