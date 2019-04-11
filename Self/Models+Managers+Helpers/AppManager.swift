@@ -27,7 +27,7 @@ extension AppManager {
             }
             
             print("... User now exists")
-            AccountManager.shared().loadUser { [unowned self] in
+            AccountManager.shared().loadAccount { [unowned self] in
                 self.appContainer.present(DashboardTabBarController(), animated: true, completion: nil)
             }
         }

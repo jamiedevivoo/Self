@@ -1,5 +1,4 @@
 import UIKit
-import Firebase
 
 protocol ViewBuilding {
     func addSubViews()

@@ -59,7 +59,7 @@ class AccountSettingsViewController: UIViewController {
         addSubViews()
         addConstraints()
         
-        self.user = AccountManager.shared().userData
+        self.user = AccountManager.shared().account!.user
         updateFields()
     }
     
@@ -80,7 +80,7 @@ class AccountSettingsViewController: UIViewController {
         @objc func saveButtonAction(_ sender: Any) {
             
             guard let name = nameTextField.text, let email = emailTextField.text else { return }
-            AccountManager.shared().userData?.name = name
+            AccountManager.shared().account?.user.name = name
 
 //            let user = Auth.auth().currentUser
 //            var credential: AuthCredential

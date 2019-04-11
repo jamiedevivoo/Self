@@ -22,7 +22,9 @@
 		7DF14B55225F2B940090D299 /* AccountNotificationConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */; };
 		7DF14B57225F2C2D0090D299 /* WildcardQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */; };
 		7DF14B59225F2D170090D299 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* MessageResponse.swift */; };
-		7DF14B5B225F32450090D299 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* UserSettings.swift */; };
+		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
+		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
+		7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5E225F4C340090D299 /* ClassBuilding.swift */; };
 		A30EC35322564FC60092A4E2 /* ActionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionListViewController.swift */; };
 		A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* MessageViewController.swift */; };
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
@@ -79,7 +81,9 @@
 		7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationConsents.swift; sourceTree = "<group>"; };
 		7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildcardQuestion.swift; sourceTree = "<group>"; };
 		7DF14B58225F2D170090D299 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
-		7DF14B5A225F32450090D299 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
+		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		7DF14B5E225F4C340090D299 /* ClassBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBuilding.swift; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionListViewController.swift; sourceTree = "<group>"; };
 		A30EC35422565BEF0092A4E2 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -147,8 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
+				7DF14B5C225F36CD0090D299 /* Account.swift */,
 				A3D7572B225D1F9C00E87F67 /* UserData.swift */,
-				7DF14B5A225F32450090D299 /* UserSettings.swift */,
+				7DF14B5A225F32450090D299 /* AccountSettings.swift */,
 				7DF14B52225F2B490090D299 /* AccountFlags.swift */,
 				7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */,
 			);
@@ -314,6 +319,7 @@
 			children = (
 				A35EA86422456FB600592D88 /* AppManager.swift */,
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
+				7DF14B5E225F4C340090D299 /* ClassBuilding.swift */,
 				7DF14B4E225F260B0090D299 /* CustomTypealias.swift */,
 				7D7758D7225D8806003CCD1F /* User */,
 				7D7758DC225D8885003CCD1F /* Mood */,
@@ -534,6 +540,7 @@
 				A3CF9514224E714600D0EC31 /* Mood.swift in Sources */,
 				A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */,
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
+				7DF14B5D225F36CD0090D299 /* Account.swift in Sources */,
 				A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */,
 				A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */,
 				A33409902245701D004CBB2A /* LaunchSlideView.swift in Sources */,
@@ -546,12 +553,13 @@
 				A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				A3CF9516224E9C8900D0EC31 /* Message.swift in Sources */,
-				7DF14B5B225F32450090D299 /* UserSettings.swift in Sources */,
+				7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */,
 				A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
 				7DF14B53225F2B490090D299 /* AccountFlags.swift in Sources */,
+				7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */,
 				A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				7DF14B47225F24870090D299 /* MoodManager.swift in Sources */,

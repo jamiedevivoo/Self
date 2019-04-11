@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.user = AccountManager.shared().userData
+        self.user = AccountManager.shared().account?.user
         addSubViews()
         addConstraints()
     }

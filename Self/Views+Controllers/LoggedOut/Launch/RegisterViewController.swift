@@ -110,7 +110,7 @@ extension RegisterViewController {
             let user = UserData(withDictionary: [.uid: registeredCredentials.user.uid,
                                              .name: name])
             print(user)
-            AccountManager.shared().updateUser(user)
+            AccountManager.shared().updateAccount(with: user)
         }
         
         

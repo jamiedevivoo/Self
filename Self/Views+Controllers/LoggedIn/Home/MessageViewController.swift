@@ -21,7 +21,7 @@ class MessageViewController: UIViewController {
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = AccountManager.shared().userData?.name
+        label.text = AccountManager.shared().account?.user.name
         label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
         label.textColor = UIColor.app.solidText()
         return label
