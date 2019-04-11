@@ -64,7 +64,7 @@ extension BackgroundManager {
     
 }
 
-// MARK: - Background Settings
+// MARK: - Background Options
 extension BackgroundManager {
     
     enum BackgroundOption: CaseIterable {

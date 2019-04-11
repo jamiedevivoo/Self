@@ -11,7 +11,6 @@ class UserData {
     let uid: UIDString
     var name: NameString
     var lastname: String?
-    var settings: UserSettings = UserSettings()
 
     // MARK: - Init
     init(withDictionary dictionary: [UserProperties: String]) {
@@ -50,26 +49,6 @@ extension UserData: CustomStringConvertible {
         return userProperties
     }
 }
-
-struct UserSettings {
-    var accountverified: Bool = false
-    var userColorMode: UserColorMode = .auto
-    var notificationConsent: NotificationConsent = NotificationConsent()
-}
-extension UserSettings {
-    enum UserColorMode {
-        case light
-        case dark
-        case auto
-    }
-}
-struct NotificationConsent {
-    var action_prompts: Bool = true
-    var fun_prompts: Bool = false
-    var insight_prompts: Bool = true
-    var mood_prompts: Bool = true
-}
-
 /* Links
  Type Safe Stuff
  https://blog.usejournal.com/type-safe-swift-models-fce55d6eccc7

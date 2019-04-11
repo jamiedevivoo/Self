@@ -1,4 +1,4 @@
 struct AccountFlags {
-    let tutorial: Bool
-    let verified: Bool
+    let tutorial: Bool = true
+    let verified: Bool = false
 }

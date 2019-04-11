@@ -1,6 +1,6 @@
 struct AccountNotificationConsents {
-    let allowActions: Bool
-    let allowInsights: Bool
-    let allowMoods: Bool
-    let allowFun: Bool
+    let allowActions: Bool = true
+    let allowInsights: Bool = true
+    let allowMoods: Bool = true
+    let allowFun: Bool = false
 }

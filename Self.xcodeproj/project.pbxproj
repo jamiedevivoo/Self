@@ -22,6 +22,7 @@
 		7DF14B55225F2B940090D299 /* AccountNotificationConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */; };
 		7DF14B57225F2C2D0090D299 /* WildcardQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */; };
 		7DF14B59225F2D170090D299 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* MessageResponse.swift */; };
+		7DF14B5B225F32450090D299 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* UserSettings.swift */; };
 		A30EC35322564FC60092A4E2 /* ActionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionListViewController.swift */; };
 		A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* MessageViewController.swift */; };
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
@@ -78,6 +79,7 @@
 		7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationConsents.swift; sourceTree = "<group>"; };
 		7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildcardQuestion.swift; sourceTree = "<group>"; };
 		7DF14B58225F2D170090D299 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
+		7DF14B5A225F32450090D299 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionListViewController.swift; sourceTree = "<group>"; };
 		A30EC35422565BEF0092A4E2 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
 				A3D7572B225D1F9C00E87F67 /* UserData.swift */,
+				7DF14B5A225F32450090D299 /* UserSettings.swift */,
 				7DF14B52225F2B490090D299 /* AccountFlags.swift */,
 				7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */,
 			);
@@ -543,6 +546,7 @@
 				A33409912245701D004CBB2A /* RegisterViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				A3CF9516224E9C8900D0EC31 /* Message.swift in Sources */,
+				7DF14B5B225F32450090D299 /* UserSettings.swift in Sources */,
 				A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
