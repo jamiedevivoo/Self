@@ -7,8 +7,8 @@ class AccountSettings {
     
     init(accountFlags: AccountFlags = AccountFlags(),
          accountNotificationConsents: AccountNotificationConsents = AccountNotificationConsents(),
-         userColorMode: UserColorMode = .auto)
-    {
+         userColorMode: UserColorMode = .auto) {
+        
         self.flags = accountFlags
         self.notifications = accountNotificationConsents
         self.userColorMode = userColorMode
@@ -17,12 +17,21 @@ class AccountSettings {
 
 // Convenience Initialisers
 extension AccountSettings {
-    convenience init?(withSnapshot snapshot: DocumentSnapshot) {
-        let userData = snapshot.data()! as [String: Any]
-        self.init(accountFlags: AccountFlags(), accountNotificationConsents: AccountNotificationConsents(), userColorMode: .auto)
-//        self.init(uid: snapshot.documentID,
-//                  name: userData["name"]! as! NameString,
-//                  email: userData["email"]! as! EmailString)
+    convenience init(accountSettingPairs: [String:Any], accountFlagPairs: [String:Any], accountNotificationConsentPairs: [String:Any]) {
+        let userColorMode = accountSettingPairs["color_mode"]
+        let accountFlags = AccountFlags(accountFlagPairs: accountFlagPairs)
+        let accountNotificationConsents = AccountNotificationConsents(accountNotificationConsentPairs: accountNotificationConsentPairs)
+        self.init(accountFlags: accountFlags, accountNotificationConsents: accountNotificationConsents, userColorMode: userColorMode)
+    }
+    
+    convenience init(withSnapshot snapshot: DocumentSnapshot) {
+        let accountSettingPairs = snapshot.get("settings") as! [String:Any]
+        let accountFlagPairs = snapshot.get("settings.flags") as! [String:Any]
+        let accountNotificationConsentPairs = snapshot.get("settings.notification_consent") as! [String:Any]
+        
+        self.init(accountSettingPairs: accountSettingPairs,
+                  accountFlagPairs: accountFlagPairs,
+                  accountNotificationConsentPairs: accountNotificationConsentPairs)
     }
 }
 

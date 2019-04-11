@@ -36,14 +36,12 @@ extension AccountManager {
 extension AccountManager {
     func loadAccount(completion: @escaping () -> ()) {
         accountRef.getDocument { snapshot, error in
-            if let error = error {
-                print(error)
-            } else {
-                if let snapshot = snapshot {
-                    self.account = Account(withSnapshot: snapshot)
-                    completion()
-                }
+            guard let snapshot = snapshot, snapshot.exists, error == nil else {
+                print(error!)
+                return
             }
+            self.account = Account(withSnapshot: snapshot)
+            completion()
         }
     }
 

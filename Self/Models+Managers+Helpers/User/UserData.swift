@@ -6,6 +6,7 @@ class UserData {
     var name: NameString
 
     private init(uid: UIDString, name: NameString) {
+        print("Creating UserData")
         self.uid = uid
         self.name = name
     }
@@ -20,9 +21,9 @@ extension UserData {
     }
     
     convenience init(withSnapshot snapshot: DocumentSnapshot) {
-        let userData = snapshot.data()! as [String: Any]
+        let accountData = snapshot.data()! as [String: Any]
         self.init(uid: snapshot.documentID,
-                  name: userData["name"]! as! NameString)
+                  name: accountData["name"]! as! NameString)
     }
     
     convenience init(withUser userData: UserData) {

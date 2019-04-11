@@ -5,6 +5,7 @@ class Account {
     var settings: AccountSettings
     
     init(userData:UserData, accountSettings: AccountSettings = AccountSettings()) {
+        print("Creating Account")
         self.user = userData
         self.settings = accountSettings
     }
@@ -12,7 +13,7 @@ class Account {
 extension Account {
     convenience init(withSnapshot snapshot: DocumentSnapshot) {
         let userData: UserData = UserData(withSnapshot: snapshot)
-        let accountSettings: AccountSettings = AccountSettings()
+        let accountSettings: AccountSettings = AccountSettings(withSnapshot: snapshot)
         self.init(userData: userData, accountSettings: accountSettings)
     }
 }
