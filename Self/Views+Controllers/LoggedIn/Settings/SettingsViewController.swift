@@ -9,21 +9,21 @@ class SettingsViewController: UIViewController {
     
     lazy var topDescriptionView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.other()
+        view.backgroundColor = UIColor.app.background.secondaryBackground()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to modify your account and app settings."
         label.textAlignment = .left
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         label.numberOfLines = 0
         return label
     }()
     
     lazy var settingsTableView: UITableView = {
         let table = UITableView()
-        table.backgroundColor = UIColor.app.background()
+        table.backgroundColor = UIColor.app.background.primaryBackground()
         table.isScrollEnabled = false
         table.dataSource = self
         table.delegate = self
@@ -39,7 +39,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Settings"
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.background.primaryBackground()
         navigationItem.leftBarButtonItems = nil
         
         settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "settingCell")
@@ -66,7 +66,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
         let settingTitle = settingOptions[indexPath.row]
         cell.textLabel?.text = settingTitle
-        cell.backgroundColor = UIColor.app.background()
+        cell.backgroundColor = UIColor.app.background.primaryBackground()
         if settingTitle == "Logout" { cell.textLabel?.textColor = .red }
         return cell
     }

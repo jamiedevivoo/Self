@@ -22,7 +22,7 @@ class ActionView: UIView {
         let button = UIButton()
         button.setTitle("Be Active", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12.0, weight: .ultraLight)
-        button.setTitleColor(UIColor.app.buttonText(), for: .normal)
+        button.setTitleColor(UIColor.app.button.tag.text(), for: .normal)
         button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 15,bottom: 6,right: 15)
         button.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         button.layer.cornerRadius = 15
@@ -37,7 +37,7 @@ class ActionView: UIView {
         let button = UIButton()
         button.setTitle("Outdoors", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12.0, weight: .ultraLight)
-        button.setTitleColor(UIColor.app.buttonText(), for: .normal)
+        button.setTitleColor(UIColor.app.button.tag.text(), for: .normal)
         button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 15,bottom: 6,right: 15)
         button.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         button.layer.cornerRadius = 15
@@ -52,7 +52,7 @@ class ActionView: UIView {
         let button = UIButton()
         button.setTitle("10 mins", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12.0, weight: .ultraLight)
-        button.setTitleColor(UIColor.app.buttonText(), for: .normal)
+        button.setTitleColor(UIColor.app.button.tag.text(), for: .normal)
         button.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 15,bottom: 6,right: 15)
         button.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         button.layer.cornerRadius = 15
@@ -67,21 +67,21 @@ class ActionView: UIView {
         let label = UILabel()
         label.text = "Go for a walk"
         label.font = UIFont.boldSystemFont(ofSize: 16.0)
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         return label
     }()
     lazy var actionCardDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14.0, weight: .light)
         label.text = "Walking is good for you."
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         label.numberOfLines = 0
         return label
     }()
     lazy var actionCardStartButton: UIButton = {
         let button = UIButton()
         button.setTitle("Start", for: .normal)
-        button.setTitleColor(UIColor.app.solidText(), for: .normal)
+        button.setTitleColor(UIColor.app.text.solidText(), for: .normal)
         return button
     }()
     

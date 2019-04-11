@@ -5,7 +5,7 @@ class AppContainerViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.background.primaryBackground()
         AppManager.shared.appContainer = self
     }
 }

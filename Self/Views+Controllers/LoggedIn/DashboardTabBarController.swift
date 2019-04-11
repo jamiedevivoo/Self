@@ -35,11 +35,11 @@ extension DashboardTabBarController {
     func styleTabBar() {
         tabBar.clipsToBounds = true
         tabBar.layer.borderWidth = 0
-        tabBar.layer.borderColor = UIColor.app.background().cgColor
-        tabBar.layer.backgroundColor = UIColor.app.background().cgColor
-        tabBar.barTintColor =  UIColor.app.background()
-        tabBar.tintColor = UIColor.app.buttonText()
-        tabBar.unselectedItemTintColor = UIColor.app.solidText()
+        tabBar.layer.borderColor = UIColor.app.background.primaryBackground().cgColor
+        tabBar.layer.backgroundColor = UIColor.app.background.primaryBackground().cgColor
+        tabBar.barTintColor =  UIColor.app.background.primaryBackground()
+        tabBar.tintColor = UIColor.app.interactive.selectable.selected()
+        tabBar.unselectedItemTintColor = UIColor.app.interactive.selectable.unselected()
     }
     
     func setUpTabBarViewControllers() {

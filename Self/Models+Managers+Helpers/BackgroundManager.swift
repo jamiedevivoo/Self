@@ -12,7 +12,7 @@ class BackgroundManager {
     
     private lazy var background: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
-        shapeLayer.fillColor = UIColor.app.other().cgColor
+        shapeLayer.fillColor = UIColor.app.background.secondaryBackground().cgColor
         shapeLayer.path = getBackgroundPath(for: .homeScreen)
         shapeLayer.zPosition = -1
         return shapeLayer
@@ -24,7 +24,7 @@ class BackgroundManager {
 extension BackgroundManager {
     func addBackgroundToView() {
         self.backgroundContainer?.view.layer.addSublayer(background)
-        self.backgroundContainer?.view.backgroundColor = UIColor.app.background()
+        self.backgroundContainer?.view.backgroundColor = UIColor.app.background.primaryBackground()
     }
 }
 

@@ -13,7 +13,7 @@ class AddMoodViewController: UIViewController {
     
     lazy var emotionPickerLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         label.text = "How are you?"
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
         return label

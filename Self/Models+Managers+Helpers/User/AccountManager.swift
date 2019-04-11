@@ -2,13 +2,11 @@ import Firebase
 
 class AccountManager {
     static fileprivate var sharedInstance: AccountManager? // Singleton
-    fileprivate let accountRef:DocumentReference
+    fileprivate var accountRef:DocumentReference?
     fileprivate(set) var account: Account?
 
     private init() {
         print("[Account Manager: Initialised]")
-        let authUser = Auth.auth().currentUser!
-        accountRef = Firestore.firestore().collection("user").document(authUser.uid)
     }
     
     deinit {
@@ -20,7 +18,10 @@ class AccountManager {
 // MARK: - Manage Account
 extension AccountManager {
     func loadAccount(completion: @escaping () -> ()) {
-        accountRef.getDocument { snapshot, error in
+        let authUser = Auth.auth().currentUser!
+        accountRef = Firestore.firestore().collection("user").document(authUser.uid)
+        
+        accountRef?.getDocument { snapshot, error in
             guard let snapshot = snapshot, snapshot.exists, error == nil else {
                 if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
                 AccountManager.logout()
@@ -35,7 +36,7 @@ extension AccountManager {
         if let newAccount = newAccount {
             AccountManager.shared().account = newAccount
         }
-        accountRef.setData(AccountManager.shared().account!.dictionary, merge: true) { _ in
+        accountRef?.setData(AccountManager.shared().account!.dictionary, merge: true) { _ in
             print(AccountManager.shared().account!.dictionary)
         }
     }

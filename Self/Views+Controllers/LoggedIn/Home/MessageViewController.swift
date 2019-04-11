@@ -14,7 +14,7 @@ class MessageViewController: UIViewController {
     lazy var greetingLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.ultraLight)
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         label.text = "Good Morning, "
         return label
     }()
@@ -23,7 +23,7 @@ class MessageViewController: UIViewController {
         let label = UILabel()
         label.text = AccountManager.shared().account?.user.name
         label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         return label
     }()
     
@@ -31,7 +31,7 @@ class MessageViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.light)
         label.text = message.messageText
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         label.numberOfLines = 0
         return label
     }()

@@ -3,12 +3,12 @@ import Firebase
 class AccountPreferences {
     var flags: AccountFlags
     var notifications: AccountNotificationConsents
-    var userColorMode: UserSpecifiedColorMode
+    var userColorMode: AppColorMode
     
     // TODO: Must be a better way of setting defaults
     init(accountFlags: AccountFlags = AccountFlags(),
          accountNotificationConsents: AccountNotificationConsents = AccountNotificationConsents(),
-         userColorMode: UserSpecifiedColorMode = .auto) {
+         userColorMode: AppColorMode = .auto) {
         
         self.flags = accountFlags
         self.notifications = accountNotificationConsents
@@ -25,7 +25,7 @@ extension AccountPreferences {
         let accountFlags = AccountFlags(accountFlagPairs)
         let accountNotificationConsents = AccountNotificationConsents(accountNotificationConsentPairs)
         
-        let userColorMode = UserSpecifiedColorMode.matchCase(string: accountSettingPairs["color_mode"] as! String)
+        let userColorMode = AppColorMode.matchCase(string: accountSettingPairs["color_mode"] as! String)
         
         self.init(accountFlags: accountFlags,
                   accountNotificationConsents: accountNotificationConsents,
@@ -34,7 +34,6 @@ extension AccountPreferences {
     
     convenience init(withSnapshot snapshot: DocumentSnapshot) {
         let accountSettingPairs = snapshot.get("preferences") as! [String:Any]
-        print(accountSettingPairs)
         let accountFlagPairs = snapshot.get("preferences.flags") as! [String:Any]
         let accountNotificationConsentPairs = snapshot.get("preferences.notification_consent") as! [String:Any]
         
@@ -54,22 +53,5 @@ extension AccountPreferences: CustomStringConvertible, DictionaryConvertable {
         return ["color_mode":userColorMode.rawValue,
                 "notification_consent":notifications.dictionary,
                 "flags":flags.dictionary]
-    }
-}
-
-// MARK: - Possible Colour Mode Settings
-extension AccountPreferences {
-    enum UserSpecifiedColorMode: String, CaseIterable {
-        case light
-        case dark
-        case auto
-        
-        static func matchCase(string:String) -> UserSpecifiedColorMode {
-            switch string {
-            case self.light.rawValue:   return .light
-            case self.dark.rawValue:    return .dark
-            default:                    return .auto
-            }
-        }
     }
 }

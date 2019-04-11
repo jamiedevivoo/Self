@@ -14,14 +14,14 @@ class AppSettingsViewController: UIViewController {
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.other()
+        view.backgroundColor = UIColor.app.background.secondaryBackground()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to modify app related settings."
         label.textAlignment = .left
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         label.numberOfLines = 0
         
         return label
@@ -34,7 +34,7 @@ class AppSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "App Settings"
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.background.primaryBackground()
         navigationItem.leftBarButtonItems = nil
         
         addSubViews()

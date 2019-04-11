@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SectionHeaderLabel: UILabel {
+class ScreenHeaderLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,7 +21,7 @@ class SectionHeaderLabel: UILabel {
     }
 }
 
-extension SectionHeaderLabel: SubclassSetup {
+extension ScreenHeaderLabel {
     convenience init(title:String) {
         self.init()
         text = title
@@ -29,7 +29,7 @@ extension SectionHeaderLabel: SubclassSetup {
     
     func setupSubclass() {
         text = "Placeholder"
-        font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
-        textColor = UIColor.app.solidText()
+        font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
+        textColor = UIColor.app.text.solidText()
     }
 }

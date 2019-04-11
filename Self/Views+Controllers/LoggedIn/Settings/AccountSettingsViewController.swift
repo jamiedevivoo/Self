@@ -12,14 +12,14 @@ class AccountSettingsViewController: UIViewController {
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.other()
+        view.backgroundColor = UIColor.app.background.secondaryBackground()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to modify the settings related to your account."
         label.textAlignment = .left
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         label.numberOfLines = 0
         
         return label
@@ -30,6 +30,7 @@ class AccountSettingsViewController: UIViewController {
         textField.placeholder = "First Name"
         return textField
     }()
+    
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
@@ -40,11 +41,11 @@ class AccountSettingsViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Update Details", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.app.pinkColor()
+        button.backgroundColor = UIColor.app.button.primary.fill()
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 17
         button.clipsToBounds = true
-        button.layer.borderColor = UIColor.app.pinkColor().cgColor
+        button.layer.borderColor = UIColor.app.button.primary.fill().cgColor
         button.addTarget(self, action: #selector(AccountSettingsViewController.saveButtonAction), for: .touchUpInside)
         return button
     }()
@@ -54,7 +55,7 @@ class AccountSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Account Settings"
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.background.primaryBackground()
         self.hideKeyboardWhenTappedAround()
         addSubViews()
         addConstraints()

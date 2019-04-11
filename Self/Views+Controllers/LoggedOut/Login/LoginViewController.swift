@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
         textField.text = "email@email.com"
         textField.placeholder = "Email Address"
         textField.keyboardType = UIKeyboardType.emailAddress
-        textField.textColor = UIColor.app.solidText()
+        textField.textColor = UIColor.app.text.solidText()
         textField.minimumFontSize = 25.0
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 15
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         textField.placeholder = "Password"
         textField.keyboardType = UIKeyboardType.default
         textField.isSecureTextEntry = true
-        textField.textColor = UIColor.app.solidText()
+        textField.textColor = UIColor.app.text.solidText()
         textField.minimumFontSize = 25.0
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 15
@@ -33,11 +33,11 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.app.pinkColor()
+        button.backgroundColor = UIColor.app.button.primary.fill()
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
-        button.layer.borderColor = UIColor.app.pinkColor().cgColor
+        button.layer.borderColor = UIColor.app.button.primary.fill().cgColor
         button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
         return button
     }()
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         db = Firestore.firestore()
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.background.primaryBackground()
         
         title = "Login"
         

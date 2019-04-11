@@ -30,42 +30,42 @@ class ActionsViewController: UIViewController {
     lazy var actionCardView: ActionView = {
         let view = ActionView()
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button()
+        view.backgroundColor = UIColor.app.button.tag.fill()
         view.clipsToBounds = true
         return view
     }()
     lazy var actionCardViewTwo: ActionView = {
         let view = ActionView()
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button()
+        view.backgroundColor = UIColor.app.button.tag.fill()
         view.clipsToBounds = true
         return view
     }()
     lazy var actionCardViewThree: ActionView = {
         let view = ActionView()
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button()
+        view.backgroundColor = UIColor.app.button.tag.fill()
         view.clipsToBounds = true
         return view
     }()
     lazy var actionCardViewFour: ActionView = {
         let view = ActionView()
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button()
+        view.backgroundColor = UIColor.app.button.tag.fill()
         view.clipsToBounds = true
         return view
     }()
     lazy var actionCardViewFive: ActionView = {
         let view = ActionView()
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button()
+        view.backgroundColor = UIColor.app.button.tag.fill()
         view.clipsToBounds = true
         return view
     }()
     lazy var actionCardViewSix: ActionView = {
         let view = ActionView()
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button()
+        view.backgroundColor = UIColor.app.button.tag.fill()
         view.clipsToBounds = true
         return view
     }()

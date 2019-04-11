@@ -1,12 +1,12 @@
 import UIKit
 
-class LaunchSlideView: UIView {
+class LaunchScreenSlideView: UIView {
     
     let container = UIStackView()
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = UIColor.app.solidText()
+        imageView.tintColor = UIColor.app.text.solidText()
         return imageView
     }()
     
@@ -14,7 +14,7 @@ class LaunchSlideView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         return label
     }()
     
@@ -23,7 +23,7 @@ class LaunchSlideView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = UIColor.app.solidText()
+        label.textColor = UIColor.app.text.solidText()
         return label
     }()
     
@@ -45,7 +45,7 @@ class LaunchSlideView: UIView {
     
 }
 
-extension LaunchSlideView: ViewBuilding {
+extension LaunchScreenSlideView: ViewBuilding {
     
     func addSubViews() {
         backgroundColor = .clear

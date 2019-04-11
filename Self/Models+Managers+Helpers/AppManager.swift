@@ -22,7 +22,7 @@ extension AppManager {
             
             guard let _ = user else {
                 print("... User no longer exists.")
-                self.appContainer.present(SplashNavigationController(), animated: true, completion: nil)
+                self.appContainer.present(LaunchNavigationController(), animated: true, completion: nil)
                 return
             }
             

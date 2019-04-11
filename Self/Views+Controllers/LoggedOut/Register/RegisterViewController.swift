@@ -35,11 +35,11 @@ class RegisterViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.app.pinkColor()
+        button.backgroundColor = UIColor.app.background.primaryBackground()
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
-        button.layer.borderColor = UIColor.app.pinkColor().cgColor
+        button.layer.borderColor = UIColor.app.background.primaryBackground().cgColor
         button.addTarget(self, action: #selector(RegisterViewController.registerButtonAction), for: .touchUpInside)
         return button
     }()
@@ -68,7 +68,7 @@ extension RegisterViewController {
         title = "Register"
         
         db = Firestore.firestore()
-        view.backgroundColor = UIColor.app.background()
+        view.backgroundColor = UIColor.app.background.primaryBackground()
         
         addSubViews()
         addConstraints()

@@ -2,6 +2,9 @@
  TypeSafe Convenience
  */
 
+// Generic
+typealias AppColorMode = ColorManager.AppColorMode
+
 // Used often to describe users
 typealias UIDString = String
 typealias EmailString = String
