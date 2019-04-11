@@ -1,13 +1,14 @@
 import Firebase
 
-class AccountSettings {
+class AccountPreferences {
     var flags: AccountFlags
     var notifications: AccountNotificationConsents
-    var userColorMode: UserColorMode
+    var userColorMode: UserSpecifiedColorMode
     
+    // TODO: Must be a better way of setting defaults
     init(accountFlags: AccountFlags = AccountFlags(),
          accountNotificationConsents: AccountNotificationConsents = AccountNotificationConsents(),
-         userColorMode: UserColorMode = .auto) {
+         userColorMode: UserSpecifiedColorMode = .auto) {
         
         self.flags = accountFlags
         self.notifications = accountNotificationConsents
@@ -15,12 +16,13 @@ class AccountSettings {
     }
 }
 
-// Convenience Initialisers
-extension AccountSettings {
+// Mark: - Convenience Initialisers
+extension AccountPreferences {
     convenience init(accountSettingPairs: [String:Any], accountFlagPairs: [String:Any], accountNotificationConsentPairs: [String:Any]) {
-        let userColorMode = accountSettingPairs["color_mode"]
         let accountFlags = AccountFlags(accountFlagPairs: accountFlagPairs)
         let accountNotificationConsents = AccountNotificationConsents(accountNotificationConsentPairs: accountNotificationConsentPairs)
+        
+        let userColorMode = UserSpecifiedColorMode.matchCase(string: accountSettingPairs["color_mode"] as! String)
         self.init(accountFlags: accountFlags, accountNotificationConsents: accountNotificationConsents, userColorMode: userColorMode)
     }
     
@@ -35,24 +37,32 @@ extension AccountSettings {
     }
 }
 
-// Output / Describing the model
-extension AccountSettings: CustomStringConvertible, DictionaryConvertable {
+// MARL: - Output / Describing the model
+extension AccountPreferences: CustomStringConvertible, DictionaryConvertable {
     var description: String {
         return "User Settings"
     }
     
     var dictionary: [String: Any] {
-        return ["color_mode":userColorMode,
+        return ["color_mode":userColorMode.rawValue,
                 "notification_consent":notifications.dictionary,
                 "flags":flags.dictionary]
     }
 }
 
-// Possible Colour Mode Settings
-extension AccountSettings {
-    enum UserColorMode {
+// MARK: - Possible Colour Mode Settings
+extension AccountPreferences {
+    enum UserSpecifiedColorMode: String, CaseIterable {
         case light
         case dark
         case auto
+        
+        static func matchCase(string:String) -> UserSpecifiedColorMode {
+            switch string {
+            case self.light.rawValue:   return .light
+            case self.dark.rawValue:    return .dark
+            default:                    return .auto
+            }
+        }
     }
 }

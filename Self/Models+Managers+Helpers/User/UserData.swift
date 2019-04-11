@@ -12,7 +12,7 @@ class UserData {
     }
 }
 
-// Convenience initialisers
+// MARK: - Convenience initialisers
 extension UserData {
     
     convenience init(withDictionary dictionary: [UserProperty: String]) {

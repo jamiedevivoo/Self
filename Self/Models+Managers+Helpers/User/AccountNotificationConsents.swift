@@ -1,30 +1,31 @@
 struct AccountNotificationConsents {
-    let allowActions: Bool
-    let allowInsights: Bool
-    let allowMoods: Bool
-    let allowFun: Bool
+    var allowActions:   Bool
+    var allowInsights:  Bool
+    var allowMoods:     Bool
+    var allowFun:       Bool
     
-    init(allowActions: Bool = true,
-         allowInsights: Bool = true,
-         allowMoods: Bool = true,
-         allowFun: Bool = false) {
+    // TODO: Must be a better way of setting defaults
+    init(_ allowActions:  Bool? = true,
+         _ allowInsights: Bool? = true,
+         _ allowMoods:    Bool? = true,
+         _ allowFun:      Bool? = false) {
         
-        self.allowActions = allowActions
-        self.allowInsights = allowInsights
-        self.allowMoods = allowMoods
-        self.allowFun = allowFun
+        self.allowActions = allowActions ?? true
+        self.allowInsights = allowInsights ?? true
+        self.allowMoods = allowMoods ?? true
+        self.allowFun = allowFun ?? false
     }
 }
 
-// Convenience Iniitialiser
+// MARK: - Convenience Iniitialiser
 extension AccountNotificationConsents {
     init(accountNotificationConsentPairs: [String:Any]) {
-        let allowActions = accountNotificationConsentPairs["allow_actions"] as! Bool
-        let allowInsights = accountNotificationConsentPairs["allow_insights"] as! Bool
-        let allowMoods = accountNotificationConsentPairs["allow_moods"] as! Bool
-        let allowFun = accountNotificationConsentPairs["allow_fun"] as! Bool
+        let allowActions = accountNotificationConsentPairs["allow_actions"] as? Bool
+        let allowInsights = accountNotificationConsentPairs["allow_insights"] as? Bool
+        let allowMoods = accountNotificationConsentPairs["allow_moods"] as? Bool
+        let allowFun = accountNotificationConsentPairs["allow_fun"] as? Bool
         
-        self.init(allowActions: allowActions, allowInsights: allowInsights, allowMoods: allowMoods, allowFun: allowFun)
+        self.init(allowActions, allowInsights, allowMoods, allowFun)
     }
 }
 

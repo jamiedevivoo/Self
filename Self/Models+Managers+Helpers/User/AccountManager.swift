@@ -37,7 +37,8 @@ extension AccountManager {
     func loadAccount(completion: @escaping () -> ()) {
         accountRef.getDocument { snapshot, error in
             guard let snapshot = snapshot, snapshot.exists, error == nil else {
-                print(error!)
+                if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
+                AccountManager.logout()
                 return
             }
             self.account = Account(withSnapshot: snapshot)
@@ -45,9 +46,9 @@ extension AccountManager {
         }
     }
 
-    func updateAccount(with userData: UserData? = shared().account?.user, accountSettings: AccountSettings? = shared().account?.settings) {
-        guard let user = userData else { return }
-            accountRef.setData(user.dictionary, merge: true) { _ in
+    func updateAccount() {
+        guard let account = account else { return }
+            accountRef.setData(account.dictionary, merge: true) { _ in
         }
     }
 }

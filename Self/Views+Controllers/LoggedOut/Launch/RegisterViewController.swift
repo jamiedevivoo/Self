@@ -106,11 +106,12 @@ extension RegisterViewController {
                 self.showError(errorDesc: error!.localizedDescription)
                 return
             }
-            
-            let user = UserData(withDictionary: [.uid: registeredCredentials.user.uid,
-                                             .name: name])
-            print(user)
-            AccountManager.shared().updateAccount(with: user)
+            print(AccountManager.shared().account?.dictionary)
+            AccountManager.shared().account?.user.name = name
+//            let user = Account(withDictionary: [.uid: registeredCredentials.user.uid,
+//                                                 .name: name])
+            print(AccountManager.shared().account?.dictionary)
+            AccountManager.shared().updateAccount()
         }
         
         

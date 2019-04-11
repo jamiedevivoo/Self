@@ -81,6 +81,7 @@ class AccountSettingsViewController: UIViewController {
             
             guard let name = nameTextField.text, let email = emailTextField.text else { return }
             AccountManager.shared().account?.user.name = name
+            AccountManager.shared().updateAccount()
 
 //            let user = Auth.auth().currentUser
 //            var credential: AuthCredential
