@@ -17,13 +17,17 @@ class AppManager {
 extension AppManager {
     private func observeUserState() {
         handle = Auth.auth().addStateDidChangeListener { auth, user in
-            print("Auth changed")
+            print("Auth changed... ")
             self.appContainer.dismiss(animated: true, completion: nil)
+            
             guard let _ = user else {
+                print("... User no longer exists.")
                 self.appContainer.present(SplashNavigationController(), animated: true, completion: nil)
                 return
             }
-            AccountManager.shared.loadUser { [unowned self] in
+            
+            print("... User now exists")
+            AccountManager.shared().loadUser { [unowned self] in
                 self.appContainer.present(DashboardTabBarController(), animated: true, completion: nil)
             }
         }

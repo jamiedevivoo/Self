@@ -18,6 +18,9 @@ class ActionListViewController: UIViewController {
     lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(ActionListViewController.logNewMood))
     lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(ActionListViewController.messageResponse))
     lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(ActionListViewController.messageResponse))
+    lazy var logoutButton = DashboardButton(title: "Logout", action: #selector(ActionListViewController.logout))
+    lazy var settingsButton = DashboardButton(title: "Settings", action: #selector(ActionListViewController.settings))
+
     
     var user: UserData?
     
@@ -41,7 +44,13 @@ extension ActionListViewController {
     }
     
     @objc func messageResponse() {
-        AccountManager.shared.logout()
+        AccountManager.logout()
+    }
+    @objc func settings() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
+    @objc func logout() {
+        AccountManager.logout()
     }
 }
 
@@ -54,6 +63,8 @@ extension ActionListViewController: ViewBuilding {
         self.actionButtonStack.addArrangedSubview(moodButton)
         self.actionButtonStack.addArrangedSubview(revealChallengesButton)
         self.actionButtonStack.addArrangedSubview(newHighlightButton)
+        self.actionButtonStack.addArrangedSubview(logoutButton)
+        self.actionButtonStack.addArrangedSubview(settingsButton)
     }
     
     func addConstraints() {

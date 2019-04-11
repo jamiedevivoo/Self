@@ -67,7 +67,7 @@ extension BackgroundManager {
 // MARK: - Background Settings
 extension BackgroundManager {
     
-    enum BackgroundOption {
+    enum BackgroundOption: CaseIterable {
         case homeScreen
         case highlightsScreen
         case actionsScreen
@@ -75,25 +75,27 @@ extension BackgroundManager {
         case hidden
     }
     
-    private func getBackgroundPath(for option:BackgroundOption) -> CGPath {
+    fileprivate func getBackgroundPath(for option:BackgroundOption) -> CGPath {
         let backgroundPath = CGMutablePath()
-
-        switch option {
-        case .homeScreen:
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-        case .highlightsScreen:
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 450,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-        case .actionsScreen:
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: -50,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-        case .fullScreen:
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(1000), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-        default: // .hidden
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
-            backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+        
+        for _ in BackgroundOption.allCases {
+            switch option {
+            case .homeScreen:
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(80), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            case .highlightsScreen:
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 450,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 400,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            case .actionsScreen:
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: -50,y: 250), radius: CGFloat(200), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 0,y: 650), radius: CGFloat(100), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            case .fullScreen:
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(1000), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            default: // .hidden
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 100,y: 350), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+                backgroundPath.addPath(UIBezierPath(arcCenter: CGPoint(x: 300,y: 600), radius: CGFloat(0), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath)
+            }
         }
         
         return backgroundPath

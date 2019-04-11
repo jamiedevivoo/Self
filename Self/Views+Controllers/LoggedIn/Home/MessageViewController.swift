@@ -3,6 +3,8 @@ import SnapKit
 
 class MessageViewController: UIViewController {
     
+    // FIXME: Will need protection if messengeView height get's too tall (ScrollView)
+    
     lazy var messageView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -19,7 +21,7 @@ class MessageViewController: UIViewController {
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = user?.name
+        label.text = AccountManager.shared().userData?.name
         label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
         label.textColor = UIColor.app.solidText()
         return label
@@ -55,6 +57,11 @@ extension MessageViewController {
         addSubViews()
         addConstraints()
         createResponses()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nameLabel.text = user?.name
     }
 }
 

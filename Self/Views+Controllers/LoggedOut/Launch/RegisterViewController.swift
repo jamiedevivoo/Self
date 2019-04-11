@@ -107,11 +107,10 @@ extension RegisterViewController {
                 return
             }
             
-            let user = UserData(dictionary: ["uid": registeredCredentials.user.uid,
-                                             "email": "\(registeredCredentials.user.email)",
-                                            "name": "\(self.nameTextField.text)"])
+            let user = UserData(withDictionary: [.uid: registeredCredentials.user.uid,
+                                             .name: name])
             print(user)
-            AccountManager.shared.update(user)
+            AccountManager.shared().updateUser(user)
         }
         
         

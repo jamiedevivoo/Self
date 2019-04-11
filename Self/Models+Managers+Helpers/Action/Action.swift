@@ -1,5 +1,5 @@
 import Foundation
 
-class UserSettings {
+class Action {
     
 }

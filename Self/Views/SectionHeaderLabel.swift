@@ -21,7 +21,7 @@ class SectionHeaderLabel: UILabel {
     }
 }
 
-extension SectionHeaderLabel: subclassSetup {
+extension SectionHeaderLabel: SubclassSetup {
     convenience init(title:String) {
         self.init()
         text = title

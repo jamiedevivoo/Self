@@ -6,9 +6,7 @@ class AccountSettingsViewController: UIViewController {
     
     
     // MARK: - Properties
-    
-    var user: UserData?
-    
+    var user: UserData!
     
     // MARK: - SubViews
     
@@ -32,34 +30,36 @@ class AccountSettingsViewController: UIViewController {
         textField.placeholder = "First Name"
         return textField
     }()
-    lazy var surnameTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Surname"
-        return textField
-    }()
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Email Address"
+        textField.placeholder = "Email"
         return textField
     }()
-    
+    lazy var updateButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Update Details", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.app.pinkColor()
+        button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = 17
+        button.clipsToBounds = true
+        button.layer.borderColor = UIColor.app.pinkColor().cgColor
+        button.addTarget(self, action: #selector(AccountSettingsViewController.saveButtonAction), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Init
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Account Settings"
         view.backgroundColor = UIColor.app.background()
-        navigationItem.leftBarButtonItems = nil
-        navigationItem.rightBarButtonItem = nil
-        
+        self.hideKeyboardWhenTappedAround()
         addSubViews()
         addConstraints()
         
-        self.user = AccountManager.shared.user
+        self.user = AccountManager.shared().userData
         updateFields()
     }
     
@@ -68,106 +68,67 @@ class AccountSettingsViewController: UIViewController {
     
     func updateFields() {
         if let name = self.user?.name {
-            self.nameTextField.text = "\(name)"
+            self.nameTextField.text = name
         }
-        if let surname = self.user?.lastname {
-            self.surnameTextField.text = "\(surname)"
-        }
-        if let email = self.user?.email {
-            self.emailTextField.text = "\(email)"
+        if let email = Auth.auth().currentUser?.email {
+            self.emailTextField.text = email
         }
     }
     
     // MARK: - Actions
     
         @objc func saveButtonAction(_ sender: Any) {
-//    
-//            guard self.user.name = nameTextField!.text, self.user.lastname = surnameTextField!.text, let self.user.email = emailTextField!.text else { return }
-//    
+            
+            guard let name = nameTextField.text, let email = emailTextField.text else { return }
+            AccountManager.shared().userData?.name = name
+
 //            let user = Auth.auth().currentUser
 //            var credential: AuthCredential
-    
-//            user?.reauthenticateAndRetrieveData(WithCredential:completion: credential) { error in
+            
+//            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
+//                if let _ = error {
+//                    print ("\(String(describing: error))")
+//                } else {
+//                    AccountManager.shared().updateUser()
+//                }
+//            }
+            
+//            Auth.auth().currentUser?.reauthenticate(with: email, completion: {
+//                [weak self]
+//                (error) in
+//            })
+//            let credential = EmailAuthProvider.credential(withEmail: "email", password: "pass")
+//
+//            Auth.auth().currentUser?.reauthenticateAndRetrieveData(with: credential, completion: { (error) in
 //                if let error = error {
 //                    // An error happened.
 //                } else {
 //                    // User re-authenticated.
 //                }
 //            }
+        }
     }
     
+extension AccountSettingsViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AccountSettingsViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
     
-    // MARK: - Functions
-
-    
-    
-//
-////        let user = User()
-//
-//
-//        print("LOG: Account Settings Screen")
-//
-//        view.backgroundColor = .gray
-//
-//        let saveButton = UIButton()
-//
-
-
-
-//
-//        self.emailTextField.text = user?.email
-//        self.nameTextField.text = user?.name
-//        self.surnameTextField.text = user?.surname
-//
-//        saveButton.setTitle("Save Details", for: .normal)
-//        saveButton.setTitleColor(.blue, for: .normal)
-//        saveButton.addTarget(self, action: #selector(AccountSettingsViewController.saveButtonAction), for: .touchUpInside)
-//
-//        self.view.addSubview(saveButton)
-//
-
-
-
-//        saveButton.snp.makeConstraints { (make) in
-//            make.left.equalTo(100)
-//            make.right.equalTo(-100)
-//            make.height.equalTo(40)
-//            make.top.equalTo(surnameTextField.snp.bottom).offset(30)
-//        }
-//
-//    }
-//
-//
-//
-//        Auth.auth().currentUser?.updateEmail(to: email) { (error) in
-//            if let _ = error {
-//                print ("\(String(describing: error))")
-//            } else {
-//
-//                let userData: [String:Any] = ["name": name,
-//                                "surname ": surname,
-//                                "email":email]
-//                let uid:String = (AccountManager.shared.user?.uid)!
-//
-//                self.db.collection("user").document(uid).updateData(userData)
-//
-//                print("Updated Details: \(email) and \(name) and \(surname)")
-//            }
-//        }
-//
-//
-//    }
-
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension AccountSettingsViewController: ViewBuilding {
     
     func addSubViews() {
         self.view.addSubview(topView)
-        topView.addSubview(pageTipLabel)
+            topView.addSubview(pageTipLabel)
         self.view.addSubview(nameTextField)
-        self.view.addSubview(surnameTextField)
         self.view.addSubview(emailTextField)
+        self.view.addSubview(updateButton)
     }
     
     func addConstraints() {
@@ -181,24 +142,19 @@ extension AccountSettingsViewController: ViewBuilding {
             make.top.equalTo(topView.snp.top).offset(100)
         }
         nameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+            make.left.right.equalTo(50)
+            make.height.equalTo(30)
+            make.top.equalTo(view.snp.centerY)
         }
-        
-        surnameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
+        emailTextField.snp.makeConstraints { (make) in
+            make.left.right.equalTo(50)
+            make.height.equalTo(30)
             make.top.equalTo(nameTextField.snp.bottom).offset(20)
         }
-        
-        emailTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(100)
-            make.right.equalTo(-100)
-            make.height.equalTo(35)
-            make.centerX.centerY.equalTo(self.view)
+        updateButton.snp.makeConstraints { (make) in
+            make.size.equalTo(nameTextField)
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
         }
     }
 }

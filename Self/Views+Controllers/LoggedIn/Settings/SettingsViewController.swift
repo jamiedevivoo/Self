@@ -79,7 +79,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.row == 1 {
             navigationController?.pushViewController(AppSettingsViewController(), animated: true);
         } else if indexPath.row == 2 {
-            AccountManager.shared.logout()
+            AccountManager.logout()
         }
     }
 

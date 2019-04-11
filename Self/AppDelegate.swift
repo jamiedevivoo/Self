@@ -11,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = AppContainerViewController()
         window?.makeKeyAndVisible()
+        FirebaseConfiguration.shared.setLoggerLevel(.min) // Disable most of Firebase Logs
         FirebaseApp.configure()
         return true
     }

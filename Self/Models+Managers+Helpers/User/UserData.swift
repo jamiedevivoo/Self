@@ -1,26 +1,28 @@
 import Firebase
 
+enum UserProperties: String, CaseIterable { //CustomStringConvertable
+    case uid = "uid"
+    case name = "name"
+}
+
 class UserData {
     
     // MARK: - Properties
-    var uid: String
-    var name: String?
-    var email: String
+    let uid: UIDString
+    var name: NameString
     var lastname: String?
+    var settings: UserSettings = UserSettings()
 
     // MARK: - Init
-    init(dictionary: [String: String]) {
-        self.uid = dictionary["uid"]!
-        self.name = dictionary["name"] ?? ""
-        self.lastname = dictionary["lastname"] ?? ""
-        self.email = dictionary["email"] ?? ""
+    init(withDictionary dictionary: [UserProperties: String]) {
+        self.uid = dictionary[.uid]!
+        self.name = dictionary[.name]!
     }
     
-    init(snapshot: DocumentSnapshot) {
+    init(withSnapshot snapshot: DocumentSnapshot) {
         let userData = snapshot.data()! as [String: Any]
         self.uid = snapshot.documentID
-        self.name = userData["firstname"] as? String ?? ""
-        self.email = userData["email"] as? String ?? ""
+        self.name = userData["name"] as! String
         self.lastname = userData["lastname"] as? String ?? ""
     }
     
@@ -28,44 +30,51 @@ class UserData {
         self.uid = userData.uid
         self.name = userData.name
         self.lastname = userData.lastname
-        self.email = userData.email
     }
 }
 
-// MARK: - Convenience Init
-extension UserData {
-//    
-//    private convenience init(authUser: User) {
-//        var userData: [String:String]
-//        userData["uid"] = authUser.uid
-//        userData["email"] = authUser.email!
-//        self.init(dictionary: userData)
-//    }
-}
-// MARK: - Output Data
-extension UserData {
-//    func author() -> [String: String] {
-//        return ["uid": uid, "name": name]
-//    }
-    
-}
-
-// MARK: - User Settings
-extension UserData {
-    
-}
-
+// Output / Describing the model
 extension UserData: CustomStringConvertible {
-    // MARK: - Describe Properties
     var description: String {
-        return "User: name: \(String(describing: name)), email: \(email)"
+        return "User Reference for: \(String(describing: name))"
     }
     
     var dictionary: [String: Any] {
-        return [
-            "uid": uid,
-            "name": name!,
-            "email": email
-        ]
+        var userProperties = [String : Any]()
+        for property in UserProperties.allCases {
+            switch property {
+                case .uid: userProperties[property.rawValue] = uid
+                case .name: userProperties[property.rawValue] = name
+            }
+        }
+        return userProperties
     }
 }
+
+struct UserSettings {
+    var accountverified: Bool = false
+    var userColorMode: UserColorMode = .auto
+    var notificationConsent: NotificationConsent = NotificationConsent()
+}
+extension UserSettings {
+    enum UserColorMode {
+        case light
+        case dark
+        case auto
+    }
+}
+struct NotificationConsent {
+    var action_prompts: Bool = true
+    var fun_prompts: Bool = false
+    var insight_prompts: Bool = true
+    var mood_prompts: Bool = true
+}
+
+/* Links
+ Type Safe Stuff
+ https://blog.usejournal.com/type-safe-swift-models-fce55d6eccc7
+ Dictionary enum keys
+ https://www.swiftbysundell.com/posts/enum-iterations-in-swift-42
+ Custom Collection Definitions
+ https://www.swiftbysundell.com/posts/creating-custom-collections-in-swift
+ */

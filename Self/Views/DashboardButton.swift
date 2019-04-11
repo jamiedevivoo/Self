@@ -12,7 +12,7 @@ class DashboardButton: UIButton {
     }
 }
 
-extension DashboardButton: subclassSetup {
+extension DashboardButton: SubclassSetup {
     
     convenience init(title:String, action: Selector) {
         self.init()

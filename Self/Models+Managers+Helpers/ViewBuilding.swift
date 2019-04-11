@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 protocol ViewBuilding {
     func addSubViews()
@@ -14,6 +15,6 @@ protocol AddingChildViewControllers {
     //        actionListViewController.didMove(toParent: self)
     //    }
 }
-protocol subclassSetup {
+protocol SubclassSetup {
     func setupSubclass()
 }

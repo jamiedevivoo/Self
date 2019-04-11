@@ -4,7 +4,7 @@ class ColorManager {
     
     static let shared = ColorManager()
         
-    var colorMode: ColorMode = .dark
+    var colorMode: ColorMode = .dark // Default
     
     init() {
         updateColorMode()

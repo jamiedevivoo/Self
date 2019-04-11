@@ -1,13 +1,6 @@
 import UIKit
 import SnapKit
 
-struct Emotion: Hashable {
-    var name: String
-    var adj: String
-    var valence: CGFloat
-    var arousal: CGFloat
-}
-
 class AddMoodViewController: UIViewController {
     
     let emotions = [
@@ -84,9 +77,11 @@ class AddMoodViewController: UIViewController {
         detailedView()
     }
     
-    func calculateMood(x: CGFloat, y: CGFloat) -> Dictionary<String, CGFloat> {
-        let arousal = -convertCoordinateToRating(coordinate: y, range: self.view.frame.height)
-        let valence = convertCoordinateToRating(coordinate: x, range: self.view.frame.width)
+    func calculateMood(x: CGFloat, y: CGFloat) -> Dictionary<String, Double> {
+        let arousalCoordinates = -convertCoordinateToRating(coordinate: y, range: self.view.frame.height)
+        let valenceCoordinates = convertCoordinateToRating(coordinate: x, range: self.view.frame.width)
+        let arousal:ArousalDouble = Double(arousalCoordinates)
+        let valence:ArousalDouble = Double(valenceCoordinates)
         let mood = ["Valence":valence,"Arousal":arousal]
         return mood
     }
@@ -98,8 +93,8 @@ class AddMoodViewController: UIViewController {
         return ratingRounded
     }
     
-    func getClosestEmotion(moodRatings: Dictionary<String, CGFloat>, emotions: [Emotion]) -> Emotion? {
-        var emotionIntensity = [Emotion:CGFloat]()
+    func getClosestEmotion(moodRatings: Dictionary<String, Double>, emotions: [Emotion]) -> Emotion? {
+        var emotionIntensity = [Emotion:Double]()
         
         for emotion in emotions {
             let valenceDifference = abs(moodRatings["Valence"]! - emotion.valence)

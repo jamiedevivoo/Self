@@ -21,7 +21,7 @@ class ScreenHeaderLabel: UILabel {
     }
 }
 
-extension ScreenHeaderLabel: subclassSetup {
+extension ScreenHeaderLabel: SubclassSetup {
     convenience init(title:String) {
         self.init()
         text = title

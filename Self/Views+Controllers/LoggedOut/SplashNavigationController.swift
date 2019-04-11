@@ -11,7 +11,7 @@ class SplashNavigationController: UINavigationController {
             navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
             navigationBar.shadowImage = UIImage()
             navigationBar.isTranslucent = true
-            viewControllers = [SplashViewController()]
+            viewControllers = [LaunchViewController()]
     }
     
 
