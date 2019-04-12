@@ -20,10 +20,12 @@ extension StandardTextField {
         self.placeholder = placeholder
         customiseTextField(for: fieldType)
     }
-//    convenience init(text: String, placeholder:String) {
-//        self.text = text
-//        self.init(placeholder: placeholder)
-//    }
+    convenience init(text: String, placeholder:String, fieldType:FieldType) {
+        self.init()
+        self.placeholder = placeholder
+        customiseTextField(for: fieldType)
+        self.text = text
+    }
 }
 
 // Custom Styling

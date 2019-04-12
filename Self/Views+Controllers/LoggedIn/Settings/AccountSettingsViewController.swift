@@ -24,31 +24,9 @@ class AccountSettingsViewController: UIViewController {
         
         return label
     }()
-    lazy var nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "First Name"
-        return textField
-    }()
-    
-    lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Email"
-        return textField
-    }()
-    lazy var updateButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Update Details", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.app.button.primary.fill()
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 17
-        button.clipsToBounds = true
-        button.layer.borderColor = UIColor.app.button.primary.fill().cgColor
-        button.addTarget(self, action: #selector(AccountSettingsViewController.saveButtonAction), for: .touchUpInside)
-        return button
-    }()
+    lazy var nameTextField = StandardTextField(placeholder: "First Name", fieldType: .text)
+    lazy var emailTextField = StandardTextField(placeholder: "Email Address", fieldType: .email)
+    lazy var updateButton = StandardButton(title: "Update Details", action: #selector(AccountSettingsViewController.saveButtonAction), type: .primary)
     
     // MARK: - Init
     override func viewDidLoad() {
@@ -87,13 +65,13 @@ class AccountSettingsViewController: UIViewController {
 //            let user = Auth.auth().currentUser
 //            var credential: AuthCredential
             
-//            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
-//                if let _ = error {
-//                    print ("\(String(describing: error))")
-//                } else {
-//                    AccountManager.shared().updateUser()
-//                }
-//            }
+            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
+                if let _ = error {
+                    print ("\(String(describing: error))")
+                } else {
+                    AccountManager.shared().updateAccount()
+                }
+            }
             
 //            Auth.auth().currentUser?.reauthenticate(with: email, completion: {
 //                [weak self]
@@ -156,6 +134,7 @@ extension AccountSettingsViewController: ViewBuilding {
         updateButton.snp.makeConstraints { (make) in
             make.size.equalTo(nameTextField)
             make.centerX.equalTo(self.view)
+            make.height.equalTo(60)
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
         }
     }

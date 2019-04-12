@@ -37,6 +37,8 @@ class OnboardingSliderViewController: ViewController {
         self.addChild(viewController)
         return viewController
     }()
+    weak var onboardingManagerDelegate: OnboardingViewController?
+
 }
     
 // MARK: - Overrides
@@ -48,12 +50,13 @@ extension OnboardingSliderViewController {
         addSubViews()
         addConstraints()
         setupSlider(onboardingStages: [nameOnboardingController, inductionOnboardingViewController])
+        nameOnboardingController.onboardingFlowDelegate = self
+        inductionOnboardingViewController.onboardingFlowDelegate = self
     }
 }
 
 // MARK: - Functions
 extension OnboardingSliderViewController: UIScrollViewDelegate {
-    
     func setupSlider(onboardingStages stages: [ViewController]) {
         pageControl.numberOfPages = stages.count
         pageControl.currentPage = 0
@@ -73,14 +76,21 @@ extension OnboardingSliderViewController: UIScrollViewDelegate {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
-    
-    @objc func nextStage() {
-    }
-    @nonobjc func previousStage() {
-        
-    }
 }
 
+extension OnboardingSliderViewController: OnboardingFlowDelegate {
+    func nextStage() {
+        print("Next Stage")
+        guard pageControl.currentPage < (pageControl.numberOfPages - 1) else { return }
+        pageControl.currentPage = pageControl.currentPage + 1
+        scrollView.setContentOffset(CGPoint(x: (scrollView.frame.width * CGFloat(pageControl.currentPage)), y: scrollView.contentOffset.y), animated: true)
+    }
+    func previousStage() {
+        guard pageControl.currentPage > 0 else { return }
+        pageControl.currentPage = pageControl.currentPage - 1
+        scrollView.setContentOffset(CGPoint(x: (scrollView.frame.width * CGFloat(pageControl.currentPage)), y: scrollView.contentOffset.y), animated: true)
+    }
+}
 
 extension OnboardingSliderViewController: ViewBuilding, AddingChildViewControllers {
     

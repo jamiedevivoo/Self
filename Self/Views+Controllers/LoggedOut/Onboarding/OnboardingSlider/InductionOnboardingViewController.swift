@@ -16,7 +16,8 @@ class InductionOnboardingViewController: ViewController {
         label.textColor = UIColor.app.text.solidText()
         return label
     }()
-    lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.nextStage), type: .disabled)
+    lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .primary)
+    weak var onboardingFlowDelegate: OnboardingSliderViewController?
 }
 
 extension InductionOnboardingViewController {
@@ -28,10 +29,9 @@ extension InductionOnboardingViewController {
 }
 
 extension InductionOnboardingViewController {
-    @objc func nextStage(_ sender: Any) {
-    }
-    @nonobjc func previousStage(_ sender: Any) {
-        
+    @objc func continueOnboarding(_ sender: Any) {
+        print("ButtonPressed")
+        onboardingFlowDelegate?.nextStage()
     }
 }
 

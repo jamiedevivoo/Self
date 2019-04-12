@@ -14,6 +14,7 @@
 		7D47AC6D226000A1004BF898 /* LaunchScreenButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6C226000A1004BF898 /* LaunchScreenButtonsViewController.swift */; };
 		7D47AC6F22600DCF004BF898 /* StandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* StandardTextField.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
+		7D4F3037226094BC00F2EF48 /* OnboardingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F3036226094BC00F2EF48 /* OnboardingProtocol.swift */; };
 		7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */; };
 		7D6B745F226028B5006F9CD1 /* NameOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745E226028B5006F9CD1 /* NameOnboardingViewController.swift */; };
 		7D6B746122602C56006F9CD1 /* InductionOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B746022602C56006F9CD1 /* InductionOnboardingViewController.swift */; };
@@ -82,6 +83,7 @@
 		7D47AC6C226000A1004BF898 /* LaunchScreenButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenButtonsViewController.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* StandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTextField.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/Views+Controllers/Common Views/ViewController.swift"; sourceTree = SOURCE_ROOT; };
+		7D4F3036226094BC00F2EF48 /* OnboardingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProtocol.swift; sourceTree = "<group>"; };
 		7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishCreatingAccountViewController.swift; sourceTree = "<group>"; };
 		7D6B745E226028B5006F9CD1 /* NameOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOnboardingViewController.swift; sourceTree = "<group>"; };
 		7D6B746022602C56006F9CD1 /* InductionOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InductionOnboardingViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
 				7DF14B5E225F4C340090D299 /* ClassBuilding.swift */,
 				7DF14B4E225F260B0090D299 /* CustomTypealias.swift */,
+				7D4F3036226094BC00F2EF48 /* OnboardingProtocol.swift */,
 				7D7758D7225D8806003CCD1F /* User */,
 				7D7758DC225D8885003CCD1F /* Mood */,
 				7D7758D9225D881C003CCD1F /* Action */,
@@ -624,6 +627,7 @@
 				A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				7DF14B47225F24870090D299 /* MoodManager.swift in Sources */,
+				7D4F3037226094BC00F2EF48 /* OnboardingProtocol.swift in Sources */,
 				7D187F122258D1A000A9E9AE /* ActionView.swift in Sources */,
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
 				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,

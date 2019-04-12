@@ -27,7 +27,7 @@ extension UIColor {
                 }}
                 static func text() -> UIColor { switch ColorManager.getActiveColorMode() {
                         case .dark: return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-                        default:    return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 1)
+                        default:    return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
                     }}
             }
             struct tag {

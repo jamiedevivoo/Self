@@ -10,6 +10,7 @@ class NameOnboardingViewController: ViewController {
     }()
     lazy var nameTextField = StandardTextField(placeholder: "Name", fieldType: .text)
     lazy var continueButton = StandardButton(title: "Continue", action: #selector(NameOnboardingViewController.continueOnboarding), type: .disabled)
+    weak var onboardingFlowDelegate: OnboardingSliderViewController?
 }
     
 extension NameOnboardingViewController {
@@ -19,7 +20,6 @@ extension NameOnboardingViewController {
         addConstraints()
         
         nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-
     }
 }
 
@@ -35,8 +35,24 @@ extension NameOnboardingViewController {
             continueButton.customiseButton(for: .primary)
         }
     }
+}
+
+extension NameOnboardingViewController {
     @objc func continueOnboarding(_ sender: Any) {
         print("ButtonPressed")
+        onboardingFlowDelegate?.nextStage()
+    }
+}
+
+extension NameOnboardingViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NameOnboardingViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 

@@ -3,7 +3,7 @@ import Firebase
 class UserData {
     var name: NameString!
 
-    private init(name: NameString!) {
+    private init(name: NameString! = "Stranger") {
         self.name = name
     }
 }
@@ -21,6 +21,10 @@ extension UserData {
     
     convenience init(withUser userData: UserData) {
         self.init(name: userData.name)
+    }
+    
+    convenience init() {
+        self.init(name: "Stranger")
     }
 }
 

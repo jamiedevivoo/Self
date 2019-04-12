@@ -47,15 +47,15 @@ extension FinishCreatingAccountViewController {
             return
         }
         
-        //        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-        //            guard let registeredCredentials = authResult, error == nil else {
-        //                self.showError(errorDesc: error!.localizedDescription)
-        //                return
-        //            }
-        //            let userData = UserData(withDictionary: [.name:name])
-        //            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
-        //            AccountManager.shared().updateAccount(newAccount: account)
-        //        }
+                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                    guard let registeredCredentials = authResult, error == nil else {
+                        self.showError(errorDesc: error!.localizedDescription)
+                        return
+                    }
+                    let userData = UserData(withDictionary: [.name:name])
+                    let account = Account(withID: registeredCredentials.user.uid, withData: userData)
+                    AccountManager.shared().updateAccount(newAccount: account)
+                }
         
     }
     

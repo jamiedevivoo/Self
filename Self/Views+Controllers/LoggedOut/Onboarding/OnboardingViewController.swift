@@ -9,6 +9,7 @@ class OnboardingViewController: ViewController {
         self.addChild(viewController)
         return viewController
     }()
+//    lazy var onboardingAccount = Account()
 }
 
 // MARK: - Init
@@ -17,7 +18,7 @@ extension OnboardingViewController {
         super.viewDidLoad()
         addSubViews()
         addConstraints()
-        signInAnonymously()
+        onboardingSlider.onboardingManagerDelegate = self
     }
 }
 
@@ -25,18 +26,28 @@ extension OnboardingViewController {
 extension OnboardingViewController {
     func signInAnonymously() {
         Auth.auth().signInAnonymously() { (authResult, error) in
-            guard let _ = authResult, error == nil else {
+            guard let registeredCredentials = authResult, error == nil else {
                 let errorAlert: UIAlertController = {
                     let alertController = UIAlertController()
                     alertController.title = error!.localizedDescription
-                    alertController.message = "Sorre there was a problem"
+                    alertController.message = "Sorry there was a problem"
+                    print(error, authResult)
                     alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     return alertController
                 }()
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
+//            let userData = UserData(withDictionary: [.name:name])
+//            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
+//            AccountManager.shared().updateAccount(newAccount: account)
         }
+    }
+}
+
+extension OnboardingViewController: OnboardingManagerDelegate {
+    func continueOnboarding() {
+        signInAnonymously()
     }
 }
 

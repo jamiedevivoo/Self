@@ -24,6 +24,7 @@ extension AccountManager {
         accountRef?.getDocument { snapshot, error in
             guard let snapshot = snapshot, snapshot.exists, error == nil else {
                 if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
+                print("Error Loading User Data. Forcing logout") 
                 AccountManager.logout()
                 return
             }
