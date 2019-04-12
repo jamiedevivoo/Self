@@ -3,6 +3,15 @@ import SnapKit
 
 class LaunchScreenViewController: UIViewController {
 
+    lazy var welcomeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Welcome to Self"
+        label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
+        label.textAlignment = .center
+        label.textColor = UIColor.app.text.solidText()
+        return label
+    }()
+    
     lazy var sliderViewController: LaunchScreenSliderViewController = {
         let viewController = LaunchScreenSliderViewController()
         self.addChild(viewController)
@@ -21,7 +30,7 @@ extension LaunchScreenViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Welcome to Self"
+//        title = "Welcome to Self"
         addSubViews()
         addConstraints()
     }
@@ -36,13 +45,18 @@ extension LaunchScreenViewController: ViewBuilding, AddingChildViewControllers {
     }
     
     func addSubViews() {
+        self.view.addSubview(welcomeLabel)
         self.view.addSubview(sliderViewController.view)
         self.view.addSubview(buttonsViewController.view)
     }
     
     func addConstraints() {
-        sliderViewController.view.snp.makeConstraints { (make) in
+        welcomeLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalToSuperview()
+        }
+        sliderViewController.view.snp.makeConstraints { (make) in
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(35)
             make.bottom.equalTo(buttonsViewController.view.snp.top).inset(-20)
             make.width.equalToSuperview()
             make.centerX.equalToSuperview()

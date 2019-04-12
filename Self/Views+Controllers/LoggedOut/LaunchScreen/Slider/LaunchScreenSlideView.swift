@@ -2,7 +2,7 @@ import UIKit
 
 class LaunchScreenSlideView: UIView {
     
-    let container = UIStackView()
+    let container = UIView()
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
@@ -13,8 +13,8 @@ class LaunchScreenSlideView: UIView {
     lazy var headline: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = UIColor.app.text.solidText()
+        label.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
+        label.textColor = .white
         return label
     }()
     
@@ -23,6 +23,7 @@ class LaunchScreenSlideView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.app.text.solidText()
         return label
     }()
@@ -56,25 +57,20 @@ extension LaunchScreenSlideView: ViewBuilding {
     }
     func addConstraints() {
         container.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-        image.snp.makeConstraints { (make) in
-            make.width.equalTo(150)
-            make.height.equalTo(150)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(20)
-        }
-        headline.snp.makeConstraints { (make) in
+            make.bottom.top.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(20)
-            make.top.equalTo(image.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
         }
-        desc.snp.makeConstraints { (make) in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.top.equalTo(headline.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
-        }
+            image.snp.makeConstraints { (make) in
+                make.width.height.equalTo(80)
+                make.centerX.top.equalToSuperview()
+            }
+            headline.snp.makeConstraints { (make) in
+                make.width.equalToSuperview()
+                make.top.equalTo(image.snp.bottom).offset(30)
+            }
+            desc.snp.makeConstraints { (make) in
+                make.width.equalToSuperview()
+                make.top.equalTo(headline.snp.bottom).offset(15)
+            }
     }
 }

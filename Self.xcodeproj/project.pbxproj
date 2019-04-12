@@ -161,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				A334098B2245701C004CBB2A /* RegisterViewController.swift */,
-				7D47AC7022601349004BF898 /* ViewController.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -383,6 +382,7 @@
 		A3D75721225CD50300E87F67 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				7D47AC7022601349004BF898 /* ViewController.swift */,
 				7D47AC67225FD380004BF898 /* StandardButton.swift */,
 				7D47AC6E22600DCF004BF898 /* StandardTextField.swift */,
 				A334099422457023004CBB2A /* Loader.swift */,

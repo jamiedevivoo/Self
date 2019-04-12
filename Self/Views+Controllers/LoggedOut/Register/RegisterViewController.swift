@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import SnapKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: ViewController {
     
     lazy var nameTextField = StandardTextField(placeholder: "Name", fieldType: .text)
     lazy var emailTextField = StandardTextField(placeholder: "Email", fieldType: .text)
@@ -58,15 +58,15 @@ extension RegisterViewController {
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            guard let registeredCredentials = authResult, error == nil else {
-                self.showError(errorDesc: error!.localizedDescription)
-                return
-            }
-            let userData = UserData(withDictionary: [.name:name])
-            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
-            AccountManager.shared().updateAccount(newAccount: account)
-        }
+//        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+//            guard let registeredCredentials = authResult, error == nil else {
+//                self.showError(errorDesc: error!.localizedDescription)
+//                return
+//            }
+//            let userData = UserData(withDictionary: [.name:name])
+//            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
+//            AccountManager.shared().updateAccount(newAccount: account)
+//        }
         
     }
     
