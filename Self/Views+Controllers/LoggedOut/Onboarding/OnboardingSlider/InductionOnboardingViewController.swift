@@ -12,6 +12,8 @@ class InductionOnboardingViewController: ViewController {
     lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Placeholder: You've begun a journey to your better self. (cheesy)"
+        label.numberOfLines = 0
+        label.textColor = UIColor.app.text.solidText()
         return label
     }()
     lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.nextStage), type: .disabled)

@@ -9,7 +9,11 @@ class OnboardingViewController: ViewController {
         self.addChild(viewController)
         return viewController
     }()
-    
+    @objc func nextStage() {
+    }
+    @nonobjc func previousStage() {
+        
+    }
 }
 
 // MARK: - Init
@@ -35,7 +39,8 @@ extension OnboardingViewController: ViewBuilding, AddingChildViewControllers {
     
     func addConstraints() {
         onboardingSlider.view.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalToSuperview()
         }
     }
 }
