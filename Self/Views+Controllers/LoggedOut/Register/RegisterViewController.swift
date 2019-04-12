@@ -4,47 +4,14 @@ import SnapKit
 
 class RegisterViewController: UIViewController {
     
-    // MARK: - Objects
-    lazy var nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Name"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Email"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Password"
-        textField.borderStyle = .roundedRect
-        textField.isSecureTextEntry = true
-        return textField
-    }()
-    lazy var passwordConfirmTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Password"
-        textField.borderStyle = .roundedRect
-        textField.isSecureTextEntry = true
-        return textField
-    }()
-    lazy var registerButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Register", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.app.background.primaryBackground()
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 30
-        button.clipsToBounds = true
-        button.layer.borderColor = UIColor.app.background.primaryBackground().cgColor
-        button.addTarget(self, action: #selector(RegisterViewController.registerButtonAction), for: .touchUpInside)
-        return button
-    }()
+    lazy var nameTextField = StandardTextField(placeholder: "Name", fieldType: .text)
+    lazy var emailTextField = StandardTextField(placeholder: "Email", fieldType: .text)
+    lazy var passwordTextField = StandardTextField(placeholder: "Password", fieldType: .password)
+    lazy var confirmPasswordTextField = StandardTextField(placeholder: "Confirm Password", fieldType: .password)
+    lazy var registerButton = StandardButton(title: "Register", action: #selector(RegisterViewController.registerButtonAction), type: .primary)
+
     private lazy var registerStackView: UIStackView = { [unowned self] in
-        let stackView = UIStackView(arrangedSubviews: [self.nameTextField, self.emailTextField, self.passwordTextField, self.passwordConfirmTextField, self.registerButton])
+        let stackView = UIStackView(arrangedSubviews: [self.nameTextField, self.emailTextField, self.passwordTextField, self.confirmPasswordTextField, self.registerButton])
         stackView.axis = .vertical
         stackView.alignment = .leading // .leading .firstBaseline .center .trailing .lastBaseline
         stackView.distribution = .equalCentering // .fillEqually .fillProportionally .equalSpacing .equalCentering
@@ -52,24 +19,14 @@ class RegisterViewController: UIViewController {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.spacing = UIStackView.spacingUseSystem
         return stackView
-        }()
-    
-    // MARK: - Properties
-    var db:Firestore!
-    
+    }()
 }
 
 // MARK: - Init
-
 extension RegisterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Register"
-        
-        db = Firestore.firestore()
-        view.backgroundColor = UIColor.app.background.primaryBackground()
-        
         addSubViews()
         addConstraints()
     }
@@ -96,7 +53,7 @@ extension RegisterViewController {
             return
         }
         
-        guard password == passwordConfirmTextField.text else {
+        guard password == confirmPasswordTextField.text else {
             showError(errorDesc: "Passwords do not match")
             return
         }
@@ -153,7 +110,7 @@ extension RegisterViewController: ViewBuilding {
             make.width.equalToSuperview()
             make.height.equalTo(60)
         }
-        passwordConfirmTextField.snp.makeConstraints { (make) in
+        confirmPasswordTextField.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
             make.height.equalTo(60)
         }

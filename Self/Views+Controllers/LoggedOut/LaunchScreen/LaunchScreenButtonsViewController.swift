@@ -9,22 +9,48 @@
 import UIKit
 
 class LaunchScreenButtonsViewController: UIViewController {
+    lazy var registerButton = StandardButton(title: "Get Started", action: #selector(LaunchScreenButtonsViewController.navigateToRegister), type: .primary)
+    lazy var loginButton = StandardButton(title: "Login", action: #selector(LaunchScreenButtonsViewController.navigateToLogin), type: .secondary)
+}
 
+// MARK: - Overrides
+extension LaunchScreenButtonsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubViews()
+        addConstraints()
+    }
+}
 
-        // Do any additional setup after loading the view.
+// MARK: - Functions
+extension LaunchScreenButtonsViewController {
+    @objc func navigateToLogin(_ sender: Any) {
+        navigationController?.pushViewController(LoginViewController(), animated: true)
+    }
+    @objc func navigateToRegister(_ sender: Any) {
+        navigationController?.pushViewController(RegisterViewController(), animated: true)
+    }
+}
+
+// MARK: - View uilding
+extension LaunchScreenButtonsViewController: ViewBuilding {
+    func addSubViews() {
+        view.addSubview(loginButton)
+        view.addSubview(registerButton)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func addConstraints() {
+        registerButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(loginButton.snp.top).inset(-20)
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
+            make.centerX.equalToSuperview()
+        }
+        loginButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
+            make.centerX.equalToSuperview()
+        }
     }
-    */
-
 }

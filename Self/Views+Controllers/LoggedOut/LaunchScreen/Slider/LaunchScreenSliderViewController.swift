@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LaunchScreenSliderViewController: UIViewController, UIScrollViewDelegate {
+class LaunchScreenSliderViewController: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -20,47 +20,35 @@ class LaunchScreenSliderViewController: UIViewController, UIScrollViewDelegate {
     
     lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.tintColor = .red
-        pageControl.pageIndicatorTintColor = .black
-        pageControl.currentPageIndicatorTintColor = .green
+        pageControl.tintColor = UIColor.app.interactive.selectable.selected()
+        pageControl.pageIndicatorTintColor = UIColor.app.interactive.selectable.unselected()
+        pageControl.currentPageIndicatorTintColor = UIColor.app.interactive.selectable.selected()
         return pageControl
     }()
     
-    var onboardingSlides:[LaunchScreenSlideView] = [];
+    lazy var onboardingSlides:[LaunchScreenSlideView] = createOnboardingScreens();
+}
 
+// MARK: - Overrides
+extension LaunchScreenSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
         scrollView.delegate = self
-        
-        onboardingSlides = createOnboardingScreens()
-        addOnboardingScreensToScrollView(slides: onboardingSlides)
-        
-        pageControl.numberOfPages = onboardingSlides.count
-        pageControl.currentPage = 0
+        addSubViews()
+        addConstraints()
+        setupSlider()
     }
-    
-    func addOnboardingScreensToScrollView(slides : [LaunchScreenSlideView]) {
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
-        scrollView.isPagingEnabled = true
-        
-        for i in 0 ..< slides.count {
-            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
-            scrollView.addSubview(slides[i])
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
-        pageControl.currentPage = Int(pageIndex)
-    }
-    
+}
+
+// MARK: - Functions
+extension LaunchScreenSliderViewController {
     
     func createOnboardingScreens() -> [LaunchScreenSlideView] {
         
         let onboardingSlideOne: LaunchScreenSlideView = {
             let onboardingSlide = LaunchScreenSlideView()
-            onboardingSlide.frame.size.height = scrollView.frame.size.height
+//            onboardingSlide.frame.size.height = scrollView.frame.size.height
             onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.headline.text = "Personal"
             onboardingSlide.desc.text = "Self is all about you, it's your personal assistant. Every day you'll get a unique message based on what you share and what it learns."
@@ -88,6 +76,31 @@ class LaunchScreenSliderViewController: UIViewController, UIScrollViewDelegate {
 
 }
 
+// MARK: - Functions
+extension LaunchScreenSliderViewController: UIScrollViewDelegate {
+    
+    func setupSlider() {
+        addOnboardingScreensToScrollView(slides: onboardingSlides)
+        pageControl.numberOfPages = onboardingSlides.count
+        pageControl.currentPage = 0
+    }
+    
+    func addOnboardingScreensToScrollView(slides : [LaunchScreenSlideView]) {
+        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
+        scrollView.isPagingEnabled = true
+        
+        for i in 0 ..< slides.count {
+            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
+            scrollView.addSubview(slides[i])
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+        pageControl.currentPage = Int(pageIndex)
+    }
+}
+
 
 extension LaunchScreenSliderViewController: ViewBuilding {
     func addSubViews() {
@@ -98,15 +111,13 @@ extension LaunchScreenSliderViewController: ViewBuilding {
     
     func addConstraints() {
         scrollView.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalToSuperview()
+            make.left.top.right.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalTo(pageControl.snp.top).offset(10)
         }
         pageControl.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().inset(25)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-25)
+            make.centerX.equalToSuperview()
             make.height.equalTo(10)
-            make.left.right.equalToSuperview()
         }
     }
 }

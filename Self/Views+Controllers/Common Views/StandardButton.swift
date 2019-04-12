@@ -12,18 +12,21 @@ class StandardButton: UIButton {
     }
 }
 
+// Convenience Initialiser
 extension StandardButton {
-    
     convenience init(title:String, action: Selector, type: StandardButton.ButtonVariety) {
         self.init()
         setTitle(title, for: .normal)
         addTarget(nil, action: action, for: .touchUpInside)
         customiseButton(for: type)
     }
-    
+}
+
+// Custom Styling
+extension StandardButton {
     func setupSubclass() {
         self.setTitleColor(UIColor.app.button.primary.text(), for: .normal)
-        self.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .callout), size: 14)
+        self.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .headline), size: 18)
         self.backgroundColor = UIColor.app.button.primary.fill()
         self.layer.borderColor = UIColor.app.button.primary.fill().cgColor
         self.contentEdgeInsets =  UIEdgeInsets(top: 6,left: 15,bottom: 6,right: 15)
@@ -37,7 +40,9 @@ extension StandardButton {
     
     func customiseButton(for type: ButtonVariety) {
         if type == .secondary {
+            self.setTitleColor(UIColor.app.button.primary.fill(), for: .normal)
             self.backgroundColor = UIColor.clear
+            self.layer.borderWidth = 2.0
         }
     }
 }

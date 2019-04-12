@@ -2,50 +2,55 @@ import UIKit
 import SnapKit
 
 class LaunchScreenViewController: UIViewController {
+
+    lazy var sliderViewController: LaunchScreenSliderViewController = {
+        let viewController = LaunchScreenSliderViewController()
+        self.addChild(viewController)
+        return viewController
+    }()
     
-    lazy var registerButton = StandardButton(title: "Get Started", action: #selector(LaunchScreenViewController.navigateToRegister), type: .primary)
-    lazy var loginButton = StandardButton(title: "Login", action: #selector(LaunchScreenViewController.navigateToLogin), type: .secondary)
+    lazy var buttonsViewController: LaunchScreenButtonsViewController = {
+        let viewController = LaunchScreenButtonsViewController()
+        self.addChild(viewController)
+        return viewController
+    }()
+}
+
+// MARK: Overides
+extension LaunchScreenViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Welcome to Self"
-        
-        BackgroundManager.shared.backgroundContainer = self
-        BackgroundManager.shared.addBackgroundToView()
-        
         addSubViews()
         addConstraints()
     }
-    
-    @objc func navigateToLogin(_ sender: Any) {
-        navigationController?.pushViewController(LoginViewController(), animated: true)
-        BackgroundManager.shared.fillScreen()
-    }
-    
-    @objc func navigateToRegister(_ sender: Any) {
-        navigationController?.pushViewController(RegisterViewController(), animated: true)
-    }
-    
 }
 
-extension LaunchScreenViewController: ViewBuilding {
+// MARK: View Building
+extension LaunchScreenViewController: ViewBuilding, AddingChildViewControllers {
+    
+    func addChildViewController(viewController: UIViewController) {
+        addChild(viewController)
+        viewController.didMove(toParent: self)
+    }
+    
     func addSubViews() {
-        view.addSubview(loginButton)
-        view.addSubview(registerButton)
+        self.view.addSubview(sliderViewController.view)
+        self.view.addSubview(buttonsViewController.view)
     }
     
     func addConstraints() {
-        registerButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(loginButton.snp.top).inset(-20)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(60)
+        sliderViewController.view.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(buttonsViewController.view.snp.top).inset(-20)
+            make.width.equalToSuperview()
             make.centerX.equalToSuperview()
         }
-        loginButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        buttonsViewController.view.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(60)
+            make.height.equalTo(150)
             make.centerX.equalToSuperview()
         }
     }
