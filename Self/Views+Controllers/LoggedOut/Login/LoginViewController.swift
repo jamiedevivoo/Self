@@ -2,45 +2,13 @@ import UIKit
 import Firebase
 import SnapKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: ViewController {
     
     // MARK: - Views
-    lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.text = "email@email.com"
-        textField.placeholder = "Email Address"
-        textField.keyboardType = UIKeyboardType.emailAddress
-        textField.textColor = UIColor.app.text.solidText()
-        textField.minimumFontSize = 25.0
-        textField.borderStyle = .roundedRect
-        textField.layer.cornerRadius = 15
-//        textField.clipsToBounds = true
-        return textField
-    }()
-    lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.text = "password"
-        textField.placeholder = "Password"
-        textField.keyboardType = UIKeyboardType.default
-        textField.isSecureTextEntry = true
-        textField.textColor = UIColor.app.text.solidText()
-        textField.minimumFontSize = 25.0
-        textField.borderStyle = .roundedRect
-        textField.layer.cornerRadius = 15
-        return textField
-    }()
-    lazy var loginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.app.button.primary.fill()
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 30
-        button.clipsToBounds = true
-        button.layer.borderColor = UIColor.app.button.primary.fill().cgColor
-        button.addTarget(self, action: #selector(LoginViewController.loginButtonAction), for: .touchUpInside)
-        return button
-    }()
+    lazy var emailTextField = StandardTextField(text: "email@email.com",placeholder: "Email Address", fieldType: .email)
+    lazy var passwordTextField = StandardTextField(text: "password",placeholder: "Password", fieldType: .password)
+    lazy var loginButton = StandardButton(title: "Log In", action: #selector(LoginViewController.loginButtonAction), type: .primary)
+
     private lazy var loginStackView: UIStackView = { [unowned self] in
         let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.loginButton])
         stackView.axis = .vertical
@@ -52,27 +20,24 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    // MARK: - Properties
-    var db:Firestore!
+}
+
+extension LoginViewController {
     
-    // MARK: - Initialisers
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        db = Firestore.firestore()
-        view.backgroundColor = UIColor.app.background.primaryBackground()
         
         title = "Login"
         
         addSubViews()
         addConstraints()
     }
+}
 
-    // MARK: - Functions
+extension LoginViewController {
     @objc func loginButtonAction(_ sender: Any) {
-        
         print("Log in with details: \(String(describing: emailTextField.text))  \(String(describing: passwordTextField.text))")
-
+        
         guard let email = emailTextField.text else {
             print("Please enter an email")
             return
@@ -80,11 +45,14 @@ class LoginViewController: UIViewController {
         guard let password = passwordTextField.text else {
             print("Please enter a password")
             return
-            
         }
         
+        login(email, password)
+      
+    }
+        
+    private func login(_ email:EmailString, _ password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            
             guard let _ = authResult, error == nil else {
                 let errorAlert: UIAlertController = {
                     let alertController = UIAlertController()

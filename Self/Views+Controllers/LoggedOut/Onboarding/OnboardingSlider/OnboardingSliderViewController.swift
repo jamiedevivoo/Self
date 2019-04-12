@@ -73,6 +73,12 @@ extension OnboardingSliderViewController: UIScrollViewDelegate {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
+    
+    @objc func nextStage() {
+    }
+    @nonobjc func previousStage() {
+        
+    }
 }
 
 
