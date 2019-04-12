@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class LaunchScreenViewController: UIViewController {
+class LaunchScreenViewController: ViewController {
 
     lazy var welcomeLabel: UILabel = {
         let label = UILabel()

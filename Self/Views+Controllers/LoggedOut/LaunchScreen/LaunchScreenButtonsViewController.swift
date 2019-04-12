@@ -28,7 +28,7 @@ extension LaunchScreenButtonsViewController {
         navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     @objc func navigateToRegister(_ sender: Any) {
-        navigationController?.pushViewController(RegisterViewController(), animated: true)
+        navigationController?.pushViewController(OnboardingViewController(), animated: true)
     }
 }
 

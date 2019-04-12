@@ -29,19 +29,29 @@ extension StandardTextField {
 // Custom Styling
 extension StandardTextField {
     func setupSubclass() {
-        borderStyle = .roundedRect
+        borderStyle = .none
+        font = UIFont.systemFont(ofSize: 30)
+        textColor = UIColor.app.text.solidText()
+        returnKeyType = .next
+        backgroundColor = .clear
+        keyboardType = .default
+        autocorrectionType = .no
+        clearButtonMode = UITextField.ViewMode.whileEditing
+        contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
     }
 
     func customiseTextField(for type: FieldType) {
         if type == .password {
             self.isSecureTextEntry = true
+        } else if type == .email {
+            keyboardType = .emailAddress
         }
     }
 }
 
 extension StandardTextField {
     enum FieldType {
-        case text, password
+        case text, email, password
     }
     
 }

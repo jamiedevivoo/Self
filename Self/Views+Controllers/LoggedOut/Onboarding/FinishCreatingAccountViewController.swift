@@ -1,17 +1,14 @@
 import UIKit
-import Firebase
-import SnapKit
 
-class RegisterViewController: ViewController {
+class FinishCreatingAccountViewController: ViewController {
     
-    lazy var nameTextField = StandardTextField(placeholder: "Name", fieldType: .text)
     lazy var emailTextField = StandardTextField(placeholder: "Email", fieldType: .text)
     lazy var passwordTextField = StandardTextField(placeholder: "Password", fieldType: .password)
     lazy var confirmPasswordTextField = StandardTextField(placeholder: "Confirm Password", fieldType: .password)
-    lazy var registerButton = StandardButton(title: "Register", action: #selector(RegisterViewController.registerButtonAction), type: .primary)
-
+    lazy var registerButton = StandardButton(title: "Register", action: #selector(FinishCreatingAccountViewController.registerButtonAction), type: .primary)
+    
     private lazy var registerStackView: UIStackView = { [unowned self] in
-        let stackView = UIStackView(arrangedSubviews: [self.nameTextField, self.emailTextField, self.passwordTextField, self.confirmPasswordTextField, self.registerButton])
+        let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.confirmPasswordTextField, self.registerButton])
         stackView.axis = .vertical
         stackView.alignment = .leading // .leading .firstBaseline .center .trailing .lastBaseline
         stackView.distribution = .equalCentering // .fillEqually .fillProportionally .equalSpacing .equalCentering
@@ -19,35 +16,27 @@ class RegisterViewController: ViewController {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.spacing = UIStackView.spacingUseSystem
         return stackView
-    }()
-}
+        }()
 
-// MARK: - Init
-extension RegisterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Register"
-        addSubViews()
-        addConstraints()
+
     }
+
 }
 
+
 // MARK: - Register User
-extension RegisterViewController {
+extension FinishCreatingAccountViewController {
     @objc func registerButtonAction(_ sender: Any) {
         
         print("Register with details: \(emailTextField.text!)  \(passwordTextField.text!)")
-        
-        guard let name: String = nameTextField.text else {
-            showError(errorDesc: "Missing Name")
-            return
-        }
         
         guard let email: String = emailTextField.text  else {
             showError(errorDesc: "Missing Email")
             return
         }
-            
+        
         guard let password: String = passwordTextField.text else {
             showError(errorDesc: "Missing Password")
             return
@@ -58,22 +47,22 @@ extension RegisterViewController {
             return
         }
         
-//        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-//            guard let registeredCredentials = authResult, error == nil else {
-//                self.showError(errorDesc: error!.localizedDescription)
-//                return
-//            }
-//            let userData = UserData(withDictionary: [.name:name])
-//            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
-//            AccountManager.shared().updateAccount(newAccount: account)
-//        }
+        //        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+        //            guard let registeredCredentials = authResult, error == nil else {
+        //                self.showError(errorDesc: error!.localizedDescription)
+        //                return
+        //            }
+        //            let userData = UserData(withDictionary: [.name:name])
+        //            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
+        //            AccountManager.shared().updateAccount(newAccount: account)
+        //        }
         
     }
     
 }
 
 // MARK: - Functions
-extension RegisterViewController {
+extension FinishCreatingAccountViewController {
     func showError(errorDesc: String) {
         let errorAlert: UIAlertController = {
             let alertController = UIAlertController()
@@ -86,8 +75,20 @@ extension RegisterViewController {
     }
 }
 
+extension FinishCreatingAccountViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(FinishCreatingAccountViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 // MARK: - View Building
-extension RegisterViewController: ViewBuilding {
+extension FinishCreatingAccountViewController: ViewBuilding {
     func addSubViews() {
         self.view.addSubview(registerStackView)
     }
@@ -97,10 +98,6 @@ extension RegisterViewController: ViewBuilding {
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().inset(50)
             make.center.equalToSuperview()
-        }
-        nameTextField.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
-            make.height.equalTo(60)
         }
         emailTextField.snp.makeConstraints { (make) in
             make.width.equalToSuperview()

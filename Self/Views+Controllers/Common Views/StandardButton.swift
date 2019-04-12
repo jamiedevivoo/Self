@@ -43,13 +43,15 @@ extension StandardButton {
             self.setTitleColor(UIColor.app.button.primary.fill(), for: .normal)
             self.backgroundColor = UIColor.clear
             self.layer.borderWidth = 2.0
+        } else if type == .disabled {
+            self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.5)
         }
     }
 }
 
 extension StandardButton {
     enum ButtonVariety {
-        case primary, secondary
+        case primary, secondary, disabled
     }
     
 }
