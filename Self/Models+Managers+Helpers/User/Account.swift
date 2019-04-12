@@ -5,7 +5,7 @@ class Account {
     var user: UserData!
     var preferences: AccountPreferences
     
-    init(uid: UIDString!, userData:UserData!, accountPreferences: AccountPreferences = AccountPreferences()) {
+    init(uid: UIDString! = nil, userData:UserData! = UserData(), accountPreferences: AccountPreferences = AccountPreferences()) {
         self.uid = uid
         self.user = userData
         self.preferences = accountPreferences

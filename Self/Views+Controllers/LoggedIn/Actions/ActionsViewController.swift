@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Firebase
 
 class ActionsViewController: UIViewController {
     
@@ -10,14 +11,6 @@ class ActionsViewController: UIViewController {
         let view = UIView()
         return view
     }()
-    
-    lazy var actionsScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.contentSize.width = 100
-        scrollView.contentSize.height = actions.frame.height
-        scrollView.bounces = false
-        return scrollView
-    }()
     lazy var actionCardStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -26,49 +19,14 @@ class ActionsViewController: UIViewController {
         stack.spacing = 10
         return stack
     }()
-    
-    lazy var actionCardView: ActionView = {
-        let view = ActionView()
-        view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button.tag.fill()
-        view.clipsToBounds = true
-        return view
+    lazy var actionsScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.contentSize.width = self.view.frame.width
+        scrollView.contentSize.height = actions.frame.height
+        scrollView.bounces = false
+        return scrollView
     }()
-    lazy var actionCardViewTwo: ActionView = {
-        let view = ActionView()
-        view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button.tag.fill()
-        view.clipsToBounds = true
-        return view
-    }()
-    lazy var actionCardViewThree: ActionView = {
-        let view = ActionView()
-        view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button.tag.fill()
-        view.clipsToBounds = true
-        return view
-    }()
-    lazy var actionCardViewFour: ActionView = {
-        let view = ActionView()
-        view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button.tag.fill()
-        view.clipsToBounds = true
-        return view
-    }()
-    lazy var actionCardViewFive: ActionView = {
-        let view = ActionView()
-        view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button.tag.fill()
-        view.clipsToBounds = true
-        return view
-    }()
-    lazy var actionCardViewSix: ActionView = {
-        let view = ActionView()
-        view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor.app.button.tag.fill()
-        view.clipsToBounds = true
-        return view
-    }()
+    var actionSnapshots: [DocumentSnapshot] = []
     
 }
 
@@ -78,6 +36,19 @@ extension ActionsViewController {
         super.viewDidLoad()
         addSubViews()
         addConstraints()
+        addActions()
+    }
+    
+    func addActions() {
+        ActionManager.getActions() { (allActions) -> () in
+//            guard let allActions = allActions else { print("No Actions"); return }
+            for action in allActions.documents {
+                print(action)
+                let actionCardView = ActionView(actionCardTitleLabel: action.get("title") as! String, actionCardDescriptionLabel: action.get("description") as! String)
+                self.actionCardStack.addArrangedSubview(actionCardView)
+            }
+            self.actionsScrollView.contentSize.height = self.actions.frame.height
+        }
     }
 }
 
@@ -89,12 +60,6 @@ extension ActionsViewController: ViewBuilding {
         view.addSubview(actionsScrollView)
             actionsScrollView.addSubview(actions)
                 actions.addSubview(actionCardStack)
-                        actionCardStack.addArrangedSubview(actionCardView)
-                        actionCardStack.addArrangedSubview(actionCardViewTwo)
-                        actionCardStack.addArrangedSubview(actionCardViewThree)
-                        actionCardStack.addArrangedSubview(actionCardViewFour)
-                        actionCardStack.addArrangedSubview(actionCardViewFive)
-                        actionCardStack.addArrangedSubview(actionCardViewSix)
     }
     
     func addConstraints() {

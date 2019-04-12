@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class FinishCreatingAccountViewController: ViewController {
     
@@ -52,7 +53,7 @@ extension FinishCreatingAccountViewController {
                         self.showError(errorDesc: error!.localizedDescription)
                         return
                     }
-                    let userData = UserData(withDictionary: [.name:name])
+                    let userData = UserData(withDictionary: [.name:"Stranger"])
                     let account = Account(withID: registeredCredentials.user.uid, withData: userData)
                     AccountManager.shared().updateAccount(newAccount: account)
                 }

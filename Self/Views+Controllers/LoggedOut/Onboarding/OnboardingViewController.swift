@@ -9,7 +9,6 @@ class OnboardingViewController: ViewController {
         self.addChild(viewController)
         return viewController
     }()
-//    lazy var onboardingAccount = Account()
 }
 
 // MARK: - Init
@@ -19,6 +18,7 @@ extension OnboardingViewController {
         addSubViews()
         addConstraints()
         onboardingSlider.onboardingManagerDelegate = self
+        AccountManager.shared().account = Account()
     }
 }
 
@@ -38,9 +38,10 @@ extension OnboardingViewController {
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
-//            let userData = UserData(withDictionary: [.name:name])
-//            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
-//            AccountManager.shared().updateAccount(newAccount: account)
+            let name = "TESTEWSD"
+            let userData = UserData(withDictionary: [.name:name])
+            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
+            AccountManager.shared().updateAccount(newAccount: account)
         }
     }
 }

@@ -99,8 +99,19 @@ class ActionView: UIView {
         backgroundColor = .white
         addSubViews()
         addConstraints()
+        layer.cornerRadius = 30
+        backgroundColor = UIColor.app.button.tag.fill()
+        clipsToBounds = true
     }
     
+}
+
+extension ActionView {
+    convenience init(actionCardTitleLabel: String, actionCardDescriptionLabel:String) {
+        self.init()
+        self.actionCardTitleLabel.text = actionCardTitleLabel
+        self.actionCardDescriptionLabel.text = actionCardDescriptionLabel
+    }
 }
 extension ActionView: ViewBuilding {
     func addSubViews() {

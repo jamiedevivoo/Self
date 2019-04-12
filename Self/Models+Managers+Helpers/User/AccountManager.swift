@@ -3,7 +3,7 @@ import Firebase
 class AccountManager {
     static fileprivate var sharedInstance: AccountManager? // Singleton
     fileprivate var accountRef:DocumentReference?
-    fileprivate(set) var account: Account?
+    var account: Account? // fileprivate(set)
 
     private init() {
         print("[Account Manager: Initialised]")
