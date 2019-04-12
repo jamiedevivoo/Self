@@ -11,6 +11,7 @@ class ActionsViewController: UIViewController {
         let view = UIView()
         return view
     }()
+  
     lazy var actionCardStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -19,15 +20,22 @@ class ActionsViewController: UIViewController {
         stack.spacing = 10
         return stack
     }()
-    lazy var actionsScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.contentSize.width = self.view.frame.width
-        scrollView.contentSize.height = actions.frame.height
-        scrollView.bounces = false
-        return scrollView
+  
+    lazy var actionsScrollView: UICollectionView = {
+      let flowLayout = UICollectionViewFlowLayout()
+      flowLayout.scrollDirection = .vertical
+      let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+      collectionView.register(ActionCell.self, forCellWithReuseIdentifier: "Cell")
+      collectionView.dataSource = self
+      collectionView.delegate = self
+      collectionView.backgroundColor = .white
+      return collectionView
     }()
+
     var actionSnapshots: [DocumentSnapshot] = []
-    
+
+    var actionsData = [String]()
+  
 }
 
 // MARK: - Init
@@ -40,16 +48,35 @@ extension ActionsViewController {
     }
     
     func addActions() {
-        ActionManager.getActions() { (allActions) -> () in
+        ActionManager.getActions() { [unowned self] allActions in
 //            guard let allActions = allActions else { print("No Actions"); return }
             for action in allActions.documents {
                 print(action)
                 let actionCardView = ActionView(actionCardTitleLabel: action.get("title") as! String, actionCardDescriptionLabel: action.get("description") as! String)
-                self.actionCardStack.addArrangedSubview(actionCardView)
+                self.actionsData.append(action.documentID)
             }
-            self.actionsScrollView.contentSize.height = self.actions.frame.height
+            self.actionsScrollView.reloadData()
         }
     }
+}
+
+extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.size.width, height: 180)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return actionsData.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionCell
+    let action = actionsData[indexPath.row]
+    cell.titleLable.text = action
+    return cell
+  }
+  
 }
 
 // MARK: - View Building

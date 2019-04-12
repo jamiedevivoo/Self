@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		272325922260C92000BB6924 /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272325912260C92000BB6924 /* BackgroundManager.swift */; };
+		272325952260D69500BB6924 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272325942260D69500BB6924 /* ActionCell.swift */; };
 		360EC41E9D53E4791E09F0D7 /* Pods_Self.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133C9E098A01664EBB5E301E /* Pods_Self.framework */; };
 		7D187F122258D1A000A9E9AE /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionView.swift */; };
 		7D47AC66225FD148004BF898 /* LaunchScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC65225FD148004BF898 /* LaunchScreenSliderViewController.swift */; };
@@ -60,7 +62,6 @@
 		A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86222456FB500592D88 /* AccountManager.swift */; };
 		A35EA86D22456FB800592D88 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86422456FB600592D88 /* AppManager.swift */; };
 		A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86522456FB700592D88 /* ViewBuilding.swift */; };
-		A39DDD2022577EAD00B6A24F /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39DDD1F22577EAD00B6A24F /* BackgroundManager.swift */; };
 		A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */; };
 		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 		A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* Colours.swift */; };
@@ -76,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		133C9E098A01664EBB5E301E /* Pods_Self.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Self.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		272325912260C92000BB6924 /* BackgroundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundManager.swift; path = "Self/Models+Managers+Helpers/BackgroundManager.swift"; sourceTree = SOURCE_ROOT; };
+		272325942260D69500BB6924 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		3195708A3A9E109844A87C3E /* Pods-Self.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.release.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.release.xcconfig"; sourceTree = "<group>"; };
 		7D187F112258D1A000A9E9AE /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		7D47AC65225FD148004BF898 /* LaunchScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenSliderViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +134,6 @@
 		A35EA86222456FB500592D88 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A35EA86422456FB600592D88 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A35EA86522456FB700592D88 /* ViewBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBuilding.swift; sourceTree = "<group>"; };
-		A39DDD1F22577EAD00B6A24F /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BackgroundManager.swift; path = "Self/Models+Managers+Helpers/BackgroundManager.swift"; sourceTree = SOURCE_ROOT; };
 		A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoodViewController.swift; sourceTree = "<group>"; };
 		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
@@ -158,6 +160,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		272325902260C91200BB6924 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				272325912260C92000BB6924 /* BackgroundManager.swift */,
+			);
+			path = Background;
+			sourceTree = "<group>";
+		};
 		7D47AC692260003B004BF898 /* Slider */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,14 +275,6 @@
 			path = Mood;
 			sourceTree = "<group>";
 		};
-		7DF14B4A225F24BA0090D299 /* Background */ = {
-			isa = PBXGroup;
-			children = (
-				A39DDD1F22577EAD00B6A24F /* BackgroundManager.swift */,
-			);
-			path = Background;
-			sourceTree = "<group>";
-		};
 		7DF14B4B225F24FF0090D299 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +364,8 @@
 			isa = PBXGroup;
 			children = (
 				A3438E9022456B86004D21BB /* AppDelegate.swift */,
+				272325942260D69500BB6924 /* ActionCell.swift */,
+				272325902260C91200BB6924 /* Background */,
 				A35EA85D22456FA700592D88 /* Models+Managers+Helpers */,
 				A35EA87122456FD500592D88 /* Views+Controllers */,
 				A3438E9E22456BDA004D21BB /* Info.plist */,
@@ -387,7 +391,6 @@
 				7D7758DB225D884A003CCD1F /* Insight */,
 				7D7758D6225D87F7003CCD1F /* Colour */,
 				7DF14B4B225F24FF0090D299 /* Tag */,
-				7DF14B4A225F24BA0090D299 /* Background */,
 			);
 			path = "Models+Managers+Helpers";
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				A3438E7222456A1C004D21BB /* Frameworks */,
 				A3438E7322456A1C004D21BB /* Resources */,
 				0A0B1AC764327F4E133F1E7D /* [CP] Embed Pods Frameworks */,
+				272325932260D21F00BB6924 /* Script */,
 			);
 			buildRules = (
 			);
@@ -558,6 +562,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Self/Pods-Self-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		272325932260D21F00BB6924 /* Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Script;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:|WARNING:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" -or -name \"*.m\" -or -name \"*.h\" \\) -not -path \"${SRCROOT}/Pods/*\" -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"| perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
 		C90B05CD96C5495D117AB362 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -593,6 +615,7 @@
 				7D47AC6D226000A1004BF898 /* LaunchScreenButtonsViewController.swift in Sources */,
 				7D47AC6F22600DCF004BF898 /* StandardTextField.swift in Sources */,
 				A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */,
+				272325952260D69500BB6924 /* ActionCell.swift in Sources */,
 				7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */,
 				7DF14B57225F2C2D0090D299 /* WildcardQuestion.swift in Sources */,
 				7DF14B4D225F25A00090D299 /* Tag.swift in Sources */,
@@ -622,6 +645,7 @@
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* NameOnboardingViewController.swift in Sources */,
+				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
 				7DF14B53225F2B490090D299 /* AccountFlags.swift in Sources */,
 				7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */,
 				A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */,
@@ -640,7 +664,6 @@
 				A334099522457023004CBB2A /* Loader.swift in Sources */,
 				A33409A9224570B3004CBB2A /* LoginViewController.swift in Sources */,
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
-				A39DDD2022577EAD00B6A24F /* BackgroundManager.swift in Sources */,
 				7DF14B55225F2B940090D299 /* AccountNotificationConsents.swift in Sources */,
 				A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */,
 				7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */,
@@ -778,7 +801,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 95F452WV2M;
+				DEVELOPMENT_TEAM = YGKX7P2G9Y;
 				INFOPLIST_FILE = Self/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -788,7 +811,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamiedevivo.self;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -800,7 +823,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 95F452WV2M;
+				DEVELOPMENT_TEAM = YGKX7P2G9Y;
 				INFOPLIST_FILE = Self/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -809,7 +832,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamiedevivo.self;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

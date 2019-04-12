@@ -61,8 +61,12 @@ extension DashboardTabBarController {
 // MARK: - Handle Swipes
 extension DashboardTabBarController {
     @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        // FIXME: Needs to compare the view the gesture occured in to tab bar root view controllers and only move on if they're equal
-        guard sender.view == self.view else { return }
+      
+        let current = viewControllers![selectedIndex] as! DashboardNavigationController
+        guard current.viewControllers.count < 2 else { return }
+      
+  
+      
         if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
             transitionViewController(toIndex: self.selectedIndex + 1)
         }
