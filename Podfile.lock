@@ -107,13 +107,17 @@ PODS:
   - GTMSessionFetcher/Core (1.2.1)
   - leveldb-library (1.20)
   - lottie-ios (3.0.4)
+  - MarqueeLabel/Swift (3.2.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - NotificationBannerSwift (2.1.0):
+    - MarqueeLabel/Swift (~> 3.2.1)
+    - SnapKit (~> 4.2.0)
   - Protobuf (3.7.0)
-  - SnapKit (4.0.1)
+  - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - Firebase
@@ -123,7 +127,8 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - lottie-ios
-  - SnapKit (~> 4.0.0)
+  - NotificationBannerSwift (from `https://github.com/Daltron/NotificationBanner`)
+  - SnapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -143,9 +148,19 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - lottie-ios
+    - MarqueeLabel
     - nanopb
     - Protobuf
     - SnapKit
+
+EXTERNAL SOURCES:
+  NotificationBannerSwift:
+    :git: https://github.com/Daltron/NotificationBanner
+
+CHECKOUT OPTIONS:
+  NotificationBannerSwift:
+    :commit: 66881029b9734ea699a0d36dc864ec63d995df6b
+    :git: https://github.com/Daltron/NotificationBanner
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
@@ -164,10 +179,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   lottie-ios: 55a2de40418f8de2b155efaba4d4d1a025a5c570
+  MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  NotificationBannerSwift: 4483919639202bec56d6bfe8f106ebc352d38bc7
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: ef1bbdc9003e98d45229b695f4875a21545dff69
+PODFILE CHECKSUM: 1bc5d2cb5f9a63a1696714407e26995af40b0df0
 
 COCOAPODS: 1.6.1

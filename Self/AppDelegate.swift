@@ -13,9 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         FirebaseConfiguration.shared.setLoggerLevel(.min) // Disable most of Firebase Logs
         FirebaseApp.configure()
-      
-      Auth.auth()
-      
         return true
     }
 

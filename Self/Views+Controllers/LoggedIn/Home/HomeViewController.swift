@@ -32,6 +32,10 @@ extension HomeViewController {
     }
 }
 
+extension HomeViewController {
+    
+}
+
 // MARK: - View Building
 extension HomeViewController: ViewBuilding, AddingChildViewControllers {
     

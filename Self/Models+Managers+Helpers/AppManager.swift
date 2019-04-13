@@ -1,9 +1,11 @@
 import UIKit
 import Firebase
 
-class AppManager {
+final class AppManager {
     
-    static let shared = AppManager() // Singleton
+    static let shared: AppManager = {
+        return AppManager()
+    }()
     var appContainer: AppContainerViewController!
     private var handle: AuthStateDidChangeListenerHandle?
     
