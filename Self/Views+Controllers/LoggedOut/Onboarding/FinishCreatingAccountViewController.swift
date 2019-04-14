@@ -21,7 +21,8 @@ class FinishCreatingAccountViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addSubViews()
+        addConstraints()
     }
 
 }
@@ -48,16 +49,20 @@ extension FinishCreatingAccountViewController {
             return
         }
         
-                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                    guard let registeredCredentials = authResult, error == nil else {
-                        self.showError(errorDesc: error!.localizedDescription)
-                        return
-                    }
-                    let accountUser = AccountUser(["name":"Stranger"])
-                    let account     = Account(uid: "T##UIDString", accountUser: accountUser)
-                    AccountManager.shared().updateAccount(modifiedAccount: account)
-                }
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
         
+        Auth.auth().currentUser?.linkAndRetrieveData(with: credential) { (authResult, error) in
+            guard let registeredCredentials = authResult, error == nil else {
+                self.showError(errorDesc: error!.localizedDescription)
+                return
+            }
+            if AccountManager.shared().accountRef?.uid == registeredCredentials.user.uid {
+                AccountManager.shared().accountRef?.user.name = "Stranger"
+                AccountManager.shared().accountRef?.flags.accountIsComplete = true
+                AccountManager.shared().updateAccount()
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
     }
     
 }
@@ -96,25 +101,8 @@ extension FinishCreatingAccountViewController: ViewBuilding {
     
     func addConstraints() {
         registerStackView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(50)
-            make.right.equalToSuperview().inset(50)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.center.equalToSuperview()
-        }
-        emailTextField.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
-            make.height.equalTo(60)
-        }
-        passwordTextField.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
-            make.height.equalTo(60)
-        }
-        confirmPasswordTextField.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
-            make.height.equalTo(60)
-        }
-        registerButton.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
-            make.height.equalTo(60)
         }
     }
 }

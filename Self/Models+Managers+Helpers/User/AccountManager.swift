@@ -2,8 +2,8 @@ import Firebase
 
 class AccountManager {
     static fileprivate var sharedInstance: AccountManager? // Singleton
-    fileprivate var accountRef:DocumentReference?
-    var account: Account? // fileprivate(set)
+    fileprivate var accountDBRef:DocumentReference?
+    var accountRef: Account? // fileprivate(set)
 
     private init() {
         print("[Account Manager: Initialised]")
@@ -19,30 +19,30 @@ class AccountManager {
 extension AccountManager {
     func loadAccount(completion: @escaping () -> ()) {
         let authUser = Auth.auth().currentUser!
-        accountRef = Firestore.firestore().collection("user").document(authUser.uid)
+        accountDBRef = Firestore.firestore().collection("user").document(authUser.uid)
         
-        accountRef?.getDocument { snapshot, error in
+        accountDBRef?.getDocument { snapshot, error in
             guard let snapshot = snapshot, snapshot.exists, error == nil else {
                 if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
                 print("Error Loading User Data. Forcing logout") 
                 AccountManager.logout()
                 return
             }
-            self.account = Account(withSnapshot: snapshot)
-            print(self.account?.dictionary)
+            self.accountRef = Account(withSnapshot: snapshot)
+            print(self.accountRef?.dictionary)
             completion()
         }
     }
 
     func updateAccount(modifiedAccount:Account? = nil) {
         if let modifiedAccount = modifiedAccount {
-            AccountManager.shared().account = modifiedAccount
+            AccountManager.shared().accountRef = modifiedAccount
         }
         
-        var data = AccountManager.shared().account!.dictionary
+        var data = AccountManager.shared().accountRef!.dictionary
         data["metadata"] = ["account_last_modified":NSDate().timeIntervalSince1970]
-        accountRef?.setData(AccountManager.shared().account!.dictionary, merge: true) { _ in
-            print(AccountManager.shared().account!.dictionary)
+        accountDBRef?.setData(AccountManager.shared().accountRef!.dictionary, merge: true) { _ in
+            print(AccountManager.shared().accountRef!.dictionary)
         }
     }
 }

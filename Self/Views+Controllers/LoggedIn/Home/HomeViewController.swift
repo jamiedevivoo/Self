@@ -6,19 +6,19 @@ class HomeViewController: UIViewController {
     
     lazy var actionListViewController: ActionListViewController = {
         let viewController = ActionListViewController()
-        viewController.user = self.user
+        viewController.account = self.account
         add(viewController)
         return viewController
     }()
     
     lazy var messageViewController: MessageViewController = {
         let viewController = MessageViewController()
-        viewController.user = self.user
+        viewController.account = self.account
         add(viewController)
         return viewController
     }()
     
-    var user: AccountUser?
+    var account: Account?
 
 }
 
@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.user = AccountManager.shared().account?.user
+        self.account = AccountManager.shared().accountRef   
         addSubViews()
         addConstraints()
     }

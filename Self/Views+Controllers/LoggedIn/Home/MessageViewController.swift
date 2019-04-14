@@ -21,8 +21,7 @@ class MessageViewController: UIViewController {
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        var user: AccountUser?
-        label.text = AccountManager.shared().account?.user.name
+        label.text = account?.user.name
         label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
         label.textColor = UIColor.app.text.solidText()
         return label
@@ -46,7 +45,7 @@ class MessageViewController: UIViewController {
         return stackView
     }()
     
-    var user: AccountUser?
+    var account: Account?
     var message = Message()
     
 }
@@ -62,7 +61,7 @@ extension MessageViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        nameLabel.text = user?.name
+        nameLabel.text = account?.user.name
     }
 }
 

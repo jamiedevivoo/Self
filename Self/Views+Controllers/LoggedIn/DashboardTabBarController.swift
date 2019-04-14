@@ -64,9 +64,7 @@ extension DashboardTabBarController {
       
         let current = viewControllers![selectedIndex] as! DashboardNavigationController
         guard current.viewControllers.count < 2 else { return }
-      
-  
-      
+
         if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
             transitionViewController(toIndex: self.selectedIndex + 1)
         }

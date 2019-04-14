@@ -81,9 +81,13 @@ extension OnboardingSliderViewController: UIScrollViewDelegate {
 extension OnboardingSliderViewController: OnboardingFlowDelegate {
     func nextStage() {
         print("Next Stage")
-        guard pageControl.currentPage < (pageControl.numberOfPages - 1) else { return }
+        guard pageControl.currentPage < (pageControl.numberOfPages - 1) else {
+            onboardingManagerDelegate?.continueOnboarding()
+            return
+        }
         pageControl.currentPage = pageControl.currentPage + 1
         scrollView.setContentOffset(CGPoint(x: (scrollView.frame.width * CGFloat(pageControl.currentPage)), y: scrollView.contentOffset.y), animated: true)
+        
     }
     func previousStage() {
         guard pageControl.currentPage > 0 else { return }
