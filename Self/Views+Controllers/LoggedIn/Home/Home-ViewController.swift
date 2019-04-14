@@ -2,44 +2,30 @@ import UIKit
 import SnapKit
 import Firebase
 
+extension HomeViewController: ViewIsDependantOnAccountData { }
+
 class HomeViewController: UIViewController {
     
-    lazy var actionListViewController: ActionListViewController = {
-        let viewController = ActionListViewController()
-        viewController.account = self.account
-        add(viewController)
-        return viewController
-    }()
-    
-    lazy var messageViewController: MessageViewController = {
-        let viewController = MessageViewController()
-        viewController.account = self.account
-        add(viewController)
-        return viewController
-    }()
-    
-    var account: Account?
+    lazy var actionListViewController = ActionListChildViewController(accountRef: self.accountRef)
+    lazy var messageViewController = MessageChildViewController(accountRef: self.accountRef)
 
 }
 
-// MARK: - Init
+// MARK: - Overrides
 extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.account = AccountManager.shared().accountRef   
         addSubViews()
         addConstraints()
     }
 }
 
-extension HomeViewController {
-    
-}
-
 // MARK: - View Building
 extension HomeViewController: ViewBuilding {
     
-    func addSubViews() {        
+    func addSubViews() {
+        add(actionListViewController)
+        add(messageViewController)
         self.view.addSubview(messageViewController.view)
         self.view.addSubview(actionListViewController.view)
     }

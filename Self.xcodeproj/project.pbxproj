@@ -39,8 +39,8 @@
 		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
 		7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5E225F4C340090D299 /* ClassBuilding.swift */; };
-		A30EC35322564FC60092A4E2 /* ActionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionListViewController.swift */; };
-		A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* MessageViewController.swift */; };
+		A30EC35322564FC60092A4E2 /* ActionList-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */; };
+		A30EC35522565BEF0092A4E2 /* Message-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message-ChildViewController.swift */; };
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
 		A316E709224AF18F00283547 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* LaunchScreenViewController.swift */; };
 		A33409902245701D004CBB2A /* LaunchScreenSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* LaunchScreenSlideView.swift */; };
@@ -51,7 +51,7 @@
 		A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */; };
 		A33409A9224570B3004CBB2A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A8224570B3004CBB2A /* LoginViewController.swift */; };
 		A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AA224570B6004CBB2A /* HighlightsViewController.swift */; };
-		A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* HomeViewController.swift */; };
+		A33409AD224570BC004CBB2A /* Home-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* Home-ViewController.swift */; };
 		A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */; };
 		A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B1224570D2004CBB2A /* ActionsViewController.swift */; };
 		A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */; };
@@ -64,7 +64,7 @@
 		A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86222456FB500592D88 /* AccountManager.swift */; };
 		A35EA86D22456FB800592D88 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86422456FB600592D88 /* AppManager.swift */; };
 		A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86522456FB700592D88 /* ViewBuilding.swift */; };
-		A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */; };
+		A3CF94FD224D3C5D00D0EC31 /* AddMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF94FC224D3C5D00D0EC31 /* AddMood-ViewController.swift */; };
 		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 		A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* Colours.swift */; };
 		A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950C224D7EEB00D0EC31 /* Highlight.swift */; };
@@ -111,8 +111,8 @@
 		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7DF14B5E225F4C340090D299 /* ClassBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBuilding.swift; sourceTree = "<group>"; };
-		A30EC35222564FC60092A4E2 /* ActionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionListViewController.swift; sourceTree = "<group>"; };
-		A30EC35422565BEF0092A4E2 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList-ChildViewController.swift"; sourceTree = "<group>"; };
+		A30EC35422565BEF0092A4E2 /* Message-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message-ChildViewController.swift"; sourceTree = "<group>"; };
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A316E708224AF18F00283547 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		A334098A2245701B004CBB2A /* LaunchScreenSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenSlideView.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
 		A33409A8224570B3004CBB2A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A33409AA224570B6004CBB2A /* HighlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightsViewController.swift; sourceTree = "<group>"; };
-		A33409AC224570BC004CBB2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A33409AC224570BC004CBB2A /* Home-ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home-ViewController.swift"; sourceTree = "<group>"; };
 		A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
 		A33409B1224570D2004CBB2A /* ActionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationController.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		A35EA86222456FB500592D88 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A35EA86422456FB600592D88 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A35EA86522456FB700592D88 /* ViewBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBuilding.swift; sourceTree = "<group>"; };
-		A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoodViewController.swift; sourceTree = "<group>"; };
+		A3CF94FC224D3C5D00D0EC31 /* AddMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddMood-ViewController.swift"; sourceTree = "<group>"; };
 		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		A3CF950C224D7EEB00D0EC31 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
@@ -320,10 +320,10 @@
 		A33409992245707F004CBB2A /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				A33409AC224570BC004CBB2A /* HomeViewController.swift */,
-				A30EC35422565BEF0092A4E2 /* MessageViewController.swift */,
-				A30EC35222564FC60092A4E2 /* ActionListViewController.swift */,
-				A3CF94FC224D3C5D00D0EC31 /* AddMoodViewController.swift */,
+				A33409AC224570BC004CBB2A /* Home-ViewController.swift */,
+				A30EC35422565BEF0092A4E2 /* Message-ChildViewController.swift */,
+				A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */,
+				A3CF94FC224D3C5D00D0EC31 /* AddMood-ViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -669,14 +669,14 @@
 				7D6B745F226028B5006F9CD1 /* NameOnboardingViewController.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
 				7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */,
-				A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */,
+				A30EC35522565BEF0092A4E2 /* Message-ChildViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				7DF14B47225F24870090D299 /* MoodManager.swift in Sources */,
 				7D4F3037226094BC00F2EF48 /* OnboardingProtocol.swift in Sources */,
 				7D187F122258D1A000A9E9AE /* ActionView.swift in Sources */,
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
 				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,
-				A30EC35322564FC60092A4E2 /* ActionListViewController.swift in Sources */,
+				A30EC35322564FC60092A4E2 /* ActionList-ChildViewController.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,
 				7D6B746122602C56006F9CD1 /* InductionOnboardingViewController.swift in Sources */,
 				7DF14B4F225F260B0090D299 /* CustomTypealias.swift in Sources */,
@@ -686,11 +686,11 @@
 				A33409A9224570B3004CBB2A /* LoginViewController.swift in Sources */,
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
 				7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */,
-				A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */,
+				A3CF94FD224D3C5D00D0EC31 /* AddMood-ViewController.swift in Sources */,
 				7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */,
 				7D6B7463226030C0006F9CD1 /* OnboardingSliderViewController.swift in Sources */,
 				7DF14B51225F296C0090D299 /* Emotion.swift in Sources */,
-				A33409AD224570BC004CBB2A /* HomeViewController.swift in Sources */,
+				A33409AD224570BC004CBB2A /* Home-ViewController.swift in Sources */,
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
 				A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */,
 			);

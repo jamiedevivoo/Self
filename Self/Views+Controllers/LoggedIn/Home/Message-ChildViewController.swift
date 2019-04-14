@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class MessageViewController: UIViewController {
+class MessageChildViewController: UIViewController {
     
     // FIXME: Will need protection if messengeView height get's too tall (ScrollView)
     
@@ -21,7 +21,7 @@ class MessageViewController: UIViewController {
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = account?.user.name
+        label.text = accountRef?.user.name
         label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
         label.textColor = UIColor.app.text.solidText()
         return label
@@ -45,13 +45,18 @@ class MessageViewController: UIViewController {
         return stackView
     }()
     
-    var account: Account?
+    var accountRef: Account?
     var message = Message()
     
+    init(accountRef: Account) {
+        self.accountRef = accountRef
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }
 
 // MARK: - Init
-extension MessageViewController {
+extension MessageChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
@@ -61,16 +66,16 @@ extension MessageViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        nameLabel.text = account?.user.name
+        nameLabel.text = accountRef?.user.name
     }
 }
 
 // MARK: - Functions
-extension MessageViewController {
+extension MessageChildViewController {
     func createResponses() {
         guard let messageActions = message.actions else { return }
         for action in messageActions {
-            let button = DashboardButton(title: action, action: #selector(MessageViewController.logNewMood))
+            let button = DashboardButton(title: action, action: #selector(MessageChildViewController.logNewMood))
             messageResponseButtonStack.addArrangedSubview(button)
         }
     }
@@ -86,7 +91,7 @@ extension MessageViewController {
 }
 
 // MARK: - View Building
-extension MessageViewController: ViewBuilding {
+extension MessageChildViewController: ViewBuilding {
     func addSubViews() {
         
         self.view.addSubview(messageView)

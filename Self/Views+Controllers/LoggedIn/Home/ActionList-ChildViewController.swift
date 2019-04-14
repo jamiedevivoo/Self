@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 
-class ActionListViewController: UIViewController {
+class ActionListChildViewController: UIViewController {
     
     lazy var actionButtonStack: UIStackView = {
         let stackView = UIStackView()
@@ -16,20 +16,25 @@ class ActionListViewController: UIViewController {
     }()
     
     lazy var actionHeaderLabel = SectionHeaderLabel(title: "Your Recommended Actions")
-    lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(ActionListViewController.logNewMood))
-    lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(ActionListViewController.messageResponse))
-    lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(ActionListViewController.messageResponse))
-    lazy var settingsButton = DashboardButton(title: "Settings", action: #selector(ActionListViewController.settings))
-    lazy var finishAccountButton = DashboardButton(title: "Finish Creating Account", action: #selector(ActionListViewController.finishAccount))
-    lazy var logoutButton = DashboardButton(title: "Logout", action: #selector(ActionListViewController.logout))
+    lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(ActionListChildViewController.logNewMood))
+    lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(ActionListChildViewController.messageResponse))
+    lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(ActionListChildViewController.messageResponse))
+    lazy var settingsButton = DashboardButton(title: "Settings", action: #selector(ActionListChildViewController.settings))
+    lazy var finishAccountButton = DashboardButton(title: "Finish Creating Account", action: #selector(ActionListChildViewController.finishAccount))
+    lazy var logoutButton = DashboardButton(title: "Logout", action: #selector(ActionListChildViewController.logout))
 
     
-    var account: Account?
+    var accountRef: Account?
     
+    init(accountRef: Account) {
+        self.accountRef = accountRef
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }
 
 // MARK: - Init
-extension ActionListViewController {
+extension ActionListChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +56,7 @@ extension ActionListViewController {
 }
 
 // MARK: - Functions
-extension ActionListViewController {
+extension ActionListChildViewController {
     @objc func logNewMood() {
         navigationController?.pushViewController(AddMoodViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
@@ -72,7 +77,7 @@ extension ActionListViewController {
 }
 
 // MARK: - View Building
-extension ActionListViewController: ViewBuilding {
+extension ActionListChildViewController: ViewBuilding {
     func addSubViews() {
         self.view.addSubview(actionHeaderLabel)
 

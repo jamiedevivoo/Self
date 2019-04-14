@@ -29,3 +29,10 @@ extension UIViewController {
     }
     
 }
+
+protocol ViewIsDependantOnAccountData { }
+extension ViewIsDependantOnAccountData {
+    var accountRef: Account {
+        return AccountManager.shared().accountRef!
+    }
+}

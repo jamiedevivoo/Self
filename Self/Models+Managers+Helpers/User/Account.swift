@@ -24,9 +24,9 @@ extension Account {
     convenience init(withSnapshot snapshot: DocumentSnapshot) {
         self.init(
             uid:                snapshot.documentID,
-            accountUser:        AccountUser(snapshot.get("user") as! [String:Any]),
-            accountSettings:    AccountSettings(snapshot.get("settings") as! [String:Any]),
-            accountFlags:       AccountFlags(snapshot.get("flags") as! [String:Any])
+            accountUser:        AccountUser(snapshot.get("user")            as! [String:Any]),
+            accountSettings:    AccountSettings(snapshot.get("settings")    as! [String:Any]),
+            accountFlags:       AccountFlags(snapshot.get("flags")          as! [String:Any])
         )
     }
 }
