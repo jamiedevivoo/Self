@@ -2,7 +2,7 @@ struct AccountFlags {
     var accountIsValidated: Bool    = false
     var accountIsComplete: Bool     = false
     var accountIsActive: Bool       = true
-    var tutorialIsActive: Bool      = false
+    var tutorialIsActive: Bool      = true
 }
 
 // MARK: - Convenience Iniitialiser

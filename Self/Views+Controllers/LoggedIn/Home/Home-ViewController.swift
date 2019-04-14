@@ -18,10 +18,6 @@ extension HomeViewController {
         addSubViews()
         addConstraints()
     }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        self.messageStackView.nameLabel.text = accountRef?.user.name
-    //    }
 }
 
 // MARK: - View Building

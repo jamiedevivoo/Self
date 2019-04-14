@@ -5,9 +5,8 @@ class MessageManager {
     static func generateMessage(forAccount account: Account) -> Message {
         let greeting = MessageManager.generateGreeting()
         let name = account.user.name ?? "Stranger"
-        let messageText = MessageManager.generageMessageText()
-        let actions = MessageManager.generateMessageResponses()
-        return Message(messageType: .time, greeting: greeting, name: name, messageText: messageText, actions: actions)
+        let messageContent = matchCustomMessage(forAccount: account)
+        return Message(messageType: .time, greeting: greeting, name: name, messageText: messageContent.text, actions: messageContent.responses)
     }
     
     static private func generateGreeting() -> String {
@@ -16,17 +15,17 @@ class MessageManager {
         case 00...03:
             return "zzz"
         case 04...06:
-            return "Early Morning"
+            return "Early Morning!"
         case 07...10:
-            return "Good Morning"
+            return "Good Morning,"
         case 10...12:
-            return "It's Lunchtime"
+            return "It's Lunchtime!"
         case 12...17:
-            return "Good Afternoon"
+            return "Good Afternoon,"
         case 17...22:
-            return "Good Evening"
+            return "Good Evening,"
         case 22...24:
-            return "Good Night"
+            return "Good Night,"
         default:
             return "Welcome"
         }
@@ -36,15 +35,61 @@ class MessageManager {
         return "Did you know Mondays are your happiest days? Let’s rock today!"
     }
     
-    static private func generateMessageResponses() -> [MessageResponse] {
-        var messageResponses: [MessageResponse] = []
+    static private func matchCustomMessage(forAccount account: Account) -> (text: String, responses: [MessageResponse]) {
+        let account: Account = account
+        let moodManager: MoodManager = MoodManager()
+        let insightManager: InsightManager = InsightManager()
+        let actionManager: ActionManager = ActionManager()
         
-        let message1 = MessageResponse(title: "💪", action: "NA", sentimentTrend: .positive)
-        let message2 = MessageResponse(title: "😔", action: "NA", sentimentTrend: .negative)
-        let message3 = MessageResponse(title: "🆘", action: "NA", sentimentTrend: .negative)
+        var messageText: String, messageResponses: [MessageResponse]
 
-        messageResponses = [message1,message2,message3]
+        // BEGIN LOGIC
+        if  account.flags.tutorialIsActive == true,
+            account.flags.accountIsComplete == false
+        {
+            // if no mood created
+                messageText = "You're amazing! Welcome to Self! Let's log your first mood."
+                messageResponses = [MessageResponse(title: "+ Log my first mood", action: "N/A", sentimentTrend: .neutral)]
+//            // else if mood is created
+//                // if no message interaction yet
+//                text = "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!"
+//                responses = [
+//                    MessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
+//                    MessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)
+//                ]
+//                // else if mood interaction exists
+//                text = "If you're ever feeling really down and need some help, look for the sos button. Try it now."
+//                responses = [
+//                    MessageResponse(title: "🆘", action: "N/A", sentimentTrend: .negative),
+//                ]
+//        }
+        } else {
+            messageText = "Did you know Mondays are your happiest days? Let’s rock today!"
+            messageResponses = [
+                MessageResponse(title: "💪", action: "NA", sentimentTrend: .positive),
+                MessageResponse(title: "😔", action: "NA", sentimentTrend: .negative),
+                MessageResponse(title: "🆘", action: "NA", sentimentTrend: .negative)
+            ]
+        }
+
+        return (messageText, messageResponses)
         
-        return messageResponses
     }
+
+//    // If the user is in tutorial mode and hasn't responded to a button yet
+//    text = "Great work, let's get you started with some to-do's."
+//    responses = [
+//        MessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
+//        MessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)
+//    ]
+//
+//    text = "You're amazing! Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better"
+//    responses = [
+//        MessageResponse(title: "", action: "N/A", sentimentTrend: .neutral),
+//        MessageResponse(title: "", action: "N/A", sentimentTrend: .neutral)
+//    ]
+//
+//
+//
+//
 }
