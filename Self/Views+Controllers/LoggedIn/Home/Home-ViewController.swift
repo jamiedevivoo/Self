@@ -18,6 +18,10 @@ extension HomeViewController {
         addSubViews()
         addConstraints()
     }
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        self.messageStackView.nameLabel.text = accountRef?.user.name
+    //    }
 }
 
 // MARK: - View Building
@@ -36,10 +40,10 @@ extension HomeViewController: ViewBuilding {
             make.left.equalTo(20)
             make.width.equalToSuperview().multipliedBy(0.7)
             make.bottom.equalTo(actionListViewController.view.snp.top).offset(-20)
-            make.height.greaterThanOrEqualTo(messageViewController.messageView.snp.height).priority(.required)
+            make.height.greaterThanOrEqualTo(messageViewController.messageStackView.snp.height).priority(.required)
         }
         actionListViewController.view.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-50)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
             make.left.equalTo(20)
             make.right.equalTo(-20)
             make.height.equalTo(actionListViewController.actionButtonStack.snp.height).offset(50)

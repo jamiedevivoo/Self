@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class AddMoodViewController: UIViewController {
+class AddMoodViewController: ViewController {
     
     let emotions = [
         Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),

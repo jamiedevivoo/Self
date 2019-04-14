@@ -39,6 +39,8 @@
 		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
 		7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5E225F4C340090D299 /* ClassBuilding.swift */; };
+		7DFEF05B2263617C004F625F /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05A2263617C004F625F /* MessageStackView.swift */; };
+		7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */; };
 		A30EC35322564FC60092A4E2 /* ActionList-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */; };
 		A30EC35522565BEF0092A4E2 /* Message-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message-ChildViewController.swift */; };
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
@@ -111,6 +113,8 @@
 		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7DF14B5E225F4C340090D299 /* ClassBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBuilding.swift; sourceTree = "<group>"; };
+		7DFEF05A2263617C004F625F /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
+		7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponsesStack.swift; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30EC35422565BEF0092A4E2 /* Message-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message-ChildViewController.swift"; sourceTree = "<group>"; };
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 			children = (
 				A33409AC224570BC004CBB2A /* Home-ViewController.swift */,
 				A30EC35422565BEF0092A4E2 /* Message-ChildViewController.swift */,
+				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
+				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
 				A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */,
 				A3CF94FC224D3C5D00D0EC31 /* AddMood-ViewController.swift */,
 			);
@@ -629,6 +635,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */,
+				7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */,
 				A3D7572C225D1F9C00E87F67 /* AccountUser.swift in Sources */,
 				A35EA85B22456F9700592D88 /* Action.swift in Sources */,
 				7D47AC68225FD380004BF898 /* StandardButton.swift in Sources */,
@@ -663,6 +670,7 @@
 				7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */,
 				7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */,
 				A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */,
+				7DFEF05B2263617C004F625F /* MessageStackView.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
