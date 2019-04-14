@@ -17,3 +17,5 @@ protocol UpdateAccountViews {
 //        }
 //    }
 //}
+
+protocol AccountInfoObject { }

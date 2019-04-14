@@ -6,7 +6,7 @@ class AccountSettingsViewController: UIViewController {
     
     
     // MARK: - Properties
-    var user: UserData!
+    var user: AccountUser!
     
     // MARK: - SubViews
     

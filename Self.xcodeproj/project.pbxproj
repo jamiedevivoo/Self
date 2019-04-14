@@ -25,16 +25,18 @@
 		7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D0225D8764003CCD1F /* HighlightManager.swift */; };
 		7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D2225D878A003CCD1F /* InsightManager.swift */; };
 		7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* ActionManager.swift */; };
+		7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39222261929B00C761B4 /* LabelExtensions.swift */; };
+		7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF392622625F1400C761B4 /* AccountFlags.swift */; };
+		7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */; };
 		7DF14B47225F24870090D299 /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B46225F24870090D299 /* MoodManager.swift */; };
 		7DF14B49225F24A10090D299 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B48225F24A10090D299 /* Insight.swift */; };
 		7DF14B4D225F25A00090D299 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B4C225F25A00090D299 /* Tag.swift */; };
 		7DF14B4F225F260B0090D299 /* CustomTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B4E225F260B0090D299 /* CustomTypealias.swift */; };
 		7DF14B51225F296C0090D299 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B50225F296C0090D299 /* Emotion.swift */; };
-		7DF14B53225F2B490090D299 /* AccountFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B52225F2B490090D299 /* AccountFlags.swift */; };
-		7DF14B55225F2B940090D299 /* AccountNotificationConsents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */; };
+		7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */; };
 		7DF14B57225F2C2D0090D299 /* WildcardQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */; };
 		7DF14B59225F2D170090D299 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* MessageResponse.swift */; };
-		7DF14B5B225F32450090D299 /* AccountPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountPreferences.swift */; };
+		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
 		7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5E225F4C340090D299 /* ClassBuilding.swift */; };
 		A30EC35322564FC60092A4E2 /* ActionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionListViewController.swift */; };
@@ -70,7 +72,7 @@
 		A3CF9516224E9C8900D0EC31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9515224E9C8900D0EC31 /* Message.swift */; };
 		A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */; };
 		A3D75726225CEEFC00E87F67 /* SectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */; };
-		A3D7572C225D1F9C00E87F67 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7572B225D1F9C00E87F67 /* UserData.swift */; };
+		A3D7572C225D1F9C00E87F67 /* AccountUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7572B225D1F9C00E87F67 /* AccountUser.swift */; };
 		A3D75730225D262600E87F67 /* LaunchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7572F225D262600E87F67 /* LaunchNavigationController.swift */; };
 		A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75735225D4F1B00E87F67 /* ColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -95,16 +97,18 @@
 		7D7758D0225D8764003CCD1F /* HighlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
 		7D7758D4225D87B0003CCD1F /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
+		7DDF39222261929B00C761B4 /* LabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensions.swift; sourceTree = "<group>"; };
+		7DDF392622625F1400C761B4 /* AccountFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountFlags.swift; sourceTree = "<group>"; };
+		7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsFeatures.swift; sourceTree = "<group>"; };
 		7DF14B46225F24870090D299 /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		7DF14B48225F24A10090D299 /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
 		7DF14B4C225F25A00090D299 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7DF14B4E225F260B0090D299 /* CustomTypealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTypealias.swift; sourceTree = "<group>"; };
 		7DF14B50225F296C0090D299 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
-		7DF14B52225F2B490090D299 /* AccountFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFlags.swift; sourceTree = "<group>"; };
-		7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationConsents.swift; sourceTree = "<group>"; };
+		7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsNotifications.swift; sourceTree = "<group>"; };
 		7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildcardQuestion.swift; sourceTree = "<group>"; };
 		7DF14B58225F2D170090D299 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
-		7DF14B5A225F32450090D299 /* AccountPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPreferences.swift; sourceTree = "<group>"; };
+		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7DF14B5E225F4C340090D299 /* ClassBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBuilding.swift; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionListViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +146,7 @@
 		A3CF9515224E9C8900D0EC31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeaderLabel.swift; sourceTree = "<group>"; };
 		A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderLabel.swift; sourceTree = "<group>"; };
-		A3D7572B225D1F9C00E87F67 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		A3D7572B225D1F9C00E87F67 /* AccountUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUser.swift; sourceTree = "<group>"; };
 		A3D7572F225D262600E87F67 /* LaunchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LaunchNavigationController.swift; path = "Self/Views+Controllers/LoggedOut/LaunchNavigationController.swift"; sourceTree = SOURCE_ROOT; };
 		A3D75735225D4F1B00E87F67 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		A774790F0D0CC9D95855193F /* Pods-Self.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.debug.xcconfig"; sourceTree = "<group>"; };
@@ -220,10 +224,11 @@
 			children = (
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
 				7DF14B5C225F36CD0090D299 /* Account.swift */,
-				A3D7572B225D1F9C00E87F67 /* UserData.swift */,
-				7DF14B5A225F32450090D299 /* AccountPreferences.swift */,
-				7DF14B52225F2B490090D299 /* AccountFlags.swift */,
-				7DF14B54225F2B940090D299 /* AccountNotificationConsents.swift */,
+				A3D7572B225D1F9C00E87F67 /* AccountUser.swift */,
+				7DDF392622625F1400C761B4 /* AccountFlags.swift */,
+				7DF14B5A225F32450090D299 /* AccountSettings.swift */,
+				7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */,
+				7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				A35EA86422456FB600592D88 /* AppManager.swift */,
+				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
 				7DF14B4E225F260B0090D299 /* CustomTypealias.swift */,
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
 				7D7758D7225D8806003CCD1F /* User */,
@@ -622,7 +628,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3D7572C225D1F9C00E87F67 /* UserData.swift in Sources */,
+				7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */,
+				A3D7572C225D1F9C00E87F67 /* AccountUser.swift in Sources */,
 				A35EA85B22456F9700592D88 /* Action.swift in Sources */,
 				7D47AC68225FD380004BF898 /* StandardButton.swift in Sources */,
 				7D47AC6D226000A1004BF898 /* LaunchScreenButtonsViewController.swift in Sources */,
@@ -637,6 +644,7 @@
 				7D7758CF225D872F003CCD1F /* MessageManager.swift in Sources */,
 				A3CF9514224E714600D0EC31 /* Mood.swift in Sources */,
 				A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */,
+				7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */,
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
 				7DF14B5D225F36CD0090D299 /* Account.swift in Sources */,
 				A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */,
@@ -652,14 +660,14 @@
 				A33409912245701D004CBB2A /* OnboardingViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				A3CF9516224E9C8900D0EC31 /* Message.swift in Sources */,
-				7DF14B5B225F32450090D299 /* AccountPreferences.swift in Sources */,
+				7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */,
+				7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */,
 				A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */,
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* NameOnboardingViewController.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
-				7DF14B53225F2B490090D299 /* AccountFlags.swift in Sources */,
 				7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */,
 				A30EC35522565BEF0092A4E2 /* MessageViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
@@ -677,7 +685,7 @@
 				A334099522457023004CBB2A /* Loader.swift in Sources */,
 				A33409A9224570B3004CBB2A /* LoginViewController.swift in Sources */,
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
-				7DF14B55225F2B940090D299 /* AccountNotificationConsents.swift in Sources */,
+				7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */,
 				A3CF94FD224D3C5D00D0EC31 /* AddMoodViewController.swift in Sources */,
 				7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */,
 				7D6B7463226030C0006F9CD1 /* OnboardingSliderViewController.swift in Sources */,

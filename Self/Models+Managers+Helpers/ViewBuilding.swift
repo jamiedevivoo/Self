@@ -14,3 +14,18 @@ protocol AddingChildViewControllers {
     //        actionListViewController.didMove(toParent: self)
     //    }
 }
+
+extension UIViewController {
+    func add(_ viewController: UIViewController) {
+        addChild(viewController)
+        viewController.didMove(toParent: self)
+    }
+    
+    func remove() {
+        guard parent != nil else { return }
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
+    }
+    
+}

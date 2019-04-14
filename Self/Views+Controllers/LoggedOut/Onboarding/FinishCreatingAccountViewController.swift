@@ -53,9 +53,9 @@ extension FinishCreatingAccountViewController {
                         self.showError(errorDesc: error!.localizedDescription)
                         return
                     }
-                    let userData = UserData(withDictionary: [.name:"Stranger"])
-                    let account = Account(withID: registeredCredentials.user.uid, withData: userData)
-                    AccountManager.shared().updateAccount(newAccount: account)
+                    let accountUser = AccountUser(["name":"Stranger"])
+                    let account     = Account(uid: "T##UIDString", accountUser: accountUser)
+                    AccountManager.shared().updateAccount(modifiedAccount: account)
                 }
         
     }

@@ -29,14 +29,18 @@ extension AccountManager {
                 return
             }
             self.account = Account(withSnapshot: snapshot)
+            print(self.account?.dictionary)
             completion()
         }
     }
 
-    func updateAccount(newAccount:Account? = nil) {
-        if let newAccount = newAccount {
-            AccountManager.shared().account = newAccount
+    func updateAccount(modifiedAccount:Account? = nil) {
+        if let modifiedAccount = modifiedAccount {
+            AccountManager.shared().account = modifiedAccount
         }
+        
+        var data = AccountManager.shared().account!.dictionary
+        data["metadata"] = ["account_last_modified":NSDate().timeIntervalSince1970]
         accountRef?.setData(AccountManager.shared().account!.dictionary, merge: true) { _ in
             print(AccountManager.shared().account!.dictionary)
         }
@@ -70,12 +74,3 @@ extension AccountManager {
     }
     
 }
-
-/*
- Sources / Notes
- https://stackoverflow.com/questions/34046940/how-to-reset-singleton-instance
- https://firebase.google.com/docs/auth/
- https://stackoverflow.com/questions/33705976/when-should-i-use-static-methods
- 
- Static - functions and properties shared by the class, they belong to the class, not the instance.
- */

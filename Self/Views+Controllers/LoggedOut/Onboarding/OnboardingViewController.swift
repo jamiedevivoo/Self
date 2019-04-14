@@ -18,7 +18,6 @@ extension OnboardingViewController {
         addSubViews()
         addConstraints()
         onboardingSlider.onboardingManagerDelegate = self
-        AccountManager.shared().account = Account()
     }
 }
 
@@ -39,9 +38,10 @@ extension OnboardingViewController {
                 return
             }
             let name = "TESTEWSD"
-            let userData = UserData(withDictionary: [.name:name])
-            let account = Account(withID: registeredCredentials.user.uid, withData: userData)
-            AccountManager.shared().updateAccount(newAccount: account)
+                        
+            let accountUser = AccountUser(["name":name])
+            let account = Account(uid: registeredCredentials.user.uid, accountUser: accountUser)
+            AccountManager.shared().updateAccount(modifiedAccount: account)
         }
     }
 }

@@ -22,7 +22,7 @@ class ActionListViewController: UIViewController {
     lazy var settingsButton = DashboardButton(title: "Settings", action: #selector(ActionListViewController.settings))
 
     
-    var user: UserData?
+    var user: AccountUser?
     
 }
 

@@ -2,24 +2,32 @@ import Firebase
 
 class Account {
     let uid: UIDString!
-    var user: UserData!
-    var preferences: AccountPreferences
+    var user: AccountUser!
+    var settings: AccountSettings!
+    var flags: AccountFlags!
     
-    init(uid: UIDString! = nil, userData:UserData! = UserData(), accountPreferences: AccountPreferences = AccountPreferences()) {
-        self.uid = uid
-        self.user = userData
-        self.preferences = accountPreferences
+    init(
+        uid: UIDString,
+        accountUser: AccountUser,
+        accountSettings: AccountSettings    = AccountSettings(),
+        accountFlags: AccountFlags          = AccountFlags())
+    {
+        self.uid        = uid
+        self.user       = accountUser
+        self.settings   = accountSettings
+        self.flags      = accountFlags
     }
 }
+
+// MARK: - Convenience Initialisers
 extension Account {
     convenience init(withSnapshot snapshot: DocumentSnapshot) {
-        self.init(uid: snapshot.documentID,
-                  userData: UserData(withSnapshot: snapshot),
-                  accountPreferences: AccountPreferences(withSnapshot: snapshot))
-        }
-    
-    convenience init(withID uid:UIDString!, withData userData:UserData!) {
-        self.init(uid: uid, userData: userData)
+        self.init(
+            uid:                snapshot.documentID,
+            accountUser:        AccountUser(snapshot.get("user") as! [String:Any]),
+            accountSettings:    AccountSettings(snapshot.get("settings") as! [String:Any]),
+            accountFlags:       AccountFlags(snapshot.get("flags") as! [String:Any])
+        )
     }
 }
 
@@ -28,10 +36,10 @@ extension Account: CustomStringConvertible, DictionaryConvertable {
     var description: String {
         return "User Account Object"
     }
-    
+
     var dictionary: [String: Any] {
-        // TODO: Look to see if there's a way to make this loop through 'userdata' and add dictionary pairs generically
-        return ["name":user.name!,
-                "preferences":preferences.dictionary]
+        return ["info":user.dictionary,
+                "flags":flags.dictionary,
+                "settings":settings.dictionary]
     }
 }

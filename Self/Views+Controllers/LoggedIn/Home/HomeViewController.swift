@@ -7,18 +7,18 @@ class HomeViewController: UIViewController {
     lazy var actionListViewController: ActionListViewController = {
         let viewController = ActionListViewController()
         viewController.user = self.user
-        self.addChildViewController(viewController: viewController)
+        add(viewController)
         return viewController
     }()
     
     lazy var messageViewController: MessageViewController = {
         let viewController = MessageViewController()
         viewController.user = self.user
-        self.addChildViewController(viewController: viewController)
+        add(viewController)
         return viewController
     }()
     
-    var user: UserData?
+    var user: AccountUser?
 
 }
 
@@ -37,12 +37,7 @@ extension HomeViewController {
 }
 
 // MARK: - View Building
-extension HomeViewController: ViewBuilding, AddingChildViewControllers {
-    
-    func addChildViewController(viewController: UIViewController) {
-        addChild(viewController)
-        viewController.didMove(toParent: self)
-    }
+extension HomeViewController: ViewBuilding {
     
     func addSubViews() {        
         self.view.addSubview(messageViewController.view)

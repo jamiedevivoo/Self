@@ -1,28 +1,29 @@
 struct AccountFlags {
-    let tutorialIsActive: Bool
-    let verified: Bool
-
-    // TODO: Must be a better way of setting defaults
-    init(tutorialIsActive: Bool? = true,
-         verified: Bool? = false) {
-        
-        self.tutorialIsActive = tutorialIsActive ?? true
-        self.verified = verified ?? false
-    }
+    var accountIsValidated: Bool    = false
+    var accountIsComplete: Bool     = false
+    var accountIsActive: Bool       = true
+    var tutorialIsActive: Bool      = false
 }
 
 // MARK: - Convenience Iniitialiser
 extension AccountFlags {
-    init(_ accountFlagPairs: [String:Any]) {
-        let tutorialIsActive = accountFlagPairs["tutorial_active"] as? Bool
-        let verified = accountFlagPairs["verified"] as? Bool
-        self.init(tutorialIsActive: tutorialIsActive, verified: verified)
+    init(_ flagsDictionary: [String:Any]) {
+        self.accountIsValidated = flagsDictionary["account_validated"]   as? Bool ?? accountIsValidated
+        self.accountIsComplete  = flagsDictionary["account_complete"]  as? Bool ?? accountIsComplete
+        self.accountIsActive    = flagsDictionary["account_active"]   as? Bool ?? accountIsActive
+        self.tutorialIsActive   = flagsDictionary["tutorial_active"]   as? Bool ?? tutorialIsActive
     }
 }
 
+// MARK: - Outputting
+//// values as a dictionary (e.g. for Firebase)
 extension AccountFlags: DictionaryConvertable {
     var dictionary: [String: Any] {
-        return ["tutorial_active":tutorialIsActive,
-                "verified":verified]
+        return [
+            "account_active"    : accountIsActive,
+            "account_complete"  : accountIsComplete,
+            "account_validated" : accountIsValidated,
+            "tutorial_active"   : tutorialIsActive
+        ]
     }
 }
