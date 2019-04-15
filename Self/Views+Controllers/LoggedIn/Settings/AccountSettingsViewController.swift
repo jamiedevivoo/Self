@@ -1,6 +1,7 @@
 import UIKit
 import SnapKit
 import Firebase
+import NotificationBannerSwift
 
 class AccountSettingsViewController: UIViewController {
     
@@ -65,10 +66,14 @@ class AccountSettingsViewController: UIViewController {
             
             Auth.auth().currentUser?.updateEmail(to: email) { (error) in
                 if let _ = error {
-                    print ("\(String(describing: error))")
+                    let banner = GrowingNotificationBanner(title: "Problem", subtitle: error?.localizedDescription, style: .danger)
+                    banner.show()
                 } else {
                     AccountManager.shared().accountRef?.user.name = name
-                    AccountManager.shared().updateAccount()
+                    AccountManager.shared().updateAccount() {
+                        let banner = NotificationBanner(title: "Success", subtitle: "Account updated", style: .success)
+                        banner.show()
+                    }
                 }
             }
 //            Auth.auth().currentUser?.reauthenticate(with: email, completion: {

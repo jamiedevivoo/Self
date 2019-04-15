@@ -34,7 +34,8 @@ extension AccountManager {
         }
     }
 
-    func updateAccount(modifiedAccount:Account? = nil) {
+    func updateAccount(modifiedAccount:Account? = nil, completion: @escaping () -> ()) {
+        
         if let modifiedAccount = modifiedAccount {
             AccountManager.shared().accountRef = modifiedAccount
         }
@@ -44,6 +45,7 @@ extension AccountManager {
         accountDBRef?.setData(AccountManager.shared().accountRef!.dictionary, merge: true) { _ in
             print(AccountManager.shared().accountRef!.dictionary)
         }
+        completion()
     }
 }
 

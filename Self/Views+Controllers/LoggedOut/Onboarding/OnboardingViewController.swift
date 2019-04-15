@@ -40,7 +40,9 @@ extension OnboardingViewController {
             let name = "TESTEWSD"
             let accountUser = AccountUser(["name":name])
             let account = Account(uid: registeredCredentials.user.uid, accountUser: accountUser)
-            AccountManager.shared().updateAccount(modifiedAccount: account)
+            AccountManager.shared().updateAccount(modifiedAccount: account) {
+                
+            }
         }
     }
 }
