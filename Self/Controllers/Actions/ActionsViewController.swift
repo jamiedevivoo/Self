@@ -11,14 +11,12 @@ class ActionsViewController: UIViewController {
       let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
       let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-      collectionView.register(ActionView.self, forCellWithReuseIdentifier: "Cell")
+      collectionView.register(ActionCell.self, forCellWithReuseIdentifier: "Cell")
       collectionView.dataSource = self
       collectionView.delegate = self
       collectionView.backgroundColor = .clear
       return collectionView
     }()
-
-    var actionSnapshots: [DocumentSnapshot] = []
 
     var actionsData = [Action]()
   
@@ -48,26 +46,27 @@ extension ActionsViewController {
 }
 
 extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.frame.size.width, height: 180)
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return actionsData.count
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionView
-    let action = actionsData[indexPath.row]
-    cell.actionCardTitleLabel.text = action.title
-    cell.actionCardDescriptionLabel.text = action.description
-    
-    for tag in action.tags {
-        cell.actionCardTagButton.titleLabel?.text = tag.title
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width, height: 180)
     }
-    return cell
-  }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return actionsData.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionCell
+        let action = actionsData[indexPath.row]
+        cell.actionCardTitleLabel.text = action.title
+        cell.actionCardDescriptionLabel.text = action.description
+        for tag in action.tags {
+            let tagButton = UIButton.tagButton
+            tagButton.setTitle(tag.title, for: .normal)
+            cell.tags.append(tagButton)
+        }
+        return cell
+    }
   
 }
 

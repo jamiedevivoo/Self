@@ -18,7 +18,7 @@ extension HomeViewController {
         addSubViews()
         addConstraints()
         
-        var collectionRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid).collection("mood_logs")
+        let collectionRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid).collection("mood_logs")
         collectionRef.getDocuments { snapshot, error in
             guard let snapshot = snapshot, error == nil else {
                 if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
