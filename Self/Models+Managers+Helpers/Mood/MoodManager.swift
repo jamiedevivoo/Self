@@ -1,3 +1,4 @@
+import Firebase
+
 class MoodManager {
-    
 }

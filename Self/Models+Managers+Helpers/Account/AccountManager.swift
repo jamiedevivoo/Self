@@ -41,7 +41,7 @@ extension AccountManager {
         }
         
         var data = AccountManager.shared().accountRef!.dictionary
-        data["metadata"] = ["account_last_modified":[".sv": "timestamp"]]
+        data["metadata"] = ["account_last_modified":Date()]
         accountDBRef?.setData(data, merge: true) { _ in
             self.loadAccount {
                 print("Account Updated")

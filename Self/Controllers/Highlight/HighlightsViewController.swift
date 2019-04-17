@@ -9,11 +9,14 @@ class HighlightsViewController: UIViewController {
     lazy var highlightCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = 20
+        flowLayout.minimumLineSpacing = 20
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.register(HighlightCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
         return collectionView
         }()
     
@@ -88,8 +91,7 @@ extension HighlightsViewController: ViewBuilding {
         }
         highlightCollectionView.snp.makeConstraints { (make) in
             make.top.equalTo(highlightLabel.snp.bottom).offset(20)
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
+            make.right.left.equalToSuperview().inset(20)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }

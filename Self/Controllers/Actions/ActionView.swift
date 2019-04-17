@@ -51,9 +51,16 @@ extension ActionCell {
             actionCardTagsStack.addArrangedSubview(tag)
         }
         addConstraints()
-        contentView.layer.cornerRadius = 30
-        contentView.backgroundColor = UIColor.app.button.tag.fill()
+        contentView.layer.cornerRadius = 15
+        contentView.backgroundColor = UIColor.app.button.tag.fill().withAlphaComponent(0.8)
         contentView.clipsToBounds = true
+        
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        layer.shadowRadius = 2.0
+        layer.shadowOpacity = 0.1
+        layer.masksToBounds = false
+        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
 }
 

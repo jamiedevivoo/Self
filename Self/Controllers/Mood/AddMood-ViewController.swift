@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Firebase
 
 class AddMoodViewController: ViewController {
     
@@ -38,9 +39,24 @@ class AddMoodViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(emotionPickerLabel)
+        getWildcard()
         self.navigationController?.pushViewController(MoodPickerViewController(), animated: true)
     }
 
 }
 
-// MARK: - View Building
+extension AddMoodViewController {
+    func getWildcard() {
+        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
+        let randomDocumentID = String(Int.random(in: 0..<6))
+        
+        wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in
+            guard let documentSnapshot = documentSnapshot, error == nil else {
+                if let error = error { print("Error Loading Actions: \(error.localizedDescription)") }
+                print("Error Loading Actions.")
+                return
+            }
+        print(documentSnapshot.data())
+        }
+    }
+}

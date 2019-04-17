@@ -7,18 +7,13 @@ class ActionsViewController: UIViewController {
     // MARK: - Views
     lazy var actionsLabel = ScreenHeaderLabel(title: "Your Actions 🙌")
     
-    lazy var actionCollectionView: UICollectionView = { [unowned self] in
-      let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-      let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-      collectionView.register(ActionCell.self, forCellWithReuseIdentifier: "Cell")
-      collectionView.dataSource = self
-      collectionView.delegate = self
-      collectionView.backgroundColor = .clear
-      return collectionView
+    lazy var actionButton: UIButton = {
+        let button = UIButton.tagButton
+        button.setTitle("Open Today's Challenge", for: .normal)
+        button.addTarget(nil, action: #selector(ActionsViewController.unlockAction), for: .touchUpInside)
+        button.action
+        return button
     }()
-
-    var actionsData = [Action]()
   
 }
 
@@ -28,54 +23,42 @@ extension ActionsViewController {
         super.viewDidLoad()
         addSubViews()
         addConstraints()
-        addActions()
+        configureActionView()
     }
-    
-    func addActions() {
-        ActionManager.getActions() { [unowned self] allActions in
-            for eachAction in allActions.documents {
-                var actionData = eachAction.data()
-                actionData["uid"] = eachAction.documentID
-                let action = Action(actionData)
-                print(action as AnyObject)
-                self.actionsData.append(action)
+}
+
+extension ActionsViewController {
+    func configureActionView() {
+        ActionManager.getSelectedAction() { todaysActions in
+            if todaysActions.count > 0 {
+                guard let todaysAction = todaysActions.documents.first else { return}
+                print("Found an action for today")
+                if todaysAction.get("completed") as! Bool == false {
+                    print(todaysActions.documents.first?.data() as AnyObject)
+                } else {
+                    ActionManager.getIncompleteActions() { incompleteActions in
+                        print("Today's action was completed, displaying incomplete actions.")
+                        dump(incompleteActions.documents)
+                    }
+                }
+            } else {
+                print("No Selected Action For Today, pick one.")
             }
-            self.actionCollectionView.reloadData()
         }
     }
 }
 
-extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 180)
+extension ActionsViewController {
+    @objc func unlockAction() {
+        self.navigationController?.pushViewController(DailyActionSelectorViewController(), animated: true)
     }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return actionsData.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionCell
-        let action = actionsData[indexPath.row]
-        cell.actionCardTitleLabel.text = action.title
-        cell.actionCardDescriptionLabel.text = action.description
-        for tag in action.tags {
-            let tagButton = UIButton.tagButton
-            tagButton.setTitle(tag.title, for: .normal)
-            cell.tags.append(tagButton)
-        }
-        return cell
-    }
-  
 }
 
 // MARK: - View Building
 extension ActionsViewController: ViewBuilding {
     func addSubViews() {
-        
         view.addSubview(actionsLabel)
-        view.addSubview(actionCollectionView)
+        view.addSubview(actionButton)
     }
     
     func addConstraints() {
@@ -85,11 +68,10 @@ extension ActionsViewController: ViewBuilding {
             make.right.equalToSuperview().inset(20)
             make.height.lessThanOrEqualTo(50)
         }
-        actionCollectionView.snp.makeConstraints { (make) in
+        actionButton.snp.makeConstraints { (make) in
             make.top.equalTo(actionsLabel.snp.bottom).offset(20)
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            make.right.left.equalToSuperview().inset(20)
+            make.height.equalTo(50)
         }
     }
 }
