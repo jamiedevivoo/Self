@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ActionView: UIView {
+class ActionView: UICollectionViewCell {
     
     lazy var actionCardTagsStack: UIStackView = {
         let stack = UIStackView()
@@ -87,41 +87,36 @@ class ActionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = .clear
         setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    internal func setupView() {
-        backgroundColor = .white
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
+    private func setupView() {
         addSubViews()
         addConstraints()
-        layer.cornerRadius = 30
-        backgroundColor = UIColor.app.button.tag.fill()
-        clipsToBounds = true
+        contentView.layer.cornerRadius = 30
+        contentView.backgroundColor = UIColor.app.button.tag.fill()
+        contentView.clipsToBounds = true
     }
     
-}
-
-extension ActionView {
-    convenience init(actionCardTitleLabel: String, actionCardDescriptionLabel:String) {
-        self.init()
-        self.actionCardTitleLabel.text = actionCardTitleLabel
-        self.actionCardDescriptionLabel.text = actionCardDescriptionLabel
-    }
 }
 extension ActionView: ViewBuilding {
     func addSubViews() {
-        self.addSubview(actionCardTagsStack)
+        contentView.addSubview(actionCardTagsStack)
             actionCardTagsStack.addArrangedSubview(actionCardTagButton)
             actionCardTagsStack.addArrangedSubview(actionCardTagButtonTwo)
             actionCardTagsStack.addArrangedSubview(actionCardTagButtonThree)
-        self.addSubview(actionCardTitleLabel)
-        self.addSubview(actionCardDescriptionLabel)
-        self.addSubview(actionCardStartButton)
+        contentView.addSubview(actionCardTitleLabel)
+        contentView.addSubview(actionCardDescriptionLabel)
+        contentView.addSubview(actionCardStartButton)
     }
     
     func addConstraints() {

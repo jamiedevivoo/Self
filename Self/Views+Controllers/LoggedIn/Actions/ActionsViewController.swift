@@ -7,11 +7,11 @@ class ActionsViewController: UIViewController {
     // MARK: - Views
     lazy var actionsLabel = ScreenHeaderLabel(title: "Your Actions 🙌")
     
-    lazy var actionCollectionView: UICollectionView = {
+    lazy var actionCollectionView: UICollectionView = { [unowned self] in
       let flowLayout = UICollectionViewFlowLayout()
-      flowLayout.scrollDirection = .vertical
+        flowLayout.scrollDirection = .vertical
       let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-      collectionView.register(ActionCell.self, forCellWithReuseIdentifier: "Cell")
+      collectionView.register(ActionView.self, forCellWithReuseIdentifier: "Cell")
       collectionView.dataSource = self
       collectionView.delegate = self
       collectionView.backgroundColor = .clear
@@ -20,7 +20,7 @@ class ActionsViewController: UIViewController {
 
     var actionSnapshots: [DocumentSnapshot] = []
 
-    var actionsData = [String]()
+    var actionsData = [Action]()
   
 }
 
@@ -35,11 +35,12 @@ extension ActionsViewController {
     
     func addActions() {
         ActionManager.getActions() { [unowned self] allActions in
-//            guard let allActions = allActions else { print("No Actions"); return }
-            for action in allActions.documents {
-                print(action)
-//                let actionCardView = ActionView(actionCardTitleLabel: action.get("title") as! String, actionCardDescriptionLabel: action.get("description") as! String)
-                self.actionsData.append(action.documentID)
+            for eachAction in allActions.documents {
+                var actionData = eachAction.data()
+                actionData["uid"] = eachAction.documentID
+                let action = Action(actionData)
+                print(action as AnyObject)
+                self.actionsData.append(action)
             }
             self.actionCollectionView.reloadData()
         }
@@ -57,9 +58,14 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionView
     let action = actionsData[indexPath.row]
-    cell.titleLable.text = action
+    cell.actionCardTitleLabel.text = action.title
+    cell.actionCardDescriptionLabel.text = action.description
+    
+    for tag in action.tags {
+        cell.actionCardTagButton.titleLabel?.text = tag.title
+    }
     return cell
   }
   

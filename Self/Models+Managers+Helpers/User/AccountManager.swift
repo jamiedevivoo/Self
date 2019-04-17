@@ -29,7 +29,7 @@ extension AccountManager {
                 return
             }
             self.accountRef = Account(withSnapshot: snapshot)
-            print(self.accountRef?.dictionary)
+            print(AccountManager.shared().accountRef?.dictionary as AnyObject)
             completion()
         }
     }
@@ -41,11 +41,13 @@ extension AccountManager {
         }
         
         var data = AccountManager.shared().accountRef!.dictionary
-        data["metadata"] = ["account_last_modified":NSDate().timeIntervalSince1970]
-        accountDBRef?.setData(AccountManager.shared().accountRef!.dictionary, merge: true) { _ in
-            print(AccountManager.shared().accountRef!.dictionary)
+        data["metadata"] = ["account_last_modified":[".sv": "timestamp"]]
+        accountDBRef?.setData(data, merge: true) { _ in
+            self.loadAccount {
+                print("Account Updated")
+                completion()
+            }
         }
-        completion()
     }
 }
 

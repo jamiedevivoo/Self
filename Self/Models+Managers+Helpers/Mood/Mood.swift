@@ -1,63 +1,55 @@
 import Firebase
 
-class Mood {
-    
-    // MARK: - Properties
+struct Mood {
     var uid: String?
-    var timestamp: Timestamp?
     var headline: String?
+    var timestamp: Timestamp?
     var note: String?
-    var tags: [String]?
-    var arousal_rating: Double?
-    var valence_rating: Double?
-    var wildcard: [String:String]?
+    var arousalRating: Double?
+    var valenceRating: Double?
     
+    var wildcard: Wildcard?
+    var emotion: Emotion?
+    var tags = [Tag]()
+}
+
+// MARK: - Convenience Iniitialiser
+extension Mood {
+    init(_ moodDictionary: [String:Any]) {
+        self.uid                = (moodDictionary["uid"] as! String)
+        self.headline           = (moodDictionary["headline"] as! String)
+        self.timestamp          = (moodDictionary["timestamp"] as! Timestamp)
+        self.note               = (moodDictionary["note"] as! String)
+        self.arousalRating      = (moodDictionary["arousal_rating"] as! Double)
+        self.valenceRating      = (moodDictionary["valence_rating"] as! Double)
+        self.wildcard           = Wildcard(moodDictionary["wildcard"] as! [String : Any])
+        self.emotion            = EmotionManager.getEmotion(
+                                    withValence: moodDictionary["valence_rating"] as! ValenceDouble,
+                                    withArousal: moodDictionary["arousal_rating"] as! ArousalDouble)
+        for tag in moodDictionary["tags"] as! [[String:Any]] {
+            let tag = Tag(tag)
+            self.tags.append(tag)
+        }
+    }
+}
+
+// MARK: - Outputting
+//// values as a dictionary (e.g. for Firebase)
+extension Mood: DictionaryConvertable {
     var dictionary: [String: Any] {
+        var tagsArray = [[String:Any]]()
+        for tag in tags {
+            tagsArray.append(tag.dictionary)
+        }
         return [
-            "uid": uid as Any,
-            "timestamp": timestamp,
-        	"headline": headline,
-        	"note": note,
-        	"tags": tags,
-        	"arousal_rating": arousal_rating,
-        	"valence_rating": valence_rating,
-            "wildcard": wildcard
+            "uid":              uid as Any,
+            "timestamp":        timestamp as Any,
+            "headline":         headline as Any,
+            "note":             note as Any,
+            "arousal_rating":   arousalRating as Any,
+            "valence_rating":   valenceRating as Any,
+            "tags":             tagsArray as Any,
+            "wildcard":         wildcard?.dictionary as Any,
         ]
     }
-    
-    init() {
-        
-    }
-    
-    // MARK: - Init
-    
-//
-//    init(snapshot: DocumentSnapshot) {
-//        let moodData = snapshot.data()
-//        self.uid = snapshot.documentID
-//        self.timestamp = (moodData?["timestamp"] as? Timestamp ?? nil)!
-//        self.headline = moodData["headline"] as? String ?? ""
-//        self.note = moodData["note"] as? String ?? ""
-//        self.tags = moodData["tags"] as? [String] ?? ""
-//        self.arousal_rating = moodData["arousal_rating"] as? Double ?? ""
-//        self.valence_rating = moodData["valence_rating"] as? Double ?? ""
-//        self.wildcard = moodData["wildcard"] as? [String:String] ?? ""
-//    }
-    
-//        init?(dictionary: [String: Any]){
-//            guard let firstName = dictionary["firstName"] as? String else { return nil }
-//            guard let lastName = dictionary["lastName"] as? String else { return nil }
-//        }
-//        self.init(firstName: firstName, lastName: lastName)
-//
-//    init(dictionary: [String: Any]) {
-//        guard self.headline = dictionary. else {
-//            <#statements#>
-//        }
-//        self.uid = dictionary["uid"]!
-//        self.name = dictionary["name"] ?? ""
-//        self.lastname = dictionary["lastname"] ?? ""
-//        self.email = dictionary["email"] ?? ""
-//    }
-    
 }

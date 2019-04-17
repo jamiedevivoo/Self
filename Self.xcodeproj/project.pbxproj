@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		272325922260C92000BB6924 /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272325912260C92000BB6924 /* BackgroundManager.swift */; };
-		272325952260D69500BB6924 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272325942260D69500BB6924 /* ActionCell.swift */; };
 		360EC41E9D53E4791E09F0D7 /* Pods_Self.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133C9E098A01664EBB5E301E /* Pods_Self.framework */; };
 		7D187F122258D1A000A9E9AE /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionView.swift */; };
 		7D47AC66225FD148004BF898 /* LaunchScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC65225FD148004BF898 /* LaunchScreenSliderViewController.swift */; };
@@ -25,6 +24,9 @@
 		7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D0225D8764003CCD1F /* HighlightManager.swift */; };
 		7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D2225D878A003CCD1F /* InsightManager.swift */; };
 		7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* ActionManager.swift */; };
+		7DD6CBEA226630D200F47E63 /* Wildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* Wildcard.swift */; };
+		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
+		7DD6CBF82266AD6200F47E63 /* MoodPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF72266AD6200F47E63 /* MoodPickerViewController.swift */; };
 		7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39222261929B00C761B4 /* LabelExtensions.swift */; };
 		7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF392622625F1400C761B4 /* AccountFlags.swift */; };
 		7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */; };
@@ -34,7 +36,6 @@
 		7DF14B4F225F260B0090D299 /* CustomTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B4E225F260B0090D299 /* CustomTypealias.swift */; };
 		7DF14B51225F296C0090D299 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B50225F296C0090D299 /* Emotion.swift */; };
 		7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */; };
-		7DF14B57225F2C2D0090D299 /* WildcardQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */; };
 		7DF14B59225F2D170090D299 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* MessageResponse.swift */; };
 		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
@@ -82,7 +83,6 @@
 /* Begin PBXFileReference section */
 		133C9E098A01664EBB5E301E /* Pods_Self.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Self.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		272325912260C92000BB6924 /* BackgroundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundManager.swift; path = "Self/Models+Managers+Helpers/BackgroundManager.swift"; sourceTree = SOURCE_ROOT; };
-		272325942260D69500BB6924 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		3195708A3A9E109844A87C3E /* Pods-Self.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.release.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.release.xcconfig"; sourceTree = "<group>"; };
 		7D187F112258D1A000A9E9AE /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		7D47AC65225FD148004BF898 /* LaunchScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenSliderViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +99,9 @@
 		7D7758D0225D8764003CCD1F /* HighlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
 		7D7758D4225D87B0003CCD1F /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
+		7DD6CBE9226630D200F47E63 /* Wildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wildcard.swift; sourceTree = "<group>"; };
+		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
+		7DD6CBF72266AD6200F47E63 /* MoodPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPickerViewController.swift; sourceTree = "<group>"; };
 		7DDF39222261929B00C761B4 /* LabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensions.swift; sourceTree = "<group>"; };
 		7DDF392622625F1400C761B4 /* AccountFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountFlags.swift; sourceTree = "<group>"; };
 		7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsFeatures.swift; sourceTree = "<group>"; };
@@ -108,7 +111,6 @@
 		7DF14B4E225F260B0090D299 /* CustomTypealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTypealias.swift; sourceTree = "<group>"; };
 		7DF14B50225F296C0090D299 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsNotifications.swift; sourceTree = "<group>"; };
-		7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildcardQuestion.swift; sourceTree = "<group>"; };
 		7DF14B58225F2D170090D299 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -279,8 +281,9 @@
 			children = (
 				7DF14B46225F24870090D299 /* MoodManager.swift */,
 				A3CF9513224E714600D0EC31 /* Mood.swift */,
+				7DD6CBE9226630D200F47E63 /* Wildcard.swift */,
+				7DD6CBF122663B0900F47E63 /* EmotionManager.swift */,
 				7DF14B50225F296C0090D299 /* Emotion.swift */,
-				7DF14B56225F2C2D0090D299 /* WildcardQuestion.swift */,
 			);
 			path = Mood;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
 				A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */,
 				A3CF94FC224D3C5D00D0EC31 /* AddMood-ViewController.swift */,
+				7DD6CBF72266AD6200F47E63 /* MoodPickerViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -385,7 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				A3438E9022456B86004D21BB /* AppDelegate.swift */,
-				272325942260D69500BB6924 /* ActionCell.swift */,
 				7DDF39212261014C00C761B4 /* Protocols */,
 				A35EA85D22456FA700592D88 /* Models+Managers+Helpers */,
 				A35EA87122456FD500592D88 /* Views+Controllers */,
@@ -642,9 +645,7 @@
 				7D47AC6D226000A1004BF898 /* LaunchScreenButtonsViewController.swift in Sources */,
 				7D47AC6F22600DCF004BF898 /* StandardTextField.swift in Sources */,
 				A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */,
-				272325952260D69500BB6924 /* ActionCell.swift in Sources */,
 				7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */,
-				7DF14B57225F2C2D0090D299 /* WildcardQuestion.swift in Sources */,
 				7DF14B4D225F25A00090D299 /* Tag.swift in Sources */,
 				A3438E9822456B86004D21BB /* AppDelegate.swift in Sources */,
 				A3438E9A22456B86004D21BB /* AppContainerViewController.swift in Sources */,
@@ -652,9 +653,11 @@
 				A3CF9514224E714600D0EC31 /* Mood.swift in Sources */,
 				A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */,
 				7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */,
+				7DD6CBEA226630D200F47E63 /* Wildcard.swift in Sources */,
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
 				7DF14B5D225F36CD0090D299 /* Account.swift in Sources */,
 				A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */,
+				7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */,
 				A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */,
 				A33409902245701D004CBB2A /* LaunchScreenSlideView.swift in Sources */,
 				A3D75726225CEEFC00E87F67 /* SectionHeaderLabel.swift in Sources */,
@@ -663,6 +666,7 @@
 				7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */,
 				A316E709224AF18F00283547 /* LaunchScreenViewController.swift in Sources */,
 				7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */,
+				7DD6CBF82266AD6200F47E63 /* MoodPickerViewController.swift in Sources */,
 				7DF14B59225F2D170090D299 /* MessageResponse.swift in Sources */,
 				A33409912245701D004CBB2A /* OnboardingViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,

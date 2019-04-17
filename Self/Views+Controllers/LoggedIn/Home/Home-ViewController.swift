@@ -17,6 +17,21 @@ extension HomeViewController {
         super.viewDidLoad()
         addSubViews()
         addConstraints()
+        
+        var collectionRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid).collection("mood_logs")
+        collectionRef.getDocuments { snapshot, error in
+            guard let snapshot = snapshot, error == nil else {
+                if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
+                return
+            }
+            print(snapshot)
+            for document in snapshot.documents {
+                var documentData = document.data()
+                documentData["uid"] = document.documentID
+                print(documentData as AnyObject)
+                print(Mood(documentData).dictionary as AnyObject)
+            }
+        }
     }
 }
 
