@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class MoodPickerViewController: UIViewController {
+class MoodPickerViewController: ViewController {
     
     lazy var emotionPickerLabel: UILabel = {
         let label = UILabel()
@@ -77,11 +77,11 @@ class MoodPickerViewController: UIViewController {
         self.view.addSubview(valenceLabel)
         
         arousalLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(-35)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(-25)
             make.centerY.equalToSuperview()
         }
         valenceLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(10)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
             make.centerX.equalToSuperview()
         }
     }
