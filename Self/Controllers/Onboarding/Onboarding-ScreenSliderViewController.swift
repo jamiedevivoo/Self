@@ -1,33 +1,36 @@
 import UIKit
 import Firebase
-import SnapKit
 
-class OnboardingViewController: UIViewController {
+class OnboardingScreenSliderViewController: ScreenSliderViewController {
     
-    lazy var onboardingPageView = ScreenSliderViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     var stages: [UIViewController] = [NameOnboardingViewController(),
                                       InductionOnboardingViewController(),
                                       InductionOnboardingViewController()]
-    
+}
+
+// MARK: - Overrides
+extension OnboardingScreenSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupChildViews()
-        self.setupPageViewController(onboardingPageView, pages: stages, loop: false)
+        self.setupPageViewController(self, pages: stages, loop: false)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
 }
 
-extension OnboardingViewController: ScreenSliderViewControllerDelegate {
+// MARK: - ScreenSliderViewController Delegate Methods
+extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
     func beforeStartIndexOfSlider(_ pageViewController: ScreenSliderViewController) {
         print("Start")
-//        self.navigationController?.popToRootViewController(animated: true)
     }
     func afterEndIndexOfSlider(_ pageViewController: ScreenSliderViewController) {
         print("End")
     }
 }
 
-// MARK: - Functions
-extension OnboardingViewController {
+// MARK: - Onboarding Methods
+extension OnboardingScreenSliderViewController {
     func signInAnonymously() {
         Auth.auth().signInAnonymously() { (authResult, error) in
             guard let registeredCredentials = authResult, error == nil else {
@@ -52,18 +55,8 @@ extension OnboardingViewController {
     }
 }
 
-extension OnboardingViewController {
+extension OnboardingScreenSliderViewController {
     func continueOnboarding() {
         signInAnonymously()
-    }
-}
-
-// MARK: - View Building
-extension OnboardingViewController: ViewBuilding {
-    func setupChildViews() {
-        self.add(onboardingPageView)
-        onboardingPageView.view.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide)
-        }
     }
 }

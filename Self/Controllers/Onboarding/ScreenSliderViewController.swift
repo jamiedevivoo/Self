@@ -23,11 +23,12 @@ class ScreenSliderViewController: UIPageViewController {
         }
     }
     
-    override init(transitionStyle style: UIPageViewController.TransitionStyle = .scroll,
-                  navigationOrientation: UIPageViewController.NavigationOrientation = .horizontal,
-                  options: [UIPageViewController.OptionsKey : Any]? = nil)
-    {
-        super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
+    // MARK: - Init
+    init() {
+        super.init(
+            transitionStyle: UIPageViewController.TransitionStyle.scroll,
+            navigationOrientation: UIPageViewController.NavigationOrientation.horizontal,
+            options: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -42,7 +43,6 @@ extension ScreenSliderViewController {
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
-        setupChildViews()
     }
     
     func setupPageView() {
@@ -53,6 +53,13 @@ extension ScreenSliderViewController {
     func setupPageController() {
         self.pageControl.numberOfPages = self.pages.count
         self.pageControl.currentPage = initialPage
+        self.view.addSubview(pageControl)
+        
+        pageControl.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-25)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(10)
+        }
     }
 }
 
@@ -100,18 +107,6 @@ extension ScreenSliderViewController {
             if let viewControllerIndex = self.pages.firstIndex(of: viewControllers[0]) {
                 self.pageControl.currentPage = viewControllerIndex
             }
-        }
-    }
-}
-
-// MARK: - View Building
-extension ScreenSliderViewController: ViewBuilding {
-    func setupChildViews() {
-        self.view.addSubview(pageControl)
-        pageControl.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-25)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(10)
         }
     }
 }

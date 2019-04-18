@@ -58,7 +58,7 @@
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
 		A316E709224AF18F00283547 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* LaunchScreenViewController.swift */; };
 		A33409902245701D004CBB2A /* LaunchScreenSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* LaunchScreenSlideView.swift */; };
-		A33409912245701D004CBB2A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098B2245701C004CBB2A /* OnboardingViewController.swift */; };
+		A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098B2245701C004CBB2A /* Onboarding-ScreenSliderViewController.swift */; };
 		A334099522457023004CBB2A /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334099422457023004CBB2A /* Loader.swift */; };
 		A33409A3224570A4004CBB2A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334099F224570A2004CBB2A /* AccountSettingsViewController.swift */; };
 		A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A0224570A3004CBB2A /* SettingsViewController.swift */; };
@@ -105,7 +105,7 @@
 		7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishCreatingAccountViewController.swift; sourceTree = "<group>"; };
 		7D6B745E226028B5006F9CD1 /* NameOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOnboardingViewController.swift; sourceTree = "<group>"; };
 		7D6B746022602C56006F9CD1 /* InductionOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InductionOnboardingViewController.swift; sourceTree = "<group>"; };
-		7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenSliderViewController.swift; path = ../../Controllers/Onboarding/ScreenSliderViewController.swift; sourceTree = "<group>"; };
+		7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSliderViewController.swift; sourceTree = "<group>"; };
 		7D7758CE225D872F003CCD1F /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		7D7758D0225D8764003CCD1F /* HighlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A316E708224AF18F00283547 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		A334098A2245701B004CBB2A /* LaunchScreenSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenSlideView.swift; sourceTree = "<group>"; };
-		A334098B2245701C004CBB2A /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		A334098B2245701C004CBB2A /* Onboarding-ScreenSliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Onboarding-ScreenSliderViewController.swift"; sourceTree = "<group>"; };
 		A334099422457023004CBB2A /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A334099F224570A2004CBB2A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		A33409A0224570A3004CBB2A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +203,8 @@
 		7D47AC6A22600054004BF898 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				A334098B2245701C004CBB2A /* OnboardingViewController.swift */,
+				7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */,
+				A334098B2245701C004CBB2A /* Onboarding-ScreenSliderViewController.swift */,
 				7D6B7464226030D5006F9CD1 /* OnboardingSlider */,
 				7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */,
 			);
@@ -519,7 +520,6 @@
 				A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */,
 				A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */,
 				7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */,
-				7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -730,7 +730,7 @@
 				7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */,
 				7DD6CBF82266AD6200F47E63 /* MoodPickerViewController.swift in Sources */,
 				7DF14B59225F2D170090D299 /* MessageResponse.swift in Sources */,
-				A33409912245701D004CBB2A /* OnboardingViewController.swift in Sources */,
+				A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				A3CF9516224E9C8900D0EC31 /* Message.swift in Sources */,
 				7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */,

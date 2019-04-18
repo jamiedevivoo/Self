@@ -1,11 +1,3 @@
-//
-//  InductionOnboardingViewController.swift
-//  Self
-//
-//  Created by Jamie on 12/04/2019.
-//  Copyright © 2019 Jamie De Vivo. All rights reserved.
-//
-
 import UIKit
 
 class InductionOnboardingViewController: ViewController {
@@ -41,13 +33,13 @@ extension InductionOnboardingViewController: ViewBuilding {
     
     func setupChildViews() {
         label.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
-            make.height.greaterThanOrEqualTo(100)
+            make.top.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.height.greaterThanOrEqualTo(50)
         }
         continueButton.snp.makeConstraints { (make) in
             make.top.equalTo(label.snp.bottom).offset(25)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(60)
-            make.width.equalToSuperview()
         }
     }
 }

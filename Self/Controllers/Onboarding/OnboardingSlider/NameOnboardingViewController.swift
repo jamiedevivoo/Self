@@ -8,7 +8,9 @@ class NameOnboardingViewController: ViewController {
         label.textColor = UIColor.app.text.solidText()
         return label
     }()
-    lazy var nameTextField = StandardTextField(placeholder: "Name", fieldType: .text)
+    lazy var nameTextField = StandardTextField(placeholder: "Call me..", fieldType: .text)
+    lazy var nameLabel = UILabel()
+    
 }
     
 extension NameOnboardingViewController {
