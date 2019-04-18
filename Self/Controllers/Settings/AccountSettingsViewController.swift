@@ -37,7 +37,7 @@ class AccountSettingsViewController: UIViewController {
         view.backgroundColor = UIColor.app.background.primaryBackground()
         self.hideKeyboardWhenTappedAround()
         addSubViews()
-        addConstraints()
+        setupChildViews()
         
         self.user = AccountManager.shared().accountRef!.user
         updateFields()
@@ -114,7 +114,7 @@ extension AccountSettingsViewController: ViewBuilding {
         self.view.addSubview(updateButton)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
             make.height.greaterThanOrEqualTo(pageTipLabel.snp.height).offset(150)

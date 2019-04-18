@@ -16,7 +16,7 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-        addConstraints()
+        setupChildViews()
         
         let collectionRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid).collection("mood_logs")
         collectionRef.getDocuments { snapshot, error in
@@ -45,7 +45,7 @@ extension HomeViewController: ViewBuilding {
         self.view.addSubview(actionListViewController.view)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         messageViewController.view.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.left.equalTo(20)

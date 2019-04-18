@@ -32,12 +32,12 @@ extension LaunchScreenViewController {
         super.viewDidLoad()
 //        title = "Welcome to Self"
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
 }
 
 // MARK: View Building
-extension LaunchScreenViewController: ViewBuilding, AddingChildViewControllers {
+extension LaunchScreenViewController: ViewBuilding {
     
     func addChildViewController(viewController: UIViewController) {
         addChild(viewController)
@@ -50,7 +50,7 @@ extension LaunchScreenViewController: ViewBuilding, AddingChildViewControllers {
         self.view.addSubview(buttonsViewController.view)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         welcomeLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.width.equalToSuperview()

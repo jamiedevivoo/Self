@@ -46,7 +46,7 @@ class SettingsViewController: UIViewController {
         settingsTableView.tableFooterView = UIView()
         
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
     
     
@@ -94,7 +94,7 @@ extension SettingsViewController: ViewBuilding {
         self.view.addSubview(settingsTableView)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         topDescriptionView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
             make.width.equalTo(self.view)

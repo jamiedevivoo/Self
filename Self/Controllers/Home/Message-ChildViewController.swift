@@ -19,7 +19,7 @@ extension MessageChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
 }
 
@@ -41,7 +41,7 @@ extension MessageChildViewController: ViewBuilding {
         self.view.addSubview(messageStackView)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         messageStackView.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.view.snp.centerY)
             make.left.right.equalToSuperview()

@@ -30,7 +30,7 @@ extension LoginViewController {
         title = "Login"
         
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
 }
 
@@ -75,7 +75,7 @@ extension LoginViewController: ViewBuilding {
     }
     
     
-    func addConstraints() {
+    func setupChildViews() {
         loginStackView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().inset(50)

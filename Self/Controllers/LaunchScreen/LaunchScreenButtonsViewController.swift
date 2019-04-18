@@ -18,7 +18,7 @@ extension LaunchScreenButtonsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
 }
 
@@ -39,7 +39,7 @@ extension LaunchScreenButtonsViewController: ViewBuilding {
         view.addSubview(registerButton)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         registerButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(loginButton.snp.top).inset(-20)
             make.width.equalToSuperview()

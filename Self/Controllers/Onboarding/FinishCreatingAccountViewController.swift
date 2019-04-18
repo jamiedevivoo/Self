@@ -22,7 +22,7 @@ class FinishCreatingAccountViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
 
 }
@@ -100,7 +100,7 @@ extension FinishCreatingAccountViewController: ViewBuilding {
         self.view.addSubview(registerStackView)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         registerStackView.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.center.equalToSuperview()

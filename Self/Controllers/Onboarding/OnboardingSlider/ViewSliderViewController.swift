@@ -1,14 +1,6 @@
-//
-//  OnboardingSliderViewController.swift
-//  Self
-//
-//  Created by Jamie on 12/04/2019.
-//  Copyright © 2019 Jamie De Vivo. All rights reserved.
-//
-
 import UIKit
 
-class OnboardingSliderViewController: ViewController {
+class ViewSliderViewController: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -26,37 +18,23 @@ class OnboardingSliderViewController: ViewController {
         return pageControl
     }()
     
-    lazy var nameOnboardingController: NameOnboardingViewController = {
-        let viewController = NameOnboardingViewController()
-        self.addChild(viewController)
-        return viewController
-    }()
-    
-    lazy var inductionOnboardingViewController: InductionOnboardingViewController = {
-        let viewController = InductionOnboardingViewController()
-        self.addChild(viewController)
-        return viewController
-    }()
-    weak var onboardingManagerDelegate: OnboardingViewController?
-
+    weak var delegate: ScreenSliderViewControllerDelegate?
+    var pages: [ViewController] = []
 }
     
 // MARK: - Overrides
-extension OnboardingSliderViewController {
+extension ViewSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delegate = self
-        addSubViews()
-        addConstraints()
-        setupSlider(onboardingStages: [nameOnboardingController, inductionOnboardingViewController])
-        nameOnboardingController.onboardingFlowDelegate = self
-        inductionOnboardingViewController.onboardingFlowDelegate = self
+        setupChildViews()
+        setupSlider(onboardingStages: pages)
     }
 }
 
 // MARK: - Functions
-extension OnboardingSliderViewController: UIScrollViewDelegate {
+extension ViewSliderViewController: UIScrollViewDelegate {
     func setupSlider(onboardingStages stages: [ViewController]) {
         pageControl.numberOfPages = stages.count
         pageControl.currentPage = 0
@@ -66,7 +44,7 @@ extension OnboardingSliderViewController: UIScrollViewDelegate {
         
         for i in 0 ..< stages.count {
             let stageController = stages[i]
-            addChildViewController(viewController: stageController)
+            add(stageController, alsoAddView: false)
             scrollView.addSubview(stageController.view)
             stageController.view.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
         }
@@ -78,11 +56,19 @@ extension OnboardingSliderViewController: UIScrollViewDelegate {
     }
 }
 
-extension OnboardingSliderViewController: OnboardingFlowDelegate {
+extension ViewSliderViewController: ScreenSliderViewControllerDelegate {
+    func beforeStartIndexOfSlider(_ screenSliderViewController: ScreenSliderViewController) {
+        
+    }
+    
+    func afterEndIndexOfSlider(_ screenSliderViewController: ScreenSliderViewController) {
+        
+    }
+    
     func nextStage() {
         print("Next Stage")
         guard pageControl.currentPage < (pageControl.numberOfPages - 1) else {
-            onboardingManagerDelegate?.continueOnboarding()
+//            pageSliderViewDelegate?.continueOnboarding()
             return
         }
         pageControl.currentPage = pageControl.currentPage + 1
@@ -96,24 +82,16 @@ extension OnboardingSliderViewController: OnboardingFlowDelegate {
     }
 }
 
-extension OnboardingSliderViewController: ViewBuilding, AddingChildViewControllers {
+extension ViewSliderViewController: ViewBuilding {
     
-    func addChildViewController(viewController: UIViewController) {
-        addChild(viewController)
-        viewController.didMove(toParent: self)
-    }
-    
-    func addSubViews() {
+    func setupChildViews() {
         view.addSubview(scrollView)
-        view.addSubview(pageControl)
-        view.bringSubviewToFront(pageControl)
-    }
-    
-    func addConstraints() {
         scrollView.snp.makeConstraints { (make) in
             make.left.top.right.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalTo(pageControl.snp.top).offset(10)
         }
+        view.addSubview(pageControl)
+        view.bringSubviewToFront(pageControl)
         pageControl.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-25)
             make.centerX.equalToSuperview()

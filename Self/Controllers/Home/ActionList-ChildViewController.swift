@@ -39,7 +39,7 @@ extension ActionListChildViewController {
         super.viewDidLoad()
         
         addSubViews()
-        addConstraints()
+        setupChildViews()
         
         if Auth.auth().currentUser!.isAnonymous {
             self.actionButtonStack.addArrangedSubview(finishAccountButton)
@@ -89,7 +89,7 @@ extension ActionListChildViewController: ViewBuilding {
         self.actionButtonStack.addArrangedSubview(logoutButton)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         actionHeaderLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(actionButtonStack.snp.top).offset(-20)
             make.left.right.equalToSuperview()

@@ -38,7 +38,7 @@ class AppSettingsViewController: UIViewController {
         navigationItem.leftBarButtonItems = nil
         
         addSubViews()
-        addConstraints()
+        setupChildViews()
 
     }
     
@@ -134,7 +134,7 @@ extension AppSettingsViewController: ViewBuilding {
         topView.addSubview(pageTipLabel)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         topView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
             make.height.greaterThanOrEqualTo(pageTipLabel.snp.height).offset(150)

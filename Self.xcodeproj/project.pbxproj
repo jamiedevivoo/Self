@@ -15,11 +15,11 @@
 		7D47AC6D226000A1004BF898 /* LaunchScreenButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6C226000A1004BF898 /* LaunchScreenButtonsViewController.swift */; };
 		7D47AC6F22600DCF004BF898 /* StandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* StandardTextField.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
-		7D4F3037226094BC00F2EF48 /* OnboardingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F3036226094BC00F2EF48 /* OnboardingProtocol.swift */; };
+		7D4F3037226094BC00F2EF48 /* PageSliderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F3036226094BC00F2EF48 /* PageSliderProtocol.swift */; };
 		7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */; };
 		7D6B745F226028B5006F9CD1 /* NameOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745E226028B5006F9CD1 /* NameOnboardingViewController.swift */; };
 		7D6B746122602C56006F9CD1 /* InductionOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B746022602C56006F9CD1 /* InductionOnboardingViewController.swift */; };
-		7D6B7463226030C0006F9CD1 /* OnboardingSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B7462226030C0006F9CD1 /* OnboardingSliderViewController.swift */; };
+		7D6B7463226030C0006F9CD1 /* ScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */; };
 		7D7758CF225D872F003CCD1F /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758CE225D872F003CCD1F /* MessageManager.swift */; };
 		7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D0225D8764003CCD1F /* HighlightManager.swift */; };
 		7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D2225D878A003CCD1F /* InsightManager.swift */; };
@@ -38,6 +38,7 @@
 		7DD6CC1222672E1B00F47E63 /* LoadingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1122672E1B00F47E63 /* LoadingProtocol.swift */; };
 		7DD6CC1422672E3600F47E63 /* AchivementProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1322672E3600F47E63 /* AchivementProtocol.swift */; };
 		7DD6CC1622673DA700F47E63 /* DailyActionSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1522673DA700F47E63 /* DailyActionSelectorViewController.swift */; };
+		7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */; };
 		7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39222261929B00C761B4 /* LabelExtensions.swift */; };
 		7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF392622625F1400C761B4 /* AccountFlags.swift */; };
 		7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */; };
@@ -50,7 +51,6 @@
 		7DF14B59225F2D170090D299 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* MessageResponse.swift */; };
 		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
-		7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5E225F4C340090D299 /* ClassBuilding.swift */; };
 		7DFEF05B2263617C004F625F /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05A2263617C004F625F /* MessageStackView.swift */; };
 		7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */; };
 		A30EC35322564FC60092A4E2 /* ActionList-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */; };
@@ -101,11 +101,11 @@
 		7D47AC6C226000A1004BF898 /* LaunchScreenButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenButtonsViewController.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* StandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTextField.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/Views/Common Views/ViewController.swift"; sourceTree = SOURCE_ROOT; };
-		7D4F3036226094BC00F2EF48 /* OnboardingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProtocol.swift; sourceTree = "<group>"; };
+		7D4F3036226094BC00F2EF48 /* PageSliderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSliderProtocol.swift; sourceTree = "<group>"; };
 		7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishCreatingAccountViewController.swift; sourceTree = "<group>"; };
 		7D6B745E226028B5006F9CD1 /* NameOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOnboardingViewController.swift; sourceTree = "<group>"; };
 		7D6B746022602C56006F9CD1 /* InductionOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InductionOnboardingViewController.swift; sourceTree = "<group>"; };
-		7D6B7462226030C0006F9CD1 /* OnboardingSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSliderViewController.swift; sourceTree = "<group>"; };
+		7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenSliderViewController.swift; path = ../../Controllers/Onboarding/ScreenSliderViewController.swift; sourceTree = "<group>"; };
 		7D7758CE225D872F003CCD1F /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		7D7758D0225D8764003CCD1F /* HighlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
@@ -124,6 +124,7 @@
 		7DD6CC1122672E1B00F47E63 /* LoadingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProtocol.swift; sourceTree = "<group>"; };
 		7DD6CC1322672E3600F47E63 /* AchivementProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchivementProtocol.swift; sourceTree = "<group>"; };
 		7DD6CC1522673DA700F47E63 /* DailyActionSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionSelectorViewController.swift; sourceTree = "<group>"; };
+		7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewSliderViewController.swift; path = ../../Controllers/Onboarding/OnboardingSlider/ViewSliderViewController.swift; sourceTree = "<group>"; };
 		7DDF39222261929B00C761B4 /* LabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensions.swift; sourceTree = "<group>"; };
 		7DDF392622625F1400C761B4 /* AccountFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountFlags.swift; sourceTree = "<group>"; };
 		7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsFeatures.swift; sourceTree = "<group>"; };
@@ -136,7 +137,6 @@
 		7DF14B58225F2D170090D299 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		7DF14B5E225F4C340090D299 /* ClassBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBuilding.swift; sourceTree = "<group>"; };
 		7DFEF05A2263617C004F625F /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
 		7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponsesStack.swift; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionList-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList-ChildViewController.swift"; sourceTree = "<group>"; };
@@ -221,7 +221,6 @@
 		7D6B7464226030D5006F9CD1 /* OnboardingSlider */ = {
 			isa = PBXGroup;
 			children = (
-				7D6B7462226030C0006F9CD1 /* OnboardingSliderViewController.swift */,
 				7D6B745E226028B5006F9CD1 /* NameOnboardingViewController.swift */,
 				7D6B746022602C56006F9CD1 /* InductionOnboardingViewController.swift */,
 			);
@@ -356,11 +355,10 @@
 		7DDF39212261014C00C761B4 /* Protocols+Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
-				7D4F3036226094BC00F2EF48 /* OnboardingProtocol.swift */,
-				7DF14B4E225F260B0090D299 /* CustomTypealias.swift */,
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
-				7DF14B5E225F4C340090D299 /* ClassBuilding.swift */,
+				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
+				7D4F3036226094BC00F2EF48 /* PageSliderProtocol.swift */,
+				7DF14B4E225F260B0090D299 /* CustomTypealias.swift */,
 				7DD6CC1122672E1B00F47E63 /* LoadingProtocol.swift */,
 				7DD6CC1322672E3600F47E63 /* AchivementProtocol.swift */,
 			);
@@ -520,6 +518,8 @@
 				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
 				A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */,
 				A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */,
+				7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */,
+				7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -724,6 +724,7 @@
 				7DD6CC0A2266B71500F47E63 /* FindCommunityViewController.swift in Sources */,
 				7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */,
 				7DD6CC002266B51D00F47E63 /* TagViewController.swift in Sources */,
+				7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */,
 				7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */,
 				A316E709224AF18F00283547 /* LaunchScreenViewController.swift in Sources */,
 				7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */,
@@ -742,11 +743,10 @@
 				7D6B745F226028B5006F9CD1 /* NameOnboardingViewController.swift in Sources */,
 				7DD6CC0E2266B97D00F47E63 /* Buttons.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
-				7DF14B5F225F4C340090D299 /* ClassBuilding.swift in Sources */,
 				A30EC35522565BEF0092A4E2 /* Message-ChildViewController.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				7DF14B47225F24870090D299 /* MoodManager.swift in Sources */,
-				7D4F3037226094BC00F2EF48 /* OnboardingProtocol.swift in Sources */,
+				7D4F3037226094BC00F2EF48 /* PageSliderProtocol.swift in Sources */,
 				7D187F122258D1A000A9E9AE /* ActionView.swift in Sources */,
 				7DD6CC1222672E1B00F47E63 /* LoadingProtocol.swift in Sources */,
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
@@ -765,7 +765,7 @@
 				7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */,
 				A3CF94FD224D3C5D00D0EC31 /* AddMood-ViewController.swift in Sources */,
 				7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */,
-				7D6B7463226030C0006F9CD1 /* OnboardingSliderViewController.swift in Sources */,
+				7D6B7463226030C0006F9CD1 /* ScreenSliderViewController.swift in Sources */,
 				7DF14B51225F296C0090D299 /* Emotion.swift in Sources */,
 				7DD6CC042266B6C200F47E63 /* CommunityManager.swift in Sources */,
 				A33409AD224570BC004CBB2A /* Home-ViewController.swift in Sources */,

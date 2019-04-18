@@ -30,7 +30,7 @@ extension HighlightsViewController {
         super.viewDidLoad()
         addHighlights()
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
     
     func addHighlights() {
@@ -82,7 +82,7 @@ extension HighlightsViewController: ViewBuilding {
         view.addSubview(highlightCollectionView)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         highlightLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)

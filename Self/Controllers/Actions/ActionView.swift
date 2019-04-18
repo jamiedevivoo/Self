@@ -50,7 +50,7 @@ extension ActionCell {
         for tag in tags {
             actionCardTagsStack.addArrangedSubview(tag)
         }
-        addConstraints()
+        setupChildViews()
         contentView.layer.cornerRadius = 15
         contentView.backgroundColor = UIColor.app.button.tag.fill().withAlphaComponent(0.8)
         contentView.clipsToBounds = true
@@ -72,7 +72,7 @@ extension ActionCell: ViewBuilding {
         contentView.addSubview(actionCardDescriptionLabel)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         actionCardTagsStack.snp.makeConstraints { (make) in
             make.left.top.right.equalToSuperview().inset(20)
             make.height.equalTo(30)

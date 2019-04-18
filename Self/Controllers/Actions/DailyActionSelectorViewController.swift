@@ -30,7 +30,7 @@ class DailyActionSelectorViewController: ViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             addSubViews()
-            addConstraints()
+            setupChildViews()
             addActions()
         }
         
@@ -81,7 +81,7 @@ class DailyActionSelectorViewController: ViewController {
             view.addSubview(actionCollectionView)
         }
         
-        func addConstraints() {
+        func setupChildViews() {
             actionsLabel.snp.makeConstraints { (make) in
                 make.top.equalToSuperview().offset(75)
                 make.left.equalToSuperview().offset(20)

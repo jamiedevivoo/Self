@@ -36,7 +36,7 @@ extension LaunchScreenSliderViewController {
 
         scrollView.delegate = self
         addSubViews()
-        addConstraints()
+        setupChildViews()
         setupSlider()
     }
 }
@@ -109,7 +109,7 @@ extension LaunchScreenSliderViewController: ViewBuilding {
         view.bringSubviewToFront(pageControl)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         scrollView.snp.makeConstraints { (make) in
             make.left.top.right.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalTo(pageControl.snp.top).offset(10)

@@ -41,7 +41,7 @@ class LaunchScreenSlideView: UIView {
     internal func setupView() {
         backgroundColor = .white
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
     
 }
@@ -55,7 +55,7 @@ extension LaunchScreenSlideView: ViewBuilding {
         container.addSubview(headline)
         container.addSubview(desc)
     }
-    func addConstraints() {
+    func setupChildViews() {
         container.snp.makeConstraints { (make) in
             make.bottom.top.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)

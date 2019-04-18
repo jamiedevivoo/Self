@@ -95,7 +95,7 @@ extension Tag {
     }
     
     enum TagCategory: String, CaseIterable {
-        case five_ways, type, personal
+        case five_ways, type, charka, personal
         
         var key: String { return rawValue }
         
@@ -103,6 +103,7 @@ extension Tag {
             switch self {
                 case .five_ways:   return "Five Ways"
                 case .type:        return "Action Type"
+                case .charka:        return "Charka"
                 default:               return "Personal"
             }
         }
@@ -112,6 +113,7 @@ extension Tag {
             switch string {
                 case self.five_ways.rawValue:   return .five_ways
                 case self.type.rawValue:        return .type
+                case self.charka.rawValue:   return .charka
                 default:                        return .personal
             }
         }

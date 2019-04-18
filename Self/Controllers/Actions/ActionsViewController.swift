@@ -22,7 +22,7 @@ extension ActionsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-        addConstraints()
+        setupChildViews()
         configureActionView()
     }
 }
@@ -61,7 +61,7 @@ extension ActionsViewController: ViewBuilding {
         view.addSubview(actionButton)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         actionsLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)

@@ -17,21 +17,19 @@ class InductionOnboardingViewController: ViewController {
         return label
     }()
     lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .primary)
-    weak var onboardingFlowDelegate: OnboardingSliderViewController?
 }
 
 extension InductionOnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-        addConstraints()
+        setupChildViews()
     }
 }
 
 extension InductionOnboardingViewController {
     @objc func continueOnboarding(_ sender: Any) {
         print("ButtonPressed")
-        onboardingFlowDelegate?.nextStage()
     }
 }
 
@@ -41,7 +39,7 @@ extension InductionOnboardingViewController: ViewBuilding {
         self.view.addSubview(continueButton)
     }
     
-    func addConstraints() {
+    func setupChildViews() {
         label.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
             make.height.greaterThanOrEqualTo(100)

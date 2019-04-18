@@ -2,22 +2,27 @@ import UIKit
 import Firebase
 import SnapKit
 
-class OnboardingViewController: ViewController {
+class OnboardingViewController: UIViewController {
     
-    lazy var onboardingSlider: OnboardingSliderViewController = {
-        let viewController = OnboardingSliderViewController()
-        self.addChild(viewController)
-        return viewController
-    }()
-}
-
-// MARK: - Init
-extension OnboardingViewController {
+    lazy var onboardingPageView = ScreenSliderViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    var stages: [UIViewController] = [NameOnboardingViewController(),
+                                      InductionOnboardingViewController(),
+                                      InductionOnboardingViewController()]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSubViews()
-        addConstraints()
-        onboardingSlider.onboardingManagerDelegate = self
+        setupChildViews()
+        self.setupPageViewController(onboardingPageView, pages: stages, loop: false)
+    }
+}
+
+extension OnboardingViewController: ScreenSliderViewControllerDelegate {
+    func beforeStartIndexOfSlider(_ pageViewController: ScreenSliderViewController) {
+        print("Start")
+//        self.navigationController?.popToRootViewController(animated: true)
+    }
+    func afterEndIndexOfSlider(_ pageViewController: ScreenSliderViewController) {
+        print("End")
     }
 }
 
@@ -30,7 +35,7 @@ extension OnboardingViewController {
                     let alertController = UIAlertController()
                     alertController.title = error!.localizedDescription
                     alertController.message = "Sorry there was a problem"
-                    print(error, authResult)
+                    print(error as AnyObject, authResult as AnyObject)
                     alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     return alertController
                 }()
@@ -47,28 +52,18 @@ extension OnboardingViewController {
     }
 }
 
-extension OnboardingViewController: OnboardingManagerDelegate {
+extension OnboardingViewController {
     func continueOnboarding() {
         signInAnonymously()
     }
 }
 
 // MARK: - View Building
-extension OnboardingViewController: ViewBuilding, AddingChildViewControllers {
-    
-    func addChildViewController(viewController: UIViewController) {
-        addChild(viewController)
-        viewController.didMove(toParent: self)
-    }
-    
-    func addSubViews() {
-        view.addSubview(onboardingSlider.view)
-    }
-    
-    func addConstraints() {
-        onboardingSlider.view.snp.makeConstraints { (make) in
-            make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
-            make.width.equalToSuperview()
+extension OnboardingViewController: ViewBuilding {
+    func setupChildViews() {
+        self.add(onboardingPageView)
+        onboardingPageView.view.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
 }
