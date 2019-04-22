@@ -6,7 +6,6 @@ class LoginViewController: ViewController {
     
     var containingScrollView = UIScrollView()
     
-    // MARK: - Views
     lazy var emailTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.customiseTextField(for: .email)
@@ -38,11 +37,10 @@ class LoginViewController: ViewController {
         stackView.spacing = 10
         return stackView
     }()
-    
 }
 
+// Override Methods
 extension LoginViewController: UITextFieldDelegate {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Login"
@@ -55,13 +53,17 @@ extension LoginViewController: UITextFieldDelegate {
         setupScrollView()
 //        emailTextFieldWithLabel.textField.becomeFirstResponder()
     }
-    
-    func setupScrollView() {
+}
+
+// Setup Methods
+extension LoginViewController {
+    private func setupScrollView() {
         containingScrollView.contentSize = loginStackView.frame.size
         containingScrollView.frame = self.view.frame
     }
 }
 
+// Button Methods
 extension LoginViewController {
     @objc func loginButtonAction(_ sender: Any) {
         print("Log in with details: \(String(describing: emailTextFieldWithLabel.textField.text))  \(String(describing: passwordTextFieldWithLabel.textField.text))")
@@ -105,7 +107,9 @@ extension LoginViewController {
 
 // MARK: - View Building
 extension LoginViewController: ViewBuilding {
+    
     func setupChildViews() {
+        
         self.view.addSubview(containingScrollView)
         containingScrollView.addSubview(loginStackView)
 

@@ -8,6 +8,6 @@ protocol AccountInfoObject { }
 
 protocol OnboardingDelegate: class {
     func setData(_ dataDict: [String:String])
-    func onboardingIsComplete() -> Bool
+    func isOnboardingComplete() -> Bool
     func finishOnboarding()
 }

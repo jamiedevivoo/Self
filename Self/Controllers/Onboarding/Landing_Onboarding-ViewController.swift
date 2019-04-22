@@ -1,7 +1,8 @@
 import UIKit
 import SnapKit
 
-class LandingOnboardingViewController: ViewController {
+
+final class LandingOnboardingViewController: ViewController {
 
     lazy var welcomeLabel: UILabel = {
         let label = UILabel()
@@ -19,6 +20,7 @@ class LandingOnboardingViewController: ViewController {
     lazy var loginButton = StandardButton(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
 }
 
+
 // MARK: - Overide Methods
 extension LandingOnboardingViewController {
     override func viewDidLoad() {
@@ -28,8 +30,21 @@ extension LandingOnboardingViewController {
     }
 }
 
-// MARK: - ClassMethods
+
+// MARK: - Button Methods
 extension LandingOnboardingViewController {
+    @objc func navigateToLogin(_ sender: Any) {
+        self.present(LoginViewController(), animated: true)
+    }
+    @objc func navigateToRegister(_ sender: Any) {
+        (self.parent as! OnboardingScreenSliderViewController).nextScreen()
+    }
+}
+
+
+// MARK: - Setup Methods
+private extension LandingOnboardingViewController {
+    
     func createOnboardingScreens() -> [LandingSlideView] {
         
         let onboardingSlideOne: LandingSlideView = {
@@ -58,20 +73,13 @@ extension LandingOnboardingViewController {
         
         return [onboardingSlideOne, onboardingSlideTwo, onboardingSlideThree]
     }
+    
 }
 
-// MARK: - Button Methods
-extension LandingOnboardingViewController {
-    @objc func navigateToLogin(_ sender: Any) {
-        self.present(LoginViewController(), animated: true)
-    }
-    @objc func navigateToRegister(_ sender: Any) {
-        (self.parent as! OnboardingScreenSliderViewController).nextScreen()
-    }
-}
 
 // MARK: - View Building
 extension LandingOnboardingViewController: ViewBuilding {
+    
     func setupChildViews() {
         self.view.addSubview(welcomeLabel)
         self.add(sliderViewController, alsoAddView: true)
@@ -97,4 +105,5 @@ extension LandingOnboardingViewController: ViewBuilding {
             make.height.equalTo(60)
         }
     }
+    
 }

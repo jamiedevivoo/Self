@@ -11,19 +11,21 @@ protocol ScreenSliderViewControllerDelegate: class {
 
 extension ScreenSliderViewControllerDelegate {
     // Optional helper method to set up a PageViewController. Method will set a a PageViewControllers delegate to self by default.
-    func configurePageViewController<T>(
+    func configurePageViewController<T: ScreenSliderViewControllerDelegate>(
         _ screenSliderViewController: ScreenSliderViewController,
         withPages pages: [UIViewController],
-        withDelegate delegate: T.Type = T.self,
+        withDelegate delegate: T,
         isLooped loop: Bool = false,
         showPageIndicator pageIndicator: Bool = true,
+        enableSwiping swiping: Bool = true,
         optionalSetup: @escaping () -> () = {} )
         where T : UIViewController
     {
-        screenSliderViewController.screenSliderViewControllerDelegate = self
+        screenSliderViewController.sliderDelegate = self
         screenSliderViewController.screens = pages
         screenSliderViewController.sliderIsLooped = loop
         screenSliderViewController.displayPageIndicator = pageIndicator
+        screenSliderViewController.scrollingEnabled = swiping
         optionalSetup()
     }
 }

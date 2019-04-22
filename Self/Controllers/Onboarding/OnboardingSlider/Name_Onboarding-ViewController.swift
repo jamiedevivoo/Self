@@ -1,6 +1,9 @@
 import UIKit
+import SnapKit
 
-class NameOnboardingViewController: ViewController {
+
+final class NameOnboardingViewController: ViewController {
+    
     lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Welcome to Self! What should we call you?"
@@ -20,10 +23,13 @@ class NameOnboardingViewController: ViewController {
     }()
     
     var delegate : OnboardingDelegate?
+    
 }
+
 
 // MARK: - Override Methods
 extension NameOnboardingViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
@@ -34,12 +40,15 @@ extension NameOnboardingViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        nameTextFieldWithLabel.textField.becomeFirstResponder()
+        nameTextFieldWithLabel.textField.becomeFirstResponder()
     }
+    
 }
+
 
 // MARK: - Class Methods
 extension NameOnboardingViewController {
+    
     @objc func validateName() -> String? {
         if let name: String = self.nameTextFieldWithLabel.textField.text?.trim(), self.nameTextFieldWithLabel.textField.text!.trim().count > 1 {
             nameTextFieldWithLabel.resetHint()
@@ -49,10 +58,13 @@ extension NameOnboardingViewController {
             return nil
         }
     }
+    
 }
+
 
 // MARK: - TextField Delegate Methods
 extension NameOnboardingViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
             dismissKeyboard()
@@ -64,11 +76,13 @@ extension NameOnboardingViewController: UITextFieldDelegate {
         }
         return false
     }
+    
 }
 
 
 // MARK: - View Building
 extension NameOnboardingViewController: ViewBuilding {
+    
     func setupChildViews() {
         self.view.addSubview(label)
         self.view.addSubview(nameTextFieldWithLabel)
@@ -83,4 +97,5 @@ extension NameOnboardingViewController: ViewBuilding {
             make.height.greaterThanOrEqualTo(60)
         }
     }
+    
 }

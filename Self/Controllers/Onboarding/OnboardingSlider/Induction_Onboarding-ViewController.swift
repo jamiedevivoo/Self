@@ -1,6 +1,9 @@
 import UIKit
+import SnapKit
 
-class InductionOnboardingViewController: ViewController {
+
+final class InductionOnboardingViewController: ViewController {
+    
     lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Placeholder: You've begun a journey to your better self. (cheesy)"
@@ -11,46 +14,46 @@ class InductionOnboardingViewController: ViewController {
     lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
     
     weak var delegate: OnboardingDelegate?
+    
 }
+
 
 // MARK: - Override Methods
 extension InductionOnboardingViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        continueButton.isEnabled = false
-        print("viewDidLoad")
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkCompletion()
-        print("ViewDidAppear")
     }
+    
 }
+
 
 // MARK: - Class Methods
 extension InductionOnboardingViewController {
+    
     func checkCompletion() {
-        if (delegate?.onboardingIsComplete())! {
-            continueButton.isEnabled = true
+        if delegate!.isOnboardingComplete() {
             continueButton.customiseButton(for: .primary)
-            print("Complete")
         } else {
-            if (delegate?.onboardingIsComplete())! {
-                continueButton.isEnabled = false
-                continueButton.customiseButton(for: .disabled)
-                print("Not Complete")
-            }
+            continueButton.customiseButton(for: .disabled)
         }
     }
+    
     @objc func continueOnboarding(_ sender: Any) {
         delegate?.finishOnboarding()
-        print("ButtonPressed")
     }
+    
 }
+
 
 // MARK: - View Building
 extension InductionOnboardingViewController: ViewBuilding {
+    
     func setupChildViews() {
         self.view.addSubview(label)
         label.snp.makeConstraints { (make) in
@@ -64,4 +67,5 @@ extension InductionOnboardingViewController: ViewBuilding {
             make.height.equalTo(60)
         }
     }
+    
 }

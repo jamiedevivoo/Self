@@ -48,12 +48,15 @@ extension StandardButton {
             self.layer.borderColor = UIColor.app.button.primary.fill().cgColor
             self.backgroundColor = UIColor.clear
             self.layer.borderWidth = 2.0
+            self.isEnabled = false
         } else if type == .disabled {
             self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.5)
             self.layer.borderColor = self.layer.borderColor?.copy(alpha: 0.5)
+            self.isEnabled = true
         } else if type == .primary {
             self.backgroundColor = UIColor.app.button.primary.fill()
             self.layer.borderColor = UIColor.app.button.primary.fill().withAlphaComponent(0.5).cgColor
+            self.isEnabled = true
         }
     }
 }

@@ -1,12 +1,11 @@
 import UIKit
 import SnapKit
 
-extension ScreenSliderViewController: UIScrollViewDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource  { }
 
 class ScreenSliderViewController: UIPageViewController {
     
-    /// Delegate for the custom ScreenSlider
-    weak var screenSliderViewControllerDelegate: ScreenSliderViewControllerDelegate?
+    /// SliderDelegate
+    weak var sliderDelegate: ScreenSliderViewControllerDelegate?
     
     /// Page Indicator View
     lazy var pageIndicator: UIPageControl = PageIndicator()
@@ -24,16 +23,11 @@ class ScreenSliderViewController: UIPageViewController {
     var initialPage: Int = 0
     
     var scrollingEnabled: Bool = true {
-        didSet { scrollView?.bounces = scrollingEnabled
-            print("Scrolling Enabled Changed \(scrollingEnabled)")
-            print("\(scrollView?.bounces)")
-        }
+        didSet { scrollView?.bounces = scrollingEnabled }
     }
     
     var displayPageIndicator: Bool = false {
-        didSet { setupPageIndicator()
-            print("Page Indiator Indicator Changed \(displayPageIndicator)")
-        }
+        didSet { setupPageIndicator()  }
     }
     
     // MARK: - Init
@@ -51,14 +45,18 @@ class ScreenSliderViewController: UIPageViewController {
     
 }
 
+
 // MARK: - Overrides
 extension ScreenSliderViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
     }
+    
 }
+
 
 // MARK: - Setup Methods
 extension ScreenSliderViewController {
@@ -95,7 +93,9 @@ extension ScreenSliderViewController {
         self.scrollView = (view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView)
         scrollView?.delegate = self
     }
+    
 }
+
 
 // MARK: - Custom Methods
 extension ScreenSliderViewController {
@@ -111,10 +111,12 @@ extension ScreenSliderViewController {
         let previousScreen = pageViewController(self, viewControllerBefore: viewControllers![0])!
         setViewControllers([previousScreen], direction: .reverse, animated: true, completion: nil)
     }
+    
 }
 
-// MARK: - UIPageViewController Delegate  Methods
-extension ScreenSliderViewController {
+
+// MARK: - UIPageViewControllerDataSourceDelegate  Methods
+extension ScreenSliderViewController: UIPageViewControllerDataSource {
     
     // Deciding the next viewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -126,7 +128,7 @@ extension ScreenSliderViewController {
         /// Otherwise the current slide is already the last slide, so either loop to the beginning or inform the delegate the slider has reached the end
         else {
             if sliderIsLooped { return self.screens.first }
-            else { screenSliderViewControllerDelegate?.reachedFinalIndex(pageViewController as! ScreenSliderViewController) }
+            else { return nil }
         }
         return nil
     }
@@ -141,10 +143,16 @@ extension ScreenSliderViewController {
         /// Otherwise the current slide is already the first slide, so either loop to the end or inform the delegate the slider has reached the beginning
         else {
             if sliderIsLooped { return self.screens.last }
-            else { screenSliderViewControllerDelegate?.reachedFirstIndex(pageViewController as! ScreenSliderViewController) }
+            else { return nil }
         }
         return nil
     }
+    
+}
+
+
+// MARK: - UIPageViewControllerDelegate  Methods
+extension ScreenSliderViewController: UIPageViewControllerDelegate {
     
     // The PageViewController is about to transition
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
@@ -161,10 +169,14 @@ extension ScreenSliderViewController {
             }
         }
     }
+    
 }
 
+
 // MARK: - ScrollView Delegate Methods
-extension ScreenSliderViewController {
+extension ScreenSliderViewController: UIScrollViewDelegate {
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     }
+    
 }
