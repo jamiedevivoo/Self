@@ -1,41 +1,49 @@
 import UIKit
 import Firebase
 
+extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate, OnboardingDelegate { }
+
 final class OnboardingScreenSliderViewController: ScreenSliderViewController {
-    
-    lazy var launchOnboardingViewController = LandingOnboardingViewController()
-    lazy var nameOnboardingViewController = NameOnboardingViewController()
-    lazy var inductionOnboardingViewController = InductionOnboardingViewController()
-    
     private var name: String?
 }
 
-// MARK: - Overrides
+// MARK: - Override Methods
 extension OnboardingScreenSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        launchOnboardingViewController.onboardingDelegate = self
-        nameOnboardingViewController.onboardingDelegate = self
-        inductionOnboardingViewController.onboardingDelegate = self
-        self.configurePageViewController(self, withPages: [launchOnboardingViewController, nameOnboardingViewController, inductionOnboardingViewController], isLooped: false)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
-        scrollView?.bounces = false
+        setupScreenSlider()
     }
 }
 
+// MARK: - Setup Methods
+private extension OnboardingScreenSliderViewController {
+    func setupScreenSlider() {
+        screens = setupScreens()
+        sliderIsLooped = false
+        displayPageIndicator = false
+        scrollingEnabled = true
+        screenSliderViewControllerDelegate = self
+    }
+    
+    func setupScreens() -> [UIViewController] {
+        let landingOnboardingVC = LandingOnboardingViewController()
+        landingOnboardingVC.delegate = self
+        let nameOnboardingVC = NameOnboardingViewController()
+        nameOnboardingVC.delegate = self
+        let inductionOnboardingVC = InductionOnboardingViewController()
+        inductionOnboardingVC.delegate = self
+        return [landingOnboardingVC,nameOnboardingVC,inductionOnboardingVC]
+    }
+}
 
-// MARK: - Onboarding Logic
-extension OnboardingScreenSliderViewController: OnboardingDelegate {
+// MARK: - Class Methods
+extension OnboardingScreenSliderViewController {
     func setData(_ dataDict: [String:String]) {
         if let name = dataDict["name"] {
             print("Found Name")
             self.name = name
         }
     }
-    
     func onboardingIsComplete() -> Bool {
         guard let _ = self.name else { return false }
         return true
@@ -48,17 +56,19 @@ extension OnboardingScreenSliderViewController: OnboardingDelegate {
 }
 
 // MARK: - ScreenSliderViewController Delegate Methods
-extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
+extension OnboardingScreenSliderViewController {
     func reachedFirstIndex(_ pageViewController: ScreenSliderViewController) {
-        self.navigationController?.isNavigationBarHidden = false
-        print("Start")
+        print("First Index")
+        self.scrollView?.bounces = false
+        displayPageIndicator = false
+        scrollingEnabled = false
     }
     func reachedFinalIndex(_ pageViewController: ScreenSliderViewController) {
         print("End")
     }
 }
 
-// MARK: - Onboarding Methods
+// MARK: - Onboarding Delegate Methods
 extension OnboardingScreenSliderViewController {
     func signInAnonymously() {
         guard let name = self.name else { return }
@@ -79,7 +89,6 @@ extension OnboardingScreenSliderViewController {
             let accountUser = AccountUser(["name":name])
             let account = Account(uid: registeredCredentials.user.uid, accountUser: accountUser)
             AccountManager.shared().updateAccount(modifiedAccount: account) {
-                
             }
         }
     }

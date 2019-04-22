@@ -1,5 +1,6 @@
 import UIKit
 
+// Adding and removing Child View Controllers
 extension UIViewController {
     func add(_ viewController: UIViewController, alsoAddView: Bool = true) {
         addChild(viewController)
@@ -17,16 +18,7 @@ extension UIViewController {
     }
 }
 
-extension UIViewController {
-    func findPageController(forViewController viewController: UIViewController) -> UIPageViewController? {
-        var responder: UIResponder? = viewController
-        repeat {
-            responder = responder?.next
-            guard let vc = responder as? UIPageViewController else { return nil }
-            return vc
-        } while responder != nil
-    }
-}
+// Finding the parent viewController
 extension UIView {
     func findViewController(forView view: UIView) -> UIViewController? {
         var responder: UIResponder? = view

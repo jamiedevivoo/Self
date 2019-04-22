@@ -13,13 +13,13 @@ class LandingOnboardingViewController: ViewController {
     }()
     
     lazy var sliderViewController = ViewSliderViewController()
-    var onboardingDelegate : OnboardingDelegate?
+    var delegate : OnboardingDelegate?
 
     lazy var registerButton = StandardButton(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
     lazy var loginButton = StandardButton(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
 }
 
-// MARK: - Overides
+// MARK: - Overide Methods
 extension LandingOnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ extension LandingOnboardingViewController {
     }
 }
 
-// MARK: - Methods
+// MARK: - ClassMethods
 extension LandingOnboardingViewController {
     func createOnboardingScreens() -> [LandingSlideView] {
         
@@ -60,14 +60,12 @@ extension LandingOnboardingViewController {
     }
 }
 
-// MARK: - Actions
+// MARK: - Button Methods
 extension LandingOnboardingViewController {
     @objc func navigateToLogin(_ sender: Any) {
-        navigationController?.pushViewController(LoginViewController(), animated: true)
         self.present(LoginViewController(), animated: true)
     }
     @objc func navigateToRegister(_ sender: Any) {
-        self.findPageController(forViewController: self)?.setViewControllers([NameOnboardingViewController()], direction: .forward, animated: true, completion: nil)
         (self.parent as! OnboardingScreenSliderViewController).nextScreen()
     }
 }

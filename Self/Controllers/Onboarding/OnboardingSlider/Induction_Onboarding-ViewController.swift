@@ -9,8 +9,8 @@ class InductionOnboardingViewController: ViewController {
         return label
     }()
     lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
-    var onboardingDelegate : OnboardingDelegate?
-
+    
+    weak var delegate: OnboardingDelegate?
 }
 
 // MARK: - Override Methods
@@ -28,18 +28,15 @@ extension InductionOnboardingViewController {
     }
 }
 
-// MARK: - Validation
+// MARK: - Class Methods
 extension InductionOnboardingViewController {
     func checkCompletion() {
-        print(onboardingDelegate?.onboardingIsComplete())
-        print("\(onboardingDelegate)")
-        print((onboardingDelegate?.onboardingIsComplete())!)
-        if (onboardingDelegate?.onboardingIsComplete())! {
+        if (delegate?.onboardingIsComplete())! {
             continueButton.isEnabled = true
             continueButton.customiseButton(for: .primary)
             print("Complete")
         } else {
-            if (onboardingDelegate?.onboardingIsComplete())! {
+            if (delegate?.onboardingIsComplete())! {
                 continueButton.isEnabled = false
                 continueButton.customiseButton(for: .disabled)
                 print("Not Complete")
@@ -47,7 +44,7 @@ extension InductionOnboardingViewController {
         }
     }
     @objc func continueOnboarding(_ sender: Any) {
-        onboardingDelegate?.finishOnboarding()
+        delegate?.finishOnboarding()
         print("ButtonPressed")
     }
 }

@@ -19,7 +19,7 @@ class NameOnboardingViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    var onboardingDelegate : OnboardingDelegate?
+    var delegate : OnboardingDelegate?
 }
 
 // MARK: - Override Methods
@@ -38,7 +38,7 @@ extension NameOnboardingViewController {
     }
 }
 
-// MARK: - Validation
+// MARK: - Class Methods
 extension NameOnboardingViewController {
     @objc func validateName() -> String? {
         if let name: String = self.nameTextFieldWithLabel.textField.text?.trim(), self.nameTextFieldWithLabel.textField.text!.trim().count > 1 {
@@ -51,15 +51,16 @@ extension NameOnboardingViewController {
     }
 }
 
+// MARK: - TextField Delegate Methods
 extension NameOnboardingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
             dismissKeyboard()
-            onboardingDelegate?.setData(["name":name])
+            delegate?.setData(["name":name])
             return true
         } else {
             nameTextFieldWithLabel.textField.shake()
-            nameTextFieldWithLabel.resetHint(withText: "A nickname of at least 2 charachters will do")
+            nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
         }
         return false
     }
