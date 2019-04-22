@@ -38,6 +38,10 @@ extension StandardButton {
         self.layer.shadowOffset = CGSize(width: 0,height: 1.5)
     }
     
+    func configureButton() {
+        self.layer.cornerRadius = self.layer.bounds.height / 2
+    }
+    
     func customiseButton(for type: ButtonVariety) {
         if type == .secondary {
             self.setTitleColor(UIColor.app.button.primary.fill(), for: .normal)

@@ -19,56 +19,58 @@ class ViewSliderViewController: UIViewController {
     }()
     
     weak var delegate: ScreenSliderViewControllerDelegate?
-    var pages: [ViewController] = []
+    var slides: [UIView] = [] {
+        didSet { setup() }
+    }
 }
     
 // MARK: - Overrides
 extension ViewSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         scrollView.delegate = self
         setupChildViews()
-        setupSlider(onboardingStages: pages)
+        setup()
+    }
+    
+    func setup() {
+        setupScrolllView()
+        setupPageController()
     }
 }
 
-// MARK: - Functions
-extension ViewSliderViewController: UIScrollViewDelegate {
-    func setupSlider(onboardingStages stages: [ViewController]) {
-        pageControl.numberOfPages = stages.count
-        pageControl.currentPage = 0
-        
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(stages.count), height: scrollView.frame.height)
+// MARK: - Set Up Slider
+extension ViewSliderViewController {
+    private func setupScrolllView() {
+        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
         scrollView.isPagingEnabled = true
         
-        for i in 0 ..< stages.count {
-            let stageController = stages[i]
-            add(stageController, alsoAddView: false)
-            scrollView.addSubview(stageController.view)
-            stageController.view.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        for i in 0 ..< slides.count {
+            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
+            scrollView.addSubview(slides[i])
         }
     }
     
+    private func setupPageController() {
+        pageControl.numberOfPages = slides.count
+        pageControl.currentPage = 0
+    }
+}
+
+// MARK: - Delegate Methods
+extension ViewSliderViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
 }
 
-extension ViewSliderViewController: ScreenSliderViewControllerDelegate {
-    func beforeStartIndexOfSlider(_ screenSliderViewController: ScreenSliderViewController) {
-        
-    }
-    
-    func afterEndIndexOfSlider(_ screenSliderViewController: ScreenSliderViewController) {
-        
-    }
-    
+// MARK: - Methods
+extension ViewSliderViewController {
     func nextStage() {
         print("Next Stage")
         guard pageControl.currentPage < (pageControl.numberOfPages - 1) else {
-//            pageSliderViewDelegate?.continueOnboarding()
+            //            pageSliderViewDelegate?.continueOnboarding()
             return
         }
         pageControl.currentPage = pageControl.currentPage + 1
@@ -82,19 +84,18 @@ extension ViewSliderViewController: ScreenSliderViewControllerDelegate {
     }
 }
 
+// MARK: - View Building
 extension ViewSliderViewController: ViewBuilding {
-    
     func setupChildViews() {
         view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.left.top.right.equalTo(self.view.safeAreaLayoutGuide)
-            make.bottom.equalTo(pageControl.snp.top).offset(10)
-        }
         view.addSubview(pageControl)
         view.bringSubviewToFront(pageControl)
+        scrollView.snp.makeConstraints { (make) in
+            make.left.right.top.equalToSuperview()
+            make.bottom.equalTo(pageControl.snp.top).offset(-20)
+        }
         pageControl.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-25)
-            make.centerX.equalToSuperview()
+            make.bottom.left.right.equalToSuperview()
             make.height.equalTo(10)
         }
     }

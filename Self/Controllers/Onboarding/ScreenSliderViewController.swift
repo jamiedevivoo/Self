@@ -3,7 +3,7 @@ import SnapKit
 
 class ScreenSliderViewController: UIPageViewController {
     
-    lazy var pageControl: UIPageControl = {
+    lazy var pageIndicator: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.tintColor = UIColor.app.interactive.selectable.selected()
         pageControl.pageIndicatorTintColor = UIColor.app.interactive.selectable.unselected()
@@ -13,14 +13,13 @@ class ScreenSliderViewController: UIPageViewController {
     
     weak var screenSliderViewControllerDelegate: ScreenSliderViewControllerDelegate?
     var sliderIsLooped: Bool = false
+    var displayPageIndicator: Bool = false
     var initialPage: Int = 0
     
-    var pages: [UIViewController] = [] {
-        didSet {
-            // Only set page when pages have been set (exist)
-            setupPageView()
-            setupPageController()
-        }
+    var scrollView: UIScrollView?
+    
+    var screens: [UIViewController] = [] {
+        didSet { setup() } // Only set page when screens have been set (exist)
     }
     
     // MARK: - Init
@@ -37,7 +36,7 @@ class ScreenSliderViewController: UIPageViewController {
     
 }
 
-// MARK: - Methods
+// MARK: - Setup Methods
 extension ScreenSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,17 +44,24 @@ extension ScreenSliderViewController {
         self.delegate = self
     }
     
-    func setupPageView() {
-        guard pages.count > 1 else { return }
-        setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
+    func setup() {
+        setupPageView()
+        setupPageIndicator()
+        setupScrollView()
     }
     
-    func setupPageController() {
-        self.pageControl.numberOfPages = self.pages.count
-        self.pageControl.currentPage = initialPage
-        self.view.addSubview(pageControl)
+    private func setupPageView() {
+        guard screens.count > 0 else { return }
+        setViewControllers([screens[initialPage]], direction: .forward, animated: true, completion: nil)
+    }
+    
+    private func setupPageIndicator() {
+        guard displayPageIndicator == true else { return }
+        self.pageIndicator.numberOfPages = self.screens.count
+        self.pageIndicator.currentPage = initialPage
         
-        pageControl.snp.makeConstraints { (make) in
+        self.view.addSubview(pageIndicator)
+        pageIndicator.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-25)
             make.centerX.equalToSuperview()
             make.height.equalTo(10)
@@ -63,49 +69,84 @@ extension ScreenSliderViewController {
     }
 }
 
+// MARK:Methods
+extension ScreenSliderViewController: UIScrollViewDelegate {
+    private func setupScrollView() {
+        self.scrollView = (view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView)
+        scrollView?.delegate = self
+    }
+//    
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//    }
+
+}
+
 // MARK: - PageView Page Controller Methods
 extension ScreenSliderViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = self.pages.firstIndex(of: viewController) else { return nil }
+        guard let viewControllerIndex = self.screens.firstIndex(of: viewController) else { return nil }
         if viewControllerIndex > 0 {
-            return self.pages[viewControllerIndex - 1]
+            print("Controller Before: \(self.screens[viewControllerIndex - 1])")
+            return self.screens[viewControllerIndex - 1]
         } else {
             if sliderIsLooped {
                 // wrap to the last page
-                return self.pages.last
+                return self.screens.last
             } else {
                 // call the delegates unstart method
-                screenSliderViewControllerDelegate?.beforeStartIndexOfSlider(pageViewController as! ScreenSliderViewController)
+                screenSliderViewControllerDelegate?.reachedFirstIndex(pageViewController as! ScreenSliderViewController)
             }
         }
         return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = self.pages.firstIndex(of: viewController) else { return nil }
-        if viewControllerIndex < self.pages.count - 1 {
+        guard let viewControllerIndex = self.screens.firstIndex(of: viewController) else { return nil }
+        if viewControllerIndex < self.screens.count - 1 {
             // go to next page in array
-            return self.pages[viewControllerIndex + 1]
+            print("Controller After: \(self.screens[viewControllerIndex + 1])")
+            return self.screens[viewControllerIndex + 1]
         } else {
             if sliderIsLooped {
                 // go to previous page in array
-                return self.pages.first
+                return self.screens.first
             } else {
                 // call the delegates end method
-                screenSliderViewControllerDelegate?.afterEndIndexOfSlider(pageViewController as! ScreenSliderViewController)
+                screenSliderViewControllerDelegate?.reachedFinalIndex(pageViewController as! ScreenSliderViewController)
             }
         }
         return nil
+    }
+    
+    func nextScreen() {
+        let nextScreen = pageViewController(self, viewControllerAfter: viewControllers![0])!
+        print("Next Screen: \(nextScreen)")
+        setViewControllers([nextScreen], direction: .forward, animated: true, completion: nil)
+    }
+
+    func previousScreen() {
+        let previousScreen = pageViewController(self, viewControllerBefore: viewControllers![0])!
+        print("Previous Screen: \(previousScreen)")
+        setViewControllers([previousScreen], direction: .reverse, animated: true, completion: nil)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let viewControllerIndex = self.screens.firstIndex(of: pendingViewControllers.first!) else { return }
+        print("willTransitionTo Screen: \(viewControllerIndex)")
     }
 }
 
 // MARK: - PageControl Methods
 extension ScreenSliderViewController {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        // set the pageControl.currentPage to the index of the current viewController in pages
+        print("Controller finished animating: \(previousViewControllers)")
+
+        // set the pageControl.currentPage to the index of the current viewController in screens
         if let viewControllers = pageViewController.viewControllers {
-            if let viewControllerIndex = self.pages.firstIndex(of: viewControllers[0]) {
-                self.pageControl.currentPage = viewControllerIndex
+            if let viewControllerIndex = self.screens.firstIndex(of: viewControllers[0]) {
+                print("Finished Index: \(viewControllerIndex)")
+                self.pageIndicator.currentPage = viewControllerIndex
             }
         }
     }

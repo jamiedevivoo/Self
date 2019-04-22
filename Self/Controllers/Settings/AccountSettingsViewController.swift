@@ -98,10 +98,6 @@ extension AccountSettingsViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }
 
 extension AccountSettingsViewController: ViewBuilding {

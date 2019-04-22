@@ -3,6 +3,12 @@ import UIKit
 extension UIColor {
     
     struct app {
+        struct standard {
+            static func blackWhite() -> UIColor { switch ColorManager.getActiveColorMode() {
+                case .dark: return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+                default:    return UIColor(red: 000/255, green: 000/255, blue: 000/255, alpha: 1)
+            }}
+        }
         struct background {
             static func primaryBackground() -> UIColor { switch ColorManager.getActiveColorMode() {
                     case .dark: return UIColor(red: 029/255, green: 038/255, blue: 095/255, alpha: 1)

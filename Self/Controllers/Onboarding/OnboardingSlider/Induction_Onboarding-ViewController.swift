@@ -1,0 +1,70 @@
+import UIKit
+
+class InductionOnboardingViewController: ViewController {
+    lazy var label: UILabel = {
+        let label = UILabel()
+        label.text = "Placeholder: You've begun a journey to your better self. (cheesy)"
+        label.numberOfLines = 0
+        label.textColor = UIColor.app.text.solidText()
+        return label
+    }()
+    lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
+    var onboardingDelegate : OnboardingDelegate?
+
+}
+
+// MARK: - Override Methods
+extension InductionOnboardingViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupChildViews()
+        continueButton.isEnabled = false
+        print("viewDidLoad")
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkCompletion()
+        print("ViewDidAppear")
+    }
+}
+
+// MARK: - Validation
+extension InductionOnboardingViewController {
+    func checkCompletion() {
+        print(onboardingDelegate?.onboardingIsComplete())
+        print("\(onboardingDelegate)")
+        print((onboardingDelegate?.onboardingIsComplete())!)
+        if (onboardingDelegate?.onboardingIsComplete())! {
+            continueButton.isEnabled = true
+            continueButton.customiseButton(for: .primary)
+            print("Complete")
+        } else {
+            if (onboardingDelegate?.onboardingIsComplete())! {
+                continueButton.isEnabled = false
+                continueButton.customiseButton(for: .disabled)
+                print("Not Complete")
+            }
+        }
+    }
+    @objc func continueOnboarding(_ sender: Any) {
+        onboardingDelegate?.finishOnboarding()
+        print("ButtonPressed")
+    }
+}
+
+// MARK: - View Building
+extension InductionOnboardingViewController: ViewBuilding {
+    func setupChildViews() {
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.height.greaterThanOrEqualTo(50)
+        }
+        self.view.addSubview(continueButton)
+        continueButton.snp.makeConstraints { (make) in
+            make.top.equalTo(label.snp.bottom).offset(25)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(60)
+        }
+    }
+}
