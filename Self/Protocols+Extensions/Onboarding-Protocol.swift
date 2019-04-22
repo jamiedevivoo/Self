@@ -7,7 +7,7 @@ protocol UpdateAccountViews {
 protocol AccountInfoObject { }
 
 protocol OnboardingDelegate: class {
-    func setData(_ dataDict: [String:String])
+    func setData(_ dataDict: [String:String?])
     func isOnboardingComplete() -> Bool
     func finishOnboarding()
 }

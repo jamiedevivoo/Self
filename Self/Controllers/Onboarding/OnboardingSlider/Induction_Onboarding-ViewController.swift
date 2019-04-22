@@ -25,7 +25,7 @@ extension InductionOnboardingViewController {
         super.viewDidLoad()
         setupChildViews()
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkCompletion()
     }

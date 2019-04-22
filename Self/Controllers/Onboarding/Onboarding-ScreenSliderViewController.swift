@@ -3,7 +3,7 @@ import Firebase
 
 
 final class OnboardingScreenSliderViewController: ScreenSliderViewController {
-    private var name: String?
+    var name: String?
 }
 
 
@@ -37,7 +37,7 @@ private extension OnboardingScreenSliderViewController {
 // MARK: - Class Methods
 extension OnboardingScreenSliderViewController: OnboardingDelegate {
     
-    func setData(_ dataDict: [String:String]) {
+    func setData(_ dataDict: [String:String?]) {
         guard let name = dataDict["name"] else {
             self.name = nil
             return

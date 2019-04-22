@@ -22,6 +22,8 @@ final class NameOnboardingViewController: ViewController {
         return textFieldWithLabel
     }()
     
+    lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    
     var delegate : OnboardingDelegate?
     
 }
@@ -33,14 +35,7 @@ extension NameOnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        configureKeyboardBehaviour()
-        nameTextFieldWithLabel.textField.delegate = self
-        self.nameTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        nameTextFieldWithLabel.textField.becomeFirstResponder()
+        setupKeyboard()
     }
     
 }
@@ -50,13 +45,14 @@ extension NameOnboardingViewController {
 extension NameOnboardingViewController {
     
     @objc func validateName() -> String? {
-        if let name: String = self.nameTextFieldWithLabel.textField.text?.trim(), self.nameTextFieldWithLabel.textField.text!.trim().count > 1 {
-            nameTextFieldWithLabel.resetHint()
-            self.nameTextFieldWithLabel.textField.text = name
-            return name
-        } else {
-            return nil
-        }
+        guard
+            let name: String = self.nameTextFieldWithLabel.textField.text?.trim(),
+            self.nameTextFieldWithLabel.textField.text!.trim().count > 1
+            else { return nil }
+        
+        nameTextFieldWithLabel.resetHint()
+        self.nameTextFieldWithLabel.textField.text = name
+        return name
     }
     
 }
@@ -65,16 +61,33 @@ extension NameOnboardingViewController {
 // MARK: - TextField Delegate Methods
 extension NameOnboardingViewController: UITextFieldDelegate {
     
+    func setupKeyboard() {
+        nameTextFieldWithLabel.textField.delegate = self
+        self.nameTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
+        view.addGestureRecognizer(tapViewRecogniser)
+        toggleFirstResponder()
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
-            dismissKeyboard()
+            nameTextFieldWithLabel.textField.resignFirstResponder()
             delegate?.setData(["name":name])
+            (self.parent as! OnboardingScreenSliderViewController).nextScreen()
             return true
         } else {
+            delegate?.setData(["name":nil])
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
         }
         return false
+    }
+    
+    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
+        if nameTextFieldWithLabel.textField.isFirstResponder {
+            nameTextFieldWithLabel.textField.resignFirstResponder()
+        } else {
+            nameTextFieldWithLabel.textField.becomeFirstResponder()
+        }
     }
     
 }
