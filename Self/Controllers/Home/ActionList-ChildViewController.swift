@@ -58,7 +58,7 @@ extension ActionListChildViewController {
 // MARK: - Functions
 extension ActionListChildViewController {
     @objc func logNewMood() {
-        navigationController?.pushViewController(AddMoodViewController(), animated: false)
+        navigationController?.pushViewController(LoggingAMoodScreenSliderViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
     }
     

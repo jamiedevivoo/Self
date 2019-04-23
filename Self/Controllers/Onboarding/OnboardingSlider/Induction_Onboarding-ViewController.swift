@@ -11,9 +11,9 @@ final class InductionOnboardingViewController: ViewController {
         label.textColor = UIColor.app.text.solidText()
         return label
     }()
-    lazy var continueButton = StandardButton(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
+    lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
     
-    weak var delegate: OnboardingDelegate?
+    weak var delegate: DataCollectionSequenceDelegate?
     
 }
 
@@ -37,7 +37,7 @@ extension InductionOnboardingViewController {
 extension InductionOnboardingViewController {
     
     func checkCompletion() {
-        if delegate!.isOnboardingComplete() {
+        if delegate!.isDataCollectionComplete() {
             continueButton.customiseButton(for: .primary)
         } else {
             continueButton.customiseButton(for: .disabled)
@@ -45,7 +45,7 @@ extension InductionOnboardingViewController {
     }
     
     @objc func continueOnboarding(_ sender: Any) {
-        delegate?.finishOnboarding()
+        delegate?.finishDataCollection()
     }
     
 }

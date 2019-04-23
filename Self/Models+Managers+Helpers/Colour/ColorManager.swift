@@ -1,5 +1,7 @@
 import UIKit
 
+typealias AppColorMode = ColorManager.AppColorMode
+
 class ColorManager {
     
     static private var sharedInstance: ColorManager?

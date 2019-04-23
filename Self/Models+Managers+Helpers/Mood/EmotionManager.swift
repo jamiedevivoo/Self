@@ -26,7 +26,7 @@ class EmotionManager {
         }
     }
         
-    static func getEmotion(withValence userValence: ValenceDouble, withArousal userArousal: ArousalDouble) -> Emotion {
+    static func getEmotion(withValence userValence: Double, withArousal userArousal: Double) -> Emotion {
         var emotionAndIntensity = [Emotion:Double]()
         for emotion in allEmotions {
             let valenceDifference = abs(emotion.valence - userValence)

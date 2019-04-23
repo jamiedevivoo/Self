@@ -26,7 +26,7 @@ extension MessageChildViewController {
 // MARK: - Functions
 extension MessageChildViewController {
     @objc func logNewMood() {
-        navigationController?.pushViewController(AddMoodViewController(), animated: false)
+        navigationController?.pushViewController(MoodLoggingAMoodViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
     }
     

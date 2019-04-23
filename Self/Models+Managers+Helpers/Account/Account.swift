@@ -1,13 +1,13 @@
 import Firebase
 
 class Account {
-    let uid: UIDString!
+    let uid: String!
     var user: AccountUser!
     var settings: AccountSettings!
     var flags: AccountFlags!
     
     init(
-        uid: UIDString,
+        uid: String,
         accountUser: AccountUser,
         accountSettings: AccountSettings    = AccountSettings(),
         accountFlags: AccountFlags          = AccountFlags())

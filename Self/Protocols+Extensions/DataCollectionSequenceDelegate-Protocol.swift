@@ -6,8 +6,8 @@ protocol UpdateAccountViews {
 
 protocol AccountInfoObject { }
 
-protocol OnboardingDelegate: class {
+protocol DataCollectionSequenceDelegate: class {
     func setData(_ dataDict: [String:String?])
-    func isOnboardingComplete() -> Bool
-    func finishOnboarding()
+    func isDataCollectionComplete() -> Bool
+    func finishDataCollection()
 }

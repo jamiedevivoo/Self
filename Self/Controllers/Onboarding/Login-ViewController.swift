@@ -24,8 +24,8 @@ class LoginViewController: ViewController {
         textFieldWithLabel.labelTitle = "Your password"
         return textFieldWithLabel
     }()
-    lazy var loginButton = StandardButton(title: "Log In", action: #selector(LoginViewController.loginButtonAction), type: .primary)
-    lazy var cancelButton = StandardButton(title: "Cancel", action: #selector(LoginViewController.cancelAction), type: .secondary)
+    lazy var loginButton = Button(title: "Log In", action: #selector(LoginViewController.loginButtonAction), type: .primary)
+    lazy var cancelButton = Button(title: "Cancel", action: #selector(LoginViewController.cancelAction), type: .secondary)
 
     private lazy var loginStackView: UIStackView = { [unowned self] in
         let stackView = UIStackView(arrangedSubviews: [self.emailTextFieldWithLabel, self.passwordTextFieldWithLabel, self.loginButton, self.cancelButton])
@@ -88,7 +88,7 @@ extension LoginViewController {
         self.dismiss(animated: true)
     }
         
-    private func login(_ email:EmailString, _ password: String) {
+    private func login(_ email:String, _ password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard let _ = authResult, error == nil else {
                 let errorAlert: UIAlertController = {

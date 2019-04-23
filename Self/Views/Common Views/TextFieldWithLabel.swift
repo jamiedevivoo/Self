@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 class TextFieldWithLabel: UIView {
-    lazy var textField = StandardTextField(placeholder: "Placeholder..", fieldType: .text)
+    lazy var textField = Textfield(placeholder: "Placeholder..", fieldType: .text)
     lazy private var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .ultraLight)

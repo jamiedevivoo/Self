@@ -1,5 +1,5 @@
 struct MessageResponse {
-    let title: TitleString
+    let title: String
     let action: String
     let sentimentTrend: SentimentTrend
 }

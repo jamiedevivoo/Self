@@ -3,10 +3,10 @@ import Firebase
 
 class FinishCreatingAccountViewController: ViewController {
     
-    lazy var emailTextField = StandardTextField(placeholder: "Email", fieldType: .text)
-    lazy var passwordTextField = StandardTextField(placeholder: "Password", fieldType: .password)
-    lazy var confirmPasswordTextField = StandardTextField(placeholder: "Confirm Password", fieldType: .password)
-    lazy var registerButton = StandardButton(title: "Register", action: #selector(FinishCreatingAccountViewController.registerButtonAction), type: .primary)
+    lazy var emailTextField = Textfield(placeholder: "Email", fieldType: .text)
+    lazy var passwordTextField = Textfield(placeholder: "Password", fieldType: .password)
+    lazy var confirmPasswordTextField = Textfield(placeholder: "Confirm Password", fieldType: .password)
+    lazy var registerButton = Button(title: "Register", action: #selector(FinishCreatingAccountViewController.registerButtonAction), type: .primary)
     
     private lazy var registerStackView: UIStackView = { [unowned self] in
         let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.passwordTextField, self.confirmPasswordTextField, self.registerButton])

@@ -1,5 +1,5 @@
 struct AccountUser {
-    var name: NameString!
+    var name: String!
 }
 
 // MARK: - Convenience initialisers

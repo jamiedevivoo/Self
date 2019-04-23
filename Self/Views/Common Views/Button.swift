@@ -1,6 +1,6 @@
 import UIKit
 
-class StandardButton: UIButton {
+class Button: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubclass()
@@ -13,8 +13,8 @@ class StandardButton: UIButton {
 }
 
 // Convenience Initialiser
-extension StandardButton {
-    convenience init(title:String, action: Selector, type: StandardButton.ButtonVariety) {
+extension Button {
+    convenience init(title:String, action: Selector, type: Button.ButtonVariety) {
         self.init()
         setTitle(title, for: .normal)
         addTarget(nil, action: action, for: .touchUpInside)
@@ -23,7 +23,7 @@ extension StandardButton {
 }
 
 // Custom Styling
-extension StandardButton {
+extension Button {
     func setupSubclass() {
         self.setTitleColor(UIColor.app.button.primary.text(), for: .normal)
         self.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .headline), size: 18)
@@ -48,11 +48,11 @@ extension StandardButton {
             self.layer.borderColor = UIColor.app.button.primary.fill().cgColor
             self.backgroundColor = UIColor.clear
             self.layer.borderWidth = 2.0
-            self.isEnabled = false
+            self.isEnabled = true
         } else if type == .disabled {
             self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.5)
             self.layer.borderColor = self.layer.borderColor?.copy(alpha: 0.5)
-            self.isEnabled = true
+            self.isEnabled = false
         } else if type == .primary {
             self.backgroundColor = UIColor.app.button.primary.fill()
             self.layer.borderColor = UIColor.app.button.primary.fill().withAlphaComponent(0.5).cgColor
@@ -61,7 +61,7 @@ extension StandardButton {
     }
 }
 
-extension StandardButton {
+extension Button {
     enum ButtonVariety {
         case primary, secondary, disabled
     }

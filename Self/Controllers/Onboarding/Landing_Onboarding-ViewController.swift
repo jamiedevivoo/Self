@@ -14,10 +14,10 @@ final class LandingOnboardingViewController: ViewController {
     }()
     
     lazy var sliderViewController = ViewSliderViewController()
-    var delegate : OnboardingDelegate?
+    var delegate : DataCollectionSequenceDelegate?
 
-    lazy var registerButton = StandardButton(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
-    lazy var loginButton = StandardButton(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
+    lazy var registerButton = Button(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
+    lazy var loginButton = Button(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
 }
 
 
@@ -37,7 +37,8 @@ extension LandingOnboardingViewController {
         self.present(LoginViewController(), animated: true)
     }
     @objc func navigateToRegister(_ sender: Any) {
-        (self.parent as! OnboardingScreenSliderViewController).nextScreen()
+        (self.parent as! ScreenSliderViewController).gestureSwipingEnabled = true
+        (self.parent as! ScreenSliderViewController).nextScreen()
     }
 }
 

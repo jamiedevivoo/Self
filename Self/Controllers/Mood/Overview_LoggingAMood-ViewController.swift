@@ -1,12 +1,16 @@
 import UIKit
+import Firebase
 import SnapKit
 
 
-final class NameOnboardingViewController: ViewController {
+final class OverviewLoggingAMoodViewController: ViewController {
+    
+    var dataCollectionDelegate: DataCollectionSequenceDelegate?
+    var screenSlider: ScreenSliderViewController?
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.text = "Welcome to Self! What should we call you?"
+        label.text = "Overview"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
         label.textColor = UIColor.app.text.solidText()
@@ -22,15 +26,45 @@ final class NameOnboardingViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var emotionPickerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.app.text.solidText()
+        label.text = "How are you?"
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        return label
+    }()
     
-    var delegate : DataCollectionSequenceDelegate?
+    lazy var emotionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "I am..."
+        return label
+    }()
+    
+    lazy var tagLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Add a tag..."
+        return label
+    }()
+    
+    lazy var describeYourDay: UILabel = {
+        let label = UILabel()
+        label.text = "Describe your day..."
+        return label
+    }()
+    
+    lazy var wildcardQuestion: UILabel = {
+        let label = UILabel()
+        label.text = "Your Wildcard Question"
+        return label
+    }()
+    
+    lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
     
 }
 
 
 // MARK: - Override Methods
-extension NameOnboardingViewController {
+extension OverviewLoggingAMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,15 +72,11 @@ extension NameOnboardingViewController {
         setupKeyboard()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        nameTextFieldWithLabel.textField.becomeFirstResponder()
-    }
-    
 }
 
 
 // MARK: - Class Methods
-extension NameOnboardingViewController {
+extension OverviewLoggingAMoodViewController {
     
     @objc func validateName() -> String? {
         guard
@@ -63,7 +93,7 @@ extension NameOnboardingViewController {
 
 
 // MARK: - TextField Delegate Methods
-extension NameOnboardingViewController: UITextFieldDelegate {
+extension OverviewLoggingAMoodViewController: UITextFieldDelegate {
     
     func setupKeyboard() {
         nameTextFieldWithLabel.textField.delegate = self
@@ -75,11 +105,11 @@ extension NameOnboardingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
             nameTextFieldWithLabel.textField.resignFirstResponder()
-            delegate?.setData(["name":name])
-            (self.parent as! OnboardingScreenSliderViewController).nextScreen()
+            dataCollectionDelegate?.setData(["name":name])
+            screenSlider?.nextScreen()
             return true
         } else {
-            delegate?.setData(["name":nil])
+            dataCollectionDelegate?.setData(["name":nil])
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
         }
@@ -98,7 +128,7 @@ extension NameOnboardingViewController: UITextFieldDelegate {
 
 
 // MARK: - View Building
-extension NameOnboardingViewController: ViewBuilding {
+extension OverviewLoggingAMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(label)
@@ -115,4 +145,20 @@ extension NameOnboardingViewController: ViewBuilding {
         }
     }
     
+}
+
+extension OverviewLoggingAMoodViewController {
+    func getWildcard() {
+        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
+        let randomDocumentID = String(Int.random(in: 0..<6))
+        
+        wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in
+            guard let documentSnapshot = documentSnapshot, error == nil else {
+                if let error = error { print("Error Loading Actions: \(error.localizedDescription)") }
+                print("Error Loading Actions.")
+                return
+            }
+            print(documentSnapshot.data())
+        }
+    }
 }

@@ -25,9 +25,9 @@ class AccountSettingsViewController: UIViewController {
         
         return label
     }()
-    lazy var nameTextField = StandardTextField(placeholder: "First Name", fieldType: .text)
-    lazy var emailTextField = StandardTextField(placeholder: "Email Address", fieldType: .email)
-    lazy var updateButton = StandardButton(title: "Update Details", action: #selector(AccountSettingsViewController.saveButtonAction), type: .primary)
+    lazy var nameTextField = Textfield(placeholder: "First Name", fieldType: .text)
+    lazy var emailTextField = Textfield(placeholder: "Email Address", fieldType: .email)
+    lazy var updateButton = Button(title: "Update Details", action: #selector(AccountSettingsViewController.saveButtonAction), type: .primary)
     
     // MARK: - Init
     override func viewDidLoad() {

@@ -4,6 +4,7 @@ import SnapKit
 
 class ScreenSliderViewController: UIPageViewController {
     
+    // MARK: - Properties
     /// SliderDelegate
     weak var sliderDelegate: ScreenSliderViewControllerDelegate?
     
@@ -13,29 +14,41 @@ class ScreenSliderViewController: UIPageViewController {
     /// Accessing UIPageViewController's child ScrollView
     var scrollView: UIScrollView?
     
-    /// References to screens
+    /// References to all screens in slider.
     var screens: [UIViewController] = [] {
-        didSet { setup() } //// Only run setup when screens have been exist or are reset
+        didSet { setup();} //// Only run setup when screens exist or are reset
     }
+    /// A progressive array of the active viewControllers that can be transitioned to.
+    var activeScreens: [UIViewController] = []
     
     /// Options for Screen Slider setup
-    var sliderIsLooped: Bool = false
-    var initialPage: Int = 0
-    
-    var scrollingEnabled: Bool = true {
-        didSet { scrollView?.bounces = scrollingEnabled }
+    var initialScreenIndex: Int = 0
+    var loopingSliderEnabled: Bool = false
+    var forwardNavigationEnabled: Bool = true
+    var backwardNavigationEnabled: Bool = true
+    var allScreensEnabled: Bool = true {
+        didSet { setup() }
     }
-    
-    var displayPageIndicator: Bool = false {
+    var gestureSwipingEnabled: Bool = true {
+        didSet { scrollView?.bounces = gestureSwipingEnabled }
+    }
+    var pageIndicatorEnabled: Bool = false {
         didSet { setupPageIndicator()  }
     }
     
+    
     // MARK: - Init
-    /// Helper Initialiser for setting up superClass UIPageViewController
+    /// Helper Initialiser for setting up the superClass UIPageViewController
     init() {
         super.init(
             transitionStyle: UIPageViewController.TransitionStyle.scroll,
             navigationOrientation: UIPageViewController.NavigationOrientation.horizontal,
+            options: nil)
+    }
+    init(navigationOrientation: NavigationOrientation) {
+        super.init(
+            transitionStyle: UIPageViewController.TransitionStyle.scroll,
+            navigationOrientation: navigationOrientation,
             options: nil)
     }
     
@@ -46,7 +59,7 @@ class ScreenSliderViewController: UIPageViewController {
 }
 
 
-// MARK: - Overrides
+// MARK: - Overriding Methods
 extension ScreenSliderViewController {
     
     override func viewDidLoad() {
@@ -63,6 +76,7 @@ extension ScreenSliderViewController {
     
     /// Start setting up the child views
     private func setup() {
+        view.backgroundColor = UIColor.app.background.primaryBackground()
         setupPageView()
         setupPageIndicator()
         setupScrollView()
@@ -71,14 +85,18 @@ extension ScreenSliderViewController {
     /// Setup the initial page
     private func setupPageView() {
         guard screens.count > 0 else { return }
-        setViewControllers([screens[initialPage]], direction: .forward, animated: true, completion: nil)
+        
+        if allScreensEnabled == true { activeScreens = screens }
+        else { activeScreens = [screens[initialScreenIndex]] }
+        
+        setViewControllers([activeScreens[0]], direction: .forward, animated: true, completion: nil)
     }
     
     /// Setup the pageIndicator
     private func setupPageIndicator() {
-        guard displayPageIndicator == true else { return }
+        guard pageIndicatorEnabled == true else { return }
         self.pageIndicator.numberOfPages = self.screens.count
-        self.pageIndicator.currentPage = initialPage
+        self.pageIndicator.currentPage = initialScreenIndex
         
         self.view.addSubview(pageIndicator)
         pageIndicator.snp.makeConstraints { (make) in
@@ -97,19 +115,21 @@ extension ScreenSliderViewController {
 }
 
 
-// MARK: - Custom Methods
+// MARK: - Class Methods
 extension ScreenSliderViewController {
     
     // Manually transition to the next screen
     func nextScreen() {
-        let nextScreen = pageViewController(self, viewControllerAfter: viewControllers![0])!
-        setViewControllers([nextScreen], direction: .forward, animated: true, completion: nil)
+        guard let viewControllerIndex = self.activeScreens.firstIndex(of: viewControllers![0]) else { return }
+        activeScreens.append(screens[viewControllerIndex + 1])
+        guard let screen = pageViewController(self, viewControllerAfter: viewControllers![0]) else { return }
+        setViewControllers([screen], direction: .forward, animated: true, completion: nil)
     }
     
     // Manually transition to the previous screen
     func previousScreen() {
-        let previousScreen = pageViewController(self, viewControllerBefore: viewControllers![0])!
-        setViewControllers([previousScreen], direction: .reverse, animated: true, completion: nil)
+        guard let screen: UIViewController = pageViewController(self, viewControllerBefore: viewControllers![0]) else { return }
+        setViewControllers([screen], direction: .reverse, animated: true, completion: nil)
     }
     
 }
@@ -120,32 +140,34 @@ extension ScreenSliderViewController: UIPageViewControllerDataSource {
     
     // Deciding the next viewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = self.screens.firstIndex(of: viewController) else { return nil }
-        
-        /// If current controller isn't already at the last slide, go forward one slide.
-        if viewControllerIndex < self.screens.count - 1 { return self.screens[viewControllerIndex + 1] }
-            
-        /// Otherwise the current slide is already the last slide, so either loop to the beginning or inform the delegate the slider has reached the end
+        /// If the current viewController doesn't exists in screens, bail.
+        guard let viewControllerIndex = self.activeScreens.firstIndex(of: viewController) else { return nil }
+        /// If forward navigation isn't enabled, bail.
+        guard forwardNavigationEnabled else { return nil }
+        /// If this isn't the last slide, go forward one slide.
+        if viewControllerIndex < self.activeScreens.count - 1 { return self.activeScreens[viewControllerIndex + 1] }
         else {
-            if sliderIsLooped { return self.screens.first }
-            else { return nil }
+            /// Otherwise if looping is enabled, go to the first slide.
+            guard !loopingSliderEnabled else { return self.activeScreens.first }
+            /// If looping is disabled, there is nothing to do.
+            return nil
         }
-        return nil
     }
     
     // Deciding the previous viewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = self.screens.firstIndex(of: viewController) else { return nil }
-        
-        /// If current controller isn't already at the first slide, go back one slide.
-        if viewControllerIndex > 0 { return self.screens[viewControllerIndex - 1] }
-            
-        /// Otherwise the current slide is already the first slide, so either loop to the end or inform the delegate the slider has reached the beginning
+        /// If the current viewController doesn't exists in screens, bail.
+        guard let viewControllerIndex = self.activeScreens.firstIndex(of: viewController) else { return nil }
+        /// If backward navigation isn't enabled, bail.
+        guard backwardNavigationEnabled else { return nil }
+        /// If this isn't the first slide, go forward one slide.
+        if viewControllerIndex > 0 { return self.activeScreens[viewControllerIndex - 1] }
         else {
-            if sliderIsLooped { return self.screens.last }
-            else { return nil }
+            /// Otherwise if looping is enabled, go to the last slide.
+            guard !loopingSliderEnabled else { return self.activeScreens.last }
+            /// If looping is disabled, there is nothing to do.
+            return nil
         }
-        return nil
     }
     
 }

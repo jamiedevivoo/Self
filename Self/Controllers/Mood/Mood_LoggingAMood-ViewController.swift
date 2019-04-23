@@ -1,13 +1,17 @@
 import UIKit
 import SnapKit
 
-class MoodPickerViewController: ViewController {
+
+final class MoodLoggingAMoodViewController: ViewController {
+
+    var dataCollectionDelegate: DataCollectionSequenceDelegate?
+    var screenSlider: ScreenSliderViewController?
     
     lazy var emotionPickerLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.app.text.solidText()
         label.text = "How are you?"
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.black)
         return label
     }()
     
@@ -26,14 +30,26 @@ class MoodPickerViewController: ViewController {
         return label
     }()
     
+}
+
+
+// MARK: - Override Methods
+extension MoodLoggingAMoodViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(emotionPickerLabel)
-        detailedView()
-        emotionPickerLabel.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-        }
+        setupChildViews()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        screenSlider?.gestureSwipingEnabled = false
+    }
+    
+}
+
+
+// MARK: - Class Methods
+extension MoodLoggingAMoodViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
@@ -53,14 +69,15 @@ class MoodPickerViewController: ViewController {
         let location = touch.location(in: self.view)
         let moodRatings = calculateMood(x: location.x, y: location.y)
         let _ = EmotionManager.getEmotion(withValence: moodRatings["Valence"]!, withArousal: moodRatings["Arousal"]!)
-        emotionPickerLabel.removeFromSuperview()
+        screenSlider?.nextScreen()
+        screenSlider?.gestureSwipingEnabled = true
     }
     
     func calculateMood(x: CGFloat, y: CGFloat) -> Dictionary<String, Double> {
         let arousalCoordinates = -convertCoordinateToRating(coordinate: y, range: self.view.frame.height)
         let valenceCoordinates = convertCoordinateToRating(coordinate: x, range: self.view.frame.width)
-        let arousal:ArousalDouble = Double(arousalCoordinates)
-        let valence:ArousalDouble = Double(valenceCoordinates)
+        let arousal:Double = Double(arousalCoordinates)
+        let valence:Double = Double(valenceCoordinates)
         let mood = ["Valence":valence,"Arousal":arousal]
         return mood
     }
@@ -72,10 +89,20 @@ class MoodPickerViewController: ViewController {
         return ratingRounded
     }
     
-    func detailedView() {
+}
+
+
+// MARK: - View Building
+extension MoodLoggingAMoodViewController: ViewBuilding {
+    
+    func setupChildViews() {
+        view.addSubview(emotionPickerLabel)
         self.view.addSubview(arousalLabel)
         self.view.addSubview(valenceLabel)
         
+        emotionPickerLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
         arousalLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(-25)
             make.centerY.equalToSuperview()
@@ -87,5 +114,3 @@ class MoodPickerViewController: ViewController {
     }
     
 }
-
-// MARK: - View Building

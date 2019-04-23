@@ -1,6 +1,6 @@
 import UIKit
 
-class StandardTextField: UITextField {
+class Textfield: UITextField {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -14,7 +14,7 @@ class StandardTextField: UITextField {
 }
 
 // MARK: - Convenience Init
-extension StandardTextField {
+extension Textfield {
     convenience init(placeholder:String, fieldType:FieldType) {
         self.init()
         self.placeholder = placeholder
@@ -29,7 +29,7 @@ extension StandardTextField {
 }
 
 // Custom Styling
-extension StandardTextField {
+extension Textfield {
     func setupSubclass() {
         borderStyle = .none
         font = UIFont.systemFont(ofSize: 30)
@@ -51,7 +51,7 @@ extension StandardTextField {
     }
 }
 
-extension StandardTextField {
+extension Textfield {
     enum FieldType {
         case text, email, password
     }

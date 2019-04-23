@@ -14,8 +14,8 @@ struct Tag {
     
     // Creation state Only
     var origin: TagOrigin = .unknown
-    var valenceInfluence: ValenceMultiplierDouble = 0
-    var arousalInfluence: ArousalMultiplierDouble = 0
+    var valenceInfluence: Double = 0
+    var arousalInfluence: Double = 0
 }
 
 // MARK: - Convenience Iniitialiser

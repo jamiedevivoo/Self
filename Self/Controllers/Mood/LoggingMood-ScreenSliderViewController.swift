@@ -2,40 +2,58 @@ import UIKit
 import Firebase
 
 
-final class OnboardingScreenSliderViewController: ScreenSliderViewController {
+final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var name: String?
+    
+    override init() {
+        super.init(navigationOrientation: .vertical)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }
 
 
 // MARK: - Override Methods
-extension OnboardingScreenSliderViewController {
+extension LoggingAMoodScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
+        configurePageViewController(self, withPages: setupScreens(), withDelegate: self)
     }
     
 }
 
 
 // MARK: - Setup Methods
-private extension OnboardingScreenSliderViewController {
+private extension LoggingAMoodScreenSliderViewController {
     
     func setupScreens() -> [UIViewController] {
-        let landingOnboardingVC = LandingOnboardingViewController()
-        landingOnboardingVC.delegate = self
-        let nameOnboardingVC = NameOnboardingViewController()
-        nameOnboardingVC.delegate = self
-        let inductionOnboardingVC = InductionOnboardingViewController()
-        inductionOnboardingVC.delegate = self
-        return [landingOnboardingVC,nameOnboardingVC,inductionOnboardingVC]
+        let moodLoggingAMoodViewController = MoodLoggingAMoodViewController()
+        moodLoggingAMoodViewController.dataCollectionDelegate = self
+        moodLoggingAMoodViewController.screenSlider = self
+        let detailLoggingAMoodViewController = DetailLoggingAMoodViewController()
+        detailLoggingAMoodViewController.dataCollectionDelegate = self
+        detailLoggingAMoodViewController.screenSlider = self
+        let wildcardLoggingAMoodViewController = WildcardLoggingAMoodViewController()
+        wildcardLoggingAMoodViewController.dataCollectionDelegate = self
+        wildcardLoggingAMoodViewController.screenSlider = self
+        let overviewLoggingAMoodViewController = OverviewLoggingAMoodViewController()
+        overviewLoggingAMoodViewController.dataCollectionDelegate = self
+        overviewLoggingAMoodViewController.screenSlider = self
+        return [moodLoggingAMoodViewController,
+                detailLoggingAMoodViewController,
+                wildcardLoggingAMoodViewController,
+                overviewLoggingAMoodViewController]
     }
     
 }
 
 
 // MARK: - Class Methods
-extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
+extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate {
     
     func setData(_ dataDict: [String:String?]) {
         guard let name = dataDict["name"] else {
@@ -59,20 +77,20 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
 
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
+extension LoggingAMoodScreenSliderViewController: ScreenSliderViewControllerDelegate {
     func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController) {
-    
+        
     }
     
     func reachedFinalIndex(_ pageSliderViewController: ScreenSliderViewController) {
-    
+        
     }
     
 }
 
 
 // MARK: - OnboardingDelegate Methods
-extension OnboardingScreenSliderViewController {
+extension LoggingAMoodScreenSliderViewController {
     
     func signInAnonymously(withName name: String) {
         Auth.auth().signInAnonymously() { (authResult, error) in

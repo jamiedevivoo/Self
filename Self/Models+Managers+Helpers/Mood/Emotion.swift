@@ -1,15 +1,15 @@
 struct Emotion: Hashable {
-    var name: NameString
+    var name: String
     var adj: String
-    var valence: ValenceDouble
-    var arousal: ArousalDouble
+    var valence: Double
+    var arousal: Double
 }
 
 extension Emotion {
     init(_ emotionDictionary: [String:Any]) {
         self.name        = emotionDictionary["name"] as! String
         self.adj         = emotionDictionary["adj"] as! String
-        self.valence     = emotionDictionary["valence"] as! ValenceDouble
-        self.arousal     = emotionDictionary["arousal"] as! ArousalDouble
+        self.valence     = emotionDictionary["valence"] as! Double
+        self.arousal     = emotionDictionary["arousal"] as! Double
     }
 }

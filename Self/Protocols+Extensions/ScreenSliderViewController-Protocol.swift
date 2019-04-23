@@ -15,17 +15,18 @@ extension ScreenSliderViewControllerDelegate {
         _ screenSliderViewController: ScreenSliderViewController,
         withPages pages: [UIViewController],
         withDelegate delegate: T,
+        showPageIndicator pageIndicator: Bool = false,
         isLooped loop: Bool = false,
-        showPageIndicator pageIndicator: Bool = true,
-        enableSwiping swiping: Bool = true,
+        allScreensEnabled: Bool = false,
+        enableSwiping: Bool = true,
         optionalSetup: @escaping () -> () = {} )
-        where T : UIViewController
     {
-        screenSliderViewController.sliderDelegate = self
         screenSliderViewController.screens = pages
-        screenSliderViewController.sliderIsLooped = loop
-        screenSliderViewController.displayPageIndicator = pageIndicator
-        screenSliderViewController.scrollingEnabled = swiping
+        screenSliderViewController.sliderDelegate = delegate
+        screenSliderViewController.pageIndicatorEnabled = pageIndicator
+        screenSliderViewController.loopingSliderEnabled = loop
+        screenSliderViewController.allScreensEnabled = allScreensEnabled
+        screenSliderViewController.gestureSwipingEnabled = enableSwiping
         optionalSetup()
     }
 }

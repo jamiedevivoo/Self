@@ -24,8 +24,8 @@ extension Mood {
         self.valenceRating      = (moodDictionary["valence_rating"] as! Double)
         self.wildcard           = Wildcard(moodDictionary["wildcard"] as! [String : Any])
         self.emotion            = EmotionManager.getEmotion(
-                                    withValence: moodDictionary["valence_rating"] as! ValenceDouble,
-                                    withArousal: moodDictionary["arousal_rating"] as! ArousalDouble)
+                                    withValence: moodDictionary["valence_rating"] as! Double,
+                                    withArousal: moodDictionary["arousal_rating"] as! Double)
         for tag in moodDictionary["tags"] as! [[String:Any]] {
             let tag = Tag(tag)
             self.tags.append(tag)
@@ -52,4 +52,10 @@ extension Mood: DictionaryConvertable {
             "wildcard":         wildcard?.dictionary as Any,
         ]
     }
+}
+
+enum SentimentTrend {
+    case positive
+    case negative
+    case neutral
 }
