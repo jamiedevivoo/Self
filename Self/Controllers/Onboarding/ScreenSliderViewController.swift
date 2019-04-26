@@ -30,7 +30,7 @@ class ScreenSliderViewController: UIPageViewController {
         didSet { setup() }
     }
     var gestureSwipingEnabled: Bool = true {
-        didSet { scrollView?.bounces = gestureSwipingEnabled }
+        didSet { scrollView?.isScrollEnabled = gestureSwipingEnabled; print(gestureSwipingEnabled) }
     }
     var pageIndicatorEnabled: Bool = false {
         didSet { setupPageIndicator()  }
@@ -39,16 +39,10 @@ class ScreenSliderViewController: UIPageViewController {
     
     // MARK: - Init
     /// Helper Initialiser for setting up the superClass UIPageViewController
-    init() {
+    init(navigationOrientation: NavigationOrientation? = .horizontal) {
         super.init(
             transitionStyle: UIPageViewController.TransitionStyle.scroll,
             navigationOrientation: UIPageViewController.NavigationOrientation.horizontal,
-            options: nil)
-    }
-    init(navigationOrientation: NavigationOrientation) {
-        super.init(
-            transitionStyle: UIPageViewController.TransitionStyle.scroll,
-            navigationOrientation: navigationOrientation,
             options: nil)
     }
     
@@ -178,12 +172,11 @@ extension ScreenSliderViewController: UIPageViewControllerDelegate {
     
     // The PageViewController is about to transition
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        guard let viewControllerIndex = self.screens.firstIndex(of: pendingViewControllers.first!) else { return }
+//        guard let viewControllerIndex = self.screens.firstIndex(of: pendingViewControllers.first!) else { return }
     }
     
     // The pageViewController finished the transition
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-
         /// Set the pageControl.currentPage to the index of the current viewController in screens
         if let viewControllers = pageViewController.viewControllers {
             if let viewControllerIndex = self.screens.firstIndex(of: viewControllers[0]) {

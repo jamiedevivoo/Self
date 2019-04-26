@@ -5,7 +5,7 @@ import Firebase
 final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var name: String?
     
-    override init() {
+    init() {
         super.init(navigationOrientation: .vertical)
     }
     
@@ -21,7 +21,7 @@ extension LoggingAMoodScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePageViewController(self, withPages: setupScreens(), withDelegate: self)
+        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
     }
     
 }

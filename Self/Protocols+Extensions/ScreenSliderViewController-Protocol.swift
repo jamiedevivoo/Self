@@ -5,8 +5,8 @@ protocol ScreenSliderViewControllerDelegate: class {
     //// The delegate should set itself as the Delegate for a PageViewController.
     //// The delagate should set the methods for out of range indexes (including ending the slider) as well as set the pages property.
     //// The declare can also set whether the pageViewController should loop (false by default), and the initial page (0 by default).
-    func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController)
-    func reachedFinalIndex(_ pageSliderViewController: ScreenSliderViewController)
+//    func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController)
+//    func reachedFinalIndex(_ pageSliderViewController: ScreenSliderViewController)
 }
 
 extension ScreenSliderViewControllerDelegate {

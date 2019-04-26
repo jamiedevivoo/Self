@@ -59,13 +59,23 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
 
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
-    func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController) {
-    
+extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {    
+    override func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        if !pendingViewControllers[0].isKind(of: LandingOnboardingViewController.self) {
+            self.scrollView?.isScrollEnabled = true
+            print(true)
+        }
+        super.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
     }
     
-    func reachedFinalIndex(_ pageSliderViewController: ScreenSliderViewController) {
-    
+    override func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        if viewControllers?[0].isKind(of: LandingOnboardingViewController.self) ?? false {
+            self.scrollView?.isScrollEnabled = false
+            print(false)
+        }
+        
+    super.pageViewController(pageViewController, didFinishAnimating: finished, previousViewControllers: previousViewControllers, transitionCompleted: completed)
     }
     
 }
