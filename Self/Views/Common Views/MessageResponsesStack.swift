@@ -2,7 +2,7 @@ import UIKit
 
 class MessageResponsesStack: UIStackView {
     
-    init(frame: CGRect, messageResponses: [MessageResponse]) {
+    init(frame: CGRect, messageResponses: [FeedMessageResponse]) {
         super.init(frame: frame)
         setupView()
         addActions(usingResponses: messageResponses)
@@ -18,9 +18,9 @@ extension MessageResponsesStack {
         spacing = UIStackView.spacingUseSystem
     }
     
-    func addActions(usingResponses responses: [MessageResponse]) {
+    func addActions(usingResponses responses: [FeedMessageResponse]) {
         for action in responses {
-            let button = DashboardButton(title: action.title, action: #selector(MessageChildViewController.logNewMood))
+            let button = DashboardButton(title: action.title, action: #selector(FeedMessageChildViewController.logNewMood))
             addArrangedSubview(button)
         }
     }

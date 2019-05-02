@@ -24,10 +24,13 @@ private extension OnboardingScreenSliderViewController {
     func setupScreens() -> [UIViewController] {
         let landingOnboardingVC = LandingOnboardingViewController()
         landingOnboardingVC.delegate = self
+        
         let nameOnboardingVC = NameOnboardingViewController()
         nameOnboardingVC.delegate = self
+        
         let inductionOnboardingVC = InductionOnboardingViewController()
         inductionOnboardingVC.delegate = self
+        
         return [landingOnboardingVC,nameOnboardingVC,inductionOnboardingVC]
     }
     

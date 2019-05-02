@@ -1,12 +1,12 @@
 import UIKit
 
-class MessageManager {
+class FeedManager {
     
-    static func generateMessage(forAccount account: Account) -> Message {
-        let greeting = MessageManager.generateGreeting()
+    static func generateMessage(forAccount account: Account) -> FeedMessage {
+        let greeting = FeedManager.generateGreeting()
         let name = account.user.name ?? "Stranger"
         let messageContent = matchCustomMessage(forAccount: account)
-        return Message(messageType: .time, greeting: greeting, name: name, messageText: messageContent.text, actions: messageContent.responses)
+        return FeedMessage(messageType: .time, greeting: greeting, name: name, messageText: messageContent.text, actions: messageContent.responses)
     }
     
     static private func generateGreeting() -> String {
@@ -35,13 +35,13 @@ class MessageManager {
         return "Did you know Mondays are your happiest days? Let’s rock today!"
     }
     
-    static private func matchCustomMessage(forAccount account: Account) -> (text: String, responses: [MessageResponse]) {
+    static private func matchCustomMessage(forAccount account: Account) -> (text: String, responses: [FeedMessageResponse]) {
         let account: Account = account
         let moodManager: MoodManager = MoodManager()
         let insightManager: InsightManager = InsightManager()
         let actionManager: ActionManager = ActionManager()
         
-        var messageText: String, messageResponses: [MessageResponse]
+        var messageText: String, messageResponses: [FeedMessageResponse]
 
         // BEGIN LOGIC
         if  account.flags.tutorialIsActive == true,
@@ -49,7 +49,7 @@ class MessageManager {
         {
             // if no mood created
                 messageText = "You're amazing! Welcome to Self! Let's log your first mood."
-                messageResponses = [MessageResponse(title: "+ Log my first mood", action: "N/A", sentimentTrend: .neutral)]
+                messageResponses = [FeedMessageResponse(title: "+ Log my first mood", action: "N/A", sentimentTrend: .neutral)]
 //            // else if mood is created
 //                // if no message interaction yet
 //                text = "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!"
@@ -66,9 +66,9 @@ class MessageManager {
         } else {
             messageText = "Did you know Mondays are your happiest days? Let’s rock today!"
             messageResponses = [
-                MessageResponse(title: "💪", action: "NA", sentimentTrend: .positive),
-                MessageResponse(title: "😔", action: "NA", sentimentTrend: .negative),
-                MessageResponse(title: "🆘", action: "NA", sentimentTrend: .negative)
+                FeedMessageResponse(title: "💪", action: "NA", sentimentTrend: .positive),
+                FeedMessageResponse(title: "😔", action: "NA", sentimentTrend: .negative),
+                FeedMessageResponse(title: "🆘", action: "NA", sentimentTrend: .negative)
             ]
         }
 

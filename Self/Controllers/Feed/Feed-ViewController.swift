@@ -2,17 +2,17 @@ import UIKit
 import SnapKit
 import Firebase
 
-extension HomeViewController: ViewIsDependantOnAccountData { }
+extension FeedViewController: ViewIsDependantOnAccountData { }
 
-class HomeViewController: UIViewController {
+class FeedViewController: UIViewController {
     
-    lazy var actionListViewController = ActionListChildViewController(accountRef: self.accountRef)
-    lazy var messageViewController = MessageChildViewController(accountRef: self.accountRef)
+    lazy var actionListViewController = FeedActionListChildViewController(accountRef: self.accountRef)
+    lazy var messageViewController = FeedMessageChildViewController(accountRef: self.accountRef)
 
 }
 
 // MARK: - Overrides
-extension HomeViewController {
+extension FeedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
@@ -36,7 +36,7 @@ extension HomeViewController {
 }
 
 // MARK: - View Building
-extension HomeViewController: ViewBuilding {
+extension FeedViewController: ViewBuilding {
     
     func addSubViews() {
         add(actionListViewController)

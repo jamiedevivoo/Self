@@ -1,12 +1,12 @@
 import UIKit
 import SnapKit
 
-class MessageChildViewController: UIViewController {
+class FeedMessageChildViewController: UIViewController {
     
     var messageStackView: MessageStackView
     
     init(accountRef: Account) {
-        let message = MessageManager.generateMessage(forAccount: accountRef)
+        let message = FeedManager.generateMessage(forAccount: accountRef)
         self.messageStackView = MessageStackView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), message: message)
         super.init(nibName: nil, bundle: nil)
         print(message)
@@ -15,7 +15,7 @@ class MessageChildViewController: UIViewController {
 }
 
 // MARK: - Init
-extension MessageChildViewController {
+extension FeedMessageChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
@@ -24,7 +24,7 @@ extension MessageChildViewController {
 }
 
 // MARK: - Functions
-extension MessageChildViewController {
+extension FeedMessageChildViewController {
     @objc func logNewMood() {
         navigationController?.pushViewController(MoodLoggingAMoodViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
@@ -36,7 +36,7 @@ extension MessageChildViewController {
 }
 
 // MARK: - View Building
-extension MessageChildViewController: ViewBuilding {
+extension FeedMessageChildViewController: ViewBuilding {
     func addSubViews() {
         self.view.addSubview(messageStackView)
     }

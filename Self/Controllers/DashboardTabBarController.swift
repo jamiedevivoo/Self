@@ -43,7 +43,7 @@ extension DashboardTabBarController {
     }
     
     func setUpTabBarViewControllers() {
-        let homeNavigationController = DashboardNavigationController(rootViewController: HomeViewController())
+        let homeNavigationController = DashboardNavigationController(rootViewController: FeedViewController())
         homeNavigationController.title = "Home"
         homeNavigationController.tabBarItem?.image = UIImage(named: "home")
         let highlightsNavigationController = DashboardNavigationController(rootViewController: HighlightsViewController())

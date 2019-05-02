@@ -17,7 +17,7 @@ final class MoodLoggingAMoodViewController: ViewController {
     
     lazy var arousalLabel: UILabel = {
         let label = UILabel.title
-        label.text = "< Arousal >"
+        label.text = "< Mild to Intense >"
         label.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         label.textColor = UIColor.app.text.solidText()
         return label
@@ -25,10 +25,20 @@ final class MoodLoggingAMoodViewController: ViewController {
     
     lazy var valenceLabel: UILabel = {
         let label = UILabel.title
-        label.text = "< Valence >"
+        label.text = "< Negative to Positive >"
         label.textColor = UIColor.app.text.solidText()
         return label
     }()
+    
+    lazy var circle: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.app.background.secondaryBackground()
+        view.layer.cornerRadius = view.bounds.size.width
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    var isMoodMarked:Bool = false
     
 }
 
@@ -51,7 +61,10 @@ extension MoodLoggingAMoodViewController {
 // MARK: - Class Methods
 extension MoodLoggingAMoodViewController {
     
+    
+    // Gesture Handling
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,7 +74,9 @@ extension MoodLoggingAMoodViewController {
         let emotion = EmotionManager.getEmotion(withValence: moodRatings["Valence"]!, withArousal: moodRatings["Arousal"]!)
         emotionPickerLabel.text = emotion.adj
         emotionPickerLabel.frame.origin.x = location.x
-        emotionPickerLabel.frame.origin.y = location.y - 50
+        emotionPickerLabel.frame.origin.y = location.y - 25
+        circle.frame.origin.x = location.x - 25
+        circle.frame.origin.y = location.y - 25
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,8 +86,10 @@ extension MoodLoggingAMoodViewController {
         let _ = EmotionManager.getEmotion(withValence: moodRatings["Valence"]!, withArousal: moodRatings["Arousal"]!)
         screenSlider?.nextScreen()
         screenSlider?.gestureSwipingEnabled = true
+        isMoodMarked = true
     }
     
+    // Other Methods
     func calculateMood(x: CGFloat, y: CGFloat) -> Dictionary<String, Double> {
         let arousalCoordinates = -convertCoordinateToRating(coordinate: y, range: self.view.frame.height)
         let valenceCoordinates = convertCoordinateToRating(coordinate: x, range: self.view.frame.width)
@@ -97,11 +114,17 @@ extension MoodLoggingAMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         view.addSubview(emotionPickerLabel)
+        view.addSubview(circle)
         self.view.addSubview(arousalLabel)
         self.view.addSubview(valenceLabel)
         
         emotionPickerLabel.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
+        }
+        circle.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalTo(50)
         }
         arousalLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(-25)

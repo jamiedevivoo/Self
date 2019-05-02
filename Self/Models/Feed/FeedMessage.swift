@@ -1,11 +1,11 @@
-struct Message {
-    var messageType: MessageType
+struct FeedMessage {
+    var messageType: FeedMessageType
     var greeting: String
     var name: String
     var messageText: String
-    var actions: [MessageResponse]
+    var actions: [FeedMessageResponse]
     
-    enum MessageType {
+    enum FeedMessageType {
         case time, insight, mood, urgent, other
     }
 }

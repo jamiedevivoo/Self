@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 
-class ActionListChildViewController: UIViewController {
+class FeedActionListChildViewController: UIViewController {
     
     lazy var actionButtonStack: UIStackView = {
         let stackView = UIStackView()
@@ -16,12 +16,12 @@ class ActionListChildViewController: UIViewController {
     }()
     
     lazy var actionHeaderLabel = SectionHeaderLabel(title: "Your Recommended Actions")
-    lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(ActionListChildViewController.logNewMood))
-    lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(ActionListChildViewController.messageResponse))
-    lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(ActionListChildViewController.messageResponse))
-    lazy var settingsButton = DashboardButton(title: "Settings", action: #selector(ActionListChildViewController.settings))
-    lazy var finishAccountButton = DashboardButton(title: "Finish Creating Account", action: #selector(ActionListChildViewController.finishAccount))
-    lazy var logoutButton = DashboardButton(title: "Logout", action: #selector(ActionListChildViewController.logout))
+    lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood))
+    lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse))
+    lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse))
+    lazy var settingsButton = DashboardButton(title: "Settings", action: #selector(FeedActionListChildViewController.settings))
+    lazy var finishAccountButton = DashboardButton(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount))
+    lazy var logoutButton = DashboardButton(title: "Logout", action: #selector(FeedActionListChildViewController.logout))
 
     
     var accountRef: Account?
@@ -34,7 +34,7 @@ class ActionListChildViewController: UIViewController {
 }
 
 // MARK: - Init
-extension ActionListChildViewController {
+extension FeedActionListChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +56,7 @@ extension ActionListChildViewController {
 }
 
 // MARK: - Functions
-extension ActionListChildViewController {
+extension FeedActionListChildViewController {
     @objc func logNewMood() {
         navigationController?.pushViewController(LoggingAMoodScreenSliderViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
@@ -77,7 +77,7 @@ extension ActionListChildViewController {
 }
 
 // MARK: - View Building
-extension ActionListChildViewController: ViewBuilding {
+extension FeedActionListChildViewController: ViewBuilding {
     func addSubViews() {
         self.view.addSubview(actionHeaderLabel)
 
