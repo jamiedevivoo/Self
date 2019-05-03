@@ -158,7 +158,7 @@ extension OverviewLoggingMoodViewController {
                 print("Error Loading Actions.")
                 return
             }
-            print(documentSnapshot.data())
+            print(documentSnapshot.data() as AnyObject)
         }
     }
 }

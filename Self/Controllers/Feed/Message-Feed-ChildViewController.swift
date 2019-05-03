@@ -3,6 +3,8 @@ import SnapKit
 
 class FeedMessageChildViewController: UIViewController {
     
+    var feedManager = FeedManager()
+    
     var messageStackView: MessageStackView
     
     init(accountRef: Account) {

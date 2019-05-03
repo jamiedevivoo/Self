@@ -38,7 +38,7 @@ Log moods, gain insights, reflect on success and complete daily activities with 
 $ pod install 
 ```
 - Open **Self.xcworkspace**
-- Clean the project workspace *'Product > Clean Build Folder'* (⬆+⌘+K)
+- Clean the project workspace *'Product > Clean Build Folder'* (⇧+⌘+K)
 - Build the project *'Product > Build'* (⌘+B)
 - Confirm there are no compile errors
 - Select a device (or simulator) and run the project *'Product > Run'* (⌘+R)
