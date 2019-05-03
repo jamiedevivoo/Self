@@ -83,7 +83,7 @@
 		A3438E9822456B86004D21BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E9022456B86004D21BB /* AppDelegate.swift */; };
 		A3438E9A22456B86004D21BB /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3438E9222456B86004D21BB /* AppContainerViewController.swift */; };
 		A3438E9D22456BBC004D21BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3438E9C22456BBC004D21BB /* Assets.xcassets */; };
-		A35EA85B22456F9700592D88 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85722456F9600592D88 /* Action.swift */; };
+		A35EA85B22456F9700592D88 /* ActionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA85722456F9600592D88 /* ActionLog.swift */; };
 		A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86222456FB500592D88 /* AccountManager.swift */; };
 		A35EA86D22456FB800592D88 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86422456FB600592D88 /* AppManager.swift */; };
 		A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EA86522456FB700592D88 /* ViewBuilding.swift */; };
@@ -93,7 +93,7 @@
 		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 		A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* Colours.swift */; };
 		A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950C224D7EEB00D0EC31 /* Highlight.swift */; };
-		A3CF9514224E714600D0EC31 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9513224E714600D0EC31 /* Mood.swift */; };
+		A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9513224E714600D0EC31 /* MoodLog.swift */; };
 		A3CF9516224E9C8900D0EC31 /* FeedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9515224E9C8900D0EC31 /* FeedMessage.swift */; };
 		A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */; };
 		A3D75726225CEEFC00E87F67 /* SectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */; };
@@ -181,7 +181,7 @@
 		A3438E9222456B86004D21BB /* AppContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		A3438E9C22456BBC004D21BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3438E9E22456BDA004D21BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A35EA85722456F9600592D88 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A35EA85722456F9600592D88 /* ActionLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionLog.swift; sourceTree = "<group>"; };
 		A35EA86222456FB500592D88 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		A35EA86422456FB600592D88 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		A35EA86522456FB700592D88 /* ViewBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBuilding.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		A3CF950C224D7EEB00D0EC31 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
-		A3CF9513224E714600D0EC31 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		A3CF9513224E714600D0EC31 /* MoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLog.swift; sourceTree = "<group>"; };
 		A3CF9515224E9C8900D0EC31 /* FeedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMessage.swift; sourceTree = "<group>"; };
 		A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeaderLabel.swift; sourceTree = "<group>"; };
 		A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderLabel.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 		7D7758D9225D881C003CCD1F /* Action */ = {
 			isa = PBXGroup;
 			children = (
-				A35EA85722456F9600592D88 /* Action.swift */,
+				A35EA85722456F9600592D88 /* ActionLog.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 		7D7758DC225D8885003CCD1F /* Mood */ = {
 			isa = PBXGroup;
 			children = (
-				A3CF9513224E714600D0EC31 /* Mood.swift */,
+				A3CF9513224E714600D0EC31 /* MoodLog.swift */,
 				7DD6CBE9226630D200F47E63 /* Wildcard.swift */,
 				7DF14B50225F296C0090D299 /* Emotion.swift */,
 			);
@@ -538,11 +538,11 @@
 			buildConfigurationList = A3438E8722456A1D004D21BB /* Build configuration list for PBXNativeTarget "Self" */;
 			buildPhases = (
 				C90B05CD96C5495D117AB362 /* [CP] Check Pods Manifest.lock */,
+				272325932260D21F00BB6924 /* Script */,
 				A3438E7122456A1C004D21BB /* Sources */,
 				A3438E7222456A1C004D21BB /* Frameworks */,
 				A3438E7322456A1C004D21BB /* Resources */,
 				0A0B1AC764327F4E133F1E7D /* [CP] Embed Pods Frameworks */,
-				272325932260D21F00BB6924 /* Script */,
 			);
 			buildRules = (
 			);
@@ -697,7 +697,7 @@
 				7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */,
 				7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */,
 				A3D7572C225D1F9C00E87F67 /* AccountUser.swift in Sources */,
-				A35EA85B22456F9700592D88 /* Action.swift in Sources */,
+				A35EA85B22456F9700592D88 /* ActionLog.swift in Sources */,
 				7D47AC68225FD380004BF898 /* Button.swift in Sources */,
 				7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */,
 				7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift in Sources */,
@@ -712,7 +712,7 @@
 				A3438E9A22456B86004D21BB /* AppContainerViewController.swift in Sources */,
 				7D7758CF225D872F003CCD1F /* FeedManager.swift in Sources */,
 				7D10F5DD226DCF760063CEB8 /* TextFieldWithLabel.swift in Sources */,
-				A3CF9514224E714600D0EC31 /* Mood.swift in Sources */,
+				A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */,
 				A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */,
 				7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */,
 				7DD6CBEA226630D200F47E63 /* Wildcard.swift in Sources */,

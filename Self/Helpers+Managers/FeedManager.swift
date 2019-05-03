@@ -51,99 +51,104 @@ extension FeedManager {
     -> (message: String, responses: [FeedMessageResponse]) {
         
         /// Priority 0 - Logic for when user is in tutorial mode
-        if account.flags.tutorialIsActive == true {
+        if account.flags.tutorialIsActive {
             
             /// Priority 0.1 - Logic for creating the first mood
             if moods.count >= 1 {
                 return (
-                "You're amazing! Welcome to Self! Let's log your first mood.",
+                ["You're amazing! Welcome to Self! How are you feeling?",
+                 "Welcome to Self! You're amazing! Let's log your first mood."
+                ].randomElement()!,
                 [FeedMessageResponse(title: "+ Log my first mood", action: "N/A", sentimentTrend: .neutral)])
             }
             
             /// Priority 0.2 - Logic for responding to first message
             if moods.count >= 1 { //ERROR: Needs condition
                 return (
-                "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!",
+                ["Great work! This screen will reguarly update with the latest advice and messages, You can use the emoji's below to respond to each message and help me get to know you better. Try it now!",
+                 "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it"
+                ].randomElement()!,
                 [FeedMessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
-                FeedMessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)])
+                 FeedMessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)])
             }
             
+            /// Priority 0.3 - Logic for explaining SOS
+            if moods.count >= 1 { //ERROR: Needs condition
+                return (
+                ["No one feels 100% all of the time, for those times when you're feeling down, look out for the SOS button for useful sources and advice. It's also always visible in the sidebar. Try tapping it now.",
+                 "If you're ever feeling really down and need some help, look out for the SOS button. You can also find it in the sidebar. Tap it now to see what's available."
+                ].randomElement()!,
+                [FeedMessageResponse(title: "🆘", action: "N/A", sentimentTrend: .negative)])
+            }
+
+            /// Priority 0.4 - Logic for introducing challenges
+            if moods.count >= 1 { //ERROR: Needs condition
+                return (
+                ["Ready for your first challenge?",
+                 "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!"
+                ].randomElement()!,
+                [FeedMessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
+                 FeedMessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)])
+            }
             
+            /// Priority 0.5 - Logic for requesting the user to complete their account
+            if moods.count >= 1 { //ERROR: Needs condition
+                return (
+                ["Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!",
+                 "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!"
+                ].randomElement()!,
+                [FeedMessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
+                 FeedMessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)])
+            }
             
-        }
-        
-        /// Priority 0 - Logic for when user is in tutorial mode
-        if (account.flags.tutorialIsActive == true) {
-            
-        }
-        
-        
-//        account_complete // Signed up with email and password
-//        account_validated // Email confirmed
-//        tutorial_active // Tutorial not complete
-        
-        return (message: "tu", responses: [])
-    }
-    
-    
-    static private func generageMessageText() -> String {
-        return "Did you know Mondays are your happiest days? Let’s rock today!"
-    }
-    
-    static private func matchCustomMessage(forAccount account: Account) -> (text: String, responses: [FeedMessageResponse]) {
-        let account: Account = account
-        let moodManager: MoodManager = MoodManager()
-        let insightManager: InsightManager = InsightManager()
-        let actionManager: ActionManager = ActionManager()
-        
-        var messageText: String, messageResponses: [FeedMessageResponse]
-        
-        // BEGIN LOGIC
-        if  account.flags.tutorialIsActive == true,
-            account.flags.accountIsComplete == false
-        {
-            //            // else if mood is created
-            //                // if no message interaction yet
-            //                text = "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!"
-            //                responses = [
-            //                    MessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
-            //                    MessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)
-            //                ]
-            //                // else if mood interaction exists
-            //                text = "If you're ever feeling really down and need some help, look for the sos button. Try it now."
-            //                responses = [
-            //                    MessageResponse(title: "🆘", action: "N/A", sentimentTrend: .negative),
-            //                ]
-            //        }
         } else {
-            messageText = "Did you know Mondays are your happiest days? Let’s rock today!"
-            messageResponses = [
-                FeedMessageResponse(title: "💪", action: "NA", sentimentTrend: .positive),
-                FeedMessageResponse(title: "😔", action: "NA", sentimentTrend: .negative),
-                FeedMessageResponse(title: "🆘", action: "NA", sentimentTrend: .negative)
-            ]
+        
+            /// Priority 1 - Logic for when user is in tutorial mode
+            if account.flags.tutorialIsActive {
+                return(
+                ["Did you know Mondays are your happiest days? Let’s rock today!",
+                 "Did you know Mondays are your happiest days? Let’s rock today!"
+                ].randomElement()!,
+                [FeedMessageResponse(title: "💪", action: "NA", sentimentTrend: .positive),
+                 FeedMessageResponse(title: "😔", action: "NA", sentimentTrend: .negative)])
+            }
+        
+            /// Priority 1 - Logic for when user is in tutorial mode
+            if account.flags.tutorialIsActive {
+                
+            }
+        
+        
+        
+            // Unlock today's Challenge!
+            // How is the daily challenge going?
+            // Low mood
+            // How are you today
+            // Mood logged but no wildcard question
+            // New unviewed Insight
+            // Mood reminders
+            
+            // fun Facts
+            
+            // Day Commentary
+            
+            
+            
+            
+            
+            
+            
+            // + Automatically add SOS if mood is low
+            
+        
+        
+        
+        
+        
+        
+        
         }
-        
-        return (messageText, messageResponses)
-        
     }
-    
-    //    // If the user is in tutorial mode and hasn't responded to a button yet
-    //    text = "Great work, let's get you started with some to-do's."
-    //    responses = [
-    //        MessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
-    //        MessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)
-    //    ]
-    //
-    //    text = "You're amazing! Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better"
-    //    responses = [
-    //        MessageResponse(title: "", action: "N/A", sentimentTrend: .neutral),
-    //        MessageResponse(title: "", action: "N/A", sentimentTrend: .neutral)
-    //    ]
-    //
-    //
-    //
-    //
 }
 
 // Feed Action Methods
