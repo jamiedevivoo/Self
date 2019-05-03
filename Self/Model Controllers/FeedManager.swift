@@ -57,8 +57,8 @@ extension FeedManager {
             /// Priority 0.1 - Catch users who haven't logged a mood
             guard !(moods.count < 1) else {
                 return (
-                ["You're amazing! Welcome to Self! How are you feeling?",
-                 "Welcome to Self! You're amazing! Let's log your first mood."
+                ["Welcome to Self! You're amazing! Let's log your first mood.",
+                 "You're amazing! Welcome to Self! How are you feeling?"	
                 ].randomElement()!,
                 [FeedMessageResponse(title: "✏️ Log my first mood", action: "N/A", sentimentTrend: .neutral)])
             }

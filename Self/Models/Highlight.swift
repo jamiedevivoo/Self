@@ -2,6 +2,6 @@ import Foundation
 import Firebase
 
 
-class Highlight {
+struct Highlight {
 
 }
