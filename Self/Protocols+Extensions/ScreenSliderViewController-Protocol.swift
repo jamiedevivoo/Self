@@ -1,6 +1,7 @@
 import UIKit
 
 protocol ScreenSliderViewControllerDelegate: class {
+    func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool
     // Delegate protocol for controlling a PageViewController (Subclass of UIPageViewController, with built in PageControl).
     //// The delegate should set itself as the Delegate for a PageViewController.
     //// The delagate should set the methods for out of range indexes (including ending the slider) as well as set the pages property.

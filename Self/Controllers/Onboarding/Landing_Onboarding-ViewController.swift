@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Lottie
 
 
 final class LandingOnboardingViewController: ViewController {
@@ -18,6 +19,14 @@ final class LandingOnboardingViewController: ViewController {
 
     lazy var registerButton = Button(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
     lazy var loginButton = Button(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
+    
+    lazy var leftSwipe: UISwipeGestureRecognizer = {
+        let swipeGesture = UISwipeGestureRecognizer()
+        swipeGesture.addTarget(self, action: #selector(handleSwipes))
+        swipeGesture.direction = .left
+        return swipeGesture
+    }()
+    
 }
 
 
@@ -27,30 +36,39 @@ extension LandingOnboardingViewController {
         super.viewDidLoad()
         sliderViewController.slides = createOnboardingScreens()
         setupChildViews()
+        self.view.addGestureRecognizer(leftSwipe)
     }
 }
 
 
 // MARK: - Button Methods
 extension LandingOnboardingViewController {
-    @objc func navigateToLogin(_ sender: Any) {
+    @objc func navigateToLogin() {
         self.present(LoginViewController(), animated: true)
     }
-    @objc func navigateToRegister(_ sender: Any) {
+    @objc func navigateToRegister() {
         (self.parent as! ScreenSliderViewController).gestureSwipingEnabled = true
         (self.parent as! ScreenSliderViewController).nextScreen()
+    }
+    
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        print("swiped")
+        guard sliderViewController.pageControl.currentPage >= 2 else { return }
+        print("over 2")
+        navigateToRegister()
     }
 }
 
 
 // MARK: - Setup Methods
 private extension LandingOnboardingViewController {
-    
     func createOnboardingScreens() -> [LandingSlideView] {
         
         let onboardingSlideOne: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
-            onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
+//            onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
+            onboardingSlide.animationView.animation = Animation.named("profile")
+            onboardingSlide.animationView.play() // TODO: Need to pause and play on videDidLoad
             onboardingSlide.headline.text = "Personal"
             onboardingSlide.desc.text = "Self is all about you, it's your personal assistant. Every day you'll get a unique message based on what you share and what it learns."
             return onboardingSlide
@@ -58,7 +76,9 @@ private extension LandingOnboardingViewController {
         
         let onboardingSlideTwo: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
-            onboardingSlide.image.image = UIImage(named: "globe")!.withRenderingMode(.alwaysTemplate)
+//            onboardingSlide.image.image = UIImage(named: "globe")!.withRenderingMode(.alwaysTemplate)
+            onboardingSlide.animationView.animation = Animation.named("goal")
+            onboardingSlide.animationView.play() // TODO: Need to pause and play on videDidLoad
             onboardingSlide.headline.text = "Challenges"
             onboardingSlide.desc.text = "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
             return onboardingSlide
@@ -66,11 +86,15 @@ private extension LandingOnboardingViewController {
         
         let onboardingSlideThree: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
-            onboardingSlide.image.image = UIImage(named: "for_you")!.withRenderingMode(.alwaysTemplate)
+//            onboardingSlide.image.image = UIImage(named: "for_you")!.withRenderingMode(.alwaysTemplate)
+            onboardingSlide.animationView.animation = Animation.named("heart")
+            onboardingSlide.animationView.play() // TODO: Need to pause and play on videDidLoad
             onboardingSlide.headline.text = "Journal"
             onboardingSlide.desc.text = "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
             return onboardingSlide
         }()
+        
+        onboardingSlideThree.addGestureRecognizer(leftSwipe)
         
         return [onboardingSlideOne, onboardingSlideTwo, onboardingSlideThree]
     }

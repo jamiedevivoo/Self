@@ -61,6 +61,9 @@
 		7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */; };
 		A30EC35322564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift */; };
 		A30EC35522565BEF0092A4E2 /* Message-Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message-Feed-ChildViewController.swift */; };
+		A30F5415227C5D6800306AAA /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5414227C5D6800306AAA /* profile.json */; };
+		A30F5417227C5D8400306AAA /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5416227C5D8400306AAA /* heart.json */; };
+		A30F5419227C608200306AAA /* goal.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5418227C608200306AAA /* goal.json */; };
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
 		A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* Landing_Onboarding-ViewController.swift */; };
 		A33409902245701D004CBB2A /* LandingSlide-View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* LandingSlide-View.swift */; };
@@ -154,6 +157,9 @@
 		7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponsesStack.swift; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList-Feed-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30EC35422565BEF0092A4E2 /* Message-Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message-Feed-ChildViewController.swift"; sourceTree = "<group>"; };
+		A30F5414227C5D6800306AAA /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
+		A30F5416227C5D8400306AAA /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
+		A30F5418227C608200306AAA /* goal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = goal.json; sourceTree = "<group>"; };
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A316E708224AF18F00283547 /* Landing_Onboarding-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Landing_Onboarding-ViewController.swift"; sourceTree = "<group>"; };
 		A334098A2245701B004CBB2A /* LandingSlide-View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandingSlide-View.swift"; sourceTree = "<group>"; };
@@ -366,6 +372,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A30F5412227C5D4C00306AAA /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A30F5418227C608200306AAA /* goal.json */,
+				A30F5414227C5D6800306AAA /* profile.json */,
+				A30F5416227C5D8400306AAA /* heart.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		A33409992245707F004CBB2A /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +453,7 @@
 				A3438E9E22456BDA004D21BB /* Info.plist */,
 				A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */,
 				A3438E9C22456BBC004D21BB /* Assets.xcassets */,
+				A30F5412227C5D4C00306AAA /* Animations */,
 			);
 			path = Self;
 			sourceTree = "<group>";
@@ -577,6 +594,9 @@
 			files = (
 				A3438E9D22456BBC004D21BB /* Assets.xcassets in Resources */,
 				A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */,
+				A30F5419227C608200306AAA /* goal.json in Resources */,
+				A30F5417227C5D8400306AAA /* heart.json in Resources */,
+				A30F5415227C5D6800306AAA /* profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

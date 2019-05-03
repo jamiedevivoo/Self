@@ -138,12 +138,20 @@ extension ScreenSliderViewController: UIPageViewControllerDataSource {
     
     // Deciding the next viewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
         /// If the current viewController doesn't exists in screens, bail.
         guard let viewControllerIndex = self.activeScreens.firstIndex(of: viewController) else { return nil }
+        
         /// If forward navigation isn't enabled, bail.
         guard forwardNavigationEnabled else { return nil }
-        /// If this isn't the last slide, go forward one slide.
-        if viewControllerIndex < self.activeScreens.count - 1 { return self.activeScreens[viewControllerIndex + 1] }
+        
+        /// If this isn't the last slide, check the delegate for validation, then go forward one slide.
+        if viewControllerIndex < self.activeScreens.count - 1 {
+            let nextScreen = self.activeScreens[viewControllerIndex + 1]
+            guard let sliderDelegate = sliderDelegate else { return nextScreen }
+            guard sliderDelegate.validateDataBeforeNextScreen(nextViewController: nextScreen) else { return nil }
+            return nextScreen
+        }
         else {
             /// Otherwise if looping is enabled, go to the first slide.
             guard !loopingSliderEnabled else { return self.activeScreens.first }

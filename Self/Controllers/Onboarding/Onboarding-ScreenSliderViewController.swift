@@ -62,7 +62,19 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
 
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {    
+extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
+    func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool {
+        if nextViewController.isMember(of: InductionOnboardingViewController.self) {
+            guard let _ = name else {
+                print("Next Screen failed Validation")
+                return true
+            }
+        }
+        print("validation duccess")
+        return true
+    }
+    
+    //// Add to super's willTransitionTo function
     override func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         if !pendingViewControllers[0].isKind(of: LandingOnboardingViewController.self) {
             self.scrollView?.isScrollEnabled = true
@@ -71,6 +83,7 @@ extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelega
         super.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
     }
     
+    //// Add to super's didFinishAnimating function
     override func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
         if viewControllers?[0].isKind(of: LandingOnboardingViewController.self) ?? false {
@@ -78,7 +91,7 @@ extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelega
             print(false)
         }
         
-    super.pageViewController(pageViewController, didFinishAnimating: finished, previousViewControllers: previousViewControllers, transitionCompleted: completed)
+        super.pageViewController(pageViewController, didFinishAnimating: finished, previousViewControllers: previousViewControllers, transitionCompleted: completed)
     }
     
 }

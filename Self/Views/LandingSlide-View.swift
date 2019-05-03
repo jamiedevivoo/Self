@@ -1,11 +1,13 @@
 import UIKit
+import Lottie
 
 class LandingSlideView: UIView {
     
-    lazy var image: UIImageView = {
-        let imageView = UIImageView()
-        imageView.tintColor = UIColor.app.standard.blackWhite()
-        return imageView
+    lazy var animationView: AnimationView = {
+        let animationView = AnimationView()
+        animationView.tintColor = UIColor.app.standard.blackWhite()
+        animationView.loopMode = LottieLoopMode.autoReverse
+        return animationView
     }()
     
     lazy var headline: UILabel = {
@@ -46,17 +48,17 @@ class LandingSlideView: UIView {
 extension LandingSlideView: ViewBuilding {
     
     internal func setupChildViews() {
-        self.addSubview(image)
+        self.addSubview(animationView)
         self.addSubview(headline)
         self.addSubview(desc)
-        image.snp.makeConstraints { (make) in
+        animationView.snp.makeConstraints { (make) in
             make.width.height.equalTo(80)
             make.centerX.top.equalToSuperview()
         }
         headline.snp.makeConstraints { (make) in
             make.width.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
-            make.top.equalTo(image.snp.bottom).offset(30)
+            make.top.equalTo(animationView.snp.bottom).offset(30)
         }
         desc.snp.makeConstraints { (make) in
             make.width.equalToSuperview().inset(20)
