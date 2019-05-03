@@ -39,10 +39,10 @@ class ScreenSliderViewController: UIPageViewController {
     
     // MARK: - Init
     /// Helper Initialiser for setting up the superClass UIPageViewController
-    init(navigationOrientation: NavigationOrientation? = .horizontal) {
+    init(navigationOrientation: NavigationOrientation = .horizontal) {
         super.init(
             transitionStyle: UIPageViewController.TransitionStyle.scroll,
-            navigationOrientation: UIPageViewController.NavigationOrientation.horizontal,
+            navigationOrientation: navigationOrientation,
             options: nil)
     }
     

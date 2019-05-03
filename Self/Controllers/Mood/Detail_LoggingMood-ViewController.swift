@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 
-final class DetailLoggingAMoodViewController: ViewController {
+final class DetailLoggingMoodViewController: ViewController {
     
     var dataCollectionDelegate: DataCollectionSequenceDelegate?
     var screenSlider: ScreenSliderViewController?
@@ -63,7 +63,7 @@ final class DetailLoggingAMoodViewController: ViewController {
 
 
 // MARK: - Override Methods
-extension DetailLoggingAMoodViewController {
+extension DetailLoggingMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +75,7 @@ extension DetailLoggingAMoodViewController {
 
 
 // MARK: - Class Methods
-extension DetailLoggingAMoodViewController {
+extension DetailLoggingMoodViewController {
     
     @objc func validateName() -> String? {
         guard
@@ -92,7 +92,7 @@ extension DetailLoggingAMoodViewController {
 
 
 // MARK: - TextField Delegate Methods
-extension DetailLoggingAMoodViewController: UITextFieldDelegate {
+extension DetailLoggingMoodViewController: UITextFieldDelegate {
     
     func setupKeyboard() {
         tagTextFieldWithLabel.textField.delegate = self
@@ -110,7 +110,7 @@ extension DetailLoggingAMoodViewController: UITextFieldDelegate {
         } else {
             dataCollectionDelegate?.setData(["name":nil])
             tagTextFieldWithLabel.textField.shake()
-            tagTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
+            tagTextFieldWithLabel.resetHint(withText: "Tags need to be at least 2 characters")
         }
         return false
     }
@@ -127,7 +127,7 @@ extension DetailLoggingAMoodViewController: UITextFieldDelegate {
 
 
 // MARK: - View Building
-extension DetailLoggingAMoodViewController: ViewBuilding {
+extension DetailLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(label)

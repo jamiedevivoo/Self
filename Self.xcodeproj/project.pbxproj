@@ -14,10 +14,10 @@
 		7D10F5E1226DEEC50063CEB8 /* UIView+Shake-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */; };
 		7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */; };
 		7D10F5E5226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */; };
-		7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingAMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingAMood-ViewController.swift */; };
-		7D10F5E9226E60120063CEB8 /* Mood_LoggingAMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E8226E60120063CEB8 /* Mood_LoggingAMood-ViewController.swift */; };
-		7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingAMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingAMood-ViewController.swift */; };
-		7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingAMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingAMood-ViewController.swift */; };
+		7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift */; };
+		7D10F5E9226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */; };
+		7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */; };
+		7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */; };
 		7D187F122258D1A000A9E9AE /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionView.swift */; };
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
@@ -100,17 +100,17 @@
 
 /* Begin PBXFileReference section */
 		133C9E098A01664EBB5E301E /* Pods_Self.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Self.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		272325912260C92000BB6924 /* BackgroundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundManager.swift; path = "Self/Helpers+Managers/Background/BackgroundManager.swift"; sourceTree = SOURCE_ROOT; };
+		272325912260C92000BB6924 /* BackgroundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundManager.swift; path = "Self/Helpers+Managers/BackgroundManager.swift"; sourceTree = SOURCE_ROOT; };
 		3195708A3A9E109844A87C3E /* Pods-Self.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.release.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.release.xcconfig"; sourceTree = "<group>"; };
 		7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabel.swift; sourceTree = "<group>"; };
 		7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TapGestureRecogniser-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shake-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trim-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggingMood-ScreenSliderViewController.swift"; sourceTree = "<group>"; };
-		7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingAMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail_LoggingAMood-ViewController.swift"; sourceTree = "<group>"; };
-		7D10F5E8226E60120063CEB8 /* Mood_LoggingAMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood_LoggingAMood-ViewController.swift"; sourceTree = "<group>"; };
-		7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingAMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wildcard_LoggingAMood-ViewController.swift"; sourceTree = "<group>"; };
-		7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingAMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Overview_LoggingAMood-ViewController.swift"; sourceTree = "<group>"; };
+		7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
+		7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
+		7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wildcard_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
+		7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Overview_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D187F112258D1A000A9E9AE /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
@@ -206,14 +206,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		272325902260C91200BB6924 /* Background */ = {
-			isa = PBXGroup;
-			children = (
-				272325912260C92000BB6924 /* BackgroundManager.swift */,
-			);
-			path = Background;
-			sourceTree = "<group>";
-		};
 		7D47AC6A22600054004BF898 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,14 +217,6 @@
 				7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		7D7758D6225D87F7003CCD1F /* Colour */ = {
-			isa = PBXGroup;
-			children = (
-				A3CF950A224D4B4600D0EC31 /* Colours.swift */,
-			);
-			path = Colour;
 			sourceTree = "<group>";
 		};
 		7D7758D7225D8806003CCD1F /* Account */ = {
@@ -295,7 +279,18 @@
 			isa = PBXGroup;
 			children = (
 				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
-				A3D75721225CD50300E87F67 /* Common Views */,
+				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
+				7DD6CC0D2266B97D00F47E63 /* Buttons.swift */,
+				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
+				7D47AC67225FD380004BF898 /* Button.swift */,
+				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
+				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
+				A334099422457023004CBB2A /* Loader.swift */,
+				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
+				A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */,
+				A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */,
+				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
+				A3683566226E0B0D005C8600 /* PageIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,10 +299,10 @@
 			isa = PBXGroup;
 			children = (
 				7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */,
-				7D10F5E8226E60120063CEB8 /* Mood_LoggingAMood-ViewController.swift */,
-				7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingAMood-ViewController.swift */,
-				7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingAMood-ViewController.swift */,
-				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingAMood-ViewController.swift */,
+				7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */,
+				7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift */,
+				7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */,
+				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */,
 			);
 			path = Mood;
 			sourceTree = "<group>";
@@ -360,14 +355,6 @@
 				7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */,
 			);
 			path = "Protocols+Extensions";
-			sourceTree = "<group>";
-		};
-		7DF14B4B225F24FF0090D299 /* Tag */ = {
-			isa = PBXGroup;
-			children = (
-				7DF14B4C225F25A00090D299 /* Tag.swift */,
-			);
-			path = Tag;
 			sourceTree = "<group>";
 		};
 		951818623E55152490612D04 /* Pods */ = {
@@ -464,8 +451,8 @@
 				7D7758DA225D8834003CCD1F /* Feed */,
 				7DD6CC012266B69300F47E63 /* Community */,
 				7D7758DB225D884A003CCD1F /* Insight */,
-				7D7758D6225D87F7003CCD1F /* Colour */,
-				7DF14B4B225F24FF0090D299 /* Tag */,
+				A3CF950A224D4B4600D0EC31 /* Colours.swift */,
+				7DF14B4C225F25A00090D299 /* Tag.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -495,26 +482,18 @@
 		A3C860B6227B5DA9000D4034 /* Helpers+Managers */ = {
 			isa = PBXGroup;
 			children = (
-				272325902260C91200BB6924 /* Background */,
-				A3C860BE227B5E20000D4034 /* Colour */,
-				A3C860BD227B5E19000D4034 /* Insight */,
-				A3C860BC227B5E0D000D4034 /* Community */,
-				A3C860BB227B5E02000D4034 /* Feed */,
-				A3C860BA227B5DF8000D4034 /* Highlight */,
 				A35EA86422456FB600592D88 /* AppManager.swift */,
-				A3C860B9227B5DE3000D4034 /* Action */,
 				A3C860B8227B5DCE000D4034 /* Mood */,
-				A3C860B7227B5DBF000D4034 /* Account */,
-			);
-			path = "Helpers+Managers";
-			sourceTree = "<group>";
-		};
-		A3C860B7227B5DBF000D4034 /* Account */ = {
-			isa = PBXGroup;
-			children = (
+				272325912260C92000BB6924 /* BackgroundManager.swift */,
+				A3D75735225D4F1B00E87F67 /* ColorManager.swift */,
+				7D7758D2225D878A003CCD1F /* InsightManager.swift */,
+				7DD6CC032266B6C200F47E63 /* CommunityManager.swift */,
+				7D7758CE225D872F003CCD1F /* FeedManager.swift */,
+				7D7758D0225D8764003CCD1F /* HighlightManager.swift */,
+				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
 			);
-			path = Account;
+			path = "Helpers+Managers";
 			sourceTree = "<group>";
 		};
 		A3C860B8227B5DCE000D4034 /* Mood */ = {
@@ -524,73 +503,6 @@
 				7DD6CBF122663B0900F47E63 /* EmotionManager.swift */,
 			);
 			path = Mood;
-			sourceTree = "<group>";
-		};
-		A3C860B9227B5DE3000D4034 /* Action */ = {
-			isa = PBXGroup;
-			children = (
-				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
-			);
-			path = Action;
-			sourceTree = "<group>";
-		};
-		A3C860BA227B5DF8000D4034 /* Highlight */ = {
-			isa = PBXGroup;
-			children = (
-				7D7758D0225D8764003CCD1F /* HighlightManager.swift */,
-			);
-			path = Highlight;
-			sourceTree = "<group>";
-		};
-		A3C860BB227B5E02000D4034 /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				7D7758CE225D872F003CCD1F /* FeedManager.swift */,
-			);
-			path = Feed;
-			sourceTree = "<group>";
-		};
-		A3C860BC227B5E0D000D4034 /* Community */ = {
-			isa = PBXGroup;
-			children = (
-				7DD6CC032266B6C200F47E63 /* CommunityManager.swift */,
-			);
-			path = Community;
-			sourceTree = "<group>";
-		};
-		A3C860BD227B5E19000D4034 /* Insight */ = {
-			isa = PBXGroup;
-			children = (
-				7D7758D2225D878A003CCD1F /* InsightManager.swift */,
-			);
-			path = Insight;
-			sourceTree = "<group>";
-		};
-		A3C860BE227B5E20000D4034 /* Colour */ = {
-			isa = PBXGroup;
-			children = (
-				A3D75735225D4F1B00E87F67 /* ColorManager.swift */,
-			);
-			path = Colour;
-			sourceTree = "<group>";
-		};
-		A3D75721225CD50300E87F67 /* Common Views */ = {
-			isa = PBXGroup;
-			children = (
-				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
-				7DD6CC0D2266B97D00F47E63 /* Buttons.swift */,
-				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
-				7D47AC67225FD380004BF898 /* Button.swift */,
-				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
-				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
-				A334099422457023004CBB2A /* Loader.swift */,
-				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
-				A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */,
-				A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */,
-				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
-				A3683566226E0B0D005C8600 /* PageIndicator.swift */,
-			);
-			path = "Common Views";
 			sourceTree = "<group>";
 		};
 		EF82DCB7677E74021FC39444 /* Frameworks */ = {
@@ -768,10 +680,10 @@
 				A35EA85B22456F9700592D88 /* Action.swift in Sources */,
 				7D47AC68225FD380004BF898 /* Button.swift in Sources */,
 				7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */,
-				7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingAMood-ViewController.swift in Sources */,
+				7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift in Sources */,
 				A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */,
 				7DD6CC082266B6F300F47E63 /* CommunityViewController.swift in Sources */,
-				7D10F5E9226E60120063CEB8 /* Mood_LoggingAMood-ViewController.swift in Sources */,
+				7D10F5E9226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift in Sources */,
 				7DD6CC1422672E3600F47E63 /* Achivement-Protocol.swift in Sources */,
 				7D10F5E1226DEEC50063CEB8 /* UIView+Shake-Extension.swift in Sources */,
 				7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */,
@@ -813,7 +725,7 @@
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
-				7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingAMood-ViewController.swift in Sources */,
+				7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
 				7DD6CC0E2266B97D00F47E63 /* Buttons.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
@@ -826,7 +738,7 @@
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
 				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,
 				A30EC35322564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift in Sources */,
-				7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingAMood-ViewController.swift in Sources */,
+				7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,
 				7DD6CC1622673DA700F47E63 /* DailyActionSelectorViewController.swift in Sources */,
 				7D10F5DF226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift in Sources */,

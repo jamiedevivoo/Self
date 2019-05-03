@@ -26,7 +26,7 @@ extension FeedMessageChildViewController {
 // MARK: - Functions
 extension FeedMessageChildViewController {
     @objc func logNewMood() {
-        navigationController?.pushViewController(MoodLoggingAMoodViewController(), animated: false)
+        navigationController?.pushViewController(MoodLoggingMoodViewController(), animated: false)
         navigationController?.navigationBar.isHidden = false
     }
     

@@ -3,14 +3,14 @@ import Firebase
 import SnapKit
 
 
-final class WildcardLoggingAMoodViewController: ViewController {
+final class OverviewLoggingMoodViewController: ViewController {
     
     var dataCollectionDelegate: DataCollectionSequenceDelegate?
     var screenSlider: ScreenSliderViewController?
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.text = "Wildcard"
+        label.text = "Overview"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
         label.textColor = UIColor.app.text.solidText()
@@ -26,6 +26,32 @@ final class WildcardLoggingAMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
+    lazy var emotionPickerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.app.text.solidText()
+        label.text = "How are you?"
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        return label
+    }()
+    
+    lazy var emotionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "I am..."
+        return label
+    }()
+    
+    lazy var tagLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Add a tag..."
+        return label
+    }()
+    
+    lazy var describeYourDay: UILabel = {
+        let label = UILabel()
+        label.text = "Describe your day..."
+        return label
+    }()
+    
     lazy var wildcardQuestion: UILabel = {
         let label = UILabel()
         label.text = "Your Wildcard Question"
@@ -33,12 +59,12 @@ final class WildcardLoggingAMoodViewController: ViewController {
     }()
     
     lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
-        
+    
 }
 
 
 // MARK: - Override Methods
-extension WildcardLoggingAMoodViewController {
+extension OverviewLoggingMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +76,7 @@ extension WildcardLoggingAMoodViewController {
 
 
 // MARK: - Class Methods
-extension WildcardLoggingAMoodViewController {
+extension OverviewLoggingMoodViewController {
     
     @objc func validateName() -> String? {
         guard
@@ -67,7 +93,7 @@ extension WildcardLoggingAMoodViewController {
 
 
 // MARK: - TextField Delegate Methods
-extension WildcardLoggingAMoodViewController: UITextFieldDelegate {
+extension OverviewLoggingMoodViewController: UITextFieldDelegate {
     
     func setupKeyboard() {
         nameTextFieldWithLabel.textField.delegate = self
@@ -102,7 +128,7 @@ extension WildcardLoggingAMoodViewController: UITextFieldDelegate {
 
 
 // MARK: - View Building
-extension WildcardLoggingAMoodViewController: ViewBuilding {
+extension OverviewLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(label)
@@ -121,7 +147,7 @@ extension WildcardLoggingAMoodViewController: ViewBuilding {
     
 }
 
-extension WildcardLoggingAMoodViewController {
+extension OverviewLoggingMoodViewController {
     func getWildcard() {
         let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
         let randomDocumentID = String(Int.random(in: 0..<6))

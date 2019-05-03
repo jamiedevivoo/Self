@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 
-final class MoodLoggingAMoodViewController: ViewController {
+final class MoodLoggingMoodViewController: ViewController {
 
     var dataCollectionDelegate: DataCollectionSequenceDelegate?
     var screenSlider: ScreenSliderViewController?
@@ -12,6 +12,8 @@ final class MoodLoggingAMoodViewController: ViewController {
         label.textColor = UIColor.app.text.solidText()
         label.text = "How are you?"
         label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.black)
+        label.layer.frame.size = CGSize(width: 50, height: 50)
+
         return label
     }()
     
@@ -33,63 +35,99 @@ final class MoodLoggingAMoodViewController: ViewController {
     lazy var circle: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.app.background.secondaryBackground()
-        view.layer.cornerRadius = view.bounds.size.width
+        view.layer.frame.size = CGSize(width: 50, height: 50)
+        view.layer.cornerRadius = 25
         view.clipsToBounds = true
         return view
     }()
     
+    lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(tappedCircle))
+        return gesture
+    }()
+    
     var isMoodMarked:Bool = false
+    var markAdded: Bool = false
     
 }
 
 
 // MARK: - Override Methods
-extension MoodLoggingAMoodViewController {
+extension MoodLoggingMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
+        circle.addGestureRecognizer(tapGesture)
+        screenSlider?.forwardNavigationEnabled = false
+        super.navigationController?.isNavigationBarHidden = false
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         screenSlider?.gestureSwipingEnabled = false
     }
-    
 }
 
 
 // MARK: - Class Methods
-extension MoodLoggingAMoodViewController {
+extension MoodLoggingMoodViewController {
     
     
     // Gesture Handling
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        guard let touch = touches.first else { return }
+        updateMark(touch: touch)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
+        guard let touch = touches.first else { return }
+        updateMark(touch: touch)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        updateMark(touch: touch)
+        addMark()
+    }
+    
+    @objc func tappedCircle() {
+        saveMarkedMood()
+    }
+    
+    
+    // Other Methods
+    func updateMark(touch: UITouch) {
+        
         let location = touch.location(in: self.view)
         let moodRatings = calculateMood(x: location.x, y: location.y)
         let emotion = EmotionManager.getEmotion(withValence: moodRatings["Valence"]!, withArousal: moodRatings["Arousal"]!)
         emotionPickerLabel.text = emotion.adj
         emotionPickerLabel.frame.origin.x = location.x
         emotionPickerLabel.frame.origin.y = location.y - 25
+
         circle.frame.origin.x = location.x - 25
         circle.frame.origin.y = location.y - 25
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let location = touch.location(in: self.view)
-        let moodRatings = calculateMood(x: location.x, y: location.y)
-        let _ = EmotionManager.getEmotion(withValence: moodRatings["Valence"]!, withArousal: moodRatings["Arousal"]!)
-        screenSlider?.nextScreen()
-        screenSlider?.gestureSwipingEnabled = true
+    func addMark() {
+        guard markAdded == false else { return }
+        
         isMoodMarked = true
+        markAdded = true
+        view.addSubview(emotionPickerLabel)
+        view.addSubview(circle)
     }
     
-    // Other Methods
+    
+    func saveMarkedMood() {
+        guard isMoodMarked == true else { return }
+        screenSlider?.forwardNavigationEnabled = true
+        screenSlider?.gestureSwipingEnabled = true
+        screenSlider?.nextScreen()
+    }
+    
     func calculateMood(x: CGFloat, y: CGFloat) -> Dictionary<String, Double> {
         let arousalCoordinates = -convertCoordinateToRating(coordinate: y, range: self.view.frame.height)
         let valenceCoordinates = convertCoordinateToRating(coordinate: x, range: self.view.frame.width)
@@ -110,24 +148,14 @@ extension MoodLoggingAMoodViewController {
 
 
 // MARK: - View Building
-extension MoodLoggingAMoodViewController: ViewBuilding {
+extension MoodLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
-        view.addSubview(emotionPickerLabel)
-        view.addSubview(circle)
         self.view.addSubview(arousalLabel)
         self.view.addSubview(valenceLabel)
         
-        emotionPickerLabel.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-        }
-        circle.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-        }
         arousalLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(-25)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(-50)
             make.centerY.equalToSuperview()
         }
         valenceLabel.snp.makeConstraints { (make) in

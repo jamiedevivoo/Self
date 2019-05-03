@@ -3,7 +3,16 @@ import Firebase
 
 
 final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
-    var name: String?
+    var uid: String?
+    var headline: String?
+    var timestamp: Timestamp?
+    var note: String?
+    var arousalRating: Double?
+    var valenceRating: Double?
+    
+    var wildcard: Wildcard?
+    var emotion: Emotion?
+    var tags = [Tag]()
     
     init() {
         super.init(navigationOrientation: .vertical)
@@ -22,6 +31,7 @@ extension LoggingAMoodScreenSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
+        navigationController?.isNavigationBarHidden = true
     }
     
 }
@@ -31,16 +41,16 @@ extension LoggingAMoodScreenSliderViewController {
 private extension LoggingAMoodScreenSliderViewController {
     
     func setupScreens() -> [UIViewController] {
-        let moodLoggingAMoodViewController = MoodLoggingAMoodViewController()
+        let moodLoggingAMoodViewController = MoodLoggingMoodViewController()
         moodLoggingAMoodViewController.dataCollectionDelegate = self
         moodLoggingAMoodViewController.screenSlider = self
-        let detailLoggingAMoodViewController = DetailLoggingAMoodViewController()
+        let detailLoggingAMoodViewController = DetailLoggingMoodViewController()
         detailLoggingAMoodViewController.dataCollectionDelegate = self
         detailLoggingAMoodViewController.screenSlider = self
-        let wildcardLoggingAMoodViewController = WildcardLoggingAMoodViewController()
+        let wildcardLoggingAMoodViewController = WildcardLoggingMoodViewController()
         wildcardLoggingAMoodViewController.dataCollectionDelegate = self
         wildcardLoggingAMoodViewController.screenSlider = self
-        let overviewLoggingAMoodViewController = OverviewLoggingAMoodViewController()
+        let overviewLoggingAMoodViewController = OverviewLoggingMoodViewController()
         overviewLoggingAMoodViewController.dataCollectionDelegate = self
         overviewLoggingAMoodViewController.screenSlider = self
         return [moodLoggingAMoodViewController,

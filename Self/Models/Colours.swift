@@ -51,11 +51,11 @@ extension UIColor {
             struct selectable {
                 static func selected() -> UIColor { switch ColorManager.getActiveColorMode() {
                         case .dark: return UIColor(red: 241/255, green: 136/255, blue: 132/255, alpha: 1)
-                        default:    return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 1)
+                        default:    return UIColor(red: 010/255, green: 010/255, blue: 050/255, alpha: 1)
                 }}
                 static func unselected() -> UIColor { switch ColorManager.getActiveColorMode() {
                         case .dark: return UIColor(red: 150/255, green: 166/255, blue: 254/255, alpha: 1)
-                        default:    return UIColor(red: 010/255, green: 010/255, blue: 050/255, alpha: 1)
+                        default:    return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 1)
                 }}
             }
         }

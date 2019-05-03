@@ -46,13 +46,18 @@ extension DashboardTabBarController {
         let homeNavigationController = DashboardNavigationController(rootViewController: FeedViewController())
         homeNavigationController.title = "Home"
         homeNavigationController.tabBarItem?.image = UIImage(named: "home")
+        homeNavigationController.tabBarItem?.badgeColor = UIColor.red
+        
         let highlightsNavigationController = DashboardNavigationController(rootViewController: HighlightsViewController())
         highlightsNavigationController.title = "Highlights"
         highlightsNavigationController.tabBarItem?.image = UIImage(named: "for_you")
+        highlightsNavigationController.tabBarItem?.badgeColor = UIColor.red
+
         let actionsNavigationController = DashboardNavigationController(rootViewController: ActionsViewController())
         actionsNavigationController.title = "Actions"
         actionsNavigationController.tabBarItem?.image = UIImage(named: "globe")
-        
+        actionsNavigationController.tabBarItem.badgeValue = ""
+
         self.viewControllers = [highlightsNavigationController, homeNavigationController, actionsNavigationController]
         self.selectedIndex = 1
     }
