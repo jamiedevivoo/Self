@@ -7,10 +7,10 @@ class MessageStackView: UIStackView {
     lazy var messageTextLabel = UILabel.messageText
     var messageResponseStack: MessageResponsesStack
 
-    init(frame: CGRect, message: FeedMessage) {
-        self.messageResponseStack = MessageResponsesStack(frame: CGRect.zero, messageResponses: message.actions)
+    init(frame: CGRect, message: (message: String, responses: [FeedMessageResponse])) {
+        self.messageResponseStack = MessageResponsesStack(frame: CGRect.zero, messageResponses: message.responses)
         super.init(frame: frame)
-        setupView(withMessage: message)
+        setupView(withMessage: message.message)
         addSubviews()
     }
     
@@ -24,11 +24,11 @@ extension MessageStackView {
         addArrangedSubview(messageTextLabel)
         addArrangedSubview(messageResponseStack)
     }
-    func setupView(withMessage message: FeedMessage) {
+    func setupView(withMessage message: String) {
         axis = .vertical
         spacing = UIStackView.spacingUseSystem
-        greetingLabel.text = message.greeting
-        nameLabel.text = message.name
-        messageTextLabel.text = message.messageText
+        greetingLabel.text = "Hello"
+        nameLabel.text = "Jamie"
+        messageTextLabel.text = message
     }
 }

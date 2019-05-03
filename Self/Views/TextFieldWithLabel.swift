@@ -61,7 +61,7 @@ extension TextFieldWithLabel: ViewBuilding {
         label.snp.makeConstraints { (make) in
             make.top.equalTo(textField.snp.bottom).offset(-5)
             make.left.right.equalToSuperview()
-            make.height.greaterThanOrEqualTo(20).priorityRequired()
+            make.height.greaterThanOrEqualTo(20).priority(.required)
             make.bottom.equalToSuperview()
         }
     }

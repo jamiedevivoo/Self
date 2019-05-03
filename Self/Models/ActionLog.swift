@@ -1,4 +1,4 @@
-struct Action {
+struct ActionLog {
     var uid: String,
         dailyAction: Bool,
         description: String,
@@ -9,7 +9,7 @@ struct Action {
 }
 
 // MARK: - Convenience Iniitialiser
-extension Action {
+extension ActionLog {
     init(_ actionDictionary: [String:Any]) {
         self.uid                = (actionDictionary["uid"] as! String)
         self.dailyAction        = (actionDictionary["daily_action"] as! Bool)
@@ -26,7 +26,7 @@ extension Action {
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
-extension Action: DictionaryConvertable {
+extension ActionLog: DictionaryConvertable {
     var dictionary: [String: Any] {
         var tagsArray = [[String:Any]]()
         for tag in tags {

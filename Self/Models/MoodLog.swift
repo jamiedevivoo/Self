@@ -1,6 +1,6 @@
 import Firebase
 
-struct Mood {
+struct MoodLog {
     var uid: String?
     var headline: String?
     var timestamp: Timestamp?
@@ -14,7 +14,7 @@ struct Mood {
 }
 
 // MARK: - Convenience Iniitialiser
-extension Mood {
+extension MoodLog {
     init(_ moodDictionary: [String:Any]) {
         self.uid                = (moodDictionary["uid"] as! String)
         self.headline           = (moodDictionary["headline"] as! String)
@@ -35,7 +35,7 @@ extension Mood {
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
-extension Mood: DictionaryConvertable {
+extension MoodLog: DictionaryConvertable {
     var dictionary: [String: Any] {
         var tagsArray = [[String:Any]]()
         for tag in tags {

@@ -68,7 +68,7 @@ private extension LandingOnboardingViewController {
             let onboardingSlide = LandingSlideView()
 //            onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("profile")
-            onboardingSlide.animationView.play() // TODO: Need to pause and play on videDidLoad
+            onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Personal"
             onboardingSlide.desc.text = "Self is all about you, it's your personal assistant. Every day you'll get a unique message based on what you share and what it learns."
             return onboardingSlide
@@ -78,7 +78,7 @@ private extension LandingOnboardingViewController {
             let onboardingSlide = LandingSlideView()
 //            onboardingSlide.image.image = UIImage(named: "globe")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("goal")
-            onboardingSlide.animationView.play() // TODO: Need to pause and play on videDidLoad
+            onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Challenges"
             onboardingSlide.desc.text = "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
             return onboardingSlide
@@ -88,7 +88,7 @@ private extension LandingOnboardingViewController {
             let onboardingSlide = LandingSlideView()
 //            onboardingSlide.image.image = UIImage(named: "for_you")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("heart")
-            onboardingSlide.animationView.play() // TODO: Need to pause and play on videDidLoad
+            onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Journal"
             onboardingSlide.desc.text = "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
             return onboardingSlide
