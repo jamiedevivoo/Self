@@ -47,78 +47,78 @@ extension FeedManager {
         withHighlights highlights: [Highlight],
         withMoods moods: [MoodLog],
         withInsight insightss: [Insight],
-        withActions actionLogs: [ActionLog])
+        withActions actionLogs: [SentimentLog],
+        withSentimentLogs sentimentLogs: [ActionLog])
     -> (message: String, responses: [FeedMessageResponse]) {
         
         /// Priority 0 - Logic for when user is in tutorial mode
         if account.flags.tutorialIsActive {
             
-            /// Priority 0.1 - Logic for creating the first mood
-            if moods.count >= 1 {
+            /// Priority 0.1 - Catch users who haven't logged a mood
+            guard !(moods.count < 1) else {
                 return (
                 ["You're amazing! Welcome to Self! How are you feeling?",
                  "Welcome to Self! You're amazing! Let's log your first mood."
                 ].randomElement()!,
-                [FeedMessageResponse(title: "+ Log my first mood", action: "N/A", sentimentTrend: .neutral)])
+                [FeedMessageResponse(title: "✏️ Log my first mood", action: "N/A", sentimentTrend: .neutral)])
             }
             
-            /// Priority 0.2 - Logic for responding to first message
-            if moods.count >= 1 { //ERROR: Needs condition
+            /// Priority 0.2 - Catch users who haven't responded to a message
+            guard !(sentimentLogs.count < 2) else {
                 return (
                 ["Great work! This screen will reguarly update with the latest advice and messages, You can use the emoji's below to respond to each message and help me get to know you better. Try it now!",
                  "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it"
                 ].randomElement()!,
-                [FeedMessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
+                [FeedMessageResponse(title: "🎉", action: "N/A", sentimentTrend: .neutral),
                  FeedMessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)])
             }
             
-            /// Priority 0.3 - Logic for explaining SOS
-            if moods.count >= 1 { //ERROR: Needs condition
+            /// Priority 0.3 - Catch users who haven't tapped SOS yet
+            guard !(sentimentLogs.count < 3) else {
                 return (
-                ["No one feels 100% all of the time, for those times when you're feeling down, look out for the SOS button for useful sources and advice. It's also always visible in the sidebar. Try tapping it now.",
+                ["No one feels 100% all of the time, for those times when you're feeling down, look out for the SOS button to find useful crisis sources and advice. It's also always visible in the sidebar. Try tapping it now.",
                  "If you're ever feeling really down and need some help, look out for the SOS button. You can also find it in the sidebar. Tap it now to see what's available."
                 ].randomElement()!,
-                [FeedMessageResponse(title: "🆘", action: "N/A", sentimentTrend: .negative)])
+                [FeedMessageResponse(title: "🆘", action: "N/A", sentimentTrend: .neutral)])
             }
 
-            /// Priority 0.4 - Logic for introducing challenges
-            if moods.count >= 1 { //ERROR: Needs condition
+            /// Priority 0.4 - Catch users who haven't chosen a challenge yet
+           guard !(actionLogs.count < 1) else {
                 return (
-                ["Ready for your first challenge?",
-                 "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!"
+                ["Ready for your first challenge? Let's go!",
+                 "Every day you'll get a challenge to complete, let's see what today's is!"
                 ].randomElement()!,
-                [FeedMessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
-                 FeedMessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)])
+                [FeedMessageResponse(title: "👍", action: "N/A", sentimentTrend: .neutral),
+                 FeedMessageResponse(title: "👎", action: "N/A", sentimentTrend: .neutral)])
             }
             
-            /// Priority 0.5 - Logic for requesting the user to complete their account
-            if moods.count >= 1 { //ERROR: Needs condition
+            /// Priority 0.5 - Catch users who haven't completed their account yet
+            guard account.flags.accountIsComplete else {
                 return (
-                ["Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!",
-                 "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it now!"
+                ["Self is all about you. As the app learns from you and get's to know you you'll unlock insights, highlights and trophies. When you're ready to exlore more of Self, finish creating your account below.",
+                 "Wow, you've already covered the basics! But there's still so much more. To unlock highlights, insights and trophies, finish creating your account below and continue using the app to track and improve your wellbeing."
                 ].randomElement()!,
-                [FeedMessageResponse(title: "🎉", action: "N/A", sentimentTrend: .positive),
-                 FeedMessageResponse(title: "🤔", action: "N/A", sentimentTrend: .neutral)])
+                [FeedMessageResponse(title: "✓ Complete my account", action: "N/A", sentimentTrend: .positive)])
             }
             
-        } else {
+        }
         
-            /// Priority 1 - Logic for when user is in tutorial mode
-            if account.flags.tutorialIsActive {
-                return(
-                ["Did you know Mondays are your happiest days? Let’s rock today!",
-                 "Did you know Mondays are your happiest days? Let’s rock today!"
-                ].randomElement()!,
-                [FeedMessageResponse(title: "💪", action: "NA", sentimentTrend: .positive),
-                 FeedMessageResponse(title: "😔", action: "NA", sentimentTrend: .negative)])
-            }
+        if !account.flags.tutorialIsActive && account.flags.accountIsComplete {
         
-            /// Priority 1 - Logic for when user is in tutorial mode
-            if account.flags.tutorialIsActive {
-                
-            }
-        
-        
+//            /// Priority 1 - Logic for when user is in tutorial mode
+//            if account.flags.tutorialIsActive {
+//                return(
+//                ["Did you know Mondays are your happiest days? Let’s rock today!",
+//                 "Did you know Mondays are your happiest days? Let’s rock today!"
+//                ].randomElement()!,
+//                [FeedMessageResponse(title: "💪", action: "NA", sentimentTrend: .positive),
+//                 FeedMessageResponse(title: "😔", action: "NA", sentimentTrend: .negative)])
+//            }
+//
+//            /// Priority 1 - Logic for when user is in tutorial mode
+//            if account.flags.tutorialIsActive {
+//
+//            }
         
             // Unlock today's Challenge!
             // How is the daily challenge going?
@@ -133,21 +133,15 @@ extension FeedManager {
             // Day Commentary
             
             
-            
-            
-            
-            
-            
             // + Automatically add SOS if mood is low
             
-        
-        
-        
-        
-        
-        
+            
+            
         
         }
+        
+        return ("hey", [FeedMessageResponse(title: "✓ Complete my account", action: "N/A", sentimentTrend: .positive)])
+
     }
 }
 

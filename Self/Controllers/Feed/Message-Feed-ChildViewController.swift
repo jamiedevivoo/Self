@@ -3,12 +3,10 @@ import SnapKit
 
 class FeedMessageChildViewController: UIViewController {
     
-    var feedManager = FeedManager()
-    
     var messageStackView: MessageStackView
     
     init(accountRef: Account) {
-        let message = FeedManager.generateMessage(forAccount: accountRef)
+        let message = FeedManager.generateMessage(
         self.messageStackView = MessageStackView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), message: message)
         super.init(nibName: nil, bundle: nil)
         print(message)

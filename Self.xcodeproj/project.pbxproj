@@ -90,6 +90,7 @@
 		A3683567226E0B0D005C8600 /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3683566226E0B0D005C8600 /* PageIndicator.swift */; };
 		A3683569226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3683568226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift */; };
 		A368356B226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */; };
+		A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B76ADA227CE7CB00282ECB /* SentimentLog.swift */; };
 		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 		A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* Colours.swift */; };
 		A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950C224D7EEB00D0EC31 /* Highlight.swift */; };
@@ -188,6 +189,7 @@
 		A3683566226E0B0D005C8600 /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		A3683568226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenSliderViewController-Protocol.swift"; sourceTree = "<group>"; };
 		A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataCollectionSequenceDelegate-Protocol.swift"; sourceTree = "<group>"; };
+		A3B76ADA227CE7CB00282ECB /* SentimentLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentimentLog.swift; sourceTree = "<group>"; };
 		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		A3CF950C224D7EEB00D0EC31 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				7D7758D7225D8806003CCD1F /* Account */,
 				7D7758DC225D8885003CCD1F /* Mood */,
 				7D7758D9225D881C003CCD1F /* Action */,
+				A3B76AD9227CE7B200282ECB /* SentimentLog */,
 				7D7758D8225D880F003CCD1F /* Highlight */,
 				7D7758DA225D8834003CCD1F /* Feed */,
 				7DD6CC012266B69300F47E63 /* Community */,
@@ -494,6 +497,14 @@
 				7DD6CBFC2266B4E400F47E63 /* Information Screens */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A3B76AD9227CE7B200282ECB /* SentimentLog */ = {
+			isa = PBXGroup;
+			children = (
+				A3B76ADA227CE7CB00282ECB /* SentimentLog.swift */,
+			);
+			path = SentimentLog;
 			sourceTree = "<group>";
 		};
 		A3C860B6227B5DA9000D4034 /* Helpers+Managers */ = {
@@ -778,6 +789,7 @@
 				A33409AD224570BC004CBB2A /* Feed-ViewController.swift in Sources */,
 				A368356B226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift in Sources */,
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
+				A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */,
 				A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */,
 				7DD6CBFE2266B50300F47E63 /* Help.swift in Sources */,
 			);
