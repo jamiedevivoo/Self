@@ -1,7 +1,18 @@
+[!][Issues](https://img.shields.io/github/issues/jamiedevivoo/Self.svg)
+[!][Forks](https://img.shields.io/github/forks/jamiedevivoo/Self.svg)
+[!][Stars](https://img.shields.io/github/stars/jamiedevivoo/Self.svg)
+[!][License](https://img.shields.io/github/license/jamiedevivoo/Self.svg)
+[Included](#whats-included)
+[Requirements](#requirements)
+[Quick Start](#quick-start)
+
 # The Self App - IOS
 Self - Your Emotional Companion. Git Repo for version control and group collaboration.
 
 Log moods, gain insights, reflect on success and complete daily activities with a community of people focusing on improving their wellbeing and themselves.
+
+![Launch Screen](Screenshots/launch.png?raw=true "Launch Screen")
+![Home Screen](Screenshots/home.png?raw=true "Home Screen")
 
 ## What's Included
 - The Xcode project to build the complete app.
