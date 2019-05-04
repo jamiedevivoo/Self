@@ -8,14 +8,14 @@
 ![Tweet](https://img.shields.io/twitter/url/https/github.com%2Fjamiedevivoo%2FSelf.svg)
 
 # The Self App - IOS
-Quick jump: : [Screenshots](#screenshots) -
+[Screenshots](#screenshots) -
 [Included](#whats-included) - 
 [Requirements](#requirements) - 
-[Quick Start](#quick-start)
-[Contributing](#support-contributing)
-[License](#license)
-[Acknowledgement](#authors-acknowledgement)
-[Project Status](#project-status)
+[Quick Start](#quick-start) -
+[Contributing](#support--contributing) -
+[License](#license) -
+[Acknowledgement](#authors--acknowledgement) -
+[Status](#project-status)
 
 Self - Your Emotional Companion. Git Repo for version control and group collaboration.
 
