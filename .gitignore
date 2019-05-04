@@ -46,3 +46,4 @@ Thumbs.db
 /Cloud/functions/lib
 # Reinstall these using npm 
 
+*.xcuserstate
