@@ -1,8 +1,8 @@
 ![Issues](https://img.shields.io/github/issues/jamiedevivoo/Self.svg)
 ![Forks](https://img.shields.io/github/forks/jamiedevivoo/Self.svg)
 ![Stars](https://img.shields.io/github/stars/jamiedevivoo/Self.svg)
+![License](https://img.shields.io/github/license/jamiedevivoo/Self.svg) 
 ![Tweet](https://img.shields.io/twitter/url/https/github.com%2Fjamiedevivoo%2FSelf.svg)
-![License](https://img.shields.io/github/license/jamiedevivoo/Self.svg) - 
 [Included](#whats-included) - 
 [Requirements](#requirements) - 
 [Quick Start](#quick-start)
