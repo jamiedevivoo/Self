@@ -1,18 +1,19 @@
 # The Self App - IOS
 
-Some documentation and ongoing notes by the author.
+Some documentation and ongoing notes by the author during the development of this project.
 
 
-[Methodology](#programming-design--methodology)
-
+**[Methodology](#programming-design--methodology)**
+- **M-MC-VC-V**
+-  - Models
 
 ## Programming Design + Methodology
-This isn't neccesarily "the correct" methodology or even a real methodology, but it'll help explain how this app has been developed and how the project strucutred.
+This isn't neccesarily "the correct" methodology or even a real methodology, but it'll help explain how this app has been developed and how the project is strucutred.
 
 ### "M-MC-VC-V"
 
 #### - Models (M)
-**The Data**
+**The Data** /
 A Model is an object containing multiple types of data that, when combined, describe something more significant.
 
 **- Key points**
