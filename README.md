@@ -1,10 +1,11 @@
 ![Issues](https://img.shields.io/github/issues/jamiedevivoo/Self.svg)
 ![Forks](https://img.shields.io/github/forks/jamiedevivoo/Self.svg)
 ![Stars](https://img.shields.io/github/stars/jamiedevivoo/Self.svg)
+![Tweet](https://img.shields.io/twitter/url/https/github.com%2Fjamiedevivoo%2FSelf.svg)
 ![License](https://img.shields.io/github/license/jamiedevivoo/Self.svg) - 
 [Included](#whats-included) - 
 [Requirements](#requirements) - 
-[Quick Start](#quick-start) - 
+[Quick Start](#quick-start)
 
 # The Self App - IOS
 Self - Your Emotional Companion. Git Repo for version control and group collaboration.
@@ -56,8 +57,12 @@ $ pod install
 ## Support + Contributing
 Pull requests, feedback, advice are all are welcome.
 
-## Authors + acknowledgment
+
+## Authors + Acknowledgment
 This project was created, researched and developed by myself. Acknowledgement goes to Bournemouth University, Dorset Mind and The Conservation Volunteers for their guidance.
 
-## Project status
+## License
+All rights to publish and distribute this application are reserved.
+
+## Project Status
 Project is currently in development and not ready for release.
