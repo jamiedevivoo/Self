@@ -29,6 +29,7 @@ Log moods, gain insights, reflect on success and complete daily activities with 
 - Including: Pod file for installing required frameworks.
 - Cloud functions for deploying to Firebase
 - Including: Package file for installing required dependancies.
+- Notes documenting the technical aspects and decisions of the project. [View Here](https://github.com/jamiedevivoo/Self/tree/master/App/Notes.md)
 
 ## Requirements
 
