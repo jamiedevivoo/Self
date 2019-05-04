@@ -1,11 +1,9 @@
 struct FeedMessage {
-    var messageType: FeedMessageType
-    var greeting: String
-    var name: String
-    var messageText: String
-    var actions: [FeedMessageResponse]
+    var type: FeedMessageType
+    var text: String
+    var tags: [Tag]? = []
     
     enum FeedMessageType {
-        case time, insight, mood, urgent, other
+        case tutorial, account, dailyAction, insight, fun, mood, other
     }
 }

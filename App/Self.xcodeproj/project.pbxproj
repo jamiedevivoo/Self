@@ -54,13 +54,13 @@
 		7DF14B4D225F25A00090D299 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B4C225F25A00090D299 /* Tag.swift */; };
 		7DF14B51225F296C0090D299 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B50225F296C0090D299 /* Emotion.swift */; };
 		7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */; };
-		7DF14B59225F2D170090D299 /* FeedMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* FeedMessageResponse.swift */; };
+		7DF14B59225F2D170090D299 /* FeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* FeedResponse.swift */; };
 		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
 		7DFEF05B2263617C004F625F /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05A2263617C004F625F /* MessageStackView.swift */; };
 		7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */; };
-		A30EC35322564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift */; };
-		A30EC35522565BEF0092A4E2 /* Message-Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message-Feed-ChildViewController.swift */; };
+		A30EC35322564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */; };
+		A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */; };
 		A30F5415227C5D6800306AAA /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5414227C5D6800306AAA /* profile.json */; };
 		A30F5417227C5D8400306AAA /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5416227C5D8400306AAA /* heart.json */; };
 		A30F5419227C608200306AAA /* goal.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5418227C608200306AAA /* goal.json */; };
@@ -151,13 +151,13 @@
 		7DF14B4C225F25A00090D299 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7DF14B50225F296C0090D299 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsNotifications.swift; sourceTree = "<group>"; };
-		7DF14B58225F2D170090D299 /* FeedMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMessageResponse.swift; sourceTree = "<group>"; };
+		7DF14B58225F2D170090D299 /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
 		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7DFEF05A2263617C004F625F /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
 		7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponsesStack.swift; sourceTree = "<group>"; };
-		A30EC35222564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList-Feed-ChildViewController.swift"; sourceTree = "<group>"; };
-		A30EC35422565BEF0092A4E2 /* Message-Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message-Feed-ChildViewController.swift"; sourceTree = "<group>"; };
+		A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList_Feed-ChildViewController.swift"; sourceTree = "<group>"; };
+		A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message_Feed-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30F5414227C5D6800306AAA /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
 		A30F5416227C5D8400306AAA /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
 		A30F5418227C608200306AAA /* goal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = goal.json; sourceTree = "<group>"; };
@@ -395,7 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				A3CF9515224E9C8900D0EC31 /* FeedMessage.swift */,
-				7DF14B58225F2D170090D299 /* FeedMessageResponse.swift */,
+				7DF14B58225F2D170090D299 /* FeedResponse.swift */,
 			);
 			name = FEED;
 			sourceTree = "<group>";
@@ -458,8 +458,8 @@
 			isa = PBXGroup;
 			children = (
 				A33409AC224570BC004CBB2A /* Feed-ViewController.swift */,
-				A30EC35422565BEF0092A4E2 /* Message-Feed-ChildViewController.swift */,
-				A30EC35222564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift */,
+				A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */,
+				A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */,
 			);
 			name = FEED;
 			sourceTree = "<group>";
@@ -760,7 +760,7 @@
 				7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */,
 				A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */,
 				7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */,
-				7DF14B59225F2D170090D299 /* FeedMessageResponse.swift in Sources */,
+				7DF14B59225F2D170090D299 /* FeedResponse.swift in Sources */,
 				A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */,
@@ -776,7 +776,7 @@
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
 				7DD6CC0E2266B97D00F47E63 /* Buttons.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
-				A30EC35522565BEF0092A4E2 /* Message-Feed-ChildViewController.swift in Sources */,
+				A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */,
 				A3683567226E0B0D005C8600 /* PageIndicator.swift in Sources */,
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				7DF14B47225F24870090D299 /* MoodManager.swift in Sources */,
@@ -784,7 +784,7 @@
 				7DD6CC1222672E1B00F47E63 /* Loading-Protocol.swift in Sources */,
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
 				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,
-				A30EC35322564FC60092A4E2 /* ActionList-Feed-ChildViewController.swift in Sources */,
+				A30EC35322564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift in Sources */,
 				7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,
 				7DD6CC1622673DA700F47E63 /* DailyActionSelectorViewController.swift in Sources */,
