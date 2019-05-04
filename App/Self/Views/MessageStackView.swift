@@ -7,7 +7,7 @@ class MessageStackView: UIStackView {
     lazy var messageTextLabel = UILabel.messageText
     var messageResponseStack: MessageResponsesStack
 
-    init(frame: CGRect, message: (message: String, responses: [FeedResponse])) {
+    init(frame: CGRect, message: (message: String, responses: [Feed.Response])) {
         self.messageResponseStack = MessageResponsesStack(frame: CGRect.zero, messageResponses: message.responses)
         super.init(frame: frame)
         setupView(withMessage: message.message)
