@@ -73,6 +73,6 @@ node_modules/
 # Packages and Libraries #
 ##########################
 
-/Cloud/functions/node_modules
-/Cloud/functions/lib
+functions/node_modules/
+functions/lib/
 # Reinstall these using npm 

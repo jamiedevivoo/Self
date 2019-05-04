@@ -16,5 +16,5 @@ xcuserdata/
 # Packages and Libraries #
 ##########################
 
-/App/Pods
+Pods/
 # Reinstall these using cocoapods (for Xcode project) and 
