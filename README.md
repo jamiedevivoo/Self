@@ -2,16 +2,22 @@
 ![Forks](https://img.shields.io/github/forks/jamiedevivoo/Self.svg)
 ![Stars](https://img.shields.io/github/stars/jamiedevivoo/Self.svg)
 ![License](https://img.shields.io/github/license/jamiedevivoo/Self.svg) 
+![IOS](https://img.shields.io/badge/IOS-12-brightgreen.svg)
+![Swift](https://img.shields.io/badge/Swift-5-brightgreen.svg)
+![Xcode](https://img.shields.io/badge/Xcode-10-brightgreen.svg)
 ![Tweet](https://img.shields.io/twitter/url/https/github.com%2Fjamiedevivoo%2FSelf.svg)
+
+# The Self App - IOS
+[Screenshots](#screenshots) -
 [Included](#whats-included) - 
 [Requirements](#requirements) - 
 [Quick Start](#quick-start)
 
-# The Self App - IOS
 Self - Your Emotional Companion. Git Repo for version control and group collaboration.
 
 Log moods, gain insights, reflect on success and complete daily activities with a community of people focusing on improving their wellbeing and themselves.
 
+##### Screenshots
 ![Screenshots](Screenshots/screenshots.png?raw=true "Screenshots")
 
 ## What's Included
@@ -39,11 +45,13 @@ Log moods, gain insights, reflect on success and complete daily activities with 
 
 ## Quick Start
 
-### The Swift Xcode Project
+### Compiling The Swift Xcode Project
 - Download the project from [GitHub](https://github.com/jamiedevivoo/Self/)
 - Unpackage and move the project to an appropriate location.
-- Open Terminal and navigate to the folder. 
-- e.g. ```$ cd /Users/Jamie/Desktop/Self ```
+- Open Terminal and navigate to the *App* folder. 
+```bash
+$ cd /Users/[username]/Desktop/Self/App 
+```
 - Run pod install to install the correct versions and dependencies listed in the included podfile. 
 ```bash
 $ pod install 
@@ -54,15 +62,23 @@ $ pod install
 - Confirm there are no compile errors
 - Select a device (or simulator) and run the project *'Product > Run'* (⌘+R)
 
+### Deploying Firebase Cloud Functions
+- Download the project from [GitHub](https://github.com/jamiedevivoo/Self/)
+- Unpackage and move the project to an appropriate location.
+- Open Terminal and navigate to the *Cloud* folder. 
+```bash
+$ cd /Users/[username]/Desktop/Self/Cloud 
+```
+- Further instructions coming soon...
+
 ## Support + Contributing
 Pull requests, feedback, advice are all are welcome.
-
 
 ## Authors + Acknowledgment
 This project was created, researched and developed by myself. Acknowledgement goes to Bournemouth University, Dorset Mind and The Conservation Volunteers for their guidance.
 
 ## License
-All rights to publish and distribute this application are reserved.
+All rights to publish and distribute this application are reserved. Others may download the project to study and/or contribute to the original, however they may not republish the application in part or in it's entirety without permission.
 
 ## Project Status
 Project is currently in development and not ready for release.
