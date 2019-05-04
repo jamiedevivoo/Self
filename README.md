@@ -8,10 +8,14 @@
 ![Tweet](https://img.shields.io/twitter/url/https/github.com%2Fjamiedevivoo%2FSelf.svg)
 
 # The Self App - IOS
-[Screenshots](#screenshots) -
+Quick jump: : [Screenshots](#screenshots) -
 [Included](#whats-included) - 
 [Requirements](#requirements) - 
 [Quick Start](#quick-start)
+[Contributing](#support-contributing)
+[License](#license)
+[Acknowledgement](#authors-acknowledgement)
+[Project Status](#project-status)
 
 Self - Your Emotional Companion. Git Repo for version control and group collaboration.
 
@@ -29,14 +33,14 @@ Log moods, gain insights, reflect on success and complete daily activities with 
 ## Requirements
 
 ### To build the project
-- The included Swift file (excluding "Cloud" folder)
+- The included "App" folder
 - MacOS 10.14.3+
 - Xcode 10.0
 - IOS Device with as least Software Version 12.0
 - The project is built in Swift 5
 - CocoaPods 1.5.3 - Guides available [here](https://cocoapods.org/)
 
-### Additionally, to recreate the project database
+### Additionally, to deploy cloud functions for the project
 - The included "Cloud" folder
 - Firebase account
 - Cloud Functions
@@ -74,11 +78,11 @@ $ cd /Users/[username]/Desktop/Self/Cloud
 ## Support + Contributing
 Pull requests, feedback, advice are all are welcome.
 
-## Authors + Acknowledgment
-This project was created, researched and developed by myself. Acknowledgement goes to Bournemouth University, Dorset Mind and The Conservation Volunteers for their guidance.
-
 ## License
 All rights to publish and distribute this application are reserved. Others may download the project to study and/or contribute to the original, however they may not republish the application in part or in it's entirety without permission.
+
+## Authors + Acknowledgment
+This project was created, researched and developed by myself. Acknowledgement goes to Bournemouth University, Dorset Mind and The Conservation Volunteers for their guidance.
 
 ## Project Status
 Project is currently in development and not ready for release.
