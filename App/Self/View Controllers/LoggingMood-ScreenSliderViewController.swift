@@ -8,8 +8,8 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
         var arousalRating: Double?
         var valenceRating: Double?
     
-        var wildcard: Wildcard?
-        var emotion: Emotion?
+        var wildcard: Mood.Wildcard?
+        var emotion: Mood.Emotion?
         var tags = [Tag]()
     
     init() {

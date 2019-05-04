@@ -20,7 +20,7 @@ class HighlightsViewController: UIViewController {
         return collectionView
         }()
     
-    var highlightsData = [MoodLog]()
+    var highlightsData = [Mood.Log]()
     
 }
 
@@ -39,7 +39,7 @@ extension HighlightsViewController {
             for eachHighlight in allHighlights.documents {
                 var highlightData = eachHighlight.data()
                 highlightData["uid"] = eachHighlight.documentID
-                let highlight = MoodLog(highlightData)
+                let highlight = Mood.Log(highlightData)
                 print(highlight as AnyObject)
                 self.highlightsData.append(highlight)
                 print("HGIHLIGHT LOADED")

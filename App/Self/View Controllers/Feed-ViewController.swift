@@ -29,7 +29,7 @@ extension FeedViewController {
                 var documentData = document.data()
                 documentData["uid"] = document.documentID
                 print(documentData as AnyObject)
-                print(MoodLog(documentData).dictionary as AnyObject)
+                print(Mood.Log(documentData).dictionary as AnyObject)
             }
         }
     }

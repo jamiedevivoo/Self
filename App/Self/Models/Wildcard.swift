@@ -1,13 +1,15 @@
 import Firebase
 
-struct Wildcard {
-    var ref: DocumentReference
-    var question: String
-    var answer: String          = ""
-    var isComplete: Bool        = false
+extension Mood {
+    struct Wildcard {
+        var ref: DocumentReference
+        var question: String
+        var answer: String          = ""
+        var isComplete: Bool        = false
+    }
 }
 
-extension Wildcard {
+extension Mood.Wildcard {
     init(_ wildcardDictionary: [String:Any]) {
         self.ref        = (wildcardDictionary["wildcard_ref"] as! DocumentReference)
         self.question   = (wildcardDictionary["question"] as! String)
@@ -17,7 +19,7 @@ extension Wildcard {
 }
 
 // MARL: - Output / Describing the model
-extension Wildcard: DictionaryConvertable {
+extension Mood.Wildcard: DictionaryConvertable {
     var dictionary: [String: Any] {
         return [
             "wildcard_ref"  : ref as DocumentReference,

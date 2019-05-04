@@ -45,7 +45,7 @@ extension FeedManager {
     func generateMessage(
         forAccount account: Account,
         withHighlights highlights: [Highlight],
-        withMoods moods: [MoodLog],
+        withMoods moods: [Mood.Log],
         withInsight insightss: [Insight],
         withActions actionLogs: [SentimentLog],
         withSentimentLogs sentimentLogs: [ActionLog])

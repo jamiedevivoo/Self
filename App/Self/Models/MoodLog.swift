@@ -1,20 +1,21 @@
 import Firebase
 
-struct MoodLog {
-    var uid: String?
-    var headline: String?
-    var timestamp: Timestamp?
-    var note: String?
-    var arousalRating: Double?
-    var valenceRating: Double?
-    
-    var wildcard: Wildcard?
-    var emotion: Emotion?
-    var tags = [Tag]()
+extension Mood {
+    struct Log {
+        var uid: String?
+        var headline: String?
+        var timestamp: Timestamp?
+        var note: String?
+        var arousalRating: Double?
+        var valenceRating: Double?
+        
+        var wildcard: Wildcard?
+        var emotion: Emotion?
+        var tags = [Tag]()
+    }
 }
-
 // MARK: - Convenience Iniitialiser
-extension MoodLog {
+extension Mood.Log {
     init(_ moodDictionary: [String:Any]) {
         self.uid                = (moodDictionary["uid"] as! String)
         self.headline           = (moodDictionary["headline"] as! String)
@@ -22,7 +23,7 @@ extension MoodLog {
         self.note               = (moodDictionary["note"] as! String)
         self.arousalRating      = (moodDictionary["arousal_rating"] as! Double)
         self.valenceRating      = (moodDictionary["valence_rating"] as! Double)
-        self.wildcard           = Wildcard(moodDictionary["wildcard"] as! [String : Any])
+        self.wildcard           = Mood.Wildcard(moodDictionary["wildcard"] as! [String : Any])
         self.emotion            = EmotionManager.getEmotion(
                                     withValence: moodDictionary["valence_rating"] as! Double,
                                     withArousal: moodDictionary["arousal_rating"] as! Double)
@@ -35,7 +36,7 @@ extension MoodLog {
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
-extension MoodLog: DictionaryConvertable {
+extension Mood.Log: DictionaryConvertable {
     var dictionary: [String: Any] {
         var tagsArray = [[String:Any]]()
         for tag in tags {
