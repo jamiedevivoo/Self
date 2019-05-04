@@ -1,3 +1,8 @@
+#################
+#### GENERAL ####
+#################
+
+
 # Compiled source #
 ###################
 *.com
@@ -35,15 +40,3 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Packages and Libraries #
-####################
-
-/Pods
-# Reinstall these using cocoapods (for Xcode project) and 
-
-/Cloud/functions/node_modules
-/Cloud/functions/lib
-# Reinstall these using npm 
-
-*.xcuserstate

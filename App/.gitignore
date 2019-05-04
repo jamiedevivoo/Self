@@ -1,0 +1,20 @@
+###############
+#### xCode ####
+###############
+
+
+## User settings
+xcuserdata/
+
+# User State
+*.xcuserstate
+
+
+
+
+##########################
+# Packages and Libraries #
+##########################
+
+Pods/
+# Reinstall these using cocoapods (for Xcode project) and 
