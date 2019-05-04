@@ -22,7 +22,7 @@ Self - Your Emotional Companion. Git Repo for version control and group collabor
 Log moods, gain insights, reflect on success and complete daily activities with a community of people focusing on improving their wellbeing and themselves.
 
 ##### Screenshots
-![Screenshots](Screenshots/screenshots.png?raw=true "Screenshots")
+![Screenshots](https://github.com/jamiedevivoo/Self/blob/master/Screenshots/screenshots.png?raw=true "Screenshots")
 
 ## What's Included
 - The Xcode project to build the complete app.
@@ -32,7 +32,7 @@ Log moods, gain insights, reflect on success and complete daily activities with 
 
 ## Requirements
 
-### To build the project
+### - To build the project
 - The included "App" folder
 - MacOS 10.14.3+
 - Xcode 10.0
@@ -40,7 +40,7 @@ Log moods, gain insights, reflect on success and complete daily activities with 
 - The project is built in Swift 5
 - CocoaPods 1.5.3 - Guides available [here](https://cocoapods.org/)
 
-### Additionally, to deploy cloud functions for the project
+### - Additionally, to deploy cloud functions for the project
 - The included "Cloud" folder
 - Firebase account
 - Cloud Functions
@@ -49,7 +49,7 @@ Log moods, gain insights, reflect on success and complete daily activities with 
 
 ## Quick Start
 
-### Compiling The Swift Xcode Project
+### - Compiling The Swift Xcode Project
 - Download the project from [GitHub](https://github.com/jamiedevivoo/Self/)
 - Unpackage and move the project to an appropriate location.
 - Open Terminal and navigate to the *App* folder. 
@@ -65,8 +65,7 @@ $ pod install
 - Build the project *'Product > Build'* (⌘+B)
 - Confirm there are no compile errors
 - Select a device (or simulator) and run the project *'Product > Run'* (⌘+R)
-
-### Deploying Firebase Cloud Functions
+### - Deploying Firebase Cloud Functions
 - Download the project from [GitHub](https://github.com/jamiedevivoo/Self/)
 - Unpackage and move the project to an appropriate location.
 - Open Terminal and navigate to the *Cloud* folder. 
