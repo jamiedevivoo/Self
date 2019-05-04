@@ -1,10 +1,10 @@
 ![Issues](https://img.shields.io/github/issues/jamiedevivoo/Self.svg)
 ![Forks](https://img.shields.io/github/forks/jamiedevivoo/Self.svg)
 ![Stars](https://img.shields.io/github/stars/jamiedevivoo/Self.svg)
-![License](https://img.shields.io/github/license/jamiedevivoo/Self.svg)
-[Included](#whats-included)
-[Requirements](#requirements)
-[Quick Start](#quick-start)
+![License](https://img.shields.io/github/license/jamiedevivoo/Self.svg) - 
+[Included](#whats-included) - 
+[Requirements](#requirements) - 
+[Quick Start](#quick-start) - 
 
 # The Self App - IOS
 Self - Your Emotional Companion. Git Repo for version control and group collaboration.
