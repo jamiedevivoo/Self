@@ -21,7 +21,7 @@ class DailyActionSelectorViewController: ViewController {
             return collectionView
             }()
         
-        var actionsData = [ActionLog]()
+        var actionsData = [Action.Log]()
         
     }
     
@@ -39,7 +39,7 @@ class DailyActionSelectorViewController: ViewController {
                 for eachAction in allActions.documents {
                     var actionData = eachAction.data()
                     actionData["uid"] = eachAction.documentID
-                    let action = ActionLog(actionData)
+                    let action = Action.Log(actionData)
                     print(action as AnyObject)
                     self.actionsData.append(action)
                 }
