@@ -4,7 +4,7 @@ import SnapKit
 
 class HighlightsViewController: UIViewController {
     
-    lazy var highlightLabel = ScreenHeaderLabel(title: "Your Highlights 💪")
+    lazy var highlightLabel = HeaderLabel("Your Highlights 💪", type: .screen)
     
     lazy var highlightCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()
@@ -20,7 +20,7 @@ class HighlightsViewController: UIViewController {
         return collectionView
         }()
     
-    var highlightsData = [MoodLog]()
+    var highlightsData = [Mood.Log]()
     
 }
 
@@ -33,13 +33,21 @@ extension HighlightsViewController {
         setupChildViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+}
+
+extension HighlightsViewController {
     func addHighlights() {
         print("Loading Highlights")
         HighlightManager.getHighlights() { [unowned self] allHighlights in
             for eachHighlight in allHighlights.documents {
                 var highlightData = eachHighlight.data()
                 highlightData["uid"] = eachHighlight.documentID
-                let highlight = MoodLog(highlightData)
+                let highlight = Mood.Log(highlightData)
                 print(highlight as AnyObject)
                 self.highlightsData.append(highlight)
                 print("HGIHLIGHT LOADED")
@@ -77,6 +85,12 @@ extension HighlightsViewController: UICollectionViewDataSource, UICollectionView
 
 // MARK: - View Building
 extension HighlightsViewController: ViewBuilding {
+    
+    func setTabBarItem() {
+        navigationController?.title = "Highlights"
+        navigationController?.tabBarItem.image = UIImage(named: "highlight-glyph")
+    }
+    
     func addSubViews() {
         view.addSubview(highlightLabel)
         view.addSubview(highlightCollectionView)

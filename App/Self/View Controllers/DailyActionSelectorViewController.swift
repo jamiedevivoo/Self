@@ -3,9 +3,14 @@ import SnapKit
 import Firebase
 
 class DailyActionSelectorViewController: ViewController {
-        
+    
+        // Dependencies
+        var actionManager = Actions()
+        weak var delegate: ActionSelectorDelegate?
+    
         // MARK: - Views
-        lazy var actionsLabel = ScreenHeaderLabel(title: "Choose Today's Action")
+        lazy var headerLabel = HeaderLabel("Today's Challenges", type: .screen)
+        lazy var subHeaderLabel = HeaderLabel("Tap on the challenge you want to work on today.", type: .subheader)
         
         lazy var actionCollectionView: UICollectionView = { [unowned self] in
             let flowLayout = UICollectionViewFlowLayout()
@@ -19,9 +24,9 @@ class DailyActionSelectorViewController: ViewController {
             collectionView.backgroundColor = .clear
             collectionView.showsVerticalScrollIndicator = false
             return collectionView
-            }()
+        }()
         
-        var actionsData = [ActionLog]()
+    var actionsData: [Actions.Brief] = []
         
     }
     
@@ -29,26 +34,24 @@ class DailyActionSelectorViewController: ViewController {
     extension DailyActionSelectorViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
-            addSubViews()
             setupChildViews()
             addActions()
         }
         
         func addActions() {
-            ActionManager.getActions() { [unowned self] allActions in
-                for eachAction in allActions.documents {
-                    var actionData = eachAction.data()
-                    actionData["uid"] = eachAction.documentID
-                    let action = ActionLog(actionData)
-                    print(action as AnyObject)
-                    self.actionsData.append(action)
-                }
+            actionManager.getDailyActions() { actions in
+                self.actionsData = actions
                 self.actionCollectionView.reloadData()
             }
         }
     }
     
     extension DailyActionSelectorViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let action = actionsData[indexPath.row]
+            delegate?.actionBriefSelected(action: action)
+        }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(width: collectionView.frame.size.width, height: 180)
@@ -75,21 +78,22 @@ class DailyActionSelectorViewController: ViewController {
     
     // MARK: - View Building
     extension DailyActionSelectorViewController: ViewBuilding {
-        func addSubViews() {
-            
-            view.addSubview(actionsLabel)
-            view.addSubview(actionCollectionView)
-        }
-        
         func setupChildViews() {
-            actionsLabel.snp.makeConstraints { (make) in
-                make.top.equalToSuperview().offset(75)
+            
+            view.addSubview(headerLabel)
+            view.addSubview(subHeaderLabel)
+            view.addSubview(actionCollectionView)
+            
+            headerLabel.applyDefaultConstraints(usingVC: self)
+
+            subHeaderLabel.snp.makeConstraints { (make) in
+                make.top.equalTo(headerLabel.snp.bottom).offset(5)
                 make.left.equalToSuperview().offset(20)
                 make.right.equalToSuperview().inset(20)
                 make.height.lessThanOrEqualTo(50)
             }
             actionCollectionView.snp.makeConstraints { (make) in
-                make.top.equalTo(actionsLabel.snp.bottom).offset(20)
+                make.top.equalTo(subHeaderLabel.snp.bottom).offset(20)
                 make.right.left.equalToSuperview().inset(20)
                 make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             }

@@ -114,7 +114,7 @@ extension OnboardingScreenSliderViewController {
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
-            let accountUser = AccountUser(["name":name])
+            let accountUser = Account.User(["name":name])
             let account = Account(uid: registeredCredentials.user.uid, accountUser: accountUser)
             AccountManager.shared().updateAccount(modifiedAccount: account) {
             }

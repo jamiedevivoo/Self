@@ -8,11 +8,11 @@ class FeedViewController: UIViewController {
     
     lazy var actionListViewController = FeedActionListChildViewController(accountRef: self.accountRef)
     lazy var messageViewController = FeedMessageChildViewController(accountRef: self.accountRef)
-
 }
 
 // MARK: - Overrides
 extension FeedViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
@@ -29,14 +29,25 @@ extension FeedViewController {
                 var documentData = document.data()
                 documentData["uid"] = document.documentID
                 print(documentData as AnyObject)
-                print(MoodLog(documentData).dictionary as AnyObject)
+                print(Mood.Log(documentData).dictionary as AnyObject)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
 }
 
 // MARK: - View Building
 extension FeedViewController: ViewBuilding {
+    
+    func setTabBarItem() {
+        navigationController?.title = "Home"
+        navigationController?.tabBarItem.image = UIImage(named: "home-outline")
+        navigationController?.tabBarItem.selectedImage = UIImage(named: "home-dot")
+    }
     
     func addSubViews() {
         add(actionListViewController)

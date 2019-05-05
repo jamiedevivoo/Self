@@ -1,17 +1,20 @@
-struct ActionLog {
-    var uid: String,
-        dailyAction: Bool,
-        description: String,
-        timeRequired: Double?,
-        title: String,
-        tags: [Tag] = [Tag](),
-        completionCount: Int
+extension Actions {
+    struct Log {
+        var uid: String,
+            completed: Bool,
+            dailyAction: Bool,
+            description: String,
+            timeRequired: Double?,
+            title: String,
+            tags: [Tag] = [Tag](),
+            completionCount: Int
+    }
 }
-
 // MARK: - Convenience Iniitialiser
-extension ActionLog {
+extension Actions.Log {
     init(_ actionDictionary: [String:Any]) {
         self.uid                = (actionDictionary["uid"] as! String)
+        self.completed          = (actionDictionary["completed"] as! Bool)
         self.dailyAction        = (actionDictionary["daily_action"] as! Bool)
         self.title              = (actionDictionary["title"] as! String)
         self.description        = (actionDictionary["description"] as! String)
@@ -26,7 +29,7 @@ extension ActionLog {
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
-extension ActionLog: DictionaryConvertable {
+extension Actions.Log: DictionaryConvertable {
     var dictionary: [String: Any] {
         var tagsArray = [[String:Any]]()
         for tag in tags {

@@ -1,16 +1,19 @@
 import Firebase
 
-class Account {
+struct Account {
     let uid: String!
-    var user: AccountUser!
-    var settings: AccountSettings!
-    var flags: AccountFlags!
-    
+    var user: Account.User!
+    var settings: Account.Settings!
+    var flags: Account.Flags!
+}
+
+
+extension Account {
     init(
         uid: String,
-        accountUser: AccountUser,
-        accountSettings: AccountSettings    = AccountSettings(),
-        accountFlags: AccountFlags          = AccountFlags())
+        accountUser: Account.User,
+        accountSettings: Account.Settings    = Account.Settings(),
+        accountFlags: Account.Flags          = Account.Flags())
     {
         self.uid        = uid
         self.user       = accountUser
@@ -21,12 +24,12 @@ class Account {
 
 // MARK: - Convenience Initialisers
 extension Account {
-    convenience init(withSnapshot snapshot: DocumentSnapshot) {
+    init(withSnapshot snapshot: DocumentSnapshot) {
         self.init(
             uid:                snapshot.documentID,
-            accountUser:        AccountUser(snapshot.get("user")            as! [String:Any]),
-            accountSettings:    AccountSettings(snapshot.get("settings")    as! [String:Any]),
-            accountFlags:       AccountFlags(snapshot.get("flags")          as! [String:Any])
+            accountUser:        Account.User(snapshot.get("user")            as! [String:Any]),
+            accountSettings:    Account.Settings(snapshot.get("settings")    as! [String:Any]),
+            accountFlags:       Account.Flags(snapshot.get("flags")          as! [String:Any])
         )
     }
 }

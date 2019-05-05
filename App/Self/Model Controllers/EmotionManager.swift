@@ -2,12 +2,12 @@ import Firebase
 
 class EmotionManager {
     
-    static var allEmotions: [Emotion] = [
-        Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
-        Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
-        Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
-        Emotion.init(name: "Depression", adj: " ", valence: -0.8, arousal: -0.8),
-        Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
+    static var allEmotions: [Mood.Emotion] = [
+        Mood.Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
+        Mood.Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
+        Mood.Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
+        Mood.Emotion.init(name: "Depression", adj: " ", valence: -0.8, arousal: -0.8),
+        Mood.Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
     ]
     static let emotionsDBRef: CollectionReference = Firestore.firestore().collection("emotions")
     
@@ -19,15 +19,15 @@ class EmotionManager {
             }
             print(emotionCollection)
             for emotionDocument in emotionCollection.documents {
-                let emotion = Emotion(emotionDocument.data())
+                let emotion = Mood.Emotion(emotionDocument.data())
                 self.allEmotions.append(emotion)
             }
             completion()
         }
     }
         
-    static func getEmotion(withValence userValence: Double, withArousal userArousal: Double) -> Emotion {
-        var emotionAndIntensity = [Emotion:Double]()
+    static func getEmotion(withValence userValence: Double, withArousal userArousal: Double) -> Mood.Emotion {
+        var emotionAndIntensity = [Mood.Emotion:Double]()
         for emotion in allEmotions {
             let valenceDifference = abs(emotion.valence - userValence)
             let arousalDifference = abs(emotion.arousal - userArousal)

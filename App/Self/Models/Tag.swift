@@ -49,7 +49,7 @@ extension Tag: DictionaryConvertable {
     }
     var logTagDictionary: [String: Any] {
         return [
-            "tag_ref":      tagRef as! DocumentReference,
+            "tag_ref":      tagRef!,
             "title":        title as Any,
             "description":  description as Any,
             "category":     category.rawValue as Any
@@ -57,7 +57,7 @@ extension Tag: DictionaryConvertable {
     }
     var actionTagDictionary: [String: Any] {
         return [
-            "tag_ref":      tagRef as! DocumentReference,
+            "tag_ref":      tagRef!,
             "title":        title as Any,
             "description":  description as Any,
             "category":     category.rawValue as Any

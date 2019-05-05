@@ -1,0 +1,4 @@
+extension Highlight {
+    struct Log {
+    }
+}
