@@ -34,7 +34,8 @@ extension HighlightsViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setTabBarItem()
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
 }
