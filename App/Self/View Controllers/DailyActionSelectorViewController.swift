@@ -3,6 +3,8 @@ import SnapKit
 import Firebase
 
 class DailyActionSelectorViewController: ViewController {
+    
+        var actionManager = Actions()
         
         // MARK: - Views
         lazy var actionsLabel = ScreenHeaderLabel(title: "Choose Today's Action")
@@ -21,7 +23,7 @@ class DailyActionSelectorViewController: ViewController {
             return collectionView
             }()
         
-        var actionsData = [Action.Log]()
+        var actionsData = [Actions.Info]()
         
     }
     
@@ -35,14 +37,8 @@ class DailyActionSelectorViewController: ViewController {
         }
         
         func addActions() {
-            ActionManager.getActions() { [unowned self] allActions in
-                for eachAction in allActions.documents {
-                    var actionData = eachAction.data()
-                    actionData["uid"] = eachAction.documentID
-                    let action = Action.Log(actionData)
-                    print(action as AnyObject)
-                    self.actionsData.append(action)
-                }
+            actionManager.getDailyActions() { actions in
+                self.actionsData = actions
                 self.actionCollectionView.reloadData()
             }
         }

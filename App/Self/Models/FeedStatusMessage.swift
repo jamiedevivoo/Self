@@ -1,4 +1,4 @@
-extension Feed {
+extension Feed.Status {
     struct Message {
         var type: FeedMessageType
         var text: String

@@ -29,12 +29,14 @@
 		7D7758CF225D872F003CCD1F /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758CE225D872F003CCD1F /* FeedManager.swift */; };
 		7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D0225D8764003CCD1F /* HighlightManager.swift */; };
 		7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D2225D878A003CCD1F /* InsightManager.swift */; };
-		7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* ActionManager.swift */; };
+		7D7758D5225D87B0003CCD1F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* Actions.swift */; };
 		7D8E4321227E5B2000243139 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4320227E5B2000243139 /* Mood.swift */; };
 		7D8E4323227E5D0100243139 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4322227E5D0100243139 /* Feed.swift */; };
 		7D8E4325227E5EF300243139 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4324227E5EF300243139 /* Sentiment.swift */; };
-		7D8E4327227E600300243139 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4326227E600300243139 /* Action.swift */; };
 		7D8E4329227E62E700243139 /* HighlightLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4328227E62E700243139 /* HighlightLog.swift */; };
+		7D8E432B227E803600243139 /* FeedStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432A227E803600243139 /* FeedStatus.swift */; };
+		7D8E432D227E852D00243139 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432C227E852D00243139 /* ActionInfo.swift */; };
+		7D8E432F227E971900243139 /* ActionsUserLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432E227E971900243139 /* ActionsUserLogs.swift */; };
 		7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */; };
 		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
 		7DD6CBFE2266B50300F47E63 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBFD2266B50300F47E63 /* Help.swift */; };
@@ -59,7 +61,7 @@
 		7DF14B4D225F25A00090D299 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B4C225F25A00090D299 /* Tag.swift */; };
 		7DF14B51225F296C0090D299 /* MoodEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B50225F296C0090D299 /* MoodEmotion.swift */; };
 		7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */; };
-		7DF14B59225F2D170090D299 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* Response.swift */; };
+		7DF14B59225F2D170090D299 /* FeedStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* FeedStatusResponse.swift */; };
 		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
 		7DFEF05B2263617C004F625F /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05A2263617C004F625F /* MessageStackView.swift */; };
@@ -79,7 +81,7 @@
 		A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */; };
 		A33409A9224570B3004CBB2A /* Login-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A8224570B3004CBB2A /* Login-ViewController.swift */; };
 		A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AA224570B6004CBB2A /* HighlightsViewController.swift */; };
-		A33409AD224570BC004CBB2A /* Feed-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* Feed-ViewController.swift */; };
+		A33409AD224570BC004CBB2A /* Home-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* Home-ViewController.swift */; };
 		A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */; };
 		A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B1224570D2004CBB2A /* ActionsViewController.swift */; };
 		A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */; };
@@ -100,7 +102,7 @@
 		A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* Colours.swift */; };
 		A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950C224D7EEB00D0EC31 /* Highlight.swift */; };
 		A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9513224E714600D0EC31 /* MoodLog.swift */; };
-		A3CF9516224E9C8900D0EC31 /* FeedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9515224E9C8900D0EC31 /* FeedMessage.swift */; };
+		A3CF9516224E9C8900D0EC31 /* FeedStatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */; };
 		A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */; };
 		A3D75726225CEEFC00E87F67 /* SectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */; };
 		A3D7572C225D1F9C00E87F67 /* AccountUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7572B225D1F9C00E87F67 /* AccountUser.swift */; };
@@ -131,12 +133,14 @@
 		7D7758CE225D872F003CCD1F /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		7D7758D0225D8764003CCD1F /* HighlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
-		7D7758D4225D87B0003CCD1F /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
+		7D7758D4225D87B0003CCD1F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		7D8E4320227E5B2000243139 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		7D8E4322227E5D0100243139 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7D8E4324227E5EF300243139 /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
-		7D8E4326227E600300243139 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		7D8E4328227E62E700243139 /* HighlightLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightLog.swift; sourceTree = "<group>"; };
+		7D8E432A227E803600243139 /* FeedStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatus.swift; sourceTree = "<group>"; };
+		7D8E432C227E852D00243139 /* ActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionInfo.swift; sourceTree = "<group>"; };
+		7D8E432E227E971900243139 /* ActionsUserLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsUserLogs.swift; sourceTree = "<group>"; };
 		7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodWildcard.swift; sourceTree = "<group>"; };
 		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
 		7DD6CBFD2266B50300F47E63 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
@@ -161,7 +165,7 @@
 		7DF14B4C225F25A00090D299 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7DF14B50225F296C0090D299 /* MoodEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEmotion.swift; sourceTree = "<group>"; };
 		7DF14B54225F2B940090D299 /* AccountSettingsNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsNotifications.swift; sourceTree = "<group>"; };
-		7DF14B58225F2D170090D299 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		7DF14B58225F2D170090D299 /* FeedStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatusResponse.swift; sourceTree = "<group>"; };
 		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7DFEF05A2263617C004F625F /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
@@ -181,7 +185,7 @@
 		A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
 		A33409A8224570B3004CBB2A /* Login-ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Login-ViewController.swift"; sourceTree = "<group>"; };
 		A33409AA224570B6004CBB2A /* HighlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightsViewController.swift; sourceTree = "<group>"; };
-		A33409AC224570BC004CBB2A /* Feed-ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Feed-ViewController.swift"; sourceTree = "<group>"; };
+		A33409AC224570BC004CBB2A /* Home-ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home-ViewController.swift"; sourceTree = "<group>"; };
 		A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
 		A33409B1224570D2004CBB2A /* ActionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationController.swift; sourceTree = "<group>"; };
@@ -204,7 +208,7 @@
 		A3CF950A224D4B4600D0EC31 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		A3CF950C224D7EEB00D0EC31 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		A3CF9513224E714600D0EC31 /* MoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLog.swift; sourceTree = "<group>"; };
-		A3CF9515224E9C8900D0EC31 /* FeedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMessage.swift; sourceTree = "<group>"; };
+		A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatusMessage.swift; sourceTree = "<group>"; };
 		A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeaderLabel.swift; sourceTree = "<group>"; };
 		A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderLabel.swift; sourceTree = "<group>"; };
 		A3D7572B225D1F9C00E87F67 /* AccountUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUser.swift; sourceTree = "<group>"; };
@@ -348,7 +352,7 @@
 				A3B76AEF227D051F00282ECB /* COMMUNITY */,
 				A3B76AEE227D051600282ECB /* HIGHLIGHT */,
 				A3B76AED227D051100282ECB /* MOOD */,
-				A3B76AEC227D050900282ECB /* FEED */,
+				A3B76AEC227D050900282ECB /* HOME */,
 				A3B76AEB227D04F900282ECB /* ONBOARDING */,
 			);
 			path = "View Controllers";
@@ -381,8 +385,10 @@
 		A3B76AE0227D02EF00282ECB /* ACTION */ = {
 			isa = PBXGroup;
 			children = (
-				7D8E4326227E600300243139 /* Action.swift */,
+				7D7758D4225D87B0003CCD1F /* Actions.swift */,
+				7D8E432E227E971900243139 /* ActionsUserLogs.swift */,
 				A35EA85722456F9600592D88 /* ActionLog.swift */,
+				7D8E432C227E852D00243139 /* ActionInfo.swift */,
 			);
 			name = ACTION;
 			sourceTree = "<group>";
@@ -409,8 +415,9 @@
 			isa = PBXGroup;
 			children = (
 				7D8E4322227E5D0100243139 /* Feed.swift */,
-				A3CF9515224E9C8900D0EC31 /* FeedMessage.swift */,
-				7DF14B58225F2D170090D299 /* Response.swift */,
+				7D8E432A227E803600243139 /* FeedStatus.swift */,
+				A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */,
+				7DF14B58225F2D170090D299 /* FeedStatusResponse.swift */,
 			);
 			name = FEED;
 			sourceTree = "<group>";
@@ -469,14 +476,14 @@
 			name = ONBOARDING;
 			sourceTree = "<group>";
 		};
-		A3B76AEC227D050900282ECB /* FEED */ = {
+		A3B76AEC227D050900282ECB /* HOME */ = {
 			isa = PBXGroup;
 			children = (
-				A33409AC224570BC004CBB2A /* Feed-ViewController.swift */,
+				A33409AC224570BC004CBB2A /* Home-ViewController.swift */,
 				A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */,
 				A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */,
 			);
-			name = FEED;
+			name = HOME;
 			sourceTree = "<group>";
 		};
 		A3B76AED227D051100282ECB /* MOOD */ = {
@@ -558,7 +565,6 @@
 				7DD6CC032266B6C200F47E63 /* CommunityManager.swift */,
 				7D7758CE225D872F003CCD1F /* FeedManager.swift */,
 				7D7758D0225D8764003CCD1F /* HighlightManager.swift */,
-				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
 			);
 			path = "Model Controllers";
@@ -763,25 +769,27 @@
 				7DF14B5D225F36CD0090D299 /* Account.swift in Sources */,
 				7D10F5E5226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift in Sources */,
 				7DD6CC1D2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift in Sources */,
+				7D8E432F227E971900243139 /* ActionsUserLogs.swift in Sources */,
 				A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */,
 				7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */,
+				7D8E432B227E803600243139 /* FeedStatus.swift in Sources */,
 				A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */,
 				A33409902245701D004CBB2A /* LandingSlide-View.swift in Sources */,
 				A3D75726225CEEFC00E87F67 /* SectionHeaderLabel.swift in Sources */,
 				A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */,
 				7DD6CC0A2266B71500F47E63 /* FindCommunityViewController.swift in Sources */,
-				7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */,
+				7D7758D5225D87B0003CCD1F /* Actions.swift in Sources */,
 				7DD6CC002266B51D00F47E63 /* TagViewController.swift in Sources */,
 				7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */,
 				7D8E4321227E5B2000243139 /* Mood.swift in Sources */,
 				7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */,
 				A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */,
 				7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */,
-				7DF14B59225F2D170090D299 /* Response.swift in Sources */,
+				7DF14B59225F2D170090D299 /* FeedStatusResponse.swift in Sources */,
 				A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */,
-				A3CF9516224E9C8900D0EC31 /* FeedMessage.swift in Sources */,
+				A3CF9516224E9C8900D0EC31 /* FeedStatusMessage.swift in Sources */,
 				7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */,
 				7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */,
 				A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */,
@@ -789,7 +797,6 @@
 				A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */,
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
-				7D8E4327227E600300243139 /* Action.swift in Sources */,
 				7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
 				7DD6CC0E2266B97D00F47E63 /* Buttons.swift in Sources */,
@@ -816,13 +823,14 @@
 				A3683569226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift in Sources */,
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
 				7DD6CC062266B6CF00F47E63 /* Community.swift in Sources */,
+				7D8E432D227E852D00243139 /* ActionInfo.swift in Sources */,
 				7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */,
 				7DD6CC1B2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift in Sources */,
 				7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */,
 				7D6B7463226030C0006F9CD1 /* ScreenSliderViewController.swift in Sources */,
 				7DF14B51225F296C0090D299 /* MoodEmotion.swift in Sources */,
 				7DD6CC042266B6C200F47E63 /* CommunityManager.swift in Sources */,
-				A33409AD224570BC004CBB2A /* Feed-ViewController.swift in Sources */,
+				A33409AD224570BC004CBB2A /* Home-ViewController.swift in Sources */,
 				A368356B226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift in Sources */,
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
 				A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */,

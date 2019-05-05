@@ -7,6 +7,9 @@ class ActionsViewController: UIViewController {
     // MARK: - Views
     lazy var actionsLabel = ScreenHeaderLabel(title: "Your Actions 🙌")
     
+    var actionManager: Actions = Actions()
+    var actionManagerUser = Actions.UserLogs(account: AccountManager.shared().accountRef!)
+    
     lazy var actionButton: UIButton = {
         let button = UIButton.tagButton
         button.setTitle("Open Today's Challenge", for: .normal)
@@ -14,6 +17,8 @@ class ActionsViewController: UIViewController {
         button.action
         return button
     }()
+
+    var actionLogs: [Actions.Log] = []
   
 }
 
@@ -29,20 +34,15 @@ extension ActionsViewController {
 
 extension ActionsViewController {
     func configureActionView() {
-        ActionManager.getSelectedAction() { todaysActions in
-            if todaysActions.count > 0 {
-                guard let todaysAction = todaysActions.documents.first else { return}
-                print("Found an action for today")
-                if todaysAction.get("completed") as! Bool == false {
-                    print(todaysActions.documents.first?.data() as AnyObject)
-                } else {
-                    ActionManager.getIncompleteActions() { incompleteActions in
-                        print("Today's action was completed, displaying incomplete actions.")
-                        dump(incompleteActions.documents)
-                    }
-                }
-            } else {
+        actionManagerUser.getActiveActions() { actions in
+            guard let actions = actions, actions.count > 0 else {
                 print("No Selected Action For Today, pick one.")
+                return
+            }
+            
+            let action = actions.first
+            if action!.completed == true {
+                self.actionLogs = [action!]
             }
         }
     }
