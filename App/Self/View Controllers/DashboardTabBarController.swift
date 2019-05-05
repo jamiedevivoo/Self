@@ -55,14 +55,24 @@ extension DashboardTabBarController {
 
 // MARK: - Setup
 extension DashboardTabBarController {
+    
     func styleTabBar() {
+        tabBar.backgroundImage = UIImage()
         tabBar.clipsToBounds = true
+        tabBar.isTranslucent = true
         tabBar.layer.borderWidth = 0
-        tabBar.layer.borderColor = UIColor.app.background.primaryBackground().cgColor
-        tabBar.layer.backgroundColor = UIColor.app.background.primaryBackground().cgColor
-        tabBar.barTintColor =  UIColor.app.background.primaryBackground()
+        tabBar.layer.borderColor = UIColor.clear.cgColor
+        tabBar.backgroundColor = .clear
+        tabBar.layer.backgroundColor = UIColor.clear.cgColor
+        tabBar.barTintColor =  UIColor.clear
         tabBar.tintColor = UIColor.app.interactive.selectable.selected()
-        tabBar.unselectedItemTintColor = UIColor.app.interactive.selectable.unselected()
+        tabBar.unselectedItemTintColor = UIColor.app.interactive.selectable.unselected().withAlphaComponent(0.8)
+        
+        let frost = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
+        frost.frame = tabBar.bounds
+        frost.alpha = 0.02
+        
+        tabBar.insertSubview(frost, at: 0)
     }
 }
 

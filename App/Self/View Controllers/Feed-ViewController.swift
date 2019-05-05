@@ -33,6 +33,10 @@ extension FeedViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
 }
 
 // MARK: - View Building
@@ -41,6 +45,7 @@ extension FeedViewController: ViewBuilding {
     func setTabBarItem() {
         navigationController?.title = "Home"
         navigationController?.tabBarItem.image = UIImage(named: "home-outline")
+        navigationController?.tabBarItem.selectedImage = UIImage(named: "home-dot")
     }
     
     func addSubViews() {

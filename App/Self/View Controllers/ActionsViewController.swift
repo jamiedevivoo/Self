@@ -24,7 +24,6 @@ class ActionsViewController: UIViewController {
 extension ActionsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSubViews()
         setupChildViews()
         configureActionView()
     }
@@ -61,12 +60,11 @@ extension ActionsViewController: ViewBuilding {
         navigationController?.tabBarItem.badgeValue = ""
     }
     
-    func addSubViews() {
+    func setupChildViews() {
+        
         view.addSubview(actionsLabel)
         view.addSubview(actionButton)
-    }
-    
-    func setupChildViews() {
+        
         actionsLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)
