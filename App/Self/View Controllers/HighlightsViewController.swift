@@ -4,7 +4,7 @@ import SnapKit
 
 class HighlightsViewController: UIViewController {
     
-    lazy var highlightLabel = ScreenHeaderLabel(title: "Your Highlights 💪")
+    lazy var highlightLabel = HeaderLabel("Your Highlights 💪", type: .screen)
     
     lazy var highlightCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()

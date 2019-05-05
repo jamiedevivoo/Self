@@ -8,7 +8,7 @@ class ActionsViewController: UIViewController {
     var actionManager: Actions = Actions().self
 
     // MARK: - Views
-    lazy var actionsLabel = ScreenHeaderLabel(title: "Your Actions 🙌")
+    lazy var actionsLabel = HeaderLabel("Your Actions 🙌", type: .screen)
     var actionLogs: [Actions.Log] = []
     lazy var noActionsView = NoActionsView()
   
@@ -47,7 +47,15 @@ extension ActionsViewController {
 
 extension ActionsViewController {
     @objc func unlockAction() {
-        self.navigationController?.pushViewController(DailyActionSelectorViewController(), animated: true)
+        let actionSelectionViewController = DailyActionSelectorViewController()
+        actionSelectionViewController.delegate = self
+        self.navigationController?.pushViewController(actionSelectionViewController, animated: true)
+    }
+}
+
+extension ActionsViewController: ActionSelectorDelegate {
+    func actionBriefSelected(action: Actions.Brief) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
@@ -76,12 +84,6 @@ extension ActionsViewController: ViewBuilding {
     func setupChildViews() {
         
         view.addSubview(actionsLabel)
-        
-        actionsLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(75)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().inset(20)
-            make.height.lessThanOrEqualTo(50)
-        }
+        actionsLabel.applyDefaultConstraints(usingVC: self)
     }
 }

@@ -30,6 +30,7 @@
 		7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D0225D8764003CCD1F /* HighlightManager.swift */; };
 		7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D2225D878A003CCD1F /* InsightManager.swift */; };
 		7D7758D5225D87B0003CCD1F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* Actions.swift */; };
+		7D77E53E227F805900946FB7 /* ActionSelectorProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77E53D227F805900946FB7 /* ActionSelectorProtocolDelegate.swift */; };
 		7D8E4321227E5B2000243139 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4320227E5B2000243139 /* Mood.swift */; };
 		7D8E4323227E5D0100243139 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4322227E5D0100243139 /* Feed.swift */; };
 		7D8E4325227E5EF300243139 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4324227E5EF300243139 /* Sentiment.swift */; };
@@ -104,8 +105,7 @@
 		A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950C224D7EEB00D0EC31 /* Highlight.swift */; };
 		A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9513224E714600D0EC31 /* MoodLog.swift */; };
 		A3CF9516224E9C8900D0EC31 /* FeedStatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */; };
-		A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */; };
-		A3D75726225CEEFC00E87F67 /* SectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */; };
+		A3D75724225CD5A900E87F67 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75723225CD5A900E87F67 /* HeaderLabel.swift */; };
 		A3D7572C225D1F9C00E87F67 /* AccountUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7572B225D1F9C00E87F67 /* AccountUser.swift */; };
 		A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D75735225D4F1B00E87F67 /* ColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -135,6 +135,7 @@
 		7D7758D0225D8764003CCD1F /* HighlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
 		7D7758D4225D87B0003CCD1F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		7D77E53D227F805900946FB7 /* ActionSelectorProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSelectorProtocolDelegate.swift; sourceTree = "<group>"; };
 		7D8E4320227E5B2000243139 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		7D8E4322227E5D0100243139 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7D8E4324227E5EF300243139 /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
@@ -211,8 +212,7 @@
 		A3CF950C224D7EEB00D0EC31 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		A3CF9513224E714600D0EC31 /* MoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLog.swift; sourceTree = "<group>"; };
 		A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatusMessage.swift; sourceTree = "<group>"; };
-		A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeaderLabel.swift; sourceTree = "<group>"; };
-		A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderLabel.swift; sourceTree = "<group>"; };
+		A3D75723225CD5A900E87F67 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
 		A3D7572B225D1F9C00E87F67 /* AccountUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUser.swift; sourceTree = "<group>"; };
 		A3D75735225D4F1B00E87F67 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		A774790F0D0CC9D95855193F /* Pods-Self.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,14 +234,13 @@
 			isa = PBXGroup;
 			children = (
 				A3B76AEA227D043E00282ECB /* FEED */,
+				A3D75723225CD5A900E87F67 /* HeaderLabel.swift */,
 				7D47AC67225FD380004BF898 /* Button.swift */,
 				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
 				7DD6CC0D2266B97D00F47E63 /* Buttons.swift */,
 				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
 				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
 				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
-				A3D75723225CD5A900E87F67 /* ScreenHeaderLabel.swift */,
-				A3D75725225CEEFC00E87F67 /* SectionHeaderLabel.swift */,
 				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
 				A3683566226E0B0D005C8600 /* PageIndicator.swift */,
 				A334099422457023004CBB2A /* Loader.swift */,
@@ -262,6 +261,7 @@
 				A3683568226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift */,
 				7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */,
 				7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */,
+				7D77E53D227F805900946FB7 /* ActionSelectorProtocolDelegate.swift */,
 			);
 			path = "Protocols+Extensions";
 			sourceTree = "<group>";
@@ -765,7 +765,7 @@
 				7D7758CF225D872F003CCD1F /* FeedManager.swift in Sources */,
 				7D10F5DD226DCF760063CEB8 /* TextFieldWithLabel.swift in Sources */,
 				A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */,
-				A3D75724225CD5A900E87F67 /* ScreenHeaderLabel.swift in Sources */,
+				A3D75724225CD5A900E87F67 /* HeaderLabel.swift in Sources */,
 				7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */,
 				7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */,
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
@@ -778,13 +778,13 @@
 				7D8E432B227E803600243139 /* FeedStatus.swift in Sources */,
 				A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */,
 				A33409902245701D004CBB2A /* LandingSlide-View.swift in Sources */,
-				A3D75726225CEEFC00E87F67 /* SectionHeaderLabel.swift in Sources */,
 				A3CF950D224D7EEB00D0EC31 /* Highlight.swift in Sources */,
 				7DD6CC0A2266B71500F47E63 /* FindCommunityViewController.swift in Sources */,
 				7D7758D5225D87B0003CCD1F /* Actions.swift in Sources */,
 				7DD6CC002266B51D00F47E63 /* TagViewController.swift in Sources */,
 				7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */,
 				7D8E4321227E5B2000243139 /* Mood.swift in Sources */,
+				7D77E53E227F805900946FB7 /* ActionSelectorProtocolDelegate.swift in Sources */,
 				7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */,
 				A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */,
 				7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */,

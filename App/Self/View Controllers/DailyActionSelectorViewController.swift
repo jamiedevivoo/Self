@@ -4,10 +4,13 @@ import Firebase
 
 class DailyActionSelectorViewController: ViewController {
     
+        // Dependencies
         var actionManager = Actions()
-        
+        weak var delegate: ActionSelectorDelegate?
+    
         // MARK: - Views
-        lazy var actionsLabel = ScreenHeaderLabel(title: "Choose Today's Action")
+        lazy var headerLabel = HeaderLabel("Today's Challenges", type: .screen)
+        lazy var subHeaderLabel = HeaderLabel("Tap on the challenge you want to work on today.", type: .subheader)
         
         lazy var actionCollectionView: UICollectionView = { [unowned self] in
             let flowLayout = UICollectionViewFlowLayout()
@@ -21,9 +24,9 @@ class DailyActionSelectorViewController: ViewController {
             collectionView.backgroundColor = .clear
             collectionView.showsVerticalScrollIndicator = false
             return collectionView
-            }()
+        }()
         
-        var actionsData = [Actions.Brief]()
+    var actionsData: [Actions.Brief] = []
         
     }
     
@@ -46,7 +49,8 @@ class DailyActionSelectorViewController: ViewController {
     extension DailyActionSelectorViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            print("SELECTED");
+            let action = actionsData[indexPath]
+            delegate?.actionBriefSelected(action: action)
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -76,17 +80,20 @@ class DailyActionSelectorViewController: ViewController {
     extension DailyActionSelectorViewController: ViewBuilding {
         func setupChildViews() {
             
-            view.addSubview(actionsLabel)
+            view.addSubview(headerLabel)
+            view.addSubview(subHeaderLabel)
             view.addSubview(actionCollectionView)
             
-            actionsLabel.snp.makeConstraints { (make) in
-                make.top.equalToSuperview().offset(75)
+            headerLabel.applyDefaultConstraints(usingVC: self)
+
+            subHeaderLabel.snp.makeConstraints { (make) in
+                make.top.equalTo(headerLabel.snp.bottom).offset(5)
                 make.left.equalToSuperview().offset(20)
                 make.right.equalToSuperview().inset(20)
                 make.height.lessThanOrEqualTo(50)
             }
             actionCollectionView.snp.makeConstraints { (make) in
-                make.top.equalTo(actionsLabel.snp.bottom).offset(20)
+                make.top.equalTo(subHeaderLabel.snp.bottom).offset(20)
                 make.right.left.equalToSuperview().inset(20)
                 make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             }
