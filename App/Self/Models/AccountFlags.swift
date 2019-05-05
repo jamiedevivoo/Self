@@ -1,12 +1,15 @@
-struct AccountFlags {
-    var accountIsValidated: Bool    = false
-    var accountIsComplete: Bool     = false
-    var accountIsActive: Bool       = true
-    var tutorialIsActive: Bool      = true
+extension Account {
+    
+    struct Flags {
+        var accountIsValidated: Bool    = false
+        var accountIsComplete: Bool     = false
+        var accountIsActive: Bool       = true
+        var tutorialIsActive: Bool      = true
+    }
+    
 }
-
 // MARK: - Convenience Iniitialiser
-extension AccountFlags {
+extension Account.Flags {
     init(_ flagsDictionary: [String:Any]) {
         self.accountIsValidated = flagsDictionary["account_validated"]   as? Bool ?? accountIsValidated
         self.accountIsComplete  = flagsDictionary["account_complete"]  as? Bool ?? accountIsComplete
@@ -17,7 +20,7 @@ extension AccountFlags {
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
-extension AccountFlags: DictionaryConvertable {
+extension Account.Flags: DictionaryConvertable {
     var dictionary: [String: Any] {
         return [
             "account_active"    : accountIsActive,
