@@ -31,7 +31,6 @@ class DailyActionSelectorViewController: ViewController {
     extension DailyActionSelectorViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
-            addSubViews()
             setupChildViews()
             addActions()
         }
@@ -45,6 +44,10 @@ class DailyActionSelectorViewController: ViewController {
     }
     
     extension DailyActionSelectorViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            print("SELECTED");
+        }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(width: collectionView.frame.size.width, height: 180)
@@ -71,13 +74,11 @@ class DailyActionSelectorViewController: ViewController {
     
     // MARK: - View Building
     extension DailyActionSelectorViewController: ViewBuilding {
-        func addSubViews() {
+        func setupChildViews() {
             
             view.addSubview(actionsLabel)
             view.addSubview(actionCollectionView)
-        }
-        
-        func setupChildViews() {
+            
             actionsLabel.snp.makeConstraints { (make) in
                 make.top.equalToSuperview().offset(75)
                 make.left.equalToSuperview().offset(20)

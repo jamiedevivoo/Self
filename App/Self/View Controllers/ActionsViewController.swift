@@ -4,19 +4,13 @@ import Firebase
 
 class ActionsViewController: UIViewController {
     
+    // Dependencies
+    var actionManager: Actions = Actions().self
+
     // MARK: - Views
     lazy var actionsLabel = ScreenHeaderLabel(title: "Your Actions 🙌")
-    
-    var actionManager: Actions = Actions().self
-    
-    lazy var actionButton: UIButton = {
-        let button = UIButton.tagButton
-        button.setTitle("Open Today's Challenge", for: .normal)
-        button.addTarget(nil, action: #selector(ActionsViewController.unlockAction), for: .touchUpInside)
-        button.action
-        return button
-    }()
     var actionLogs: [Actions.Log] = []
+    lazy var noActionsView = NoActionsView()
   
 }
 
@@ -36,9 +30,9 @@ extension ActionsViewController {
 
 extension ActionsViewController {
     func configureActionView() {
-        actionManager.user(AccountManager.shared().accountRef!).getActiveActions { actions in
+        actionManager.user(AccountManager.shared().accountRef!).getIncompleteActions { actions in
             guard let actions = actions, actions.count > 0 else {
-                print("No Selected Action For Today, pick one.")
+                self.addNoChallengesView()
                 return
             }
 
@@ -50,11 +44,25 @@ extension ActionsViewController {
     }
 }
 
+
 extension ActionsViewController {
     @objc func unlockAction() {
         self.navigationController?.pushViewController(DailyActionSelectorViewController(), animated: true)
     }
 }
+
+
+extension ActionsViewController {
+    func addNoChallengesView() {
+        self.view.addSubview(self.noActionsView)
+        noActionsView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.greaterThanOrEqualTo(100)
+        }
+    }
+}
+
 
 // MARK: - View Building
 extension ActionsViewController: ViewBuilding {
@@ -68,18 +76,12 @@ extension ActionsViewController: ViewBuilding {
     func setupChildViews() {
         
         view.addSubview(actionsLabel)
-        view.addSubview(actionButton)
         
         actionsLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().inset(20)
             make.height.lessThanOrEqualTo(50)
-        }
-        actionButton.snp.makeConstraints { (make) in
-            make.top.equalTo(actionsLabel.snp.bottom).offset(20)
-            make.right.left.equalToSuperview().inset(20)
-            make.height.equalTo(50)
         }
     }
 }

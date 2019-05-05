@@ -23,36 +23,11 @@ extension Actions.User {
 }
 
 
-// Set Actions
-extension Actions.User {
-    func userCompletedDailyAction() {
-        
-    }
-}
-
-
 // Get Actions
 extension Actions.User {
-    func getActiveActions(completion: @escaping ([Actions.Log]?) -> ()) {
-        let todaysDate = Date()
-        userReference.whereField("added_timestamp", isGreaterThanOrEqualTo: todaysDate).getDocuments { querySnapshot, error in
-            guard let querySnapshot = querySnapshot, error == nil else {
-                print("Error Loading Actions: \(error!.localizedDescription)")
-                return
-            }
-            
-            var actions: [Actions.Log] = []
-            for document in querySnapshot.documents {
-                let action = self.constructActionLog(fromSnapshot: document)
-                actions.append(action)
-            }
-            completion(actions)
-        }
-    }
-    
-    func getIncompleteActions(completion: @escaping ([Actions.Log]) -> ()) {
+    func getIncompleteActions(completion: @escaping ([Actions.Log]?) -> ()) {
         userReference.whereField("completed", isEqualTo: false).getDocuments { querySnapshot, error in
-            guard let querySnapshot = querySnapshot, let _ = error  else {
+            guard let querySnapshot = querySnapshot, error == nil else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
                 return
             }

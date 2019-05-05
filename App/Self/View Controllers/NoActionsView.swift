@@ -5,13 +5,16 @@ class NoActionsView: UIView {
     
     lazy var message: UILabel = {
         let label = UILabel()
-        label.text = "No active chllenge for today"
+        label.numberOfLines = 0
+        label.text = "You've completed all your Challenges for today!"
         return label
     }()
-
+    
     lazy var button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Open todays challenge", for: .normal)
+        let button = UIButton.tagButton
+        button.setTitle("Unlock todays challenges", for: .normal)
+        button.addTarget(nil, action: #selector(ActionsViewController.unlockAction), for: .touchUpInside)
+        button.action
         return button
     }()
 
@@ -41,7 +44,7 @@ extension NoActionsView {
             make.center.equalToSuperview()
         }
         button.snp.makeConstraints { (make) in
-            make.top.equalTo(message.snp.bottom)
+            make.top.equalTo(message.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
     }
