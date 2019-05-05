@@ -49,7 +49,7 @@ class DailyActionSelectorViewController: ViewController {
     extension DailyActionSelectorViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let action = actionsData[indexPath]
+            let action = actionsData[indexPath.row]
             delegate?.actionBriefSelected(action: action)
         }
         
