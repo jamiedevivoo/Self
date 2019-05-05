@@ -1,5 +1,5 @@
 extension Actions {
-    struct Info {
+    struct Brief {
         var uid: String,
         dailyAction: Bool,
         description: String,
@@ -10,7 +10,7 @@ extension Actions {
     }
 }
 // MARK: - Convenience Iniitialiser
-extension Actions.Info {
+extension Actions.Brief {
     init(_ actionDictionary: [String:Any]) {
         self.uid                = (actionDictionary["uid"] as! String)
         self.dailyAction        = (actionDictionary["daily_action"] as! Bool)
@@ -27,7 +27,7 @@ extension Actions.Info {
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
-extension Actions.Info: DictionaryConvertable {
+extension Actions.Brief: DictionaryConvertable {
     var dictionary: [String: Any] {
         var tagsArray = [[String:Any]]()
         for tag in tags {

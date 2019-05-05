@@ -36,7 +36,7 @@
 		7D8E4329227E62E700243139 /* HighlightLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4328227E62E700243139 /* HighlightLog.swift */; };
 		7D8E432B227E803600243139 /* FeedStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432A227E803600243139 /* FeedStatus.swift */; };
 		7D8E432D227E852D00243139 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432C227E852D00243139 /* ActionInfo.swift */; };
-		7D8E432F227E971900243139 /* ActionsUserLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432E227E971900243139 /* ActionsUserLogs.swift */; };
+		7D8E432F227E971900243139 /* ActionsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432E227E971900243139 /* ActionsUser.swift */; };
 		7D8E4331227EF81200243139 /* NoActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4330227EF81200243139 /* NoActionsView.swift */; };
 		7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */; };
 		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
@@ -141,7 +141,7 @@
 		7D8E4328227E62E700243139 /* HighlightLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightLog.swift; sourceTree = "<group>"; };
 		7D8E432A227E803600243139 /* FeedStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatus.swift; sourceTree = "<group>"; };
 		7D8E432C227E852D00243139 /* ActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionInfo.swift; sourceTree = "<group>"; };
-		7D8E432E227E971900243139 /* ActionsUserLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsUserLogs.swift; sourceTree = "<group>"; };
+		7D8E432E227E971900243139 /* ActionsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsUser.swift; sourceTree = "<group>"; };
 		7D8E4330227EF81200243139 /* NoActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActionsView.swift; sourceTree = "<group>"; };
 		7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodWildcard.swift; sourceTree = "<group>"; };
 		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
@@ -388,7 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				7D7758D4225D87B0003CCD1F /* Actions.swift */,
-				7D8E432E227E971900243139 /* ActionsUserLogs.swift */,
+				7D8E432E227E971900243139 /* ActionsUser.swift */,
 				A35EA85722456F9600592D88 /* ActionLog.swift */,
 				7D8E432C227E852D00243139 /* ActionInfo.swift */,
 			);
@@ -772,7 +772,7 @@
 				7DF14B5D225F36CD0090D299 /* Account.swift in Sources */,
 				7D10F5E5226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift in Sources */,
 				7DD6CC1D2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift in Sources */,
-				7D8E432F227E971900243139 /* ActionsUserLogs.swift in Sources */,
+				7D8E432F227E971900243139 /* ActionsUser.swift in Sources */,
 				A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */,
 				7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */,
 				7D8E432B227E803600243139 /* FeedStatus.swift in Sources */,

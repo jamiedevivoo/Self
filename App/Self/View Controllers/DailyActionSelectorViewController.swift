@@ -23,7 +23,7 @@ class DailyActionSelectorViewController: ViewController {
             return collectionView
             }()
         
-        var actionsData = [Actions.Info]()
+        var actionsData = [Actions.Brief]()
         
     }
     
