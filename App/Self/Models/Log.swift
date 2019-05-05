@@ -1,0 +1,5 @@
+extension Sentiment {
+    struct Log {
+        
+    }
+}

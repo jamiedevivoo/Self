@@ -47,7 +47,7 @@ extension FeedManager {
         withHighlights highlights: [Highlight],
         withMoods moods: [Mood.Log],
         withInsight insightss: [Insight],
-        withActions actionLogs: [SentimentLog],
+        withActions actionLogs: [Sentiment.Log],
         withSentimentLogs sentimentLogs: [ActionLog])
     -> (message: Feed.Message, responses: [Feed.Response]) {
         
