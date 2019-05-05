@@ -1,11 +1,14 @@
 import Firebase
 
-class Account {
+struct Account {
     let uid: String!
     var user: Account.User!
     var settings: Account.Settings!
     var flags: Account.Flags!
-    
+}
+
+
+extension Account {
     init(
         uid: String,
         accountUser: Account.User,
@@ -21,7 +24,7 @@ class Account {
 
 // MARK: - Convenience Initialisers
 extension Account {
-    convenience init(withSnapshot snapshot: DocumentSnapshot) {
+    init(withSnapshot snapshot: DocumentSnapshot) {
         self.init(
             uid:                snapshot.documentID,
             accountUser:        Account.User(snapshot.get("user")            as! [String:Any]),
