@@ -5,10 +5,29 @@ class Actions {
 }
 
 
-// Model Initialisers
+// Helpers
 extension Actions {
-
     
+    func user(_ account: Account) -> Actions.UserLogs {
+        return UserLogs(account: account).self
+    }
+
+}
+
+
+// Build actions
+extension Actions {
+    func createActionFromSnapshot(documentSnapshot actionSnapshot: DocumentSnapshot) -> Actions.Info {
+        var actionData = actionSnapshot.data()!
+        actionData["uid"] = actionSnapshot.documentID
+        let action = Actions.Info(actionData)
+        return action
+    }
+}
+
+
+// Get Action Data from Database
+extension Actions {
     func getAllActions(completion: @escaping ([Actions.Info]) -> ()) {
         ActionsFirebaseReference.getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, let _ = error  else {
@@ -18,9 +37,7 @@ extension Actions {
             
             var actions: [Actions.Info] = []
             for document in querySnapshot.documents {
-                var actionData = document.data()
-                actionData["uid"] = document.documentID
-                let action = Actions.Info(actionData)
+                let action = self.createActionFromSnapshot(documentSnapshot: document)
                 actions.append(action)
             }
             completion(actions)
@@ -36,9 +53,7 @@ extension Actions {
             
             var actions: [Actions.Info] = []
             for document in querySnapshot.documents {
-                var actionData = document.data()
-                actionData["uid"] = document.documentID
-                let action = Actions.Info(actionData)
+                let action = self.createActionFromSnapshot(documentSnapshot: document)
                 actions.append(action)
             }
             completion(actions)

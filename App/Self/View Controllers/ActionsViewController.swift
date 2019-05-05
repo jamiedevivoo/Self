@@ -7,8 +7,7 @@ class ActionsViewController: UIViewController {
     // MARK: - Views
     lazy var actionsLabel = ScreenHeaderLabel(title: "Your Actions 🙌")
     
-    var actionManager: Actions = Actions()
-    var actionManagerUser = Actions.UserLogs(account: AccountManager.shared().accountRef!)
+    var actionManager: Actions = Actions().self
     
     lazy var actionButton: UIButton = {
         let button = UIButton.tagButton
@@ -17,7 +16,6 @@ class ActionsViewController: UIViewController {
         button.action
         return button
     }()
-
     var actionLogs: [Actions.Log] = []
   
 }
@@ -34,12 +32,12 @@ extension ActionsViewController {
 
 extension ActionsViewController {
     func configureActionView() {
-        actionManagerUser.getActiveActions() { actions in
+        actionManager.user(AccountManager.shared().accountRef!).getActiveActions { actions in
             guard let actions = actions, actions.count > 0 else {
                 print("No Selected Action For Today, pick one.")
                 return
             }
-            
+
             let action = actions.first
             if action!.completed == true {
                 self.actionLogs = [action!]
