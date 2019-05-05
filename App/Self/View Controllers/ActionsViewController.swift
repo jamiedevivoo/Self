@@ -55,8 +55,8 @@ extension ActionsViewController {
 
 extension ActionsViewController: ActionSelectorDelegate {
     func actionBriefSelected(action: Actions.Brief) {
-        print(action)
         self.navigationController?.popToRootViewController(animated: true)
+        noActionsView.removeFromSuperview()
     }
 }
 
