@@ -8,11 +8,11 @@ class FeedViewController: UIViewController {
     
     lazy var actionListViewController = FeedActionListChildViewController(accountRef: self.accountRef)
     lazy var messageViewController = FeedMessageChildViewController(accountRef: self.accountRef)
-
 }
 
 // MARK: - Overrides
 extension FeedViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
@@ -37,6 +37,11 @@ extension FeedViewController {
 
 // MARK: - View Building
 extension FeedViewController: ViewBuilding {
+    
+    func setTabBarItem() {
+        navigationController?.title = "Home"
+        navigationController?.tabBarItem.image = UIImage(named: "home-outline")
+    }
     
     func addSubViews() {
         add(actionListViewController)

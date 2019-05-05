@@ -33,6 +33,13 @@ extension HighlightsViewController {
         setupChildViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setTabBarItem()
+    }
+    
+}
+
+extension HighlightsViewController {
     func addHighlights() {
         print("Loading Highlights")
         HighlightManager.getHighlights() { [unowned self] allHighlights in
@@ -77,6 +84,12 @@ extension HighlightsViewController: UICollectionViewDataSource, UICollectionView
 
 // MARK: - View Building
 extension HighlightsViewController: ViewBuilding {
+    
+    func setTabBarItem() {
+        navigationController?.title = "Highlights"
+        navigationController?.tabBarItem.image = UIImage(named: "highlight-glyph")
+    }
+    
     func addSubViews() {
         view.addSubview(highlightLabel)
         view.addSubview(highlightCollectionView)

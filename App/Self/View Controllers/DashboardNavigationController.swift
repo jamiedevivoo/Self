@@ -31,6 +31,7 @@ extension DashboardNavigationController {
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
+        tabBarItem.badgeColor = UIColor.app.button.primary.fill()
     }
 }
 

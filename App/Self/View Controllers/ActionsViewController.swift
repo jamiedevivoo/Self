@@ -54,6 +54,13 @@ extension ActionsViewController {
 
 // MARK: - View Building
 extension ActionsViewController: ViewBuilding {
+    
+    func setTabBarItem() {
+        navigationController?.title = "Actions"
+        navigationController?.tabBarItem.image = UIImage(named: "challenge-glyph")
+        navigationController?.tabBarItem.badgeValue = ""
+    }
+    
     func addSubViews() {
         view.addSubview(actionsLabel)
         view.addSubview(actionButton)

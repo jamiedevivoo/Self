@@ -30,6 +30,29 @@ extension DashboardTabBarController {
     }
 }
 
+// MARK: - Add Items
+extension DashboardTabBarController {
+    func setUpTabBarViewControllers() {
+        let homeViewController = FeedViewController()
+        let homeNavigationController = DashboardNavigationController(rootViewController: homeViewController)
+        homeViewController.setTabBarItem()
+        
+        let highlightsViewController = HighlightsViewController()
+        let highlightsNavigationController = DashboardNavigationController(rootViewController: highlightsViewController)
+        highlightsViewController.setTabBarItem()
+        
+        let actionsViewController = ActionsViewController()
+        let actionsNavigationController = DashboardNavigationController(rootViewController: actionsViewController)
+        actionsViewController.setTabBarItem()
+        
+        self.viewControllers = [
+            highlightsNavigationController,
+            homeNavigationController,
+            actionsNavigationController]
+        self.selectedIndex = 1
+    }
+}
+
 // MARK: - Setup
 extension DashboardTabBarController {
     func styleTabBar() {
@@ -40,26 +63,6 @@ extension DashboardTabBarController {
         tabBar.barTintColor =  UIColor.app.background.primaryBackground()
         tabBar.tintColor = UIColor.app.interactive.selectable.selected()
         tabBar.unselectedItemTintColor = UIColor.app.interactive.selectable.unselected()
-    }
-    
-    func setUpTabBarViewControllers() {
-        let homeNavigationController = DashboardNavigationController(rootViewController: FeedViewController())
-        homeNavigationController.title = "Home"
-        homeNavigationController.tabBarItem?.image = UIImage(named: "home")
-        homeNavigationController.tabBarItem?.badgeColor = UIColor.red
-        
-        let highlightsNavigationController = DashboardNavigationController(rootViewController: HighlightsViewController())
-        highlightsNavigationController.title = "Highlights"
-        highlightsNavigationController.tabBarItem?.image = UIImage(named: "for_you")
-        highlightsNavigationController.tabBarItem?.badgeColor = UIColor.red
-
-        let actionsNavigationController = DashboardNavigationController(rootViewController: ActionsViewController())
-        actionsNavigationController.title = "Actions"
-        actionsNavigationController.tabBarItem?.image = UIImage(named: "globe")
-        actionsNavigationController.tabBarItem.badgeValue = ""
-
-        self.viewControllers = [highlightsNavigationController, homeNavigationController, actionsNavigationController]
-        self.selectedIndex = 1
     }
 }
 

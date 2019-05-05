@@ -82,7 +82,7 @@
 		A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */; };
 		A33409A9224570B3004CBB2A /* Login-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A8224570B3004CBB2A /* Login-ViewController.swift */; };
 		A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AA224570B6004CBB2A /* HighlightsViewController.swift */; };
-		A33409AD224570BC004CBB2A /* Home-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* Home-ViewController.swift */; };
+		A33409AD224570BC004CBB2A /* Feed-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AC224570BC004CBB2A /* Feed-ViewController.swift */; };
 		A33409AF224570BF004CBB2A /* CommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */; };
 		A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B1224570D2004CBB2A /* ActionsViewController.swift */; };
 		A33409B6224570DA004CBB2A /* DashboardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */; };
@@ -187,7 +187,7 @@
 		A33409A1224570A3004CBB2A /* AppSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
 		A33409A8224570B3004CBB2A /* Login-ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Login-ViewController.swift"; sourceTree = "<group>"; };
 		A33409AA224570B6004CBB2A /* HighlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightsViewController.swift; sourceTree = "<group>"; };
-		A33409AC224570BC004CBB2A /* Home-ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home-ViewController.swift"; sourceTree = "<group>"; };
+		A33409AC224570BC004CBB2A /* Feed-ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Feed-ViewController.swift"; sourceTree = "<group>"; };
 		A33409AE224570BF004CBB2A /* CommunitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesViewController.swift; sourceTree = "<group>"; };
 		A33409B1224570D2004CBB2A /* ActionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardNavigationController.swift; sourceTree = "<group>"; };
@@ -481,7 +481,7 @@
 		A3B76AEC227D050900282ECB /* HOME */ = {
 			isa = PBXGroup;
 			children = (
-				A33409AC224570BC004CBB2A /* Home-ViewController.swift */,
+				A33409AC224570BC004CBB2A /* Feed-ViewController.swift */,
 				A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */,
 				A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */,
 			);
@@ -834,7 +834,7 @@
 				7D6B7463226030C0006F9CD1 /* ScreenSliderViewController.swift in Sources */,
 				7DF14B51225F296C0090D299 /* MoodEmotion.swift in Sources */,
 				7DD6CC042266B6C200F47E63 /* CommunityManager.swift in Sources */,
-				A33409AD224570BC004CBB2A /* Home-ViewController.swift in Sources */,
+				A33409AD224570BC004CBB2A /* Feed-ViewController.swift in Sources */,
 				A368356B226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift in Sources */,
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
 				A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */,
