@@ -3,7 +3,7 @@ import Firebase
 extension ActionManager {
     struct Log {
         var uid: String?,
-            actionRef: String,
+            actionRef: DocumentReference,
             addedTimestamp: Date,
             completeTimestamp: Date?,
             completed: Bool,
@@ -16,7 +16,7 @@ extension ActionManager {
 extension ActionManager.Log {
     init(_ actionDictionary: [String:Any]) {
         self.uid                = (actionDictionary["uid"] as? String ?? nil)
-        self.actionRef          = (actionDictionary["action_ref"] as! String)
+        self.actionRef          = (actionDictionary["action_ref"] as! DocumentReference)
         self.wasDailyAction     = (actionDictionary["was_daily_action"] as! Bool)
         self.title              = (actionDictionary["title"] as! String)
         self.description        = (actionDictionary["description"] as! String)
@@ -32,20 +32,16 @@ extension ActionManager.Log {
 //// values as a dictionary (e.g. for Firebase)
 extension ActionManager.Log: DictionaryConvertable {
     var dictionary: [String: Any] {
-        var dictionary: [String:Any] = [
+    
+      return [
             "uid" :                 uid ?? "",
-            "action_ref":           actionRef as String,
-            "added_timestamp":      addedTimestamp as Date,
-            "complete":             completed as Bool,
+            "action_ref":           actionRef as DocumentReference,
+            "completed":             completed as Bool,
             "wasDailyAction":       wasDailyAction as Bool,
             "title":                title as String,
             "description":          description as String,
         ]
+        /// Timestamps aren't included in the dictionary, these are only set by the modelController when needed. This is because the dictionary is used to update the log and repetedly converting the timestamp into a date would corrupt it.
         
-        if completed == true, completeTimestamp != nil {
-            dictionary["complete_timestamp"] = completeTimestamp! as Date
-        }
-        
-        return dictionary
     }
 }
