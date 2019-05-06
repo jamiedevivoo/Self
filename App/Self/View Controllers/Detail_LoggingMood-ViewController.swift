@@ -83,7 +83,7 @@ extension DetailLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        nameTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLoggingDelegate?.emotion?.adj ?? "")..."
+        nameTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLoggingDelegate?.emotion?.adj ?? "")?..."
     }
     
 }
@@ -112,7 +112,7 @@ extension DetailLoggingMoodViewController: UITextFieldDelegate {
         nameTextFieldWithLabel.textField.delegate = self
         tagTextFieldWithLabel.textField.delegate = self
         self.tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
-//        toggleFirstResponder()
+        toggleFirstResponder()
 
     }
     

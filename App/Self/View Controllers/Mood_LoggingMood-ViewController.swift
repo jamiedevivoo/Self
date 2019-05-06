@@ -134,6 +134,8 @@ extension MoodLoggingMoodViewController {
         tapToConfirm.frame.origin.y = location.y + 20
         circle.frame.origin.x = location.x - 25
         circle.frame.origin.y = location.y - 25
+        
+        updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
     }
     
     func addMark() {
@@ -178,6 +180,18 @@ extension MoodLoggingMoodViewController {
         let rating = (coordinate - scale) / scale
         let ratingRounded = CGFloat(round(100*rating)/100)
         return ratingRounded
+    }
+    
+    func updateBackground(xScale: CGFloat, yScale: CGFloat) {
+        let red     = 0.9 - (0.8 * xScale)   // 0.9 - 0.1
+        let green   = 0.1 + (0.8 * xScale)   // 0.1 - 0.9
+        let blue    = 0.1 + (0.8 * yScale)   // 0.1 - 0.9
+        let alpha   = 0.6 - (0.2 * yScale)   // 0.6 - 0.4
+        
+        print(red, green, blue, alpha)
+        
+        view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+
     }
     
 }
