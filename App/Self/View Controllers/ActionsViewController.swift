@@ -5,7 +5,7 @@ import Firebase
 class ActionsViewController: UIViewController {
     
     // MARK: - Dependencies & Delegates
-    var actionManager: ActionManager = ActionManager().self
+    var actionManager: ActionManager = ActionManager()
     var accountManager: AccountManager = AccountManager.shared()
 
     // MARK: - Views

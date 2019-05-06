@@ -12,6 +12,7 @@ protocol ScreenSliderViewControllerDelegate: class {
 
 extension ScreenSliderViewControllerDelegate {
     // Optional helper method to set up a PageViewController. Method will set a a PageViewControllers delegate to self by default.
+    /// And I wanted to try creating a generic method...
     func configurePageViewController<T: ScreenSliderViewControllerDelegate>(
         _ screenSliderViewController: ScreenSliderViewController,
         withPages pages: [UIViewController],

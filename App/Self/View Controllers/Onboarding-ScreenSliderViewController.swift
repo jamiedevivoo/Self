@@ -40,8 +40,8 @@ private extension OnboardingScreenSliderViewController {
 // MARK: - Class Methods
 extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     
-    func setData(_ dataDict: [String:String?]) {
-        guard let name = dataDict["name"] else {
+    func setData(_ dataDict: [String:Any?]) {
+        guard let name:String = dataDict["name"] as! String else {
             self.name = nil
             return
         }

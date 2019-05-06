@@ -4,16 +4,29 @@ import SnapKit
 
 final class MoodLoggingMoodViewController: ViewController {
 
-    var dataCollectionDelegate: DataCollectionSequenceDelegate?
-    var screenSlider: ScreenSliderViewController?
+    weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
+    var moodLoggingDelegate: MoodLoggingDelegate?
+    weak var screenSlider: ScreenSliderViewController?
     
     lazy var emotionPickerLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.app.text.solidText()
         label.text = "How are you?"
-        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.black)
-        label.layer.frame.size = CGSize(width: 50, height: 50)
-
+        label.isUserInteractionEnabled = false
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
+        label.layer.frame.size = CGSize(width: 100, height: 50)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var tapToConfirm: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.app.text.solidText()
+        label.text = "Tap to confirm"
+        label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.light)
+        label.layer.frame.size = CGSize(width: 100, height: 50)
+        label.isUserInteractionEnabled = false
+        label.textAlignment = .center
         return label
     }()
     
@@ -50,6 +63,10 @@ final class MoodLoggingMoodViewController: ViewController {
     var isMoodMarked:Bool = false
     var markAdded: Bool = false
     
+    var arousalRating: Double?
+    var valenceRating: Double?
+    var emotion: Mood.Emotion?
+    
 }
 
 
@@ -61,6 +78,9 @@ extension MoodLoggingMoodViewController {
         setupChildViews()
         circle.addGestureRecognizer(tapGesture)
         screenSlider?.forwardNavigationEnabled = false
+        
+        screenSlider?.forwardNavigationEnabled = true
+        screenSlider?.gestureSwipingEnabled = true
         super.navigationController?.isNavigationBarHidden = false
     }
     
@@ -78,6 +98,7 @@ extension MoodLoggingMoodViewController {
     // Gesture Handling
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
+        addMark()
         updateMark(touch: touch)
     }
     
@@ -89,7 +110,7 @@ extension MoodLoggingMoodViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         updateMark(touch: touch)
-        addMark()
+        setMark()
     }
     
     @objc func tappedCircle() {
@@ -98,31 +119,46 @@ extension MoodLoggingMoodViewController {
     
     
     // Other Methods
+    /// Get's the mark and coordinates and uses them to create an emotion.
     func updateMark(touch: UITouch) {
         
         let location = touch.location(in: self.view)
         let moodRatings = calculateMood(x: location.x, y: location.y)
-        let emotion = EmotionManager.getEmotion(withValence: moodRatings["Valence"]!, withArousal: moodRatings["Arousal"]!)
-        emotionPickerLabel.text = emotion.adj
-        emotionPickerLabel.frame.origin.x = location.x
-        emotionPickerLabel.frame.origin.y = location.y - 25
-
+        valenceRating = moodRatings["Valence"]
+        arousalRating = moodRatings["Arousal"]
+        emotion = EmotionManager.getEmotion(withValence: moodRatings["Valence"]!, withArousal: moodRatings["Arousal"]!)
+        emotionPickerLabel.text = emotion?.adj
+        emotionPickerLabel.frame.origin.x = location.x - 50
+        emotionPickerLabel.frame.origin.y = location.y - 100
+        tapToConfirm.frame.origin.x = location.x - 50
+        tapToConfirm.frame.origin.y = location.y + 20
         circle.frame.origin.x = location.x - 25
         circle.frame.origin.y = location.y - 25
     }
     
     func addMark() {
-        guard markAdded == false else { return }
-        
-        isMoodMarked = true
-        markAdded = true
         view.addSubview(emotionPickerLabel)
         view.addSubview(circle)
+        tapToConfirm.removeFromSuperview()
+    }
+    
+    func setMark() {
+        emotionPickerLabel.removeFromSuperview()
+        view.addSubview(tapToConfirm)
+        guard markAdded == false else { return }
+        isMoodMarked = true
+        markAdded = true
     }
     
     
     func saveMarkedMood() {
         guard isMoodMarked == true else { return }
+        self.dataCollectionDelegate?.setData([
+            "arousalRating":arousalRating,
+            "valenceRating":valenceRating,
+            "emotion":emotion]
+        )
+        tapToConfirm.removeFromSuperview()
         screenSlider?.forwardNavigationEnabled = true
         screenSlider?.gestureSwipingEnabled = true
         screenSlider?.nextScreen()

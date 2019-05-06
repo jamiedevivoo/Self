@@ -79,6 +79,7 @@
 		7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39222261929B00C761B4 /* LabelExtensions.swift */; };
 		7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF392622625F1400C761B4 /* AccountFlags.swift */; };
 		7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */; };
+		7DEABF8C22803E1100E72D39 /* MoodLoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEABF8B22803E1100E72D39 /* MoodLoggingProtocol.swift */; };
 		7DF14B47225F24870090D299 /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B46225F24870090D299 /* MoodManager.swift */; };
 		7DF14B49225F24A10090D299 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B48225F24A10090D299 /* Insight.swift */; };
 		7DF14B4D225F25A00090D299 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B4C225F25A00090D299 /* Tag.swift */; };
@@ -204,6 +205,7 @@
 		7DDF39222261929B00C761B4 /* LabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensions.swift; sourceTree = "<group>"; };
 		7DDF392622625F1400C761B4 /* AccountFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountFlags.swift; sourceTree = "<group>"; };
 		7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsFeatures.swift; sourceTree = "<group>"; };
+		7DEABF8B22803E1100E72D39 /* MoodLoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLoggingProtocol.swift; sourceTree = "<group>"; };
 		7DF14B46225F24870090D299 /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		7DF14B48225F24A10090D299 /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
 		7DF14B4C225F25A00090D299 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -334,7 +336,8 @@
 		7DD6CBF92266B38F00F47E63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A3B76AEA227D043E00282ECB /* FEED */,
+				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
+				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
 				A3D75723225CD5A900E87F67 /* HeaderLabel.swift */,
 				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
 				7D47AC67225FD380004BF898 /* Button.swift */,
@@ -363,6 +366,7 @@
 				7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */,
 				7D77E53D227F805900946FB7 /* ActionSelectorProtocolDelegate.swift */,
 				7D77E547227F93B900946FB7 /* ExpandableProtocol.swift */,
+				7DEABF8B22803E1100E72D39 /* MoodLoggingProtocol.swift */,
 			);
 			path = "Protocols+Extensions";
 			sourceTree = "<group>";
@@ -442,21 +446,21 @@
 		A35EA87122456FD500592D88 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A3B76AEC227D050900282ECB /* HOME */,
+				A3B76AF0227D052900282ECB /* ACTIONS */,
+				A3B76AEE227D051600282ECB /* HIGHLIGHT */,
+				A3B76AED227D051100282ECB /* MOOD */,
+				A3B76AF1227D053000282ECB /* SETTINGS */,
+				A3B76AEF227D051F00282ECB /* COMMUNITY */,
+				A3B76AF3227D053A00282ECB /* INFORMATION SCREENS */,
+				A3B76AF2227D053500282ECB /* TAG */,
+				A3B76AEB227D04F900282ECB /* ONBOARDING */,
 				7D47AC7022601349004BF898 /* ViewController.swift */,
 				A33409B5224570DA004CBB2A /* DashboardTabBarController.swift */,
 				A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */,
 				7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */,
 				7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */,
-				A3B76AF3227D053A00282ECB /* INFORMATION SCREENS */,
-				A3B76AF2227D053500282ECB /* TAG */,
-				A3B76AF1227D053000282ECB /* SETTINGS */,
-				A3B76AF0227D052900282ECB /* ACTIONS */,
-				A3B76AEF227D051F00282ECB /* COMMUNITY */,
-				A3B76AEE227D051600282ECB /* HIGHLIGHT */,
-				A3B76AED227D051100282ECB /* MOOD */,
-				A3B76AEC227D050900282ECB /* HOME */,
 				7D77E5D6227FA2E000946FB7 /* TODAY */,
-				A3B76AEB227D04F900282ECB /* ONBOARDING */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -544,15 +548,6 @@
 				A3CF950A224D4B4600D0EC31 /* Colours.swift */,
 			);
 			name = COLOUR;
-			sourceTree = "<group>";
-		};
-		A3B76AEA227D043E00282ECB /* FEED */ = {
-			isa = PBXGroup;
-			children = (
-				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
-				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
-			);
-			name = FEED;
 			sourceTree = "<group>";
 		};
 		A3B76AEB227D04F900282ECB /* ONBOARDING */ = {
@@ -651,16 +646,16 @@
 		A3C860B6227B5DA9000D4034 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A35EA86222456FB500592D88 /* AccountManager.swift */,
 				7D7758CE225D872F003CCD1F /* FeedManager.swift */,
 				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
 				7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */,
 				7DF14B46225F24870090D299 /* MoodManager.swift */,
 				7DD6CBF122663B0900F47E63 /* EmotionManager.swift */,
-				272325912260C92000BB6924 /* BackgroundManager.swift */,
 				A3D75735225D4F1B00E87F67 /* ColorManager.swift */,
 				7D7758D2225D878A003CCD1F /* InsightManager.swift */,
 				7DD6CC032266B6C200F47E63 /* CommunityManager.swift */,
-				A35EA86222456FB500592D88 /* AccountManager.swift */,
+				272325912260C92000BB6924 /* BackgroundManager.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -895,6 +890,7 @@
 				A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */,
 				7D77E602227FA35400946FB7 /* UICollectionView+Reusable.swift in Sources */,
 				7DF14B59225F2D170090D299 /* FeedStatusResponse.swift in Sources */,
+				7DEABF8C22803E1100E72D39 /* MoodLoggingProtocol.swift in Sources */,
 				A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */,
