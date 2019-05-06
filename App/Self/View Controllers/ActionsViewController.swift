@@ -97,6 +97,13 @@ extension ActionsViewController: ActionSelectorDelegate {
 // MARK: - CollectionViewDelegate Methods
 extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let actionLog = actionLogs[indexPath.row]
+        actionManager.user(accountManager.accountRef!).markLogComplete(actionLog)
+        actionLogs.remove(at: indexPath.row)
+        addNoChallengesView()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: 180)
     }

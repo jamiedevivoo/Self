@@ -19,21 +19,17 @@ extension ActionManager.User {
     
     /// Converting a brief into a log
     func constructActionLog(fromBrief actionBrief: ActionManager.Brief) -> ActionManager.Log {
-        var actionData = actionBrief.dictionary
+        var actionBriefDictionary = actionBrief.dictionary
         
         /// Create a document reference using the Brief's UID
-        actionData["action_ref"] = Firestore.firestore().collection("actions").document(actionBrief.uid)
+        actionBriefDictionary["action_ref"] = Firestore.firestore().collection("actions").document(actionBrief.uid)
         
         /// Automatically set the completed to false and added date to now.
-        actionData["completed"] = false
-        actionData["added_timestamp"] = Date()
+        actionBriefDictionary["completed"] = false
+        actionBriefDictionary["added_timestamp"] = Date()
         
-        var actionLog = ActionManager.Log(actionData)
-        updateLog(actionLog, true) { (action) in
-            actionLog = action
-        }
-        
-        return actionLog
+        let actionLog = ActionManager.Log(actionBriefDictionary)
+        return updateLog(actionLog)
     }
     
     /// Returning a users logs
@@ -60,36 +56,39 @@ extension ActionManager.User {
 
 // Set Actions
 extension ActionManager.User {
-    func updateLog(_ actionLog:ActionManager.Log, _ withTimestamp: Bool = false, completion: @escaping (ActionManager.Log) -> ()) {
-        var actionLog = actionLog
-        var actionLogDictionary = actionLog.dictionary
-        
-        if withTimestamp == true {
-            actionLogDictionary["added_timestamp"] = actionLog.addedTimestamp
-        }
+    
+    private func updateLog(_ actionLog:ActionManager.Log) -> ActionManager.Log {
+        var updatedLog = actionLog
         
         /// Check if the Log already has a UID (If it was created from a Brief then it won't, so create one)
-        if actionLog.uid == "" || actionLog.uid == nil {
-            actionLog.uid = userActionLogsReference.document().documentID
+        if updatedLog.uid == nil {
+            updatedLog.uid = userActionLogsReference.document().documentID
         }
         
         /// Check if the Action is marked as completed, if it is and a timestamp doesn't exist we will create one
-        if actionLog.completed == true && actionLog.completeTimestamp == nil {
-            actionLogDictionary["complete_timestamp"] = Timestamp.init()
+        if updatedLog.completed == true && updatedLog.completeTimestamp == nil {
+            updatedLog.completeTimestamp = Date()
         }
         
-        userActionLogsReference.document(actionLog.uid!).setData(actionLogDictionary, merge: true) { error in
+        userActionLogsReference.document(updatedLog.uid!).setData(updatedLog.dictionary, merge: true) { error in
             guard error == nil else {
                 print("\(error!.localizedDescription)")
                 return
             }
-            
-            /// Mathod returns new version of log (with updated UID and and/or completeTimestamp if it wasn't set already)
-            completion(ActionManager.Log(actionLogDictionary))
         }
+        
+        /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
+        return updatedLog
+    }
+    
+    func markLogComplete(_ actionLog: ActionManager.Log) -> ActionManager.Log {
+        var completedLog = actionLog
+        completedLog.completed = true
+        return updateLog(completedLog)
     }
     
 }
+
 
 // Get Actions
 extension ActionManager.User {
