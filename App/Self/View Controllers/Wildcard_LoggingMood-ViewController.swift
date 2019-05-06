@@ -5,7 +5,8 @@ import SnapKit
 
 final class WildcardLoggingMoodViewController: ViewController {
     
-    var dataCollectionDelegate: DataCollectionSequenceDelegate?
+    weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
+    var moodLoggingDelegate: MoodLoggingDelegate?
     var screenSlider: ScreenSliderViewController?
     
     lazy var label: UILabel = {

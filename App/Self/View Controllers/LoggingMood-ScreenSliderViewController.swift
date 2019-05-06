@@ -1,16 +1,17 @@
 import UIKit
 import Firebase
 
+extension LoggingAMoodScreenSliderViewController: MoodLoggingDelegate { }
 
 final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
-        var headline: String?
-        var note: String?
-        var arousalRating: Double?
-        var valenceRating: Double?
-    
-        var wildcard: Mood.Wildcard?
-        var emotion: Mood.Emotion?
-        var tags = [Tag]()
+    var headline: String?
+    var note: String?
+    var arousalRating: Double?
+    var valenceRating: Double?
+
+    var wildcard: Mood.Wildcard?
+    var emotion: Mood.Emotion?
+    var tags = [Tag]()
     
     init() {
         super.init(navigationOrientation: .vertical)
@@ -35,24 +36,28 @@ extension LoggingAMoodScreenSliderViewController {
 
 
 // MARK: - Setup Methods
-private extension LoggingAMoodScreenSliderViewController {
+extension LoggingAMoodScreenSliderViewController {
     
     func setupScreens() -> [UIViewController] {
         let moodLoggingAMoodViewController = MoodLoggingMoodViewController()
         moodLoggingAMoodViewController.dataCollectionDelegate = self
         moodLoggingAMoodViewController.screenSlider = self
+        moodLoggingAMoodViewController.moodLoggingDelegate = self
         
         let detailLoggingAMoodViewController = DetailLoggingMoodViewController()
         detailLoggingAMoodViewController.dataCollectionDelegate = self
         detailLoggingAMoodViewController.screenSlider = self
+        detailLoggingAMoodViewController.moodLoggingDelegate = self
         
         let wildcardLoggingAMoodViewController = WildcardLoggingMoodViewController()
         wildcardLoggingAMoodViewController.dataCollectionDelegate = self
         wildcardLoggingAMoodViewController.screenSlider = self
+        wildcardLoggingAMoodViewController.moodLoggingDelegate = self
         
         let overviewLoggingAMoodViewController = OverviewLoggingMoodViewController()
         overviewLoggingAMoodViewController.dataCollectionDelegate = self
         overviewLoggingAMoodViewController.screenSlider = self
+        overviewLoggingAMoodViewController.moodLoggingDelegate = self
         
         return [moodLoggingAMoodViewController,
                 detailLoggingAMoodViewController,
@@ -69,20 +74,46 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
     func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool {
         
         if nextViewController.isKind(of: DetailLoggingMoodViewController.self) {
-            if arousalRating == nil || valenceRating == nil  {
+            guard arousalRating != nil, valenceRating != nil, emotion != nil else {
                 return false
             }
         }
-        
+//
+//        if nextViewController.isKind(of: WildcardLoggingMoodViewController.self) {
+//            if arousalRating == nil || valenceRating == nil  {
+//                return false
+//            }
+//        }
+//        
+//        if nextViewController.isKind(of: WildcardLoggingMoodViewController.self) {
+//            if arousalRating == nil || valenceRating == nil  {
+//                return false
+//            }
+//        }
         
         return true
     }
     
-    func setData(_ dataDict: [String:String?]) {
-//        guard let name = dataDict["name"] else {
-//            self.name = nil
-//            return
-//        }
+    func setData(_ dataDict: [String:Any?]) {
+        guard let arousalRating: Double = dataDict["arousalRating"] as? Double else {
+            self.arousalRating = nil
+            return
+        }
+        
+        guard let valenceRating: Double = dataDict["valenceRating"] as? Double else {
+            self.valenceRating = nil
+            return
+        }
+        
+        guard let emotion: Mood.Emotion = dataDict["emotion"] as? Mood.Emotion else {
+            self.emotion = nil
+            return
+        }
+        
+        self.arousalRating = arousalRating
+        self.valenceRating = valenceRating
+        self.emotion = emotion
+        
 ////        guard let name = dataDict["name"] else {
 //            self.name = nil
 //            return

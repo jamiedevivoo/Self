@@ -16,8 +16,9 @@ class ScreenSliderViewController: UIPageViewController {
     
     /// References to all screens in slider.
     var screens: [UIViewController] = [] {
-        didSet { setup();} //// Only run setup when screens exist or are reset
+        didSet {setup();} //// Only run setup when screens exist or are reset
     }
+    
     /// A progressive array of the active viewControllers that can be transitioned to.
     var activeScreens: [UIViewController] = []
     
@@ -114,8 +115,10 @@ extension ScreenSliderViewController {
     
     // Manually transition to the next screen
     func nextScreen() {
-        guard let viewControllerIndex = self.activeScreens.firstIndex(of: viewControllers![0]) else { return }
-        activeScreens.append(screens[viewControllerIndex + 1])
+        guard let viewControllerIndex = self.screens.firstIndex(of: viewControllers![0]) else { return }
+        if !activeScreens.contains(screens[viewControllerIndex + 1]) {
+            activeScreens.append(screens[viewControllerIndex + 1])
+        }
         guard let screen = pageViewController(self, viewControllerAfter: viewControllers![0]) else { return }
         setViewControllers([screen], direction: .forward, animated: true, completion: nil)
     }

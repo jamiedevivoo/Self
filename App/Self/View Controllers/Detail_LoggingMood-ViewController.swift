@@ -1,10 +1,12 @@
 import UIKit
 import SnapKit
+import Firebase
 
 
 final class DetailLoggingMoodViewController: ViewController {
     
-    var dataCollectionDelegate: DataCollectionSequenceDelegate?
+    weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
+    var moodLoggingDelegate: MoodLoggingDelegate?
     var screenSlider: ScreenSliderViewController?
     
     lazy var label: UILabel = {
@@ -58,6 +60,13 @@ final class DetailLoggingMoodViewController: ViewController {
         label.text = "Describe your day..."
         return label
     }()
+    
+    lazy var wildcardQuestion: UILabel = {
+        let lavel = UILabel()
+        return label
+    }()
+    
+    lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
         
 }
 
@@ -69,10 +78,12 @@ extension DetailLoggingMoodViewController {
         super.viewDidLoad()
         setupChildViews()
         setupKeyboard()
+        self.view.addGestureRecognizer(tapViewRecogniser)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        nameTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLoggingDelegate?.emotion?.adj ?? "")..."
     }
     
 }
@@ -83,27 +94,30 @@ extension DetailLoggingMoodViewController {
     
     @objc func validateName() -> String? {
         guard
-            let name: String = self.tagTextFieldWithLabel.textField.text?.trim(),
-            self.tagTextFieldWithLabel.textField.text!.trim().count > 1
+            let name: String = self.nameTextFieldWithLabel.textField.text?.trim(),
+            self.nameTextFieldWithLabel.textField.text!.trim().count > 1
             else { return nil }
         
-        tagTextFieldWithLabel.resetHint()
-        self.tagTextFieldWithLabel.textField.text = name
+        nameTextFieldWithLabel.resetHint()
+        self.nameTextFieldWithLabel.textField.text = name
         return name
     }
     
 }
 
-
 // MARK: - TextField Delegate Methods
 extension DetailLoggingMoodViewController: UITextFieldDelegate {
     
     func setupKeyboard() {
+        nameTextFieldWithLabel.textField.delegate = self
         tagTextFieldWithLabel.textField.delegate = self
         self.tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
+//        toggleFirstResponder()
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // TODO: Remove dangerous assumption
         if let tag = validateName() {
             let button = UIButton()
             button.setTitle(tag, for: .normal)
@@ -138,26 +152,51 @@ extension DetailLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(nameTextFieldWithLabel)
         self.view.addSubview(tagsStack)
         self.view.addSubview(tagTextFieldWithLabel)
+        self.view.addSubview(wildcardQuestion)
+
         label.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
         nameTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(label.snp.bottom).offset(50)
+            make.top.equalTo(label.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
         }
         tagsStack.snp.makeConstraints { (make) in
-            make.top.equalTo(nameTextFieldWithLabel.snp.bottom).offset(50)
+            make.top.equalTo(nameTextFieldWithLabel.snp.bottom).offset(25)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.height.greaterThanOrEqualTo(40)
+        }
+        tagTextFieldWithLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(tagsStack.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
         }
         tagTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(tagsStack.snp.bottom).offset(50)
+            make.top.equalTo(tagTextFieldWithLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
         }
     }
     
+}
+
+/// TEMP
+extension DetailLoggingMoodViewController {
+    func getWildcard() {
+        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
+        let randomDocumentID = String(Int.random(in: 0..<6))
+        
+        wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in
+            guard let documentSnapshot = documentSnapshot, error == nil else {
+                if let error = error { print("Error Loading Actions: \(error.localizedDescription)") }
+                print("Error Loading Actions.")
+                return
+            }
+            print(documentSnapshot.data() as AnyObject)
+            self.wildcardQuestion.text = documentSnapshot.get("question") as? String ?? ""
+        }
+    }
 }

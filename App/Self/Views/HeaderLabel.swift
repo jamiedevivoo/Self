@@ -27,7 +27,7 @@ class HeaderLabel: UILabel {
                 return
             case .section:
                 font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium)
-                textColor = UIColor.app.text.solidText()
+                textColor = UIColor.app.text.solidText().withAlphaComponent(0.8)
                 return
             case .subheader:
                 font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
