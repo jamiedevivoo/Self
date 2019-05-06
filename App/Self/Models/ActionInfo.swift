@@ -37,7 +37,6 @@ extension ActionManager.Brief: DictionaryConvertable {
         }
         
         return [
-            "uid":              uid as String,
             "was_daily_action": isTodaysAction as Bool,
             "title":            title as String,
             "description":      description as String,

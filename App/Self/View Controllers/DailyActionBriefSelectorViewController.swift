@@ -5,7 +5,7 @@ import Firebase
 class DailyActionBriefSelectorViewController: ViewController {
     
     // Dependencies & Delegates
-    var actionManager = ActionManager()
+    weak var actionManager: ActionManager?
     weak var delegate: ActionSelectorDelegate?
 
     // MARK: - Views
@@ -39,7 +39,7 @@ extension DailyActionBriefSelectorViewController {
     }
     
     func addActions() {
-        actionManager.getDailyActions() { actions in
+        actionManager!.getDailyActions() { actions in
             self.actionsData = actions
             self.actionCollectionView.reloadData()
         }

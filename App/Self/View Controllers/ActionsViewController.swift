@@ -79,6 +79,7 @@ extension ActionsViewController {
     @objc func unlockAction() {
         let actionSelectionViewController = DailyActionBriefSelectorViewController()
         actionSelectionViewController.delegate = self
+        actionSelectionViewController.actionManager = actionManager
         self.navigationController?.pushViewController(actionSelectionViewController, animated: true)
     }
 }

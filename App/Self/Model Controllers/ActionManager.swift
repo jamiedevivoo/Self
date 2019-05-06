@@ -15,7 +15,7 @@ extension ActionManager {
 
 // Build Actions Brief
 extension ActionManager {
-    private func constructActionBrief(FromSnapshot actionSnapshot: DocumentSnapshot) -> ActionManager.Brief {
+    private func constructActionBrief(fromSnapshot actionSnapshot: DocumentSnapshot) -> ActionManager.Brief {
         var actionData = actionSnapshot.data()!
         actionData["uid"] = actionSnapshot.documentID
         let action = ActionManager.Brief(actionData)
@@ -35,7 +35,7 @@ extension ActionManager {
             
             var actions: [ActionManager.Brief] = []
             for document in querySnapshot.documents {
-                let action = self.constructActionBrief(FromSnapshot: document)
+                let action = self.constructActionBrief(fromSnapshot: document)
                 actions.append(action)
             }
             completion(actions)
@@ -51,7 +51,7 @@ extension ActionManager {
             
             var actions: [ActionManager.Brief] = []
             for document in querySnapshot.documents {
-                let action = self.self.constructActionBrief(FromSnapshot: document)
+                let action = self.self.constructActionBrief(fromSnapshot: document)
                 actions.append(action)
             }
             completion(actions)

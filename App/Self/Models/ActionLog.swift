@@ -34,10 +34,9 @@ extension ActionManager.Log: DictionaryConvertable {
     var dictionary: [String: Any] {
     
       return [
-            "uid" :                 uid ?? "",
             "action_ref":           actionRef as DocumentReference,
-            "completed":             completed as Bool,
-            "wasDailyAction":       wasDailyAction as Bool,
+            "completed":            completed as Bool,
+            "was_daily_action":     wasDailyAction as Bool,
             "title":                title as String,
             "description":          description as String,
         ]
