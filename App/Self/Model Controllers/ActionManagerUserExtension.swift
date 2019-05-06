@@ -108,6 +108,24 @@ extension ActionManager.User {
             completion(actions)
         }
     }
+    
+    func getCompleteActions(completion: @escaping ([ActionManager.Log]?) -> ()) {
+        userActionLogsReference.whereField("completed", isEqualTo: true).getDocuments { querySnapshot, error in
+            guard let querySnapshot = querySnapshot, error == nil else {
+                print("Error Loading Actions: \(error!.localizedDescription)")
+                return
+            }
+            
+            var actions: [ActionManager.Log] = []
+            for document in querySnapshot.documents {
+                let action = self.constructActionLog(fromSnapshot: document)
+                actions.append(action)
+            }
+            
+            completion(actions)
+        }
+    }
+    
 }
 
 

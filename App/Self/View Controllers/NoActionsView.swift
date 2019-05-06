@@ -3,12 +3,7 @@ import SnapKit
 
 class NoActionsView: UIView {
     
-    lazy var message: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.text = "You've completed all your Challenges for today!"
-        return label
-    }()
+    lazy var message: UILabel = HeaderLabel("You've completed all your Challenges for today!",.focusTitle)
     
     lazy var button: UIButton = {
         let button = UIButton.tagButton
@@ -42,9 +37,12 @@ extension NoActionsView {
         
         message.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
+            make.width.equalToSuperview()
         }
         button.snp.makeConstraints { (make) in
             make.top.equalTo(message.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(60)
             make.centerX.equalToSuperview()
         }
     }

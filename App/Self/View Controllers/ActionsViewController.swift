@@ -9,7 +9,7 @@ class ActionsViewController: UIViewController {
     var accountManager: AccountManager = AccountManager.shared()
 
     // MARK: - Views
-    lazy var headerLabel = HeaderLabel("Your Actions 🙌", type: .screen)
+    lazy var headerLabel = HeaderLabel("Your Actions 🙌", .screen)
     
     lazy var actionCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()
@@ -58,13 +58,13 @@ extension ActionsViewController {
             
             // Check actions were returned
             guard let actions = actions, actions.count > 0 else {
-                self.addNoChallengesView()
+                self.addNoActionsView()
                 return
             }
             
             // Check actions aren't completed
             guard let action = actions.first, actions.first?.completed == false else {
-                self.addNoChallengesView()
+                self.addNoActionsView()
                 return
             }
             
@@ -101,7 +101,7 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
         let actionLog = actionLogs[indexPath.row]
         actionManager.user(accountManager.accountRef!).markLogComplete(actionLog)
         actionLogs.remove(at: indexPath.row)
-        addNoChallengesView()
+        addNoActionsView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -123,7 +123,7 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
 
 // Mark - Adding Appropriate Views
 extension ActionsViewController {
-    func addNoChallengesView() {
+    func addNoActionsView() {
         self.view.addSubview(self.noActionsView)
         noActionsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()

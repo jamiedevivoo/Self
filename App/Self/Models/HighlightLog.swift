@@ -1,4 +1,0 @@
-extension Highlight {
-    struct Log {
-    }
-}

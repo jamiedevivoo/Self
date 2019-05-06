@@ -15,7 +15,7 @@ class FeedActionListChildViewController: UIViewController {
         return stackView
     }()
     
-    lazy var actionHeaderLabel = HeaderLabel("Your Recommended Actions", type: .section)
+    lazy var actionHeaderLabel = HeaderLabel("Your Recommended Actions", .section)
     lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood))
     lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse))
     lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse))

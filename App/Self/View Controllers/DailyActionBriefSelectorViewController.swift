@@ -9,8 +9,8 @@ class DailyActionBriefSelectorViewController: ViewController {
     weak var delegate: ActionSelectorDelegate?
 
     // MARK: - Views
-    lazy var headerLabel = HeaderLabel("Today's Challenges", type: .screen)
-    lazy var subHeaderLabel = HeaderLabel("Tap on the challenge you want to work on today.", type: .subheader)
+    lazy var headerLabel = HeaderLabel("Today's Challenges", .screen)
+    lazy var subHeaderLabel = HeaderLabel("Tap on the challenge you want to work on today.", .subheader)
     
     lazy var actionCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()

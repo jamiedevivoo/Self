@@ -4,7 +4,14 @@ import SnapKit
 
 class HighlightsViewController: UIViewController {
     
-    lazy var highlightLabel = HeaderLabel("Your Highlights 💪", type: .screen)
+    // MARK: - Dependencies & Delegates
+    var accountManager: AccountManager = AccountManager.shared()
+    var actionManager: ActionManager = ActionManager()
+    weak var moodManager: MoodManager?
+    weak var insightManager: InsightManager?
+    
+    // MARK: - Views
+    lazy var headerLabel = HeaderLabel("Your Highlights 💪", .screen)
     
     lazy var highlightCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()
@@ -20,39 +27,49 @@ class HighlightsViewController: UIViewController {
         return collectionView
         }()
     
-    var highlightsData = [Mood.Log]()
+    lazy var noHighlightsView = NoHighlightsView()
     
+    // MARK: - Properties
+    var actionLogs = [ActionManager.Log]() {
+        didSet {
+            addHighlights()
+        }
+    }
+    
+    var moodLogs = [Mood.Log]()
+    var insightLogs = [Insight]()
 }
 
-// MARK: - Init
+// MARK: - Overrides
 extension HighlightsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        addHighlights()
-        addSubViews()
         setupChildViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        addHighlights()
     }
     
 }
 
+// MARK: - Class Methods
 extension HighlightsViewController {
     func addHighlights() {
-        print("Loading Highlights")
-        HighlightManager.getHighlights() { [unowned self] allHighlights in
-            for eachHighlight in allHighlights.documents {
-                var highlightData = eachHighlight.data()
-                highlightData["uid"] = eachHighlight.documentID
-                let highlight = Mood.Log(highlightData)
-                print(highlight as AnyObject)
-                self.highlightsData.append(highlight)
-                print("HGIHLIGHT LOADED")
-                print(highlight as AnyObject)
+        actionManager.user(accountManager.accountRef!).getCompleteActions { actions in
+            
+            // Check actions were returned
+            guard let actions = actions, actions.count > 0 else {
+                self.addNoHighlightsView()
+                self.highlightCollectionView.removeFromSuperview()
+                return
             }
+            
+            self.actionLogs = actions
+            self.noHighlightsView.removeFromSuperview()
+            self.addHighlightsCollectionView()
             self.highlightCollectionView.reloadData()
         }
     }
@@ -65,22 +82,38 @@ extension HighlightsViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return highlightsData.count
+        return actionLogs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HighlightCell
-        let highlight = highlightsData[indexPath.row]
-        cell.actionCardTitleLabel.text = highlight.headline
-        cell.actionCardDescriptionLabel.text = highlight.note
-        for tag in highlight.tags {
-            let tagButton = UIButton.tagButton
-            tagButton.setTitle(tag.title, for: .normal)
-            cell.tags.append(tagButton)
-        }
+        let highlight = actionLogs[indexPath.row]
+        cell.actionCardTitleLabel.text = highlight.title
+        cell.actionCardDescriptionLabel.text = highlight.description
         return cell
     }
     
+}
+
+// Mark - Adding Appropriate Views
+extension HighlightsViewController {
+    func addNoHighlightsView() {
+        self.view.addSubview(self.noHighlightsView)
+        noHighlightsView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.greaterThanOrEqualTo(100)
+        }
+    }
+    
+    func addHighlightsCollectionView() {
+        self.view.addSubview(self.highlightCollectionView)
+        highlightCollectionView.snp.makeConstraints { (make) in
+            make.top.equalTo(headerLabel.snp.bottom).offset(20)
+            make.right.left.equalToSuperview().inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        }
+    }
 }
 
 // MARK: - View Building
@@ -91,22 +124,15 @@ extension HighlightsViewController: ViewBuilding {
         navigationController?.tabBarItem.image = UIImage(named: "highlight-glyph")
     }
     
-    func addSubViews() {
-        view.addSubview(highlightLabel)
-        view.addSubview(highlightCollectionView)
-    }
-    
     func setupChildViews() {
-        highlightLabel.snp.makeConstraints { (make) in
+        view.addSubview(headerLabel)
+        view.addSubview(highlightCollectionView)
+        
+        headerLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().inset(20)
             make.height.lessThanOrEqualTo(50)
-        }
-        highlightCollectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(highlightLabel.snp.bottom).offset(20)
-            make.right.left.equalToSuperview().inset(20)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }

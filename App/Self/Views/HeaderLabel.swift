@@ -11,7 +11,7 @@ import SnapKit
 
 class HeaderLabel: UILabel {
     
-    convenience init(_ title:String, type: HeaderType) {
+    convenience init(_ title:String, _ type: HeaderType) {
         self.init()
         text = title
         setup(type)
@@ -19,7 +19,7 @@ class HeaderLabel: UILabel {
     
     func setup(_ type: HeaderType) {
         numberOfLines = 0
-        
+        lineBreakMode = .byWordWrapping
         switch type {
             case .screen:
                 font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
@@ -33,11 +33,16 @@ class HeaderLabel: UILabel {
                 font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
                 textColor = UIColor.app.text.solidText()
                 return
+            case .focusTitle:
+                font = UIFont.systemFont(ofSize: 26, weight: UIFont.Weight.heavy)
+                textColor = UIColor.app.text.solidText()
+                textAlignment = NSTextAlignment.center
+                setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
         }
     }
     
     enum HeaderType {
-        case screen, section, subheader
+        case screen, section, subheader, focusTitle
     }
     
     func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
