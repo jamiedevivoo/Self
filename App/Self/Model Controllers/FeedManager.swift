@@ -123,26 +123,32 @@ extension FeedManager {
             
             // Facts about mental health
             [
-                (Feed.Status.Message(type: .other, text: "Hey (1)",tags: []),
-                 [Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive)]),
-                (Feed.Status.Message(type: .other, text: "Hey (2)",tags: []),
-                 [Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive)])
+                (Feed.Status.Message(type: .other, text: "Here's a random fact about wellbeing",tags: []),
+                 [Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive),
+                  Feed.Status.Response(title: "🤘", action: "N/A", sentimentTrend: .positive)]),
+                (Feed.Status.Message(type: .other, text: "Here's another random fact about wellbeing",tags: []),
+                 [Feed.Status.Response(title: "🤘", action: "N/A", sentimentTrend: .positive),
+                  Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive)])
             ].randomElement()!,
             
             // Friendly comments
             [
-                (Feed.Status.Message(type: .other, text: "Hey (3)",tags: []),
-                 [Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive)]),
-                (Feed.Status.Message(type: .other, text: "Hey (4)",tags: []),
-                 [Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive)])
+                (Feed.Status.Message(type: .other, text: "Here's a random message to motivate you",tags: []),
+                 [Feed.Status.Response(title: "👌", action: "N/A", sentimentTrend: .positive),
+                  Feed.Status.Response(title: "😀", action: "N/A", sentimentTrend: .positive)]),
+                (Feed.Status.Message(type: .other, text: "Here's another random message to motivate you",tags: []),
+                 [Feed.Status.Response(title: "😩", action: "N/A", sentimentTrend: .positive),
+                  Feed.Status.Response(title: "👌", action: "N/A", sentimentTrend: .positive)])
             ].randomElement()!,
             
             // Messages of support
             [
-                (Feed.Status.Message(type: .other, text: "Hey (5)",tags: []),
-                 [Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive)]),
-                (Feed.Status.Message(type: .other, text: "Hey (6)",tags: []),
-                 [Feed.Status.Response(title: "💪", action: "N/A", sentimentTrend: .positive)])
+                (Feed.Status.Message(type: .other, text: "Here's a supportive message to enourage positive activity.",tags: []),
+                 [Feed.Status.Response(title: "✓", action: "N/A", sentimentTrend: .positive),
+                  Feed.Status.Response(title: "🛠", action: "N/A", sentimentTrend: .positive)]),
+                (Feed.Status.Message(type: .other, text: "Here's a slightly longer supportive message to enourage positive activity and test the constraints.",tags: []),
+                 [Feed.Status.Response(title: "👨‍💻", action: "N/A", sentimentTrend: .positive),
+                  Feed.Status.Response(title: "🙃", action: "N/A", sentimentTrend: .positive)])
             ].randomElement()!
             
         ].randomElement()!

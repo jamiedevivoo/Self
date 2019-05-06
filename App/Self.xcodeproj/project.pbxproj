@@ -651,6 +651,7 @@
 		A3C860B6227B5DA9000D4034 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7D7758CE225D872F003CCD1F /* FeedManager.swift */,
 				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
 				7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */,
 				7DF14B46225F24870090D299 /* MoodManager.swift */,
@@ -659,7 +660,6 @@
 				A3D75735225D4F1B00E87F67 /* ColorManager.swift */,
 				7D7758D2225D878A003CCD1F /* InsightManager.swift */,
 				7DD6CC032266B6C200F47E63 /* CommunityManager.swift */,
-				7D7758CE225D872F003CCD1F /* FeedManager.swift */,
 				A35EA86222456FB500592D88 /* AccountManager.swift */,
 			);
 			path = "Model Controllers";

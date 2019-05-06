@@ -129,7 +129,7 @@ extension ActionsViewController {
         noActionsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(200)
+            make.height.greaterThanOrEqualTo(300)
         }
     }
     
