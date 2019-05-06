@@ -4,17 +4,40 @@ import Firebase
 
 class ActionsViewController: UIViewController {
     
-    // Dependencies
-    var actionManager: Actions = Actions().self
+    // MARK: - Dependencies & Delegates
+    var actionManager: ActionManager = ActionManager().self
+    var accountManager: AccountManager = AccountManager.shared()
 
     // MARK: - Views
-    lazy var actionsLabel = HeaderLabel("Your Actions 🙌", type: .screen)
-    var actionLogs: [Actions.Log] = []
+    lazy var headerLabel = HeaderLabel("Your Actions 🙌", type: .screen)
+    
+    lazy var actionCollectionView: UICollectionView = { [unowned self] in
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = 20
+        flowLayout.minimumLineSpacing = 20
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.register(ActionCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
+        }()
+    
     lazy var noActionsView = NoActionsView()
+    
+    // MARK: - Properties
+    var actionLogs = [ActionManager.Log]() {
+        didSet {
+            addActionViews()
+            self.actionCollectionView.reloadData()
+        }
+    }
   
 }
 
-// MARK: - Init
+// MARK: - Overrides
 extension ActionsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,39 +51,69 @@ extension ActionsViewController {
     }
 }
 
+// MARK: - Class Methods
 extension ActionsViewController {
     func configureActionView() {
-        actionManager.user(AccountManager.shared().accountRef!).getIncompleteActions { actions in
+        actionManager.user(accountManager.accountRef!).getIncompleteActions { actions in
+            
+            // Check actions were returned
             guard let actions = actions, actions.count > 0 else {
                 self.addNoChallengesView()
                 return
             }
-
-            let action = actions.first
-            if action!.completed == true {
-                self.actionLogs = [action!]
+            
+            // Check actions aren't completed
+            guard let action = actions.first, actions.first?.completed == false else {
+                self.addNoChallengesView()
+                return
             }
+            
+            // Set actions
+            self.actionLogs = [action]
         }
     }
 }
 
-
+// MARK: - Interaction Methods
 extension ActionsViewController {
     @objc func unlockAction() {
-        let actionSelectionViewController = DailyActionSelectorViewController()
+        let actionSelectionViewController = DailyActionBriefSelectorViewController()
         actionSelectionViewController.delegate = self
         self.navigationController?.pushViewController(actionSelectionViewController, animated: true)
     }
 }
 
+// MARK: - ActionSelectorDelegate Methods
 extension ActionsViewController: ActionSelectorDelegate {
-    func actionBriefSelected(action: Actions.Brief) {
+    func actionBriefSelected(action: ActionManager.Brief) {
+        let action = actionManager.user(accountManager.accountRef!).constructActionLog(fromBrief: action)
+        self.actionLogs = [action]
         self.navigationController?.popToRootViewController(animated: true)
         noActionsView.removeFromSuperview()
     }
 }
 
+// MARK: - CollectionViewDelegate Methods
+extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width, height: 180)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return actionLogs.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionCell
+        let action = actionLogs[indexPath.row]
+        cell.actionCardTitleLabel.text = action.title
+        cell.actionCardDescriptionLabel.text = action.description
+        return cell
+    }
+}
 
+// Mark - Adding Appropriate Views
 extension ActionsViewController {
     func addNoChallengesView() {
         self.view.addSubview(self.noActionsView)
@@ -70,8 +123,16 @@ extension ActionsViewController {
             make.height.greaterThanOrEqualTo(100)
         }
     }
+    
+    func addActionViews() {
+        self.view.addSubview(self.actionCollectionView)
+        actionCollectionView.snp.makeConstraints { (make) in
+            make.top.equalTo(headerLabel.snp.bottom).offset(20)
+            make.right.left.equalToSuperview().inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        }
+    }
 }
-
 
 // MARK: - View Building
 extension ActionsViewController: ViewBuilding {
@@ -83,8 +144,7 @@ extension ActionsViewController: ViewBuilding {
     }
     
     func setupChildViews() {
-        
-        view.addSubview(actionsLabel)
-        actionsLabel.applyDefaultConstraints(usingVC: self)
+        view.addSubview(headerLabel)
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
     }
 }

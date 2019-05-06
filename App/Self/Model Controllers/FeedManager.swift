@@ -48,7 +48,7 @@ extension FeedManager {
         withMoods moods: [Mood.Log],
         withInsight insightss: [Insight],
         withActions actionLogs: [Sentiment.Log],
-        withSentimentLogs sentimentLogs: [Actions.Log])
+        withSentimentLogs sentimentLogs: [ActionManager.Log])
     -> (message: Feed.Status.Message, responses: [Feed.Status.Response]) {
         
         /// Priority 0 - Logic for when user is in tutorial mode

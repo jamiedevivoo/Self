@@ -1,47 +1,51 @@
-extension Actions {
+import Firebase
+
+extension ActionManager {
     struct Log {
-        var uid: String,
+        var uid: String?,
+            actionRef: String,
+            addedTimestamp: Date,
+            completeTimestamp: Date?,
             completed: Bool,
-            dailyAction: Bool,
+            wasDailyAction: Bool,
             description: String,
-            timeRequired: Double?,
-            title: String,
-            tags: [Tag] = [Tag](),
-            completionCount: Int
+            title: String
     }
 }
 // MARK: - Convenience Iniitialiser
-extension Actions.Log {
+extension ActionManager.Log {
     init(_ actionDictionary: [String:Any]) {
-        self.uid                = (actionDictionary["uid"] as! String)
-        self.completed          = (actionDictionary["completed"] as! Bool)
-        self.dailyAction        = (actionDictionary["daily_action"] as! Bool)
+        self.uid                = (actionDictionary["uid"] as? String ?? nil)
+        self.actionRef          = (actionDictionary["action_ref"] as! String)
+        self.wasDailyAction     = (actionDictionary["was_daily_action"] as! Bool)
         self.title              = (actionDictionary["title"] as! String)
         self.description        = (actionDictionary["description"] as! String)
-        self.completionCount    = (actionDictionary["completion_count"] as! Int)
-        self.timeRequired       = Double(actionDictionary["time_required"] as? String ?? "")
-        for tag in actionDictionary["tags"] as! [[String:Any]] {
-            let tag = Tag(tag)
-            self.tags.append(tag)
+        self.addedTimestamp     = (actionDictionary["added_timestamp"] as! Date)
+        self.completed          = (actionDictionary["completed"] as! Bool)
+        if self.completed == true {
+            self.completeTimestamp  = (actionDictionary["complete_timestamp"] as! Date)
         }
     }
 }
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
-extension Actions.Log: DictionaryConvertable {
+extension ActionManager.Log: DictionaryConvertable {
     var dictionary: [String: Any] {
-        var tagsArray = [[String:Any]]()
-        for tag in tags {
-            tagsArray.append(tag.dictionary)
-        }
-        return [
-            "action_ref":       uid as String,
-            "title":            title as String,
-            "description":      description as String,
-            "completion_count": completionCount as Int,
-            "tags":             tagsArray as Any,
-            "time_required":    timeRequired as Any
+        var dictionary: [String:Any] = [
+            "uid" :                 uid ?? "",
+            "action_ref":           actionRef as String,
+            "added_timestamp":      addedTimestamp as Date,
+            "complete":             completed as Bool,
+            "wasDailyAction":       wasDailyAction as Bool,
+            "title":                title as String,
+            "description":          description as String,
         ]
+        
+        if completed == true, completeTimestamp != nil {
+            dictionary["complete_timestamp"] = completeTimestamp! as Date
+        }
+        
+        return dictionary
     }
 }

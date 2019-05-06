@@ -18,6 +18,8 @@ class HeaderLabel: UILabel {
     }
     
     func setup(_ type: HeaderType) {
+        numberOfLines = 0
+        
         switch type {
             case .screen:
                 font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
@@ -38,7 +40,7 @@ class HeaderLabel: UILabel {
         case screen, section, subheader
     }
     
-    func applyDefaultConstraints(usingVC vc: UIViewController) {
+    func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
         self.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(75)
             make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(10)

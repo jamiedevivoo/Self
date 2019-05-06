@@ -1,8 +1,8 @@
 import Firebase
 
 // Setup
-extension Actions {
-    class User: Actions {
+extension ActionManager {
+    class User: ActionManager {
         let userReference: CollectionReference
         
         init(account: Account) {
@@ -13,26 +13,33 @@ extension Actions {
 
 
 //Build Action Logs
-extension Actions.User {
-    private func constructActionLog(fromSnapshot actionSnapshot: DocumentSnapshot) -> Actions.Log {
+extension ActionManager.User {
+    private func constructActionLog(fromSnapshot actionSnapshot: DocumentSnapshot) -> ActionManager.Log {
         var actionData = actionSnapshot.data()!
         actionData["uid"] = actionSnapshot.documentID
-        let action = Actions.Log(actionData)
+        let action = ActionManager.Log(actionData)
+        return action
+    }
+    func constructActionLog(fromBrief actionBrief: ActionManager.Brief) -> ActionManager.Log {
+        var actionData = actionBrief.dictionary
+        actionData["completed"] = false
+        actionData["added_timestamp"] = Date()
+        let action = ActionManager.Log(actionData)
         return action
     }
 }
 
 
 // Get Actions
-extension Actions.User {
-    func getIncompleteActions(completion: @escaping ([Actions.Log]?) -> ()) {
+extension ActionManager.User {
+    func getIncompleteActions(completion: @escaping ([ActionManager.Log]?) -> ()) {
         userReference.whereField("completed", isEqualTo: false).getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, error == nil else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
                 return
             }
             
-            var actions: [Actions.Log] = []
+            var actions: [ActionManager.Log] = []
             for document in querySnapshot.documents {
                 let action = self.constructActionLog(fromSnapshot: document)
                 actions.append(action)
@@ -44,5 +51,5 @@ extension Actions.User {
 }
 
 
-extension Actions.User {
+extension ActionManager.User {
 }

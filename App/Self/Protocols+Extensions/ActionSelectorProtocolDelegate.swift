@@ -1,3 +1,3 @@
 protocol ActionSelectorDelegate: class {
-    func actionBriefSelected(action: Actions.Brief)
+    func actionBriefSelected(action: ActionManager.Brief)
 }

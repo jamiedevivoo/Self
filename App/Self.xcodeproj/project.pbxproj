@@ -29,7 +29,7 @@
 		7D7758CF225D872F003CCD1F /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758CE225D872F003CCD1F /* FeedManager.swift */; };
 		7D7758D1225D8764003CCD1F /* HighlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D0225D8764003CCD1F /* HighlightManager.swift */; };
 		7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D2225D878A003CCD1F /* InsightManager.swift */; };
-		7D7758D5225D87B0003CCD1F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* Actions.swift */; };
+		7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* ActionManager.swift */; };
 		7D77E53E227F805900946FB7 /* ActionSelectorProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77E53D227F805900946FB7 /* ActionSelectorProtocolDelegate.swift */; };
 		7D77E548227F93B900946FB7 /* ExpandableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77E547227F93B900946FB7 /* ExpandableProtocol.swift */; };
 		7D77E54A227F942200946FB7 /* ExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77E549227F942200946FB7 /* ExpandableCell.swift */; };
@@ -61,7 +61,7 @@
 		7D8E4329227E62E700243139 /* HighlightLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4328227E62E700243139 /* HighlightLog.swift */; };
 		7D8E432B227E803600243139 /* FeedStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432A227E803600243139 /* FeedStatus.swift */; };
 		7D8E432D227E852D00243139 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432C227E852D00243139 /* ActionInfo.swift */; };
-		7D8E432F227E971900243139 /* ActionsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432E227E971900243139 /* ActionsUser.swift */; };
+		7D8E432F227E971900243139 /* ActionManagerUserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */; };
 		7D8E4331227EF81200243139 /* NoActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4330227EF81200243139 /* NoActionsView.swift */; };
 		7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */; };
 		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
@@ -75,7 +75,7 @@
 		7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC0F2266C02900F47E63 /* HighlightCell.swift */; };
 		7DD6CC1222672E1B00F47E63 /* Loading-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */; };
 		7DD6CC1422672E3600F47E63 /* Achivement-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */; };
-		7DD6CC1622673DA700F47E63 /* DailyActionSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1522673DA700F47E63 /* DailyActionSelectorViewController.swift */; };
+		7DD6CC1622673DA700F47E63 /* DailyActionBriefSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1522673DA700F47E63 /* DailyActionBriefSelectorViewController.swift */; };
 		7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */; };
 		7DD6CC1B2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */; };
 		7DD6CC1D2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */; };
@@ -158,7 +158,7 @@
 		7D7758CE225D872F003CCD1F /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		7D7758D0225D8764003CCD1F /* HighlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
-		7D7758D4225D87B0003CCD1F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		7D7758D4225D87B0003CCD1F /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		7D77E53D227F805900946FB7 /* ActionSelectorProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSelectorProtocolDelegate.swift; sourceTree = "<group>"; };
 		7D77E547227F93B900946FB7 /* ExpandableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableProtocol.swift; sourceTree = "<group>"; };
 		7D77E549227F942200946FB7 /* ExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCell.swift; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		7D8E4328227E62E700243139 /* HighlightLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightLog.swift; sourceTree = "<group>"; };
 		7D8E432A227E803600243139 /* FeedStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatus.swift; sourceTree = "<group>"; };
 		7D8E432C227E852D00243139 /* ActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionInfo.swift; sourceTree = "<group>"; };
-		7D8E432E227E971900243139 /* ActionsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsUser.swift; sourceTree = "<group>"; };
+		7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManagerUserExtension.swift; sourceTree = "<group>"; };
 		7D8E4330227EF81200243139 /* NoActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActionsView.swift; sourceTree = "<group>"; };
 		7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodWildcard.swift; sourceTree = "<group>"; };
 		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		7DD6CC0F2266C02900F47E63 /* HighlightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCell.swift; sourceTree = "<group>"; };
 		7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Loading-Protocol.swift"; sourceTree = "<group>"; };
 		7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achivement-Protocol.swift"; sourceTree = "<group>"; };
-		7DD6CC1522673DA700F47E63 /* DailyActionSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionSelectorViewController.swift; sourceTree = "<group>"; };
+		7DD6CC1522673DA700F47E63 /* DailyActionBriefSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionBriefSelectorViewController.swift; sourceTree = "<group>"; };
 		7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSliderViewController.swift; sourceTree = "<group>"; };
 		7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardBehaviour-Extension.swift"; sourceTree = "<group>"; };
 		7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewControllers-Extension.swift"; sourceTree = "<group>"; };
@@ -499,8 +499,8 @@
 		A3B76AE0227D02EF00282ECB /* ACTION */ = {
 			isa = PBXGroup;
 			children = (
-				7D7758D4225D87B0003CCD1F /* Actions.swift */,
-				7D8E432E227E971900243139 /* ActionsUser.swift */,
+				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
+				7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */,
 				A35EA85722456F9600592D88 /* ActionLog.swift */,
 				7D8E432C227E852D00243139 /* ActionInfo.swift */,
 			);
@@ -634,7 +634,7 @@
 			isa = PBXGroup;
 			children = (
 				A33409B1224570D2004CBB2A /* ActionsViewController.swift */,
-				7DD6CC1522673DA700F47E63 /* DailyActionSelectorViewController.swift */,
+				7DD6CC1522673DA700F47E63 /* DailyActionBriefSelectorViewController.swift */,
 				7D187F112258D1A000A9E9AE /* ActionCell2.swift */,
 				7D8E4330227EF81200243139 /* NoActionsView.swift */,
 			);
@@ -895,7 +895,7 @@
 				7D10F5E5226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift in Sources */,
 				7D77E5F9227FA33900946FB7 /* AppOfTheDayCell.swift in Sources */,
 				7DD6CC1D2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift in Sources */,
-				7D8E432F227E971900243139 /* ActionsUser.swift in Sources */,
+				7D8E432F227E971900243139 /* ActionManagerUserExtension.swift in Sources */,
 				A3D75736225D4F1B00E87F67 /* ColorManager.swift in Sources */,
 				7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */,
 				7D8E432B227E803600243139 /* FeedStatus.swift in Sources */,
@@ -907,7 +907,7 @@
 				7D77E5E1227FA30D00946FB7 /* DismissStoryViewAnimationController.swift in Sources */,
 				7D77E604227FA35400946FB7 /* UIView+Constraints.swift in Sources */,
 				7D77E600227FA35400946FB7 /* BaseView.swift in Sources */,
-				7D7758D5225D87B0003CCD1F /* Actions.swift in Sources */,
+				7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */,
 				7DD6CC002266B51D00F47E63 /* TagViewController.swift in Sources */,
 				7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */,
 				7D8E4321227E5B2000243139 /* Mood.swift in Sources */,
@@ -953,7 +953,7 @@
 				7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,
 				7D8E4323227E5D0100243139 /* Feed.swift in Sources */,
-				7DD6CC1622673DA700F47E63 /* DailyActionSelectorViewController.swift in Sources */,
+				7DD6CC1622673DA700F47E63 /* DailyActionBriefSelectorViewController.swift in Sources */,
 				7D10F5DF226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift in Sources */,
 				7D6B746122602C56006F9CD1 /* Induction_Onboarding-ViewController.swift in Sources */,
 				A33409A3224570A4004CBB2A /* AccountSettingsViewController.swift in Sources */,

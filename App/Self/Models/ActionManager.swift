@@ -1,39 +1,39 @@
 import Firebase
 
-class Actions {
+class ActionManager {
     private var ActionsFirebaseReference:CollectionReference = Firestore.firestore().collection("actions")
 }
 
 
 // Helpers
-extension Actions {
-    func user(_ account: Account) -> Actions.User {
+extension ActionManager {
+    func user(_ account: Account) -> ActionManager.User {
         return User(account: account).self
     }
 }
 
 
 // Build Actions Brief
-extension Actions {
-    private func constructActionBrief(FromSnapshot actionSnapshot: DocumentSnapshot) -> Actions.Brief {
+extension ActionManager {
+    private func constructActionBrief(FromSnapshot actionSnapshot: DocumentSnapshot) -> ActionManager.Brief {
         var actionData = actionSnapshot.data()!
         actionData["uid"] = actionSnapshot.documentID
-        let action = Actions.Brief(actionData)
+        let action = ActionManager.Brief(actionData)
         return action
     }
 }
 
 
 // Get Action Data from Database
-extension Actions {
-    func getAllActions(completion: @escaping ([Actions.Brief]) -> ()) {
+extension ActionManager {
+    func getAllActions(completion: @escaping ([ActionManager.Brief]) -> ()) {
         ActionsFirebaseReference.getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, let _ = error  else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
                 return
             }
             
-            var actions: [Actions.Brief] = []
+            var actions: [ActionManager.Brief] = []
             for document in querySnapshot.documents {
                 let action = self.constructActionBrief(FromSnapshot: document)
                 actions.append(action)
@@ -42,14 +42,14 @@ extension Actions {
         }
     }
 
-    func getDailyActions(completion: @escaping ([Actions.Brief]) -> ()) {
+    func getDailyActions(completion: @escaping ([ActionManager.Brief]) -> ()) {
         ActionsFirebaseReference.whereField("daily_action", isEqualTo: true).getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, error == nil  else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
                 return
             }
             
-            var actions: [Actions.Brief] = []
+            var actions: [ActionManager.Brief] = []
             for document in querySnapshot.documents {
                 let action = self.self.constructActionBrief(FromSnapshot: document)
                 actions.append(action)
