@@ -102,7 +102,7 @@ extension HighlightsViewController {
         noHighlightsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(100)
+            make.height.greaterThanOrEqualTo(125)
         }
     }
     

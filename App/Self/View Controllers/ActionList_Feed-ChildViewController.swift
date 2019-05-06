@@ -16,12 +16,12 @@ class FeedActionListChildViewController: UIViewController {
     }()
     
     lazy var actionHeaderLabel = HeaderLabel("Your Recommended Actions", .section)
-    lazy var moodButton = DashboardButton(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood))
-    lazy var revealChallengesButton = DashboardButton(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse))
-    lazy var newHighlightButton = DashboardButton(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse))
-    lazy var settingsButton = DashboardButton(title: "Settings", action: #selector(FeedActionListChildViewController.settings))
-    lazy var finishAccountButton = DashboardButton(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount))
-    lazy var logoutButton = DashboardButton(title: "Logout", action: #selector(FeedActionListChildViewController.logout))
+    lazy var moodButton = Button(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood), type: .dashboard)
+    lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
+    lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
+    lazy var settingsButton = Button(title: "Settings", action: #selector(FeedActionListChildViewController.settings), type: .dashboard)
+    lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount), type: .dashboard)
+    lazy var logoutButton = Button(title: "Logout", action: #selector(FeedActionListChildViewController.logout), type: .dashboard)
 
     
     var accountRef: Account?

@@ -69,7 +69,6 @@
 		7DD6CC062266B6CF00F47E63 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC052266B6CF00F47E63 /* Community.swift */; };
 		7DD6CC082266B6F300F47E63 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC072266B6F300F47E63 /* CommunityViewController.swift */; };
 		7DD6CC0A2266B71500F47E63 /* FindCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC092266B71500F47E63 /* FindCommunityViewController.swift */; };
-		7DD6CC0E2266B97D00F47E63 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC0D2266B97D00F47E63 /* Buttons.swift */; };
 		7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC0F2266C02900F47E63 /* HighlightCell.swift */; };
 		7DD6CC1222672E1B00F47E63 /* Loading-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */; };
 		7DD6CC1422672E3600F47E63 /* Achivement-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */; };
@@ -123,7 +122,6 @@
 		A3683569226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3683568226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift */; };
 		A368356B226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */; };
 		A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B76ADA227CE7CB00282ECB /* SentimentLog.swift */; };
-		A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9508224D486200D0EC31 /* DashboardButton.swift */; };
 		A3CF950B224D4B4600D0EC31 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* Colours.swift */; };
 		A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9513224E714600D0EC31 /* MoodLog.swift */; };
 		A3CF9516224E9C8900D0EC31 /* FeedStatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */; };
@@ -196,7 +194,6 @@
 		7DD6CC052266B6CF00F47E63 /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		7DD6CC072266B6F300F47E63 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		7DD6CC092266B71500F47E63 /* FindCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommunityViewController.swift; sourceTree = "<group>"; };
-		7DD6CC0D2266B97D00F47E63 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		7DD6CC0F2266C02900F47E63 /* HighlightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCell.swift; sourceTree = "<group>"; };
 		7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Loading-Protocol.swift"; sourceTree = "<group>"; };
 		7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achivement-Protocol.swift"; sourceTree = "<group>"; };
@@ -252,7 +249,6 @@
 		A3683568226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenSliderViewController-Protocol.swift"; sourceTree = "<group>"; };
 		A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataCollectionSequenceDelegate-Protocol.swift"; sourceTree = "<group>"; };
 		A3B76ADA227CE7CB00282ECB /* SentimentLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentimentLog.swift; sourceTree = "<group>"; };
-		A3CF9508224D486200D0EC31 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		A3CF9513224E714600D0EC31 /* MoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLog.swift; sourceTree = "<group>"; };
 		A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatusMessage.swift; sourceTree = "<group>"; };
@@ -342,8 +338,6 @@
 				A3D75723225CD5A900E87F67 /* HeaderLabel.swift */,
 				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
 				7D47AC67225FD380004BF898 /* Button.swift */,
-				A3CF9508224D486200D0EC31 /* DashboardButton.swift */,
-				7DD6CC0D2266B97D00F47E63 /* Buttons.swift */,
 				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
 				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
 				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
@@ -919,7 +913,6 @@
 				7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift in Sources */,
 				7D77E548227F93B900946FB7 /* ExpandableProtocol.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
-				7DD6CC0E2266B97D00F47E63 /* Buttons.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
 				A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */,
 				7D77E5DA227FA2F600946FB7 /* TodayViewController.swift in Sources */,
@@ -931,7 +924,6 @@
 				7D187F122258D1A000A9E9AE /* ActionCell2.swift in Sources */,
 				7DD6CC1222672E1B00F47E63 /* Loading-Protocol.swift in Sources */,
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
-				A3CF9509224D486200D0EC31 /* DashboardButton.swift in Sources */,
 				A30EC35322564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift in Sources */,
 				7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,

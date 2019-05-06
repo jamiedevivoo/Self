@@ -77,6 +77,7 @@ extension ActionsViewController {
 // MARK: - Interaction Methods
 extension ActionsViewController {
     @objc func unlockAction() {
+        print("Clicked Unlick")
         let actionSelectionViewController = DailyActionBriefSelectorViewController()
         actionSelectionViewController.delegate = self
         actionSelectionViewController.actionManager = actionManager
@@ -128,7 +129,7 @@ extension ActionsViewController {
         noActionsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(100)
+            make.height.greaterThanOrEqualTo(200)
         }
     }
     

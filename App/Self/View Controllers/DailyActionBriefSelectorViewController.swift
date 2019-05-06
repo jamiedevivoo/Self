@@ -67,8 +67,7 @@ extension DailyActionBriefSelectorViewController: UICollectionViewDataSource, UI
         cell.actionCardTitleLabel.text = action.title
         cell.actionCardDescriptionLabel.text = action.description
         for tag in action.tags {
-            let tagButton = UIButton.tagButton
-            tagButton.setTitle(tag.title, for: .normal)
+            let tagButton = Button(title: tag.title, action: nil, type: .tag)
             cell.tags.append(tagButton)
         }
         return cell

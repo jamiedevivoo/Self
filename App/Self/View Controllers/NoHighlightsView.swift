@@ -3,7 +3,8 @@ import SnapKit
 
 class NoHighlightsView: UIView {
     
-    lazy var message: UILabel = HeaderLabel("Use the app for a couple more days to unlock Highlights and Insights.",.focusTitle)
+    lazy var headerLabel: UILabel = HeaderLabel("Check back later 👩‍🔬 ...",.centerPageTitle)
+    lazy var subHeaderLabel: UILabel = HeaderLabel("Keep using the app to unlock more features like Highlights and Insights.",.centerPageText)
 
     // Init
     override init(frame: CGRect) {
@@ -24,10 +25,18 @@ extension NoHighlightsView {
     }
     
     func setupChildViews() {
-        addSubview(message)
+        addSubview(headerLabel)
+        addSubview(subHeaderLabel)
         
-        message.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+        headerLabel.snp.makeConstraints { (make) in
+            make.width.equalToSuperview().multipliedBy(0.6)
+            make.left.equalTo(subHeaderLabel.snp.left)
+            make.height.greaterThanOrEqualTo(50)
+        }
+        subHeaderLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(headerLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.height.greaterThanOrEqualTo(50)
             make.width.equalToSuperview()
         }
     }

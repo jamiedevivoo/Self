@@ -38,9 +38,9 @@ extension InductionOnboardingViewController {
     
     func checkCompletion() {
         if delegate!.isDataCollectionComplete() {
-            continueButton.customiseButton(for: .primary)
+            continueButton.setup(.primary)
         } else {
-            continueButton.customiseButton(for: .disabled)
+            continueButton.setup(.disabled)
         }
     }
     

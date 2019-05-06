@@ -33,8 +33,13 @@ class HeaderLabel: UILabel {
                 font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
                 textColor = UIColor.app.text.solidText()
                 return
-            case .focusTitle:
-                font = UIFont.systemFont(ofSize: 26, weight: UIFont.Weight.heavy)
+            case .centerPageTitle:
+                font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.black)
+                textColor = UIColor.app.text.solidText().withAlphaComponent(0.4)
+                textAlignment = NSTextAlignment.center
+                setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
+            case .centerPageText:
+                font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
                 textColor = UIColor.app.text.solidText()
                 textAlignment = NSTextAlignment.center
                 setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
@@ -42,7 +47,7 @@ class HeaderLabel: UILabel {
     }
     
     enum HeaderType {
-        case screen, section, subheader, focusTitle
+        case screen, section, subheader, centerPageTitle, centerPageText
     }
     
     func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
