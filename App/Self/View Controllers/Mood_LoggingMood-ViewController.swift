@@ -19,21 +19,6 @@ final class MoodLoggingMoodViewController: ViewController {
         return label
     }()
     
-    lazy var arousalLabel: UILabel = {
-        let label = UILabel.title
-        label.text = "< Mild to Intense >"
-        label.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
-        label.textColor = UIColor.app.text.solidText()
-        return label
-    }()
-    
-    lazy var valenceLabel: UILabel = {
-        let label = UILabel.title
-        label.text = "< Negative to Positive >"
-        label.textColor = UIColor.app.text.solidText()
-        return label
-    }()
-    
     lazy var circle: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.app.background.secondaryBackground()
@@ -265,17 +250,6 @@ extension MoodLoggingMoodViewController {
 extension MoodLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
-        self.view.addSubview(arousalLabel)
-        self.view.addSubview(valenceLabel)
-        
-        arousalLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(-50)
-            make.centerY.equalToSuperview()
-        }
-        valenceLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
-            make.centerX.equalToSuperview()
-        }
     }
     
 }
