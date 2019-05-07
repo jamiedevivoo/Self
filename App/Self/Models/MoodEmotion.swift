@@ -4,6 +4,13 @@ extension Mood {
         var adj: String
         var valence: Double
         var arousal: Double
+        
+        var valenceMultiplier: Double {
+            get { return valence + 1 }
+        }
+        var arousalMultiplier: Double {
+            get { return arousal + 1 }
+        }
     }
 }
 

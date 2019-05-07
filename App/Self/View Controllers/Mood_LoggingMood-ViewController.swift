@@ -8,17 +8,6 @@ final class MoodLoggingMoodViewController: ViewController {
     var moodLoggingDelegate: MoodLoggingDelegate?
     weak var screenSlider: ScreenSliderViewController?
     
-    lazy var emotionPickerLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.app.text.solidText()
-        label.text = "How are you?"
-        label.isUserInteractionEnabled = false
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
-        label.layer.frame.size = CGSize(width: 100, height: 50)
-        label.textAlignment = .center
-        return label
-    }()
-    
     lazy var tapToConfirm: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.app.text.solidText()
@@ -135,11 +124,6 @@ extension MoodLoggingMoodViewController {
             withArousal: userRatings.arousal
         )
         
-        /// - Update the labels
-        emotionPickerLabel.text = emotion?.adj
-        emotionPickerLabel.frame.origin.x = location.x - 50
-        emotionPickerLabel.frame.origin.y = location.y - 100
-        
         /// - Update tap to confirm and circle positions
         tapToConfirm.frame.origin.x = location.x - 50
         tapToConfirm.frame.origin.y = location.y + 20
@@ -151,13 +135,11 @@ extension MoodLoggingMoodViewController {
     }
     
     func addMark() {
-        view.addSubview(emotionPickerLabel)
         view.addSubview(circle)
         tapToConfirm.removeFromSuperview()
     }
     
     func setMark() {
-        emotionPickerLabel.removeFromSuperview()
         view.addSubview(tapToConfirm)
         guard markAdded == false else { return }
         isMoodMarked = true
@@ -194,6 +176,8 @@ extension MoodLoggingMoodViewController {
     }
     
     func updateBackground(xScale: CGFloat, yScale: CGFloat) {
+        
+        /// - Calculate each of the colour attributes. Format: initialValue Operator (mutableRange * mutator)
         let red     = 0.9 - (0.8 * xScale)   // 0.9 - 0.1
         let green   = 0.1 + (0.8 * xScale)   // 0.1 - 0.9
         let blue    = 0.1 + (0.8 * yScale)   // 0.1 - 0.9
@@ -205,23 +189,28 @@ extension MoodLoggingMoodViewController {
     
     func addEmotionLabels() {
         for emotion in EmotionManager.allEmotions {
-            let valenceMultiplier = emotion.valence + 1
-            let arousalMultiplier = emotion.arousal + 1
             
             /// - Create and style the label
             let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.ultraLight)
+            label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.ultraLight)
             label.textAlignment = .center
             label.layer.frame.size = CGSize(width: 80, height: 20)
+            label.textColor = UIColor.app.text.solidText()
             
             /// - Add the emotion name
             label.text = emotion.name
             
-            /// - Position the label
-            let left: CGFloat = CGFloat(self.view.frame.width / 2) - (label.frame.width / 2)    /// First: Get the center horizontal position of the view and label
-            label.frame.origin.x = left*CGFloat(valenceMultiplier)                              /// Second: Adjust that position by the multiplier
-            let top: CGFloat = CGFloat(self.view.frame.height / 2) - (label.frame.height / 2)   /// First: Get the center vertical position of the view and label
-            label.frame.origin.y = top*CGFloat(arousalMultiplier)                               /// Second: Adjust that position by the multiplier
+            /// - Work out the labels center position
+            var left: CGFloat   = CGFloat(self.view.frame.width / 2) - (label.frame.width / 2)          /// Get the center horizontal position of the view and label
+            var top: CGFloat    = CGFloat(self.view.frame.height / 2) - (label.frame.height / 2)        /// Get the center vertical position of the view and label
+            
+            /// - adjust the position by the emotion multiplier
+            left = left * CGFloat(emotion.valenceMultiplier)                           /// Adjust that position by the multiplier
+            top = self.view.frame.height - (top * CGFloat(emotion.arousalMultiplier))  /// Adjust that position by the multiplier (also reverse it so it aligns with the scale, bottom to top)
+            
+            /// - Set the position
+            label.frame.origin.x = left
+            label.frame.origin.y = top
             
             /// - Add the label
             view.addSubview(label)
@@ -232,6 +221,8 @@ extension MoodLoggingMoodViewController {
     func updateLabelsRelativeToPosition(tapPosition tap:(x: CGFloat, y: CGFloat)) {
         
         for emotionLabel in emotionLabelCollection {
+            
+            let largestScreenDistance = (view.frame.size.width / 2) + (view.frame.size.height / 2)
             
             /// - Calculate the frame radius now (axis size divide by 2), to help keep the code clean later on.
             let radius: (width:CGFloat,height:CGFloat) = (
@@ -252,21 +243,17 @@ extension MoodLoggingMoodViewController {
                 total: abs(position.x - tap.x) + abs(position.y - tap.y)
             )
             
-            let fractionDistanceFromTap = distanceFromTap.total / 2
-            
-//            let xDistanceFraction     = xDistanceFromEmotion / (self.view.frame.width / 2)      /// Second: Convert it into a fraction between 0 (very close) and 1 (very far)
-//            let yDistanceFromEmotion  = abs(anchorPositon.y - y)                           /// First: Calculate the absolute distance from the labels vertical Anchor
-//            let yDistanceFraction     = yDistanceFromEmotion / (self.view.frame.height / 2)     /// Second: Convert it into a fraction between 0 (very close) and 1 (very far)
-//            let distanceFraction      = (xDistanceFraction + yDistanceFraction) / 2             /// Then: Combine them to have an overall fraction representing distance
-//
-//            /// - Create a Multiplier
-            var multiplier = fractionDistanceFromTap       /// First: Reverse the distanceFraction so that 0 now represents the furthest distance possible and 1 represents the closest
-            multiplier     = 1 - (multiplier / 3)  /// Second:
+            /// - Create a Multiplier
+            let catchmentDistance = largestScreenDistance / 3                       /// The fraction of the screen around the label the tap must be in before multipliers take effect
+            let bufferedDistance = distanceFromTap.total - 50                       /// Buffer so that multipliers reach their max value before the users tap covers it
+            var multiplier = 1 - (bufferedDistance / catchmentDistance)             /// Fraction representing 1 as the position of the label and 0 as the furthest possible distance || 0.8
+            multiplier = (multiplier < 0) ? 0 : ((multiplier > 1) ? 1 : multiplier) /// Restrict the multiplier to between 0 and 1
             
             
-//            multiplier     = multiplier +
-            
-            emotionLabel.alpha          = multiplier
+            /// - Apply the Multipliers
+            emotionLabel.alpha = 0.9 * (multiplier)                                 /// Fade the label in as the tap gets closer, up to 0.9 opacity
+            emotionLabel.font = UIFont.systemFont(ofSize: (12 * multiplier))        /// Make the label larger as the tap gets closer, up to size 12
+
         }
         
     }
