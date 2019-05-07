@@ -50,7 +50,7 @@ final class MoodLoggingMoodViewController: ViewController {
     var userRatings: (valence: Double, arousal: Double) = (0,0)
     var emotion: Mood.Emotion?
     
-    var emotionLabelCollection: [UILabel] = []
+    var emotionLabelCollection: [CATextLayer] = []
     
 }
 
@@ -89,7 +89,10 @@ extension MoodLoggingMoodViewController {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
         updateMark(touch: touch)
+        CATransaction.commit()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -123,11 +126,8 @@ extension MoodLoggingMoodViewController {
         tapToConfirm.frame.origin.x = location.x - 50
         tapToConfirm.frame.origin.y = location.y + 20
         
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(2)
         circle.frame.origin.x = location.x - (circle.frame.width / 2)
         circle.frame.origin.y = location.y - (circle.frame.height / 2)
-        CATransaction.commit()
         
         updateLabelsRelativeToPosition(tapPosition: (location.x, location.y))
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
@@ -196,7 +196,7 @@ extension MoodLoggingMoodViewController {
         let bottomLeft  = UIColor(red: red, green: green-0.1,     blue: blue, alpha: alpha-0.1    ).cgColor /// Less Valence (Top LEFT) (red)
         
         CATransaction.begin()
-        CATransaction.setAnimationDuration(1)
+        CATransaction.setAnimationDuration(2)
 //            view.backgroundColor = colour
             gradientLayer.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
         CATransaction.commit()
@@ -207,17 +207,19 @@ extension MoodLoggingMoodViewController {
         for emotion in EmotionManager.allEmotions {
             
             /// - Create and style the label
-            let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.ultraLight)
-            label.textAlignment = .center
-            label.layer.frame.size = CGSize(width: 200, height: 20)
-            label.textColor = UIColor.app.text.solidText()
-            label.layer.shadowRadius = 4.0
-            label.layer.shadowOpacity = 0.6
-            label.layer.shadowOffset = CGSize(width: 0, height: 5)
+            let label = CATextLayer()
+            label.font = CGFont(UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.ultraLight).fontName as CFString)
+            label.fontSize = 12
+            label.contentsScale = UIScreen.main.scale
+            label.alignmentMode = .center
+            label.frame.size = CGSize(width: 200, height: 20)
+            label.foregroundColor = UIColor.app.text.solidText().cgColor
+            label.shadowRadius = 4.0
+            label.shadowOpacity = 0.6
+            label.shadowOffset = CGSize(width: 0, height: 5)
             
             /// - Add the emotion name
-            label.text = emotion.adj
+            label.string = emotion.adj
             
             /// - Work out the labels center position
             var left: CGFloat   = CGFloat(self.view.frame.width / 2) - (label.frame.width / 2)          /// Get the center horizontal position of the view and label
@@ -232,7 +234,7 @@ extension MoodLoggingMoodViewController {
             label.frame.origin.y = top
             
             /// - Add the label
-            view.addSubview(label)
+            view.layer.addSublayer(label)
             emotionLabelCollection.append(label)
         }
     }
@@ -268,14 +270,17 @@ extension MoodLoggingMoodViewController {
             var multiplier = 1 - (bufferedDistance / catchmentDistance)             /// Fraction representing 1 as the position of the label and 0 as the furthest possible distance || 0.8
             multiplier = (multiplier < 0) ? 0 : ((multiplier > 1) ? 1 : multiplier) /// Restrict the multiplier to between 0 and 1
             
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(1)       /// Begin CATransaction with duration for any CA Layers
             
-            /// - Apply the Multipliers
-            emotionLabel.alpha = 0.8 * multiplier                                   /// Fade the label in as the tap gets closer, up to 0.9 opacity
-            emotionLabel.font = UIFont.systemFont(ofSize: 12 * multiplier)  /// Make the label larger as the tap gets closer, up to size 12
-            emotionLabel.layer.shadowRadius = CGFloat(4.0 * multiplier)
-            emotionLabel.layer.shadowOpacity = Float(0.6 * multiplier)
-            emotionLabel.layer.shadowOffset = CGSize(width: 0, height: CGFloat(5.0 * multiplier).rounded())
-
+                /// - Apply the Multipliers
+                emotionLabel.opacity = Float(0.8 * multiplier)                                              /// Fade the label in as the tap gets closer, up to 0.9 opacity
+                emotionLabel.fontSize = (12 * multiplier)                                                   /// Make the label larger as the tap gets closer, up to size 12
+                emotionLabel.shadowRadius = CGFloat(3.0 * multiplier)                                       /// Animate shadow
+                emotionLabel.shadowOpacity = Float(0.8 * multiplier)                                        /// Animate opacity
+                emotionLabel.shadowOffset = CGSize(width: 0, height: CGFloat(6.0 * multiplier).rounded())   /// Animate offset to give layer depth
+            
+            CATransaction.commit()
         }
         
     }
