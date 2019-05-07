@@ -8,12 +8,22 @@ final class MoodLoggingMoodViewController: ViewController {
     var moodLoggingDelegate: MoodLoggingDelegate?
     weak var screenSlider: ScreenSliderViewController?
     
+    lazy var gradientLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.frame = self.view.layer.frame
+        layer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        layer.endPoint = CGPoint(x:0, y:0)
+        layer.type = .conic
+        layer.colors = [UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor]
+        return layer
+    }()
+    
     lazy var tapToConfirm: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.app.text.solidText()
         label.text = "Tap to confirm"
-        label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.light)
-        label.layer.frame.size = CGSize(width: 100, height: 50)
+        label.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.light)
+        label.layer.frame.size = CGSize(width: 200, height: 50)
         label.isUserInteractionEnabled = false
         label.textAlignment = .center
         return label
@@ -55,7 +65,7 @@ extension MoodLoggingMoodViewController {
         screenSlider?.forwardNavigationEnabled = false
         super.navigationController?.isNavigationBarHidden = true
         navigationController?.isToolbarHidden = true
-        
+        view.layer.addSublayer(gradientLayer)
         addEmotionLabels()
     }
     
@@ -112,8 +122,12 @@ extension MoodLoggingMoodViewController {
         /// - Update tap to confirm and circle positions
         tapToConfirm.frame.origin.x = location.x - 50
         tapToConfirm.frame.origin.y = location.y + 20
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(2)
         circle.frame.origin.x = location.x - (circle.frame.width / 2)
         circle.frame.origin.y = location.y - (circle.frame.height / 2)
+        CATransaction.commit()
         
         updateLabelsRelativeToPosition(tapPosition: (location.x, location.y))
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
@@ -161,14 +175,31 @@ extension MoodLoggingMoodViewController {
     }
     
     func updateBackground(xScale: CGFloat, yScale: CGFloat) {
+        /// xScale is valence
+        /// yScale is Arousal
         
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+            gradientLayer.startPoint = CGPoint(x: xScale, y: yScale)
+        CATransaction.commit()
+
         /// - Calculate each of the colour attributes. Format: initialValue Operator (mutableRange * mutator)
-        let red     = 0.9 - (0.8 * xScale)   // 0.9 - 0.1
-        let green   = 0.1 + (0.8 * xScale)   // 0.1 - 0.9
-        let blue    = 0.1 + (0.8 * yScale)   // 0.1 - 0.9
-        let alpha   = 0.6 - (0.2 * yScale)   // 0.6 - 0.4
+        let red     = 0.9 - (0.8 * xScale)   /// 0.9 - 0.1
+        let green   = 0.1 + (0.8 * xScale)   /// 0.1 - 0.9
+        let blue    = 0.1 + (0.8 * yScale)   /// 0.1 - 0.9
+        let alpha   = 0.6 - (0.2 * yScale)   /// 0.6 - 0.4
         
-        view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+//        let colour      = UIColor(red: red,     green: green,     blue: blue,     alpha: alpha    )         /// Base (center)
+        let topLeft     = UIColor(red: red, green: green-0.1,     blue: blue-0.03,     alpha: alpha).cgColor /// More Arousal (TOP Left) (blue)
+        let topRight    = UIColor(red: red-0.1,     green: green, blue: blue-0.03,     alpha: alpha).cgColor /// More Valance (Top RIGHT) (green)
+        let bottomRight = UIColor(red: red-0.1,     green: green, blue: blue, alpha: alpha-0.1    ).cgColor /// Less Arousal (BOTTOM Right) (alpha)
+        let bottomLeft  = UIColor(red: red, green: green-0.1,     blue: blue, alpha: alpha-0.1    ).cgColor /// Less Valence (Top LEFT) (red)
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(1)
+//            view.backgroundColor = colour
+            gradientLayer.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
+        CATransaction.commit()
 
     }
     
@@ -179,11 +210,14 @@ extension MoodLoggingMoodViewController {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.ultraLight)
             label.textAlignment = .center
-            label.layer.frame.size = CGSize(width: 80, height: 20)
+            label.layer.frame.size = CGSize(width: 200, height: 20)
             label.textColor = UIColor.app.text.solidText()
+            label.layer.shadowRadius = 4.0
+            label.layer.shadowOpacity = 0.6
+            label.layer.shadowOffset = CGSize(width: 0, height: 5)
             
             /// - Add the emotion name
-            label.text = emotion.name
+            label.text = emotion.adj
             
             /// - Work out the labels center position
             var left: CGFloat   = CGFloat(self.view.frame.width / 2) - (label.frame.width / 2)          /// Get the center horizontal position of the view and label
@@ -236,8 +270,11 @@ extension MoodLoggingMoodViewController {
             
             
             /// - Apply the Multipliers
-            emotionLabel.alpha = 0.9 * (multiplier)                                 /// Fade the label in as the tap gets closer, up to 0.9 opacity
-            emotionLabel.font = UIFont.systemFont(ofSize: (12 * multiplier))        /// Make the label larger as the tap gets closer, up to size 12
+            emotionLabel.alpha = 0.8 * multiplier                                   /// Fade the label in as the tap gets closer, up to 0.9 opacity
+            emotionLabel.font = UIFont.systemFont(ofSize: 12 * multiplier)  /// Make the label larger as the tap gets closer, up to size 12
+            emotionLabel.layer.shadowRadius = CGFloat(4.0 * multiplier)
+            emotionLabel.layer.shadowOpacity = Float(0.6 * multiplier)
+            emotionLabel.layer.shadowOffset = CGSize(width: 0, height: CGFloat(5.0 * multiplier).rounded())
 
         }
         

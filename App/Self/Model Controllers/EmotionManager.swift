@@ -4,9 +4,13 @@ class EmotionManager {
     
     static var allEmotions: [Mood.Emotion] = [
         Mood.Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
+        Mood.Emotion.init(name: "Anger", adj: "A bit angry", valence: -0.6, arousal: 0.4),
         Mood.Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
+        Mood.Emotion.init(name: "Boredom", adj: "A bit bored", valence: 0.6, arousal: -0.4),
         Mood.Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
+        Mood.Emotion.init(name: "Excitement", adj: "Almost excited", valence: 0.6, arousal: 0.4),
         Mood.Emotion.init(name: "Depression", adj: "Depressed", valence: -0.8, arousal: -0.8),
+        Mood.Emotion.init(name: "Nearly Depression", adj: "Nearly depressed", valence: -0.6, arousal: -0.4),
         Mood.Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
     ]
     let emotionsDBRef: CollectionReference = Firestore.firestore().collection("emotions")
