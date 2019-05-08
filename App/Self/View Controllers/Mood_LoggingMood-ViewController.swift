@@ -10,17 +10,40 @@ final class MoodLoggingMoodViewController: ViewController {
     
     lazy var tapToConfirm: UIButton = {
         let button = UIButton()
-        button.setTitle("Tap to Confirm", for: .normal)
+        button.setTitle("Add Log", for: .normal)
         button.setTitleColor(UIColor.app.button.primary.text(), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.layer.frame.size = CGSize(width: 200, height: 50)
         button.isUserInteractionEnabled = true
         button.backgroundColor = UIColor.app.button.primary.fill()
+        button.addTarget(self, action: #selector(tappedCircle), for: .touchUpInside)
         button.layer.cornerRadius = 25
         button.clipsToBounds = true
         return button
     }()
     
+    lazy var exitButton: UIButton = {
+        let button = UIButton()
+        let btnImage = UIImage(named:"back")
+        btnImage?.withRenderingMode(.alwaysTemplate)
+        button.setImage(btnImage, for: .normal)
+        button.tintColor = UIColor.darkText
+        button.addTarget(self, action: #selector(exit), for: .touchUpInside)
+        button.alpha = 0.8
+        return button
+    }()
+    
+    lazy var infoButton: UIButton = {
+        let button = UIButton()
+        let btnImage = UIImage(named:"info-circle")?.withRenderingMode(.alwaysTemplate)
+        btnImage?.withRenderingMode(.alwaysTemplate)
+        button.setImage(btnImage, for: .normal)
+        button.tintColor = UIColor.white
+        button.addTarget(self, action: #selector(info), for: .touchUpInside)
+        button.alpha = 0.6
+        return button
+    }()
+
     lazy var markSpotlight: CAGradientLayer = {
         let diameter: CGFloat = 60
         let gradient = CAGradientLayer()
@@ -46,13 +69,6 @@ final class MoodLoggingMoodViewController: ViewController {
         animation.autoreverses = true
         animation.repeatCount = Float.greatestFiniteMagnitude
         return animation
-    }()
-    
-    lazy var tapGesture: UITapGestureRecognizer = {
-        let gesture = UITapGestureRecognizer()
-        gesture.addTarget(self, action: #selector(tappedCircle))
-        gesture.cancelsTouchesInView = true
-        return gesture
     }()
     
     var isMoodMarked:Bool = false
@@ -114,10 +130,14 @@ extension MoodLoggingMoodViewController {
     }
     
     @objc func tappedCircle() {
-        print("tapped")
         saveMarkedMood()
     }
-    
+    @objc func exit() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    @objc func info() {
+        saveMarkedMood()
+    }
     
     // Other Methods
     /// Get's the mark and coordinates and uses them to create an emotion.
@@ -141,6 +161,12 @@ extension MoodLoggingMoodViewController {
         
         updateLabelsRelativeToPosition(tapPosition: (location.x, location.y))
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.exitButton.alpha = 0
+            self.infoButton.alpha = 0
+            self.tapToConfirm.alpha = 0
+        })
     }
     
     func addMark() {
@@ -149,7 +175,11 @@ extension MoodLoggingMoodViewController {
     
     func setMark() {
         view.addSubview(tapToConfirm)
-        tapToConfirm.addGestureRecognizer(tapGesture)
+        UIView.animate(withDuration: 0.25, animations: {
+            self.exitButton.alpha = 0.8
+            self.infoButton.alpha = 0.6
+            self.tapToConfirm.alpha = 0.8
+        })
         guard markAdded == false else { return }
         isMoodMarked = true
         markAdded = true
@@ -315,6 +345,21 @@ extension MoodLoggingMoodViewController {
 extension MoodLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
+        view.addSubview(exitButton)
+        view.addSubview(infoButton)
+
+        exitButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(15)
+            make.height.equalTo(25)
+            make.width.equalTo(25)
+        }
+        infoButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(25)
+            make.width.equalTo(25)
+        }
     }
     
 }
