@@ -13,6 +13,16 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var emotion: Mood.Emotion?
     var tags = [Tag]()
     
+    lazy var background: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.frame = self.view.layer.frame
+        layer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        layer.endPoint = CGPoint(x:0, y:0)
+        layer.type = .conic
+        layer.colors = [UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor]
+        return layer
+    }()
+    
     init() {
         super.init(navigationOrientation: .vertical)
     }
@@ -30,6 +40,7 @@ extension LoggingAMoodScreenSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
+        view.layer.addSublayer(background)
     }
     
 }

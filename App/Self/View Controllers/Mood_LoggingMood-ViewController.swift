@@ -8,23 +8,14 @@ final class MoodLoggingMoodViewController: ViewController {
     var moodLoggingDelegate: MoodLoggingDelegate?
     weak var screenSlider: ScreenSliderViewController?
     
-    lazy var backgroundGradient: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        layer.frame = self.view.layer.frame
-        layer.startPoint = CGPoint(x: 0.5, y: 0.5)
-        layer.endPoint = CGPoint(x:0, y:0)
-        layer.type = .conic
-        layer.colors = [UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor,UIColor.clear.cgColor]
-        return layer
-    }()
-    
-    lazy var tapToConfirm: UILabel = {
-        let label = HeaderLabel.init("Tap to Confirm", .section)
-        label.textColor = UIColor.app.text.solidText()
-        label.layer.frame.size = CGSize(width: 400, height: 50)
-        label.isUserInteractionEnabled = true
-        label.textAlignment = .center
-        return label
+    lazy var tapToConfirm: UIButton = {
+        let button = UIButton()
+        button.setTitle("Tap to Confirm", for: .normal)
+        button.setTitleColor(UIColor.app.button.primary.text(), for: .normal)
+        button.layer.frame.size = CGSize(width: 200, height: 50)
+        button.isUserInteractionEnabled = true
+        button.backgroundColor = UIColor.app.button.primary.fill()
+        return button
     }()
     
     lazy var markSpotlight: CAGradientLayer = {
@@ -39,19 +30,31 @@ final class MoodLoggingMoodViewController: ViewController {
         gradient.opacity = 0.9
         gradient.locations = [0.0, 0.6, 1]
         gradient.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(0).cgColor]
-        gradient.backgroundFilters = [CIFilter(name: "CIGaussianBlur",parameters: [kCIInputRadiusKey: 5])!]
+        gradient.backgroundFilters = [CIFilter(name: "CIGaussianBlur",parameters: [kCIInputRadiusKey: 10])!]
         return gradient
+    }()
+    
+    lazy var pulseAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "transform")
+        animation.duration = 1.5
+        animation.fromValue = CATransform3DMakeScale(1.0, 1.0, 1.0)
+        animation.toValue = CATransform3DMakeScale(0.75, 0.75, 0.8)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.autoreverses = true
+        animation.repeatCount = Float.greatestFiniteMagnitude
+        return animation
     }()
     
     lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(tappedCircle))
+        gesture.cancelsTouchesInView = true
         return gesture
     }()
     
     var isMoodMarked:Bool = false
     var markAdded: Bool = false
-    
+    var primaryBackgroundColour = UIColor.white.withAlphaComponent(0)
     var userRatings: (valence: Double, arousal: Double) = (0,0)
     var emotion: Mood.Emotion?
     
@@ -69,10 +72,9 @@ extension MoodLoggingMoodViewController {
         screenSlider?.forwardNavigationEnabled = false
         super.navigationController?.isNavigationBarHidden = true
         navigationController?.isToolbarHidden = true
-        view.layer.addSublayer(backgroundGradient)
         addEmotionLabels()
-        view.layer.insertSublayer(markSpotlight, above: backgroundGradient)
-        tapToConfirm.addGestureRecognizer(tapGesture)
+        view.layer.addSublayer(markSpotlight)
+        markSpotlight.add(pulseAnimation, forKey: nil)
     }
     
     
@@ -108,6 +110,7 @@ extension MoodLoggingMoodViewController {
     }
     
     @objc func tappedCircle() {
+        print("tapped")
         saveMarkedMood()
     }
     
@@ -142,18 +145,10 @@ extension MoodLoggingMoodViewController {
     
     func setMark() {
         view.addSubview(tapToConfirm)
+        tapToConfirm.addGestureRecognizer(tapGesture)
         guard markAdded == false else { return }
         isMoodMarked = true
         markAdded = true
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(2)       /// Begin CATransaction with duration for any CA Layers
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-            for emotionLabel in emotionLabelCollection {
-                emotionLabel.fontSize = 0
-                emotionLabel.opacity = 0
-            }
-        CATransaction.commit()
     }
     
     
@@ -164,10 +159,26 @@ extension MoodLoggingMoodViewController {
              "valenceRating" :userRatings.valence,
              "emotion"       :emotion]
         )
-        tapToConfirm.removeFromSuperview()
-        screenSlider?.forwardNavigationEnabled = true
-        screenSlider?.gestureSwipingEnabled = true
-        screenSlider?.nextScreen()
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(2)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
+        print(primaryBackgroundColour.cgColor)
+        moodLoggingDelegate?.background.colors = [primaryBackgroundColour.cgColor,
+                                                  primaryBackgroundColour.cgColor,
+                                                  primaryBackgroundColour.cgColor,
+                                                  primaryBackgroundColour.cgColor,
+                                                  primaryBackgroundColour.cgColor]
+        
+        CATransaction.setCompletionBlock { [weak self] in
+            guard let self = self else {return}
+            self.tapToConfirm.removeFromSuperview()
+            self.screenSlider?.forwardNavigationEnabled = true
+            self.screenSlider?.gestureSwipingEnabled = true
+            self.screenSlider?.nextScreen()
+            
+        }
+        
+        CATransaction.commit()
     }
     
     func calculateMoodFromScreenPosition(x: CGFloat, y: CGFloat) -> (valence: Double, arousal: Double) {
@@ -194,18 +205,21 @@ extension MoodLoggingMoodViewController {
         let blue    = 0.1 + (0.8 * yScale)   /// 0.1 - 0.9
         let alpha   = 0.6 - (0.2 * yScale)   /// 0.6 - 0.4
         
-        let colour      = UIColor(red: red,      green: green,      blue: blue,      alpha: alpha      )         /// Base (center)
-        let topLeft     = UIColor(red: red,      green: green-0.15, blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, -Valence (TOP Left) (blue)
-        let topRight    = UIColor(red: red-0.15, green: green,      blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, +Valence (Top RIGHT) (green)
-        let bottomRight = UIColor(red: red-0.15, green: green,      blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, +Valence (BOTTOM Right) (alpha)
-        let bottomLeft  = UIColor(red: red,      green: green-0.15, blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, -Valence (Bottom LEFT) (red)
+        primaryBackgroundColour  = UIColor(red: red,      green: green,      blue: blue,      alpha: alpha      )         /// Base (center)
+        let topLeft              = UIColor(red: red,      green: green-0.15, blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, -Valence (TOP Left) (blue)
+        let topRight             = UIColor(red: red-0.15, green: green,      blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, +Valence (Top RIGHT) (green)
+        let bottomRight          = UIColor(red: red-0.15, green: green,      blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, +Valence (BOTTOM Right) (alpha)
+        let bottomLeft           = UIColor(red: red,      green: green-0.15, blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, -Valence (Bottom LEFT) (red)
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(1)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
             // view.backgroundColor = colour
-            markSpotlight.colors = [colour.withAlphaComponent(0.9).cgColor, colour.withAlphaComponent(0.5).cgColor, colour.withAlphaComponent(0).cgColor]
-            backgroundGradient.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
-            backgroundGradient.startPoint = CGPoint(x: xScale, y: yScale)
+            markSpotlight.colors = [primaryBackgroundColour.withAlphaComponent(0.9).cgColor,
+                                    primaryBackgroundColour.withAlphaComponent(0.5).cgColor,
+                                    primaryBackgroundColour.withAlphaComponent(0).cgColor]
+            moodLoggingDelegate?.background.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
+            moodLoggingDelegate?.background.startPoint = CGPoint(x: xScale, y: yScale)
         CATransaction.commit()
 
     }
@@ -279,19 +293,17 @@ extension MoodLoggingMoodViewController {
             multiplier = (multiplier < 0) ? 0 : ((multiplier > 1) ? 1 : multiplier) /// Restrict the multiplier to between 0 and 1
             
             CATransaction.begin()
-            CATransaction.setAnimationDuration(2)                                                           /// Begin CATransaction with duration for any CA Layers
-            
+            CATransaction.setAnimationDuration(1)                                                           /// Begin CATransaction with duration for any CA Layers
+            CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
+
                 /// - Apply the Multipliers
                 emotionLabel.opacity = Float(0.8 * multiplier)                                              /// Fade the label in as the tap gets closer, up to 0.9 opacity
-                emotionLabel.fontSize = (12 * multiplier)                                                   /// Make the label larger as the tap gets closer, up to size 12
+                emotionLabel.fontSize = (14 * multiplier)                                                   /// Make the label larger as the tap gets closer, up to size 12
                 emotionLabel.shadowRadius = CGFloat(3.0 * multiplier)                                       /// Animate shadow
                 emotionLabel.shadowOpacity = Float(0.8 * multiplier)                                        /// Animate opacity
                 emotionLabel.shadowOffset = CGSize(width: 0, height: CGFloat(6.0 * multiplier).rounded())   /// Animate offset to give layer depth
-            CATransaction.commit()
-            
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(1)                                                           
                 markSpotlight.frame.origin = CGPoint(x: tap.x - (markSpotlight.frame.width / 2), y: tap.y - (markSpotlight.frame.width / 2))
+            
             CATransaction.commit()
         }
         
