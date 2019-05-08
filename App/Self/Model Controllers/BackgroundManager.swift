@@ -45,9 +45,9 @@ extension BackgroundManager {
     
     func animateBackgroundToTabOption(_ selectedIndex: Int) {
         switch selectedIndex {
-            case 0: animateBackground(getBackgroundPath(for: .highlightsScreen))
-            case 2: animateBackground(getBackgroundPath(for: .actionsScreen))
-            default: animateBackground(getBackgroundPath(for: .homeScreen))
+        case 0: animateBackground(getBackgroundPath(for: .highlightsScreen))
+        case 2: animateBackground(getBackgroundPath(for: .actionsScreen))
+        default: animateBackground(getBackgroundPath(for: .homeScreen))
         }
     }
     

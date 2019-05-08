@@ -14,7 +14,7 @@ final class LandingOnboardingViewController: ViewController {
     }()
     
     lazy var sliderViewController = ViewSliderViewController()
-    var delegate: DataCollectionSequenceDelegate?
+    weak var delegate: DataCollectionSequenceDelegate?
 
     lazy var registerButton = Button(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
     lazy var loginButton = Button(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)

@@ -45,7 +45,7 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     }
     
     func isDataCollectionComplete() -> Bool {
-        guard let _ = self.name else { return false }
+        guard self.name != nil else { return false }
         return true
     }
     
@@ -60,7 +60,7 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
 extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
     func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool {
         if nextViewController.isMember(of: InductionOnboardingViewController.self) {
-            guard let _ = name else {
+            guard name != nil else {
                 print("Next Screen failed Validation")
                 return true
             }

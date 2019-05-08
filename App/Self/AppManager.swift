@@ -22,7 +22,7 @@ extension AppManager {
             print("Auth changed... ")
             self.appContainer.dismiss(animated: true, completion: nil)
             
-            guard let _ = user else {
+            guard user != nil else {
                 print("... User no longer exists.")
                 self.appContainer.present(OnboardingScreenSliderViewController(), animated: true, completion: nil)
                 return

@@ -63,8 +63,8 @@ class AccountSettingsViewController: UIViewController {
 //            var credential: AuthCredential
             
             Auth.auth().currentUser?.updateEmail(to: email) { (error) in
-                if let _ = error {
-                    let banner = GrowingNotificationBanner(title: "Problem", subtitle: error?.localizedDescription, style: .danger)
+                if let error = error {
+                    let banner = GrowingNotificationBanner(title: "Problem", subtitle: error.localizedDescription, style: .danger)
                     banner.show()
                 } else {
                     AccountManager.shared().accountRef?.user.name = name

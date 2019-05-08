@@ -84,12 +84,12 @@ extension Tag {
         
         static func matchCase(string: String) -> TagOrigin {
             switch string {
-                case self.mood.rawValue:        return .mood
-                case self.action.rawValue:      return .action
-                case self.response.rawValue:    return .response
-                case self.insight.rawValue:     return .insight
-                case self.community.rawValue:   return .community
-                default:                        return .unknown
+            case self.mood.rawValue:        return .mood
+            case self.action.rawValue:      return .action
+            case self.response.rawValue:    return .response
+            case self.insight.rawValue:     return .insight
+            case self.community.rawValue:   return .community
+            default:                        return .unknown
             }
         }
     }
@@ -101,21 +101,21 @@ extension Tag {
         
         var title: String {
             switch self {
-                case .fiveWays:   return "Five Ways"
-                case .type:        return "Action Type"
-                case .charka:      return "Charka"
-                case .auto:        return "Automatic Tag"
-                default:           return "Personal"
+            case .fiveWays:    return "Five Ways"
+            case .type:        return "Action Type"
+            case .charka:      return "Charka"
+            case .auto:        return "Automatic Tag"
+            default:           return "Personal"
             }
         }
         
         static func matchCase(string: String) -> TagCategory {
             switch string {
-                case self.fiveWays.rawValue:   return .fiveWays
-                case self.type.rawValue:        return .type
-                case self.charka.rawValue:      return .charka
-                case self.auto.rawValue:        return .auto
-                default:                        return .personal
+            case self.fiveWays.rawValue:   return .fiveWays
+            case self.type.rawValue:        return .type
+            case self.charka.rawValue:      return .charka
+            case self.auto.rawValue:        return .auto
+            default:                        return .personal
             }
         }
     }

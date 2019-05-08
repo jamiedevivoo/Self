@@ -25,7 +25,7 @@ extension ActionManager {
 extension ActionManager {
     func getAllActions(completion: @escaping ([ActionManager.Brief]) -> Void) {
         actionsFirebaseReference.getDocuments { querySnapshot, error in
-            guard let querySnapshot = querySnapshot, let _ = error  else {
+            guard let querySnapshot = querySnapshot, error == nil else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
                 return
             }

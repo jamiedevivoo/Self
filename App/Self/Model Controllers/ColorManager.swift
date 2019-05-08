@@ -31,7 +31,7 @@ extension ColorManager {
                 sharedInstance!.colorMode = .light
         case .dark?:
                 sharedInstance!.colorMode = .dark
-            default:
+        default:
                 sharedInstance!.colorMode = getAutoColor()
         }
     }
@@ -60,9 +60,9 @@ extension ColorManager {
     
         static func matchCase(string: String) -> AppColorMode {
             switch string {
-                case self.light.rawValue:   return .light
-                case self.dark.rawValue:    return .dark
-                default:                    return .auto
+            case self.light.rawValue:   return .light
+            case self.dark.rawValue:    return .dark
+            default:                    return .auto
             }
         }
     }

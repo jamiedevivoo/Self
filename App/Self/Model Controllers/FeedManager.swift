@@ -22,14 +22,14 @@ extension FeedManager {
     func generateGreeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
-            case 00...03: return "zzz"
-            case 04...06: return "Early Morning!"
-            case 07...10: return "Good Morning,"
-            case 10...12: return "It's Lunchtime!"
-            case 12...17: return "Good Afternoon,"
-            case 17...22: return "Good Evening,"
-            case 22...24: return "Good Night,"
-            default:      return "Welcome"
+        case 00...03: return "zzz"
+        case 04...06: return "Early Morning!"
+        case 07...10: return "Good Morning,"
+        case 10...12: return "It's Lunchtime!"
+        case 12...17: return "Good Afternoon,"
+        case 17...22: return "Good Evening,"
+        case 22...24: return "Good Night,"
+        default:      return "Welcome"
         }
     }
 }

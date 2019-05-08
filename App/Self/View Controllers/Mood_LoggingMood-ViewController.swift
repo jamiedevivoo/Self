@@ -5,7 +5,7 @@ import SnapKit
 final class MoodLoggingMoodViewController: ViewController {
 
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
-    var moodLoggingDelegate: MoodLoggingDelegate?
+    weak var moodLoggingDelegate: MoodLoggingDelegate?
     weak var screenSlider: ScreenSliderViewController?
     
     lazy var headerLabel: UILabel = {
@@ -164,7 +164,6 @@ extension MoodLoggingMoodViewController: UIGestureRecognizerDelegate {
         CATransaction.setDisableActions(true)
         updateMark(touch: touch)
         CATransaction.commit()
-        print(touches, event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -177,11 +176,6 @@ extension MoodLoggingMoodViewController: UIGestureRecognizerDelegate {
         guard let touch = touches.first else { return }
         updateMark(touch: touch)
         setMark()
-        print("Touches: ", touches)
-        print("Event: ", event)
-        print("Gesture: ", touches.first?.gestureRecognizers?.first)
-        print("Gesture: ", touches.count)
-        print("EventDecs: ", event.debugDescription)
     }
 }
 

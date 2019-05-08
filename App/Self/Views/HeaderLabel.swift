@@ -21,28 +21,28 @@ class HeaderLabel: UILabel {
         numberOfLines = 0
         lineBreakMode = .byWordWrapping
         switch type {
-            case .screen:
-                font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
-                textColor = UIColor.App.Text.text()
-                return
-            case .section:
-                font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium)
-                textColor = UIColor.App.Text.text().withAlphaComponent(0.8)
-                return
-            case .subheader:
-                font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
-                textColor = UIColor.App.Text.text()
-                return
-            case .centerPageTitle:
-                font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.black)
-                textColor = UIColor.App.Text.text().withAlphaComponent(0.4)
-                textAlignment = NSTextAlignment.center
-                setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
-            case .centerPageText:
-                font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
-                textColor = UIColor.App.Text.text()
-                textAlignment = NSTextAlignment.center
-                setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
+        case .screen:
+            font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
+            textColor = UIColor.App.Text.text()
+            return
+        case .section:
+            font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium)
+            textColor = UIColor.App.Text.text().withAlphaComponent(0.8)
+            return
+        case .subheader:
+            font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
+            textColor = UIColor.App.Text.text()
+            return
+        case .centerPageTitle:
+            font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.black)
+            textColor = UIColor.App.Text.text().withAlphaComponent(0.4)
+            textAlignment = NSTextAlignment.center
+            setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
+        case .centerPageText:
+            font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
+            textColor = UIColor.App.Text.text()
+            textAlignment = NSTextAlignment.center
+            setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
         }
     }
     

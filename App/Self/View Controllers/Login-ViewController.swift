@@ -90,7 +90,7 @@ extension LoginViewController {
         
     private func login(_ email: String, _ password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            guard let _ = authResult, error == nil else {
+            guard authResult != nil, error == nil else {
                 let errorAlert: UIAlertController = {
                     let alertController = UIAlertController()
                     alertController.title = error!.localizedDescription

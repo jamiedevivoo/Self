@@ -23,7 +23,7 @@ final class NameOnboardingViewController: ViewController {
     
     lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
     
-    var delegate: DataCollectionSequenceDelegate?
+    weak var delegate: DataCollectionSequenceDelegate?
     
 }
 

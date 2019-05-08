@@ -5,7 +5,7 @@ import Firebase
 final class DetailLoggingMoodViewController: ViewController {
     
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
-    var moodLoggingDelegate: MoodLoggingDelegate?
+    weak var moodLoggingDelegate: MoodLoggingDelegate?
     var screenSlider: ScreenSliderViewController?
     
     lazy var label: UILabel = {

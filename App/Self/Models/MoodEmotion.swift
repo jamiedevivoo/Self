@@ -6,10 +6,10 @@ extension Mood {
         var arousal: Double
         
         var valenceMultiplier: Double {
-            get { return valence + 1 }
+            return valence + 1
         }
         var arousalMultiplier: Double {
-            get { return arousal + 1 }
+            return arousal + 1
         }
     }
 }
