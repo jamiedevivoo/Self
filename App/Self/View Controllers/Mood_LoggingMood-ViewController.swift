@@ -82,7 +82,7 @@ final class MoodLoggingMoodViewController: ViewController {
     }()
 
     lazy var markSpotlight: CAGradientLayer = {
-        let diameter: CGFloat = 60
+        let diameter: CGFloat = 50
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: (self.view.frame.width / 2), y: (self.view.frame.height / 2), width: diameter, height: diameter)
         gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
@@ -97,16 +97,18 @@ final class MoodLoggingMoodViewController: ViewController {
         return gradient
     }()
     
-    lazy var pulseAnimation: CAAnimationGroup = {
+    lazy var pulseAnimations: CAAnimationGroup = {
         let animations = CAAnimationGroup()
         
         let transformAnimation = CABasicAnimation(keyPath: "transform")
-        transformAnimation.fromValue = CATransform3DMakeScale(1.25, 1.25, 1.25)
-        transformAnimation.toValue = CATransform3DMakeScale(1, 1, 0.5)
+        transformAnimation.fromValue = CATransform3DMakeScale(1, 1, 0.5)
+        transformAnimation.toValue = CATransform3DMakeScale(1.25, 1.25, 1)
+        transformAnimation.duration = 1.5
         
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-        transformAnimation.fromValue = 0.9
-        transformAnimation.toValue = 1.0
+        opacityAnimation.fromValue = 0.9
+        opacityAnimation.toValue = 1.0
+        opacityAnimation.duration = 1.5
         
         animations.animations = [transformAnimation, opacityAnimation]
         animations.duration = 1.5
@@ -162,12 +164,24 @@ extension MoodLoggingMoodViewController: UIGestureRecognizerDelegate {
         CATransaction.setDisableActions(true)
         updateMark(touch: touch)
         CATransaction.commit()
+        print(touches, event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         updateMark(touch: touch)
         setMark()
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        updateMark(touch: touch)
+        setMark()
+        print("Touches: ", touches)
+        print("Event: ", event)
+        print("Gesture: ", touches.first?.gestureRecognizers?.first)
+        print("Gesture: ", touches.count)
+        print("EventDecs: ", event.debugDescription)
     }
 }
 
@@ -271,9 +285,9 @@ extension MoodLoggingMoodViewController {
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
         
         /// - Update tap to confirm and circle positions
-        // TODO: Width Bug
-        let verticalBuffer: CGFloat = markSpotlight.frame.height
-        let horizontalBuffer: CGFloat = markSpotlight.frame.width + 60
+        // TODO: Width Bug, Currently need to hard code the constraints
+        let verticalBuffer: CGFloat = markSpotlight.frame.height + 30
+        let horizontalBuffer: CGFloat = markSpotlight.frame.width + 90
         
         tapToConfirm.frame.origin.x = location.x
         tapToConfirm.frame.origin.y = location.y + verticalBuffer
@@ -328,13 +342,13 @@ extension MoodLoggingMoodViewController {
             self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         CATransaction.commit()
         
-        /// Shrink the spotlight and stop pusling animation
-//        CATransaction.begin()
-//        CATransaction.setAnimationDuration(1)
-//        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
-//            self.markSpotlight.transform = CATransform3DMakeScale(0.75, 0.75, 0.75)
-//        CATransaction.commit()
         markSpotlight.removeAllAnimations()
+        /// Shrink the spotlight and stop pusling animation
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.3)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
+            self.markSpotlight.transform = CATransform3DMakeScale(0.7, 0.7, 1)
+        CATransaction.commit()
         headerLabel.removeFromSuperview()
     }
     
@@ -398,14 +412,14 @@ extension MoodLoggingMoodViewController {
             self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         CATransaction.commit()
         
+        markSpotlight.add(pulseAnimations, forKey: nil)
         /// Readd the spotlight and pulse animation
-//        CATransaction.begin()
-//        CATransaction.setAnimationDuration(1)
-//        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
-//            self.markSpotlight.transform = CATransform3DMakeScale(1.33, 1.33, 1.33)
-//        CATransaction.commit()
-        markSpotlight.add(pulseAnimation, forKey: nil)
-        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.5)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
+            self.markSpotlight.transform = CATransform3DMakeScale(1, 1, 1)
+        CATransaction.commit()
+
         /// Set MoodMarked to true
         guard markAdded == false else { return }
         isMoodMarked = true
