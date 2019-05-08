@@ -256,16 +256,25 @@ extension MoodLoggingMoodViewController {
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
         
         /// - Update tap to confirm and circle positions
-        tapToConfirm.frame.origin.x = location.x - (tapToConfirm.frame.width / 2)
-        tapToConfirm.frame.origin.y = location.y + (markSpotlight.frame.height / 2) + (tapToConfirm.frame.height / 2) + 50
+        // TODO: Width Bug
+        let verticalBuffer: CGFloat = markSpotlight.frame.height
+        let horizontalBuffer: CGFloat = markSpotlight.frame.width + 60
         
-        print(tapToConfirm.frame.origin.x,view.frame.origin.x )
-        if (tapToConfirm.frame.origin.x + 20) < view.frame.origin.x {
-            tapToConfirm.frame.origin.x = location.x + (markSpotlight.frame.width / 2) + 20
-            tapToConfirm.frame.origin.y = location.y - (tapToConfirm.frame.height / 2)
+        tapToConfirm.frame.origin.x = location.x
+        tapToConfirm.frame.origin.y = location.y + verticalBuffer
+        
+        if (tapToConfirm.frame.origin.x - 90) < 0 {
+            tapToConfirm.frame.origin.x = location.x + horizontalBuffer
+            tapToConfirm.frame.origin.y = location.y
         }
-        if (tapToConfirm.frame.origin.x + tapToConfirm.frame.size.width) > (view.frame.origin.x + view.frame.size.width) {
-            tapToConfirm.frame.origin.x = (view.frame.origin.x + view.frame.size.width) - (view.frame.size.width + 20)
+        
+        if (tapToConfirm.frame.origin.x + 90) > self.view.frame.width {
+            tapToConfirm.frame.origin.x = location.x - horizontalBuffer
+            tapToConfirm.frame.origin.y = location.y
+        }
+        
+        if (tapToConfirm.frame.origin.y + 30) > self.view.frame.height {
+            tapToConfirm.frame.origin.y = location.y - verticalBuffer
         }
     }
     
@@ -410,7 +419,7 @@ extension MoodLoggingMoodViewController {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.3)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
-            moodLoggingDelegate?.background.startPoint = CGPoint(x: 0.5, y: 0)
+        moodLoggingDelegate?.background.startPoint = CGPoint(x: (moodLoggingDelegate?.background.startPoint.x)!, y: 0)
         CATransaction.commit()
         
         CATransaction.begin()
@@ -464,11 +473,13 @@ extension  MoodLoggingMoodViewController {
         let blue    = 0.1 + (0.8 * yScale)   /// 0.1 - 0.9
         let alpha   = 0.6 - (0.2 * yScale)   /// 0.6 - 0.4
         
+        let diff: CGFloat = 0.25
+        
         primaryBackgroundColour  = UIColor(red: red,      green: green,      blue: blue,      alpha: alpha      )         /// Base (center)
-        let topLeft              = UIColor(red: red,      green: green-0.15, blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, -Valence (TOP Left) (blue)
-        let topRight             = UIColor(red: red-0.15, green: green,      blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, +Valence (Top RIGHT) (green)
-        let bottomRight          = UIColor(red: red-0.15, green: green,      blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, +Valence (BOTTOM Right) (alpha)
-        let bottomLeft           = UIColor(red: red,      green: green-0.15, blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, -Valence (Bottom LEFT) (red)
+        let topLeft              = UIColor(red: red,      green: green-diff, blue: blue-diff, alpha: alpha      ).cgColor /// +Arousal, -Valence (TOP Left) (blue)
+        let topRight             = UIColor(red: red-diff, green: green,      blue: blue-diff, alpha: alpha      ).cgColor /// +Arousal, +Valence (Top RIGHT) (green)
+        let bottomRight          = UIColor(red: red-diff, green: green,      blue: blue,      alpha: alpha-diff ).cgColor /// -Arousal, +Valence (BOTTOM Right) (alpha)
+        let bottomLeft           = UIColor(red: red,      green: green-diff, blue: blue,      alpha: alpha-diff ).cgColor /// -Arousal, -Valence (Bottom LEFT) (red)
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(1)
