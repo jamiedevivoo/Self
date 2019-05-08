@@ -8,6 +8,14 @@ final class MoodLoggingMoodViewController: ViewController {
     var moodLoggingDelegate: MoodLoggingDelegate?
     weak var screenSlider: ScreenSliderViewController?
     
+    lazy var headerLabel: UILabel = {
+        let label = HeaderLabel.init("Log your Mood by tapping on the screen", .centerPageText)
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 26.0)
+        label.alpha = 0.4
+        return label
+    }()
+    
     lazy var tapToConfirm: UIButton = {
         let button = UIButton()
         button.setTitle("+ New Log", for: .normal)
@@ -322,6 +330,7 @@ extension MoodLoggingMoodViewController {
 //            self.markSpotlight.transform = CATransform3DMakeScale(0.75, 0.75, 0.75)
 //        CATransaction.commit()
         markSpotlight.removeAllAnimations()
+        headerLabel.removeFromSuperview()
     }
     
     // Called when the tap finishes
@@ -589,7 +598,12 @@ extension MoodLoggingMoodViewController: ViewBuilding {
     func setupChildViews() {
         view.addSubview(exitButton)
         view.addSubview(infoButton)
-
+        view.addSubview(headerLabel)
+        
+        headerLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.7)
+        }
         exitButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(15)
