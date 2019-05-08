@@ -150,7 +150,7 @@ extension MoodLoggingMoodViewController {
 
 
 // MARK: - Class Methods
-extension MoodLoggingMoodViewController {
+extension MoodLoggingMoodViewController: UIGestureRecognizerDelegate {
     
     // Gesture Handling
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -172,6 +172,10 @@ extension MoodLoggingMoodViewController {
         updateMark(touch: touch)
         setMark()
     }
+}
+
+// Action Methods
+extension MoodLoggingMoodViewController {
     
     @objc func tappedCircle(sender:UIButton ) {
         unFocusButton(sender)
@@ -185,7 +189,13 @@ extension MoodLoggingMoodViewController {
     
     @objc func info(sender:UIButton) {
         unFocusButton(sender)
-        saveMarkedMood()
+        self.definesPresentationContext = true
+        let helpScreen = HelpMoodLoggingMoodViewController()
+        helpScreen.modalPresentationStyle = .overCurrentContext
+        helpScreen.modalTransitionStyle = .crossDissolve
+        present(helpScreen, animated: true) {
+            
+        }
     }
     
     @objc func buttonActive(sender:UIButton) {
