@@ -14,7 +14,7 @@ extension ActionManager {
 }
 // MARK: - Convenience Iniitialiser
 extension ActionManager.Log {
-    init(_ actionDictionary: [String:Any]) {
+    init(_ actionDictionary: [String: Any]) {
         self.uid                = (actionDictionary["uid"] as? String ?? nil)
         self.actionRef          = (actionDictionary["action_ref"] as! DocumentReference)
         self.wasDailyAction     = (actionDictionary["was_daily_action"] as! Bool)
@@ -34,13 +34,13 @@ extension ActionManager.Log: DictionaryConvertable {
     var dictionary: [String: Any] {
     
       return [
-            "action_ref":           actionRef as DocumentReference,
-            "was_daily_action":     wasDailyAction as Bool,
-            "title":                title as String,
-            "description":          description as String,
-            "added_timestamp":      addedTimestamp as Date,
-            "completed":            completed as Bool,
-            "complete_timestamp":   completeTimestamp ?? ""
+            "action_ref": actionRef as DocumentReference,
+            "was_daily_action": wasDailyAction as Bool,
+            "title": title as String,
+            "description": description as String,
+            "added_timestamp": addedTimestamp as Date,
+            "completed": completed as Bool,
+            "complete_timestamp": completeTimestamp ?? ""
         ]
         /// Timestamps aren't included in the dictionary, these are only set by the modelController when needed. This is because the dictionary is used to update the log and repetedly converting the timestamp into a date would corrupt it.
         

@@ -4,29 +4,26 @@ import Firebase
 
 class AppSettingsViewController: UIViewController {
     
-    
     // MARK: - Properties
     
     var user: UserInfo?
-    
     
     // MARK: - SubViews
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.secondaryBackground()
+        view.backgroundColor = UIColor.App.Background.secondary()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to modify app related settings."
         label.textAlignment = .left
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.numberOfLines = 0
         
         return label
     }()
-    
     
     // MARK: - Init
     
@@ -34,7 +31,7 @@ class AppSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "App Settings"
-        view.backgroundColor = UIColor.app.background.primaryBackground()
+        view.backgroundColor = UIColor.App.Background.primary()
         navigationItem.leftBarButtonItems = nil
         
         addSubViews()
@@ -42,10 +39,7 @@ class AppSettingsViewController: UIViewController {
 
     }
     
-    
     // MARK: - Functions
-
-    
     
     // MARK: - Actions
     
@@ -64,10 +58,7 @@ class AppSettingsViewController: UIViewController {
     //    //            }
     //    //        }
     
-    
     // MARK: - Functions
-    
-    
     
     //
     ////        let user = User()
@@ -80,8 +71,6 @@ class AppSettingsViewController: UIViewController {
     //        let saveButton = UIButton()
     //
     
-    
-    
     //
     //        self.emailTextField.text = user?.email
     //        self.nameTextField.text = user?.name
@@ -93,8 +82,6 @@ class AppSettingsViewController: UIViewController {
     //
     //        self.view.addSubview(saveButton)
     //
-    
-    
     
     //        saveButton.snp.makeConstraints { (make) in
     //            make.left.equalTo(100)

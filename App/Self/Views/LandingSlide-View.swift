@@ -5,7 +5,7 @@ class LandingSlideView: UIView {
     
     lazy var animationView: AnimationView = {
         let animationView = AnimationView()
-        animationView.tintColor = UIColor.app.standard.blackWhite()
+        animationView.tintColor = UIColor.App.General.blackWhite()
         animationView.loopMode = LottieLoopMode.autoReverse
         return animationView
     }()
@@ -14,7 +14,7 @@ class LandingSlideView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
-        label.textColor = UIColor.app.standard.blackWhite()
+        label.textColor = UIColor.App.General.blackWhite()
         return label
     }()
     
@@ -24,7 +24,7 @@ class LandingSlideView: UIView {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         return label
     }()
     

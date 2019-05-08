@@ -15,10 +15,10 @@ final class AppManager {
     }
 }
 
-// Mark: - Firebase User Auth Listener
+// MARK: - Firebase User Auth Listener
 extension AppManager {
     private func observeUserState() {
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
+        handle = Auth.auth().addStateDidChangeListener { _, user in
             print("Auth changed... ")
             self.appContainer.dismiss(animated: true, completion: nil)
             

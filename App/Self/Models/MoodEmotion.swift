@@ -15,7 +15,7 @@ extension Mood {
 }
 
 extension Mood.Emotion {
-    init(_ emotionDictionary: [String:Any]) {
+    init(_ emotionDictionary: [String: Any]) {
         self.name        = emotionDictionary["name"] as! String
         self.adj         = emotionDictionary["adj"] as! String
         self.valence     = emotionDictionary["valence"] as! Double

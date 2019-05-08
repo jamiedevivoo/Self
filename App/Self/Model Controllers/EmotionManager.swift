@@ -15,8 +15,8 @@ class EmotionManager {
     ]
     let emotionsDBRef: CollectionReference = Firestore.firestore().collection("emotions")
     
-    func getAllEmotions(completion: @escaping ([Mood.Emotion]) -> ()) {
-        emotionsDBRef.getDocuments() { emotionCollection, error in
+    func getAllEmotions(completion: @escaping ([Mood.Emotion]) -> Void) {
+        emotionsDBRef.getDocuments { emotionCollection, error in
             guard let emotionCollection = emotionCollection, error == nil else {
                 if let error = error { print("Error Loading Emotions: \(error.localizedDescription)") }
                 return
@@ -32,7 +32,7 @@ class EmotionManager {
     }
         
     static func getEmotion(withValence userValence: Double, withArousal userArousal: Double) -> Mood.Emotion {
-        var emotionAndIntensity = [Mood.Emotion:Double]()
+        var emotionAndIntensity = [Mood.Emotion: Double]()
         for emotion in allEmotions {
             let valenceDifference = abs(emotion.valence - userValence)
             let arousalDifference = abs(emotion.arousal - userArousal)

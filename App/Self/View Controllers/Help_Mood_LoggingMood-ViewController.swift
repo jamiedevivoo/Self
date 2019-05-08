@@ -11,7 +11,7 @@ class HelpMoodLoggingMoodViewController: ViewController {
     }
     
     func setup() {
-        view.backgroundColor = UIColor.app.background.primaryBackground().withAlphaComponent(0.1)
+        view.backgroundColor = UIColor.App.Background.primary().withAlphaComponent(0.1)
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.view.frame

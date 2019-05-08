@@ -22,7 +22,6 @@ import UIKit
 		case radial
 	}
 
-
 	/// The direction of the gradient.
 	public enum Direction {
 		/// The gradient is vertical.
@@ -31,7 +30,6 @@ import UIKit
 		/// The gradient is horizontal
 		case horizontal
 	}
-
 
 	// MARK: - Properties
 
@@ -120,7 +118,6 @@ import UIKit
 		}
 	}
 
-
 	// MARK: - UIView
 
 	override open func draw(_ rect: CGRect) {
@@ -184,7 +181,6 @@ import UIKit
 		super.didMoveToWindow()
 		contentMode = .redraw
 	}
-
 
 	// MARK: - Private
 

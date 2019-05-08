@@ -1,9 +1,8 @@
 import Firebase
 
 class ActionManager {
-    private var ActionsFirebaseReference:CollectionReference = Firestore.firestore().collection("actions")
+    private var actionsFirebaseReference: CollectionReference = Firestore.firestore().collection("actions")
 }
-
 
 // Helpers
 extension ActionManager {
@@ -11,7 +10,6 @@ extension ActionManager {
         return User(account: account).self
     }
 }
-
 
 // Build Actions Brief
 extension ActionManager {
@@ -23,11 +21,10 @@ extension ActionManager {
     }
 }
 
-
 // Get Action Data from Database
 extension ActionManager {
-    func getAllActions(completion: @escaping ([ActionManager.Brief]) -> ()) {
-        ActionsFirebaseReference.getDocuments { querySnapshot, error in
+    func getAllActions(completion: @escaping ([ActionManager.Brief]) -> Void) {
+        actionsFirebaseReference.getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, let _ = error  else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
                 return
@@ -42,8 +39,8 @@ extension ActionManager {
         }
     }
 
-    func getDailyActions(completion: @escaping ([ActionManager.Brief]) -> ()) {
-        ActionsFirebaseReference.whereField("daily_action", isEqualTo: true).getDocuments { querySnapshot, error in
+    func getDailyActions(completion: @escaping ([ActionManager.Brief]) -> Void) {
+        actionsFirebaseReference.whereField("daily_action", isEqualTo: true).getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, error == nil  else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
                 return

@@ -1,11 +1,9 @@
 import UIKit
 import Firebase
 
-
 final class OnboardingScreenSliderViewController: ScreenSliderViewController {
     var name: String?
 }
-
 
 // MARK: - Override Methods
 extension OnboardingScreenSliderViewController {
@@ -16,7 +14,6 @@ extension OnboardingScreenSliderViewController {
     }
     
 }
-
 
 // MARK: - Setup Methods
 private extension OnboardingScreenSliderViewController {
@@ -31,17 +28,16 @@ private extension OnboardingScreenSliderViewController {
         let inductionOnboardingVC = InductionOnboardingViewController()
         inductionOnboardingVC.delegate = self
         
-        return [landingOnboardingVC,nameOnboardingVC,inductionOnboardingVC]
+        return [landingOnboardingVC, nameOnboardingVC, inductionOnboardingVC]
     }
     
 }
 
-
 // MARK: - Class Methods
 extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     
-    func setData(_ dataDict: [String:Any?]) {
-        guard let name:String = dataDict["name"] as! String else {
+    func setData(_ dataDict: [String: Any?]) {
+        guard let name: String = dataDict["name"] as! String else {
             self.name = nil
             return
         }
@@ -59,7 +55,6 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     }
     
 }
-
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
 extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
@@ -96,12 +91,11 @@ extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelega
     
 }
 
-
 // MARK: - OnboardingDelegate Methods
 extension OnboardingScreenSliderViewController {
     
     func signInAnonymously(withName name: String) {
-        Auth.auth().signInAnonymously() { (authResult, error) in
+        Auth.auth().signInAnonymously { (authResult, error) in
             guard let registeredCredentials = authResult, error == nil else {
                 let errorAlert: UIAlertController = {
                     let alertController = UIAlertController()
@@ -114,7 +108,7 @@ extension OnboardingScreenSliderViewController {
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
-            let accountUser = Account.User(["name":name])
+            let accountUser = Account.User(["name": name])
             let account = Account(uid: registeredCredentials.user.uid, accountUser: accountUser)
             AccountManager.shared().updateAccount(modifiedAccount: account) {
             }

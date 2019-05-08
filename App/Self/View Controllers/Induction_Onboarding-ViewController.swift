@@ -1,14 +1,13 @@
 import UIKit
 import SnapKit
 
-
 final class InductionOnboardingViewController: ViewController {
     
     lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Placeholder: You've begun a journey to your better self. (cheesy)"
         label.numberOfLines = 0
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         return label
     }()
     lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
@@ -16,7 +15,6 @@ final class InductionOnboardingViewController: ViewController {
     weak var delegate: DataCollectionSequenceDelegate?
     
 }
-
 
 // MARK: - Override Methods
 extension InductionOnboardingViewController {
@@ -31,7 +29,6 @@ extension InductionOnboardingViewController {
     }
     
 }
-
 
 // MARK: - Class Methods
 extension InductionOnboardingViewController {
@@ -49,7 +46,6 @@ extension InductionOnboardingViewController {
     }
     
 }
-
 
 // MARK: - View Building
 extension InductionOnboardingViewController: ViewBuilding {

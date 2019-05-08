@@ -65,8 +65,8 @@ extension DashboardTabBarController {
         tabBar.backgroundColor = .clear
         tabBar.layer.backgroundColor = UIColor.clear.cgColor
         tabBar.barTintColor =  UIColor.clear
-        tabBar.tintColor = UIColor.app.interactive.selectable.selected()
-        tabBar.unselectedItemTintColor = UIColor.app.interactive.selectable.unselected().withAlphaComponent(0.8)
+        tabBar.tintColor = UIColor.App.Interactive.Selectable.selected()
+        tabBar.unselectedItemTintColor = UIColor.App.Interactive.Selectable.unselected().withAlphaComponent(0.8)
         
         let frost = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
         frost.frame = tabBar.bounds
@@ -78,7 +78,7 @@ extension DashboardTabBarController {
 
 // MARK: - Handle Swipes
 extension DashboardTabBarController {
-    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
       
         let current = viewControllers![selectedIndex] as! DashboardNavigationController
         guard current.viewControllers.count < 2 else { return }
@@ -93,7 +93,7 @@ extension DashboardTabBarController {
 }
 
 // MARK: - TabBar Delegate
-extension DashboardTabBarController: UITabBarControllerDelegate  {
+extension DashboardTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         guard let tabViewControllers = tabBarController.viewControllers,
             let toIndex = tabViewControllers.firstIndex(of: viewController)
@@ -132,7 +132,7 @@ extension DashboardTabBarController {
                         oldView.layer.opacity = 0
                         newView.center = CGPoint(x: newView.center.x - offset, y: newView.center.y)
                         newView.layer.opacity = 1
-        }, completion: { finished in
+        }, completion: { _ in
             oldView.removeFromSuperview()
             self.selectedIndex = toIndex
             self.view.isUserInteractionEnabled = true

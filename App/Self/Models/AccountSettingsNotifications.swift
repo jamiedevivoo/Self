@@ -10,7 +10,7 @@ extension Account.Settings {
 }
 // MARK: - Convenience Iniitialiser
 extension Account.Settings.Notifications {
-    init(_ notificationsDictionary: [String:Any]) {
+    init(_ notificationsDictionary: [String: Any]) {
         self.allowActions   = notificationsDictionary["allow_actions"]  as? Bool ?? allowActions
         self.allowInsights  = notificationsDictionary["allow_insights"] as? Bool ?? allowInsights
         self.allowMoods     = notificationsDictionary["allow_moods"]    as? Bool ?? allowMoods
@@ -23,10 +23,10 @@ extension Account.Settings.Notifications {
 extension Account.Settings.Notifications: DictionaryConvertable {
     var dictionary: [String: Any] {
         return [
-            "allow_actions" : allowActions,
+            "allow_actions": allowActions,
             "allow_insights": allowInsights,
-            "allow_moods"   : allowMoods,
-            "allow_fun"     : allowFun
+            "allow_moods": allowMoods,
+            "allow_fun": allowFun
         ]
     }
 }

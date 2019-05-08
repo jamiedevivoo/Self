@@ -11,7 +11,7 @@ import SnapKit
 
 class HeaderLabel: UILabel {
     
-    convenience init(_ title:String, _ type: HeaderType) {
+    convenience init(_ title: String, _ type: HeaderType) {
         self.init()
         text = title
         setup(type)
@@ -23,24 +23,24 @@ class HeaderLabel: UILabel {
         switch type {
             case .screen:
                 font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
-                textColor = UIColor.app.text.solidText()
+                textColor = UIColor.App.Text.text()
                 return
             case .section:
                 font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium)
-                textColor = UIColor.app.text.solidText().withAlphaComponent(0.8)
+                textColor = UIColor.App.Text.text().withAlphaComponent(0.8)
                 return
             case .subheader:
                 font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
-                textColor = UIColor.app.text.solidText()
+                textColor = UIColor.App.Text.text()
                 return
             case .centerPageTitle:
                 font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.black)
-                textColor = UIColor.app.text.solidText().withAlphaComponent(0.4)
+                textColor = UIColor.App.Text.text().withAlphaComponent(0.4)
                 textAlignment = NSTextAlignment.center
                 setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
             case .centerPageText:
                 font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
-                textColor = UIColor.app.text.solidText()
+                textColor = UIColor.App.Text.text()
                 textAlignment = NSTextAlignment.center
                 setLineSpacing(lineSpacing: 1.2, lineHeightMultiple: 1.2)
         }

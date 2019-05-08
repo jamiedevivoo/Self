@@ -10,11 +10,11 @@ class CommunitiesViewController: UIViewController {
             view.backgroundColor = .yellow
             navigationItem.title = "Communities"
             
-            var db:Firestore!
+            var db: Firestore!
             db = Firestore.firestore()
 //            var userSnapshot = db.collection("user").child().get()
 
-            db.collection("user").getDocuments() { querySnapshot, error in
+            db.collection("user").getDocuments { querySnapshot, error in
                 if let error = error {
                     print ("\(error.localizedDescription)")
                 } else {

@@ -2,7 +2,7 @@ import Firebase
 
 class AccountManager {
     static fileprivate var sharedInstance: AccountManager? // Singleton
-    fileprivate var accountDBRef:DocumentReference?
+    fileprivate var accountDBRef: DocumentReference?
     var accountRef: Account? // fileprivate(set)
 
     private init() {
@@ -17,7 +17,7 @@ class AccountManager {
 
 // MARK: - Manage Account
 extension AccountManager {
-    func loadAccount(completion: @escaping () -> ()) {
+    func loadAccount(completion: @escaping () -> Void) {
         let authUser = Auth.auth().currentUser!
         accountDBRef = Firestore.firestore().collection("user").document(authUser.uid)
         
@@ -34,14 +34,14 @@ extension AccountManager {
         }
     }
 
-    func updateAccount(modifiedAccount:Account? = nil, completion: @escaping () -> ()) {
+    func updateAccount(modifiedAccount: Account? = nil, completion: @escaping () -> Void) {
         
         if let modifiedAccount = modifiedAccount {
             AccountManager.shared().accountRef = modifiedAccount
         }
         
         var data = AccountManager.shared().accountRef!.dictionary
-        data["metadata"] = ["account_last_modified":Date()]
+        data["metadata"] = ["account_last_modified": Date()]
         accountDBRef?.setData(data, merge: true) { _ in
             self.loadAccount {
                 print("Account Updated")

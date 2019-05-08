@@ -3,8 +3,8 @@ import SnapKit
 
 class NoHighlightsView: UIView {
     
-    lazy var headerLabel: UILabel = HeaderLabel("Check back later 👩‍🔬 ...",.centerPageTitle)
-    lazy var subHeaderLabel: UILabel = HeaderLabel("Keep using the app to unlock more features like Highlights and Insights.",.centerPageText)
+    lazy var headerLabel: UILabel = HeaderLabel("Check back later 👩‍🔬 ...", .centerPageTitle)
+    lazy var subHeaderLabel: UILabel = HeaderLabel("Keep using the app to unlock more features like Highlights and Insights.", .centerPageText)
 
     // Init
     override init(frame: CGRect) {

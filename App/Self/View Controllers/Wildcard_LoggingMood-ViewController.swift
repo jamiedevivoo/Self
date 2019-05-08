@@ -2,7 +2,6 @@ import UIKit
 import Firebase
 import SnapKit
 
-
 final class WildcardLoggingMoodViewController: ViewController {
     
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
@@ -14,7 +13,7 @@ final class WildcardLoggingMoodViewController: ViewController {
         label.text = "Wildcard"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.setLineSpacing(lineSpacing: 3)
         return label
     }()
@@ -37,7 +36,6 @@ final class WildcardLoggingMoodViewController: ViewController {
         
 }
 
-
 // MARK: - Override Methods
 extension WildcardLoggingMoodViewController {
     
@@ -48,7 +46,6 @@ extension WildcardLoggingMoodViewController {
     }
     
 }
-
 
 // MARK: - Class Methods
 extension WildcardLoggingMoodViewController {
@@ -66,7 +63,6 @@ extension WildcardLoggingMoodViewController {
     
 }
 
-
 // MARK: - TextField Delegate Methods
 extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     
@@ -80,11 +76,11 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
             nameTextFieldWithLabel.textField.resignFirstResponder()
-            dataCollectionDelegate?.setData(["name":name])
+            dataCollectionDelegate?.setData(["name": name])
             screenSlider?.nextScreen()
             return true
         } else {
-            dataCollectionDelegate?.setData(["name":nil])
+            dataCollectionDelegate?.setData(["name": nil])
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
         }
@@ -100,7 +96,6 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     }
     
 }
-
 
 // MARK: - View Building
 extension WildcardLoggingMoodViewController: ViewBuilding {
@@ -124,7 +119,7 @@ extension WildcardLoggingMoodViewController: ViewBuilding {
 
 extension WildcardLoggingMoodViewController {
     func getWildcard() {
-        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
+        let wildcardRef: CollectionReference = Firestore.firestore().collection("wildcards")
         let randomDocumentID = String(Int.random(in: 0..<6))
         
         wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in

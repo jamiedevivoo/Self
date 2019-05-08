@@ -20,13 +20,13 @@ final class MoodLoggingMoodViewController: ViewController {
         let button = UIButton()
         button.setTitle("+ New Log", for: .normal)
         button.isEnabled = true
-        button.setTitleColor(UIColor.app.button.primary.text(), for: .normal)
-        button.setTitleColor(UIColor.app.button.primary.text().withAlphaComponent(0.6), for: .disabled)
+        button.setTitleColor(UIColor.App.Button.Primary.text(), for: .normal)
+        button.setTitleColor(UIColor.App.Button.Primary.text().withAlphaComponent(0.6), for: .disabled)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.titleLabel?.textAlignment = .center
         button.layer.frame.size = CGSize(width: 150, height: 40)
         button.isUserInteractionEnabled = true
-        button.backgroundColor = UIColor.app.button.primary.fill()
+        button.backgroundColor = UIColor.App.Button.Primary.fill()
         button.addTarget(self, action: #selector(tappedCircle), for: .touchUpInside)
         button.addTarget(self, action: #selector(buttonActive), for: .touchDown)
         button.addTarget(self, action: #selector(buttonActive), for: .touchDragEnter)
@@ -43,7 +43,7 @@ final class MoodLoggingMoodViewController: ViewController {
     
     lazy var exitButton: UIButton = {
         let button = UIButton()
-        let btnImage = UIImage(named:"back")
+        let btnImage = UIImage(named: "back")
         btnImage?.withRenderingMode(.alwaysTemplate)
         button.setImage(btnImage, for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -63,7 +63,7 @@ final class MoodLoggingMoodViewController: ViewController {
     
     lazy var infoButton: UIButton = {
         let button = UIButton()
-        let btnImage = UIImage(named:"info-circle")?.withRenderingMode(.alwaysTemplate)
+        let btnImage = UIImage(named: "info-circle")?.withRenderingMode(.alwaysTemplate)
         btnImage?.withRenderingMode(.alwaysTemplate)
         button.setImage(btnImage, for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -86,14 +86,14 @@ final class MoodLoggingMoodViewController: ViewController {
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: (self.view.frame.width / 2), y: (self.view.frame.height / 2), width: diameter, height: diameter)
         gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
-        gradient.endPoint = CGPoint(x:1, y:1)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
         gradient.type = .radial
         gradient.cornerRadius = (diameter / 2)
         gradient.masksToBounds = true
         gradient.opacity = 0.9
         gradient.locations = [0.0, 0.8, 1]
         gradient.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(0).cgColor]
-        gradient.backgroundFilters = [CIFilter(name: "CIGaussianBlur",parameters: [kCIInputRadiusKey: 5])!]
+        gradient.backgroundFilters = [CIFilter(name: "CIGaussianBlur", parameters: [kCIInputRadiusKey: 5])!]
         return gradient
     }()
     
@@ -117,16 +117,15 @@ final class MoodLoggingMoodViewController: ViewController {
         return animations
     }()
     
-    var isMoodMarked:Bool = false
+    var isMoodMarked: Bool = false
     var markAdded: Bool = false
     var primaryBackgroundColour = UIColor.white.withAlphaComponent(0)
-    var userRatings: (valence: Double, arousal: Double) = (0,0)
+    var userRatings: (valence: Double, arousal: Double) = (0, 0)
     var emotion: Mood.Emotion?
     
     var emotionLabelCollection: [CATextLayer] = []
     
 }
-
 
 // MARK: - Override Methods
 extension MoodLoggingMoodViewController {
@@ -142,12 +141,10 @@ extension MoodLoggingMoodViewController {
         navigationController?.isToolbarHidden = true
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
         screenSlider?.gestureSwipingEnabled = false
     }
 }
-
 
 // MARK: - Class Methods
 extension MoodLoggingMoodViewController: UIGestureRecognizerDelegate {
@@ -177,17 +174,17 @@ extension MoodLoggingMoodViewController: UIGestureRecognizerDelegate {
 // Action Methods
 extension MoodLoggingMoodViewController {
     
-    @objc func tappedCircle(sender:UIButton ) {
+    @objc func tappedCircle(sender: UIButton) {
         unFocusButton(sender)
         saveMarkedMood()
     }
     
-    @objc func exit(sender:UIButton) {
+    @objc func exit(sender: UIButton) {
         unFocusButton(sender)
         navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func info(sender:UIButton) {
+    @objc func info(sender: UIButton) {
         unFocusButton(sender)
         self.definesPresentationContext = true
         let helpScreen = HelpMoodLoggingMoodViewController()
@@ -198,11 +195,11 @@ extension MoodLoggingMoodViewController {
         }
     }
     
-    @objc func buttonActive(sender:UIButton) {
+    @objc func buttonActive(sender: UIButton) {
         focusButton(sender)
     }
     
-    @objc func buttonCancelled(sender:UIButton) {
+    @objc func buttonCancelled(sender: UIButton) {
         unFocusButton(sender)
     }
     
@@ -212,8 +209,8 @@ extension MoodLoggingMoodViewController {
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-            button.layer.shadowRadius = button.layer.shadowRadius + 1.0
-            button.layer.shadowOpacity = button.layer.shadowOpacity - 0.2
+            button.layer.shadowRadius += 1.0
+            button.layer.shadowOpacity -= 0.2
             button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width + 0.5, height: button.layer.shadowOffset.height + 4.0)
         CATransaction.commit()
         
@@ -223,7 +220,7 @@ extension MoodLoggingMoodViewController {
                        initialSpringVelocity: 1,
                        options: [.curveEaseInOut],
                        animations: {
-                        button.alpha = button.alpha + 0.2
+                        button.alpha += 0.2
                         button.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         })
     }
@@ -234,8 +231,8 @@ extension MoodLoggingMoodViewController {
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-            button.layer.shadowRadius = button.layer.shadowRadius - 1.0
-            button.layer.shadowOpacity = button.layer.shadowOpacity + 0.2
+            button.layer.shadowRadius -= 1.0
+            button.layer.shadowOpacity += 0.2
             button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width - 0.5, height: button.layer.shadowOffset.height - 4.0)
         CATransaction.commit()
         
@@ -245,7 +242,7 @@ extension MoodLoggingMoodViewController {
                        initialSpringVelocity: 1,
                        options: [.curveEaseInOut],
                        animations: {
-                        button.alpha = button.alpha - 0.2
+                        button.alpha -= 0.2
                         button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
     }
@@ -296,7 +293,6 @@ extension MoodLoggingMoodViewController {
         }
     }
     
-    
     // When the user starts a tap
     func addMark() {
         
@@ -332,7 +328,6 @@ extension MoodLoggingMoodViewController {
             self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         CATransaction.commit()
         
-        
         /// Shrink the spotlight and stop pusling animation
 //        CATransaction.begin()
 //        CATransaction.setAnimationDuration(1)
@@ -364,7 +359,7 @@ extension MoodLoggingMoodViewController {
                        options: [.curveEaseIn, .beginFromCurrentState, .allowUserInteraction, .allowAnimatedContent],
                        animations: {
                             self.tapToConfirm.alpha = 0.8
-                            self.tapToConfirm.frame.origin.y = self.tapToConfirm.frame.origin.y - 50
+                            self.tapToConfirm.frame.origin.y -= 50
                             self.tapToConfirm.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
         
@@ -397,7 +392,6 @@ extension MoodLoggingMoodViewController {
             self.exitButton.layer.shadowRadius = 3.0
             self.exitButton.layer.shadowOpacity = 0.4
             self.exitButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-
         
             self.infoButton.layer.shadowRadius = 3.0
             self.infoButton.layer.shadowOpacity = 0.5
@@ -418,7 +412,6 @@ extension MoodLoggingMoodViewController {
         markAdded = true
     }
     
-    
     // Called when the user taps the button
     func saveMarkedMood() {
         
@@ -429,9 +422,9 @@ extension MoodLoggingMoodViewController {
         
         /// Send this screens data to the delegate before attempting to continue
         self.dataCollectionDelegate?.setData(
-            ["arousalRating" :userRatings.arousal,
-             "valenceRating" :userRatings.valence,
-             "emotion"       :emotion]
+            ["arousalRating": userRatings.arousal,
+             "valenceRating": userRatings.valence,
+             "emotion": emotion]
         )
         
         /// Animate the delegates background
@@ -466,8 +459,8 @@ extension MoodLoggingMoodViewController {
     func calculateMoodFromScreenPosition(x: CGFloat, y: CGFloat) -> (valence: Double, arousal: Double) {
         let arousalCoordinates = -convertCoordinateToRating(coordinate: y, range: self.view.frame.height)
         let valenceCoordinates = convertCoordinateToRating(coordinate: x, range: self.view.frame.width)
-        let arousal:Double = Double(arousalCoordinates)
-        let valence:Double = Double(valenceCoordinates)
+        let arousal: Double = Double(arousalCoordinates)
+        let valence: Double = Double(valenceCoordinates)
         return (valence: valence, arousal: arousal)
     }
     
@@ -478,7 +471,6 @@ extension MoodLoggingMoodViewController {
         return ratingRounded
     }
 }
-
 
 // Updating the screen
 extension  MoodLoggingMoodViewController {
@@ -494,11 +486,11 @@ extension  MoodLoggingMoodViewController {
         
         let diff: CGFloat = 0.25
         
-        primaryBackgroundColour  = UIColor(red: red,      green: green,      blue: blue,      alpha: alpha      )         /// Base (center)
-        let topLeft              = UIColor(red: red,      green: green-diff, blue: blue-diff, alpha: alpha      ).cgColor /// +Arousal, -Valence (TOP Left) (blue)
-        let topRight             = UIColor(red: red-diff, green: green,      blue: blue-diff, alpha: alpha      ).cgColor /// +Arousal, +Valence (Top RIGHT) (green)
-        let bottomRight          = UIColor(red: red-diff, green: green,      blue: blue,      alpha: alpha-diff ).cgColor /// -Arousal, +Valence (BOTTOM Right) (alpha)
-        let bottomLeft           = UIColor(red: red,      green: green-diff, blue: blue,      alpha: alpha-diff ).cgColor /// -Arousal, -Valence (Bottom LEFT) (red)
+        primaryBackgroundColour  = UIColor(red: red, green: green, blue: blue, alpha: alpha      )         /// Base (center)
+        let topLeft              = UIColor(red: red, green: green-diff, blue: blue-diff, alpha: alpha      ).cgColor /// +Arousal, -Valence (TOP Left) (blue)
+        let topRight             = UIColor(red: red-diff, green: green, blue: blue-diff, alpha: alpha      ).cgColor /// +Arousal, +Valence (Top RIGHT) (green)
+        let bottomRight          = UIColor(red: red-diff, green: green, blue: blue, alpha: alpha-diff ).cgColor /// -Arousal, +Valence (BOTTOM Right) (alpha)
+        let bottomLeft           = UIColor(red: red, green: green-diff, blue: blue, alpha: alpha-diff ).cgColor /// -Arousal, -Valence (Bottom LEFT) (red)
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(1)
@@ -526,7 +518,7 @@ extension  MoodLoggingMoodViewController {
             label.contentsScale = UIScreen.main.scale
             label.alignmentMode = .center
             label.frame.size = CGSize(width: 200, height: 20)
-            label.foregroundColor = UIColor.app.text.solidText().cgColor
+            label.foregroundColor = UIColor.App.Text.text().cgColor
             label.shadowOffset = CGSize(width: 0, height: 0)
             label.allowsFontSubpixelQuantization = false
             
@@ -558,13 +550,13 @@ extension  MoodLoggingMoodViewController {
             let largestScreenDistance = (view.frame.size.width / 2) + (view.frame.size.height / 2)
             
             /// - Calculate the frame radius now (axis size divide by 2), to help keep the code clean later on.
-            let radius: (width:CGFloat,height:CGFloat) = (
+            let radius: (width: CGFloat, height: CGFloat) = (
                     width: emotionLabel.frame.width / 2,
                     height: emotionLabel.frame.height / 2
             )
             
             /// - Calculate the position of the center of the label
-            let position: (x:CGFloat,y:CGFloat) = (
+            let position: (x: CGFloat, y: CGFloat) = (
                 x: emotionLabel.frame.origin.x + radius.width,
                 y: emotionLabel.frame.origin.y + radius.height
             )
@@ -600,7 +592,6 @@ extension  MoodLoggingMoodViewController {
     }
     
 }
-
 
 // MARK: - View Building
 extension MoodLoggingMoodViewController: ViewBuilding {

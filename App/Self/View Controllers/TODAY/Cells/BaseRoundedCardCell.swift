@@ -19,7 +19,7 @@ internal class BaseRoundedCardCell: UICollectionViewCell {
     private let motionManager = CMMotionManager()
     
     /// Long Press Gesture Recognizer
-    private var longPressGestureRecognizer: UILongPressGestureRecognizer? = nil
+    private var longPressGestureRecognizer: UILongPressGestureRecognizer?
     
     /// Is Pressed State
     private var isPressed: Bool = false
@@ -54,7 +54,7 @@ internal class BaseRoundedCardCell: UICollectionViewCell {
         // Roll/Pitch Dynamic Shadow
         if motionManager.isDeviceMotionAvailable {
             motionManager.deviceMotionUpdateInterval = 0.02
-            motionManager.startDeviceMotionUpdates(to: .main, withHandler: { (motion, error) in
+            motionManager.startDeviceMotionUpdates(to: .main, withHandler: { (motion, _) in
                 if let motion = motion {
                     let pitch = motion.attitude.pitch * 10 // x-axis
                     let roll = motion.attitude.roll * 10 // y-axis
@@ -121,10 +121,9 @@ internal class BaseRoundedCardCell: UICollectionViewCell {
                        options: .beginFromCurrentState,
                        animations: {
                         self.transform = CGAffineTransform.identity
-        }) { (finished) in
+        }) { (_) in
             self.isPressed = false
         }
     }
     
 }
-

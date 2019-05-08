@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 import Firebase
 
-
 final class DetailLoggingMoodViewController: ViewController {
     
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
@@ -14,14 +13,14 @@ final class DetailLoggingMoodViewController: ViewController {
         label.text = "More Details"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.setLineSpacing(lineSpacing: 3)
         return label
     }()
     
     lazy var backButton: UIButton = {
         let button = UIButton()
-        let btnImage = UIImage(named:"up-circle")?.withRenderingMode(.alwaysTemplate)
+        let btnImage = UIImage(named: "up-circle")?.withRenderingMode(.alwaysTemplate)
         button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         btnImage?.withRenderingMode(.alwaysTemplate)
         button.setImage(btnImage, for: .normal)
@@ -85,7 +84,6 @@ final class DetailLoggingMoodViewController: ViewController {
         
 }
 
-
 // MARK: - Override Methods
 extension DetailLoggingMoodViewController {
     
@@ -101,7 +99,6 @@ extension DetailLoggingMoodViewController {
     }
     
 }
-
 
 // MARK: - Class Methods
 extension DetailLoggingMoodViewController {
@@ -144,7 +141,7 @@ extension DetailLoggingMoodViewController: UITextFieldDelegate {
             tagTextFieldWithLabel.textField.text = ""
             return true
         } else {
-            dataCollectionDelegate?.setData(["name":nil])
+            dataCollectionDelegate?.setData(["name": nil])
             tagTextFieldWithLabel.textField.shake()
             tagTextFieldWithLabel.resetHint(withText: "Tags need to be at least 2 characters")
         }
@@ -160,7 +157,6 @@ extension DetailLoggingMoodViewController: UITextFieldDelegate {
     }
     
 }
-
 
 // MARK: - View Building
 extension DetailLoggingMoodViewController: ViewBuilding {
@@ -213,7 +209,7 @@ extension DetailLoggingMoodViewController: ViewBuilding {
 /// TEMP
 extension DetailLoggingMoodViewController {
     func getWildcard() {
-        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
+        let wildcardRef: CollectionReference = Firestore.firestore().collection("wildcards")
         let randomDocumentID = String(Int.random(in: 0..<6))
         
         wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in

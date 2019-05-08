@@ -684,6 +684,7 @@
 				A3438E7222456A1C004D21BB /* Frameworks */,
 				A3438E7322456A1C004D21BB /* Resources */,
 				0A0B1AC764327F4E133F1E7D /* [CP] Embed Pods Frameworks */,
+				7DAEEB7722836C9900EB839C /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -811,6 +812,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"TODO:|FIXME:|WARNING:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -not -path \"${SRCROOT}/Pods/*|${SRCROOT}/Frameworks/*\" -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"| perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+		7DAEEB7722836C9900EB839C /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		C90B05CD96C5495D117AB362 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
