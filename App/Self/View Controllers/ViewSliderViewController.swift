@@ -12,9 +12,9 @@ class ViewSliderViewController: UIViewController {
     
     lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.tintColor = UIColor.app.interactive.selectable.selected()
-        pageControl.pageIndicatorTintColor = UIColor.app.interactive.selectable.unselected()
-        pageControl.currentPageIndicatorTintColor = UIColor.app.interactive.selectable.selected()
+        pageControl.tintColor = UIColor.App.Interactive.Selectable.selected()
+        pageControl.pageIndicatorTintColor = UIColor.App.Interactive.Selectable.unselected()
+        pageControl.currentPageIndicatorTintColor = UIColor.App.Interactive.Selectable.selected()
         return pageControl
     }()
     
@@ -45,9 +45,9 @@ extension ViewSliderViewController {
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
         scrollView.isPagingEnabled = true
         
-        for i in 0 ..< slides.count {
-            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
-            scrollView.addSubview(slides[i])
+        for slideIndex in 0 ..< slides.count {
+            slides[slideIndex].frame = CGRect(x: view.frame.width * CGFloat(slideIndex), y: 0, width: view.frame.width, height: view.frame.height)
+            scrollView.addSubview(slides[slideIndex])
         }
     }
     
@@ -73,13 +73,13 @@ extension ViewSliderViewController {
             //            pageSliderViewDelegate?.continueOnboarding()
             return
         }
-        pageControl.currentPage = pageControl.currentPage + 1
+        pageControl.currentPage += 1
         scrollView.setContentOffset(CGPoint(x: (scrollView.frame.width * CGFloat(pageControl.currentPage)), y: scrollView.contentOffset.y), animated: true)
         
     }
     func previousStage() {
         guard pageControl.currentPage > 0 else { return }
-        pageControl.currentPage = pageControl.currentPage - 1
+        pageControl.currentPage -= 1
         scrollView.setContentOffset(CGPoint(x: (scrollView.frame.width * CGFloat(pageControl.currentPage)), y: scrollView.contentOffset.y), animated: true)
     }
 }
@@ -100,4 +100,3 @@ extension ViewSliderViewController: ViewBuilding {
         }
     }
 }
-

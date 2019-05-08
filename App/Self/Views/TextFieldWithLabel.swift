@@ -6,11 +6,11 @@ class TextFieldWithLabel: UIView {
     lazy private var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .ultraLight)
-        label.textColor = UIColor.app.text.solidText().withAlphaComponent(0.5)
+        label.textColor = UIColor.App.Text.text().withAlphaComponent(0.5)
         return label
     }()
     
-    var labelTitle:String = "" {
+    var labelTitle: String = "" {
         didSet {
             label.text = labelTitle
         }
@@ -40,7 +40,7 @@ extension TextFieldWithLabel {
     
     func resetHint(withText text: String? = nil) {
         guard let hintText = text else {
-            label.textColor = UIColor.app.text.solidText().withAlphaComponent(0.5)
+            label.textColor = UIColor.App.Text.text().withAlphaComponent(0.5)
             label.text = labelTitle
             return
         }

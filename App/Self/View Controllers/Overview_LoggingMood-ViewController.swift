@@ -2,7 +2,6 @@ import UIKit
 import Firebase
 import SnapKit
 
-
 final class OverviewLoggingMoodViewController: ViewController {
     
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
@@ -14,7 +13,7 @@ final class OverviewLoggingMoodViewController: ViewController {
         label.text = "Overview"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.setLineSpacing(lineSpacing: 3)
         return label
     }()
@@ -29,7 +28,7 @@ final class OverviewLoggingMoodViewController: ViewController {
     
     lazy var emotionPickerLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.text = "How are you?"
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
         return label
@@ -63,7 +62,6 @@ final class OverviewLoggingMoodViewController: ViewController {
     
 }
 
-
 // MARK: - Override Methods
 extension OverviewLoggingMoodViewController {
     
@@ -74,7 +72,6 @@ extension OverviewLoggingMoodViewController {
     }
     
 }
-
 
 // MARK: - Class Methods
 extension OverviewLoggingMoodViewController {
@@ -92,7 +89,6 @@ extension OverviewLoggingMoodViewController {
     
 }
 
-
 // MARK: - TextField Delegate Methods
 extension OverviewLoggingMoodViewController: UITextFieldDelegate {
     
@@ -106,11 +102,11 @@ extension OverviewLoggingMoodViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
             nameTextFieldWithLabel.textField.resignFirstResponder()
-            dataCollectionDelegate?.setData(["name":name])
+            dataCollectionDelegate?.setData(["name": name])
             screenSlider?.nextScreen()
             return true
         } else {
-            dataCollectionDelegate?.setData(["name":nil])
+            dataCollectionDelegate?.setData(["name": nil])
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
         }
@@ -126,7 +122,6 @@ extension OverviewLoggingMoodViewController: UITextFieldDelegate {
     }
     
 }
-
 
 // MARK: - View Building
 extension OverviewLoggingMoodViewController: ViewBuilding {
@@ -150,7 +145,7 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
 
 extension OverviewLoggingMoodViewController {
     func getWildcard() {
-        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
+        let wildcardRef: CollectionReference = Firestore.firestore().collection("wildcards")
         let randomDocumentID = String(Int.random(in: 0..<6))
         
         wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in

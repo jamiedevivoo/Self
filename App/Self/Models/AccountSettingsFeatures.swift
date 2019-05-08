@@ -9,7 +9,7 @@ extension Account.Settings {
 
 // MARK: - Convenience Iniitialiser
 extension Account.Settings.Features {
-    init(_ featuresDictionary: [String:Any]) {
+    init(_ featuresDictionary: [String: Any]) {
         self.highlightsAreActive    = featuresDictionary["highlights_active"]  as? Bool ?? highlightsAreActive
         self.insightsAreActive      = featuresDictionary["insights_active"]    as? Bool ?? insightsAreActive
     }
@@ -20,8 +20,8 @@ extension Account.Settings.Features {
 extension Account.Settings.Features: DictionaryConvertable {
     var dictionary: [String: Any] {
         return [
-            "highlights_active" : highlightsAreActive,
-            "insights_active"   : insightsAreActive
+            "highlights_active": highlightsAreActive,
+            "insights_active": insightsAreActive
         ]
     }
 }

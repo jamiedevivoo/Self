@@ -5,19 +5,19 @@ extension UILabel {
     static var messageGreeting: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.ultraLight)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         return label
     }
     static var messageName: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         return label
     }
     static var messageText: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.light)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.numberOfLines = 0
         return label
     }
@@ -49,7 +49,7 @@ extension UILabel {
         paragraphStyle.lineSpacing = lineSpacing
         paragraphStyle.lineHeightMultiple = lineHeightMultiple
         
-        let attributedString:NSMutableAttributedString
+        let attributedString: NSMutableAttributedString
         if let labelattributedText = self.attributedText {
             attributedString = NSMutableAttributedString(attributedString: labelattributedText)
         } else {
@@ -57,7 +57,7 @@ extension UILabel {
         }
         
         // (Swift 4.2 and above) Line spacing attribute
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
         
         self.attributedText = attributedString
     }

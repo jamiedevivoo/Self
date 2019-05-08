@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 import Firebase
 
-
 final class DetailLoggingMoodViewController: ViewController {
     
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
@@ -14,9 +13,24 @@ final class DetailLoggingMoodViewController: ViewController {
         label.text = "More Details"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.setLineSpacing(lineSpacing: 3)
         return label
+    }()
+    
+    lazy var backButton: UIButton = {
+        let button = UIButton()
+        let btnImage = UIImage(named: "up-circle")?.withRenderingMode(.alwaysTemplate)
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        btnImage?.withRenderingMode(.alwaysTemplate)
+        button.setImage(btnImage, for: .normal)
+        button.tintColor = UIColor.white
+        button.alpha = 0.4
+        button.layer.cornerRadius = 20
+        button.layer.shadowRadius = 5.0
+        button.layer.shadowOpacity = 0.6
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        return button
     }()
     
     lazy var tagsStack: UIStackView = {
@@ -70,24 +84,21 @@ final class DetailLoggingMoodViewController: ViewController {
         
 }
 
-
 // MARK: - Override Methods
 extension DetailLoggingMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        setupKeyboard()
-        self.view.addGestureRecognizer(tapViewRecogniser)
+        view.backgroundColor = .clear
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        nameTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLoggingDelegate?.emotion?.adj ?? "")..."
+        nameTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLoggingDelegate?.emotion?.adj ?? "")?..."
     }
     
 }
-
 
 // MARK: - Class Methods
 extension DetailLoggingMoodViewController {
@@ -103,6 +114,10 @@ extension DetailLoggingMoodViewController {
         return name
     }
     
+    @objc func goBack() {
+        self.screenSlider?.previousScreen()
+    }
+    
 }
 
 // MARK: - TextField Delegate Methods
@@ -112,7 +127,7 @@ extension DetailLoggingMoodViewController: UITextFieldDelegate {
         nameTextFieldWithLabel.textField.delegate = self
         tagTextFieldWithLabel.textField.delegate = self
         self.tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
-//        toggleFirstResponder()
+        toggleFirstResponder()
 
     }
     
@@ -126,7 +141,7 @@ extension DetailLoggingMoodViewController: UITextFieldDelegate {
             tagTextFieldWithLabel.textField.text = ""
             return true
         } else {
-            dataCollectionDelegate?.setData(["name":nil])
+            dataCollectionDelegate?.setData(["name": nil])
             tagTextFieldWithLabel.textField.shake()
             tagTextFieldWithLabel.resetHint(withText: "Tags need to be at least 2 characters")
         }
@@ -143,7 +158,6 @@ extension DetailLoggingMoodViewController: UITextFieldDelegate {
     
 }
 
-
 // MARK: - View Building
 extension DetailLoggingMoodViewController: ViewBuilding {
     
@@ -153,6 +167,15 @@ extension DetailLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(tagsStack)
         self.view.addSubview(tagTextFieldWithLabel)
         self.view.addSubview(wildcardQuestion)
+        
+        view.addSubview(backButton)
+        
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(25)
+            make.width.equalTo(25)
+        }
 
         label.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
@@ -186,7 +209,7 @@ extension DetailLoggingMoodViewController: ViewBuilding {
 /// TEMP
 extension DetailLoggingMoodViewController {
     func getWildcard() {
-        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
+        let wildcardRef: CollectionReference = Firestore.firestore().collection("wildcards")
         let randomDocumentID = String(Int.random(in: 0..<6))
         
         wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in

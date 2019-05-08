@@ -39,7 +39,7 @@ extension DailyActionBriefSelectorViewController {
     }
     
     func addActions() {
-        actionManager!.getDailyActions() { actions in
+        actionManager!.getDailyActions { actions in
             self.actionsData = actions
             self.actionCollectionView.reloadData()
         }

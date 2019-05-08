@@ -1,7 +1,6 @@
 import UIKit
 import SnapKit
 
-
 final class NameOnboardingViewController: ViewController {
     
     lazy var label: UILabel = {
@@ -9,7 +8,7 @@ final class NameOnboardingViewController: ViewController {
         label.text = "Welcome to Self! What should we call you?"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.setLineSpacing(lineSpacing: 3)
         return label
     }()
@@ -24,10 +23,9 @@ final class NameOnboardingViewController: ViewController {
     
     lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
     
-    var delegate : DataCollectionSequenceDelegate?
+    var delegate: DataCollectionSequenceDelegate?
     
 }
-
 
 // MARK: - Override Methods
 extension NameOnboardingViewController {
@@ -43,7 +41,6 @@ extension NameOnboardingViewController {
     }
     
 }
-
 
 // MARK: - Class Methods
 extension NameOnboardingViewController {
@@ -61,7 +58,6 @@ extension NameOnboardingViewController {
     
 }
 
-
 // MARK: - TextField Delegate Methods
 extension NameOnboardingViewController: UITextFieldDelegate {
     
@@ -75,11 +71,11 @@ extension NameOnboardingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
             nameTextFieldWithLabel.textField.resignFirstResponder()
-            delegate?.setData(["name":name])
+            delegate?.setData(["name": name])
             (self.parent as! OnboardingScreenSliderViewController).nextScreen()
             return true
         } else {
-            delegate?.setData(["name":nil])
+            delegate?.setData(["name": nil])
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
         }
@@ -95,7 +91,6 @@ extension NameOnboardingViewController: UITextFieldDelegate {
     }
     
 }
-
 
 // MARK: - View Building
 extension NameOnboardingViewController: ViewBuilding {

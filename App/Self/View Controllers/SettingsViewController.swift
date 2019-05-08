@@ -4,34 +4,32 @@ import Firebase
 
 class SettingsViewController: UIViewController {
     
-    
     // MARK: - Properties
     
     lazy var topDescriptionView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.secondaryBackground()
+        view.backgroundColor = UIColor.App.Background.secondary()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to modify your account and app settings."
         label.textAlignment = .left
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.numberOfLines = 0
         return label
     }()
     
     lazy var settingsTableView: UITableView = {
         let table = UITableView()
-        table.backgroundColor = UIColor.app.background.primaryBackground()
+        table.backgroundColor = UIColor.App.Background.primary()
         table.isScrollEnabled = false
         table.dataSource = self
         table.delegate = self
         return table
     }()
     
-    var settingOptions = ["Account Settings","App Settings","Logout"]
-    
+    var settingOptions = ["Account Settings", "App Settings", "Logout"]
     
     // MARK: - Init
     
@@ -39,7 +37,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Settings"
-        view.backgroundColor = UIColor.app.background.primaryBackground()
+        view.backgroundColor = UIColor.App.Background.primary()
         navigationItem.leftBarButtonItems = nil
         
         settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "settingCell")
@@ -48,7 +46,6 @@ class SettingsViewController: UIViewController {
         addSubViews()
         setupChildViews()
     }
-    
     
     // MARK: - Functions
     
@@ -66,7 +63,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
         let settingTitle = settingOptions[indexPath.row]
         cell.textLabel?.text = settingTitle
-        cell.backgroundColor = UIColor.app.background.primaryBackground()
+        cell.backgroundColor = UIColor.App.Background.primary()
         if settingTitle == "Logout" { cell.textLabel?.textColor = .red }
         return cell
     }
@@ -75,9 +72,9 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         print("Cell Selected \(indexPath)")
         
         if indexPath.row == 0 {
-            navigationController?.pushViewController(AccountSettingsViewController(), animated: true);
+            navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
         } else if indexPath.row == 1 {
-            navigationController?.pushViewController(AppSettingsViewController(), animated: true);
+            navigationController?.pushViewController(AppSettingsViewController(), animated: true)
         } else if indexPath.row == 2 {
             AccountManager.logout()
         }

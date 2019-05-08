@@ -13,6 +13,16 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var emotion: Mood.Emotion?
     var tags = [Tag]()
     
+    lazy var background: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.frame = self.view.layer.frame
+        layer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        layer.endPoint = CGPoint(x: 0, y: 0)
+        layer.type = .conic
+        layer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor]
+        return layer
+    }()
+    
     init() {
         super.init(navigationOrientation: .vertical)
     }
@@ -23,17 +33,19 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
 
 }
 
-
 // MARK: - Override Methods
 extension LoggingAMoodScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
+        self.view.layer.insertSublayer(background, at: 0)
+        view.backgroundColor = UIColor.App.Background.primary()
+        let baseColour = UIColor(red: 0.5, green: 0.6, blue: 0.6, alpha: 0.4)
+        background.colors = [baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor]
     }
     
 }
-
 
 // MARK: - Setup Methods
 extension LoggingAMoodScreenSliderViewController {
@@ -67,7 +79,6 @@ extension LoggingAMoodScreenSliderViewController {
     
 }
 
-
 // MARK: - Class Methods
 extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate {
     
@@ -94,7 +105,7 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
         return true
     }
     
-    func setData(_ dataDict: [String:Any?]) {
+    func setData(_ dataDict: [String: Any?]) {
         guard let arousalRating: Double = dataDict["arousalRating"] as? Double else {
             self.arousalRating = nil
             return
@@ -139,7 +150,6 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
     }
     
 }
-
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
 extension LoggingAMoodScreenSliderViewController: ScreenSliderViewControllerDelegate {

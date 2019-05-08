@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 import Lottie
 
-
 final class LandingOnboardingViewController: ViewController {
 
     lazy var welcomeLabel: UILabel = {
@@ -10,12 +9,12 @@ final class LandingOnboardingViewController: ViewController {
         label.text = "Welcome to Self"
         label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
         label.textAlignment = .center
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         return label
     }()
     
     lazy var sliderViewController = ViewSliderViewController()
-    var delegate : DataCollectionSequenceDelegate?
+    var delegate: DataCollectionSequenceDelegate?
 
     lazy var registerButton = Button(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
     lazy var loginButton = Button(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
@@ -29,7 +28,6 @@ final class LandingOnboardingViewController: ViewController {
     
 }
 
-
 // MARK: - Overide Methods
 extension LandingOnboardingViewController {
     override func viewDidLoad() {
@@ -39,7 +37,6 @@ extension LandingOnboardingViewController {
         self.view.addGestureRecognizer(leftSwipe)
     }
 }
-
 
 // MARK: - Button Methods
 extension LandingOnboardingViewController {
@@ -51,14 +48,13 @@ extension LandingOnboardingViewController {
         (self.parent as! ScreenSliderViewController).nextScreen()
     }
     
-    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
         print("swiped")
         guard sliderViewController.pageControl.currentPage >= 2 else { return }
         print("over 2")
         navigateToRegister()
     }
 }
-
 
 // MARK: - Setup Methods
 private extension LandingOnboardingViewController {
@@ -100,7 +96,6 @@ private extension LandingOnboardingViewController {
     }
     
 }
-
 
 // MARK: - View Building
 extension LandingOnboardingViewController: ViewBuilding {

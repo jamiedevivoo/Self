@@ -13,7 +13,7 @@ class FeedMessageChildViewController: UIViewController {
             withActions: [],
             withSentimentLogs: [])
         
-        self.messageStackView = MessageStackView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), message:message)
+        self.messageStackView = MessageStackView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), message: message)
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }

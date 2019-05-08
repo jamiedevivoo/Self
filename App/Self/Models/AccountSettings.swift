@@ -9,9 +9,9 @@ extension Account {
 }
 // MARK: - Convenience Iniitialiser
 extension Account.Settings {
-    init(_ settingsDictionary: [String:Any]) {
-        self.notifications  = Account.Settings.Notifications(settingsDictionary["notifications"] as! [String : Any])
-        self.features       = Account.Settings.Features(settingsDictionary["features"] as! [String : Any])
+    init(_ settingsDictionary: [String: Any]) {
+        self.notifications  = Account.Settings.Notifications(settingsDictionary["notifications"] as! [String: Any])
+        self.features       = Account.Settings.Features(settingsDictionary["features"] as! [String: Any])
         self.userColorMode  = AppColorMode.matchCase(string: settingsDictionary["color_mode"] as! String)
     }
 }
@@ -24,9 +24,9 @@ extension Account.Settings: CustomStringConvertible, DictionaryConvertable {
     
     var dictionary: [String: Any] {
         return [
-            "color_mode"    : userColorMode.rawValue,
-            "notifications" : notifications.dictionary,
-            "features"      : features.dictionary
+            "color_mode": userColorMode.rawValue,
+            "notifications": notifications.dictionary,
+            "features": features.dictionary
         ]
     }
 }

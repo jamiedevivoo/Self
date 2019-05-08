@@ -21,8 +21,7 @@ extension ScreenSliderViewControllerDelegate {
         isLooped loop: Bool = false,
         allScreensEnabled: Bool = false,
         enableSwiping: Bool = true,
-        optionalSetup: @escaping () -> () = {} )
-    {
+        optionalSetup: @escaping () -> Void = {}) {
         screenSliderViewController.screens = pages
         screenSliderViewController.sliderDelegate = delegate
         screenSliderViewController.pageIndicatorEnabled = pageIndicator

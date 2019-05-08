@@ -88,7 +88,7 @@ extension LoginViewController {
         self.dismiss(animated: true)
     }
         
-    private func login(_ email:String, _ password: String) {
+    private func login(_ email: String, _ password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard let _ = authResult, error == nil else {
                 let errorAlert: UIAlertController = {

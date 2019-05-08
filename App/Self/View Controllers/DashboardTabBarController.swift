@@ -7,12 +7,14 @@ class DashboardTabBarController: UITabBarController {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
         swipeGesture.direction = .left
+        swipeGesture.delegate = self
         return swipeGesture
     }()
     lazy var rightSwipe: UISwipeGestureRecognizer = {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
         swipeGesture.direction = .right
+        swipeGesture.delegate = self
         return swipeGesture
     }()
 }
@@ -65,8 +67,8 @@ extension DashboardTabBarController {
         tabBar.backgroundColor = .clear
         tabBar.layer.backgroundColor = UIColor.clear.cgColor
         tabBar.barTintColor =  UIColor.clear
-        tabBar.tintColor = UIColor.app.interactive.selectable.selected()
-        tabBar.unselectedItemTintColor = UIColor.app.interactive.selectable.unselected().withAlphaComponent(0.8)
+        tabBar.tintColor = UIColor.App.Interactive.Selectable.selected()
+        tabBar.unselectedItemTintColor = UIColor.App.Interactive.Selectable.unselected().withAlphaComponent(0.8)
         
         let frost = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
         frost.frame = tabBar.bounds
@@ -77,12 +79,15 @@ extension DashboardTabBarController {
 }
 
 // MARK: - Handle Swipes
-extension DashboardTabBarController {
-    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-      
+extension DashboardTabBarController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let current = viewControllers![selectedIndex] as! DashboardNavigationController
-        guard current.viewControllers.count < 2 else { return }
-
+        guard current.viewControllers.count < 2 else { return false }
+        return true
+    }
+    
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
             transitionViewController(toIndex: self.selectedIndex + 1)
         }
@@ -93,7 +98,7 @@ extension DashboardTabBarController {
 }
 
 // MARK: - TabBar Delegate
-extension DashboardTabBarController: UITabBarControllerDelegate  {
+extension DashboardTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         guard let tabViewControllers = tabBarController.viewControllers,
             let toIndex = tabViewControllers.firstIndex(of: viewController)
@@ -132,7 +137,7 @@ extension DashboardTabBarController {
                         oldView.layer.opacity = 0
                         newView.center = CGPoint(x: newView.center.x - offset, y: newView.center.y)
                         newView.layer.opacity = 1
-        }, completion: { finished in
+        }, completion: { _ in
             oldView.removeFromSuperview()
             self.selectedIndex = toIndex
             self.view.isUserInteractionEnabled = true

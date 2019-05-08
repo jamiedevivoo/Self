@@ -22,7 +22,6 @@ class FeedActionListChildViewController: UIViewController {
     lazy var settingsButton = Button(title: "Settings", action: #selector(FeedActionListChildViewController.settings), type: .dashboard)
     lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount), type: .dashboard)
     lazy var logoutButton = Button(title: "Logout", action: #selector(FeedActionListChildViewController.logout), type: .dashboard)
-
     
     var accountRef: Account?
     

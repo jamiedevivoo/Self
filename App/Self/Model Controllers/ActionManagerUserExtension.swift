@@ -13,7 +13,6 @@ extension ActionManager {
     }
 }
 
-
 //Build Action Logs
 extension ActionManager.User {
     
@@ -53,11 +52,10 @@ extension ActionManager.User {
     
 }
 
-
 // Set Actions
 extension ActionManager.User {
     
-    private func updateLog(_ actionLog:ActionManager.Log) -> ActionManager.Log {
+    private func updateLog(_ actionLog: ActionManager.Log) -> ActionManager.Log {
         var updatedLog = actionLog
         
         /// Check if the Log already has a UID (If it was created from a Brief then it won't, so create one)
@@ -89,10 +87,9 @@ extension ActionManager.User {
     
 }
 
-
 // Get Actions
 extension ActionManager.User {
-    func getIncompleteActions(completion: @escaping ([ActionManager.Log]?) -> ()) {
+    func getIncompleteActions(completion: @escaping ([ActionManager.Log]?) -> Void) {
         userActionLogsReference.whereField("completed", isEqualTo: false).getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, error == nil else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
@@ -109,7 +106,7 @@ extension ActionManager.User {
         }
     }
     
-    func getCompleteActions(completion: @escaping ([ActionManager.Log]?) -> ()) {
+    func getCompleteActions(completion: @escaping ([ActionManager.Log]?) -> Void) {
         userActionLogsReference.whereField("completed", isEqualTo: true).getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, error == nil else {
                 print("Error Loading Actions: \(error!.localizedDescription)")
@@ -127,7 +124,6 @@ extension ActionManager.User {
     }
     
 }
-
 
 extension ActionManager.User {
 }

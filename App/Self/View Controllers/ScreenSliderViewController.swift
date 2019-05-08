@@ -1,7 +1,6 @@
 import UIKit
 import SnapKit
 
-
 class ScreenSliderViewController: UIPageViewController {
     
     // MARK: - Properties
@@ -37,7 +36,6 @@ class ScreenSliderViewController: UIPageViewController {
         didSet { setupPageIndicator()  }
     }
     
-    
     // MARK: - Init
     /// Helper Initialiser for setting up the superClass UIPageViewController
     init(navigationOrientation: NavigationOrientation = .horizontal) {
@@ -53,7 +51,6 @@ class ScreenSliderViewController: UIPageViewController {
     
 }
 
-
 // MARK: - Overriding Methods
 extension ScreenSliderViewController {
     
@@ -65,13 +62,12 @@ extension ScreenSliderViewController {
     
 }
 
-
 // MARK: - Setup Methods
 extension ScreenSliderViewController {
     
     /// Start setting up the child views
     private func setup() {
-        view.backgroundColor = UIColor.app.background.primaryBackground()
+        view.backgroundColor = UIColor.App.Background.primary()
         setupPageView()
         setupPageIndicator()
         setupScrollView()
@@ -81,8 +77,7 @@ extension ScreenSliderViewController {
     private func setupPageView() {
         guard screens.count > 0 else { return }
         
-        if allScreensEnabled == true { activeScreens = screens }
-        else { activeScreens = [screens[initialScreenIndex]] }
+        if allScreensEnabled == true { activeScreens = screens } else { activeScreens = [screens[initialScreenIndex]] }
         
         setViewControllers([activeScreens[0]], direction: .forward, animated: true, completion: nil)
     }
@@ -109,7 +104,6 @@ extension ScreenSliderViewController {
     
 }
 
-
 // MARK: - Class Methods
 extension ScreenSliderViewController {
     
@@ -130,7 +124,6 @@ extension ScreenSliderViewController {
     }
     
 }
-
 
 // MARK: - UIPageViewControllerDataSourceDelegate  Methods
 extension ScreenSliderViewController: UIPageViewControllerDataSource {
@@ -154,8 +147,7 @@ extension ScreenSliderViewController: UIPageViewControllerDataSource {
             guard let sliderDelegate = sliderDelegate else { return nextScreen }
             guard sliderDelegate.validateDataBeforeNextScreen(nextViewController: nextScreen) else { return nil }
             return nextScreen
-        }
-        else {
+        } else {
             /// Otherwise if looping is enabled, go to the first slide.
             guard !loopingSliderEnabled else { return self.activeScreens.first }
             /// If looping is disabled, there is nothing to do.
@@ -170,8 +162,7 @@ extension ScreenSliderViewController: UIPageViewControllerDataSource {
         /// If backward navigation isn't enabled, bail.
         guard backwardNavigationEnabled else { return nil }
         /// If this isn't the first slide, go forward one slide.
-        if viewControllerIndex > 0 { return self.activeScreens[viewControllerIndex - 1] }
-        else {
+        if viewControllerIndex > 0 { return self.activeScreens[viewControllerIndex - 1] } else {
             /// Otherwise if looping is enabled, go to the last slide.
             guard !loopingSliderEnabled else { return self.activeScreens.last }
             /// If looping is disabled, there is nothing to do.
@@ -180,7 +171,6 @@ extension ScreenSliderViewController: UIPageViewControllerDataSource {
     }
     
 }
-
 
 // MARK: - UIPageViewControllerDelegate  Methods
 extension ScreenSliderViewController: UIPageViewControllerDelegate {
@@ -201,7 +191,6 @@ extension ScreenSliderViewController: UIPageViewControllerDelegate {
     }
     
 }
-
 
 // MARK: - ScrollView Delegate Methods
 extension ScreenSliderViewController: UIScrollViewDelegate {

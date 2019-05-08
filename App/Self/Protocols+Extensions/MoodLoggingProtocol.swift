@@ -1,4 +1,7 @@
+import UIKit
+
 protocol MoodLoggingDelegate {
+    var background: CAGradientLayer { get set }
     var headline: String? { get set }
     var note: String? { get set }
     var arousalRating: Double? { get set }

@@ -27,7 +27,6 @@ class FinishCreatingAccountViewController: ViewController {
 
 }
 
-
 // MARK: - Register User
 extension FinishCreatingAccountViewController {
     @objc func registerButtonAction(_ sender: Any) {
@@ -59,7 +58,7 @@ extension FinishCreatingAccountViewController {
             if AccountManager.shared().accountRef?.uid == registeredCredentials.user.uid {
                 AccountManager.shared().accountRef?.user.name = "Stranger"
                 AccountManager.shared().accountRef?.flags.accountIsComplete = true
-                AccountManager.shared().updateAccount() {
+                AccountManager.shared().updateAccount {
                     self.navigationController?.popToRootViewController(animated: true)
                 }
             }

@@ -34,7 +34,7 @@ class TodaySectionHeader: UICollectionReusableView {
         
         profileImageView.layer.cornerRadius = profileImageView.bounds.width/2
         profileImageView.layer.borderWidth = 0.5
-        profileImageView.layer.borderColor = UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0).cgColor
+        profileImageView.layer.borderColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.0).cgColor
     }
     
 }

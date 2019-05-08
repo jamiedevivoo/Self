@@ -13,8 +13,8 @@ class PageIndicator: UIPageControl {
     }
     
     func setup() {
-        tintColor = UIColor.app.interactive.selectable.selected()
-        pageIndicatorTintColor = UIColor.app.interactive.selectable.unselected()
-        currentPageIndicatorTintColor = UIColor.app.interactive.selectable.selected()
+        tintColor = UIColor.App.Interactive.Selectable.selected()
+        pageIndicatorTintColor = UIColor.App.Interactive.Selectable.unselected()
+        currentPageIndicatorTintColor = UIColor.App.Interactive.Selectable.selected()
     }
 }

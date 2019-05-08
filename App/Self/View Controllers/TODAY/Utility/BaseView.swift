@@ -42,4 +42,3 @@ internal class BaseView: UIView {
         return view
     }
 }
-

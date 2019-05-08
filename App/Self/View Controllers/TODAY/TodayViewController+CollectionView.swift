@@ -102,5 +102,4 @@ extension TodayViewController: UICollectionViewDataSource, UICollectionViewDeleg
         }
     }
     
-    
 }

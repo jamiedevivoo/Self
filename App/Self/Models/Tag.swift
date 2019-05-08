@@ -7,10 +7,10 @@ struct Tag {
     var category: Tag.TagCategory = .personal
     
     // Log View
-    var uid: String? = nil
+    var uid: String?
 
     // Log state only
-    var tagRef: DocumentReference? = nil
+    var tagRef: DocumentReference?
     
     // Creation state Only
     var origin: TagOrigin = .unknown
@@ -20,7 +20,7 @@ struct Tag {
 
 // MARK: - Convenience Iniitialiser
 extension Tag {
-    init(_ tagDictionary: [String:Any]) {
+    init(_ tagDictionary: [String: Any]) {
         self.uid                = (tagDictionary["uid"] as? String ?? nil)
         self.tagRef             = (tagDictionary["tag_ref"] as? DocumentReference ?? nil)
         self.title              = (tagDictionary["title"] as! String)
@@ -37,30 +37,30 @@ extension Tag {
 extension Tag: DictionaryConvertable {
     var dictionary: [String: Any] {
         return [
-            "uid":                  uid as Any,
-            "tag_ref":              tagRef as Any,
-            "title":                title as Any,
-            "description":          description as Any,
-            "origin":               origin.rawValue as Any,
-            "category":             category.rawValue as Any,
-            "valence_influence":    valenceInfluence as Any,
-            "arousal_influence":    arousalInfluence as Any
+            "uid": uid as Any,
+            "tag_ref": tagRef as Any,
+            "title": title as Any,
+            "description": description as Any,
+            "origin": origin.rawValue as Any,
+            "category": category.rawValue as Any,
+            "valence_influence": valenceInfluence as Any,
+            "arousal_influence": arousalInfluence as Any
         ]
     }
     var logTagDictionary: [String: Any] {
         return [
-            "tag_ref":      tagRef!,
-            "title":        title as Any,
-            "description":  description as Any,
-            "category":     category.rawValue as Any
+            "tag_ref": tagRef!,
+            "title": title as Any,
+            "description": description as Any,
+            "category": category.rawValue as Any
         ]
     }
     var actionTagDictionary: [String: Any] {
         return [
-            "tag_ref":      tagRef!,
-            "title":        title as Any,
-            "description":  description as Any,
-            "category":     category.rawValue as Any
+            "tag_ref": tagRef!,
+            "title": title as Any,
+            "description": description as Any,
+            "category": category.rawValue as Any
         ]
     }
 
@@ -82,7 +82,7 @@ extension Tag {
         
         var key: String { return rawValue }
         
-        static func matchCase(string:String) -> TagOrigin {
+        static func matchCase(string: String) -> TagOrigin {
             switch string {
                 case self.mood.rawValue:        return .mood
                 case self.action.rawValue:      return .action
@@ -95,24 +95,23 @@ extension Tag {
     }
     
     enum TagCategory: String, CaseIterable {
-        case five_ways, type, charka, auto, personal
+        case fiveWays, type, charka, auto, personal
         
         var key: String { return rawValue }
         
         var title: String {
             switch self {
-                case .five_ways:   return "Five Ways"
+                case .fiveWays:   return "Five Ways"
                 case .type:        return "Action Type"
                 case .charka:      return "Charka"
                 case .auto:        return "Automatic Tag"
                 default:           return "Personal"
             }
         }
-
         
-        static func matchCase(string:String) -> TagCategory {
+        static func matchCase(string: String) -> TagCategory {
             switch string {
-                case self.five_ways.rawValue:   return .five_ways
+                case self.fiveWays.rawValue:   return .fiveWays
                 case self.type.rawValue:        return .type
                 case self.charka.rawValue:      return .charka
                 case self.auto.rawValue:        return .auto
