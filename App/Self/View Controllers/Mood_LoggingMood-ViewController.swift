@@ -25,11 +25,10 @@ final class MoodLoggingMoodViewController: ViewController {
         button.addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
         button.addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
         button.layer.cornerRadius = 20
-        button.layer.shadowRadius = 3.0
-        button.layer.shadowOpacity = 0.4
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 0.5)
+        button.layer.shadowRadius = 4.0
+        button.layer.shadowOpacity = 0.35
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 8.0)
         button.alpha = 0.6
-        button.layer.opacity = 0.6
         button.clipsToBounds = false
         return button
     }()
@@ -48,8 +47,8 @@ final class MoodLoggingMoodViewController: ViewController {
         button.addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
         button.addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
         button.alpha = 0.5
-        button.layer.shadowRadius = 5.0
-        button.layer.shadowOpacity = 0.6
+        button.layer.shadowRadius = 3.0
+        button.layer.shadowOpacity = 0.4
         button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         return button
     }()
@@ -67,9 +66,9 @@ final class MoodLoggingMoodViewController: ViewController {
         button.addTarget(self, action: #selector(buttonActive), for: .touchDragEnter)
         button.addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
         button.addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
-        button.alpha = 0.4
-        button.layer.shadowRadius = 5.0
-        button.layer.shadowOpacity = 0.6
+        button.alpha = 0.5
+        button.layer.shadowRadius = 3.0
+        button.layer.shadowOpacity = 0.5
         button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         return button
     }()
@@ -190,15 +189,14 @@ extension MoodLoggingMoodViewController {
     }
     
     private func focusButton(_ button: UIButton) {
-        
         let duration = 0.6
 
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-            button.layer.shadowRadius = button.layer.shadowRadius + 2.0
-            button.layer.shadowOpacity = button.layer.shadowOpacity + 0.2
-            button.layer.shadowOffset = CGSize(width: 0.0, height: button.layer.shadowOffset.height + 2.0)
+            button.layer.shadowRadius = button.layer.shadowRadius + 1.0
+            button.layer.shadowOpacity = button.layer.shadowOpacity - 0.2
+            button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width + 0.5, height: button.layer.shadowOffset.height + 4.0)
         CATransaction.commit()
         
         UIView.animate(withDuration: duration,
@@ -207,21 +205,20 @@ extension MoodLoggingMoodViewController {
                        initialSpringVelocity: 1,
                        options: [.curveEaseInOut],
                        animations: {
-                        button.alpha = button.alpha + 0.5
+                        button.alpha = button.alpha + 0.2
                         button.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         })
     }
     
     private func unFocusButton(_ button: UIButton) {
-        
         let duration = 0.4
-        
+
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-        button.layer.shadowRadius = button.layer.shadowRadius - 2.0
-        button.layer.shadowOpacity = button.layer.shadowOpacity - 0.2
-        button.layer.shadowOffset = CGSize(width: 0.0, height: button.layer.shadowOffset.height - 2.0)
+            button.layer.shadowRadius = button.layer.shadowRadius - 1.0
+            button.layer.shadowOpacity = button.layer.shadowOpacity + 0.2
+            button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width - 0.5, height: button.layer.shadowOffset.height - 4.0)
         CATransaction.commit()
         
         UIView.animate(withDuration: duration,
@@ -230,7 +227,7 @@ extension MoodLoggingMoodViewController {
                        initialSpringVelocity: 1,
                        options: [.curveEaseInOut],
                        animations: {
-                        button.alpha = button.alpha - 0.5
+                        button.alpha = button.alpha - 0.2
                         button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
     }
@@ -261,6 +258,15 @@ extension MoodLoggingMoodViewController {
         /// - Update tap to confirm and circle positions
         tapToConfirm.frame.origin.x = location.x - (tapToConfirm.frame.width / 2)
         tapToConfirm.frame.origin.y = location.y + (markSpotlight.frame.height / 2) + (tapToConfirm.frame.height / 2) + 50
+        
+        print(tapToConfirm.frame.origin.x,view.frame.origin.x )
+        if (tapToConfirm.frame.origin.x + 20) < view.frame.origin.x {
+            tapToConfirm.frame.origin.x = location.x + (markSpotlight.frame.width / 2) + 20
+            tapToConfirm.frame.origin.y = location.y - (tapToConfirm.frame.height / 2)
+        }
+        if (tapToConfirm.frame.origin.x + tapToConfirm.frame.size.width) > (view.frame.origin.x + view.frame.size.width) {
+            tapToConfirm.frame.origin.x = (view.frame.origin.x + view.frame.size.width) - (view.frame.size.width + 20)
+        }
     }
     
     
@@ -273,7 +279,8 @@ extension MoodLoggingMoodViewController {
         self.tapToConfirm.layer.shadowOpacity = 0.0
         self.tapToConfirm.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         self.tapToConfirm.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-        UIView.animate(withDuration: 0.3,
+        let duration = 0.3
+        UIView.animate(withDuration: duration,
                        delay: 0,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 5,
@@ -281,16 +288,23 @@ extension MoodLoggingMoodViewController {
                        animations: {
                             self.exitButton.alpha = 0.0
                             self.exitButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-                            self.exitButton.layer.shadowRadius = 0.0
-                            self.exitButton.layer.shadowOpacity = 0.0
-                            self.exitButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
                         
                             self.infoButton.alpha = 0.0
                             self.infoButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-                            self.infoButton.layer.shadowRadius = 0.0
-                            self.infoButton.layer.shadowOpacity = 0.0
-                            self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: -5.0)
-    })
+        })
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
+            self.exitButton.layer.shadowRadius = 0.0
+            self.exitButton.layer.shadowOpacity = 0.0
+            self.exitButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        
+            self.infoButton.layer.shadowRadius = 0.0
+            self.infoButton.layer.shadowOpacity = 0.0
+            self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        CATransaction.commit()
+        
         
         /// Shrink the spotlight and stop pusling animation
 //        CATransaction.begin()
@@ -314,24 +328,29 @@ extension MoodLoggingMoodViewController {
         
         /// Position and then animate the confirmation button
         self.tapToConfirm.frame.origin.y = tapToConfirm.frame.origin.y + 50
-        UIView.animate(withDuration: 1,
+        let buttonDuration = 1.0
+        UIView.animate(withDuration: buttonDuration,
                        delay: 0.05,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 10,
                        options: [.curveEaseIn, .beginFromCurrentState, .allowUserInteraction, .allowAnimatedContent],
                        animations: {
                             self.tapToConfirm.alpha = 0.8
-                            self.tapToConfirm.layer.shadowRadius = 3.0
-                            self.tapToConfirm.layer.shadowOpacity = 0.4
-                            self.tapToConfirm.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
-                        
                             self.tapToConfirm.frame.origin.y = self.tapToConfirm.frame.origin.y - 50
                             self.tapToConfirm.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-
         })
         
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(buttonDuration)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
+            self.tapToConfirm.layer.shadowRadius = 4.0
+            self.tapToConfirm.layer.shadowOpacity = 0.35
+            self.tapToConfirm.layer.shadowOffset = CGSize(width: 0.0, height: 8.0)
+        CATransaction.commit()
+        
         /// Reshow hidden views with quick animation
-        UIView.animate(withDuration: 0.5,
+        let overlayDuration = 0.5
+        UIView.animate(withDuration: overlayDuration,
                        delay: 0.3,
                        usingSpringWithDamping: 0.8,
                        initialSpringVelocity: 1,
@@ -339,16 +358,23 @@ extension MoodLoggingMoodViewController {
                        animations: {
                         self.exitButton.alpha = 0.4
                         self.exitButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        self.exitButton.layer.shadowRadius = 5.0
-                        self.exitButton.layer.shadowOpacity = 0.6
-                        self.exitButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
                         
                         self.infoButton.alpha = 0.3
                         self.infoButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        self.infoButton.layer.shadowRadius = 5.0
-                        self.infoButton.layer.shadowOpacity = 0.6
-                        self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         })
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(overlayDuration)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
+            self.exitButton.layer.shadowRadius = 3.0
+            self.exitButton.layer.shadowOpacity = 0.4
+            self.exitButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+
+        
+            self.infoButton.layer.shadowRadius = 3.0
+            self.infoButton.layer.shadowOpacity = 0.5
+            self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        CATransaction.commit()
         
         /// Readd the spotlight and pulse animation
 //        CATransaction.begin()
