@@ -1,14 +1,14 @@
 import UIKit
 import SnapKit
 
-
+//: TODO: This class needs a lot of tidying up
 final class MoodLoggingMoodViewController: ViewController {
 
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
     var moodLoggingDelegate: MoodLoggingDelegate?
     weak var screenSlider: ScreenSliderViewController?
     
-    lazy var gradientLayer: CAGradientLayer = {
+    lazy var backgroundGradient: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.frame = self.view.layer.frame
         layer.startPoint = CGPoint(x: 0.5, y: 0.5)
@@ -19,23 +19,28 @@ final class MoodLoggingMoodViewController: ViewController {
     }()
     
     lazy var tapToConfirm: UILabel = {
-        let label = UILabel()
+        let label = HeaderLabel.init("Tap to Confirm", .section)
         label.textColor = UIColor.app.text.solidText()
-        label.text = "Tap to confirm"
-        label.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.light)
-        label.layer.frame.size = CGSize(width: 200, height: 50)
-        label.isUserInteractionEnabled = false
+        label.layer.frame.size = CGSize(width: 400, height: 50)
+        label.isUserInteractionEnabled = true
         label.textAlignment = .center
         return label
     }()
     
-    lazy var circle: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.app.background.secondaryBackground()
-        view.layer.frame.size = CGSize(width: 50, height: 50)
-        view.layer.cornerRadius = 25
-        view.clipsToBounds = true
-        return view
+    lazy var markSpotlight: CAGradientLayer = {
+        let diameter: CGFloat = 60
+        let gradient = CAGradientLayer()
+        gradient.frame = CGRect(x: (self.view.frame.width / 2), y: (self.view.frame.height / 2), width: diameter, height: diameter)
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradient.endPoint = CGPoint(x:1, y:1)
+        gradient.type = .radial
+        gradient.cornerRadius = (diameter / 2)
+        gradient.masksToBounds = true
+        gradient.opacity = 0.9
+        gradient.locations = [0.0, 0.6, 1]
+        gradient.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(0).cgColor]
+        gradient.backgroundFilters = [CIFilter(name: "CIGaussianBlur",parameters: [kCIInputRadiusKey: 5])!]
+        return gradient
     }()
     
     lazy var tapGesture: UITapGestureRecognizer = {
@@ -61,12 +66,13 @@ extension MoodLoggingMoodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        circle.addGestureRecognizer(tapGesture)
         screenSlider?.forwardNavigationEnabled = false
         super.navigationController?.isNavigationBarHidden = true
         navigationController?.isToolbarHidden = true
-        view.layer.addSublayer(gradientLayer)
+        view.layer.addSublayer(backgroundGradient)
         addEmotionLabels()
+        view.layer.insertSublayer(markSpotlight, above: backgroundGradient)
+        tapToConfirm.addGestureRecognizer(tapGesture)
     }
     
     
@@ -123,18 +129,14 @@ extension MoodLoggingMoodViewController {
         )
         
         /// - Update tap to confirm and circle positions
-        tapToConfirm.frame.origin.x = location.x - 50
-        tapToConfirm.frame.origin.y = location.y + 20
-        
-        circle.frame.origin.x = location.x - (circle.frame.width / 2)
-        circle.frame.origin.y = location.y - (circle.frame.height / 2)
+        tapToConfirm.frame.origin.x = location.x - (tapToConfirm.frame.width / 2)
+        tapToConfirm.frame.origin.y = location.y + (tapToConfirm.frame.height / 2)
         
         updateLabelsRelativeToPosition(tapPosition: (location.x, location.y))
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
     }
     
     func addMark() {
-        view.addSubview(circle)
         tapToConfirm.removeFromSuperview()
     }
     
@@ -143,6 +145,15 @@ extension MoodLoggingMoodViewController {
         guard markAdded == false else { return }
         isMoodMarked = true
         markAdded = true
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(2)       /// Begin CATransaction with duration for any CA Layers
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
+            for emotionLabel in emotionLabelCollection {
+                emotionLabel.fontSize = 0
+                emotionLabel.opacity = 0
+            }
+        CATransaction.commit()
     }
     
     
@@ -177,28 +188,24 @@ extension MoodLoggingMoodViewController {
     func updateBackground(xScale: CGFloat, yScale: CGFloat) {
         /// xScale is valence
         /// yScale is Arousal
-        
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-            gradientLayer.startPoint = CGPoint(x: xScale, y: yScale)
-        CATransaction.commit()
-
         /// - Calculate each of the colour attributes. Format: initialValue Operator (mutableRange * mutator)
         let red     = 0.9 - (0.8 * xScale)   /// 0.9 - 0.1
         let green   = 0.1 + (0.8 * xScale)   /// 0.1 - 0.9
         let blue    = 0.1 + (0.8 * yScale)   /// 0.1 - 0.9
         let alpha   = 0.6 - (0.2 * yScale)   /// 0.6 - 0.4
         
-//        let colour      = UIColor(red: red,     green: green,     blue: blue,     alpha: alpha    )         /// Base (center)
-        let topLeft     = UIColor(red: red, green: green-0.1,     blue: blue-0.03,     alpha: alpha).cgColor /// More Arousal (TOP Left) (blue)
-        let topRight    = UIColor(red: red-0.1,     green: green, blue: blue-0.03,     alpha: alpha).cgColor /// More Valance (Top RIGHT) (green)
-        let bottomRight = UIColor(red: red-0.1,     green: green, blue: blue, alpha: alpha-0.1    ).cgColor /// Less Arousal (BOTTOM Right) (alpha)
-        let bottomLeft  = UIColor(red: red, green: green-0.1,     blue: blue, alpha: alpha-0.1    ).cgColor /// Less Valence (Top LEFT) (red)
+        let colour      = UIColor(red: red,      green: green,      blue: blue,      alpha: alpha      )         /// Base (center)
+        let topLeft     = UIColor(red: red,      green: green-0.15, blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, -Valence (TOP Left) (blue)
+        let topRight    = UIColor(red: red-0.15, green: green,      blue: blue-0.15, alpha: alpha      ).cgColor /// +Arousal, +Valence (Top RIGHT) (green)
+        let bottomRight = UIColor(red: red-0.15, green: green,      blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, +Valence (BOTTOM Right) (alpha)
+        let bottomLeft  = UIColor(red: red,      green: green-0.15, blue: blue,      alpha: alpha-0.15 ).cgColor /// -Arousal, -Valence (Bottom LEFT) (red)
         
         CATransaction.begin()
-        CATransaction.setAnimationDuration(2)
-//            view.backgroundColor = colour
-            gradientLayer.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
+        CATransaction.setAnimationDuration(1)
+            // view.backgroundColor = colour
+            markSpotlight.colors = [colour.withAlphaComponent(0.9).cgColor, colour.withAlphaComponent(0.5).cgColor, colour.withAlphaComponent(0).cgColor]
+            backgroundGradient.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
+            backgroundGradient.startPoint = CGPoint(x: xScale, y: yScale)
         CATransaction.commit()
 
     }
@@ -208,15 +215,16 @@ extension MoodLoggingMoodViewController {
             
             /// - Create and style the label
             let label = CATextLayer()
-            label.font = CGFont(UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.ultraLight).fontName as CFString)
-            label.fontSize = 12
+            label.font = CGFont(UIFont.systemFont(ofSize: 0, weight: UIFont.Weight.ultraLight).fontName as CFString)
+            label.fontSize = 0.0
+            label.shadowRadius = 0
+            label.shadowOpacity = 0
             label.contentsScale = UIScreen.main.scale
             label.alignmentMode = .center
             label.frame.size = CGSize(width: 200, height: 20)
             label.foregroundColor = UIColor.app.text.solidText().cgColor
-            label.shadowRadius = 4.0
-            label.shadowOpacity = 0.6
-            label.shadowOffset = CGSize(width: 0, height: 5)
+            label.shadowOffset = CGSize(width: 0, height: 0)
+            label.allowsFontSubpixelQuantization = false
             
             /// - Add the emotion name
             label.string = emotion.adj
@@ -260,18 +268,18 @@ extension MoodLoggingMoodViewController {
             /// - Work out how close the user is to this emotion
             let distanceFromTap = (
                 x: abs(position.x - tap.x),
-                y: abs(position.y - tap.y),
+                y: abs(position.y - (tap.y - 25)), /// Subtracting 25 so the new tap is slightly above the actual tap (and hopefully above the thumb)
                 total: abs(position.x - tap.x) + abs(position.y - tap.y)
             )
             
             /// - Create a Multiplier
             let catchmentDistance = largestScreenDistance / 3                       /// The fraction of the screen around the label the tap must be in before multipliers take effect
-            let bufferedDistance = distanceFromTap.total - 50                       /// Buffer so that multipliers reach their max value before the users tap covers it
+            let bufferedDistance = (distanceFromTap.x+distanceFromTap.y) - 25       /// Buffer so that multipliers reach their max value before the user gets too close
             var multiplier = 1 - (bufferedDistance / catchmentDistance)             /// Fraction representing 1 as the position of the label and 0 as the furthest possible distance || 0.8
             multiplier = (multiplier < 0) ? 0 : ((multiplier > 1) ? 1 : multiplier) /// Restrict the multiplier to between 0 and 1
             
             CATransaction.begin()
-            CATransaction.setAnimationDuration(1)       /// Begin CATransaction with duration for any CA Layers
+            CATransaction.setAnimationDuration(2)                                                           /// Begin CATransaction with duration for any CA Layers
             
                 /// - Apply the Multipliers
                 emotionLabel.opacity = Float(0.8 * multiplier)                                              /// Fade the label in as the tap gets closer, up to 0.9 opacity
@@ -279,7 +287,11 @@ extension MoodLoggingMoodViewController {
                 emotionLabel.shadowRadius = CGFloat(3.0 * multiplier)                                       /// Animate shadow
                 emotionLabel.shadowOpacity = Float(0.8 * multiplier)                                        /// Animate opacity
                 emotionLabel.shadowOffset = CGSize(width: 0, height: CGFloat(6.0 * multiplier).rounded())   /// Animate offset to give layer depth
+            CATransaction.commit()
             
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(1)                                                           
+                markSpotlight.frame.origin = CGPoint(x: tap.x - (markSpotlight.frame.width / 2), y: tap.y - (markSpotlight.frame.width / 2))
             CATransaction.commit()
         }
         
