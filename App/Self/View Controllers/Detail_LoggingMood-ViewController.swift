@@ -78,6 +78,7 @@ extension DetailLoggingMoodViewController {
         super.viewDidLoad()
         setupChildViews()
         setupKeyboard()
+        view.backgroundColor = .clear
         self.view.addGestureRecognizer(tapViewRecogniser)
     }
     

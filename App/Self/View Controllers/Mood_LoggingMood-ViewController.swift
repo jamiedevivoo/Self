@@ -12,9 +12,12 @@ final class MoodLoggingMoodViewController: ViewController {
         let button = UIButton()
         button.setTitle("Tap to Confirm", for: .normal)
         button.setTitleColor(UIColor.app.button.primary.text(), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.layer.frame.size = CGSize(width: 200, height: 50)
         button.isUserInteractionEnabled = true
         button.backgroundColor = UIColor.app.button.primary.fill()
+        button.layer.cornerRadius = 25
+        button.clipsToBounds = true
         return button
     }()
     
@@ -74,6 +77,7 @@ extension MoodLoggingMoodViewController {
         navigationController?.isToolbarHidden = true
         addEmotionLabels()
         view.layer.addSublayer(markSpotlight)
+        view.backgroundColor = .clear
         markSpotlight.add(pulseAnimation, forKey: nil)
     }
     
@@ -133,7 +137,7 @@ extension MoodLoggingMoodViewController {
         
         /// - Update tap to confirm and circle positions
         tapToConfirm.frame.origin.x = location.x - (tapToConfirm.frame.width / 2)
-        tapToConfirm.frame.origin.y = location.y + (tapToConfirm.frame.height / 2)
+        tapToConfirm.frame.origin.y = location.y + (markSpotlight.frame.height / 2) + (tapToConfirm.frame.height / 2)
         
         updateLabelsRelativeToPosition(tapPosition: (location.x, location.y))
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
@@ -160,24 +164,19 @@ extension MoodLoggingMoodViewController {
              "emotion"       :emotion]
         )
         CATransaction.begin()
-        CATransaction.setAnimationDuration(2)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
-        print(primaryBackgroundColour.cgColor)
-        moodLoggingDelegate?.background.colors = [primaryBackgroundColour.cgColor,
-                                                  primaryBackgroundColour.cgColor,
-                                                  primaryBackgroundColour.cgColor,
-                                                  primaryBackgroundColour.cgColor,
-                                                  primaryBackgroundColour.cgColor]
-        
-        CATransaction.setCompletionBlock { [weak self] in
-            guard let self = self else {return}
+        CATransaction.setAnimationDuration(1)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
+            print(primaryBackgroundColour.cgColor)
+            moodLoggingDelegate?.background.colors =
+                [primaryBackgroundColour.cgColor,
+                 primaryBackgroundColour.cgColor,
+                 primaryBackgroundColour.cgColor,
+                 primaryBackgroundColour.cgColor,
+                 primaryBackgroundColour.cgColor]
             self.tapToConfirm.removeFromSuperview()
             self.screenSlider?.forwardNavigationEnabled = true
             self.screenSlider?.gestureSwipingEnabled = true
             self.screenSlider?.nextScreen()
-            
-        }
-        
         CATransaction.commit()
     }
     

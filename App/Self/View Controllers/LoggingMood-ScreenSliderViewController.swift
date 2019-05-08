@@ -41,6 +41,7 @@ extension LoggingAMoodScreenSliderViewController {
         super.viewDidLoad()
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
         view.layer.addSublayer(background)
+        view.backgroundColor = UIColor.app.background.primaryBackground()
     }
     
 }
