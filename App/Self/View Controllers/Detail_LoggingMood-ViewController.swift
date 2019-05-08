@@ -19,6 +19,21 @@ final class DetailLoggingMoodViewController: ViewController {
         return label
     }()
     
+    lazy var backButton: UIButton = {
+        let button = UIButton()
+        let btnImage = UIImage(named:"up-circle")?.withRenderingMode(.alwaysTemplate)
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        btnImage?.withRenderingMode(.alwaysTemplate)
+        button.setImage(btnImage, for: .normal)
+        button.tintColor = UIColor.white
+        button.alpha = 0.4
+        button.layer.cornerRadius = 20
+        button.layer.shadowRadius = 5.0
+        button.layer.shadowOpacity = 0.6
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        return button
+    }()
+    
     lazy var tagsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -77,9 +92,7 @@ extension DetailLoggingMoodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        setupKeyboard()
         view.backgroundColor = .clear
-        self.view.addGestureRecognizer(tapViewRecogniser)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,6 +115,10 @@ extension DetailLoggingMoodViewController {
         nameTextFieldWithLabel.resetHint()
         self.nameTextFieldWithLabel.textField.text = name
         return name
+    }
+    
+    @objc func goBack() {
+        self.screenSlider?.previousScreen()
     }
     
 }
@@ -154,6 +171,15 @@ extension DetailLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(tagsStack)
         self.view.addSubview(tagTextFieldWithLabel)
         self.view.addSubview(wildcardQuestion)
+        
+        view.addSubview(backButton)
+        
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(25)
+            make.width.equalTo(25)
+        }
 
         label.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
