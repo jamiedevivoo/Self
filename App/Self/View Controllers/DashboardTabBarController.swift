@@ -7,12 +7,14 @@ class DashboardTabBarController: UITabBarController {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
         swipeGesture.direction = .left
+        swipeGesture.delegate = self
         return swipeGesture
     }()
     lazy var rightSwipe: UISwipeGestureRecognizer = {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
         swipeGesture.direction = .right
+        swipeGesture.delegate = self
         return swipeGesture
     }()
 }
@@ -77,12 +79,15 @@ extension DashboardTabBarController {
 }
 
 // MARK: - Handle Swipes
-extension DashboardTabBarController {
-    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-      
+extension DashboardTabBarController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let current = viewControllers![selectedIndex] as! DashboardNavigationController
-        guard current.viewControllers.count < 2 else { return }
-
+        guard current.viewControllers.count < 2 else { return false }
+        return true
+    }
+    
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left && (selectedIndex + 1) <= (self.viewControllers?.count)! - 1 {
             transitionViewController(toIndex: self.selectedIndex + 1)
         }
