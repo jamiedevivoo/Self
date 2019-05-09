@@ -39,14 +39,25 @@ extension TextFieldWithLabel {
         }
     }
     
-    func resetHint(withText text: String? = nil) {
-        guard let hintText = text else {
-            label.textColor = UIColor.App.Text.text().withAlphaComponent(0.5)
+    func resetHint(withText text: String? = nil, for type: HintType = .info) {
+        if text == nil {
             label.text = labelTitle
+        } else {
+            label.text = text
+        }
+        
+        switch type {
+        case .error:
+            label.textColor = UIColor.red.withAlphaComponent(0.7)
+            return
+        case .info:
+            label.textColor = UIColor.App.Text.text().withAlphaComponent(0.5)
             return
         }
-        label.textColor = UIColor.red
-        label.text = hintText
+    }
+    
+    enum HintType {
+        case error, info
     }
 }
 

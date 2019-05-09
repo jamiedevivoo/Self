@@ -9,9 +9,8 @@ final class DiaryLoggingMoodViewController: ViewController {
     weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
-    lazy var headerLabel = HeaderLabel.init("Diary Entry", .largeScreen)
-    
-    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
+    lazy var headerLabel = HeaderLabel.init("Add A Note", .largeScreen)
+    lazy var forwardButton = IconButton(UIImage(named: "down-circle")!, action: #selector(goForward), .standard)
     
     lazy var diaryTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
@@ -36,10 +35,19 @@ extension DiaryLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        diaryTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
+        screenSliderDelegate?.forwardNavigationEnabled = false
         setupKeyboard()
     }
     
+}
+
+// MARK: - Buttons
+extension DiaryLoggingMoodViewController {
+    
+    @objc func goForward() {
+        screenSliderDelegate?.forwardNavigationEnabled = true
+        self.screenSliderDelegate?.nextScreen()
+    }
 }
 
 // MARK: - Class Methods
@@ -68,7 +76,7 @@ extension DiaryLoggingMoodViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let headline = validateHeadline() {
             diaryTextFieldWithLabel.textField.resignFirstResponder()
-            screenSliderDelegate?.nextScreen()
+            goForward()
             moodLogDataCollectionDelegate?.headline = headline
             return true
         } else {
@@ -88,29 +96,13 @@ extension DiaryLoggingMoodViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Buttons
-extension DiaryLoggingMoodViewController {
-    
-    @objc func goBack() {
-        screenSliderDelegate?.backwardNavigationEnabled = true
-        self.screenSliderDelegate?.previousScreen()
-    }
-}
-
 // MARK: - View Building
 extension DiaryLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
         self.view.addSubview(diaryTextFieldWithLabel)
-        view.addSubview(backButton)
-        
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
+        self.view.addSubview(forwardButton)
         headerLabel.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().multipliedBy(0.8)
@@ -121,21 +113,11 @@ extension DiaryLoggingMoodViewController: ViewBuilding {
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
         }
-    }
-}
-
-extension DiaryLoggingMoodViewController {
-    func getWildcard() {
-        let wildcardRef: CollectionReference = Firestore.firestore().collection("wildcards")
-        let randomDocumentID = String(Int.random(in: 0..<6))
-        
-        wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in
-            guard let documentSnapshot = documentSnapshot, error == nil else {
-                if let error = error { print("Error Loading Actions: \(error.localizedDescription)") }
-                print("Error Loading Actions.")
-                return
-            }
-            print(documentSnapshot.data() as AnyObject)
+        forwardButton.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
         }
     }
 }

@@ -18,7 +18,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "I'm feeling..."
-        textFieldWithLabel.labelTitle = "Describe how your feeling"
+        textFieldWithLabel.labelTitle = "Describe how you're feeling"
         return textFieldWithLabel
     }()
     
@@ -75,7 +75,7 @@ extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
         } else {
             moodLogDataCollectionDelegate?.headline = nil
             headLineTextFieldWithLabel.textField.shake()
-            headLineTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters")
+            headLineTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
         }
         return false
     }

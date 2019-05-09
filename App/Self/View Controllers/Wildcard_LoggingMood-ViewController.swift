@@ -10,9 +10,7 @@ final class WildcardLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Wildcard Question", .largeScreen)
-    
-    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
-    
+        
     lazy var wildcardTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
@@ -36,7 +34,6 @@ extension WildcardLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        wildcardTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
         setupKeyboard()
     }
     
@@ -74,7 +71,7 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
         } else {
             moodLogDataCollectionDelegate?.headline = nil
             wildcardTextFieldWithLabel.textField.shake()
-            wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters")
+            wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
         }
         return false
     }
@@ -88,29 +85,13 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Buttons
-extension WildcardLoggingMoodViewController {
-    
-    @objc func goBack() {
-        screenSliderDelegate?.backwardNavigationEnabled = true
-        self.screenSliderDelegate?.previousScreen()
-    }
-}
-
 // MARK: - View Building
 extension WildcardLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
         self.view.addSubview(wildcardTextFieldWithLabel)
-        view.addSubview(backButton)
         
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
         headerLabel.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().multipliedBy(0.8)

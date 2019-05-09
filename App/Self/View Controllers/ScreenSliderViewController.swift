@@ -111,6 +111,7 @@ extension ScreenSliderViewController {
     // Manually transition to the next screen
     func nextScreen() {
         guard let viewControllerIndex = self.screens.firstIndex(of: viewControllers![0]) else { return }
+        guard (viewControllerIndex + 1) < screens.count else { return }
         if !activeScreens.contains(screens[viewControllerIndex + 1]) {
             activeScreens.append(screens[viewControllerIndex + 1])
         }

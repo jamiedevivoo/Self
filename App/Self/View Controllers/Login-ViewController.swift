@@ -70,12 +70,12 @@ extension LoginViewController {
         
         guard let email = emailTextFieldWithLabel.textField.text?.trim() else {
             emailTextFieldWithLabel.textField.shake()
-            emailTextFieldWithLabel.resetHint(withText: "Please enter your email")
+            emailTextFieldWithLabel.resetHint(withText: "Please enter your email", for: .error)
             return
         }
         guard let password = passwordTextFieldWithLabel.textField.text?.trim() else {
             emailTextFieldWithLabel.textField.shake()
-            passwordTextFieldWithLabel.resetHint(withText: "Please enter a password")
+            passwordTextFieldWithLabel.resetHint(withText: "Please enter a password", for: .error)
             return
         }
         

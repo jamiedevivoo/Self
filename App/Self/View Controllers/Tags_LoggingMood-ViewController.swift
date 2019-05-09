@@ -16,7 +16,7 @@ final class TagsLoggingMoodViewController: ViewController {
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "Tag name ..."
-        textFieldWithLabel.labelTitle = "What have you done today?"
+        textFieldWithLabel.labelTitle = "For example, what have you done today?"
         return textFieldWithLabel
     }()
     
@@ -42,7 +42,7 @@ extension TagsLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tagTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
+        tagTextFieldWithLabel.textField.placeholder = "A tag for \(moodLogDataCollectionDelegate?.headline ?? "")..."
         screenSliderDelegate?.backwardNavigationEnabled = true
         setupKeyboard()
     }
@@ -58,8 +58,8 @@ extension TagsLoggingMoodViewController {
             self.tagTextFieldWithLabel.textField.text!.trim().count > 1
             else { return nil }
         moodLogDataCollectionDelegate?.headline = headline
-        tagTextFieldWithLabel.resetHint()
-        self.tagTextFieldWithLabel.textField.text = headline
+        tagTextFieldWithLabel.resetHint(withText: "Press next to add tag", for: .info)
+        tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.next
         return headline
     }
 }
@@ -74,19 +74,26 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let tag = validateHeadline() {
-//            tagTextFieldWithLabel.textField.resignFirstResponder()
-            screenSliderDelegate?.nextScreen()
             let button = UIButton()
             button.setTitle(tag, for: .normal)
             tagsStack.addArrangedSubview(button)
             textField.text = nil
             tagTextFieldWithLabel.textField.placeholder = "Another tag..."
+            tagTextFieldWithLabel.resetHint(withText: "Press next again to save", for: .info)
+            tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.continue
             moodLogDataCollectionDelegate?.tags.append(tag)
             return true
         } else {
-            moodLogDataCollectionDelegate?.headline = nil
+            
+            // If the user has already added at least one tag, let them proceed with an error
+            if moodLogDataCollectionDelegate?.tags.count ?? 0 > 0 {
+                tagTextFieldWithLabel.textField.resignFirstResponder()
+                screenSliderDelegate?.nextScreen()
+                return true
+            }
+            
             tagTextFieldWithLabel.textField.shake()
-            tagTextFieldWithLabel.resetHint(withText: "Your tag needs to be at least 2 characters")
+            tagTextFieldWithLabel.resetHint(withText: "Your log needs at least 1 tag", for: .error)
         }
         return false
     }

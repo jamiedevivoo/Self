@@ -74,7 +74,7 @@ extension NameOnboardingViewController: UITextFieldDelegate {
         } else {
             delegate?.setData(["name": nil])
             nameTextFieldWithLabel.textField.shake()
-            nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
+            nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters", for: .error)
         }
         return false
     }
