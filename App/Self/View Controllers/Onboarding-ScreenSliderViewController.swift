@@ -4,6 +4,7 @@ import SwiftyJSON
 
 final class OnboardingScreenSliderViewController: ScreenSliderViewController {
     var name: String?
+    var screenSlider: ScreenSliderViewController?
 }
 
 // MARK: - Override Methods
@@ -11,6 +12,7 @@ extension OnboardingScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenSlider = self
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
     }
     

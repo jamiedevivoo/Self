@@ -11,7 +11,11 @@
         }
     },
     "onboarding": {
+        "nameScreen": {
+            "title": "Welcome to Self! What should we call you?"
+        },
         "induction": {
+            "title": "Placeholder: Title",
             "text": "Placeholder: You've begun a journey to your better self. (cheesy)"
         }
     },
@@ -24,25 +28,49 @@
         "challenges": { "text": "How to log a mood..." }
     },
     "feed": {
-        "defaultMessage": {
-            "0": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
-            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."},
-            "2": { "text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."}
+        "message": {
+            "default": [
+                { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."},
+                { "text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."}
+            ],
+            "moodPrompt": [
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+            ],
+            "actionPrompt": [
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+            ],
+            "highlightPrompt": [
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+            ]
         },
-        "moodPrompt": {
-            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
-        },
-        "actionPrompt": {
-            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
-        },
-        "highlightPrompt": {
-            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        "tutorial": {
+            "firstMood": [
+                { "text": "Welcome to Self! You're amazing! Let's log your first mood." },
+                { "text": "You're amazing! Welcome to Self! How are you feeling?" }
+            ],
+            "firstMessageInteraction": [
+                { "text": "Great work! This screen will reguarly update with the latest advice and messages, You can use the emoji's below to respond to each message and help me get to know you better. Try it now!" },
+                { "text": "Awesome! I'll keep hold of that for you. Every day I'll help you reflect on yourself with advice and messages like this. You can use the emoji's below to respond to each message and help me get to know you better. Try it" }
+            ],
+            "firstSOS": [
+                { "text": "No one feels 100% all of the time, for those times when you're feeling down, look out for the SOS button to find useful crisis sources and advice. It's also always visible in the sidebar. Try tapping it now." },
+                { "text": "If you're ever feeling really down and need some help, look out for the SOS button. You can also find it in the sidebar. Tap it now to see what's available." }
+            ],
+            "firstChallenge": [
+                { "text": "Ready for your first challenge? Let's go!" },
+                { "text": "Every day you'll get a challenge to complete, let's see what today's is!" }
+            ],
+            "completeAccount": [
+                { "text": "Self is all about you. As the app learns from you and get's to know you you'll unlock insights, highlights and trophies. When you're ready to exlore more of Self, finish creating your account below." },
+                { "text": "Wow, you've already covered the basics! But there's still so much more. To unlock highlights, insights and trophies, finish creating your account below and continue using the app to track and improve your wellbeing." }
+            ]
         }
     },
     "notification": {
@@ -98,4 +126,4 @@
         "default": {"text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."}
     }
 }
-    
+

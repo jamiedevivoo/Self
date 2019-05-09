@@ -38,7 +38,7 @@ extension HeadlineLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        screenSliderDelegate?.backwardNavigationEnabled = false
+        screenSliderDelegate?.screenSlider?.backwardNavigationEnabled = false
     }
     
 }
@@ -76,7 +76,7 @@ extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let headline = validateHeadline() {
-            screenSliderDelegate?.nextScreen()
+            screenSliderDelegate?.screenSlider?.nextScreen()
             moodLogDataCollectionDelegate?.headline = headline
             return true
         } else {
@@ -99,8 +99,8 @@ extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
 // MARK: - Buttons
 extension HeadlineLoggingMoodViewController {
     @objc func goBack() {
-        screenSliderDelegate?.backwardNavigationEnabled = true
-        self.screenSliderDelegate?.previousScreen()
+        screenSliderDelegate?.screenSlider?.backwardNavigationEnabled = true
+        self.screenSliderDelegate?.screenSlider?.previousScreen()
     }
 }
 

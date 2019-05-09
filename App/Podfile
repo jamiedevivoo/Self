@@ -18,5 +18,6 @@ target 'Self' do
 
 	pod 'SwiftLint'
 	pod 'SwiftyJSON'
+	pod 'Hero'
 
 end

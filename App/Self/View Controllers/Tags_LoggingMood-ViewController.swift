@@ -44,7 +44,7 @@ extension TagsLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        screenSliderDelegate?.backwardNavigationEnabled = true
+        screenSliderDelegate?.screenSlider?.backwardNavigationEnabled = true
     }
     
 }
@@ -112,7 +112,7 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
             
             // If the user has already added at least one tag, let them proceed with an error
             if moodLogDataCollectionDelegate?.tags.count ?? 0 > 0 {
-                screenSliderDelegate?.nextScreen()
+                screenSliderDelegate?.screenSlider?.nextScreen()
                 return true
             }
             

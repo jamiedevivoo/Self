@@ -21,6 +21,8 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var wildcardStage: WildcardLoggingMoodViewController?
     var overviewStage: OverviewLoggingMoodViewController?
     
+    var screenSlider: ScreenSliderViewController?
+    
     lazy var background: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.frame = self.view.layer.frame
@@ -33,6 +35,7 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     
     init() {
         super.init(navigationOrientation: .vertical)
+        screenSlider = self
     }
     
     required init?(coder: NSCoder) {

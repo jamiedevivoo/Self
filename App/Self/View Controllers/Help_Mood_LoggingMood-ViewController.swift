@@ -1,19 +1,41 @@
 import UIKit
 import SnapKit
+import Lottie
 
 extension HelpMoodLoggingMoodViewController: UIGestureRecognizerDelegate { }
 
 class HelpMoodLoggingMoodViewController: ViewController {
     
     lazy var headerLabel = HeaderLabel(StaticMessages.get["helpScreen"]["moodLogging"]["title"].stringValue, .largeScreen)
-    lazy var paraLabel = ParaLabel(StaticMessages.get["helpScreen"]["moodLogging"]["text"].stringValue, .standard)
+    lazy var paraLabel = ParaLabel(StaticMessages.get["helpScreen"]["moodLogging"]["text"].stringValue, .doubleStandard)
 
     lazy var dismissButton = Button.init(title: "Close", action: #selector(dismissButtonAction), type: .secondary)
 
+    lazy var animationView: AnimationView = {
+        let animationView = AnimationView()
+        animationView.tintAdjustmentMode = UIView.TintAdjustmentMode.normal
+        animationView.tintColor = UIColor.white
+        animationView.loopMode = LottieLoopMode.loop
+        animationView.animation = Animation.named("fingertouch")
+        animationView.animationSpeed = 0.6
+        animationView.contentMode = .scaleAspectFill
+        return animationView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         isModalInPopover = true
         setup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animationView.play()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        animationView.pause()
     }
     
     func setup() {
@@ -24,6 +46,7 @@ class HelpMoodLoggingMoodViewController: ViewController {
         self.view.insertSubview(blurEffectView, at: 0)
         
         self.view.addSubview(headerLabel)
+        self.view.addSubview(animationView)
         self.view.addSubview(paraLabel)
         self.view.addSubview(dismissButton)
 
@@ -37,6 +60,11 @@ class HelpMoodLoggingMoodViewController: ViewController {
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(100)
+            make.centerX.equalToSuperview()
+        }
+        animationView.snp.makeConstraints { make in
+            make.top.equalTo(paraLabel.snp.bottom).offset(30)
+            make.width.height.equalTo(200)
             make.centerX.equalToSuperview()
         }
         dismissButton.snp.makeConstraints { make in

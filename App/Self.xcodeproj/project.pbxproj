@@ -101,6 +101,16 @@
 		7DF8AC14227FFA7D00E4441A /* NoHighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8AC13227FFA7D00E4441A /* NoHighlightsView.swift */; };
 		7DFEF05B2263617C004F625F /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05A2263617C004F625F /* MessageStackView.swift */; };
 		7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */; };
+		A302068122847C9700B22C88 /* loadingIcon.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068022847C9700B22C88 /* loadingIcon.json */; };
+		A302068322847CB900B22C88 /* avatarLoaded.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068222847CB900B22C88 /* avatarLoaded.json */; };
+		A302068522847CE600B22C88 /* wireframeLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068422847CE600B22C88 /* wireframeLoading.json */; };
+		A302068722847D0400B22C88 /* starsCelebrating.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068622847D0400B22C88 /* starsCelebrating.json */; };
+		A302068922847D2200B22C88 /* checkWithParticles.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068822847D2200B22C88 /* checkWithParticles.json */; };
+		A302068B22847D7C00B22C88 /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068A22847D7C00B22C88 /* confetti.json */; };
+		A302068D22847EC300B22C88 /* thumbLike.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068C22847EC300B22C88 /* thumbLike.json */; };
+		A302068F2284806A00B22C88 /* tapandhold.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068E2284806A00B22C88 /* tapandhold.json */; };
+		A30206912284807C00B22C88 /* fingertouch.json in Resources */ = {isa = PBXBuildFile; fileRef = A30206902284807C00B22C88 /* fingertouch.json */; };
+		A30206932284809800B22C88 /* circleLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = A30206922284809800B22C88 /* circleLoading.json */; };
 		A30EC35322564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */; };
 		A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */; };
 		A30F5415227C5D6800306AAA /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5414227C5D6800306AAA /* profile.json */; };
@@ -237,6 +247,16 @@
 		7DF8AC13227FFA7D00E4441A /* NoHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHighlightsView.swift; sourceTree = "<group>"; };
 		7DFEF05A2263617C004F625F /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
 		7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponsesStack.swift; sourceTree = "<group>"; };
+		A302068022847C9700B22C88 /* loadingIcon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingIcon.json; sourceTree = "<group>"; };
+		A302068222847CB900B22C88 /* avatarLoaded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = avatarLoaded.json; sourceTree = "<group>"; };
+		A302068422847CE600B22C88 /* wireframeLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wireframeLoading.json; sourceTree = "<group>"; };
+		A302068622847D0400B22C88 /* starsCelebrating.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starsCelebrating.json; sourceTree = "<group>"; };
+		A302068822847D2200B22C88 /* checkWithParticles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkWithParticles.json; sourceTree = "<group>"; };
+		A302068A22847D7C00B22C88 /* confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
+		A302068C22847EC300B22C88 /* thumbLike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = thumbLike.json; sourceTree = "<group>"; };
+		A302068E2284806A00B22C88 /* tapandhold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tapandhold.json; sourceTree = "<group>"; };
+		A30206902284807C00B22C88 /* fingertouch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fingertouch.json; sourceTree = "<group>"; };
+		A30206922284809800B22C88 /* circleLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = circleLoading.json; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList_Feed-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message_Feed-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30F5414227C5D6800306AAA /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
@@ -423,6 +443,16 @@
 		A30F5412227C5D4C00306AAA /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				A302068A22847D7C00B22C88 /* confetti.json */,
+				A302068E2284806A00B22C88 /* tapandhold.json */,
+				A30206922284809800B22C88 /* circleLoading.json */,
+				A30206902284807C00B22C88 /* fingertouch.json */,
+				A302068C22847EC300B22C88 /* thumbLike.json */,
+				A302068822847D2200B22C88 /* checkWithParticles.json */,
+				A302068422847CE600B22C88 /* wireframeLoading.json */,
+				A302068622847D0400B22C88 /* starsCelebrating.json */,
+				A302068022847C9700B22C88 /* loadingIcon.json */,
+				A302068222847CB900B22C88 /* avatarLoaded.json */,
 				A30F5418227C608200306AAA /* goal.json */,
 				A30F5414227C5D6800306AAA /* profile.json */,
 				A30F5416227C5D8400306AAA /* heart.json */,
@@ -777,17 +807,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A302068D22847EC300B22C88 /* thumbLike.json in Resources */,
 				7D77E5E6227FA32200946FB7 /* TodaySectionHeader.xib in Resources */,
+				A302068F2284806A00B22C88 /* tapandhold.json in Resources */,
+				A302068B22847D7C00B22C88 /* confetti.json in Resources */,
 				A3438E9D22456BBC004D21BB /* Assets.xcassets in Resources */,
 				7D77E5F5227FA33900946FB7 /* GetStartedListCell.xib in Resources */,
+				A302068122847C9700B22C88 /* loadingIcon.json in Resources */,
+				A302068922847D2200B22C88 /* checkWithParticles.json in Resources */,
 				7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */,
 				7D77E5F7227FA33900946FB7 /* WorldPremiereCell.xib in Resources */,
 				7D77E5F4227FA33900946FB7 /* AppOfTheDayCell.xib in Resources */,
+				A302068322847CB900B22C88 /* avatarLoaded.json in Resources */,
 				7D77E606227FA35800946FB7 /* Main.storyboard in Resources */,
 				7D77E5F6227FA33900946FB7 /* FromTheEditorsCell.xib in Resources */,
+				A302068722847D0400B22C88 /* starsCelebrating.json in Resources */,
 				A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */,
+				A30206932284809800B22C88 /* circleLoading.json in Resources */,
 				A30F5419227C608200306AAA /* goal.json in Resources */,
 				A30F5417227C5D8400306AAA /* heart.json in Resources */,
+				A302068522847CE600B22C88 /* wireframeLoading.json in Resources */,
+				A30206912284807C00B22C88 /* fingertouch.json in Resources */,
 				A30F5415227C5D6800306AAA /* profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -803,10 +843,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Self/Pods-Self-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Self/Pods-Self-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -825,6 +866,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -838,7 +880,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Self/Pods-Self-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Self/Pods-Self-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		272325932260D21F00BB6924 /* Script */ = {

@@ -107,14 +107,14 @@ extension MoodLoggingMoodViewController {
         view.layer.addSublayer(markSpotlight)
         view.backgroundColor = .clear
         setupChildViews()
-        screenSliderDelegate?.forwardNavigationEnabled = false
+        screenSliderDelegate?.screenSlider!.forwardNavigationEnabled = false
         super.navigationController?.isNavigationBarHidden = true
         exitButton.tintColor = UIColor.darkText
         navigationController?.isToolbarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        screenSliderDelegate?.gestureSwipingEnabled = false
+        screenSliderDelegate?.screenSlider!.gestureSwipingEnabled = false
         markSpotlight.add(pulseAnimations, forKey: nil)
         tapToConfirm.isEnabled = true
     }
@@ -428,11 +428,11 @@ extension MoodLoggingMoodViewController {
         CATransaction.commit()
         
         /// Enable forward navigation and gestureSwiping again
-        self.screenSliderDelegate?.forwardNavigationEnabled = true
-        self.screenSliderDelegate?.gestureSwipingEnabled = true
+        self.screenSliderDelegate?.screenSlider?.forwardNavigationEnabled = true
+        self.screenSliderDelegate?.screenSlider?.gestureSwipingEnabled = true
         
         /// Informt he delegate to attempt to proceed
-        self.screenSliderDelegate?.nextScreen()
+        self.screenSliderDelegate?.screenSlider?.nextScreen()
         
         self.tapToConfirm.setTitle("Edit Log", for: .normal)
     }

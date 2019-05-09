@@ -9,7 +9,7 @@ class LandingSlideView: UIView {
         animationView.loopMode = LottieLoopMode.autoReverse
         return animationView
     }()
-    
+
     lazy var headline: UILabel = {
         let label = UILabel()
         label.textAlignment = .center

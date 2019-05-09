@@ -16,6 +16,7 @@ class FeedActionListChildViewController: UIViewController {
     }()
     
     lazy var actionHeaderLabel = HeaderLabel("Your Recommended Actions", .section)
+    
     lazy var moodButton = Button(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood), type: .dashboard)
     lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
     lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
@@ -57,20 +58,12 @@ extension FeedActionListChildViewController {
 extension FeedActionListChildViewController {
     @objc func logNewMood() {
         navigationController?.pushViewController(LoggingAMoodScreenSliderViewController(), animated: true)
-        navigationController?.navigationBar.isHidden = false
     }
     
     @objc func messageResponse() {
-        AccountManager.logout()
-    }
-    @objc func settings() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     @objc func finishAccount() {
         navigationController?.pushViewController(FinishCreatingAccountViewController(), animated: true)
-    }
-    @objc func logout() {
-        AccountManager.logout()
     }
 }
 

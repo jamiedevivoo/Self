@@ -1,6 +1,6 @@
 import UIKit
-
-protocol ScreenSliderDelegate: ScreenSliderViewController {
+protocol ScreenSliderDelegate: class {
+    var screenSlider: ScreenSliderViewController? { get }
     func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool
     // Delegate protocol for controlling a PageViewController (Subclass of UIPageViewController, with built in PageControl).
     //// The delegate should set itself as the Delegate for a PageViewController.

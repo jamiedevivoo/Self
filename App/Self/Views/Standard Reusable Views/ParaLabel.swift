@@ -17,6 +17,10 @@ class ParaLabel: UILabel {
             font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
             textColor = UIColor.App.Text.text()
             return
+        case .doubleStandard:
+                font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.regular)
+                textColor = UIColor.App.Text.text()
+            return
         case .centerPageText:
             font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
             textColor = UIColor.App.Text.text()
@@ -26,6 +30,6 @@ class ParaLabel: UILabel {
     }
     
     enum ParaType {
-        case standard, centerPageText
+        case standard, centerPageText, doubleStandard
     }
 }

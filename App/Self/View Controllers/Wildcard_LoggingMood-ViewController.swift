@@ -76,7 +76,7 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let wildcardResponse = validateHeadline() {
             wildcard?.answer = wildcardResponse
-            screenSliderDelegate?.nextScreen()
+            screenSliderDelegate?.screenSlider?.nextScreen()
             moodLogDataCollectionDelegate?.wildcard = wildcard
             return true
         } else {
@@ -134,7 +134,7 @@ extension WildcardLoggingMoodViewController {
                 return
             }
             guard let questionData = documentSnapshot.data()?["question"] else {
-                self.screenSliderDelegate?.nextScreen()
+                self.screenSliderDelegate?.screenSlider?.nextScreen()
                 return
             }
             self.wildcard = Mood.Wildcard(questionData as! [String: Any])

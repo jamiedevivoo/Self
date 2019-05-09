@@ -19,6 +19,7 @@ final class OverviewLoggingMoodViewController: ViewController {
         button.imageView?.contentMode = .scaleAspectFit
         button.setImage(image, for: .normal)
         button.tintColor = UIColor(cgColor: moodLogDataCollectionDelegate?.background.colors![0] as! CGColor)
+        button.setTitle("Add a personal note", for: .normal)
         button.layer.borderColor = UIColor.darkText.withAlphaComponent(0.05).cgColor
         button.layer.borderWidth = 3.0
         button.layer.shadowColor = UIColor.darkText.withAlphaComponent(0.8).cgColor
@@ -35,6 +36,7 @@ final class OverviewLoggingMoodViewController: ViewController {
         let image = UIImage(named: "star-christmas")?.withRenderingMode(.alwaysTemplate)
         button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = UIColor(cgColor: moodLogDataCollectionDelegate?.background.colors![0] as! CGColor)
+        button.setTitle("Answer a wildcard question", for: .normal)
         button.setImage(image, for: .normal)
         button.layer.borderColor = UIColor.darkText.withAlphaComponent(0.05).cgColor
         button.layer.borderWidth = 3.0
