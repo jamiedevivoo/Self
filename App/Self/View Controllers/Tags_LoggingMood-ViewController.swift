@@ -38,13 +38,13 @@ extension TagsLoggingMoodViewController {
         super.viewDidLoad()
         setupChildViews()
         view.backgroundColor = .clear
+        tagTextFieldWithLabel.textField.placeholder = "A tag for \(moodLogDataCollectionDelegate?.headline ?? "")..."
+        setupKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tagTextFieldWithLabel.textField.placeholder = "A tag for \(moodLogDataCollectionDelegate?.headline ?? "")..."
         screenSliderDelegate?.backwardNavigationEnabled = true
-        setupKeyboard()
     }
     
 }
@@ -52,7 +52,7 @@ extension TagsLoggingMoodViewController {
 // MARK: - Class Methods
 extension TagsLoggingMoodViewController {
     
-    @objc func validateHeadline() -> String? {
+    @objc func validateTagName() -> String? {
         /// Validation Checks
         guard
             let tag: String = self.tagTextFieldWithLabel.textField.text?.trim(),
@@ -63,10 +63,26 @@ extension TagsLoggingMoodViewController {
         /// If it passes, reset the hint
         tagTextFieldWithLabel.resetHint(withText: "Press next to add tag", for: .info)
         /// Then update the textfield
-        moodLogDataCollectionDelegate?.headline = tag
+        moodLogDataCollectionDelegate?.tags.append(tag)
         tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.next
         /// Finally return the validated value to the caller
-        return headline
+        return tag
+    }
+//
+//    func createTag(tagName: String) -> Tag {
+//        return Tag()
+//    }
+    
+    func createTagButton(tagName: String) -> UIButton {
+        let button = UIButton()
+        button.setTitle(tagName, for: .normal)
+        button.addTarget(nil, action: #selector(removeTag), for: .touchUpInside)
+        tagsStack.addArrangedSubview(button)
+        return button
+    }
+    
+    @objc func removeTag(sender: UIButton) {
+        sender.removeFromSuperview()
     }
 }
 
@@ -74,20 +90,23 @@ extension TagsLoggingMoodViewController {
 extension TagsLoggingMoodViewController: UITextFieldDelegate {
     func setupKeyboard() {
         tagTextFieldWithLabel.textField.delegate = self
-        self.tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+        self.tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateTagName), for: .editingChanged)
         view.addGestureRecognizer(tapToTogglekeyboardGesture)
+        tagTextFieldWithLabel.textField.becomeFirstResponder()
     }
+//    
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//        return false
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let tag = validateHeadline() {
-            let button = UIButton()
-            button.setTitle(tag, for: .normal)
-            tagsStack.addArrangedSubview(button)
+        if let tagName = validateTagName() {
+            let tag = createTagButton(tagName: tagName)
             textField.text = nil
             tagTextFieldWithLabel.textField.placeholder = "Another tag..."
             tagTextFieldWithLabel.resetHint(withText: "Press next again to save", for: .info)
             tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.continue
-            moodLogDataCollectionDelegate?.tags.append(tag)
+            moodLogDataCollectionDelegate?.tags.append(tag.titleLabel!.text!)
             return true
         } else {
             
@@ -98,7 +117,7 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
             }
             
             tagTextFieldWithLabel.textField.shake()
-            tagTextFieldWithLabel.resetHint(withText: "Your log needs at least 1 tag", for: .error)
+            tagTextFieldWithLabel.resetHint(withText: "Your log needs at least 1 tag (2 characters)", for: .error)
         }
         return false
     }

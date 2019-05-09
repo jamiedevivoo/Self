@@ -9,7 +9,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
-    lazy var headerLabel = HeaderLabel.init("Log Title", .largeScreen)
+    lazy var headerLabel = HeaderLabel.init("Add A Title", .largeScreen)
     
     lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
     
@@ -32,13 +32,13 @@ extension HeadlineLoggingMoodViewController {
         super.viewDidLoad()
         setupChildViews()
         view.backgroundColor = .clear
+        headLineTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
+        setupKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        headLineTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
         screenSliderDelegate?.backwardNavigationEnabled = false
-        setupKeyboard()
     }
     
 }
@@ -68,9 +68,10 @@ extension HeadlineLoggingMoodViewController {
 // MARK: - TextField Delegate Methods
 extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
     func setupKeyboard() {
+        view.addGestureRecognizer(tapToTogglekeyboardGesture)
         headLineTextFieldWithLabel.textField.delegate = self
         headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
-        view.addGestureRecognizer(tapToTogglekeyboardGesture)
+        headLineTextFieldWithLabel.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

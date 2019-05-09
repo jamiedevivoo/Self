@@ -22,6 +22,9 @@ final class WildcardLoggingMoodViewController: ViewController {
     }()
     
     lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    
+    // Properties
+    var wildcard: Mood.Wildcard?
 }
 
 // MARK: - Override Methods
@@ -53,8 +56,9 @@ extension WildcardLoggingMoodViewController {
         /// If it passes, reset the hint
         wildcardTextFieldWithLabel.resetHint()
         /// Then update the textfield and send the value to the delegate
+        wildcard?.answer = wildcardResponse
         wildcardTextFieldWithLabel.textField.text = wildcardResponse
-        moodLogDataCollectionDelegate?.wildcard = wildcardResponse
+        moodLogDataCollectionDelegate?.wildcard = wildcard
         /// Finally return the validated value to the caller
         return wildcardResponse
     }
@@ -66,12 +70,14 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
         wildcardTextFieldWithLabel.textField.delegate = self
         self.wildcardTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
         view.addGestureRecognizer(tapToTogglekeyboardGesture)
+        wildcardTextFieldWithLabel.textField.resignFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let wildcardResponse = validateHeadline() {
+            wildcard?.answer = wildcardResponse
             screenSliderDelegate?.nextScreen()
-            moodLogDataCollectionDelegate?.wildcard = wildcardResponse
+            moodLogDataCollectionDelegate?.wildcard = wildcard
             return true
         } else {
             moodLogDataCollectionDelegate?.wildcard = nil
@@ -95,6 +101,7 @@ extension WildcardLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
+        self.view.addSubview(questionLabel)
         self.view.addSubview(wildcardTextFieldWithLabel)
         
         headerLabel.snp.makeConstraints { (make) in
@@ -102,8 +109,13 @@ extension WildcardLoggingMoodViewController: ViewBuilding {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
+        questionLabel.snp.makeConstraints { (make) in
+            make.top.left.equalTo(headerLabel).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.greaterThanOrEqualTo(50)
+        }
         wildcardTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(headerLabel.snp.bottom).offset(25)
+            make.top.equalTo(questionLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
         }
@@ -121,8 +133,13 @@ extension WildcardLoggingMoodViewController {
                 print("Error Loading Actions.")
                 return
             }
-            questionLabel.text = documentSnapshot.data()
-            print(documentSnapshot.data() as AnyObject)
+            guard let questionData = documentSnapshot.data()?["question"] else {
+                self.screenSliderDelegate?.nextScreen()
+                return
+            }
+            self.wildcard = Mood.Wildcard(questionData as! [String: Any])
+            self.questionLabel.text = self.wildcard?.question
+            print(self.wildcard)
         }
     }
 }

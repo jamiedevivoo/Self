@@ -48,7 +48,7 @@ extension TextFieldWithLabel {
         
         switch type {
         case .error:
-            label.textColor = UIColor.red.withAlphaComponent(0.7)
+            label.textColor = UIColor.App.Text.errorState()
             return
         case .info:
             label.textColor = UIColor.App.Text.text().withAlphaComponent(0.5)

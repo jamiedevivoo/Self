@@ -405,11 +405,9 @@ extension MoodLoggingMoodViewController {
         self.tapToConfirm.isEnabled = false
         
         /// Send this screens data to the delegate before attempting to continue
-        self.moodLogDataCollectionDelegate?.setData(
-            ["arousalRating": userRatings.arousal,
-             "valenceRating": userRatings.valence,
-             "emotion": emotion]
-        )
+        moodLogDataCollectionDelegate?.valenceRating = userRatings.valence
+        moodLogDataCollectionDelegate?.arousalRating = userRatings.arousal
+        moodLogDataCollectionDelegate?.emotion = emotion
         
         /// Animate the delegates background
         CATransaction.begin()

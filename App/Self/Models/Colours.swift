@@ -26,6 +26,10 @@ extension UIColor {
             case .dark: return UIColor(red: 150/255, green: 166/255, blue: 254/255, alpha: 1)
             default:    return UIColor(red: 010/255, green: 010/255, blue: 050/255, alpha: 1)
             }}
+            static func errorState() -> UIColor { switch ColorManager.getActiveColorMode() {
+            case .dark: return UIColor(red: 255/255, green: 80/255, blue: 90/255, alpha: 0.8)
+            default:    return UIColor(red: 255/255, green: 80/255, blue: 90/255, alpha: 0.8)
+            }}
         }
         struct Button {
             struct Primary {

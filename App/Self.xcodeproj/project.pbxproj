@@ -623,9 +623,9 @@
 				7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */,
 				7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */,
 				7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */,
+				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */,
 				7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */,
 				7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */,
-				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */,
 				7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */,
 			);
 			name = MOOD;

@@ -21,6 +21,7 @@ class FeedActionListChildViewController: UIViewController {
     lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
     lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount), type: .dashboard)
     
+    
     var accountRef: Account?
     
     init(accountRef: Account) {
@@ -55,7 +56,7 @@ extension FeedActionListChildViewController {
 // MARK: - Functions
 extension FeedActionListChildViewController {
     @objc func logNewMood() {
-        navigationController?.pushViewController(LoggingAMoodScreenSliderViewController(), animated: false)
+        navigationController?.pushViewController(LoggingAMoodScreenSliderViewController(), animated: true)
         navigationController?.navigationBar.isHidden = false
     }
     
