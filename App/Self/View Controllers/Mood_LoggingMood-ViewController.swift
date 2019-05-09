@@ -3,13 +3,13 @@ import SnapKit
 
 //: TODO: This class needs a lot of tidying up
 final class MoodLoggingMoodViewController: ViewController {
-
+    
     weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
     weak var moodLoggingDelegate: MoodLoggingDelegate?
     weak var screenSlider: ScreenSliderViewController?
     
     lazy var headerLabel: UILabel = {
-        let label = HeaderLabel.init("Log your Mood by tapping on the screen", .centerPageText)
+        let label = ParaLabel("Log your Mood by tapping on the screen", .centerPageText)
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 26.0)
         label.alpha = 0.4
@@ -80,7 +80,7 @@ final class MoodLoggingMoodViewController: ViewController {
         button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         return button
     }()
-
+    
     lazy var markSpotlight: CAGradientLayer = {
         let diameter: CGFloat = 50
         let gradient = CAGradientLayer()
@@ -102,11 +102,11 @@ final class MoodLoggingMoodViewController: ViewController {
         
         let transformAnimation = CABasicAnimation(keyPath: "transform")
         transformAnimation.fromValue = CATransform3DMakeScale(1, 1, 0.5)
-        transformAnimation.toValue = CATransform3DMakeScale(1.25, 1.25, 1)
+        transformAnimation.toValue = CATransform3DMakeScale(1.4, 1.4, 1)
         transformAnimation.duration = 1.5
         
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-        opacityAnimation.fromValue = 0.9
+        opacityAnimation.fromValue = 0.8
         opacityAnimation.toValue = 1.0
         opacityAnimation.duration = 1.5
         
@@ -115,8 +115,15 @@ final class MoodLoggingMoodViewController: ViewController {
         animations.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         animations.autoreverses = true
         animations.repeatCount = Float.greatestFiniteMagnitude
-
+        
         return animations
+    }()
+    
+    lazy var helpScreen: UIViewController = {
+        let vc = HelpMoodLoggingMoodViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        return vc
     }()
     
     var isMoodMarked: Bool = false
@@ -152,6 +159,11 @@ extension MoodLoggingMoodViewController {
 extension MoodLoggingMoodViewController: UIGestureRecognizerDelegate {
     
     // Gesture Handling
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard !helpScreen.isBeingPresented else { return false }
+        return true
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         addMark()
@@ -195,11 +207,8 @@ extension MoodLoggingMoodViewController {
     @objc func info(sender: UIButton) {
         unFocusButton(sender)
         self.definesPresentationContext = true
-        let helpScreen = HelpMoodLoggingMoodViewController()
-        helpScreen.modalPresentationStyle = .overCurrentContext
-        helpScreen.modalTransitionStyle = .crossDissolve
         present(helpScreen, animated: true) {
-            
+
         }
     }
     
@@ -213,13 +222,13 @@ extension MoodLoggingMoodViewController {
     
     private func focusButton(_ button: UIButton) {
         let duration = 0.6
-
+        
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-            button.layer.shadowRadius += 1.0
-            button.layer.shadowOpacity -= 0.2
-            button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width + 0.5, height: button.layer.shadowOffset.height + 4.0)
+        button.layer.shadowRadius += 1.0
+        button.layer.shadowOpacity -= 0.2
+        button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width + 0.5, height: button.layer.shadowOffset.height + 4.0)
         CATransaction.commit()
         
         UIView.animate(withDuration: duration,
@@ -235,13 +244,13 @@ extension MoodLoggingMoodViewController {
     
     private func unFocusButton(_ button: UIButton) {
         let duration = 0.4
-
+        
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-            button.layer.shadowRadius -= 1.0
-            button.layer.shadowOpacity += 0.2
-            button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width - 0.5, height: button.layer.shadowOffset.height - 4.0)
+        button.layer.shadowRadius -= 1.0
+        button.layer.shadowOpacity += 0.2
+        button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width - 0.5, height: button.layer.shadowOffset.height - 4.0)
         CATransaction.commit()
         
         UIView.animate(withDuration: duration,
@@ -296,6 +305,10 @@ extension MoodLoggingMoodViewController {
             tapToConfirm.frame.origin.y = location.y
         }
         
+        if (tapToConfirm.frame.origin.y - 30) < 0 {
+            tapToConfirm.frame.origin.y = 40
+        }
+        
         if (tapToConfirm.frame.origin.y + 30) > self.view.frame.height {
             tapToConfirm.frame.origin.y = location.y - verticalBuffer
         }
@@ -305,35 +318,39 @@ extension MoodLoggingMoodViewController {
     func addMark() {
         
         /// Remove All Overlays
-        self.tapToConfirm.alpha = 0
-        self.tapToConfirm.layer.shadowRadius = 0.0
-        self.tapToConfirm.layer.shadowOpacity = 0.0
-        self.tapToConfirm.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        self.tapToConfirm.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         let duration = 0.3
         UIView.animate(withDuration: duration,
                        delay: 0,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 5,
-                       options: [.curveEaseIn],
+                       options: [.curveEaseIn, .allowAnimatedContent, .beginFromCurrentState, .transitionCrossDissolve, .preferredFramesPerSecond60],
                        animations: {
-                            self.exitButton.alpha = 0.0
-                            self.exitButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+                        self.exitButton.alpha = 0.0
+                        self.exitButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
                         
-                            self.infoButton.alpha = 0.0
-                            self.infoButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+                        self.infoButton.alpha = 0.0
+                        self.infoButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+                        
+                        self.tapToConfirm.alpha = 0
+                        self.tapToConfirm.frame.origin.x = (self.markSpotlight.frame.origin.x - (self.tapToConfirm.frame.size.width / 2))
+                        self.tapToConfirm.frame.origin.y = (self.markSpotlight.frame.origin.y - (self.tapToConfirm.frame.size.height / 2))
         })
         
+        self.tapToConfirm.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-            self.exitButton.layer.shadowRadius = 0.0
-            self.exitButton.layer.shadowOpacity = 0.0
-            self.exitButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        self.exitButton.layer.shadowRadius = 0.0
+        self.exitButton.layer.shadowOpacity = 0.0
+        self.exitButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         
-            self.infoButton.layer.shadowRadius = 0.0
-            self.infoButton.layer.shadowOpacity = 0.0
-            self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        self.infoButton.layer.shadowRadius = 0.0
+        self.infoButton.layer.shadowOpacity = 0.0
+        self.infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        
+        self.tapToConfirm.layer.shadowRadius = 0.0
+        self.tapToConfirm.layer.shadowOpacity = 0.0
+        self.tapToConfirm.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         CATransaction.commit()
         
         markSpotlight.removeAllAnimations()
@@ -341,14 +358,13 @@ extension MoodLoggingMoodViewController {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.3)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
-            self.markSpotlight.transform = CATransform3DMakeScale(0.7, 0.7, 1)
+        self.markSpotlight.transform = CATransform3DMakeScale(0.7, 0.7, 1)
         CATransaction.commit()
         headerLabel.removeFromSuperview()
     }
     
     // Called when the tap finishes
     func setMark() {
-        
         /// Add tapToConfirm to the view if it isn't already
         if !tapToConfirm.isDescendant(of: self.view) {
             view.addSubview(tapToConfirm)
@@ -358,17 +374,22 @@ extension MoodLoggingMoodViewController {
         tapToConfirm.isEnabled = true
         
         /// Position and then animate the confirmation button
-        self.tapToConfirm.frame.origin.y = tapToConfirm.frame.origin.y + 50
+        let yDiff: CGFloat = self.markSpotlight.frame.origin.y - self.tapToConfirm.frame.origin.y
+        let xDiff: CGFloat = self.markSpotlight.frame.origin.x - self.tapToConfirm.frame.origin.x
+        self.tapToConfirm.frame.origin.x += xDiff
+        self.tapToConfirm.frame.origin.y += yDiff
+        
         let buttonDuration = 1.0
         UIView.animate(withDuration: buttonDuration,
                        delay: 0.05,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 10,
-                       options: [.curveEaseIn, .beginFromCurrentState, .allowUserInteraction, .allowAnimatedContent],
+                       options: [.curveEaseIn, .allowUserInteraction, .allowAnimatedContent],
                        animations: {
-                            self.tapToConfirm.alpha = 0.8
-                            self.tapToConfirm.frame.origin.y -= 50
-                            self.tapToConfirm.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        self.tapToConfirm.alpha = 0.8
+                        self.tapToConfirm.frame.origin.y -= yDiff
+                        self.tapToConfirm.frame.origin.x -= xDiff
+                        self.tapToConfirm.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
         
         CATransaction.begin()
@@ -409,11 +430,11 @@ extension MoodLoggingMoodViewController {
         markSpotlight.add(pulseAnimations, forKey: nil)
         /// Readd the spotlight and pulse animation
         CATransaction.begin()
-        CATransaction.setAnimationDuration(0.5)
+        CATransaction.setAnimationDuration(0.2)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
             self.markSpotlight.transform = CATransform3DMakeScale(1, 1, 1)
         CATransaction.commit()
-
+        
         /// Set MoodMarked to true
         guard markAdded == false else { return }
         isMoodMarked = true
@@ -503,14 +524,14 @@ extension  MoodLoggingMoodViewController {
         CATransaction.begin()
         CATransaction.setAnimationDuration(1)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
-            // view.backgroundColor = colour
-            markSpotlight.colors = [primaryBackgroundColour.withAlphaComponent(0.9).cgColor,
-                                    primaryBackgroundColour.withAlphaComponent(0.5).cgColor,
-                                    primaryBackgroundColour.withAlphaComponent(0).cgColor]
-            moodLoggingDelegate?.background.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
-            moodLoggingDelegate?.background.startPoint = CGPoint(x: xScale, y: yScale)
+        // view.backgroundColor = colour
+        markSpotlight.colors = [primaryBackgroundColour.withAlphaComponent(0.9).cgColor,
+                                primaryBackgroundColour.withAlphaComponent(0.5).cgColor,
+                                primaryBackgroundColour.withAlphaComponent(0).cgColor]
+        moodLoggingDelegate?.background.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
+        moodLoggingDelegate?.background.startPoint = CGPoint(x: xScale, y: yScale)
         CATransaction.commit()
-
+        
     }
     
     func addEmotionLabels() {
@@ -559,8 +580,8 @@ extension  MoodLoggingMoodViewController {
             
             /// - Calculate the frame radius now (axis size divide by 2), to help keep the code clean later on.
             let radius: (width: CGFloat, height: CGFloat) = (
-                    width: emotionLabel.frame.width / 2,
-                    height: emotionLabel.frame.height / 2
+                width: emotionLabel.frame.width / 2,
+                height: emotionLabel.frame.height / 2
             )
             
             /// - Calculate the position of the center of the label
@@ -585,14 +606,14 @@ extension  MoodLoggingMoodViewController {
             CATransaction.begin()
             CATransaction.setAnimationDuration(1)                                                           /// Begin CATransaction with duration for any CA Layers
             CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
-
-                /// - Apply the Multipliers
-                emotionLabel.opacity = Float(0.7 * multiplier)                                              /// Fade the label in as the tap gets closer, up to 0.9 opacity
-                emotionLabel.fontSize = (14 * multiplier)                                                   /// Make the label larger as the tap gets closer, up to size 12
-                emotionLabel.shadowRadius = CGFloat(3.0 * multiplier)                                       /// Animate shadow
-                emotionLabel.shadowOpacity = Float(0.8 * multiplier)                                        /// Animate opacity
-                emotionLabel.shadowOffset = CGSize(width: 0, height: CGFloat(6.0 * multiplier).rounded())   /// Animate offset to give layer depth
-                markSpotlight.frame.origin = CGPoint(x: tap.x - (markSpotlight.frame.width / 2), y: tap.y - (markSpotlight.frame.width / 2))
+            
+            /// - Apply the Multipliers
+            emotionLabel.opacity = Float(0.7 * multiplier)                                              /// Fade the label in as the tap gets closer, up to 0.9 opacity
+            emotionLabel.fontSize = (14 * multiplier)                                                   /// Make the label larger as the tap gets closer, up to size 12
+            emotionLabel.shadowRadius = CGFloat(3.0 * multiplier)                                       /// Animate shadow
+            emotionLabel.shadowOpacity = Float(0.8 * multiplier)                                        /// Animate opacity
+            emotionLabel.shadowOffset = CGSize(width: 0, height: CGFloat(6.0 * multiplier).rounded())   /// Animate offset to give layer depth
+            markSpotlight.frame.origin = CGPoint(x: tap.x - (markSpotlight.frame.width / 2), y: tap.y - (markSpotlight.frame.width / 2))
             
             CATransaction.commit()
         }
@@ -626,5 +647,4 @@ extension MoodLoggingMoodViewController: ViewBuilding {
             make.width.equalTo(40)
         }
     }
-    
 }

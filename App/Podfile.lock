@@ -119,6 +119,7 @@ PODS:
   - Protobuf (3.7.0)
   - SnapKit (5.0.0)
   - SwiftLint (0.32.0)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Firebase
@@ -131,6 +132,7 @@ DEPENDENCIES:
   - NotificationBannerSwift (from `https://github.com/Daltron/NotificationBanner`)
   - SnapKit
   - SwiftLint
+  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -155,6 +157,7 @@ SPEC REPOS:
     - Protobuf
     - SnapKit
     - SwiftLint
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   NotificationBannerSwift:
@@ -188,7 +191,8 @@ SPEC CHECKSUMS:
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 7d74c5c959c8cc8133398de1539db60c707db127
+PODFILE CHECKSUM: a52b32d53501dd5e8c9a16bdb786f5a627887cee
 
 COCOAPODS: 1.6.1
