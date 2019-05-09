@@ -27,10 +27,10 @@ final class MoodLoggingMoodViewController: ViewController {
         button.isUserInteractionEnabled = true
         button.backgroundColor = UIColor.App.Button.Primary.fill()
         button.addTarget(self, action: #selector(tappedCircle), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDragEnter)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
+        button.addTarget(self, action: #selector(focusButton), for: .touchDown)
+        button.addTarget(self, action: #selector(focusButton), for: .touchDragEnter)
+        button.addTarget(self, action: #selector(unFocusButton), for: .touchDragExit)
+        button.addTarget(self, action: #selector(unFocusButton), for: .touchCancel)
         button.layer.cornerRadius = 20
         button.layer.shadowRadius = 4.0
         button.layer.shadowOpacity = 0.35
@@ -40,46 +40,9 @@ final class MoodLoggingMoodViewController: ViewController {
         return button
     }()
     
-    lazy var exitButton: UIButton = {
-        let button = UIButton()
-        let btnImage = UIImage(named: "back")
-        btnImage?.withRenderingMode(.alwaysTemplate)
-        button.setImage(btnImage, for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.isUserInteractionEnabled = true
-        button.tintColor = UIColor.darkText
-        button.addTarget(self, action: #selector(exit), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDragEnter)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
-        button.alpha = 0.5
-        button.layer.shadowRadius = 3.0
-        button.layer.shadowOpacity = 0.4
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        return button
-    }()
-    
-    lazy var infoButton: UIButton = {
-        let button = UIButton()
-        let btnImage = UIImage(named: "info-circle")?.withRenderingMode(.alwaysTemplate)
-        btnImage?.withRenderingMode(.alwaysTemplate)
-        button.setImage(btnImage, for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.isUserInteractionEnabled = true
-        button.tintColor = UIColor.white
-        button.addTarget(self, action: #selector(info), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDragEnter)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
-        button.alpha = 0.5
-        button.layer.shadowRadius = 3.0
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        return button
-    }()
-    
+    lazy var exitButton = IconButton(UIImage(named: "back")!, action: #selector(exit), .standard)
+    lazy var infoButton = IconButton(UIImage(named: "info-circle")!, action: #selector(info), .standard)
+
     lazy var markSpotlight: CAGradientLayer = {
         let diameter: CGFloat = 50
         let gradient = CAGradientLayer()
@@ -146,6 +109,7 @@ extension MoodLoggingMoodViewController {
         setupChildViews()
         screenSliderDelegate?.forwardNavigationEnabled = false
         super.navigationController?.isNavigationBarHidden = true
+        exitButton.tintColor = UIColor.darkText
         navigationController?.isToolbarHidden = true
     }
     
@@ -200,27 +164,18 @@ extension MoodLoggingMoodViewController {
         saveMarkedMood()
     }
     
-    @objc func exit(sender: UIButton) {
-        unFocusButton(sender)
+    @objc func exit(sender: IconButton) {
+        sender.buttonCancelled(sender)
         navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func info(sender: UIButton) {
-        unFocusButton(sender)
+    @objc func info(sender: IconButton) {
+        sender.buttonCancelled(sender)
         self.definesPresentationContext = true
-        present(helpScreen, animated: true) {
-        }
+        present(helpScreen, animated: true)
     }
     
-    @objc func buttonActive(sender: UIButton) {
-        focusButton(sender)
-    }
-    
-    @objc func buttonCancelled(sender: UIButton) {
-        unFocusButton(sender)
-    }
-    
-    private func focusButton(_ button: UIButton) {
+    @objc func focusButton(_ button: UIButton) {
         let duration = 0.6
         
         CATransaction.begin()
@@ -242,7 +197,7 @@ extension MoodLoggingMoodViewController {
         })
     }
     
-    private func unFocusButton(_ button: UIButton) {
+    @objc func unFocusButton(_ button: UIButton) {
         let duration = 0.4
         
         CATransaction.begin()

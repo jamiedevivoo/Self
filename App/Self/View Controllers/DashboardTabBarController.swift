@@ -21,22 +21,7 @@ class DashboardTabBarController: UITabBarController {
         swipeGesture.delegate = self
         return swipeGesture
     }()
-    
-    lazy var profileButton: UIButton = {
-        let button = UIButton()
-        let btnImage = UIImage(named: "menu-vertical")?.withRenderingMode(.alwaysTemplate)
-        btnImage?.withRenderingMode(.alwaysTemplate)
-        button.addTarget(self, action: #selector(sidebarButtonTapped), for: .touchUpInside)
-        button.setImage(btnImage, for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.isUserInteractionEnabled = true
-        button.tintColor = UIColor.white
-        button.alpha = 0.5
-        button.layer.shadowRadius = 3.0
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        return button
-    }()
+    lazy var profileButton = IconButton(UIImage(named: "menu-vertical")!, action: #selector(sidebarButtonTapped), .standard)
 }
 
 // MARK: - INIT
@@ -75,13 +60,6 @@ extension DashboardTabBarController {
     override func leavingRootView() {
         self.tabBar.isHidden = true
         profileButton.isHidden = true
-    }
-}
-
-extension UITabBarController {
-    @objc func returnedToRootView() {
-    }
-    @objc func leavingRootView() {
     }
 }
 

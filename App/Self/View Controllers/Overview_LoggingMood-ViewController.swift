@@ -7,6 +7,8 @@ final class OverviewLoggingMoodViewController: ViewController {
     weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderViewController?
     
+    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
+
     lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Overview"
@@ -59,6 +61,16 @@ final class OverviewLoggingMoodViewController: ViewController {
     
     lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
     
+}
+
+
+// MARK: - Buttons
+extension OverviewLoggingMoodViewController {
+    
+    @objc func goBack() {
+        screenSliderDelegate?.backwardNavigationEnabled = true
+        self.screenSliderDelegate?.previousScreen()
+    }
 }
 
 // MARK: - Override Methods

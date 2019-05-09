@@ -11,26 +11,8 @@ final class TagsLoggingMoodViewController: ViewController {
     // Views
     lazy var headerLabel = HeaderLabel.init("Log Tags", .largeScreen)
     
-    lazy var backButton: UIButton = {
-        let button = UIButton()
-        let btnImage = UIImage(named: "up-circle")?.withRenderingMode(.alwaysTemplate)
-        btnImage?.withRenderingMode(.alwaysTemplate)
-        button.setImage(btnImage, for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.isUserInteractionEnabled = true
-        button.tintColor = UIColor.white
-        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonActive), for: .touchDragEnter)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
-        button.addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
-        button.alpha = 0.5
-        button.layer.shadowRadius = 3.0
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        return button
-    }()
-    
+    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
+
     lazy var tagTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
@@ -126,59 +108,6 @@ extension TagsLoggingMoodViewController {
         screenSliderDelegate?.gestureSwipingEnabled = true
         self.screenSliderDelegate?.previousScreen()
     }
-    
-    @objc func buttonActive(sender: UIButton) {
-        focusButton(sender)
-    }
-    
-    @objc func buttonCancelled(sender: UIButton) {
-        unFocusButton(sender)
-    }
-    
-    private func focusButton(_ button: UIButton) {
-        let duration = 0.6
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(duration)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-        button.layer.shadowRadius += 1.0
-        button.layer.shadowOpacity -= 0.2
-        button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width + 0.5, height: button.layer.shadowOffset.height + 4.0)
-        CATransaction.commit()
-        
-        UIView.animate(withDuration: duration,
-                       delay: 0,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 1,
-                       options: [.curveEaseInOut],
-                       animations: {
-                        button.alpha += 0.2
-                        button.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-        })
-    }
-    
-    private func unFocusButton(_ button: UIButton) {
-        let duration = 0.4
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(duration)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
-        button.layer.shadowRadius -= 1.0
-        button.layer.shadowOpacity += 0.2
-        button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width - 0.5, height: button.layer.shadowOffset.height - 4.0)
-        CATransaction.commit()
-        
-        UIView.animate(withDuration: duration,
-                       delay: 0,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 1,
-                       options: [.curveEaseInOut],
-                       animations: {
-                        button.alpha -= 0.2
-                        button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        })
-    }
-    
 }
 
 // MARK: - View Building

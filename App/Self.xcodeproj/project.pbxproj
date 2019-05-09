@@ -24,6 +24,8 @@
 		7D21FED32283FD940001FE62 /* Tags_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */; };
 		7D21FED52284035B0001FE62 /* Diary_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */; };
 		7D21FED722840C490001FE62 /* SpecialLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED622840C490001FE62 /* SpecialLabel.swift */; };
+		7D21FEDB228410EE0001FE62 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FEDA228410EE0001FE62 /* IconButton.swift */; };
+		7D21FEDD22841B9B0001FE62 /* UITabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FEDC22841B9A0001FE62 /* UITabBarControllerExtension.swift */; };
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
@@ -157,6 +159,8 @@
 		7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tags_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diary_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D21FED622840C490001FE62 /* SpecialLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialLabel.swift; sourceTree = "<group>"; };
+		7D21FEDA228410EE0001FE62 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		7D21FEDC22841B9A0001FE62 /* UITabBarControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarControllerExtension.swift; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/View Controllers/ViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -291,6 +295,7 @@
 			children = (
 				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
 				7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */,
+				7D21FEDC22841B9A0001FE62 /* UITabBarControllerExtension.swift */,
 				7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */,
 				7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */,
 				7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */,
@@ -305,9 +310,10 @@
 				A3D75723225CD5A900E87F67 /* HeaderLabel.swift */,
 				7DAEEB782283920600EB839C /* ParaLabel.swift */,
 				7D21FED622840C490001FE62 /* SpecialLabel.swift */,
-				7D47AC67225FD380004BF898 /* Button.swift */,
 				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
 				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
+				7D47AC67225FD380004BF898 /* Button.swift */,
+				7D21FEDA228410EE0001FE62 /* IconButton.swift */,
 			);
 			path = "Standard Reusable Views";
 			sourceTree = "<group>";
@@ -942,6 +948,7 @@
 				7D77E604227FA35400946FB7 /* UIView+Constraints.swift in Sources */,
 				7D77E600227FA35400946FB7 /* BaseView.swift in Sources */,
 				7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */,
+				7D21FEDB228410EE0001FE62 /* IconButton.swift in Sources */,
 				7DD6CC002266B51D00F47E63 /* TagViewController.swift in Sources */,
 				7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */,
 				7D8E4321227E5B2000243139 /* Mood.swift in Sources */,
@@ -973,6 +980,7 @@
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
 				A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */,
+				7D21FEDD22841B9B0001FE62 /* UITabBarControllerExtension.swift in Sources */,
 				7D77E5DA227FA2F600946FB7 /* TodayViewController.swift in Sources */,
 				7D77E603227FA35400946FB7 /* Reusable.swift in Sources */,
 				A3683567226E0B0D005C8600 /* PageIndicator.swift in Sources */,
