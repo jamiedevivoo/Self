@@ -8,4 +8,3 @@ class AppContainerViewController: ViewController {
         AppManager.shared.appContainer = self
     }
 }
-

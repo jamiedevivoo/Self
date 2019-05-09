@@ -2,12 +2,12 @@ import UIKit
 
 class MessageStackView: UIStackView {
     
-    lazy var greetingLabel = UILabel.messageGreeting
-    lazy var nameLabel = UILabel.messageName
-    lazy var messageTextLabel = UILabel.messageText
+    lazy var greetingLabel = SpecialLabel("", .messageGreeting)
+    lazy var nameLabel = SpecialLabel("", .messageName)
+    lazy var messageTextLabel = SpecialLabel("", .messageText)
     var messageResponseStack: MessageResponsesStack
 
-    init(frame: CGRect, message: (message: String, responses: [FeedMessageResponse])) {
+    init(frame: CGRect, message: (message: Feed.Status.Message, responses: [Feed.Status.Response])) {
         self.messageResponseStack = MessageResponsesStack(frame: CGRect.zero, messageResponses: message.responses)
         super.init(frame: frame)
         setupView(withMessage: message.message)
@@ -24,11 +24,12 @@ extension MessageStackView {
         addArrangedSubview(messageTextLabel)
         addArrangedSubview(messageResponseStack)
     }
-    func setupView(withMessage message: String) {
+    func setupView(withMessage message: Feed.Status.Message) {
         axis = .vertical
         spacing = UIStackView.spacingUseSystem
         greetingLabel.text = FeedManager.shared().generateGreeting()
         nameLabel.text = AccountManager.shared().accountRef?.user.name
-        messageTextLabel.text = message
+        messageTextLabel.text = message.text
+        nameLabel.adjustsFontSizeToFitWidth = true
     }
 }

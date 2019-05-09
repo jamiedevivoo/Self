@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 import Lottie
-
+import SwiftyJSON
 
 final class LandingOnboardingViewController: ViewController {
 
@@ -10,12 +10,12 @@ final class LandingOnboardingViewController: ViewController {
         label.text = "Welcome to Self"
         label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
         label.textAlignment = .center
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         return label
     }()
     
     lazy var sliderViewController = ViewSliderViewController()
-    var delegate : DataCollectionSequenceDelegate?
+    weak var delegate: DataCollectionSequenceDelegate?
 
     lazy var registerButton = Button(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
     lazy var loginButton = Button(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
@@ -29,7 +29,6 @@ final class LandingOnboardingViewController: ViewController {
     
 }
 
-
 // MARK: - Overide Methods
 extension LandingOnboardingViewController {
     override func viewDidLoad() {
@@ -39,7 +38,6 @@ extension LandingOnboardingViewController {
         self.view.addGestureRecognizer(leftSwipe)
     }
 }
-
 
 // MARK: - Button Methods
 extension LandingOnboardingViewController {
@@ -51,17 +49,15 @@ extension LandingOnboardingViewController {
         (self.parent as! ScreenSliderViewController).nextScreen()
     }
     
-    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        print("swiped")
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
         guard sliderViewController.pageControl.currentPage >= 2 else { return }
-        print("over 2")
         navigateToRegister()
     }
 }
 
-
 // MARK: - Setup Methods
 private extension LandingOnboardingViewController {
+    
     func createOnboardingScreens() -> [LandingSlideView] {
         
         let onboardingSlideOne: LandingSlideView = {
@@ -70,7 +66,7 @@ private extension LandingOnboardingViewController {
             onboardingSlide.animationView.animation = Animation.named("profile")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Personal"
-            onboardingSlide.desc.text = "Self is all about you, it's your personal assistant. Every day you'll get a unique message based on what you share and what it learns."
+            onboardingSlide.desc.text = StaticMessages.get["splashScreen"]["personal"]["text"].stringValue
             return onboardingSlide
         }()
         
@@ -80,7 +76,7 @@ private extension LandingOnboardingViewController {
             onboardingSlide.animationView.animation = Animation.named("goal")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Challenges"
-            onboardingSlide.desc.text = "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
+            onboardingSlide.desc.text = StaticMessages.get["splashScreen"]["challenges"]["text"].stringValue
             return onboardingSlide
         }()
         
@@ -90,7 +86,7 @@ private extension LandingOnboardingViewController {
             onboardingSlide.animationView.animation = Animation.named("heart")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Journal"
-            onboardingSlide.desc.text = "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
+            onboardingSlide.desc.text = StaticMessages.get["splashScreen"]["journal"]["text"].stringValue
             return onboardingSlide
         }()
         
@@ -100,7 +96,6 @@ private extension LandingOnboardingViewController {
     }
     
 }
-
 
 // MARK: - View Building
 extension LandingOnboardingViewController: ViewBuilding {

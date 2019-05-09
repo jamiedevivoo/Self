@@ -1,11 +1,10 @@
 import UIKit
 import Firebase
-
+import SwiftyJSON
 
 final class OnboardingScreenSliderViewController: ScreenSliderViewController {
     var name: String?
 }
-
 
 // MARK: - Override Methods
 extension OnboardingScreenSliderViewController {
@@ -16,7 +15,6 @@ extension OnboardingScreenSliderViewController {
     }
     
 }
-
 
 // MARK: - Setup Methods
 private extension OnboardingScreenSliderViewController {
@@ -31,17 +29,16 @@ private extension OnboardingScreenSliderViewController {
         let inductionOnboardingVC = InductionOnboardingViewController()
         inductionOnboardingVC.delegate = self
         
-        return [landingOnboardingVC,nameOnboardingVC,inductionOnboardingVC]
+        return [landingOnboardingVC, nameOnboardingVC, inductionOnboardingVC]
     }
     
 }
 
-
 // MARK: - Class Methods
 extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     
-    func setData(_ dataDict: [String:String?]) {
-        guard let name = dataDict["name"] else {
+    func setData(_ dataDict: [String: Any?]) {
+        guard let name: String = dataDict["name"] as? String else {
             self.name = nil
             return
         }
@@ -49,7 +46,7 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     }
     
     func isDataCollectionComplete() -> Bool {
-        guard let _ = self.name else { return false }
+        guard self.name != nil else { return false }
         return true
     }
     
@@ -60,12 +57,11 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     
 }
 
-
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
-    func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool {
+extension OnboardingScreenSliderViewController: ScreenSliderDelegate {
+    func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
         if nextViewController.isMember(of: InductionOnboardingViewController.self) {
-            guard let _ = name else {
+            guard name != nil else {
                 print("Next Screen failed Validation")
                 return true
             }
@@ -96,12 +92,11 @@ extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelega
     
 }
 
-
 // MARK: - OnboardingDelegate Methods
 extension OnboardingScreenSliderViewController {
     
     func signInAnonymously(withName name: String) {
-        Auth.auth().signInAnonymously() { (authResult, error) in
+        Auth.auth().signInAnonymously { (authResult, error) in
             guard let registeredCredentials = authResult, error == nil else {
                 let errorAlert: UIAlertController = {
                     let alertController = UIAlertController()
@@ -114,7 +109,7 @@ extension OnboardingScreenSliderViewController {
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
-            let accountUser = AccountUser(["name":name])
+            let accountUser = Account.User(["name": name])
             let account = Account(uid: registeredCredentials.user.uid, accountUser: accountUser)
             AccountManager.shared().updateAccount(modifiedAccount: account) {
             }

@@ -70,12 +70,12 @@ extension LoginViewController {
         
         guard let email = emailTextFieldWithLabel.textField.text?.trim() else {
             emailTextFieldWithLabel.textField.shake()
-            emailTextFieldWithLabel.resetHint(withText: "Please enter your email")
+            emailTextFieldWithLabel.resetHint(withText: "Please enter your email", for: .error)
             return
         }
         guard let password = passwordTextFieldWithLabel.textField.text?.trim() else {
             emailTextFieldWithLabel.textField.shake()
-            passwordTextFieldWithLabel.resetHint(withText: "Please enter a password")
+            passwordTextFieldWithLabel.resetHint(withText: "Please enter a password", for: .error)
             return
         }
         
@@ -88,9 +88,9 @@ extension LoginViewController {
         self.dismiss(animated: true)
     }
         
-    private func login(_ email:String, _ password: String) {
+    private func login(_ email: String, _ password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            guard let _ = authResult, error == nil else {
+            guard authResult != nil, error == nil else {
                 let errorAlert: UIAlertController = {
                     let alertController = UIAlertController()
                     alertController.title = error!.localizedDescription

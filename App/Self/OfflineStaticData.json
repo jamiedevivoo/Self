@@ -1,0 +1,101 @@
+{
+    "splashScreen": {
+        "personal": {
+            "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+        },
+        "challenges": {
+            "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
+        },
+        "journal": {
+            "text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
+        }
+    },
+    "onboarding": {
+        "induction": {
+            "text": "Placeholder: You've begun a journey to your better self. (cheesy)"
+        }
+    },
+    "helpScreen": {
+        "moodLogging": {
+            "title": "Logging A Mood",
+            "text": "Placeholder text for now. To create a new log, first mark your current mood by tapping on the screen. If you feel your mood is positive, mark yourself further to the right. If you are feeling negative, mark nearer to the left. If this feeling is mild, mark nearer the bottom, if this feeling is intense mark nearer the top. As you fill in more mood logs they will start to appear on this page so that you can mark your mood relative to other days."
+        },
+        "highlights": { "text": "How to log a mood..." },
+        "challenges": { "text": "How to log a mood..." }
+    },
+    "feed": {
+        "defaultMessage": {
+            "0": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
+            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."},
+            "2": { "text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."}
+        },
+        "moodPrompt": {
+            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        },
+        "actionPrompt": {
+            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        },
+        "highlightPrompt": {
+            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        }
+    },
+    "notification": {
+        "mood": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
+        "challenge": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
+        "highlight": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." }
+    },
+    "stateMessage": {
+        "highlight": {
+            "missing": {
+                "title": "Check back later 👩‍🔬 ...",
+                "text": "Keep using the app to unlock more features like Highlights and Insights."
+            },
+            "completedDaily": {
+                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
+                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            },
+            "newDaily": {
+                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
+                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            }
+        },
+        "mood": {
+            "missing": {
+                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
+                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            },
+            "completedDaily": {
+                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
+                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            },
+            "newDaily": {
+                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
+                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            }
+        },
+        "challenge": {
+            "missing": {
+                "title": "All done here! 🤘",
+                "text": "You've completed all your Challenges for today."
+            },
+            "completedDaily": {
+                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
+                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            },
+            "newDaily": {
+                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
+                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            }
+        }
+    },
+    "errorMessage": {
+        "default": {"text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."}
+    }
+}
+    

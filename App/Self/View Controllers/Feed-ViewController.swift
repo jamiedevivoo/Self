@@ -2,17 +2,14 @@ import UIKit
 import SnapKit
 import Firebase
 
-extension FeedViewController: ViewIsDependantOnAccountData { }
-
 class FeedViewController: UIViewController {
-    
-    lazy var actionListViewController = FeedActionListChildViewController(accountRef: self.accountRef)
-    lazy var messageViewController = FeedMessageChildViewController(accountRef: self.accountRef)
-
+    lazy var actionListViewController = FeedActionListChildViewController(accountRef: AccountManager.shared().accountRef!)
+    lazy var messageViewController = FeedMessageChildViewController(accountRef: AccountManager.shared().accountRef!)
 }
 
 // MARK: - Overrides
 extension FeedViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
@@ -29,14 +26,25 @@ extension FeedViewController {
                 var documentData = document.data()
                 documentData["uid"] = document.documentID
                 print(documentData as AnyObject)
-                print(MoodLog(documentData).dictionary as AnyObject)
+                print(Mood.Log(documentData).dictionary as AnyObject)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.returnedToRootView()
     }
 }
 
 // MARK: - View Building
 extension FeedViewController: ViewBuilding {
+    
+    func setTabBarItem() {
+        navigationController?.title = "Home"
+        navigationController?.tabBarItem.image = UIImage(named: "home-outline")
+        navigationController?.tabBarItem.selectedImage = UIImage(named: "home-dot")
+    }
     
     func addSubViews() {
         add(actionListViewController)
@@ -48,8 +56,8 @@ extension FeedViewController: ViewBuilding {
     func setupChildViews() {
         messageViewController.view.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(20)
-            make.width.equalToSuperview().multipliedBy(0.7)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(actionListViewController.view.snp.top).offset(-20)
             make.height.greaterThanOrEqualTo(messageViewController.messageStackView.snp.height).priority(.required)
         }

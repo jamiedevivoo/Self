@@ -15,6 +15,6 @@ extension ViewController {
 // MARK: - Set Up
 extension ViewController {
     func setupViewController() {
-        view.backgroundColor = UIColor.app.background.primaryBackground()
+        view.backgroundColor = UIColor.App.Background.primary()
     }
 }

@@ -16,4 +16,7 @@ target 'Self' do
 	pod 'NotificationBannerSwift', :git =>
 		'https://github.com/Daltron/NotificationBanner'
 
+	pod 'SwiftLint'
+	pod 'SwiftyJSON'
+
 end

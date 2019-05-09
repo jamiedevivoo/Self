@@ -1,16 +1,35 @@
 import UIKit
 import Firebase
 
+extension LoggingAMoodScreenSliderViewController: MoodLoggingDelegate { }
 
 final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
-        var headline: String?
-        var note: String?
-        var arousalRating: Double?
-        var valenceRating: Double?
     
-        var wildcard: Wildcard?
-        var emotion: Emotion?
-        var tags = [Tag]()
+    var headline: String?
+    var note: String?
+    var arousalRating: Double?
+    var valenceRating: Double?
+
+    var wildcard: Mood.Wildcard?
+    var emotion: Mood.Emotion?
+    var tags = [String]()
+    
+    var moodStage: MoodLoggingMoodViewController?
+    var headlineStage: HeadlineLoggingMoodViewController?
+    var tagsStage: TagsLoggingMoodViewController?
+    var diaryStage: DiaryLoggingMoodViewController?
+    var wildcardStage: WildcardLoggingMoodViewController?
+    var overviewStage: OverviewLoggingMoodViewController?
+    
+    lazy var background: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.frame = self.view.layer.frame
+        layer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        layer.endPoint = CGPoint(x: 0, y: 0)
+        layer.type = .conic
+        layer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor]
+        return layer
+    }()
     
     init() {
         super.init(navigationOrientation: .vertical)
@@ -22,80 +41,84 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
 
 }
 
-
 // MARK: - Override Methods
 extension LoggingAMoodScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
+        self.view.layer.insertSublayer(background, at: 0)
+        view.backgroundColor = UIColor.App.Background.primary()
+        let baseColour = UIColor(red: 0.5, green: 0.6, blue: 0.6, alpha: 0.4)
+        background.colors = [baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor]
+        self.modalTransitionStyle = .crossDissolve
     }
     
 }
-
 
 // MARK: - Setup Methods
-private extension LoggingAMoodScreenSliderViewController {
+extension LoggingAMoodScreenSliderViewController {
     
     func setupScreens() -> [UIViewController] {
-        let moodLoggingAMoodViewController = MoodLoggingMoodViewController()
-        moodLoggingAMoodViewController.dataCollectionDelegate = self
-        moodLoggingAMoodViewController.screenSlider = self
+        moodStage = MoodLoggingMoodViewController()
+        moodStage!.moodLogDataCollectionDelegate = self
+        moodStage!.screenSliderDelegate = self
         
-        let detailLoggingAMoodViewController = DetailLoggingMoodViewController()
-        detailLoggingAMoodViewController.dataCollectionDelegate = self
-        detailLoggingAMoodViewController.screenSlider = self
+        headlineStage = HeadlineLoggingMoodViewController()
+        headlineStage!.moodLogDataCollectionDelegate = self
+        headlineStage!.screenSliderDelegate = self
         
-        let wildcardLoggingAMoodViewController = WildcardLoggingMoodViewController()
-        wildcardLoggingAMoodViewController.dataCollectionDelegate = self
-        wildcardLoggingAMoodViewController.screenSlider = self
+        tagsStage = TagsLoggingMoodViewController()
+        tagsStage!.moodLogDataCollectionDelegate = self
+        tagsStage!.screenSliderDelegate = self
         
-        let overviewLoggingAMoodViewController = OverviewLoggingMoodViewController()
-        overviewLoggingAMoodViewController.dataCollectionDelegate = self
-        overviewLoggingAMoodViewController.screenSlider = self
+        diaryStage = DiaryLoggingMoodViewController()
+        diaryStage!.moodLogDataCollectionDelegate = self
+        diaryStage!.screenSliderDelegate = self
         
-        return [moodLoggingAMoodViewController,
-                detailLoggingAMoodViewController,
-                wildcardLoggingAMoodViewController,
-                overviewLoggingAMoodViewController]
+        wildcardStage = WildcardLoggingMoodViewController()
+        wildcardStage!.moodLogDataCollectionDelegate = self
+        wildcardStage!.screenSliderDelegate = self
+        
+        overviewStage = OverviewLoggingMoodViewController()
+        overviewStage!.moodLogDataCollectionDelegate = self
+        overviewStage!.screenSliderDelegate = self
+        
+        // Return initial screens
+        return [moodStage!,
+                headlineStage!,
+                tagsStage!,
+                overviewStage!]
     }
     
 }
 
-
 // MARK: - Class Methods
-extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate {
+extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate, ScreenSliderDelegate {
     
-    func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool {
-        
-        if nextViewController.isKind(of: DetailLoggingMoodViewController.self) {
-            if arousalRating == nil || valenceRating == nil  {
+    func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
+        if currentViewController.isKind(of: MoodLoggingMoodViewController.self) {
+            guard arousalRating != nil, valenceRating != nil, emotion != nil else {
                 return false
             }
         }
         
+        if currentViewController.isKind(of: HeadlineLoggingMoodViewController.self) {
+            guard headline != nil else {
+                return false
+            }
+        }
+        
+        if currentViewController.isKind(of: TagsLoggingMoodViewController.self) {
+            guard tags.count > 0 else {
+                return false
+            }
+        }
         
         return true
     }
     
-    func setData(_ dataDict: [String:String?]) {
-//        guard let name = dataDict["name"] else {
-//            self.name = nil
-//            return
-//        }
-////        guard let name = dataDict["name"] else {
-//            self.name = nil
-//            return
-//        }
-//        guard let name = dataDict["name"] else {
-//            self.name = nil
-//            return
-//        }
-//        guard let name = dataDict["name"] else {
-//            self.name = nil
-//            return
-//        }
-    }
+    func setData(_ dataDict: [String: Any?]) {}
     
     func isDataCollectionComplete() -> Bool {
 //        guard let _ = self.name else { return false }
@@ -109,9 +132,8 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
     
 }
 
-
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension LoggingAMoodScreenSliderViewController: ScreenSliderViewControllerDelegate {
+extension LoggingAMoodScreenSliderViewController {
     func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController) {
         
     }

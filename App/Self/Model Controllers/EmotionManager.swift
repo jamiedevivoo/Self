@@ -2,32 +2,37 @@ import Firebase
 
 class EmotionManager {
     
-    static var allEmotions: [Emotion] = [
-        Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
-        Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
-        Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
-        Emotion.init(name: "Depression", adj: " ", valence: -0.8, arousal: -0.8),
-        Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
+    static var allEmotions: [Mood.Emotion] = [
+        Mood.Emotion.init(name: "Anger", adj: "angry", valence: -0.8, arousal: 0.8),
+        Mood.Emotion.init(name: "Anger", adj: "A bit angry", valence: -0.6, arousal: 0.4),
+        Mood.Emotion.init(name: "Boredom", adj: "bored", valence: 0.4, arousal: -0.8),
+        Mood.Emotion.init(name: "Boredom", adj: "A bit bored", valence: 0.6, arousal: -0.4),
+        Mood.Emotion.init(name: "Excitement", adj: "excited", valence: 0.8, arousal: 0.8),
+        Mood.Emotion.init(name: "Excitement", adj: "Almost excited", valence: 0.6, arousal: 0.4),
+        Mood.Emotion.init(name: "Depression", adj: "Depressed", valence: -0.8, arousal: -0.8),
+        Mood.Emotion.init(name: "Nearly Depression", adj: "Nearly depressed", valence: -0.6, arousal: -0.4),
+        Mood.Emotion.init(name: "Okay", adj: "okay", valence: 0, arousal: 0)
     ]
-    static let emotionsDBRef: CollectionReference = Firestore.firestore().collection("emotions")
+    let emotionsDBRef: CollectionReference = Firestore.firestore().collection("emotions")
     
-    static func getAllEmotions(completion: @escaping () -> ()) {
-        emotionsDBRef.getDocuments() { emotionCollection, error in
+    func getAllEmotions(completion: @escaping ([Mood.Emotion]) -> Void) {
+        emotionsDBRef.getDocuments { emotionCollection, error in
             guard let emotionCollection = emotionCollection, error == nil else {
                 if let error = error { print("Error Loading Emotions: \(error.localizedDescription)") }
                 return
             }
             print(emotionCollection)
+            var allEmotions: [Mood.Emotion] = []
             for emotionDocument in emotionCollection.documents {
-                let emotion = Emotion(emotionDocument.data())
-                self.allEmotions.append(emotion)
+                let emotion = Mood.Emotion(emotionDocument.data())
+                allEmotions.append(emotion)
             }
-            completion()
+            completion(allEmotions)
         }
     }
         
-    static func getEmotion(withValence userValence: Double, withArousal userArousal: Double) -> Emotion {
-        var emotionAndIntensity = [Emotion:Double]()
+    static func getEmotion(withValence userValence: Double, withArousal userArousal: Double) -> Mood.Emotion {
+        var emotionAndIntensity = [Mood.Emotion: Double]()
         for emotion in allEmotions {
             let valenceDifference = abs(emotion.valence - userValence)
             let arousalDifference = abs(emotion.arousal - userArousal)

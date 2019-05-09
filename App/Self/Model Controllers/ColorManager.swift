@@ -23,7 +23,7 @@ extension ColorManager {
     }
 }
 
-// Mark: - Updating the Color Mode
+// MARK: - Updating the Color Mode
 extension ColorManager {
     static func updateColorMode() {
         switch AccountManager.shared().accountRef?.settings.userColorMode {
@@ -31,7 +31,7 @@ extension ColorManager {
                 sharedInstance!.colorMode = .light
         case .dark?:
                 sharedInstance!.colorMode = .dark
-            default:
+        default:
                 sharedInstance!.colorMode = getAutoColor()
         }
     }
@@ -58,11 +58,11 @@ extension ColorManager {
             return rawValue
         }
     
-        static func matchCase(string:String) -> AppColorMode {
+        static func matchCase(string: String) -> AppColorMode {
             switch string {
-                case self.light.rawValue:   return .light
-                case self.dark.rawValue:    return .dark
-                default:                    return .auto
+            case self.light.rawValue:   return .light
+            case self.dark.rawValue:    return .dark
+            default:                    return .auto
             }
         }
     }

@@ -2,66 +2,54 @@ import UIKit
 import Firebase
 import SnapKit
 
-
 final class OverviewLoggingMoodViewController: ViewController {
     
-    var dataCollectionDelegate: DataCollectionSequenceDelegate?
-    var screenSlider: ScreenSliderViewController?
+    // Delegates and Dependencies
+    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = "Overview"
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.app.text.solidText()
-        label.setLineSpacing(lineSpacing: 3)
-        return label
+    // Views
+    lazy var headerLabel = HeaderLabel.init("Log Overview", .largeScreen)
+    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
+    lazy var saveButton = Button(title: "Save log", action: #selector(saveLog), type: .primary)
+    
+    lazy var addWildcardButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "star-christmas")?.withRenderingMode(.alwaysTemplate)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setImage(image, for: .normal)
+        button.tintColor = UIColor(cgColor: moodLogDataCollectionDelegate?.background.colors![0] as! CGColor)
+        button.layer.borderColor = UIColor.darkText.withAlphaComponent(0.05).cgColor
+        button.layer.borderWidth = 3.0
+        button.layer.shadowColor = UIColor.darkText.withAlphaComponent(0.8).cgColor
+        button.layer.shadowOpacity = 0.6
+        button.layer.shadowRadius = 8.0
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        button.layer.cornerRadius = 20
+        button.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        return button
     }()
     
-    lazy var nameTextFieldWithLabel: TextFieldWithLabel = {
-        let textFieldWithLabel = TextFieldWithLabel()
-        textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 40, weight: .light)
-        textFieldWithLabel.textField.placeholder = "Call me..."
-        textFieldWithLabel.labelTitle = "Your name"
-        return textFieldWithLabel
+    lazy var addNoteButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "star-christmas")?.withRenderingMode(.alwaysTemplate)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.tintColor = UIColor(cgColor: moodLogDataCollectionDelegate?.background.colors![0] as! CGColor)
+        button.setImage(image, for: .normal)
+        button.layer.borderColor = UIColor.darkText.withAlphaComponent(0.05).cgColor
+        button.layer.borderWidth = 3.0
+        button.layer.shadowColor = UIColor.darkText.withAlphaComponent(0.8).cgColor
+        button.layer.shadowOpacity = 0.6
+        button.layer.shadowRadius = 8.0
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        button.layer.cornerRadius = 20
+        button.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        return button
     }()
     
-    lazy var emotionPickerLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.app.text.solidText()
-        label.text = "How are you?"
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
-        return label
-    }()
-    
-    lazy var emotionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "I am..."
-        return label
-    }()
-    
-    lazy var tagLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Add a tag..."
-        return label
-    }()
-    
-    lazy var describeYourDay: UILabel = {
-        let label = UILabel()
-        label.text = "Describe your day..."
-        return label
-    }()
-    
-    lazy var wildcardQuestion: UILabel = {
-        let label = UILabel()
-        label.text = "Your Wildcard Question"
-        return label
-    }()
-    
-    lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var logTitle = HeaderLabel(moodLogDataCollectionDelegate!.headline!, .centerPageText)
     
 }
-
 
 // MARK: - Override Methods
 extension OverviewLoggingMoodViewController {
@@ -69,96 +57,74 @@ extension OverviewLoggingMoodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        setupKeyboard()
+        view.backgroundColor = .clear
+        logTitle.textAlignment = .center
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        screenSliderDelegate?.backwardNavigationEnabled = false
+        dismissKeyboard()
     }
     
 }
 
-
-// MARK: - Class Methods
+// MARK: - Buttons
 extension OverviewLoggingMoodViewController {
     
-    @objc func validateName() -> String? {
-        guard
-            let name: String = self.nameTextFieldWithLabel.textField.text?.trim(),
-            self.nameTextFieldWithLabel.textField.text!.trim().count > 1
-            else { return nil }
-        
-        nameTextFieldWithLabel.resetHint()
-        self.nameTextFieldWithLabel.textField.text = name
-        return name
+    @objc func goBack() {
+        screenSliderDelegate?.backwardNavigationEnabled = true
+        self.screenSliderDelegate?.previousScreen()
     }
-    
+    @objc func saveLog() {
+        screenSliderDelegate?.backwardNavigationEnabled = true
+        self.screenSliderDelegate?.previousScreen()
+    }
 }
-
-
-// MARK: - TextField Delegate Methods
-extension OverviewLoggingMoodViewController: UITextFieldDelegate {
-    
-    func setupKeyboard() {
-        nameTextFieldWithLabel.textField.delegate = self
-        self.nameTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
-        view.addGestureRecognizer(tapViewRecogniser)
-        toggleFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let name = validateName() {
-            nameTextFieldWithLabel.textField.resignFirstResponder()
-            dataCollectionDelegate?.setData(["name":name])
-            screenSlider?.nextScreen()
-            return true
-        } else {
-            dataCollectionDelegate?.setData(["name":nil])
-            nameTextFieldWithLabel.textField.shake()
-            nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
-        }
-        return false
-    }
-    
-    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if nameTextFieldWithLabel.textField.isFirstResponder {
-            nameTextFieldWithLabel.textField.resignFirstResponder()
-        } else {
-            nameTextFieldWithLabel.textField.becomeFirstResponder()
-        }
-    }
-    
-}
-
 
 // MARK: - View Building
 extension OverviewLoggingMoodViewController: ViewBuilding {
-    
     func setupChildViews() {
-        self.view.addSubview(label)
-        self.view.addSubview(nameTextFieldWithLabel)
-        label.snp.makeConstraints { (make) in
+        self.view.addSubview(backButton)
+        self.view.addSubview(saveButton)
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
+        saveButton.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(50)
+            make.height.equalTo(60)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.centerX.equalToSuperview()
+        }
+        
+        self.view.addSubview(logTitle)
+        self.view.addSubview(headerLabel)
+        self.view.addSubview(addWildcardButton)
+        self.view.addSubview(addNoteButton)
+        headerLabel.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
-        nameTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(label.snp.bottom).offset(50)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
-            make.height.greaterThanOrEqualTo(60)
+        logTitle.snp.makeConstraints { (make) in
+            make.top.equalTo(headerLabel.snp.bottom).offset(30)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.centerX.equalToSuperview()
+            make.height.greaterThanOrEqualTo(50)
         }
-    }
-    
-}
-
-extension OverviewLoggingMoodViewController {
-    func getWildcard() {
-        let wildcardRef:CollectionReference = Firestore.firestore().collection("wildcards")
-        let randomDocumentID = String(Int.random(in: 0..<6))
-        
-        wildcardRef.document(randomDocumentID).getDocument { documentSnapshot, error in
-            guard let documentSnapshot = documentSnapshot, error == nil else {
-                if let error = error { print("Error Loading Actions: \(error.localizedDescription)") }
-                print("Error Loading Actions.")
-                return
-            }
-            print(documentSnapshot.data() as AnyObject)
+        addWildcardButton.snp.makeConstraints { make in
+            make.top.equalTo(logTitle.snp.bottom).offset(50)
+            make.height.width.equalTo(100)
+            make.centerX.equalToSuperview().offset(-80)
+        }
+        addNoteButton.snp.makeConstraints { make in
+            make.top.equalTo(addWildcardButton.snp.top)
+            make.height.width.equalTo(100)
+            make.centerX.equalToSuperview().offset(80)
         }
     }
 }

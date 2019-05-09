@@ -5,22 +5,21 @@ import NotificationBannerSwift
 
 class AccountSettingsViewController: UIViewController {
     
-    
     // MARK: - Properties
-    var user: AccountUser!
+    var user: Account.User!
     
     // MARK: - SubViews
     
     lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.app.background.secondaryBackground()
+        view.backgroundColor = UIColor.App.Background.secondary()
         return view
     }()
     lazy var pageTipLabel: UILabel = {
         let label = UILabel()
         label.text = "Use this page to modify the settings related to your account."
         label.textAlignment = .left
-        label.textColor = UIColor.app.text.solidText()
+        label.textColor = UIColor.App.Text.text()
         label.numberOfLines = 0
         
         return label
@@ -34,7 +33,7 @@ class AccountSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Account Settings"
-        view.backgroundColor = UIColor.app.background.primaryBackground()
+        view.backgroundColor = UIColor.App.Background.primary()
         self.hideKeyboardWhenTappedAround()
         addSubViews()
         setupChildViews()
@@ -42,7 +41,6 @@ class AccountSettingsViewController: UIViewController {
         self.user = AccountManager.shared().accountRef!.user
         updateFields()
     }
-    
     
     // MARK: - Functions
     
@@ -65,12 +63,12 @@ class AccountSettingsViewController: UIViewController {
 //            var credential: AuthCredential
             
             Auth.auth().currentUser?.updateEmail(to: email) { (error) in
-                if let _ = error {
-                    let banner = GrowingNotificationBanner(title: "Problem", subtitle: error?.localizedDescription, style: .danger)
+                if let error = error {
+                    let banner = GrowingNotificationBanner(title: "Problem", subtitle: error.localizedDescription, style: .danger)
                     banner.show()
                 } else {
                     AccountManager.shared().accountRef?.user.name = name
-                    AccountManager.shared().updateAccount() {
+                    AccountManager.shared().updateAccount {
                         let banner = NotificationBanner(title: "Success", subtitle: "Account updated", style: .success)
                         banner.show()
                     }

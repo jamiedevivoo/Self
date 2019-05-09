@@ -12,8 +12,7 @@ class SidebarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.app.background.primaryBackground()
-        
+        view.backgroundColor = UIColor.App.Background.primary()
 
     }
 
