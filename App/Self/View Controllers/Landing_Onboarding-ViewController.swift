@@ -1,6 +1,8 @@
 import UIKit
 import SnapKit
 import Lottie
+import SwiftyJSON
+// swiftlint:disable force_try
 
 final class LandingOnboardingViewController: ViewController {
 
@@ -49,24 +51,29 @@ extension LandingOnboardingViewController {
     }
     
     @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        print("swiped")
         guard sliderViewController.pageControl.currentPage >= 2 else { return }
-        print("over 2")
         navigateToRegister()
     }
 }
 
 // MARK: - Setup Methods
 private extension LandingOnboardingViewController {
+    
     func createOnboardingScreens() -> [LandingSlideView] {
         
+        let staticDataFile = Bundle.main.path(forResource: "OfflineStaticData", ofType: "json")!
+        let staticData = NSData(contentsOfFile: staticDataFile)!
+        let staticDataJSON = try! JSON(data: staticData as Data)
+        
+        print(staticDataFile, staticData, staticDataJSON)
+                
         let onboardingSlideOne: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
 //            onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("profile")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Personal"
-            onboardingSlide.desc.text = "Self is all about you, it's your personal assistant. Every day you'll get a unique message based on what you share and what it learns."
+            onboardingSlide.desc.text = staticDataJSON["splashScreen"]["personal"]["text"].stringValue
             return onboardingSlide
         }()
         
@@ -76,7 +83,7 @@ private extension LandingOnboardingViewController {
             onboardingSlide.animationView.animation = Animation.named("goal")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Challenges"
-            onboardingSlide.desc.text = "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
+            onboardingSlide.desc.text = staticDataJSON["splashScreen"]["challenges"]["text"].stringValue
             return onboardingSlide
         }()
         
@@ -86,7 +93,7 @@ private extension LandingOnboardingViewController {
             onboardingSlide.animationView.animation = Animation.named("heart")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Journal"
-            onboardingSlide.desc.text = "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
+            onboardingSlide.desc.text = staticDataJSON["splashScreen"]["journal"]["text"].stringValue
             return onboardingSlide
         }()
         

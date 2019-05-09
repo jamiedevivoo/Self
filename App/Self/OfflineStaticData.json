@@ -1,0 +1,59 @@
+{
+    "splashScreen": {
+        "personal": {
+            "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+        },
+        "challenges": {
+            "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."
+        },
+        "journal": {
+            "text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
+        }
+    },
+    "helpScreen": {
+        "moodLogging": { "text": "How to log a mood..." },
+        "highlights": { "text": "How to log a mood..." },
+        "challenges": { "text": "How to log a mood..." }
+    },
+    "feed": {
+        "defaultMessage": {
+            "0": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
+            "1": {"text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."},
+            "2": {"text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."}
+        },
+        "moodPrompt": {
+            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        },
+        "actionPrompt": {
+            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        },
+        "highlightPrompt": {
+            "0": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "1": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
+            "2": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        }
+    },
+    "notification": {
+        "mood": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
+        "challenge": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
+        "highlight": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." }
+    },
+    "stateMessage": {
+        "highlight": {
+            "empty": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." }
+        },
+        "mood": {
+            "none": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        },
+        "challenge": {
+            "none": { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+        }
+    },
+    "errorMessage": {
+        "default": {"text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."}
+    }
+}

@@ -19,6 +19,7 @@
 		7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */; };
 		7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */; };
 		7D187F122258D1A000A9E9AE /* ActionCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionCell2.swift */; };
+		7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */; };
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
@@ -147,6 +148,7 @@
 		7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wildcard_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Overview_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D187F112258D1A000A9E9AE /* ActionCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell2.swift; sourceTree = "<group>"; };
+		7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OfflineStaticData.json; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/View Controllers/ViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -426,6 +428,7 @@
 				A35EA87122456FD500592D88 /* View Controllers */,
 				A3438E9E22456BDA004D21BB /* Info.plist */,
 				A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */,
+				7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */,
 				A3438E9C22456BBC004D21BB /* Assets.xcassets */,
 				A30F5412227C5D4C00306AAA /* Animations */,
 			);
@@ -740,6 +743,7 @@
 				7D77E5E6227FA32200946FB7 /* TodaySectionHeader.xib in Resources */,
 				A3438E9D22456BBC004D21BB /* Assets.xcassets in Resources */,
 				7D77E5F5227FA33900946FB7 /* GetStartedListCell.xib in Resources */,
+				7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */,
 				7D77E5F7227FA33900946FB7 /* WorldPremiereCell.xib in Resources */,
 				7D77E5F4227FA33900946FB7 /* AppOfTheDayCell.xib in Resources */,
 				7D77E606227FA35800946FB7 /* Main.storyboard in Resources */,
