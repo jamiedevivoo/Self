@@ -16,7 +16,10 @@
         }
     },
     "helpScreen": {
-        "moodLogging": { "text": "How to log a mood..." },
+        "moodLogging": {
+            "title": "Logging A Mood",
+            "text": "Placeholder text for now. To create a new log, first mark your current mood by tapping on the screen. If you feel your mood is positive, mark yourself further to the right. If you are feeling negative, mark nearer to the left. If this feeling is mild, mark nearer the bottom, if this feeling is intense mark nearer the top. As you fill in more mood logs they will start to appear on this page so that you can mark your mood relative to other days."
+        },
         "highlights": { "text": "How to log a mood..." },
         "challenges": { "text": "How to log a mood..." }
     },

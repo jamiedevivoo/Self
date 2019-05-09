@@ -9,7 +9,7 @@ class DailyActionBriefSelectorViewController: ViewController {
     weak var delegate: ActionSelectorDelegate?
 
     // MARK: - Views
-    lazy var headerLabel = HeaderLabel("Today's Challenges", .screen)
+    lazy var headerLabel = HeaderLabel("Today's Challenges", .smallScreen)
     lazy var subHeaderLabel = HeaderLabel("Tap on the challenge you want to work on today.", .subheader)
     
     lazy var actionCollectionView: UICollectionView = { [unowned self] in

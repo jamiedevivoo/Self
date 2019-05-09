@@ -5,8 +5,8 @@ extension HelpMoodLoggingMoodViewController: UIGestureRecognizerDelegate { }
 
 class HelpMoodLoggingMoodViewController: ViewController {
     
-    lazy var headerLabel = HeaderLabel("Logging A Mood", .screen)
-    lazy var paraLabel = ParaLabel("Blah Blah Blah", .standard)
+    lazy var headerLabel = HeaderLabel(StaticMessages.get["helpScreen"]["moodLogging"]["title"].stringValue, .largeScreen)
+    lazy var paraLabel = ParaLabel(StaticMessages.get["helpScreen"]["moodLogging"]["text"].stringValue, .standard)
 
     lazy var dismissButton = Button.init(title: "Close", action: #selector(dismissButtonAction), type: .secondary)
 
@@ -34,7 +34,7 @@ class HelpMoodLoggingMoodViewController: ViewController {
             make.centerX.equalToSuperview()
         }
         paraLabel.snp.makeConstraints { make in
-            make.top.equalTo(headerLabel).offset(20)
+            make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(100)
             make.centerX.equalToSuperview()

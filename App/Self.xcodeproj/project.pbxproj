@@ -21,6 +21,7 @@
 		7D187F122258D1A000A9E9AE /* ActionCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionCell2.swift */; };
 		7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */; };
 		7D21FECF2283C8C40001FE62 /* StaticMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FECE2283C8C40001FE62 /* StaticMessages.swift */; };
+		7D21FED12283E84D0001FE62 /* ProfileButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED02283E84D0001FE62 /* ProfileButtonDelegate.swift */; };
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
@@ -151,6 +152,7 @@
 		7D187F112258D1A000A9E9AE /* ActionCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell2.swift; sourceTree = "<group>"; };
 		7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OfflineStaticData.json; sourceTree = "<group>"; };
 		7D21FECE2283C8C40001FE62 /* StaticMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticMessages.swift; sourceTree = "<group>"; };
+		7D21FED02283E84D0001FE62 /* ProfileButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonDelegate.swift; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/View Controllers/ViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
+				7D21FED02283E84D0001FE62 /* ProfileButtonDelegate.swift */,
 				7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */,
 				7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */,
 				7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */,
@@ -589,10 +592,10 @@
 			children = (
 				7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */,
 				7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */,
-				7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */,
 				7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift */,
 				7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */,
 				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */,
+				7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */,
 			);
 			name = MOOD;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D21FED12283E84D0001FE62 /* ProfileButtonDelegate.swift in Sources */,
 				7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */,
 				7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */,
 				7D77E601227FA35400946FB7 /* GradientView.swift in Sources */,

@@ -9,7 +9,7 @@ class ActionsViewController: UIViewController {
     var accountManager: AccountManager = AccountManager.shared()
 
     // MARK: - Views
-    lazy var headerLabel = HeaderLabel("Your Actions 🙌", .screen)
+    lazy var headerLabel = HeaderLabel("Your Actions 🙌", .smallScreen)
     
     lazy var actionCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()
@@ -47,7 +47,7 @@ extension ActionsViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
+        tabBarController?.returnedToRootView()
     }
 }
 

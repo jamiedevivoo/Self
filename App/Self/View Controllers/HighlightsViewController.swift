@@ -11,7 +11,7 @@ class HighlightsViewController: UIViewController {
     weak var insightManager: InsightManager?
     
     // MARK: - Views
-    lazy var headerLabel = HeaderLabel("Your Highlights 💪", .screen)
+    lazy var headerLabel = HeaderLabel("Your Highlights 💪", .smallScreen)
     
     lazy var highlightCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()
@@ -49,7 +49,7 @@ extension HighlightsViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
+        tabBarController?.returnedToRootView()
         addHighlights()
     }
     

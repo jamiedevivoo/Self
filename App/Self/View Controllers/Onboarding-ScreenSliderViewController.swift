@@ -38,7 +38,7 @@ private extension OnboardingScreenSliderViewController {
 extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
     
     func setData(_ dataDict: [String: Any?]) {
-        guard let name: String = dataDict["name"] as! String else {
+        guard let name: String = dataDict["name"] as? String else {
             self.name = nil
             return
         }

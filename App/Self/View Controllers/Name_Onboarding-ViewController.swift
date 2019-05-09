@@ -3,15 +3,7 @@ import SnapKit
 
 final class NameOnboardingViewController: ViewController {
     
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = "Welcome to Self! What should we call you?"
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        label.textColor = UIColor.App.Text.text()
-        label.setLineSpacing(lineSpacing: 3)
-        return label
-    }()
+    lazy var headerLabel = HeaderLabel("Welcome to Self! What should we call you?", .largeScreen)
     
     lazy var nameTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
@@ -21,7 +13,7 @@ final class NameOnboardingViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapViewRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var tapToToggleKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
     
     weak var delegate: DataCollectionSequenceDelegate?
     
@@ -36,8 +28,14 @@ extension NameOnboardingViewController {
         setupKeyboard()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         nameTextFieldWithLabel.textField.becomeFirstResponder()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        nameTextFieldWithLabel.textField.resignFirstResponder()
     }
     
 }
@@ -64,8 +62,7 @@ extension NameOnboardingViewController: UITextFieldDelegate {
     func setupKeyboard() {
         nameTextFieldWithLabel.textField.delegate = self
         self.nameTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
-        view.addGestureRecognizer(tapViewRecogniser)
-        toggleFirstResponder()
+        view.addGestureRecognizer(tapToToggleKeyboard)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -96,15 +93,15 @@ extension NameOnboardingViewController: UITextFieldDelegate {
 extension NameOnboardingViewController: ViewBuilding {
     
     func setupChildViews() {
-        self.view.addSubview(label)
+        self.view.addSubview(headerLabel)
         self.view.addSubview(nameTextFieldWithLabel)
-        label.snp.makeConstraints { (make) in
+        headerLabel.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
         nameTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(label.snp.bottom).offset(50)
+            make.top.equalTo(headerLabel.snp.bottom).offset(50)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
         }

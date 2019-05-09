@@ -152,6 +152,8 @@ extension MoodLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         screenSlider?.gestureSwipingEnabled = false
+        markSpotlight.add(pulseAnimations, forKey: nil)
+        tapToConfirm.isEnabled = true
     }
 }
 
@@ -208,7 +210,6 @@ extension MoodLoggingMoodViewController {
         unFocusButton(sender)
         self.definesPresentationContext = true
         present(helpScreen, animated: true) {
-
         }
     }
     
@@ -474,15 +475,14 @@ extension MoodLoggingMoodViewController {
              primaryBackgroundColour.cgColor]
         CATransaction.commit()
         
-        /// Remove the tap to confirm button
-        self.tapToConfirm.removeFromSuperview()
-        
         /// Enable forward navigation and gestureSwiping again
         self.screenSlider?.forwardNavigationEnabled = true
         self.screenSlider?.gestureSwipingEnabled = true
         
         /// Informt he delegate to attempt to proceed
         self.screenSlider?.nextScreen()
+        
+        self.tapToConfirm.setTitle("Edit Log", for: .normal)
     }
     
     func calculateMoodFromScreenPosition(x: CGFloat, y: CGFloat) -> (valence: Double, arousal: Double) {

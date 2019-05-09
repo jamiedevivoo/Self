@@ -3,13 +3,9 @@ import SnapKit
 
 final class InductionOnboardingViewController: ViewController {
     
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = StaticMessages.get["onboarding"]["induction"]["text"].stringValue
-        label.numberOfLines = 0
-        label.textColor = UIColor.App.Text.text()
-        return label
-    }()
+    lazy var headerLabel = HeaderLabel("Hey Jamie...", .largeScreen)
+    lazy var paraLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["text"].stringValue, .standard)
+    
     lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
     
     weak var delegate: DataCollectionSequenceDelegate?
@@ -27,7 +23,6 @@ extension InductionOnboardingViewController {
         super.viewDidAppear(animated)
         checkCompletion()
     }
-    
 }
 
 // MARK: - Class Methods
@@ -41,8 +36,10 @@ extension InductionOnboardingViewController {
         }
     }
     
-    @objc func continueOnboarding(_ sender: Any) {
+    @objc func continueOnboarding(_ sender: UIButton) {
         delegate?.finishDataCollection()
+        sender.isEnabled = false
+
     }
     
 }
@@ -51,14 +48,23 @@ extension InductionOnboardingViewController {
 extension InductionOnboardingViewController: ViewBuilding {
     
     func setupChildViews() {
-        self.view.addSubview(label)
-        label.snp.makeConstraints { (make) in
-            make.top.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+        self.view.addSubview(headerLabel)
+        self.view.addSubview(paraLabel)
+        self.view.addSubview(continueButton)
+        
+        headerLabel.snp.makeConstraints { (make) in
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
-        self.view.addSubview(continueButton)
+        
+        paraLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(headerLabel.snp.bottom).offset(50)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.height.greaterThanOrEqualTo(50)
+        }
         continueButton.snp.makeConstraints { (make) in
-            make.top.equalTo(label.snp.bottom).offset(25)
+            make.top.equalTo(paraLabel.snp.bottom).offset(50)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(60)
         }

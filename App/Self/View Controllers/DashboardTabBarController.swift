@@ -1,6 +1,10 @@
 import UIKit
 import SnapKit
 
+extension DashboardTabBarController: ProfileButtonDelegate {
+    
+}
+
 class DashboardTabBarController: UITabBarController {
     
     lazy var leftSwipe: UISwipeGestureRecognizer = {
@@ -17,6 +21,22 @@ class DashboardTabBarController: UITabBarController {
         swipeGesture.delegate = self
         return swipeGesture
     }()
+    
+    lazy var profileButton: UIButton = {
+        let button = UIButton()
+        let btnImage = UIImage(named: "menu-vertical")?.withRenderingMode(.alwaysTemplate)
+        btnImage?.withRenderingMode(.alwaysTemplate)
+        button.addTarget(self, action: #selector(sidebarButtonTapped), for: .touchUpInside)
+        button.setImage(btnImage, for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        button.isUserInteractionEnabled = true
+        button.tintColor = UIColor.white
+        button.alpha = 0.5
+        button.layer.shadowRadius = 3.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        return button
+    }()
 }
 
 // MARK: - INIT
@@ -29,6 +49,37 @@ extension DashboardTabBarController {
         BackgroundManager.shared.backgroundContainer = self
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
+        self.view.addSubview(profileButton)
+        
+        profileButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
+    }
+    
+    @objc func sidebarButtonTapped() {
+        let settings = SettingsViewController()
+        settings.modalPresentationStyle = .overFullScreen
+        self.definesPresentationContext = true
+        self.present(settings, animated: true, completion: nil)
+    }
+    
+    override func returnedToRootView() {
+        self.tabBar.isHidden = false
+        profileButton.isHidden = false
+    }
+    override func leavingRootView() {
+        self.tabBar.isHidden = true
+        profileButton.isHidden = true
+    }
+}
+
+extension UITabBarController {
+    @objc func returnedToRootView() {
+    }
+    @objc func leavingRootView() {
     }
 }
 
@@ -38,14 +89,17 @@ extension DashboardTabBarController {
         let homeViewController = FeedViewController()
         let homeNavigationController = DashboardNavigationController(rootViewController: homeViewController)
         homeViewController.setTabBarItem()
+        homeNavigationController.profileButtonDelegate = self
         
         let highlightsViewController = HighlightsViewController()
         let highlightsNavigationController = DashboardNavigationController(rootViewController: highlightsViewController)
         highlightsViewController.setTabBarItem()
+        highlightsNavigationController.profileButtonDelegate = self
         
         let actionsViewController = ActionsViewController()
         let actionsNavigationController = DashboardNavigationController(rootViewController: actionsViewController)
         actionsViewController.setTabBarItem()
+        actionsNavigationController.profileButtonDelegate = self
         
         self.viewControllers = [
             highlightsNavigationController,
