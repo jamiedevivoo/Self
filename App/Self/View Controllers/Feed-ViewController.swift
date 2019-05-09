@@ -59,8 +59,8 @@ extension FeedViewController: ViewBuilding {
     func setupChildViews() {
         messageViewController.view.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(20)
-            make.width.equalToSuperview().multipliedBy(0.7)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.bottom.equalTo(actionListViewController.view.snp.top).offset(-20)
             make.height.greaterThanOrEqualTo(messageViewController.messageStackView.snp.height).priority(.required)
         }

@@ -63,7 +63,9 @@ extension DashboardTabBarController {
         let settings = SettingsViewController()
         settings.modalPresentationStyle = .overFullScreen
         self.definesPresentationContext = true
-        self.present(settings, animated: true, completion: nil)
+        
+        let currentNavigationController = viewControllers![selectedIndex] as! DashboardNavigationController
+        currentNavigationController.pushViewController(settings, animated: true)
     }
     
     override func returnedToRootView() {

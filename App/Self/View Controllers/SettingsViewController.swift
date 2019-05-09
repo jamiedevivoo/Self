@@ -20,22 +20,6 @@ class SettingsViewController: UIViewController {
         return label
     }()
     
-    lazy var exitButton: UIButton = {
-        let button = UIButton()
-        let btnImage = UIImage(named: "back")
-        btnImage?.withRenderingMode(.alwaysTemplate)
-        button.setImage(btnImage, for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.isUserInteractionEnabled = true
-        button.tintColor = UIColor.darkText
-        button.addTarget(self, action: #selector(exit), for: .touchUpInside)
-        button.alpha = 0.5
-        button.layer.shadowRadius = 3.0
-        button.layer.shadowOpacity = 0.4
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        return button
-    }()
-    
     lazy var settingsTableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = UIColor.App.Background.primary()
@@ -61,6 +45,11 @@ class SettingsViewController: UIViewController {
         
         addSubViews()
         setupChildViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Functions
@@ -95,10 +84,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             AccountManager.logout()
         }
     }
-    
-    @objc func exit() {
-        self.dismiss(animated: true, completion: nil)
-    }
 
 }
 
@@ -109,7 +94,6 @@ extension SettingsViewController: ViewBuilding {
         self.view.addSubview(topDescriptionView)
         topDescriptionView.addSubview(pageTipLabel)
         self.view.addSubview(settingsTableView)
-        self.view.addSubview(exitButton)
     }
     
     func setupChildViews() {
@@ -127,12 +111,6 @@ extension SettingsViewController: ViewBuilding {
             make.width.equalTo(self.view)
             make.top.equalTo(topDescriptionView.snp.bottom)
             make.bottom.equalTo(self.view.snp.bottom)
-        }
-        exitButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
         }
     }
 }

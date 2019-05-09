@@ -42,7 +42,8 @@ final class DetailLoggingMoodViewController: ViewController {
     
     lazy var headLineTextField: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
-        textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 30, weight: .light)
+        textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
+        textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "I'm feeling..."
         textFieldWithLabel.labelTitle = "Describe how your feeling"
         return textFieldWithLabel
@@ -50,7 +51,8 @@ final class DetailLoggingMoodViewController: ViewController {
     
     lazy var tagTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
-        textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 30, weight: .light)
+        textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
+        textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "Add a Tag..."
         textFieldWithLabel.labelTitle = "What did you do today?"
         return textFieldWithLabel

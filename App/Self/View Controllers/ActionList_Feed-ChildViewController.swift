@@ -19,9 +19,7 @@ class FeedActionListChildViewController: UIViewController {
     lazy var moodButton = Button(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood), type: .dashboard)
     lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
     lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
-    lazy var settingsButton = Button(title: "Settings", action: #selector(FeedActionListChildViewController.settings), type: .dashboard)
     lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount), type: .dashboard)
-    lazy var logoutButton = Button(title: "Logout", action: #selector(FeedActionListChildViewController.logout), type: .dashboard)
     
     var accountRef: Account?
     
@@ -84,8 +82,6 @@ extension FeedActionListChildViewController: ViewBuilding {
         self.actionButtonStack.addArrangedSubview(moodButton)
         self.actionButtonStack.addArrangedSubview(revealChallengesButton)
         self.actionButtonStack.addArrangedSubview(newHighlightButton)
-        self.actionButtonStack.addArrangedSubview(settingsButton)
-        self.actionButtonStack.addArrangedSubview(logoutButton)
     }
     
     func setupChildViews() {

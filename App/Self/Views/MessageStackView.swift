@@ -30,5 +30,6 @@ extension MessageStackView {
         greetingLabel.text = FeedManager.shared().generateGreeting()
         nameLabel.text = AccountManager.shared().accountRef?.user.name
         messageTextLabel.text = message.text
+        nameLabel.adjustsFontSizeToFitWidth = true
     }
 }

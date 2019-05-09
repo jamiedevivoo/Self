@@ -5,7 +5,7 @@ class NoActionsView: UIView {
     lazy var headerLabel: UILabel = HeaderLabel(StaticMessages.get["stateMessage"]["challenge"]["missing"]["title"].stringValue, .centerPageTitle)
     lazy var subHeaderLabel: UILabel = ParaLabel(StaticMessages.get["stateMessage"]["challenge"]["missing"]["text"].stringValue, .centerPageText)
     
-    lazy var button = Button(title: "Unlock todays challenges", action: #selector(ActionsViewController.unlockAction), type: .tag)
+    lazy var button = Button(title: "Unlock todays challenges", action: #selector(ActionsViewController.unlockAction), type: .dashboard)
 
     // Init
     override init(frame: CGRect) {
@@ -46,7 +46,7 @@ extension NoActionsView {
             make.top.equalTo(subHeaderLabel.snp.bottom).offset(40)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(60)
-            make.centerX.equalToSuperview()
+            make.left.equalTo(subHeaderLabel.snp.left)
         }
     }
 }
