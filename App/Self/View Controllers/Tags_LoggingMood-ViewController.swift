@@ -53,13 +53,19 @@ extension TagsLoggingMoodViewController {
 extension TagsLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
+        /// Validation Checks
         guard
-            let headline: String = self.tagTextFieldWithLabel.textField.text?.trim(),
+            let tag: String = self.tagTextFieldWithLabel.textField.text?.trim(),
             self.tagTextFieldWithLabel.textField.text!.trim().count > 1
-            else { return nil }
-        moodLogDataCollectionDelegate?.headline = headline
+        /// Return nil if it fails
+        else { return nil }
+        
+        /// If it passes, reset the hint
         tagTextFieldWithLabel.resetHint(withText: "Press next to add tag", for: .info)
+        /// Then update the textfield
+        moodLogDataCollectionDelegate?.headline = tag
         tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.next
+        /// Finally return the validated value to the caller
         return headline
     }
 }
@@ -87,7 +93,6 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
             
             // If the user has already added at least one tag, let them proceed with an error
             if moodLogDataCollectionDelegate?.tags.count ?? 0 > 0 {
-                tagTextFieldWithLabel.textField.resignFirstResponder()
                 screenSliderDelegate?.nextScreen()
                 return true
             }

@@ -9,14 +9,15 @@ final class WildcardLoggingMoodViewController: ViewController {
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
-    lazy var headerLabel = HeaderLabel.init("Wildcard Question", .largeScreen)
-        
+    lazy var headerLabel = HeaderLabel("Wildcard Question", .largeScreen)
+    lazy var questionLabel = HeaderLabel("", .smallScreen)
+
     lazy var wildcardTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
-        textFieldWithLabel.textField.placeholder = "Question..."
-        textFieldWithLabel.labelTitle = "Describe how your feeling"
+        textFieldWithLabel.textField.placeholder = "Your response..."
+        textFieldWithLabel.labelTitle = "There's no right or wrong answers."
         return textFieldWithLabel
     }()
     
@@ -43,14 +44,19 @@ extension WildcardLoggingMoodViewController {
 extension WildcardLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
+        /// Validation Checks
         guard
-            let headline: String = self.wildcardTextFieldWithLabel.textField.text?.trim(),
+            let wildcardResponse: String = self.wildcardTextFieldWithLabel.textField.text?.trim(),
             self.wildcardTextFieldWithLabel.textField.text!.trim().count > 1
-            else { return nil }
-        moodLogDataCollectionDelegate?.headline = headline
+        /// Return nil if it fails
+        else { return nil }
+        /// If it passes, reset the hint
         wildcardTextFieldWithLabel.resetHint()
-        self.wildcardTextFieldWithLabel.textField.text = headline
-        return headline
+        /// Then update the textfield and send the value to the delegate
+        wildcardTextFieldWithLabel.textField.text = wildcardResponse
+        moodLogDataCollectionDelegate?.wildcard = wildcardResponse
+        /// Finally return the validated value to the caller
+        return wildcardResponse
     }
 }
 
@@ -63,15 +69,14 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let headline = validateHeadline() {
-            wildcardTextFieldWithLabel.textField.resignFirstResponder()
+        if let wildcardResponse = validateHeadline() {
             screenSliderDelegate?.nextScreen()
-            moodLogDataCollectionDelegate?.headline = headline
+            moodLogDataCollectionDelegate?.wildcard = wildcardResponse
             return true
         } else {
-            moodLogDataCollectionDelegate?.headline = nil
+            moodLogDataCollectionDelegate?.wildcard = nil
             wildcardTextFieldWithLabel.textField.shake()
-            wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+            wildcardTextFieldWithLabel.resetHint(withText: "Your response needs to be at least 2 characters", for: .error)
         }
         return false
     }
@@ -116,6 +121,7 @@ extension WildcardLoggingMoodViewController {
                 print("Error Loading Actions.")
                 return
             }
+            questionLabel.text = documentSnapshot.data()
             print(documentSnapshot.data() as AnyObject)
         }
     }

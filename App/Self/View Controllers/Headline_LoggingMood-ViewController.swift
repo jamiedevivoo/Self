@@ -47,13 +47,20 @@ extension HeadlineLoggingMoodViewController {
 extension HeadlineLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
+        
+        /// Validation Checks
         guard
             let headline: String = self.headLineTextFieldWithLabel.textField.text?.trim(),
             self.headLineTextFieldWithLabel.textField.text!.trim().count > 1
+        /// Return nil if it fails
         else { return nil }
-        moodLogDataCollectionDelegate?.headline = headline
-        headLineTextFieldWithLabel.resetHint()
+        
+        /// If it passes, reset the hint
+        headLineTextFieldWithLabel.resetHint(withText: "Press next to continue", for: .info)
+        /// Then update the textfield and send the value to the delegate
         self.headLineTextFieldWithLabel.textField.text = headline
+        moodLogDataCollectionDelegate?.headline = headline
+        /// Finally return the validated value to the caller
         return headline
     }
 }
@@ -62,13 +69,12 @@ extension HeadlineLoggingMoodViewController {
 extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
     func setupKeyboard() {
         headLineTextFieldWithLabel.textField.delegate = self
-        self.headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+        headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
         view.addGestureRecognizer(tapToTogglekeyboardGesture)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let headline = validateHeadline() {
-            headLineTextFieldWithLabel.textField.resignFirstResponder()
             screenSliderDelegate?.nextScreen()
             moodLogDataCollectionDelegate?.headline = headline
             return true

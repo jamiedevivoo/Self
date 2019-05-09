@@ -16,8 +16,8 @@ final class DiaryLoggingMoodViewController: ViewController {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
-        textFieldWithLabel.textField.placeholder = "Diary..."
-        textFieldWithLabel.labelTitle = "Describe how your feeling"
+        textFieldWithLabel.textField.placeholder = "Personal note..."
+        textFieldWithLabel.labelTitle = "Make your log more meaningful by adding context."
         return textFieldWithLabel
     }()
     
@@ -55,13 +55,13 @@ extension DiaryLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
         guard
-            let headline: String = self.diaryTextFieldWithLabel.textField.text?.trim(),
+            let note: String = self.diaryTextFieldWithLabel.textField.text?.trim(),
             self.diaryTextFieldWithLabel.textField.text!.trim().count > 1
             else { return nil }
-        moodLogDataCollectionDelegate?.headline = headline
+        moodLogDataCollectionDelegate?.note = note
         diaryTextFieldWithLabel.resetHint()
-        self.diaryTextFieldWithLabel.textField.text = headline
-        return headline
+        self.diaryTextFieldWithLabel.textField.text = note
+        return note
     }
 }
 
@@ -74,15 +74,15 @@ extension DiaryLoggingMoodViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let headline = validateHeadline() {
+        if let note = validateHeadline() {
             diaryTextFieldWithLabel.textField.resignFirstResponder()
             goForward()
-            moodLogDataCollectionDelegate?.headline = headline
+            moodLogDataCollectionDelegate?.note = note
             return true
         } else {
-            moodLogDataCollectionDelegate?.headline = nil
+            moodLogDataCollectionDelegate?.note = nil
             diaryTextFieldWithLabel.textField.shake()
-            diaryTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters")
+            diaryTextFieldWithLabel.resetHint(withText: "Your note should be at least 2 characters")
         }
         return false
     }
