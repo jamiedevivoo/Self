@@ -111,6 +111,7 @@
 		A302068F2284806A00B22C88 /* tapandhold.json in Resources */ = {isa = PBXBuildFile; fileRef = A302068E2284806A00B22C88 /* tapandhold.json */; };
 		A30206912284807C00B22C88 /* fingertouch.json in Resources */ = {isa = PBXBuildFile; fileRef = A30206902284807C00B22C88 /* fingertouch.json */; };
 		A30206932284809800B22C88 /* circleLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = A30206922284809800B22C88 /* circleLoading.json */; };
+		A302069522849FDB00B22C88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A302069422849FDB00B22C88 /* LaunchScreen.storyboard */; };
 		A30EC35322564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */; };
 		A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */; };
 		A30F5415227C5D6800306AAA /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5414227C5D6800306AAA /* profile.json */; };
@@ -257,6 +258,7 @@
 		A302068E2284806A00B22C88 /* tapandhold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tapandhold.json; sourceTree = "<group>"; };
 		A30206902284807C00B22C88 /* fingertouch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fingertouch.json; sourceTree = "<group>"; };
 		A30206922284809800B22C88 /* circleLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = circleLoading.json; sourceTree = "<group>"; };
+		A302069422849FDB00B22C88 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionList_Feed-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message_Feed-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30F5414227C5D6800306AAA /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */,
 				7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */,
 				A3438E9C22456BBC004D21BB /* Assets.xcassets */,
+				A302069422849FDB00B22C88 /* LaunchScreen.storyboard */,
 				A30F5412227C5D4C00306AAA /* Animations */,
 			);
 			path = Self;
@@ -828,6 +831,7 @@
 				A30F5417227C5D8400306AAA /* heart.json in Resources */,
 				A302068522847CE600B22C88 /* wireframeLoading.json in Resources */,
 				A30206912284807C00B22C88 /* fingertouch.json in Resources */,
+				A302069522849FDB00B22C88 /* LaunchScreen.storyboard in Resources */,
 				A30F5415227C5D6800306AAA /* profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
