@@ -71,6 +71,17 @@
 		7D8E4331227EF81200243139 /* NoActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4330227EF81200243139 /* NoActionsView.swift */; };
 		7DAEEB76228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */; };
 		7DAEEB792283920600EB839C /* ParaLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEEB782283920600EB839C /* ParaLabel.swift */; };
+		7DCF19662284AF2000289DCC /* tapandhold.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19592284AF1C00289DCC /* tapandhold.json */; };
+		7DCF19672284AF2000289DCC /* avatarLoaded.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF195A2284AF1C00289DCC /* avatarLoaded.json */; };
+		7DCF19692284AF2000289DCC /* goal.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF195C2284AF1D00289DCC /* goal.json */; };
+		7DCF196A2284AF2000289DCC /* wireframeLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF195D2284AF1D00289DCC /* wireframeLoading.json */; };
+		7DCF196B2284AF2000289DCC /* fingertouch.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF195E2284AF1D00289DCC /* fingertouch.json */; };
+		7DCF196D2284AF2000289DCC /* circleLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19602284AF1E00289DCC /* circleLoading.json */; };
+		7DCF196E2284AF2000289DCC /* checkWithParticles.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19612284AF1E00289DCC /* checkWithParticles.json */; };
+		7DCF196F2284AF2000289DCC /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19622284AF1F00289DCC /* confetti.json */; };
+		7DCF19702284AF2000289DCC /* thumbLike.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19632284AF1F00289DCC /* thumbLike.json */; };
+		7DCF19712284AF2000289DCC /* loadingIcon.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19642284AF1F00289DCC /* loadingIcon.json */; };
+		7DCF19722284AF2000289DCC /* starsCelebrating.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19652284AF2000289DCC /* starsCelebrating.json */; };
 		7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */; };
 		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
 		7DD6CBFE2266B50300F47E63 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBFD2266B50300F47E63 /* Help.swift */; };
@@ -105,7 +116,6 @@
 		A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */; };
 		A30F5415227C5D6800306AAA /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5414227C5D6800306AAA /* profile.json */; };
 		A30F5417227C5D8400306AAA /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5416227C5D8400306AAA /* heart.json */; };
-		A30F5419227C608200306AAA /* goal.json in Resources */ = {isa = PBXBuildFile; fileRef = A30F5418227C608200306AAA /* goal.json */; };
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
 		A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* Landing_Onboarding-ViewController.swift */; };
 		A33409902245701D004CBB2A /* LandingSlide-View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* LandingSlide-View.swift */; };
@@ -207,6 +217,17 @@
 		7D8E4330227EF81200243139 /* NoActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActionsView.swift; sourceTree = "<group>"; };
 		7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Help_Mood_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7DAEEB782283920600EB839C /* ParaLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaLabel.swift; sourceTree = "<group>"; };
+		7DCF19592284AF1C00289DCC /* tapandhold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tapandhold.json; sourceTree = "<group>"; };
+		7DCF195A2284AF1C00289DCC /* avatarLoaded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = avatarLoaded.json; sourceTree = "<group>"; };
+		7DCF195C2284AF1D00289DCC /* goal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = goal.json; sourceTree = "<group>"; };
+		7DCF195D2284AF1D00289DCC /* wireframeLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wireframeLoading.json; sourceTree = "<group>"; };
+		7DCF195E2284AF1D00289DCC /* fingertouch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fingertouch.json; sourceTree = "<group>"; };
+		7DCF19602284AF1E00289DCC /* circleLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = circleLoading.json; sourceTree = "<group>"; };
+		7DCF19612284AF1E00289DCC /* checkWithParticles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkWithParticles.json; sourceTree = "<group>"; };
+		7DCF19622284AF1F00289DCC /* confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
+		7DCF19632284AF1F00289DCC /* thumbLike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = thumbLike.json; sourceTree = "<group>"; };
+		7DCF19642284AF1F00289DCC /* loadingIcon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingIcon.json; sourceTree = "<group>"; };
+		7DCF19652284AF2000289DCC /* starsCelebrating.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starsCelebrating.json; sourceTree = "<group>"; };
 		7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodWildcard.swift; sourceTree = "<group>"; };
 		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
 		7DD6CBFD2266B50300F47E63 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
@@ -241,7 +262,6 @@
 		A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message_Feed-ChildViewController.swift"; sourceTree = "<group>"; };
 		A30F5414227C5D6800306AAA /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
 		A30F5416227C5D8400306AAA /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
-		A30F5418227C608200306AAA /* goal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = goal.json; sourceTree = "<group>"; };
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A316E708224AF18F00283547 /* Landing_Onboarding-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Landing_Onboarding-ViewController.swift"; sourceTree = "<group>"; };
 		A334098A2245701B004CBB2A /* LandingSlide-View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandingSlide-View.swift"; sourceTree = "<group>"; };
@@ -423,7 +443,17 @@
 		A30F5412227C5D4C00306AAA /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				A30F5418227C608200306AAA /* goal.json */,
+				7DCF195A2284AF1C00289DCC /* avatarLoaded.json */,
+				7DCF19612284AF1E00289DCC /* checkWithParticles.json */,
+				7DCF19602284AF1E00289DCC /* circleLoading.json */,
+				7DCF19622284AF1F00289DCC /* confetti.json */,
+				7DCF195E2284AF1D00289DCC /* fingertouch.json */,
+				7DCF195C2284AF1D00289DCC /* goal.json */,
+				7DCF19642284AF1F00289DCC /* loadingIcon.json */,
+				7DCF19652284AF2000289DCC /* starsCelebrating.json */,
+				7DCF19592284AF1C00289DCC /* tapandhold.json */,
+				7DCF19632284AF1F00289DCC /* thumbLike.json */,
+				7DCF195D2284AF1D00289DCC /* wireframeLoading.json */,
 				A30F5414227C5D6800306AAA /* profile.json */,
 				A30F5416227C5D8400306AAA /* heart.json */,
 			);
@@ -779,16 +809,26 @@
 			files = (
 				7D77E5E6227FA32200946FB7 /* TodaySectionHeader.xib in Resources */,
 				A3438E9D22456BBC004D21BB /* Assets.xcassets in Resources */,
+				7DCF196E2284AF2000289DCC /* checkWithParticles.json in Resources */,
 				7D77E5F5227FA33900946FB7 /* GetStartedListCell.xib in Resources */,
 				7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */,
+				7DCF19722284AF2000289DCC /* starsCelebrating.json in Resources */,
+				7DCF196B2284AF2000289DCC /* fingertouch.json in Resources */,
+				7DCF19712284AF2000289DCC /* loadingIcon.json in Resources */,
+				7DCF196D2284AF2000289DCC /* circleLoading.json in Resources */,
+				7DCF19692284AF2000289DCC /* goal.json in Resources */,
+				7DCF19702284AF2000289DCC /* thumbLike.json in Resources */,
 				7D77E5F7227FA33900946FB7 /* WorldPremiereCell.xib in Resources */,
 				7D77E5F4227FA33900946FB7 /* AppOfTheDayCell.xib in Resources */,
 				7D77E606227FA35800946FB7 /* Main.storyboard in Resources */,
+				7DCF19672284AF2000289DCC /* avatarLoaded.json in Resources */,
 				7D77E5F6227FA33900946FB7 /* FromTheEditorsCell.xib in Resources */,
 				A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */,
-				A30F5419227C608200306AAA /* goal.json in Resources */,
 				A30F5417227C5D8400306AAA /* heart.json in Resources */,
+				7DCF196A2284AF2000289DCC /* wireframeLoading.json in Resources */,
 				A30F5415227C5D6800306AAA /* profile.json in Resources */,
+				7DCF19662284AF2000289DCC /* tapandhold.json in Resources */,
+				7DCF196F2284AF2000289DCC /* confetti.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

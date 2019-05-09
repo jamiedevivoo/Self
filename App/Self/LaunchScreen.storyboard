@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Copyright © 2019 Jamie De Vivo. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
+                                <rect key="frame" x="0.0" y="440" width="375" height="207"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="11"/>
+                                <color key="textColor" red="0.47843137254901963" green="0.69803921568627447" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="350" verticalCompressionResistancePriority="800" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="oHf-E0-EXL">
+                                <rect key="frame" x="50" y="175" width="275" height="150"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oHf-E0-EXL" secondAttribute="height" multiplier="227:30" id="XQc-T3-s4w"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="XFF-Nu-T8R"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="The Self App" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                                <rect key="frame" x="0.0" y="340" width="375" height="45"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <viewLayoutGuide key="safeArea" id="tev-Vz-vkn"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
+                                <color key="textColor" red="0.47843137254901963" green="0.69803921568627447" blue="0.79607843137254897" alpha="0.84548305457746475" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.2592014798384224" green="0.34580183460847486" blue="0.39256106293880877" alpha="0.10277288732394366" colorSpace="custom" customColorSpace="displayP3"/>
+                                <size key="shadowOffset" width="0.0" height="-2"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.62984352899710605" green="0.91601036932642443" blue="1" alpha="0.19941131161971831" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="oHf-E0-EXL" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="1Eu-zj-LhU"/>
+                            <constraint firstItem="oHf-E0-EXL" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="200" id="GjY-MT-iT2"/>
+                            <constraint firstAttribute="trailing" secondItem="oHf-E0-EXL" secondAttribute="trailing" constant="50" id="KWB-ge-mhQ"/>
+                            <constraint firstItem="oHf-E0-EXL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="50" id="fbo-Q7-6qC"/>
+                            <constraint firstItem="oHf-E0-EXL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kVS-oq-lVg"/>
+                            <constraint firstItem="oHf-E0-EXL" firstAttribute="centerX" relation="lessThanOrEqual" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="oZO-N8-7Rz"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="oHf-E0-EXL" secondAttribute="bottom" constant="8" symbolic="YES" id="rIM-Wc-eOK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="908" height="451"/>
+    </resources>
+</document>

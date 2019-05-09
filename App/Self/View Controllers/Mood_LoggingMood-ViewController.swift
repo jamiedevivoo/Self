@@ -586,8 +586,6 @@ extension MoodLoggingMoodViewController: ViewBuilding {
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.7)
         }
-//        exitButton.applyConstraints(forPosition: .topLeft, inView: self.view)
-//        exitButton.applyConstraints(forPosition: .topRight, inView: self.view)
         exitButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(15)

@@ -57,7 +57,6 @@ class HeaderLabel: UILabel {
     
     func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
         self.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(75)
             make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(10)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().inset(20)
