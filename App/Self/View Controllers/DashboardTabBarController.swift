@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-extension DashboardTabBarController: ProfileButtonDelegate {
+extension DashboardTabBarController {
     
 }
 
@@ -91,17 +91,14 @@ extension DashboardTabBarController {
         let homeViewController = FeedViewController()
         let homeNavigationController = DashboardNavigationController(rootViewController: homeViewController)
         homeViewController.setTabBarItem()
-        homeNavigationController.profileButtonDelegate = self
         
         let highlightsViewController = HighlightsViewController()
         let highlightsNavigationController = DashboardNavigationController(rootViewController: highlightsViewController)
         highlightsViewController.setTabBarItem()
-        highlightsNavigationController.profileButtonDelegate = self
         
         let actionsViewController = ActionsViewController()
         let actionsNavigationController = DashboardNavigationController(rootViewController: actionsViewController)
         actionsViewController.setTabBarItem()
-        actionsNavigationController.profileButtonDelegate = self
         
         self.viewControllers = [
             highlightsNavigationController,

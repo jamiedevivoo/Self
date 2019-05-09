@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 
 class DashboardNavigationController: UINavigationController {
-    weak var profileButtonDelegate: ProfileButtonDelegate?
 }
 
 // MARK: - Init and Setup

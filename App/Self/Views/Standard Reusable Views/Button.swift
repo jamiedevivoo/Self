@@ -14,12 +14,14 @@ class Button: UIButton {
         
         self.layer.cornerRadius = self.layer.bounds.height / 2
         switch type {
+            
         case .primary:
             self.backgroundColor = UIColor.App.Button.Primary.fill()
             self.layer.borderColor = UIColor.App.Button.Primary.fill().withAlphaComponent(0.5).cgColor
             self.layer.cornerRadius = 30
             self.isEnabled = true
             return
+            
         case .secondary:
             self.setTitleColor(UIColor.App.Button.Primary.fill(), for: .normal)
             self.layer.borderColor = UIColor.App.Button.Primary.fill().cgColor
@@ -28,11 +30,13 @@ class Button: UIButton {
             self.layer.borderWidth = 2.0
             self.isEnabled = true
             return
+            
         case .disabled:
             self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.5)
             self.layer.borderColor = self.layer.borderColor?.copy(alpha: 0.5)
             self.isEnabled = false
             return
+            
         case .dashboard:
             self.setTitleColor(UIColor.App.Button.Tag.text(), for: .normal)
             self.contentEdgeInsets =  UIEdgeInsets(top: 6, left: 15, bottom: 6, right: 15)
@@ -46,6 +50,7 @@ class Button: UIButton {
             self.layer.shadowRadius = 1
             self.layer.shadowOffset = CGSize(width: 0, height: 1.5)
             return
+            
         case .tag:
             titleLabel?.font = UIFont.systemFont(ofSize: 12.0, weight: .ultraLight)
             setTitleColor(UIColor.App.Button.Tag.text(), for: .normal)

@@ -40,6 +40,7 @@ extension Textfield {
         autocorrectionType = .no
         clearButtonMode = UITextField.ViewMode.whileEditing
         contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        adjustsFontSizeToFitWidth = true
     }
 
     func customiseTextField(for type: FieldType) {

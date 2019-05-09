@@ -4,9 +4,8 @@ import SnapKit
 
 final class OverviewLoggingMoodViewController: ViewController {
     
-    weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
-    weak var moodLoggingDelegate: MoodLoggingDelegate?
-    var screenSlider: ScreenSliderViewController?
+    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     lazy var label: UILabel = {
         let label = UILabel()
@@ -102,11 +101,11 @@ extension OverviewLoggingMoodViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = validateName() {
             nameTextFieldWithLabel.textField.resignFirstResponder()
-            dataCollectionDelegate?.setData(["name": name])
-            screenSlider?.nextScreen()
+            moodLogDataCollectionDelegate?.setData(["name": name])
+            screenSliderDelegate?.nextScreen()
             return true
         } else {
-            dataCollectionDelegate?.setData(["name": nil])
+            moodLogDataCollectionDelegate?.setData(["name": nil])
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters")
         }

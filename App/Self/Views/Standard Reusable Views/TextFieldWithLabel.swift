@@ -7,6 +7,7 @@ class TextFieldWithLabel: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .ultraLight)
         label.textColor = UIColor.App.Text.text().withAlphaComponent(0.5)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     

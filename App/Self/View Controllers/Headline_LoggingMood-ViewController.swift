@@ -2,15 +2,14 @@ import UIKit
 import SnapKit
 import Firebase
 
-final class DetailLoggingMoodViewController: ViewController {
+final class HeadlineLoggingMoodViewController: ViewController {
     
     // Delegates
-    weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
-    weak var moodLoggingDelegate: MoodLoggingDelegate?
-    var screenSlider: ScreenSliderViewController?
+    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
-    lazy var headerLabel = HeaderLabel.init("More Details", .largeScreen)
+    lazy var headerLabel = HeaderLabel.init("Log Title", .largeScreen)
     
     lazy var backButton: UIButton = {
         let button = UIButton()
@@ -32,15 +31,7 @@ final class DetailLoggingMoodViewController: ViewController {
         return button
     }()
     
-    lazy var tagsStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .equalSpacing
-        stack.alignment = .trailing
-        return stack
-    }()
-    
-    lazy var headLineTextField: TextFieldWithLabel = {
+    lazy var headLineTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
@@ -49,126 +40,79 @@ final class DetailLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tagTextFieldWithLabel: TextFieldWithLabel = {
-        let textFieldWithLabel = TextFieldWithLabel()
-        textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
-        textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
-        textFieldWithLabel.textField.placeholder = "Add a Tag..."
-        textFieldWithLabel.labelTitle = "What did you do today?"
-        return textFieldWithLabel
-    }()
-    
     lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
-        
 }
 
 // MARK: - Override Methods
-extension DetailLoggingMoodViewController {
+extension HeadlineLoggingMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
         view.backgroundColor = .clear
-        self.view.addGestureRecognizer(tapToTogglekeyboardGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        headLineTextField.textField.placeholder = "I'm Feeling \(moodLoggingDelegate?.emotion?.adj ?? "")?..."
-        screenSlider?.backwardNavigationEnabled = false
+        headLineTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
+        screenSliderDelegate?.backwardNavigationEnabled = false
+        setupKeyboard()
     }
     
 }
 
 // MARK: - Class Methods
-extension DetailLoggingMoodViewController {
+extension HeadlineLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
-        // Checks and reformats the text
         guard
-            let headline: String = self.headLineTextField.textField.text?.trim(),
-            self.headLineTextField.textField.text!.trim().count > 1
-        else {
-            // Provides feedback if this check fails
-            headLineTextField.textField.shake()
-            headLineTextField.resetHint(withText: "Describe your mood in at least 2 characters")
-            
-            // Sets the value to nil and returns early
-            return nil
-        }
-        
-        // If validation passes, reset the hint
-        headLineTextField.resetHint()
-        
-        // Then update the textfield and inform the delegate of the new value
-//        self.headLineTextField.textField.text = headline
-        moodLoggingDelegate?.headline = headline
+            let headline: String = self.headLineTextFieldWithLabel.textField.text?.trim(),
+            self.headLineTextFieldWithLabel.textField.text!.trim().count > 1
+        else { return nil }
+        moodLogDataCollectionDelegate?.headline = headline
+        headLineTextFieldWithLabel.resetHint()
+        self.headLineTextFieldWithLabel.textField.text = headline
         return headline
-    }
-    
-    @objc func validateTags() -> String? {
-        print(self.tagTextFieldWithLabel.textField.text?.trim())
-        // Checks and reformats the text
-        guard
-            let tag: String = self.tagTextFieldWithLabel.textField.text?.trim(),
-            self.tagTextFieldWithLabel.textField.text!.trim().count > 1
-        else {
-            // Provides feedback if this check fails
-            tagTextFieldWithLabel.textField.shake()
-            tagTextFieldWithLabel.resetHint(withText: "Tags should be at least 2 characters")
-            
-            // Sets the value to nil and returns early
-            return nil
-        }
-        print(tag)
-        // If validation passes, reset the hint
-        tagTextFieldWithLabel.resetHint()
-        
-        let button = UIButton()
-        button.setTitle(tag, for: .normal)
-        tagsStack.addArrangedSubview(button)
-        
-        // Then update the textfield and inform the delegate of the new value
-        self.tagTextFieldWithLabel.textField.text = tag
-        return tag
     }
 }
 
 // MARK: - TextField Delegate Methods
-extension DetailLoggingMoodViewController: UITextFieldDelegate {
-    
+extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
     func setupKeyboard() {
-        headLineTextField.textField.delegate = self
-        tagTextFieldWithLabel.textField.delegate = self
-        self.headLineTextField.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
-        self.tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateTags), for: .editingChanged)
-        toggleFirstResponder()
+        headLineTextFieldWithLabel.textField.delegate = self
+        self.headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+        view.addGestureRecognizer(tapToTogglekeyboardGesture)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if headLineTextField.textField.isFirstResponder {
-            if validateHeadline() == nil { return false }
+        if let headline = validateHeadline() {
+            headLineTextFieldWithLabel.textField.resignFirstResponder()
+            screenSliderDelegate?.nextScreen()
+            moodLogDataCollectionDelegate?.headline = headline
+            return true
+        } else {
+            moodLogDataCollectionDelegate?.headline = nil
+            headLineTextFieldWithLabel.textField.shake()
+            headLineTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters")
         }
-        if tagTextFieldWithLabel.textField.isFirstResponder {
-            if validateTags() == nil { return false }
-        }
-//        toggleFirstResponder()
-        return true
+        return false
     }
     
     @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if headLineTextField.textField.isFirstResponder { tagTextFieldWithLabel.textField.becomeFirstResponder() }
-        if tagTextFieldWithLabel.textField.isFirstResponder { headLineTextField.textField.becomeFirstResponder() }
+        if headLineTextFieldWithLabel.textField.isFirstResponder {
+            headLineTextFieldWithLabel.textField.resignFirstResponder()
+        } else {
+            headLineTextFieldWithLabel.textField.becomeFirstResponder()
+        }
     }
-    
 }
 
 // MARK: - Buttons
-extension DetailLoggingMoodViewController {
+extension HeadlineLoggingMoodViewController {
     
     @objc func goBack() {
-        screenSlider?.backwardNavigationEnabled = true
-        self.screenSlider?.previousScreen()
+        screenSliderDelegate?.backwardNavigationEnabled = true
+        self.screenSliderDelegate?.previousScreen()
     }
     
     @objc func buttonActive(sender: UIButton) {
@@ -226,14 +170,11 @@ extension DetailLoggingMoodViewController {
 }
 
 // MARK: - View Building
-extension DetailLoggingMoodViewController: ViewBuilding {
+extension HeadlineLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
-        self.view.addSubview(headLineTextField)
-        self.view.addSubview(tagsStack)
-        self.view.addSubview(tagTextFieldWithLabel)
-        
+        self.view.addSubview(headLineTextFieldWithLabel)
         view.addSubview(backButton)
         
         backButton.snp.makeConstraints { make in
@@ -247,21 +188,10 @@ extension DetailLoggingMoodViewController: ViewBuilding {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
-        headLineTextField.snp.makeConstraints { (make) in
+        headLineTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
         }
-        tagTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(headLineTextField.snp.bottom).offset(25)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
-            make.height.greaterThanOrEqualTo(60)
-        }
-        tagsStack.snp.makeConstraints { (make) in
-            make.top.equalTo(tagTextFieldWithLabel.snp.bottom).offset(25)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
-            make.height.greaterThanOrEqualTo(40)
-        }
     }
-    
 }

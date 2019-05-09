@@ -18,7 +18,7 @@ class ViewSliderViewController: UIViewController {
         return pageControl
     }()
     
-    weak var delegate: ScreenSliderViewControllerDelegate?
+    weak var delegate: ScreenSliderDelegate?
     var slides: [UIView] = [] {
         didSet { setup() }
     }

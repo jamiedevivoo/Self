@@ -2,9 +2,9 @@ import UIKit
 
 class MessageStackView: UIStackView {
     
-    lazy var greetingLabel = UILabel.messageGreeting
-    lazy var nameLabel = UILabel.messageName
-    lazy var messageTextLabel = UILabel.messageText
+    lazy var greetingLabel = SpecialLabel("", .messageGreeting)
+    lazy var nameLabel = SpecialLabel("", .messageName)
+    lazy var messageTextLabel = SpecialLabel("", .messageText)
     var messageResponseStack: MessageResponsesStack
 
     init(frame: CGRect, message: (message: Feed.Status.Message, responses: [Feed.Status.Response])) {

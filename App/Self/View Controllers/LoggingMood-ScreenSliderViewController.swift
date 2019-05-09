@@ -10,6 +10,7 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var valenceRating: Double?
 
     var wildcard: Mood.Wildcard?
+    var diaryEntry: String?
     var emotion: Mood.Emotion?
     var tags = [Tag]()
     
@@ -51,30 +52,36 @@ extension LoggingAMoodScreenSliderViewController {
 extension LoggingAMoodScreenSliderViewController {
     
     func setupScreens() -> [UIViewController] {
-        let moodLoggingAMoodViewController = MoodLoggingMoodViewController()
-        moodLoggingAMoodViewController.dataCollectionDelegate = self
-        moodLoggingAMoodViewController.screenSlider = self
-        moodLoggingAMoodViewController.moodLoggingDelegate = self
+        let moodStage = MoodLoggingMoodViewController()
+        moodStage.moodLogDataCollectionDelegate = self
+        moodStage.screenSliderDelegate = self
         
-        let detailLoggingAMoodViewController = DetailLoggingMoodViewController()
-        detailLoggingAMoodViewController.dataCollectionDelegate = self
-        detailLoggingAMoodViewController.screenSlider = self
-        detailLoggingAMoodViewController.moodLoggingDelegate = self
+        let headlineStage = HeadlineLoggingMoodViewController()
+        headlineStage.moodLogDataCollectionDelegate = self
+        headlineStage.screenSliderDelegate = self
         
-        let wildcardLoggingAMoodViewController = WildcardLoggingMoodViewController()
-        wildcardLoggingAMoodViewController.dataCollectionDelegate = self
-        wildcardLoggingAMoodViewController.screenSlider = self
-        wildcardLoggingAMoodViewController.moodLoggingDelegate = self
+        let tagsStage = TagsLoggingMoodViewController()
+        headlineStage.moodLogDataCollectionDelegate = self
+        headlineStage.screenSliderDelegate = self
         
-        let overviewLoggingAMoodViewController = OverviewLoggingMoodViewController()
-        overviewLoggingAMoodViewController.dataCollectionDelegate = self
-        overviewLoggingAMoodViewController.screenSlider = self
-        overviewLoggingAMoodViewController.moodLoggingDelegate = self
+        let diaryStage = DiaryLoggingMoodViewController()
+        diaryStage.moodLogDataCollectionDelegate = self
+        diaryStage.screenSliderDelegate = self
         
-        return [moodLoggingAMoodViewController,
-                detailLoggingAMoodViewController,
-                wildcardLoggingAMoodViewController,
-                overviewLoggingAMoodViewController]
+        let wildcardStage = WildcardLoggingMoodViewController()
+        wildcardStage.moodLogDataCollectionDelegate = self
+        wildcardStage.screenSliderDelegate = self
+        
+        let overviewStage = OverviewLoggingMoodViewController()
+        overviewStage.moodLogDataCollectionDelegate = self
+        overviewStage.screenSliderDelegate = self
+        
+        return [moodStage,
+                headlineStage,
+                tagsStage,
+                wildcardStage,
+                diaryStage,
+                overviewStage]
     }
     
 }
@@ -82,25 +89,19 @@ extension LoggingAMoodScreenSliderViewController {
 // MARK: - Class Methods
 extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate {
     
-    func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool {
+    func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
         
-        if nextViewController.isKind(of: DetailLoggingMoodViewController.self) {
+        if currentViewController.isKind(of: MoodLoggingMoodViewController.self) {
             guard arousalRating != nil, valenceRating != nil, emotion != nil else {
                 return false
             }
         }
-//
-//        if nextViewController.isKind(of: WildcardLoggingMoodViewController.self) {
-//            if arousalRating == nil || valenceRating == nil  {
-//                return false
-//            }
-//        }
-//        
-//        if nextViewController.isKind(of: WildcardLoggingMoodViewController.self) {
-//            if arousalRating == nil || valenceRating == nil  {
-//                return false
-//            }
-//        }
+        
+        if currentViewController.isKind(of: HeadlineLoggingMoodViewController.self) {
+            guard headline != nil else {
+                return false
+            }
+        }
         
         return true
     }
@@ -152,7 +153,7 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
 }
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension LoggingAMoodScreenSliderViewController: ScreenSliderViewControllerDelegate {
+extension LoggingAMoodScreenSliderViewController: ScreenSliderDelegate {
     func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController) {
         
     }

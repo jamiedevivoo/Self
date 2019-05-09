@@ -58,8 +58,8 @@ extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
 }
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension OnboardingScreenSliderViewController: ScreenSliderViewControllerDelegate {
-    func validateDataBeforeNextScreen(nextViewController: UIViewController) -> Bool {
+extension OnboardingScreenSliderViewController: ScreenSliderDelegate {
+    func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
         if nextViewController.isMember(of: InductionOnboardingViewController.self) {
             guard name != nil else {
                 print("Next Screen failed Validation")

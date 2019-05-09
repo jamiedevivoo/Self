@@ -6,7 +6,7 @@ class ScreenSliderViewController: UIPageViewController {
     
     // MARK: - Properties
     /// SliderDelegate
-    weak var sliderDelegate: ScreenSliderViewControllerDelegate?
+    weak var sliderDelegate: ScreenSliderDelegate?
     
     /// Page Indicator View
     lazy var pageIndicator: UIPageControl = PageIndicator()
@@ -145,7 +145,7 @@ extension ScreenSliderViewController: UIPageViewControllerDataSource {
         if viewControllerIndex < self.activeScreens.count - 1 {
             let nextScreen = self.activeScreens[viewControllerIndex + 1]
             guard let sliderDelegate = sliderDelegate else { return nextScreen }
-            guard sliderDelegate.validateDataBeforeNextScreen(nextViewController: nextScreen) else { return nil }
+            guard sliderDelegate.validateDataBeforeNextScreen(currentViewController: viewController, nextViewController: nextScreen) else { return nil }
             return nextScreen
         } else {
             /// Otherwise if looping is enabled, go to the first slide.

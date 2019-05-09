@@ -2,14 +2,14 @@ import UIKit
 import Firebase
 import SnapKit
 
-final class WildcardLoggingMoodViewController: ViewController {
+final class DiaryLoggingMoodViewController: ViewController {
     
     // Delegates
     weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
-    lazy var headerLabel = HeaderLabel.init("Wildcard Question", .largeScreen)
+    lazy var headerLabel = HeaderLabel.init("Diary Entry", .largeScreen)
     
     lazy var backButton: UIButton = {
         let button = UIButton()
@@ -31,11 +31,11 @@ final class WildcardLoggingMoodViewController: ViewController {
         return button
     }()
     
-    lazy var wildcardTextFieldWithLabel: TextFieldWithLabel = {
+    lazy var diaryTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
-        textFieldWithLabel.textField.placeholder = "Question..."
+        textFieldWithLabel.textField.placeholder = "Diary..."
         textFieldWithLabel.labelTitle = "Describe how your feeling"
         return textFieldWithLabel
     }()
@@ -44,7 +44,7 @@ final class WildcardLoggingMoodViewController: ViewController {
 }
 
 // MARK: - Override Methods
-extension WildcardLoggingMoodViewController {
+extension DiaryLoggingMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,60 +54,60 @@ extension WildcardLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        wildcardTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
+        diaryTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
         setupKeyboard()
     }
     
 }
 
 // MARK: - Class Methods
-extension WildcardLoggingMoodViewController {
+extension DiaryLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
         guard
-            let headline: String = self.wildcardTextFieldWithLabel.textField.text?.trim(),
-            self.wildcardTextFieldWithLabel.textField.text!.trim().count > 1
+            let headline: String = self.diaryTextFieldWithLabel.textField.text?.trim(),
+            self.diaryTextFieldWithLabel.textField.text!.trim().count > 1
             else { return nil }
         moodLogDataCollectionDelegate?.headline = headline
-        wildcardTextFieldWithLabel.resetHint()
-        self.wildcardTextFieldWithLabel.textField.text = headline
+        diaryTextFieldWithLabel.resetHint()
+        self.diaryTextFieldWithLabel.textField.text = headline
         return headline
     }
 }
 
 // MARK: - TextField Delegate Methods
-extension WildcardLoggingMoodViewController: UITextFieldDelegate {
+extension DiaryLoggingMoodViewController: UITextFieldDelegate {
     func setupKeyboard() {
-        wildcardTextFieldWithLabel.textField.delegate = self
-        self.wildcardTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+        diaryTextFieldWithLabel.textField.delegate = self
+        self.diaryTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
         view.addGestureRecognizer(tapToTogglekeyboardGesture)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let headline = validateHeadline() {
-            wildcardTextFieldWithLabel.textField.resignFirstResponder()
+            diaryTextFieldWithLabel.textField.resignFirstResponder()
             screenSliderDelegate?.nextScreen()
             moodLogDataCollectionDelegate?.headline = headline
             return true
         } else {
             moodLogDataCollectionDelegate?.headline = nil
-            wildcardTextFieldWithLabel.textField.shake()
-            wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters")
+            diaryTextFieldWithLabel.textField.shake()
+            diaryTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters")
         }
         return false
     }
     
     @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if wildcardTextFieldWithLabel.textField.isFirstResponder {
-            wildcardTextFieldWithLabel.textField.resignFirstResponder()
+        if diaryTextFieldWithLabel.textField.isFirstResponder {
+            diaryTextFieldWithLabel.textField.resignFirstResponder()
         } else {
-            wildcardTextFieldWithLabel.textField.becomeFirstResponder()
+            diaryTextFieldWithLabel.textField.becomeFirstResponder()
         }
     }
 }
 
 // MARK: - Buttons
-extension WildcardLoggingMoodViewController {
+extension DiaryLoggingMoodViewController {
     
     @objc func goBack() {
         screenSliderDelegate?.backwardNavigationEnabled = true
@@ -169,11 +169,11 @@ extension WildcardLoggingMoodViewController {
 }
 
 // MARK: - View Building
-extension WildcardLoggingMoodViewController: ViewBuilding {
+extension DiaryLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
-        self.view.addSubview(wildcardTextFieldWithLabel)
+        self.view.addSubview(diaryTextFieldWithLabel)
         view.addSubview(backButton)
         
         backButton.snp.makeConstraints { make in
@@ -187,7 +187,7 @@ extension WildcardLoggingMoodViewController: ViewBuilding {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
-        wildcardTextFieldWithLabel.snp.makeConstraints { (make) in
+        diaryTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.height.greaterThanOrEqualTo(60)
@@ -195,7 +195,7 @@ extension WildcardLoggingMoodViewController: ViewBuilding {
     }
 }
 
-extension WildcardLoggingMoodViewController {
+extension DiaryLoggingMoodViewController {
     func getWildcard() {
         let wildcardRef: CollectionReference = Firestore.firestore().collection("wildcards")
         let randomDocumentID = String(Int.random(in: 0..<6))

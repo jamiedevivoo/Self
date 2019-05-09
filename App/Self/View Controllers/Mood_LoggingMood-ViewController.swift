@@ -4,9 +4,8 @@ import SnapKit
 //: TODO: This class needs a lot of tidying up
 final class MoodLoggingMoodViewController: ViewController {
     
-    weak var dataCollectionDelegate: DataCollectionSequenceDelegate?
-    weak var moodLoggingDelegate: MoodLoggingDelegate?
-    weak var screenSlider: ScreenSliderViewController?
+    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     lazy var headerLabel: UILabel = {
         let label = ParaLabel("Log your Mood by tapping on the screen", .centerPageText)
@@ -145,13 +144,13 @@ extension MoodLoggingMoodViewController {
         view.layer.addSublayer(markSpotlight)
         view.backgroundColor = .clear
         setupChildViews()
-        screenSlider?.forwardNavigationEnabled = false
+        screenSliderDelegate?.forwardNavigationEnabled = false
         super.navigationController?.isNavigationBarHidden = true
         navigationController?.isToolbarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        screenSlider?.gestureSwipingEnabled = false
+        screenSliderDelegate?.gestureSwipingEnabled = false
         markSpotlight.add(pulseAnimations, forKey: nil)
         tapToConfirm.isEnabled = true
     }
@@ -451,7 +450,7 @@ extension MoodLoggingMoodViewController {
         self.tapToConfirm.isEnabled = false
         
         /// Send this screens data to the delegate before attempting to continue
-        self.dataCollectionDelegate?.setData(
+        self.moodLogDataCollectionDelegate?.setData(
             ["arousalRating": userRatings.arousal,
              "valenceRating": userRatings.valence,
              "emotion": emotion]
@@ -461,13 +460,13 @@ extension MoodLoggingMoodViewController {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.3)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
-        moodLoggingDelegate?.background.startPoint = CGPoint(x: (moodLoggingDelegate?.background.startPoint.x)!, y: 0)
+        moodLogDataCollectionDelegate?.background.startPoint = CGPoint(x: (moodLogDataCollectionDelegate?.background.startPoint.x)!, y: 0)
         CATransaction.commit()
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(1.5)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
-        moodLoggingDelegate?.background.colors =
+        moodLogDataCollectionDelegate?.background.colors =
             [primaryBackgroundColour.cgColor,
              primaryBackgroundColour.cgColor,
              primaryBackgroundColour.cgColor,
@@ -476,11 +475,11 @@ extension MoodLoggingMoodViewController {
         CATransaction.commit()
         
         /// Enable forward navigation and gestureSwiping again
-        self.screenSlider?.forwardNavigationEnabled = true
-        self.screenSlider?.gestureSwipingEnabled = true
+        self.screenSliderDelegate?.forwardNavigationEnabled = true
+        self.screenSliderDelegate?.gestureSwipingEnabled = true
         
         /// Informt he delegate to attempt to proceed
-        self.screenSlider?.nextScreen()
+        self.screenSliderDelegate?.nextScreen()
         
         self.tapToConfirm.setTitle("Edit Log", for: .normal)
     }
@@ -528,8 +527,8 @@ extension  MoodLoggingMoodViewController {
         markSpotlight.colors = [primaryBackgroundColour.withAlphaComponent(0.9).cgColor,
                                 primaryBackgroundColour.withAlphaComponent(0.5).cgColor,
                                 primaryBackgroundColour.withAlphaComponent(0).cgColor]
-        moodLoggingDelegate?.background.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
-        moodLoggingDelegate?.background.startPoint = CGPoint(x: xScale, y: yScale)
+        moodLogDataCollectionDelegate?.background.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
+        moodLogDataCollectionDelegate?.background.startPoint = CGPoint(x: xScale, y: yScale)
         CATransaction.commit()
         
     }

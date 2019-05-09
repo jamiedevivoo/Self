@@ -14,14 +14,16 @@
 		7D10F5E1226DEEC50063CEB8 /* UIView+Shake-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */; };
 		7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */; };
 		7D10F5E5226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */; };
-		7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift */; };
+		7D10F5E7226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */; };
 		7D10F5E9226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */; };
 		7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */; };
 		7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */; };
 		7D187F122258D1A000A9E9AE /* ActionCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionCell2.swift */; };
 		7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */; };
 		7D21FECF2283C8C40001FE62 /* StaticMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FECE2283C8C40001FE62 /* StaticMessages.swift */; };
-		7D21FED12283E84D0001FE62 /* ProfileButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED02283E84D0001FE62 /* ProfileButtonDelegate.swift */; };
+		7D21FED32283FD940001FE62 /* Tags_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */; };
+		7D21FED52284035B0001FE62 /* Diary_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */; };
+		7D21FED722840C490001FE62 /* SpecialLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED622840C490001FE62 /* SpecialLabel.swift */; };
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
@@ -145,14 +147,16 @@
 		7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shake-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trim-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggingMood-ScreenSliderViewController.swift"; sourceTree = "<group>"; };
-		7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
+		7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Headline_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wildcard_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Overview_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D187F112258D1A000A9E9AE /* ActionCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell2.swift; sourceTree = "<group>"; };
 		7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OfflineStaticData.json; sourceTree = "<group>"; };
 		7D21FECE2283C8C40001FE62 /* StaticMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticMessages.swift; sourceTree = "<group>"; };
-		7D21FED02283E84D0001FE62 /* ProfileButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonDelegate.swift; sourceTree = "<group>"; };
+		7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tags_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
+		7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diary_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
+		7D21FED622840C490001FE62 /* SpecialLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialLabel.swift; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/View Controllers/ViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -282,6 +286,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D21FED822840D1C0001FE62 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
+				7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */,
+				7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */,
+				7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */,
+				7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */,
+				7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7D21FED922840ED30001FE62 /* Standard Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3D75723225CD5A900E87F67 /* HeaderLabel.swift */,
+				7DAEEB782283920600EB839C /* ParaLabel.swift */,
+				7D21FED622840C490001FE62 /* SpecialLabel.swift */,
+				7D47AC67225FD380004BF898 /* Button.swift */,
+				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
+				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
+			);
+			path = "Standard Reusable Views";
+			sourceTree = "<group>";
+		};
 		7D77E5D6227FA2E000946FB7 /* TODAY */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,14 +376,9 @@
 		7DD6CBF92266B38F00F47E63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7D21FED922840ED30001FE62 /* Standard Reusable Views */,
 				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
 				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
-				A3D75723225CD5A900E87F67 /* HeaderLabel.swift */,
-				7DAEEB782283920600EB839C /* ParaLabel.swift */,
-				7DDF39222261929B00C761B4 /* LabelExtensions.swift */,
-				7D47AC67225FD380004BF898 /* Button.swift */,
-				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
-				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
 				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
 				A3683566226E0B0D005C8600 /* PageIndicator.swift */,
 				A334099422457023004CBB2A /* Loader.swift */,
@@ -366,12 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
-				7D21FED02283E84D0001FE62 /* ProfileButtonDelegate.swift */,
-				7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */,
-				7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */,
-				7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */,
-				7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */,
-				7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */,
 				A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */,
 				A3683568226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift */,
 				7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */,
@@ -426,6 +445,7 @@
 				A3438E9022456B86004D21BB /* AppDelegate.swift */,
 				A35EA86422456FB600592D88 /* AppManager.swift */,
 				A3438E9222456B86004D21BB /* AppContainerViewController.swift */,
+				7D21FED822840D1C0001FE62 /* Extensions */,
 				7DDF39212261014C00C761B4 /* Protocols+Extensions */,
 				A35EA85D22456FA700592D88 /* Models */,
 				A3C860B6227B5DA9000D4034 /* Model Controllers */,
@@ -592,8 +612,10 @@
 			children = (
 				7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */,
 				7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */,
-				7D10F5E6226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift */,
+				7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */,
+				7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */,
 				7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */,
+				7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */,
 				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */,
 				7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */,
 			);
@@ -875,7 +897,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D21FED12283E84D0001FE62 /* ProfileButtonDelegate.swift in Sources */,
 				7DDF39232261929B00C761B4 /* LabelExtensions.swift in Sources */,
 				7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */,
 				7D77E601227FA35400946FB7 /* GradientView.swift in Sources */,
@@ -892,6 +913,7 @@
 				7DD6CC1422672E3600F47E63 /* Achivement-Protocol.swift in Sources */,
 				7D10F5E1226DEEC50063CEB8 /* UIView+Shake-Extension.swift in Sources */,
 				7D77E5DC227FA2F600946FB7 /* TodayViewController+CollectionView.swift in Sources */,
+				7D21FED722840C490001FE62 /* SpecialLabel.swift in Sources */,
 				7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */,
 				7DF14B4D225F25A00090D299 /* Tag.swift in Sources */,
 				A3438E9822456B86004D21BB /* AppDelegate.swift in Sources */,
@@ -924,6 +946,7 @@
 				7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */,
 				7D8E4321227E5B2000243139 /* Mood.swift in Sources */,
 				7D77E53E227F805900946FB7 /* ActionSelectorProtocolDelegate.swift in Sources */,
+				7D21FED32283FD940001FE62 /* Tags_LoggingMood-ViewController.swift in Sources */,
 				7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */,
 				A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */,
 				7D77E602227FA35400946FB7 /* UICollectionView+Reusable.swift in Sources */,
@@ -944,7 +967,8 @@
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
 				7D77E5F2227FA33900946FB7 /* BaseRoundedCardCell.swift in Sources */,
-				7D10F5E7226E5FAE0063CEB8 /* Detail_LoggingMood-ViewController.swift in Sources */,
+				7D10F5E7226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift in Sources */,
+				7D21FED52284035B0001FE62 /* Diary_LoggingMood-ViewController.swift in Sources */,
 				7D77E548227F93B900946FB7 /* ExpandableProtocol.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,

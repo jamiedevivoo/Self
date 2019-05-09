@@ -1,6 +1,6 @@
 import UIKit
 
-protocol MoodLoggingDelegate: class {
+protocol MoodLoggingDelegate: DataCollectionSequenceDelegate {
     var background: CAGradientLayer { get set }
     var headline: String? { get set }
     var note: String? { get set }
