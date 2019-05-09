@@ -2,8 +2,8 @@ import UIKit
 import SnapKit
 
 class NoActionsView: UIView {
-    lazy var headerLabel: UILabel = HeaderLabel("All done here! 🤘", .centerPageTitle)
-    lazy var subHeaderLabel: UILabel = ParaLabel("You've completed all your Challenges for today.", .centerPageText)
+    lazy var headerLabel: UILabel = HeaderLabel(StaticMessages.get["stateMessage"]["challenge"]["missing"]["title"].stringValue, .centerPageTitle)
+    lazy var subHeaderLabel: UILabel = ParaLabel(StaticMessages.get["stateMessage"]["challenge"]["missing"]["title"].stringValue, .centerPageText)
     
     lazy var button = Button(title: "Unlock todays challenges", action: #selector(ActionsViewController.unlockAction), type: .tag)
 

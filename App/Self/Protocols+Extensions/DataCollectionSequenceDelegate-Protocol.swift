@@ -1,4 +1,5 @@
 import UIKit
+import SwiftyJSON
 
 protocol UpdateAccountViews {
     var accountDependantViews: [UIView] { get }

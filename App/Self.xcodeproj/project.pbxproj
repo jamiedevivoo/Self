@@ -20,6 +20,7 @@
 		7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */; };
 		7D187F122258D1A000A9E9AE /* ActionCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionCell2.swift */; };
 		7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */; };
+		7D21FECF2283C8C40001FE62 /* StaticMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FECE2283C8C40001FE62 /* StaticMessages.swift */; };
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
@@ -149,6 +150,7 @@
 		7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Overview_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D187F112258D1A000A9E9AE /* ActionCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell2.swift; sourceTree = "<group>"; };
 		7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OfflineStaticData.json; sourceTree = "<group>"; };
+		7D21FECE2283C8C40001FE62 /* StaticMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticMessages.swift; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/View Controllers/ViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -447,6 +449,7 @@
 				A3B76AE7227D039300282ECB /* INSIGHT */,
 				A3B76AE8227D03A100282ECB /* TAG */,
 				A3B76AE9227D041300282ECB /* COLOUR */,
+				7D21FECE2283C8C40001FE62 /* StaticMessages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -964,6 +967,7 @@
 				A3683569226E1B5D005C8600 /* ScreenSliderViewController-Protocol.swift in Sources */,
 				7D77E5F3227FA33900946FB7 /* GetStartedListCell.swift in Sources */,
 				7DAEEB792283920600EB839C /* ParaLabel.swift in Sources */,
+				7D21FECF2283C8C40001FE62 /* StaticMessages.swift in Sources */,
 				7DAEEB76228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift in Sources */,
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
 				7DD6CC062266B6CF00F47E63 /* Community.swift in Sources */,

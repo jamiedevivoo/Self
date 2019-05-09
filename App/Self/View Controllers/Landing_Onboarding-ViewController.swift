@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 import Lottie
 import SwiftyJSON
-// swiftlint:disable force_try
 
 final class LandingOnboardingViewController: ViewController {
 
@@ -61,19 +60,13 @@ private extension LandingOnboardingViewController {
     
     func createOnboardingScreens() -> [LandingSlideView] {
         
-        let staticDataFile = Bundle.main.path(forResource: "OfflineStaticData", ofType: "json")!
-        let staticData = NSData(contentsOfFile: staticDataFile)!
-        let staticDataJSON = try! JSON(data: staticData as Data)
-        
-        print(staticDataFile, staticData, staticDataJSON)
-                
         let onboardingSlideOne: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
 //            onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("profile")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Personal"
-            onboardingSlide.desc.text = staticDataJSON["splashScreen"]["personal"]["text"].stringValue
+            onboardingSlide.desc.text = StaticMessages.get["splashScreen"]["personal"]["text"].stringValue
             return onboardingSlide
         }()
         
@@ -83,7 +76,7 @@ private extension LandingOnboardingViewController {
             onboardingSlide.animationView.animation = Animation.named("goal")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Challenges"
-            onboardingSlide.desc.text = staticDataJSON["splashScreen"]["challenges"]["text"].stringValue
+            onboardingSlide.desc.text = StaticMessages.get["splashScreen"]["challenges"]["text"].stringValue
             return onboardingSlide
         }()
         
@@ -93,7 +86,7 @@ private extension LandingOnboardingViewController {
             onboardingSlide.animationView.animation = Animation.named("heart")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Journal"
-            onboardingSlide.desc.text = staticDataJSON["splashScreen"]["journal"]["text"].stringValue
+            onboardingSlide.desc.text = StaticMessages.get["splashScreen"]["journal"]["text"].stringValue
             return onboardingSlide
         }()
         

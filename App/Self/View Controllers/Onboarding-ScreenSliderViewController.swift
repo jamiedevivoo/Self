@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import SwiftyJSON
 
 final class OnboardingScreenSliderViewController: ScreenSliderViewController {
     var name: String?

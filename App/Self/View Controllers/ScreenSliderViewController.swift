@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import SwiftyJSON
 
 class ScreenSliderViewController: UIPageViewController {
     
@@ -126,8 +127,7 @@ extension ScreenSliderViewController {
 }
 
 // MARK: - UIPageViewControllerDataSourceDelegate  Methods
-extension ScreenSliderViewController: UIPageViewControllerDataSource {
-    
+extension ScreenSliderViewController: UIPageViewControllerDataSource {    
     // # FIXME: There is a bug here somewhere.
     // # Steps to repeat:
     // - If the user swpies forward without completing the required fields, they'll get sent to a blank sceen, if the user then tries to swipe backwards or forwards they're stuck in a loop where they continually get sent to the blank screen.
