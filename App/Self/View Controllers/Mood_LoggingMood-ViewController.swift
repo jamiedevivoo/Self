@@ -81,6 +81,17 @@ final class MoodLoggingMoodViewController: ViewController {
         return animations
     }()
     
+    lazy var shadowAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "shadowOpacity")
+        animation.fromValue = 0.1
+        animation.toValue = 0.3
+        animation.duration = 1.5
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.autoreverses = true
+        animation.repeatCount = Float.greatestFiniteMagnitude
+        return animation
+    }()
+    
     lazy var helpScreen: UIViewController = {
         let vc = HelpMoodLoggingMoodViewController()
         vc.modalPresentationStyle = .overCurrentContext
@@ -176,7 +187,9 @@ extension MoodLoggingMoodViewController {
     }
     
     @objc func focusButton(_ button: UIButton) {
-        let duration = 0.6
+        let duration = 0.8
+        
+        self.tapToConfirm.layer.removeAllAnimations()
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
@@ -217,6 +230,7 @@ extension MoodLoggingMoodViewController {
                         button.alpha -= 0.2
                         button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
+        self.tapToConfirm.layer.add(shadowAnimation, forKey: nil)
     }
 }
 
@@ -354,6 +368,7 @@ extension MoodLoggingMoodViewController {
             self.tapToConfirm.layer.shadowOpacity = 0.35
             self.tapToConfirm.layer.shadowOffset = CGSize(width: 0.0, height: 8.0)
         CATransaction.commit()
+        self.tapToConfirm.layer.add(shadowAnimation, forKey: nil)
         
         /// Reshow hidden views with quick animation
         let overlayDuration = 0.5

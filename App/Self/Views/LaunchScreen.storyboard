@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,22 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Copyright © 2019 Jamie De Vivo. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="0.0" y="440" width="375" height="207"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="219" text="Copyright © 2019 Jamie De Vivo. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
+                                <rect key="frame" x="51.5" y="638.5" width="272" height="13.5"/>
+                                <viewLayoutGuide key="safeArea" id="YGp-2z-rSX"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="11"/>
                                 <color key="textColor" red="0.47843137254901963" green="0.69803921568627447" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="350" verticalCompressionResistancePriority="800" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="oHf-E0-EXL">
-                                <rect key="frame" x="50" y="175" width="275" height="150"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="350" verticalCompressionResistancePriority="800" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="oHf-E0-EXL">
+                                <rect key="frame" x="66" y="238.5" width="243" height="40"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="oHf-E0-EXL" secondAttribute="height" multiplier="227:30" id="XQc-T3-s4w"/>
+                                    <constraint firstAttribute="width" secondItem="oHf-E0-EXL" secondAttribute="height" multiplier="454:75" id="Irr-bN-eOs"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="XFF-Nu-T8R"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="The Self App" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="0.0" y="340" width="375" height="45"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Self App" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                                <rect key="frame" x="77" y="341" width="221.5" height="45"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <viewLayoutGuide key="safeArea" id="tev-Vz-vkn"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
@@ -44,13 +45,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.62984352899710605" green="0.91601036932642443" blue="1" alpha="0.19941131161971831" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="oHf-E0-EXL" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="1Eu-zj-LhU"/>
-                            <constraint firstItem="oHf-E0-EXL" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="200" id="GjY-MT-iT2"/>
-                            <constraint firstAttribute="trailing" secondItem="oHf-E0-EXL" secondAttribute="trailing" constant="50" id="KWB-ge-mhQ"/>
-                            <constraint firstItem="oHf-E0-EXL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="50" id="fbo-Q7-6qC"/>
-                            <constraint firstItem="oHf-E0-EXL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kVS-oq-lVg"/>
-                            <constraint firstItem="oHf-E0-EXL" firstAttribute="centerX" relation="lessThanOrEqual" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="oZO-N8-7Rz"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="oHf-E0-EXL" secondAttribute="bottom" constant="8" symbolic="YES" id="rIM-Wc-eOK"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="30" id="9Jz-mh-coR"/>
+                            <constraint firstItem="oHf-E0-EXL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-75" id="9mb-nm-09I"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CiH-6U-dUu"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" constant="-15" id="D3Y-lJ-vXs"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OYj-1R-Rrf"/>
+                            <constraint firstItem="oHf-E0-EXL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="50" id="V99-C8-FNo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oHf-E0-EXL" secondAttribute="trailing" constant="50" id="cVH-4Z-cUz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>

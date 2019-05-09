@@ -82,6 +82,7 @@
 		7DCF19702284AF2000289DCC /* thumbLike.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19632284AF1F00289DCC /* thumbLike.json */; };
 		7DCF19712284AF2000289DCC /* loadingIcon.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19642284AF1F00289DCC /* loadingIcon.json */; };
 		7DCF19722284AF2000289DCC /* starsCelebrating.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19652284AF2000289DCC /* starsCelebrating.json */; };
+		7DCF19742284B30A00289DCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19732284B30A00289DCC /* LaunchScreen.storyboard */; };
 		7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */; };
 		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
 		7DD6CBFE2266B50300F47E63 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBFD2266B50300F47E63 /* Help.swift */; };
@@ -228,6 +229,7 @@
 		7DCF19632284AF1F00289DCC /* thumbLike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = thumbLike.json; sourceTree = "<group>"; };
 		7DCF19642284AF1F00289DCC /* loadingIcon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingIcon.json; sourceTree = "<group>"; };
 		7DCF19652284AF2000289DCC /* starsCelebrating.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starsCelebrating.json; sourceTree = "<group>"; };
+		7DCF19732284B30A00289DCC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Views/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodWildcard.swift; sourceTree = "<group>"; };
 		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
 		7DD6CBFD2266B50300F47E63 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */,
 				7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */,
 				A3438E9C22456BBC004D21BB /* Assets.xcassets */,
+				7DCF19732284B30A00289DCC /* LaunchScreen.storyboard */,
 				A30F5412227C5D4C00306AAA /* Animations */,
 			);
 			path = Self;
@@ -816,6 +819,7 @@
 				7DCF196B2284AF2000289DCC /* fingertouch.json in Resources */,
 				7DCF19712284AF2000289DCC /* loadingIcon.json in Resources */,
 				7DCF196D2284AF2000289DCC /* circleLoading.json in Resources */,
+				7DCF19742284B30A00289DCC /* LaunchScreen.storyboard in Resources */,
 				7DCF19692284AF2000289DCC /* goal.json in Resources */,
 				7DCF19702284AF2000289DCC /* thumbLike.json in Resources */,
 				7D77E5F7227FA33900946FB7 /* WorldPremiereCell.xib in Resources */,
