@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ScreenSliderDelegate: class {
+protocol ScreenSliderDelegate: ScreenSliderViewController {
     func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool
     // Delegate protocol for controlling a PageViewController (Subclass of UIPageViewController, with built in PageControl).
     //// The delegate should set itself as the Delegate for a PageViewController.
@@ -23,22 +23,11 @@ extension ScreenSliderDelegate {
         enableSwiping: Bool = true,
         optionalSetup: @escaping () -> Void = {}) {
         screenSliderViewController.screens = pages
-        screenSliderViewController.sliderDelegate = delegate
+        screenSliderViewController.screenSliderDelegate = delegate
         screenSliderViewController.pageIndicatorEnabled = pageIndicator
         screenSliderViewController.loopingSliderEnabled = loop
         screenSliderViewController.allScreensEnabled = allScreensEnabled
         screenSliderViewController.gestureSwipingEnabled = enableSwiping
         optionalSetup()
-    }
-}
-
-extension UIViewController {
-    func findPageController(forViewController viewController: UIViewController) -> UIPageViewController? {
-        var responder: UIResponder? = viewController
-        repeat {
-            responder = responder?.next
-            guard let vc = responder as? UIPageViewController else { return nil }
-            return vc
-        } while responder != nil
     }
 }

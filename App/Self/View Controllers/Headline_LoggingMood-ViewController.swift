@@ -6,7 +6,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
     
     // Delegates
     weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
-    weak var screenSliderDelegate: ScreenSliderViewController?
+    weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Log Title", .largeScreen)

@@ -6,19 +6,17 @@ final class TagsLoggingMoodViewController: ViewController {
     
     // Delegates
     weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
-    weak var screenSliderDelegate: ScreenSliderViewController?
+    weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
-    lazy var headerLabel = HeaderLabel.init("Log Tags", .largeScreen)
+    lazy var headerLabel = HeaderLabel.init("Tag Your Log", .largeScreen)
     
-    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
-
     lazy var tagTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
-        textFieldWithLabel.textField.placeholder = "I'm feeling..."
-        textFieldWithLabel.labelTitle = "Describe how your feeling"
+        textFieldWithLabel.textField.placeholder = "Tag name ..."
+        textFieldWithLabel.labelTitle = "What have you done today?"
         return textFieldWithLabel
     }()
     
@@ -77,16 +75,18 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let tag = validateHeadline() {
 //            tagTextFieldWithLabel.textField.resignFirstResponder()
-//            screenSlider?.nextScreen()
+            screenSliderDelegate?.nextScreen()
             let button = UIButton()
             button.setTitle(tag, for: .normal)
             tagsStack.addArrangedSubview(button)
-//            moodLoggingDelegate?.tags.append(tag)
+            textField.text = nil
+            tagTextFieldWithLabel.textField.placeholder = "Another tag..."
+            moodLogDataCollectionDelegate?.tags.append(tag)
             return true
         } else {
             moodLogDataCollectionDelegate?.headline = nil
             tagTextFieldWithLabel.textField.shake()
-            tagTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters")
+            tagTextFieldWithLabel.resetHint(withText: "Your tag needs to be at least 2 characters")
         }
         return false
     }
@@ -100,16 +100,6 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Buttons
-extension TagsLoggingMoodViewController {
-    
-    @objc func goBack() {
-        screenSliderDelegate?.backwardNavigationEnabled = true
-        screenSliderDelegate?.gestureSwipingEnabled = true
-        self.screenSliderDelegate?.previousScreen()
-    }
-}
-
 // MARK: - View Building
 extension TagsLoggingMoodViewController: ViewBuilding {
     
@@ -117,14 +107,7 @@ extension TagsLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(headerLabel)
         self.view.addSubview(tagTextFieldWithLabel)
         self.view.addSubview(tagsStack)
-        view.addSubview(backButton)
         
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
         headerLabel.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().multipliedBy(0.8)

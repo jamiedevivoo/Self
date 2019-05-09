@@ -9,5 +9,5 @@ protocol MoodLoggingDelegate: DataCollectionSequenceDelegate {
     
     var wildcard: Mood.Wildcard? { get set }
     var emotion: Mood.Emotion? { get set }
-    var tags: [Tag] { get set }
+    var tags: [String] { get set }
 }

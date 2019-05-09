@@ -12,7 +12,7 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var wildcard: Mood.Wildcard?
     var diaryEntry: String?
     var emotion: Mood.Emotion?
-    var tags = [Tag]()
+    var tags = [String]()
     
     lazy var background: CAGradientLayer = {
         let layer = CAGradientLayer()
@@ -61,8 +61,8 @@ extension LoggingAMoodScreenSliderViewController {
         headlineStage.screenSliderDelegate = self
         
         let tagsStage = TagsLoggingMoodViewController()
-        headlineStage.moodLogDataCollectionDelegate = self
-        headlineStage.screenSliderDelegate = self
+        tagsStage.moodLogDataCollectionDelegate = self
+        tagsStage.screenSliderDelegate = self
         
         let diaryStage = DiaryLoggingMoodViewController()
         diaryStage.moodLogDataCollectionDelegate = self
@@ -87,10 +87,9 @@ extension LoggingAMoodScreenSliderViewController {
 }
 
 // MARK: - Class Methods
-extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate {
+extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate, ScreenSliderDelegate {
     
     func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
-        
         if currentViewController.isKind(of: MoodLoggingMoodViewController.self) {
             guard arousalRating != nil, valenceRating != nil, emotion != nil else {
                 return false
@@ -99,6 +98,12 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
         
         if currentViewController.isKind(of: HeadlineLoggingMoodViewController.self) {
             guard headline != nil else {
+                return false
+            }
+        }
+        
+        if currentViewController.isKind(of: TagsLoggingMoodViewController.self) {
+            guard tags.count > 0 else {
                 return false
             }
         }
@@ -153,7 +158,7 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
 }
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension LoggingAMoodScreenSliderViewController: ScreenSliderDelegate {
+extension LoggingAMoodScreenSliderViewController {
     func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController) {
         
     }

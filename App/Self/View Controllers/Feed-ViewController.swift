@@ -2,12 +2,9 @@ import UIKit
 import SnapKit
 import Firebase
 
-extension FeedViewController: ViewIsDependantOnAccountData { }
-
 class FeedViewController: UIViewController {
-    
-    lazy var actionListViewController = FeedActionListChildViewController(accountRef: self.accountRef)
-    lazy var messageViewController = FeedMessageChildViewController(accountRef: self.accountRef)
+    lazy var actionListViewController = FeedActionListChildViewController(accountRef: AccountManager.shared().accountRef!)
+    lazy var messageViewController = FeedMessageChildViewController(accountRef: AccountManager.shared().accountRef!)
 }
 
 // MARK: - Overrides

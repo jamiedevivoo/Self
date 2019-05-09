@@ -6,7 +6,7 @@ class ScreenSliderViewController: UIPageViewController {
     
     // MARK: - Properties
     /// SliderDelegate
-    weak var sliderDelegate: ScreenSliderDelegate?
+    weak var screenSliderDelegate: ScreenSliderDelegate?
     
     /// Page Indicator View
     lazy var pageIndicator: UIPageControl = PageIndicator()
@@ -144,7 +144,7 @@ extension ScreenSliderViewController: UIPageViewControllerDataSource {
         /// If this isn't the last slide, check the delegate for validation, then go forward one slide.
         if viewControllerIndex < self.activeScreens.count - 1 {
             let nextScreen = self.activeScreens[viewControllerIndex + 1]
-            guard let sliderDelegate = sliderDelegate else { return nextScreen }
+            guard let sliderDelegate = screenSliderDelegate else { return nextScreen }
             guard sliderDelegate.validateDataBeforeNextScreen(currentViewController: viewController, nextViewController: nextScreen) else { return nil }
             return nextScreen
         } else {

@@ -42,6 +42,39 @@ class IconButton: UIButton {
     }
 }
 
+extension IconButton {
+    
+    enum IconButtonPosition {
+        case topLeft, topRight, bottomRight, bottomLeft
+    }
+    
+//    func applyConstraints(forPosition position: IconButtonPosition, inView sView: UIView) {
+//        switch position {
+//        case .topLeft:
+//            snp.makeConstraints { make in
+//                make.top.equalTo(sView.safeAreaLayoutGuide.snp.top).offset(10)
+//                make.left.equalTo(sView.safeAreaLayoutGuide.snp.left).offset(15)
+//                make.height.equalTo(40)
+//                make.width.equalTo(40)
+//            }
+//        return
+//        case .topRight:
+//            snp.makeConstraints { make in
+//                make.top.equalTo(sView.safeAreaLayoutGuide.snp.top).offset(20)
+//                make.right.equalTo(sView.safeAreaLayoutGuide.snp.right).inset(15)
+//                make.height.equalTo(40)
+//                make.width.equalTo(40)
+//            }
+//            return
+//        case .bottomRight:
+//            return
+//        case .bottomLeft:
+//            return
+//        }
+//    }
+    
+}
+
 // Animation responses
 extension IconButton {
     @objc func buttonActive(_ sender: UIButton) {
