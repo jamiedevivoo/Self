@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,18 +14,18 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="219" text="Copyright © 2019 Jamie De Vivo. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="51.5" y="638.5" width="272" height="13.5"/>
+                                <rect key="frame" x="71" y="833.66666666666663" width="272" height="13.333333333333371"/>
                                 <viewLayoutGuide key="safeArea" id="YGp-2z-rSX"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="11"/>
                                 <color key="textColor" red="0.47843137254901963" green="0.69803921568627447" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="350" verticalCompressionResistancePriority="800" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="oHf-E0-EXL">
-                                <rect key="frame" x="66" y="238.5" width="243" height="40"/>
+                                <rect key="frame" x="70" y="350.33333333333331" width="274" height="45.333333333333314"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oHf-E0-EXL" secondAttribute="height" multiplier="454:75" id="Irr-bN-eOs"/>
@@ -33,7 +33,7 @@
                                 <viewLayoutGuide key="safeArea" id="XFF-Nu-T8R"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Self App" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="77" y="341" width="221.5" height="45"/>
+                                <rect key="frame" x="96.666666666666686" y="455.66666666666669" width="221" height="45"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <viewLayoutGuide key="safeArea" id="tev-Vz-vkn"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
@@ -43,7 +43,8 @@
                                 <size key="shadowOffset" width="0.0" height="-2"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.62984352899710605" green="0.91601036932642443" blue="1" alpha="0.19941131161971831" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.52829493437716779" green="0.92000266650060758" blue="1" alpha="0.40292143485915494" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.7661100757385565" green="0.97127076088133724" blue="0.98394996761658027" alpha="0.80377970950704225" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="30" id="9Jz-mh-coR"/>
                             <constraint firstItem="oHf-E0-EXL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-75" id="9mb-nm-09I"/>

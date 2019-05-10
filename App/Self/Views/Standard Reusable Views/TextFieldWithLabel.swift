@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class TextFieldWithLabel: UIView {
+final class TextFieldWithLabel: UIView {
     lazy var textField = Textfield(placeholder: "Placeholder..", fieldType: .text)
     lazy private var label: UILabel = {
         let label = UILabel()

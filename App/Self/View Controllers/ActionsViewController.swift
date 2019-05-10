@@ -1,6 +1,7 @@
 import UIKit
 import SnapKit
 import Firebase
+import Lottie
 
 class ActionsViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class ActionsViewController: UIViewController {
         return collectionView
         }()
     
+    lazy var loader = Loader(.content)
     lazy var noActionsView = NoActionsView()
     
     // MARK: - Properties
@@ -43,6 +45,7 @@ extension ActionsViewController {
         super.viewDidLoad()
         setupChildViews()
         configureActionView()
+        loader.animation.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,8 +57,9 @@ extension ActionsViewController {
 // MARK: - Class Methods
 extension ActionsViewController {
     func configureActionView() {
-        actionManager.user(accountManager.accountRef!).getIncompleteActions { actions in
-            
+        actionManager.user(accountManager.accountRef!).getIncompleteActions { [unowned self] actions in
+            self.loader.removeFromSuperview()
+
             // Check actions were returned
             guard let actions = actions, actions.count > 0 else {
                 self.addNoActionsView()
@@ -125,7 +129,7 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
 // Mark - Adding Appropriate Views
 extension ActionsViewController {
     func addNoActionsView() {
-        self.view.addSubview(self.noActionsView)
+        view.addSubview(noActionsView)
         noActionsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
@@ -134,7 +138,7 @@ extension ActionsViewController {
     }
     
     func addActionViews() {
-        self.view.addSubview(self.actionCollectionView)
+        view.addSubview(actionCollectionView)
         actionCollectionView.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.right.left.equalToSuperview().inset(20)
@@ -154,6 +158,11 @@ extension ActionsViewController: ViewBuilding {
     
     func setupChildViews() {
         view.addSubview(headerLabel)
+        view.addSubview(loader)
         headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
+        loader.snp.makeConstraints { make in
+            make.width.height.equalTo(200)
+            make.center.equalToSuperview()
+        }
     }
 }

@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class ParaLabel: UILabel {
+final class ParaLabel: UILabel {
     
     convenience init(_ title: String, _ type: ParaType) {
         self.init()

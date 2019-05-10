@@ -1,15 +1,7 @@
-//
-//  ScreenHeaderLabelView.swift
-//  Self
-//
-//  Created by Jamie De Vivo (i7436295) on 09/04/2019.
-//  Copyright © 2019 Jamie De Vivo. All rights reserved.
-//
-
 import UIKit
 import SnapKit
 
-class HeaderLabel: UILabel {
+final class HeaderLabel: UILabel {
     
     convenience init(_ title: String, _ type: HeaderType) {
         self.init()
@@ -56,8 +48,8 @@ class HeaderLabel: UILabel {
     }
     
     func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
-        self.snp.makeConstraints { (make) in
-            make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(10)
+        self.snp.remakeConstraints { (make) in
+            make.top.equalToSuperview().offset(75)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().inset(20)
             make.height.lessThanOrEqualTo(50)

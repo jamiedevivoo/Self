@@ -18,6 +18,7 @@ final class OverviewLoggingMoodViewController: ViewController {
         let image = UIImage(named: "star-christmas")?.withRenderingMode(.alwaysTemplate)
         button.imageView?.contentMode = .scaleAspectFit
         button.setImage(image, for: .normal)
+        button.setTitle("Answer a Wildcard", for: .normal)
         button.tintColor = UIColor(cgColor: moodLogDataCollectionDelegate?.background.colors![0] as! CGColor)
         button.layer.borderColor = UIColor.darkText.withAlphaComponent(0.05).cgColor
         button.layer.borderWidth = 3.0
@@ -33,6 +34,8 @@ final class OverviewLoggingMoodViewController: ViewController {
     lazy var addNoteButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "star-christmas")?.withRenderingMode(.alwaysTemplate)
+        button.imageEdgeInsets = UIEdgeInsets(top: -10.0, left: 10.0, bottom: 0, right: 0)
+        button.setTitle("Add a note", for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = UIColor(cgColor: moodLogDataCollectionDelegate?.background.colors![0] as! CGColor)
         button.setImage(image, for: .normal)

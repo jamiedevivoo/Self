@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class SpecialLabel: UILabel {
+final class SpecialLabel: UILabel {
     
     convenience init(_ title: String, _ type: LabelType) {
         self.init()

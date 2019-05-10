@@ -1,6 +1,6 @@
 import UIKit
 
-class Textfield: UITextField {
+final class Textfield: UITextField {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

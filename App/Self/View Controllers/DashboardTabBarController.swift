@@ -29,37 +29,15 @@ extension DashboardTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        BackgroundManager.shared.backgroundContainer = self
+        
         setUpTabBarViewControllers()
         styleTabBar()
-        BackgroundManager.shared.backgroundContainer = self
+        setupProfileButton()
+        
+        
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
-        self.view.addSubview(profileButton)
-        
-        profileButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
-    }
-    
-    @objc func sidebarButtonTapped() {
-        let settings = SettingsViewController()
-        settings.modalPresentationStyle = .overFullScreen
-        self.definesPresentationContext = true
-        
-        let currentNavigationController = viewControllers![selectedIndex] as! DashboardNavigationController
-        currentNavigationController.pushViewController(settings, animated: true)
-    }
-    
-    override func returnedToRootView() {
-        self.tabBar.isHidden = false
-        profileButton.isHidden = false
-    }
-    override func leavingRootView() {
-        self.tabBar.isHidden = true
-        profileButton.isHidden = true
     }
 }
 
@@ -106,6 +84,37 @@ extension DashboardTabBarController {
         frost.alpha = 0.02
         
         tabBar.insertSubview(frost, at: 0)
+    }
+}
+
+// MARK: - Handle Profile Button
+extension DashboardTabBarController {
+    func setupProfileButton() {
+        self.view.addSubview(profileButton)
+        profileButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
+    }
+    
+    @objc func sidebarButtonTapped() {
+        let settings = SettingsViewController()
+        settings.modalPresentationStyle = .overFullScreen
+        self.definesPresentationContext = true
+        
+        let currentNavigationController = viewControllers![selectedIndex] as! DashboardNavigationController
+        currentNavigationController.pushViewController(settings, animated: true)
+    }
+    
+    override func returnedToRootView() {
+        self.tabBar.isHidden = false
+        profileButton.isHidden = false
+    }
+    override func leavingRootView() {
+        self.tabBar.isHidden = true
+        profileButton.isHidden = true
     }
 }
 

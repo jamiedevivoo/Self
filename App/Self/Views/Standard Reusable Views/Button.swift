@@ -1,6 +1,6 @@
 import UIKit
 
-class Button: UIButton {
+final class Button: UIButton {
     convenience init(title: String, action: Selector? = nil, type: ButtonKind) {
         self.init()
         setTitle(title, for: .normal)

@@ -13,6 +13,8 @@ class HighlightsViewController: UIViewController {
     // MARK: - Views
     lazy var headerLabel = HeaderLabel("Your Highlights 💪", .smallScreen)
     
+    lazy var loader = Loader(.content)
+    
     lazy var highlightCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
@@ -45,6 +47,7 @@ extension HighlightsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
+        loader.animation.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +61,8 @@ extension HighlightsViewController {
 // MARK: - Class Methods
 extension HighlightsViewController {
     func addHighlights() {
-        actionManager.user(accountManager.accountRef!).getCompleteActions { actions in
+        actionManager.user(accountManager.accountRef!).getCompleteActions { [unowned self] actions in
+            self.loader.removeFromSuperview()
             
             // Check actions were returned
             guard let actions = actions, actions.count > 0 else {
@@ -98,7 +102,7 @@ extension HighlightsViewController: UICollectionViewDataSource, UICollectionView
 // Mark - Adding Appropriate Views
 extension HighlightsViewController {
     func addNoHighlightsView() {
-        self.view.addSubview(self.noHighlightsView)
+        view.addSubview(noHighlightsView)
         noHighlightsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
@@ -107,7 +111,7 @@ extension HighlightsViewController {
     }
     
     func addHighlightsCollectionView() {
-        self.view.addSubview(self.highlightCollectionView)
+        view.addSubview(highlightCollectionView)
         highlightCollectionView.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.right.left.equalToSuperview().inset(20)
@@ -126,13 +130,12 @@ extension HighlightsViewController: ViewBuilding {
     
     func setupChildViews() {
         view.addSubview(headerLabel)
-        view.addSubview(highlightCollectionView)
+        view.addSubview(loader)
         
-        headerLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(75)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().inset(20)
-            make.height.lessThanOrEqualTo(50)
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
+        loader.snp.makeConstraints { make in
+            make.width.height.equalTo(200)
+            make.center.equalToSuperview()
         }
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class IconButton: UIButton {
+final class IconButton: UIButton {
     
     convenience init(_ image: UIImage, action: Selector? = nil, _ type: IconButtonType) {
         self.init()
