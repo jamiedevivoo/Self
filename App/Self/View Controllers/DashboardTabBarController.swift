@@ -21,7 +21,9 @@ class DashboardTabBarController: UITabBarController {
         swipeGesture.delegate = self
         return swipeGesture
     }()
-    lazy var profileButton = IconButton(UIImage(named: "menu-vertical")!, action: #selector(sidebarButtonTapped), .standard)
+    lazy var profileButton = IconButton(UIImage(named: "menu-vertical")!, action: #selector(showMenu), .standard)
+    lazy var helpButton = IconButton(UIImage(named: "safety-float")!, action: #selector(showHelp), .standard)
+    lazy var overlays: [UIView] = []
 }
 
 // MARK: - INIT
@@ -32,9 +34,9 @@ extension DashboardTabBarController {
         BackgroundManager.shared.backgroundContainer = self
         
         setUpTabBarViewControllers()
-        styleTabBar()
+        setupTabBar()
         setupProfileButton()
-        
+        setupHelpButton()
         
         self.view.addGestureRecognizer(leftSwipe)
         self.view.addGestureRecognizer(rightSwipe)
@@ -67,7 +69,7 @@ extension DashboardTabBarController {
 // MARK: - Setup
 extension DashboardTabBarController {
     
-    func styleTabBar() {
+    func setupTabBar() {
         tabBar.backgroundImage = UIImage()
         tabBar.clipsToBounds = true
         tabBar.isTranslucent = true
@@ -81,14 +83,16 @@ extension DashboardTabBarController {
         
         let frost = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
         frost.frame = tabBar.bounds
-        frost.alpha = 0.02
+        frost.alpha = 0.0
         
         tabBar.insertSubview(frost, at: 0)
+        overlays.append(tabBar)
     }
 }
 
-// MARK: - Handle Profile Button
+// MARK: - Handle Buttons
 extension DashboardTabBarController {
+    
     func setupProfileButton() {
         self.view.addSubview(profileButton)
         profileButton.snp.makeConstraints { make in
@@ -97,9 +101,21 @@ extension DashboardTabBarController {
             make.height.equalTo(40)
             make.width.equalTo(40)
         }
+        overlays.append(profileButton)
     }
     
-    @objc func sidebarButtonTapped() {
+    func setupHelpButton() {
+        self.view.addSubview(helpButton)
+        helpButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(60)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
+        overlays.append(helpButton)
+    }
+    
+    @objc func showMenu() {
         let settings = SettingsViewController()
         settings.modalPresentationStyle = .overFullScreen
         self.definesPresentationContext = true
@@ -108,13 +124,24 @@ extension DashboardTabBarController {
         currentNavigationController.pushViewController(settings, animated: true)
     }
     
+    @objc func showHelp() {
+        let help = HelpViewController()
+        help.modalPresentationStyle = .overFullScreen
+        self.definesPresentationContext = true
+        
+        let currentNavigationController = viewControllers![selectedIndex] as! DashboardNavigationController
+        currentNavigationController.pushViewController(help, animated: true)
+    }
+    
     override func returnedToRootView() {
-        self.tabBar.isHidden = false
-        profileButton.isHidden = false
+        for overlay in overlays {
+            overlay.isHidden = false
+        }
     }
     override func leavingRootView() {
-        self.tabBar.isHidden = true
-        profileButton.isHidden = true
+        for overlay in overlays {
+            overlay.isHidden = true
+        }
     }
 }
 

@@ -4,7 +4,14 @@ import Lottie
 import SwiftyJSON
 
 final class LandingOnboardingViewController: ViewController {
-
+    
+    // Delegates
+    weak var dataCollector: OnboardingDataCollectorDelegate?
+    weak var screenSliderDelegate: ScreenSliderDelegate?
+    
+    // Views
+    lazy var sliderView = ViewSliderViewController()
+    
     lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome to Self"
@@ -14,13 +21,10 @@ final class LandingOnboardingViewController: ViewController {
         return label
     }()
     
-    lazy var sliderViewController = ViewSliderViewController()
-    weak var delegate: DataCollectionSequenceDelegate?
-
-    lazy var registerButton = Button(title: "Get Started", action: #selector(LandingOnboardingViewController.navigateToRegister), type: .primary)
-    lazy var loginButton = Button(title: "Login", action: #selector(LandingOnboardingViewController.navigateToLogin), type: .secondary)
+    lazy var registerButton = Button(title: "Get Started", action: #selector(navigateToRegister), type: .primary)
+    lazy var loginButton = Button(title: "Login", action: #selector(navigateToLogin), type: .secondary)
     
-    lazy var leftSwipe: UISwipeGestureRecognizer = {
+    lazy var swipeLeftForOnboarding: UISwipeGestureRecognizer = {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes))
         swipeGesture.direction = .left
@@ -33,25 +37,36 @@ final class LandingOnboardingViewController: ViewController {
 extension LandingOnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        sliderViewController.slides = createOnboardingScreens()
+        sliderView.slides = createOnboardingScreens()
         setupChildViews()
-        self.view.addGestureRecognizer(leftSwipe)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.addGestureRecognizer(swipeLeftForOnboarding)
+        sliderView.view.addGestureRecognizer(swipeLeftForOnboarding)
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.removeGestureRecognizer(swipeLeftForOnboarding)
+        sliderView.view.removeGestureRecognizer(swipeLeftForOnboarding)
     }
 }
 
 // MARK: - Button Methods
 extension LandingOnboardingViewController {
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
+        guard sliderView.pageControl.currentPage >= 2 else { return }
+        navigateToRegister()
+    }
+    
     @objc func navigateToLogin() {
         self.present(LoginViewController(), animated: true)
     }
     @objc func navigateToRegister() {
-        (self.parent as! ScreenSliderViewController).gestureSwipingEnabled = true
-        (self.parent as! ScreenSliderViewController).nextScreen()
-    }
-    
-    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        guard sliderViewController.pageControl.currentPage >= 2 else { return }
-        navigateToRegister()
+        screenSliderDelegate?.liveGestureSwipingEnabled = true
+        screenSliderDelegate?.goToNextScreen()
     }
 }
 
@@ -62,7 +77,6 @@ private extension LandingOnboardingViewController {
         
         let onboardingSlideOne: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
-//            onboardingSlide.image.image = UIImage(named: "home")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("profile")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Personal"
@@ -72,7 +86,6 @@ private extension LandingOnboardingViewController {
         
         let onboardingSlideTwo: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
-//            onboardingSlide.image.image = UIImage(named: "globe")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("goal")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Challenges"
@@ -82,7 +95,6 @@ private extension LandingOnboardingViewController {
         
         let onboardingSlideThree: LandingSlideView = {
             let onboardingSlide = LandingSlideView()
-//            onboardingSlide.image.image = UIImage(named: "for_you")!.withRenderingMode(.alwaysTemplate)
             onboardingSlide.animationView.animation = Animation.named("heart")
             onboardingSlide.animationView.play() // TODO: Need to pause and play on viewDidLoad
             onboardingSlide.headline.text = "Journal"
@@ -90,11 +102,14 @@ private extension LandingOnboardingViewController {
             return onboardingSlide
         }()
         
-        onboardingSlideThree.addGestureRecognizer(leftSwipe)
-        
         return [onboardingSlideOne, onboardingSlideTwo, onboardingSlideThree]
     }
-    
+}
+
+extension LandingOnboardingViewController: ViewSliderDelegate {
+    func continueFromLastPage() {
+        navigateToRegister()
+    }
 }
 
 // MARK: - View Building
@@ -102,14 +117,15 @@ extension LandingOnboardingViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(welcomeLabel)
-        self.add(sliderViewController, alsoAddView: true)
+        self.add(sliderView, andView: true)
         self.view.addSubview(registerButton)
         self.view.addSubview(loginButton)
+        
         welcomeLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
             make.left.right.equalToSuperview().inset(20)
         }
-        sliderViewController.view.snp.makeConstraints { (make) in
+        sliderView.view.snp.makeConstraints { (make) in
             make.top.equalTo(welcomeLabel.snp.bottom).offset(50)
             make.bottom.equalTo(registerButton.snp.top).offset(-25)
             make.left.right.equalToSuperview()

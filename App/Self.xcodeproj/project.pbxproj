@@ -27,13 +27,15 @@
 		7D21FEDB228410EE0001FE62 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FEDA228410EE0001FE62 /* IconButton.swift */; };
 		7D21FEDD22841B9B0001FE62 /* UITabBarController+RootViewStatus-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FEDC22841B9A0001FE62 /* UITabBarController+RootViewStatus-Extension.swift */; };
 		7D21FEDF228425BA0001FE62 /* UIViewController+FindParentPageViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FEDE228425B90001FE62 /* UIViewController+FindParentPageViewController-Extension.swift */; };
+		7D3FCC052286168D000378F4 /* OnboardingDataCollectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3FCC042286168D000378F4 /* OnboardingDataCollectorProtocol.swift */; };
+		7D3FCC072286209A000378F4 /* ViewSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3FCC062286209A000378F4 /* ViewSliderDelegate.swift */; };
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
 		7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */; };
 		7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745E226028B5006F9CD1 /* Name_Onboarding-ViewController.swift */; };
 		7D6B746122602C56006F9CD1 /* Induction_Onboarding-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B746022602C56006F9CD1 /* Induction_Onboarding-ViewController.swift */; };
-		7D6B7463226030C0006F9CD1 /* ScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */; };
+		7D6B7463226030C0006F9CD1 /* ScreenSlider-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B7462226030C0006F9CD1 /* ScreenSlider-ViewController.swift */; };
 		7D7758CF225D872F003CCD1F /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758CE225D872F003CCD1F /* FeedManager.swift */; };
 		7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D2225D878A003CCD1F /* InsightManager.swift */; };
 		7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7758D4225D87B0003CCD1F /* ActionManager.swift */; };
@@ -85,7 +87,7 @@
 		7DCF19742284B30A00289DCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19732284B30A00289DCC /* LaunchScreen.storyboard */; };
 		7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */; };
 		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
-		7DD6CBFE2266B50300F47E63 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBFD2266B50300F47E63 /* Help.swift */; };
+		7DD6CBFE2266B50300F47E63 /* Help-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBFD2266B50300F47E63 /* Help-ViewController.swift */; };
 		7DD6CC002266B51D00F47E63 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBFF2266B51D00F47E63 /* TagViewController.swift */; };
 		7DD6CC042266B6C200F47E63 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC032266B6C200F47E63 /* CommunityManager.swift */; };
 		7DD6CC062266B6CF00F47E63 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC052266B6CF00F47E63 /* Community.swift */; };
@@ -95,7 +97,7 @@
 		7DD6CC1222672E1B00F47E63 /* Loading-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */; };
 		7DD6CC1422672E3600F47E63 /* Achivement-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */; };
 		7DD6CC1622673DA700F47E63 /* DailyActionBriefSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1522673DA700F47E63 /* DailyActionBriefSelectorViewController.swift */; };
-		7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */; };
+		7DD6CC182268B71600F47E63 /* ViewSlider-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC172268B71600F47E63 /* ViewSlider-ViewController.swift */; };
 		7DD6CC1B2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */; };
 		7DD6CC1D2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */; };
 		7DDF39232261929B00C761B4 /* Label+Spacing–Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39222261929B00C761B4 /* Label+Spacing–Extensions.swift */; };
@@ -174,13 +176,15 @@
 		7D21FEDA228410EE0001FE62 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		7D21FEDC22841B9A0001FE62 /* UITabBarController+RootViewStatus-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+RootViewStatus-Extension.swift"; sourceTree = "<group>"; };
 		7D21FEDE228425B90001FE62 /* UIViewController+FindParentPageViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FindParentPageViewController-Extension.swift"; sourceTree = "<group>"; };
+		7D3FCC042286168D000378F4 /* OnboardingDataCollectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataCollectorProtocol.swift; sourceTree = "<group>"; };
+		7D3FCC062286209A000378F4 /* ViewSliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSliderDelegate.swift; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/View Controllers/ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishCreatingAccountViewController.swift; sourceTree = "<group>"; };
 		7D6B745E226028B5006F9CD1 /* Name_Onboarding-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Name_Onboarding-ViewController.swift"; sourceTree = "<group>"; };
 		7D6B746022602C56006F9CD1 /* Induction_Onboarding-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Induction_Onboarding-ViewController.swift"; sourceTree = "<group>"; };
-		7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSliderViewController.swift; sourceTree = "<group>"; };
+		7D6B7462226030C0006F9CD1 /* ScreenSlider-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenSlider-ViewController.swift"; sourceTree = "<group>"; };
 		7D7758CE225D872F003CCD1F /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		7D7758D2225D878A003CCD1F /* InsightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightManager.swift; sourceTree = "<group>"; };
 		7D7758D4225D87B0003CCD1F /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
@@ -232,7 +236,7 @@
 		7DCF19732284B30A00289DCC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Views/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodWildcard.swift; sourceTree = "<group>"; };
 		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
-		7DD6CBFD2266B50300F47E63 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		7DD6CBFD2266B50300F47E63 /* Help-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Help-ViewController.swift"; sourceTree = "<group>"; };
 		7DD6CBFF2266B51D00F47E63 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		7DD6CC032266B6C200F47E63 /* CommunityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityManager.swift; sourceTree = "<group>"; };
 		7DD6CC052266B6CF00F47E63 /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
@@ -242,7 +246,7 @@
 		7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Loading-Protocol.swift"; sourceTree = "<group>"; };
 		7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achivement-Protocol.swift"; sourceTree = "<group>"; };
 		7DD6CC1522673DA700F47E63 /* DailyActionBriefSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionBriefSelectorViewController.swift; sourceTree = "<group>"; };
-		7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSliderViewController.swift; sourceTree = "<group>"; };
+		7DD6CC172268B71600F47E63 /* ViewSlider-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewSlider-ViewController.swift"; sourceTree = "<group>"; };
 		7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardBehaviour-Extension.swift"; sourceTree = "<group>"; };
 		7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewControllers-Extension.swift"; sourceTree = "<group>"; };
 		7DDF39222261929B00C761B4 /* Label+Spacing–Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+Spacing–Extensions.swift"; sourceTree = "<group>"; };
@@ -425,8 +429,10 @@
 				A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */,
 				A3683568226E1B5D005C8600 /* ScreenSlider-Protocol.swift */,
 				7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */,
+				7D3FCC042286168D000378F4 /* OnboardingDataCollectorProtocol.swift */,
 				7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */,
 				7D77E53D227F805900946FB7 /* ActionSelector-Protocol.swift */,
+				7D3FCC062286209A000378F4 /* ViewSliderDelegate.swift */,
 				7D77E547227F93B900946FB7 /* Expandable-Protocol.swift */,
 				7DEABF8B22803E1100E72D39 /* MoodLogging-Protocol.swift */,
 			);
@@ -534,8 +540,8 @@
 				7D47AC7022601349004BF898 /* ViewController.swift */,
 				A33409B5224570DA004CBB2A /* DashboardTabBarController.swift */,
 				A33409B3224570D8004CBB2A /* DashboardNavigationController.swift */,
-				7D6B7462226030C0006F9CD1 /* ScreenSliderViewController.swift */,
-				7DD6CC172268B71600F47E63 /* ViewSliderViewController.swift */,
+				7D6B7462226030C0006F9CD1 /* ScreenSlider-ViewController.swift */,
+				7DD6CC172268B71600F47E63 /* ViewSlider-ViewController.swift */,
 				7D77E5D6227FA2E000946FB7 /* TODAY */,
 			);
 			path = "View Controllers";
@@ -656,9 +662,9 @@
 				7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */,
 				7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */,
 				7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */,
-				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */,
 				7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */,
 				7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */,
+				7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */,
 				7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */,
 			);
 			name = MOOD;
@@ -717,7 +723,7 @@
 		A3B76AF3227D053A00282ECB /* INFORMATION SCREENS */ = {
 			isa = PBXGroup;
 			children = (
-				7DD6CBFD2266B50300F47E63 /* Help.swift */,
+				7DD6CBFD2266B50300F47E63 /* Help-ViewController.swift */,
 			);
 			name = "INFORMATION SCREENS";
 			sourceTree = "<group>";
@@ -972,6 +978,7 @@
 				A3438E9822456B86004D21BB /* AppDelegate.swift in Sources */,
 				A3438E9A22456B86004D21BB /* AppContainerViewController.swift in Sources */,
 				7D7758CF225D872F003CCD1F /* FeedManager.swift in Sources */,
+				7D3FCC052286168D000378F4 /* OnboardingDataCollectorProtocol.swift in Sources */,
 				7D10F5DD226DCF760063CEB8 /* TextFieldWithLabel.swift in Sources */,
 				A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */,
 				A3D75724225CD5A900E87F67 /* HeaderLabel.swift in Sources */,
@@ -997,7 +1004,7 @@
 				7D7758D5225D87B0003CCD1F /* ActionManager.swift in Sources */,
 				7D21FEDB228410EE0001FE62 /* IconButton.swift in Sources */,
 				7DD6CC002266B51D00F47E63 /* TagViewController.swift in Sources */,
-				7DD6CC182268B71600F47E63 /* ViewSliderViewController.swift in Sources */,
+				7DD6CC182268B71600F47E63 /* ViewSlider-ViewController.swift in Sources */,
 				7D8E4321227E5B2000243139 /* Mood.swift in Sources */,
 				7D77E53E227F805900946FB7 /* ActionSelector-Protocol.swift in Sources */,
 				7D21FED32283FD940001FE62 /* Tags_LoggingMood-ViewController.swift in Sources */,
@@ -1022,6 +1029,7 @@
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
 				7D77E5F2227FA33900946FB7 /* BaseRoundedCardCell.swift in Sources */,
 				7D10F5E7226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift in Sources */,
+				7D3FCC072286209A000378F4 /* ViewSliderDelegate.swift in Sources */,
 				7D21FED52284035B0001FE62 /* Diary_LoggingMood-ViewController.swift in Sources */,
 				7D77E548227F93B900946FB7 /* Expandable-Protocol.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
@@ -1060,7 +1068,7 @@
 				7DF8AC14227FFA7D00E4441A /* NoHighlightsView.swift in Sources */,
 				7DD6CC1B2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift in Sources */,
 				7D7758D3225D878A003CCD1F /* InsightManager.swift in Sources */,
-				7D6B7463226030C0006F9CD1 /* ScreenSliderViewController.swift in Sources */,
+				7D6B7463226030C0006F9CD1 /* ScreenSlider-ViewController.swift in Sources */,
 				7DF14B51225F296C0090D299 /* MoodEmotion.swift in Sources */,
 				7DD6CC042266B6C200F47E63 /* CommunityManager.swift in Sources */,
 				A33409AD224570BC004CBB2A /* Feed-ViewController.swift in Sources */,
@@ -1068,7 +1076,7 @@
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
 				A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */,
 				A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */,
-				7DD6CBFE2266B50300F47E63 /* Help.swift in Sources */,
+				7DD6CBFE2266B50300F47E63 /* Help-ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,14 +2,16 @@ import UIKit
 import SnapKit
 
 final class InductionOnboardingViewController: ViewController {
+
+    // Delegates
+    weak var dataCollector: OnboardingDataCollectorDelegate?
+    weak var screenSliderDelegate: ScreenSliderDelegate?
     
-    lazy var headerLabel = HeaderLabel("Hey Jamie...", .largeScreen)
+    // Views
+    lazy var headerLabel = HeaderLabel("Hey...", .largeScreen)
     lazy var paraLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["text"].stringValue, .standard)
     
-    lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .disabled)
-    
-    weak var delegate: DataCollectionSequenceDelegate?
-    
+    lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .primary)
 }
 
 // MARK: - Override Methods
@@ -19,8 +21,10 @@ extension InductionOnboardingViewController {
         super.viewDidLoad()
         setupChildViews()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        headerLabel.text = "Hey \(dataCollector?.name ?? "...")"
         checkCompletion()
     }
 }
@@ -29,17 +33,16 @@ extension InductionOnboardingViewController {
 extension InductionOnboardingViewController {
     
     func checkCompletion() {
-        if delegate!.isDataCollectionComplete() {
-            continueButton.setup(.primary)
+        if dataCollector!.isDataCollectionComplete() {
+            continueButton.applyState(.normal)
         } else {
-            continueButton.setup(.disabled)
+            continueButton.applyState(.disabled)
         }
     }
     
     @objc func continueOnboarding(_ sender: UIButton) {
-        delegate?.finishDataCollection()
+        dataCollector?.finishDataCollection()
         sender.isEnabled = false
-
     }
     
 }

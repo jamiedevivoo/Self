@@ -9,11 +9,12 @@ extension DashboardNavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
+        delegate = self
         setup()
     }
     
     func setup() {
+        navigationBar.isHidden = true
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()

@@ -21,8 +21,6 @@ final class HeadlineLoggingMoodViewController: ViewController {
         textFieldWithLabel.labelTitle = "Describe how you're feeling"
         return textFieldWithLabel
     }()
-    
-    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
 }
 
 // MARK: - Override Methods
@@ -32,13 +30,19 @@ extension HeadlineLoggingMoodViewController {
         super.viewDidLoad()
         setupChildViews()
         view.backgroundColor = .clear
+        setupTextField()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         headLineTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
-        setupKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         screenSliderDelegate?.backwardNavigationEnabled = false
+        headLineTextFieldWithLabel.becomeFirstResponder()
+        becomeFirstResponder()
     }
     
 }
@@ -67,18 +71,17 @@ extension HeadlineLoggingMoodViewController {
 
 // MARK: - TextField Delegate Methods
 extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
-    func setupKeyboard() {
-        view.addGestureRecognizer(tapToTogglekeyboardGesture)
+    func setupTextField() {
         headLineTextFieldWithLabel.textField.delegate = self
         headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
-        headLineTextFieldWithLabel.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let headline = validateHeadline() {
-            screenSliderDelegate?.nextScreen()
+            screenSliderDelegate?.goToNextScreen()
             moodLogDataCollectionDelegate?.headline = headline
-            return true
+            
+            return false
         } else {
             moodLogDataCollectionDelegate?.headline = nil
             headLineTextFieldWithLabel.textField.shake()
@@ -86,21 +89,13 @@ extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
         }
         return false
     }
-    
-    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if headLineTextFieldWithLabel.textField.isFirstResponder {
-            headLineTextFieldWithLabel.textField.resignFirstResponder()
-        } else {
-            headLineTextFieldWithLabel.textField.becomeFirstResponder()
-        }
-    }
 }
 
 // MARK: - Buttons
 extension HeadlineLoggingMoodViewController {
     @objc func goBack() {
         screenSliderDelegate?.backwardNavigationEnabled = true
-        self.screenSliderDelegate?.previousScreen()
+        self.screenSliderDelegate?.goToPreviousScreen()
     }
 }
 

@@ -2,10 +2,10 @@ import UIKit
 
 // Adding and removing Child View Controllers
 extension UIViewController {
-    func add(_ viewController: UIViewController, alsoAddView: Bool = true) {
+    func add(_ viewController: UIViewController, andView: Bool = true) {
         addChild(viewController)
         viewController.didMove(toParent: self)
-        if alsoAddView {
+        if andView {
             self.view.addSubview(viewController.view)
         }
     }

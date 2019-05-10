@@ -54,7 +54,6 @@ extension ActionManager.User {
 
 // Set Actions
 extension ActionManager.User {
-    
     private func updateLog(_ actionLog: ActionManager.Log) -> ActionManager.Log {
         var updatedLog = actionLog
         
@@ -74,7 +73,6 @@ extension ActionManager.User {
                 return
             }
         }
-        
         /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
         return updatedLog
     }
@@ -84,7 +82,6 @@ extension ActionManager.User {
         completedLog.completed = true
         return updateLog(completedLog)
     }
-    
 }
 
 // Get Actions

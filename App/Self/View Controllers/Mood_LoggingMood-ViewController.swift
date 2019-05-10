@@ -125,7 +125,7 @@ extension MoodLoggingMoodViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        screenSliderDelegate?.gestureSwipingEnabled = false
+        screenSliderDelegate?.liveGestureSwipingEnabled = false
         markSpotlight.add(pulseAnimations, forKey: nil)
         tapToConfirm.isEnabled = true
     }
@@ -444,10 +444,10 @@ extension MoodLoggingMoodViewController {
         
         /// Enable forward navigation and gestureSwiping again
         self.screenSliderDelegate?.forwardNavigationEnabled = true
-        self.screenSliderDelegate?.gestureSwipingEnabled = true
+        self.screenSliderDelegate?.liveGestureSwipingEnabled = true
         
         /// Informt he delegate to attempt to proceed
-        self.screenSliderDelegate?.nextScreen()
+        self.screenSliderDelegate?.goToNextScreen()
         
         self.tapToConfirm.setTitle("Edit Log", for: .normal)
     }

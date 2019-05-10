@@ -2,6 +2,10 @@ import UIKit
 
 class ViewSliderViewController: UIViewController {
     
+    // Delegates
+    weak var delegate: ViewSliderDelegate?
+    
+    // Views
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.bounces = false
@@ -10,15 +14,8 @@ class ViewSliderViewController: UIViewController {
         return scrollView
     }()
     
-    lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.tintColor = UIColor.App.Interactive.Selectable.selected()
-        pageControl.pageIndicatorTintColor = UIColor.App.Interactive.Selectable.unselected()
-        pageControl.currentPageIndicatorTintColor = UIColor.App.Interactive.Selectable.selected()
-        return pageControl
-    }()
+    lazy var pageControl = PageIndicator()
     
-    weak var delegate: ScreenSliderDelegate?
     var slides: [UIView] = [] {
         didSet { setup() }
     }
@@ -42,11 +39,14 @@ extension ViewSliderViewController {
 // MARK: - Set Up Slider
 extension ViewSliderViewController {
     private func setupScrolllView() {
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
+        scrollView.contentSize = CGSize(width: (view.frame.width * CGFloat(slides.count)), height: scrollView.frame.height)
         scrollView.isPagingEnabled = true
         
         for slideIndex in 0 ..< slides.count {
-            slides[slideIndex].frame = CGRect(x: view.frame.width * CGFloat(slideIndex), y: 0, width: view.frame.width, height: view.frame.height)
+            slides[slideIndex].frame = CGRect(x: (view.frame.width * CGFloat(slideIndex)),
+                                              y: 0,
+                                              width: view.frame.width,
+                                              height: view.frame.height)
             scrollView.addSubview(slides[slideIndex])
         }
     }
@@ -65,23 +65,24 @@ extension ViewSliderViewController: UIScrollViewDelegate {
     }
 }
 
-// MARK: - Methods
+// MARK: - Class Methods
 extension ViewSliderViewController {
     func nextStage() {
-        print("Next Stage")
         guard pageControl.currentPage < (pageControl.numberOfPages - 1) else {
-            //            pageSliderViewDelegate?.continueOnboarding()
+            delegate?.continueFromLastPage()
             return
         }
+        
         pageControl.currentPage += 1
         scrollView.setContentOffset(CGPoint(x: (scrollView.frame.width * CGFloat(pageControl.currentPage)), y: scrollView.contentOffset.y), animated: true)
-        
     }
+    
     func previousStage() {
         guard pageControl.currentPage > 0 else { return }
         pageControl.currentPage -= 1
         scrollView.setContentOffset(CGPoint(x: (scrollView.frame.width * CGFloat(pageControl.currentPage)), y: scrollView.contentOffset.y), animated: true)
     }
+    
 }
 
 // MARK: - View Building

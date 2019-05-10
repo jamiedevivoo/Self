@@ -49,7 +49,7 @@ final class HeaderLabel: UILabel {
     
     func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
         self.snp.remakeConstraints { (make) in
-            make.top.equalToSuperview().offset(75)
+            make.top.equalToSuperview().offset(38)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().inset(20)
             make.height.lessThanOrEqualTo(50)

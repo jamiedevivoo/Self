@@ -15,19 +15,18 @@ extension ScreenSliderDelegate {
     /// And I wanted to try creating a generic method...
     func configurePageViewController<T: ScreenSliderDelegate>(
         _ screenSliderViewController: ScreenSliderViewController,
-        withPages pages: [UIViewController],
+        withPages pages: [(UIViewController,Bool)],
         withDelegate delegate: T,
         showPageIndicator pageIndicator: Bool = false,
         isLooped loop: Bool = false,
-        allScreensEnabled: Bool = false,
         enableSwiping: Bool = true,
-        optionalSetup: @escaping () -> Void = {}) {
+        optionalSetup: @escaping () -> Void = {})
+    {
         screenSliderViewController.screens = pages
         screenSliderViewController.screenSliderDelegate = delegate
         screenSliderViewController.pageIndicatorEnabled = pageIndicator
-        screenSliderViewController.loopingSliderEnabled = loop
-        screenSliderViewController.allScreensEnabled = allScreensEnabled
-        screenSliderViewController.gestureSwipingEnabled = enableSwiping
+        screenSliderViewController.sliderShouldloop = loop
+        screenSliderViewController.liveGestureSwipingEnabled = enableSwiping
         optionalSetup()
     }
 }

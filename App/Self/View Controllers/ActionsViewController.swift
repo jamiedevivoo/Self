@@ -30,10 +30,10 @@ class ActionsViewController: UIViewController {
     lazy var noActionsView = NoActionsView()
     
     // MARK: - Properties
-    var actionLogs = [ActionManager.Log]() {
+    var actionLogs: [ActionManager.Log] = [] {
         didSet {
             addActionViews()
-            self.actionCollectionView.reloadData()
+            actionCollectionView.reloadData()
         }
     }
   
@@ -91,10 +91,10 @@ extension ActionsViewController {
 
 // MARK: - ActionSelectorDelegate Methods
 extension ActionsViewController: ActionSelectorDelegate {
-    func actionBriefSelected(action: ActionManager.Brief) {
-        let action = actionManager.user(accountManager.accountRef!).constructActionLog(fromBrief: action)
-        self.actionLogs = [action]
-        self.navigationController?.popToRootViewController(animated: true)
+    func actionBriefSelected(actionBrief: ActionManager.Brief) {
+        let action = actionManager.user(accountManager.accountRef!).constructActionLog(fromBrief: actionBrief)
+        actionLogs.append(action)
+        navigationController?.popToRootViewController(animated: true)
         noActionsView.removeFromSuperview()
     }
 }

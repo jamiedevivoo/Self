@@ -3,6 +3,11 @@ import SnapKit
 
 final class NameOnboardingViewController: ViewController {
     
+    // Delegates
+    weak var dataCollector: OnboardingDataCollectorDelegate?
+    weak var screenSliderDelegate: ScreenSliderDelegate?
+    
+    // Views
     lazy var headerLabel = HeaderLabel("Welcome to Self! What should we call you?", .largeScreen)
     
     lazy var nameTextFieldWithLabel: TextFieldWithLabel = {
@@ -14,9 +19,6 @@ final class NameOnboardingViewController: ViewController {
     }()
     
     lazy var tapToToggleKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
-    
-    weak var delegate: DataCollectionSequenceDelegate?
-    
 }
 
 // MARK: - Override Methods
@@ -28,14 +30,15 @@ extension NameOnboardingViewController {
         setupKeyboard()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        nameTextFieldWithLabel.textField.becomeFirstResponder()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nameTextFieldWithLabel.textField.text = dataCollector?.name
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        nameTextFieldWithLabel.textField.resignFirstResponder()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        screenSliderDelegate?.forwardNavigationEnabled = false
+        nameTextFieldWithLabel.textField.becomeFirstResponder()
     }
     
 }
@@ -47,10 +50,14 @@ extension NameOnboardingViewController {
         guard
             let name: String = self.nameTextFieldWithLabel.textField.text?.trim(),
             self.nameTextFieldWithLabel.textField.text!.trim().count > 1
-            else { return nil }
-        
+        else {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+            return nil
+        }
+        screenSliderDelegate?.forwardNavigationEnabled = true
+        dataCollector?.name = name
+        nameTextFieldWithLabel.textField.text = name
         nameTextFieldWithLabel.resetHint()
-        self.nameTextFieldWithLabel.textField.text = name
         return name
     }
     
@@ -59,30 +66,26 @@ extension NameOnboardingViewController {
 // MARK: - TextField Delegate Methods
 extension NameOnboardingViewController: UITextFieldDelegate {
     
-    func setupKeyboard() {
-        nameTextFieldWithLabel.textField.delegate = self
-        self.nameTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
-        view.addGestureRecognizer(tapToToggleKeyboard)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let name = validateName() {
-            nameTextFieldWithLabel.textField.resignFirstResponder()
-            delegate?.setData(["name": name])
-            (self.parent as! OnboardingScreenSliderViewController).nextScreen()
+        if validateName() != nil {
+            screenSliderDelegate?.goToNextScreen()
             return true
         } else {
-            delegate?.setData(["name": nil])
+            dataCollector?.name = nil
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters", for: .error)
         }
         return false
     }
     
+    func setupKeyboard() {
+        nameTextFieldWithLabel.textField.delegate = self
+        nameTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
+        view.addGestureRecognizer(tapToToggleKeyboard)
+    }
+    
     @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if nameTextFieldWithLabel.textField.isFirstResponder {
-            nameTextFieldWithLabel.textField.resignFirstResponder()
-        } else {
+        if !nameTextFieldWithLabel.textField.isFirstResponder {
             nameTextFieldWithLabel.textField.becomeFirstResponder()
         }
     }

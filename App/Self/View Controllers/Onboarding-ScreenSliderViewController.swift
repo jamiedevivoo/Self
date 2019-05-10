@@ -19,31 +19,30 @@ extension OnboardingScreenSliderViewController {
 // MARK: - Setup Methods
 private extension OnboardingScreenSliderViewController {
     
-    func setupScreens() -> [UIViewController] {
+    func setupScreens() -> [(vc: UIViewController, enabled: Bool)] {
         let landingOnboardingVC = LandingOnboardingViewController()
-        landingOnboardingVC.delegate = self
+        landingOnboardingVC.dataCollector = self
+        landingOnboardingVC.screenSliderDelegate = self
         
         let nameOnboardingVC = NameOnboardingViewController()
-        nameOnboardingVC.delegate = self
+        nameOnboardingVC.dataCollector = self
+        nameOnboardingVC.screenSliderDelegate = self
         
         let inductionOnboardingVC = InductionOnboardingViewController()
-        inductionOnboardingVC.delegate = self
+        inductionOnboardingVC.dataCollector = self
+        inductionOnboardingVC.screenSliderDelegate = self
         
-        return [landingOnboardingVC, nameOnboardingVC, inductionOnboardingVC]
+        return [(landingOnboardingVC, true),
+                (nameOnboardingVC, true),
+                (inductionOnboardingVC, true)]
     }
     
 }
 
 // MARK: - Class Methods
-extension OnboardingScreenSliderViewController: DataCollectionSequenceDelegate {
+extension OnboardingScreenSliderViewController: OnboardingDataCollectorDelegate {
     
-    func setData(_ dataDict: [String: Any?]) {
-        guard let name: String = dataDict["name"] as? String else {
-            self.name = nil
-            return
-        }
-        self.name = name
-    }
+    func setData(_ dataDict: [String: Any?]) {}
     
     func isDataCollectionComplete() -> Bool {
         guard self.name != nil else { return false }

@@ -50,7 +50,7 @@ extension DailyActionBriefSelectorViewController: UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let action = actionsData[indexPath.row]
-        delegate?.actionBriefSelected(action: action)
+        delegate?.actionBriefSelected(actionBrief: action)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

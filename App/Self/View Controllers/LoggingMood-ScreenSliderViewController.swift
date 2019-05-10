@@ -46,7 +46,8 @@ extension LoggingAMoodScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
+        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, showPageIndicator: true, isLooped: false, enableSwiping:  false)
+        navigationController?.navigationBar.isHidden = true
         self.view.layer.insertSublayer(background, at: 0)
         view.backgroundColor = UIColor.App.Background.primary()
         let baseColour = UIColor(red: 0.5, green: 0.6, blue: 0.6, alpha: 0.4)
@@ -59,7 +60,7 @@ extension LoggingAMoodScreenSliderViewController {
 // MARK: - Setup Methods
 extension LoggingAMoodScreenSliderViewController {
     
-    func setupScreens() -> [UIViewController] {
+    func setupScreens() -> [(UIViewController,Bool)] {
         moodStage = MoodLoggingMoodViewController()
         moodStage!.moodLogDataCollectionDelegate = self
         moodStage!.screenSliderDelegate = self
@@ -85,10 +86,12 @@ extension LoggingAMoodScreenSliderViewController {
         overviewStage!.screenSliderDelegate = self
         
         // Return initial screens
-        return [moodStage!,
-                headlineStage!,
-                tagsStage!,
-                overviewStage!]
+        return [(moodStage!, true),
+                (headlineStage!, true),
+                (tagsStage!, true),
+                (wildcardStage!, false),
+                (diaryStage!, false),
+                (overviewStage!, true)]
     }
     
 }

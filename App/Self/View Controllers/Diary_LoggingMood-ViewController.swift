@@ -41,15 +41,6 @@ extension DiaryLoggingMoodViewController {
     
 }
 
-// MARK: - Buttons
-extension DiaryLoggingMoodViewController {
-    
-    @objc func goForward() {
-        screenSliderDelegate?.forwardNavigationEnabled = true
-        self.screenSliderDelegate?.nextScreen()
-    }
-}
-
 // MARK: - Class Methods
 extension DiaryLoggingMoodViewController {
     
@@ -93,6 +84,15 @@ extension DiaryLoggingMoodViewController: UITextFieldDelegate {
         } else {
             diaryTextFieldWithLabel.textField.becomeFirstResponder()
         }
+    }
+}
+
+// MARK: - Buttons
+extension DiaryLoggingMoodViewController {
+    
+    @objc func goForward() {
+        screenSliderDelegate?.forwardNavigationEnabled = true
+        self.screenSliderDelegate?.goToNextScreen()
     }
 }
 

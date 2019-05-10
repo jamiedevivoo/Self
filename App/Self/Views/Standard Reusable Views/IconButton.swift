@@ -28,10 +28,8 @@ final class IconButton: UIButton {
             layer.shadowRadius = 3.0
             layer.shadowOpacity = 0.5
             layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-            addTarget(self, action: #selector(buttonActive), for: .touchDown)
-            addTarget(self, action: #selector(buttonActive), for: .touchDragEnter)
-            addTarget(self, action: #selector(buttonCancelled), for: .touchDragExit)
-            addTarget(self, action: #selector(buttonCancelled), for: .touchCancel)
+            addTarget(self, action: #selector(buttonActive), for: [.touchDown, .touchDragEnter])
+            addTarget(self, action: #selector(buttonCancelled), for: [.touchDragExit, .touchCancel, .touchUpInside])
         return
         }
         

@@ -1,54 +1,69 @@
 import UIKit
 
 final class Button: UIButton {
-    convenience init(title: String, action: Selector? = nil, type: ButtonKind) {
+    var type: ButtonKind = .primary
+    
+    convenience init(title: String, action: Selector? = nil, type: ButtonKind = .primary, state: ButtonState = .normal) {
         self.init()
+
         setTitle(title, for: .normal)
+        addAction(action)
+        setup(type)
+        applyState(state)
+    }
+}
+
+extension Button {
+    private func addAction(_ action: Selector?) {
+        addTarget(self, action: #selector(buttonActive), for: [.touchDown, .touchDragEnter])
+        addTarget(self, action: #selector(buttonCancelled), for: [.touchDragExit, .touchCancel, .touchUpInside])
+        
         if action != nil {
             addTarget(nil, action: action!, for: .touchUpInside)
+            print(action!)
         }
-        setup(type)
+    }
+}
+
+extension Button {
+    
+    enum ButtonKind {
+        case primary, secondary, dashboard, tag
     }
     
     func setup(_ type: ButtonKind) {
+        self.type = type
+        layer.cornerRadius = self.layer.bounds.height / 2
         
-        self.layer.cornerRadius = self.layer.bounds.height / 2
         switch type {
-            
         case .primary:
-            self.backgroundColor = UIColor.App.Button.Primary.fill()
-            self.layer.borderColor = UIColor.App.Button.Primary.fill().withAlphaComponent(0.5).cgColor
-            self.layer.cornerRadius = 30
-            self.isEnabled = true
+            backgroundColor = UIColor.App.Button.Primary.fill()
+            layer.borderColor = UIColor.App.Button.Primary.fill().withAlphaComponent(0.5).cgColor
+            layer.cornerRadius = 30
+            isEnabled = true
             return
             
         case .secondary:
-            self.setTitleColor(UIColor.App.Button.Primary.fill(), for: .normal)
-            self.layer.borderColor = UIColor.App.Button.Primary.fill().cgColor
-            self.layer.cornerRadius = 30
-            self.backgroundColor = UIColor.clear
-            self.layer.borderWidth = 2.0
-            self.isEnabled = true
+            setTitleColor(UIColor.App.Button.Primary.fill(), for: .normal)
+            layer.borderColor = UIColor.App.Button.Primary.fill().cgColor
+            layer.cornerRadius = 30
+            backgroundColor = UIColor.clear
+            layer.borderWidth = 2.0
+            isEnabled = true
             return
-            
-        case .disabled:
-            self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.5)
-            self.layer.borderColor = self.layer.borderColor?.copy(alpha: 0.5)
-            self.isEnabled = false
-            return
-            
+
         case .dashboard:
-            self.setTitleColor(UIColor.App.Button.Tag.text(), for: .normal)
-            self.contentEdgeInsets =  UIEdgeInsets(top: 6, left: 15, bottom: 6, right: 15)
-            self.backgroundColor = UIColor.App.Button.Tag.fill().withAlphaComponent(0.8)
-            self.layer.borderWidth = 1.0
-            self.layer.cornerRadius = 15
-            self.clipsToBounds = false
-            self.layer.borderColor = UIColor.App.Button.Tag.fill().cgColor
-            self.layer.shadowColor = UIColor.black.cgColor
-            self.layer.shadowOpacity = 0.1
-            self.layer.shadowRadius = 1
-            self.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+            setTitleColor(UIColor.App.Button.Tag.text(), for: .normal)
+            contentEdgeInsets =  UIEdgeInsets(top: 6, left: 15, bottom: 6, right: 15)
+            backgroundColor = UIColor.App.Button.Tag.fill().withAlphaComponent(0.8)
+            layer.borderWidth = 1.0
+            layer.cornerRadius = 15
+            clipsToBounds = false
+            layer.borderColor = UIColor.App.Button.Tag.fill().cgColor
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOpacity = 0.1
+            layer.shadowRadius = 1
+            layer.shadowOffset = CGSize(width: 0, height: 1.5)
             return
             
         case .tag:
@@ -65,8 +80,95 @@ final class Button: UIButton {
             return
             }
     }
+}
 
-    enum ButtonKind {
-        case primary, secondary, disabled, dashboard, tag
+// update the state of the button
+extension Button {
+    
+    enum ButtonState {
+        case normal, disabled
+    }
+    
+    func applyState(_ state: ButtonState) {
+        switch state {
+        case .disabled:
+            backgroundColor = backgroundColor?.withAlphaComponent(0.5)
+            layer.borderColor = layer.borderColor?.copy(alpha: 0.5)
+            isEnabled = false
+            return
+        case .normal:
+            setup(self.type)
+            isEnabled = true
+            return
+        }
+    }
+}
+
+// Animation responses
+extension Button {
+        
+    @objc func buttonActive(_ sender: UIButton) {
+        focusButton(sender)
+    }
+    
+    @objc func buttonCancelled(_ sender: UIButton) {
+        unFocusButton(sender)
+    }
+    
+    func focusButton(_ button: UIButton) {
+        let duration = 0.3
+        
+        pulseAnimation()
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
+        button.layer.shadowRadius += 1.0
+        button.layer.shadowOpacity -= 0.2
+        button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width + 0.5, height: button.layer.shadowOffset.height + 4.0)
+        CATransaction.commit()
+        
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 1,
+                       options: [.curveEaseInOut],
+                       animations: {
+                        button.alpha += 0.2
+                        button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        })
+    }
+    
+    func pulseAnimation() {
+        let pulseAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+            pulseAnimation.duration = 1
+            pulseAnimation.fromValue = 0
+            pulseAnimation.toValue = 1
+            pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            pulseAnimation.autoreverses = true
+            pulseAnimation.repeatCount = 1
+            layer.add(pulseAnimation, forKey: "animateOpacity")
+    }
+    
+    func unFocusButton(_ button: UIButton) {
+        let duration = 0.2
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
+        button.layer.shadowRadius -= 1.0
+        button.layer.shadowOpacity += 0.2
+        button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width - 0.5, height: button.layer.shadowOffset.height - 4.0)
+        CATransaction.commit()
+        
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 1,
+                       options: [.curveEaseInOut],
+                       animations: {
+                        button.alpha -= 0.2
+                        button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
     }
 }
