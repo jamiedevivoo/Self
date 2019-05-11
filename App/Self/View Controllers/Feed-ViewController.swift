@@ -45,9 +45,8 @@ extension FeedViewController {
 extension FeedViewController: ViewBuilding {
     
     func setTabBarItem() {
-        navigationController?.title = "Home"
-        navigationController?.tabBarItem.image = UIImage(named: "home-outline")
-        navigationController?.tabBarItem.selectedImage = UIImage(named: "home-dot")
+        navigationController?.title = nil
+        navigationController?.tabBarItem.image = UIImage(named: "head-icon")
     }
     
     func addSubViews() {

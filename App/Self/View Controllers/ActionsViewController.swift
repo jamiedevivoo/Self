@@ -155,9 +155,8 @@ extension ActionsViewController {
 extension ActionsViewController: ViewBuilding {
     
     func setTabBarItem() {
-        navigationController?.title = "Actions"
-        navigationController?.tabBarItem.image = UIImage(named: "challenge-glyph")
-        navigationController?.tabBarItem.badgeValue = ""
+        navigationController?.title = nil
+        navigationController?.tabBarItem.image = UIImage(named: "play")
     }
     
     func setupChildViews() {

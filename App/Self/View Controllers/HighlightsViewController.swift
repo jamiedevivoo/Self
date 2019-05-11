@@ -127,8 +127,8 @@ extension HighlightsViewController {
 extension HighlightsViewController: ViewBuilding {
     
     func setTabBarItem() {
-        navigationController?.title = "Highlights"
-        navigationController?.tabBarItem.image = UIImage(named: "highlight-glyph")
+        navigationController?.title = nil
+        navigationController?.tabBarItem.image = UIImage(named: "heart")
     }
     
     func setupChildViews() {
