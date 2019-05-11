@@ -5,12 +5,11 @@ import Firebase
 final class TagsLoggingMoodViewController: ViewController {
     
     // Delegates
-    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var dataCollector: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Tag Your Log", .largeScreen)
-    lazy var forwardButton = IconButton(UIImage(named: "down-circle")!, action: #selector(goForward), .standard)
     
     lazy var tagTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
@@ -29,7 +28,9 @@ final class TagsLoggingMoodViewController: ViewController {
         return stack
     }()
     
-    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
+    lazy var tags: [String] = []
+    
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
 }
 
 // MARK: - Override Methods
@@ -38,23 +39,46 @@ extension TagsLoggingMoodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        view.backgroundColor = .clear
         setupTextfield()
+        view.backgroundColor = UIColor.white.withAlphaComponent(0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tagTextFieldWithLabel.textField.placeholder = "A tag for \(moodLogDataCollectionDelegate?.headline ?? "")..."
+        /// Update the textfield with the latest value
+        tagTextFieldWithLabel.textField.text = dataCollector?.tags.first
+        tagTextFieldWithLabel.textField.placeholder = "A tag for \(dataCollector?.headline ?? "")"
+        /// Revalidate the value and disable or enable navigation accordingly.
+        if (dataCollector?.tags.count)! < 1 {
+            tagTextFieldWithLabel.resetHint()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        /// At this point forward navigation and gestureswping are enabled
         screenSliderDelegate?.backwardNavigationEnabled = true
-        screenSliderDelegate?.forwardNavigationEnabled = false
-//        tagTextFieldWithLabel.textField.becomeFirstResponder()
-//        becomeFirstResponder()
+        screenSliderDelegate?.gestureScrollingEnabled = true
+        /// The page indicator is also visible on this page
+        screenSliderDelegate?.pageIndicator.isVisible = true
+        screenSliderDelegate?.backwardButton.isVisible = true
+        screenSliderDelegate?.forwardButton.isVisible = true
+        /// Add the tap gesture
+        view.addGestureRecognizer(tapGesture)
+        /// Finally, once the view has louaded, make the textfield Active if validation fails
+     if (dataCollector?.tags.count)! < 1 {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+//            tagTextFieldWithLabel.textField.becomeFirstResponder()
+        } else {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        /// If the view is about to dissapear we can resign the first responder
+        tagTextFieldWithLabel.textField.resignFirstResponder()
+    }
 }
 
 // MARK: - Class Methods
@@ -67,16 +91,15 @@ extension TagsLoggingMoodViewController {
             self.tagTextFieldWithLabel.textField.text!.trim().count > 1
         /// Return nil if it fails
         else {
-            forwardButton.isHidden = false
+            tagTextFieldWithLabel.resetHint()
+            screenSliderDelegate?.forwardNavigationEnabled = false
             return nil
         }
-        
+        screenSliderDelegate?.forwardNavigationEnabled = true
         /// If it passes, reset the hint and show the next button
-        tagTextFieldWithLabel.resetHint(withText: "Press next to add tag", for: .info)
-        configureForwardButtonPosition()
-        forwardButton.isHidden = false
+        tagTextFieldWithLabel.resetHint(withText: "+ Press next to add \(tag) as a tag", for: .info)
         /// Then update the textfield
-        moodLogDataCollectionDelegate?.tags.append(tag)
+        dataCollector?.tags.append(tag)
         tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.next
         /// Finally return the validated value to the caller
         return tag
@@ -101,47 +124,57 @@ extension TagsLoggingMoodViewController {
 
 // MARK: - TextField Delegate Methods
 extension TagsLoggingMoodViewController: UITextFieldDelegate {
-    func setupTextfield() {
-        tagTextFieldWithLabel.textField.delegate = self
-        self.tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateTagName), for: .editingChanged)
-    }
 
 //    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
 //        return false
 //    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let tagName = validateTagName() {
-            let tag = createTagButton(tagName: tagName)
-            textField.text = nil
-            tagTextFieldWithLabel.textField.placeholder = "Another tag..."
-            tagTextFieldWithLabel.resetHint(withText: "Press next again to save", for: .info)
-            tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.continue
-            moodLogDataCollectionDelegate?.tags.append(tag.titleLabel!.text!)
-            return true
-        } else {
+        guard let tag = validateTagName() else {
             
             // If the user has already added at least one tag, let them proceed with an error
-            if moodLogDataCollectionDelegate?.tags.count ?? 0 > 0 {
+            if dataCollector?.tags.count ?? 0 > 0 {
                 screenSliderDelegate?.goToNextScreen()
                 return true
             }
             
             tagTextFieldWithLabel.textField.shake()
-            tagTextFieldWithLabel.resetHint(withText: "Your log needs at least 1 tag (2 characters)", for: .error)
-        }
-        return false
-    }
-    
-    @objc func processTap() {
-        if !tagTextFieldWithLabel.textField.isFirstResponder {
-            tagTextFieldWithLabel.textField.becomeFirstResponder()
+            tagTextFieldWithLabel.resetHint(withText: "Your log needs at least 1 tag (of 2 characters or more)", for: .error)
+            return false
         }
         
-        if validateTagName() != nil {
-            screenSliderDelegate?.forwardNavigationEnabled = true
-            screenSliderDelegate?.goToNextScreen()
+        tagTextFieldWithLabel.textField.placeholder = "Another tag..."
+        tagTextFieldWithLabel.resetHint(withText: "✓ Add another tag or press next again to continue", for: .info)
+        textField.text = nil
+        let tagButton = createTagButton(tagName: tag)
+        dataCollector?.tags.append(tagButton.titleLabel!.text!)
+        return true
+        
         }
+    
+    func setupTextfield() {
+        tagTextFieldWithLabel.textField.delegate = self
+        tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateTagName), for: .editingChanged)
+    }
+}
+
+// Gestures
+extension TagsLoggingMoodViewController {
+    @objc func processTap() {
+        /// See if the current text validates
+        guard validateTagName() == nil else {
+            /// If it does, enable forward navigation and go to the next screen
+            screenSliderDelegate?.goToNextScreen()
+            return
+        }
+        /// If it fails and the keyboard isn't displayed, show the keyboard
+        guard tagTextFieldWithLabel.textField.isFirstResponder else {
+            tagTextFieldWithLabel.textField.becomeFirstResponder()
+            return
+        }
+        /// If the keyboard is displayed, shake the textfield and prvide a hint
+        tagTextFieldWithLabel.textField.shake()
+        tagTextFieldWithLabel.resetHint(withText: "Your log needs at least 1 tag (of 2 characters or more)", for: .error)
     }
 }
 
@@ -157,27 +190,12 @@ extension TagsLoggingMoodViewController {
 // MARK: - View Building
 extension TagsLoggingMoodViewController: ViewBuilding {
     
-    func configureForwardButtonPosition() {
-        forwardButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
-    }
-    
     func setupChildViews() {
         self.view.addSubview(headerLabel)
         self.view.addSubview(tagTextFieldWithLabel)
         self.view.addSubview(tagsStack)
-        self.view.addSubview(forwardButton)
         
-        configureForwardButtonPosition()
-        headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(40)
-        }
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
         tagTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)

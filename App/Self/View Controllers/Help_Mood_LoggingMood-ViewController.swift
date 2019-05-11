@@ -50,12 +50,7 @@ class HelpMoodLoggingMoodViewController: ViewController {
         self.view.addSubview(paraLabel)
         self.view.addSubview(dismissButton)
         
-        headerLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(50)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(50)
-            make.centerX.equalToSuperview()
-        }
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
         paraLabel.snp.makeConstraints { make in
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.8)

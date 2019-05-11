@@ -10,8 +10,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Add A Title", .largeScreen)
-    
-    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
+    lazy var hintOneLabel = ParaLabel("Tap anywhere on the screen to continue to the next step 💡", .standard)
     
     lazy var headLineTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
@@ -22,7 +21,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapToToggleKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
 
 }
 
@@ -32,23 +31,47 @@ extension HeadlineLoggingMoodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
-        view.backgroundColor = .clear
         setupTextField()
+        view.backgroundColor = UIColor.white.withAlphaComponent(0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        headLineTextFieldWithLabel.textField.placeholder = "I'm Feeling \(dataCollector?.emotion?.adj ?? "")..."
+        headLineTextFieldWithLabel.textField.text = dataCollector?.headline
+        headLineTextFieldWithLabel.textField.placeholder = "I'm feeling \(dataCollector?.emotion?.adj ?? "...")"
+        
+        if validateHeadline() == nil {
+            headLineTextFieldWithLabel.resetHint()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        headLineTextFieldWithLabel.becomeFirstResponder()
-        screenSliderDelegate?.pageIndicator.isVisible = true
+        /// At this point forward navigation and gestureswping are enabled
         screenSliderDelegate?.backwardNavigationEnabled = false
-        screenSliderDelegate?.isLiveGestureSwipingEnabled = true
+        screenSliderDelegate?.gestureScrollingEnabled = true
+        /// The page indicator is also visible on this page
+        screenSliderDelegate?.pageIndicator.isVisible = true
+        screenSliderDelegate?.forwardButton.isVisible = true
+        screenSliderDelegate?.backwardButton.isVisible = true
+        screenSliderDelegate?.backwardButton.isEnabledStyle = true
+        screenSliderDelegate?.backwardButton.alpha = 0.35
+        /// Add the tap gesture
+        view.addGestureRecognizer(tapGesture)
+        /// Finally, once the view has louaded, make the textfield Active if validation fails
+        if validateHeadline() == nil {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+//            headLineTextFieldWithLabel.textField.becomeFirstResponder()
+        } else {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        /// If the view is about to dissapear we can resign the first responder
+        headLineTextFieldWithLabel.textField.resignFirstResponder()
+    }
 }
 
 // MARK: - Class Methods
@@ -65,6 +88,7 @@ extension HeadlineLoggingMoodViewController {
         else {
             headLineTextFieldWithLabel.resetHint()
             screenSliderDelegate?.forwardNavigationEnabled = false
+            dataCollector?.headline = nil
             return nil
         }
         
@@ -84,42 +108,42 @@ extension HeadlineLoggingMoodViewController {
 extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if validateHeadline() != nil {
-            screenSliderDelegate?.forwardNavigationEnabled = true
-            screenSliderDelegate?.goToNextScreen()
-            return false
-        } else {
+        guard validateHeadline() != nil else {
             dataCollector?.headline = nil
-            screenSliderDelegate?.forwardNavigationEnabled = false
             headLineTextFieldWithLabel.textField.shake()
             headLineTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+            return false
         }
+        
+        screenSliderDelegate?.goToNextScreen()
         return false
     }
     
     func setupTextField() {
         headLineTextFieldWithLabel.textField.delegate = self
         headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
-        view.addGestureRecognizer(tapToToggleKeyboard)
-    }
-    
-    @objc func processTap() {
-        if !headLineTextFieldWithLabel.textField.isFirstResponder {
-            headLineTextFieldWithLabel.textField.becomeFirstResponder()
-        }
-        
-        if validateHeadline() != nil {
-            screenSliderDelegate?.forwardNavigationEnabled = true
-            screenSliderDelegate?.goToNextScreen()
-        }
     }
 }
 
-// MARK: - Buttons
+// Gestures
 extension HeadlineLoggingMoodViewController {
-    @objc func goBack() {
-        screenSliderDelegate?.backwardNavigationEnabled = true
-        self.screenSliderDelegate?.goToPreviousScreen()
+    @objc func processTap() {
+        /// See if the current text validates
+        guard validateHeadline() == nil else {
+            /// If it does, enable forward navigation and go to the next screen
+            screenSliderDelegate?.goToNextScreen()
+            return
+        }
+        /// Disable forward navigation and reset the value since they tried to proceed
+        dataCollector?.headline = nil
+        /// If it fails and the keyboard isn't displayed, show the keyboard
+        guard headLineTextFieldWithLabel.textField.isFirstResponder else {
+            headLineTextFieldWithLabel.textField.becomeFirstResponder()
+            return
+        }
+        /// If the keyboard is displayed, shake the textfield and prvide a hint
+        headLineTextFieldWithLabel.textField.shake()
+        headLineTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
     }
 }
 
@@ -127,21 +151,20 @@ extension HeadlineLoggingMoodViewController {
 extension HeadlineLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
-        self.view.addSubview(headerLabel)
-        self.view.addSubview(headLineTextFieldWithLabel)
-        view.addSubview(backButton)
+        view.addSubview(headerLabel)
+        view.addSubview(headLineTextFieldWithLabel)
+        view.addSubview(hintOneLabel)
+        hintOneLabel.alpha = 0.5
+        hintOneLabel.textAlignment = .left
+
+        hintOneLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-38)
+            make.width.equalToSuperview().multipliedBy(0.6)
+            make.left.equalToSuperview().offset(30)
+            make.height.greaterThanOrEqualTo(30)
+        }
         
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
-        headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(40)
-        }
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
         headLineTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)

@@ -26,7 +26,7 @@ extension ScreenSliderDelegate {
         screenSliderViewController.screenSliderDelegate = delegate
         screenSliderViewController.pageIndicatorEnabled = pageIndicator
         screenSliderViewController.sliderShouldloop = loop
-        screenSliderViewController.isLiveGestureSwipingEnabled = enableSwiping
+        screenSliderViewController.gestureScrollingEnabled = enableSwiping
         optionalSetup()
     }
 }

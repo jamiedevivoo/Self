@@ -228,22 +228,15 @@ extension DashboardTabBarController {
 extension DashboardTabBarController {
     func setupProfileButton() {
         self.view.addSubview(profileButton)
-        profileButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
+        profileButton.applyConstraints(forPosition: .topRight, inVC: self)
         overlays.append((profileButton, profileButton.alpha))
     }
     
     func setupHelpButton() {
         self.view.addSubview(helpButton)
-        helpButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
+        helpButton.applyConstraints(forPosition: .topRight, inVC: self)
+        helpButton.snp.updateConstraints { make in
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(60)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
         }
         overlays.append((helpButton, profileButton.alpha))
     }

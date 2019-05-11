@@ -7,7 +7,7 @@ final class MoodLoggingMoodViewController: ViewController {
     weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
-    lazy var headerLabel: UILabel = {
+    lazy var initialPrompt: UILabel = {
         let label = ParaLabel("Log your Mood by tapping on the screen", .centerPageText)
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 26.0)
@@ -117,18 +117,23 @@ extension MoodLoggingMoodViewController {
         addEmotionLabels()
         view.layer.addSublayer(markSpotlight)
         view.backgroundColor = .clear
+        view.layer.backgroundColor = UIColor.clear.cgColor
         setupChildViews()
         exitButton.tintColor = UIColor.darkText
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         markSpotlight.add(pulseAnimations, forKey: nil)
+        screenSliderDelegate?.gestureScrollingEnabled = false
+        screenSliderDelegate?.forwardNavigationEnabled = false
         tapToConfirm.isEnabled = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         screenSliderDelegate?.pageIndicator.isVisible = false
-        screenSliderDelegate?.forwardNavigationEnabled = false
+        screenSliderDelegate?.backwardButton.isVisible = false
+        screenSliderDelegate?.forwardButton.isVisible = false
     }
 }
 
@@ -177,12 +182,10 @@ extension MoodLoggingMoodViewController {
     }
     
     @objc func exit(sender: IconButton) {
-        sender.buttonCancelled(sender)
         navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func info(sender: IconButton) {
-        sender.buttonCancelled(sender)
         self.definesPresentationContext = true
         present(helpScreen, animated: true)
     }
@@ -330,7 +333,7 @@ extension MoodLoggingMoodViewController {
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
         self.markSpotlight.transform = CATransform3DMakeScale(0.7, 0.7, 1)
         CATransaction.commit()
-        headerLabel.removeFromSuperview()
+        initialPrompt.removeFromSuperview()
     }
     
     // Called when the tap finishes
@@ -445,7 +448,7 @@ extension MoodLoggingMoodViewController {
         
         /// Enable forward navigation and gestureSwiping again
         self.screenSliderDelegate?.forwardNavigationEnabled = true
-        self.screenSliderDelegate?.isLiveGestureSwipingEnabled = true
+        self.screenSliderDelegate?.gestureScrollingEnabled = true
         
         /// Informt he delegate to attempt to proceed
         self.screenSliderDelegate?.goToNextScreen()
@@ -596,23 +599,12 @@ extension MoodLoggingMoodViewController: ViewBuilding {
     func setupChildViews() {
         view.addSubview(exitButton)
         view.addSubview(infoButton)
-        view.addSubview(headerLabel)
-        
-        headerLabel.snp.makeConstraints { make in
+        view.addSubview(initialPrompt)
+        infoButton.applyConstraints(forPosition: .topRight, inVC: self)
+        exitButton.applyConstraints(forPosition: .topLeft, inVC: self)
+        initialPrompt.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.7)
-        }
-        exitButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
-        infoButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
         }
     }
 }

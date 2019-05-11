@@ -10,6 +10,8 @@ class ScreenSliderViewController: UIPageViewController {
     
     /// Page Indicator View
     lazy var pageIndicator: PageIndicator = PageIndicator()
+    lazy var forwardButton = IconButton(UIImage(named: "down-circle")!, action: #selector(goForward), .standard)
+    lazy var backwardButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBackward), .standard)
     
     /// Accessing UIPageViewController's child ScrollView
     var scrollView: UIScrollView?
@@ -25,11 +27,28 @@ class ScreenSliderViewController: UIPageViewController {
     var initialScreenIndex: Int = 0
     var sliderShouldloop: Bool = false
     
-    var forwardNavigationEnabled: Bool = true
-    var backwardNavigationEnabled: Bool = true
+    var forwardNavigationEnabled: Bool = true {
+        didSet {
+            if forwardNavigationEnabled == true {
+                forwardButton.isEnabledStyle = true
+            } else {
+                forwardButton.isEnabledStyle = false
+            }
+        }
+    }
+    
+    var backwardNavigationEnabled: Bool = true {
+        didSet {
+            if backwardNavigationEnabled == true {
+                backwardButton.isEnabledStyle = true
+            } else {
+                backwardButton.isEnabledStyle = false
+            }
+        }
+    }
 
-    var isLiveGestureSwipingEnabled: Bool = true {
-        didSet { scrollView?.isScrollEnabled = isLiveGestureSwipingEnabled }
+    var gestureScrollingEnabled: Bool = true {
+        didSet { scrollView?.isScrollEnabled = gestureScrollingEnabled }
     }
     var pageIndicatorEnabled: Bool = false {
         didSet { setupPageIndicator()  }
@@ -71,6 +90,7 @@ extension ScreenSliderViewController {
         setupPageView()
         setupPageIndicator()
         setupScrollView()
+        setUpButtons()
     }
     
     /// Setup the initial page
@@ -97,9 +117,9 @@ extension ScreenSliderViewController {
             return
         case .vertical:
             pageIndicator.snp.makeConstraints { (make) in
-                make.right.equalTo(self.view.safeAreaLayoutGuide).offset(65)
-                make.centerY.equalToSuperview()
-                make.height.equalTo(10)
+                make.right.equalTo(self.view.safeAreaLayoutGuide).offset(60)
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-100)
+                make.height.equalTo(20)
                 make.width.equalTo(200)
             }
             pageIndicator.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
@@ -109,7 +129,24 @@ extension ScreenSliderViewController {
     private func setupScrollView() {
         self.scrollView = (view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView)
         scrollView?.delegate = self
-        scrollView?.isScrollEnabled = isLiveGestureSwipingEnabled
+        scrollView?.isScrollEnabled = gestureScrollingEnabled
+    }
+    
+    private func setUpButtons() {
+        view.addSubview(backwardButton)
+        backwardButton.isVisible = false
+        view.addSubview(forwardButton)
+        forwardButton.isVisible = false
+        
+        switch navigationOrientation {
+        case .horizontal:
+            forwardButton.applyConstraints(forPosition: .bottomLeft, inVC: self)
+            backwardButton.applyConstraints(forPosition: .bottomRight, inVC: self)
+            return
+        case .vertical:
+            forwardButton.applyConstraints(forPosition: .bottomRight, inVC: self)
+            backwardButton.applyConstraints(forPosition: .topRight, inVC: self)
+        }
     }
 }
 
@@ -121,7 +158,6 @@ extension ScreenSliderViewController {
         guard let screen = pageViewController(self, viewControllerAfter: viewControllers![0]) else { return }
         setViewControllers([screen], direction: .forward, animated: true, completion: nil)
         pageIndicator.currentPage = screens.firstIndex(where: {$0.vc == viewControllers![0]})!
-        print(self)
     }
     
     // Manually transition to the previous screen
@@ -129,7 +165,26 @@ extension ScreenSliderViewController {
         guard let screen: UIViewController = pageViewController(self, viewControllerBefore: viewControllers![0]) else { return }
         setViewControllers([screen], direction: .reverse, animated: true, completion: nil)
         pageIndicator.currentPage = screens.firstIndex(where: {$0.vc == viewControllers![0]})!
-        print(self)
+    }
+    
+    func goTo(index: Int) {
+        guard index > 0 && index < screens.count - 1 else { return }
+        guard let currentIndex: Int = screens.firstIndex(where: {$0.vc == viewControllers![0]}) else { return }
+        let direction: UIPageViewController.NavigationDirection = (currentIndex >= index) ? .reverse : .forward
+        screens[index].enabled = true
+        setViewControllers([screens[index].vc], direction: direction, animated: true, completion: nil)
+        pageIndicator.currentPage = screens.firstIndex(where: {$0.vc == viewControllers![0]})!
+    }
+}
+
+extension ScreenSliderViewController {
+    @objc func goForward() {
+        forwardNavigationEnabled = true
+        goToNextScreen()
+    }
+    @objc func goBackward() {
+        backwardNavigationEnabled = true
+        goToPreviousScreen()
     }
 }
 

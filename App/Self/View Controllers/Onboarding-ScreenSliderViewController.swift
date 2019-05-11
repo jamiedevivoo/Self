@@ -12,8 +12,6 @@ extension OnboardingScreenSliderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, showPageIndicator: true, isLooped: false, enableSwiping: false)
-        pageIndicatorEnabled = true
-        isLiveGestureSwipingEnabled = false
     }
     
 }
@@ -63,31 +61,19 @@ extension OnboardingScreenSliderViewController: ScreenSliderDelegate {
     func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
         if nextViewController.isMember(of: InductionOnboardingViewController.self) {
             guard name != nil else {
-                print("Next Screen failed Validation")
                 return true
             }
         }
-        print("Validation success")
         return true
     }
     
     //// Add to super's willTransitionTo function
     override func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        if !pendingViewControllers[0].isKind(of: LandingOnboardingViewController.self) {
-            self.scrollView?.isScrollEnabled = true
-            print(true)
-        }
         super.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
     }
     
     //// Add to super's didFinishAnimating function
     override func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
-        if viewControllers?[0].isKind(of: LandingOnboardingViewController.self) ?? false {
-            self.scrollView?.isScrollEnabled = false
-            print(false)
-        }
-        
         super.pageViewController(pageViewController, didFinishAnimating: finished, previousViewControllers: previousViewControllers, transitionCompleted: completed)
     }
     

@@ -61,7 +61,7 @@ extension UIColor {
                 }}
                 static func unselected() -> UIColor { switch ColorManager.getActiveColorMode() {
                 case .dark: return UIColor(red: 150/255, green: 166/255, blue: 254/255, alpha: 1)
-                default:    return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 1)
+                default:    return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 0.8)
                 }}
             }
         }

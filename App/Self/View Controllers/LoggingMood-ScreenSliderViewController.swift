@@ -50,6 +50,7 @@ extension LoggingAMoodScreenSliderViewController {
         navigationController?.navigationBar.isHidden = true
         self.modalTransitionStyle = .crossDissolve
         setupBackground()
+        addObservers()
     }
     
 }
@@ -67,15 +68,15 @@ extension LoggingAMoodScreenSliderViewController {
         headlineStage!.screenSliderDelegate = self
         
         tagsStage = TagsLoggingMoodViewController()
-        tagsStage!.moodLogDataCollectionDelegate = self
+        tagsStage!.dataCollector = self
         tagsStage!.screenSliderDelegate = self
         
         diaryStage = DiaryLoggingMoodViewController()
-        diaryStage!.moodLogDataCollectionDelegate = self
+        diaryStage!.dataCollector = self
         diaryStage!.screenSliderDelegate = self
         
         wildcardStage = WildcardLoggingMoodViewController()
-        wildcardStage!.moodLogDataCollectionDelegate = self
+        wildcardStage!.dataCollector = self
         wildcardStage!.screenSliderDelegate = self
         
         overviewStage = OverviewLoggingMoodViewController()
@@ -137,6 +138,36 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
 //        signInAnonymously(withName: name)
     }
     
+}
+
+// Observers
+extension LoggingAMoodScreenSliderViewController {
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        guard let pageIndicator = screenSliderDelegate?.pageIndicator else { return }
+        if (pageIndicator.frame.origin.y + pageIndicator.frame.height) > (self.view.frame.height - keyboardFrame.height) {
+            pageIndicator.frame.origin.y -= keyboardFrame.height
+        }
+        if (forwardButton.frame.origin.y + forwardButton.frame.height) > (self.view.frame.height - keyboardFrame.height) {
+            forwardButton.frame.origin.y -= keyboardFrame.height
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        pageIndicator.frame.origin.y -= keyboardFrame.height
+        forwardButton.frame.origin.y -= keyboardFrame.height
+    }
 }
 
 // MARK: - ScreenSliderViewControllerDelegate Methods

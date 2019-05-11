@@ -32,6 +32,7 @@ extension Textfield {
 extension Textfield {
     func setupSubclass() {
         borderStyle = .none
+        isUserInteractionEnabled = true
         font = UIFont.systemFont(ofSize: 30)
         textColor = UIColor.App.Text.text()
         returnKeyType = .next

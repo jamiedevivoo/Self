@@ -10,7 +10,6 @@ final class OverviewLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Log Overview", .largeScreen)
-    lazy var backButton = IconButton(UIImage(named: "up-circle")!, action: #selector(goBack), .standard)
     
     lazy var logTitleLabel = HeaderLabel("Title", .subheader)
     lazy var logTitle = HeaderLabel(moodLogDataCollectionDelegate!.headline!, .centerPageText)
@@ -43,51 +42,34 @@ extension OverviewLoggingMoodViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         screenSliderDelegate?.pageIndicator.isVisible = false
+        screenSliderDelegate?.forwardButton.isVisible = false
+        screenSliderDelegate?.backwardButton.isVisible = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         screenSliderDelegate?.backwardNavigationEnabled = false
-        screenSliderDelegate?.isLiveGestureSwipingEnabled = false
+        screenSliderDelegate?.backwardButton.isEnabledStyle = true
+        screenSliderDelegate?.gestureScrollingEnabled = false
         dismissKeyboard()
     }
     
 }
 
-// MARK: - Class Methods
-extension OverviewLoggingMoodViewController {
-    
-    func createTagViews() {
-        for tag in moodLogDataCollectionDelegate!.tags {
-            let view: UIView = UIView()
-            let text = UILabel()
-            text.text = tag
-            view.backgroundColor = UIColor.white.withAlphaComponent(0.4)
-            view.layer.cornerRadius = 10
-        }
-    }
-
-}
 // MARK: - Buttons
 extension OverviewLoggingMoodViewController {
     
-    @objc func goBack() {
-        screenSliderDelegate?.backwardNavigationEnabled = true
-        self.screenSliderDelegate?.goToPreviousScreen()
-    }
     @objc func saveLog() {
         screenSliderDelegate?.backwardNavigationEnabled = true
         self.screenSliderDelegate?.goToNextScreen()
     }
     @objc func addWildcard() {
         guard let wildcardScreenIndex = screenSliderDelegate?.screens.firstIndex(where: {$0.vc.isKind(of: WildcardLoggingMoodViewController.self)}) else { return }
-        screenSliderDelegate?.screens[wildcardScreenIndex].enabled = true
-        goBack()
+        screenSliderDelegate?.goTo(index: wildcardScreenIndex)
     }
     @objc func addNote() {
         guard let noteScreenIndex = screenSliderDelegate?.screens.firstIndex(where: {$0.vc.isKind(of: DiaryLoggingMoodViewController.self)}) else { return }
-        screenSliderDelegate?.screens[noteScreenIndex].enabled = true
-        goBack()
+        screenSliderDelegate?.goTo(index: noteScreenIndex)
     }
 }
 
@@ -96,7 +78,6 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
     func setupChildViews() {
         // UI
         self.view.addSubview(headerLabel)
-        self.view.addSubview(backButton)
         
         // Log
         self.view.addSubview(logTitleLabel)
@@ -110,17 +91,7 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(saveButton)
         
         // UI
-        headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(50)
-        }
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
         
         // Log
         logTitleLabel.textAlignment = .center
@@ -197,7 +168,7 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
         }
         
         saveButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(30)
             make.height.equalTo(60)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()

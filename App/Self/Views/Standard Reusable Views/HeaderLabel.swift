@@ -48,11 +48,13 @@ final class HeaderLabel: UILabel {
     }
     
     func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
-        self.snp.remakeConstraints { (make) in
-            make.top.equalToSuperview().offset(52)
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().inset(100)
-            make.height.lessThanOrEqualTo(50)
-        }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.snp.remakeConstraints { (make) in
+                make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(30)
+                make.left.equalToSuperview().offset(30)
+                make.right.equalToSuperview().inset(100)
+                make.height.lessThanOrEqualTo(40)
+            }
+        })
     }
 }

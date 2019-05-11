@@ -2,6 +2,44 @@ import UIKit
 
 final class IconButton: UIButton {
     
+    var isVisible: Bool = true {
+        willSet(newValue) {
+            if newValue == false {
+                UIView.animate(withDuration: 0.3,
+                               animations: {
+                                self.alpha = 0
+                                self.frame.offsetBy(dx: 20, dy: 0)
+                })
+            } else {
+                UIView.animate(withDuration: 0.3,
+                               animations: {
+                                self.alpha = 0.5
+                                self.frame.offsetBy(dx: -20, dy: 0)
+                })
+            }
+        }
+    }
+    
+    var isEnabledStyle: Bool = true {
+        willSet(newValue) {
+            if isVisible == true {
+                if newValue == false {
+                    isEnabled = false
+                    UIView.animate(withDuration: 0.3,
+                                   animations: {
+                                    self.alpha = 0.08
+                    })
+                } else {
+                    isEnabled = true
+                    UIView.animate(withDuration: 0.3,
+                                   animations: {
+                                    self.alpha = 0.5
+                    })
+                }
+            }
+        }
+    }
+    
     convenience init(_ image: UIImage, action: Selector? = nil, _ type: IconButtonType) {
         self.init()
         
@@ -16,7 +54,10 @@ final class IconButton: UIButton {
         /// Finish Setup
         setup(type)
     }
-    
+}
+
+
+extension IconButton {
     func setup(_ type: IconButtonType) {
 
         switch type {
@@ -32,7 +73,6 @@ final class IconButton: UIButton {
             addTarget(self, action: #selector(buttonCancelled), for: [.touchDragExit, .touchCancel, .touchUpInside])
         return
         }
-        
     }
     
     enum IconButtonType {
@@ -46,30 +86,42 @@ extension IconButton {
         case topLeft, topRight, bottomRight, bottomLeft
     }
     
-//    func applyConstraints(forPosition position: IconButtonPosition, inView sView: UIView) {
-//        switch position {
-//        case .topLeft:
-//            snp.makeConstraints { make in
-//                make.top.equalTo(sView.safeAreaLayoutGuide.snp.top).offset(10)
-//                make.left.equalTo(sView.safeAreaLayoutGuide.snp.left).offset(15)
-//                make.height.equalTo(40)
-//                make.width.equalTo(40)
-//            }
-//        return
-//        case .topRight:
-//            snp.makeConstraints { make in
-//                make.top.equalTo(sView.safeAreaLayoutGuide.snp.top).offset(20)
-//                make.right.equalTo(sView.safeAreaLayoutGuide.snp.right).inset(15)
-//                make.height.equalTo(40)
-//                make.width.equalTo(40)
-//            }
-//            return
-//        case .bottomRight:
-//            return
-//        case .bottomLeft:
-//            return
-//        }
-//    }
+    func applyConstraints(forPosition position: IconButtonPosition, inVC vc: UIViewController) {
+        switch position {
+        case .topLeft:
+            snp.makeConstraints { make in
+                make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(25)
+                make.left.equalTo(vc.view.safeAreaLayoutGuide.snp.left).offset(20)
+                make.height.equalTo(40)
+                make.width.equalTo(40)
+            }
+        return
+        case .topRight:
+            snp.makeConstraints { make in
+                make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(25)
+                make.right.equalTo(vc.view.safeAreaLayoutGuide.snp.right).inset(20)
+                make.height.equalTo(40)
+                make.width.equalTo(40)
+            }
+            return
+        case .bottomRight:
+            snp.makeConstraints { make in
+                make.bottom.equalTo(vc.view.safeAreaLayoutGuide.snp.bottom).offset(-25)
+                make.right.equalTo(vc.view.safeAreaLayoutGuide.snp.right).inset(20)
+                make.height.equalTo(40)
+                make.width.equalTo(40)
+            }
+            return
+        case .bottomLeft:
+            snp.makeConstraints { make in
+                make.bottom.equalTo(vc.view.safeAreaLayoutGuide.snp.bottom).offset(-25)
+                make.left.equalTo(vc.view.safeAreaLayoutGuide.snp.left).inset(20)
+                make.height.equalTo(40)
+                make.width.equalTo(40)
+            }
+            return
+        }
+    }
     
 }
 

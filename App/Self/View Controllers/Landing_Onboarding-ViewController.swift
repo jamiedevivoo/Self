@@ -51,7 +51,7 @@ extension LandingOnboardingViewController {
         view.addGestureRecognizer(tapGestureForViewSlider)
         view.addGestureRecognizer(swipeForward)
         view.addGestureRecognizer(swipeBackward)
-        screenSliderDelegate?.isLiveGestureSwipingEnabled = false
+        screenSliderDelegate?.gestureScrollingEnabled = false
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,7 +59,7 @@ extension LandingOnboardingViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        screenSliderDelegate?.isLiveGestureSwipingEnabled = false
+        screenSliderDelegate?.gestureScrollingEnabled = false
         screenSliderDelegate?.forwardNavigationEnabled = false
     }
 }

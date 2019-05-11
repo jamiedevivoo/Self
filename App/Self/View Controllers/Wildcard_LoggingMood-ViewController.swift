@@ -5,13 +5,13 @@ import SnapKit
 final class WildcardLoggingMoodViewController: ViewController {
     
     // Delegates
-    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var dataCollector: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
     lazy var headerLabel = HeaderLabel("Wildcard Question", .largeScreen)
     lazy var questionLabel = HeaderLabel("", .smallScreen)
-
+    
     lazy var wildcardTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
@@ -21,8 +21,8 @@ final class WildcardLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
-    
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
+
     // Properties
     var wildcard: Mood.Wildcard?
 }
@@ -33,69 +33,118 @@ extension WildcardLoggingMoodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
+        setupTextField()
         view.backgroundColor = .clear
+        view.layer.backgroundColor = UIColor.clear.cgColor
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        wildcardTextFieldWithLabel.textField.text = dataCollector?.headline
+        wildcardTextFieldWithLabel.textField.placeholder = "I'm feeling \(dataCollector?.emotion?.adj ?? "...")"
+        
+        if validateHeadline() == nil {
+            wildcardTextFieldWithLabel.resetHint()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupKeyboard()
+        /// At this point forward navigation and gestureswping are enabled
+        screenSliderDelegate?.backwardNavigationEnabled = true
+        screenSliderDelegate?.gestureScrollingEnabled = true
+        /// The page indicator is also visible on this page
+        screenSliderDelegate?.pageIndicator.isVisible = true
+        screenSliderDelegate?.backwardButton.isVisible = true
+        screenSliderDelegate?.forwardButton.isVisible = true
+        /// Add the tap gesture
+        view.addGestureRecognizer(tapGesture)
+        /// Finally, once the view has louaded, make the textfield Active if validation fails
+        if validateHeadline() == nil {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+            wildcardTextFieldWithLabel.textField.becomeFirstResponder()
+        } else {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        /// If the view is about to dissapear we can resign the first responder
+        wildcardTextFieldWithLabel.textField.resignFirstResponder()
+    }
 }
 
 // MARK: - Class Methods
 extension WildcardLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
+        
         /// Validation Checks
         guard
-            let wildcardResponse: String = self.wildcardTextFieldWithLabel.textField.text?.trim(),
-            self.wildcardTextFieldWithLabel.textField.text!.trim().count > 1
-        /// Return nil if it fails
-        else { return nil }
+            let text: String = self.wildcardTextFieldWithLabel.textField.text?.trim(),
+            wildcardTextFieldWithLabel.textField.text!.trim().count > 1
+            
+            /// Return nil if it fails
+            else {
+                wildcardTextFieldWithLabel.resetHint()
+                screenSliderDelegate?.forwardNavigationEnabled = false
+                dataCollector?.headline = nil
+                return nil
+        }
+        
         /// If it passes, reset the hint
-        wildcardTextFieldWithLabel.resetHint()
+        wildcardTextFieldWithLabel.resetHint(withText: "✓ Press next when you're ready", for: .info)
+        screenSliderDelegate?.forwardNavigationEnabled = true
+        
         /// Then update the textfield and send the value to the delegate
-        wildcard?.answer = wildcardResponse
-        wildcardTextFieldWithLabel.textField.text = wildcardResponse
-        moodLogDataCollectionDelegate?.wildcard = wildcard
+        wildcardTextFieldWithLabel.textField.text = text
+        dataCollector?.headline = text
         /// Finally return the validated value to the caller
-        return wildcardResponse
+        return text
     }
 }
 
 // MARK: - TextField Delegate Methods
 extension WildcardLoggingMoodViewController: UITextFieldDelegate {
-    func setupKeyboard() {
-        wildcardTextFieldWithLabel.textField.delegate = self
-        self.wildcardTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
-        view.addGestureRecognizer(tapToTogglekeyboardGesture)
-        wildcardTextFieldWithLabel.textField.resignFirstResponder()
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let wildcardResponse = validateHeadline() {
-            wildcard?.answer = wildcardResponse
-            screenSliderDelegate?.goToNextScreen()
-            moodLogDataCollectionDelegate?.wildcard = wildcard
-            return true
-        } else {
-            moodLogDataCollectionDelegate?.wildcard = nil
+        guard validateHeadline() != nil else {
+            dataCollector?.headline = nil
             wildcardTextFieldWithLabel.textField.shake()
-            wildcardTextFieldWithLabel.resetHint(withText: "Your response needs to be at least 2 characters", for: .error)
+            wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+            return false
         }
+        
+        screenSliderDelegate?.goToNextScreen()
         return false
     }
     
+    func setupTextField() {
+        wildcardTextFieldWithLabel.textField.delegate = self
+        wildcardTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+    }
+}
+
+// Gestures
+extension WildcardLoggingMoodViewController {
     @objc func processTap() {
-        if !wildcardTextFieldWithLabel.textField.isFirstResponder {
-            wildcardTextFieldWithLabel.textField.becomeFirstResponder()
-        }
-        
-        if validateHeadline() != nil {
-            screenSliderDelegate?.forwardNavigationEnabled = true
+        /// See if the current text validates
+        guard validateHeadline() == nil else {
+            /// If it does, enable forward navigation and go to the next screen
             screenSliderDelegate?.goToNextScreen()
+            return
         }
+        /// Disable forward navigation and reset the value since they tried to proceed
+        dataCollector?.headline = nil
+        /// If it fails and the keyboard isn't displayed, show the keyboard
+        guard wildcardTextFieldWithLabel.textField.isFirstResponder else {
+            wildcardTextFieldWithLabel.textField.becomeFirstResponder()
+            return
+        }
+        /// If the keyboard is displayed, shake the textfield and prvide a hint
+        wildcardTextFieldWithLabel.textField.shake()
+        wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
     }
 }
 
@@ -104,21 +153,11 @@ extension WildcardLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
-        self.view.addSubview(questionLabel)
         self.view.addSubview(wildcardTextFieldWithLabel)
         
-        headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(40)
-        }
-        questionLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(headerLabel).offset(30)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(50)
-        }
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
         wildcardTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(questionLabel.snp.bottom).offset(25)
+            make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
@@ -142,7 +181,6 @@ extension WildcardLoggingMoodViewController {
             }
             self.wildcard = Mood.Wildcard(questionData as! [String: Any])
             self.questionLabel.text = self.wildcard?.question
-            print(self.wildcard)
         }
     }
 }

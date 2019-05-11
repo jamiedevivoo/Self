@@ -5,12 +5,11 @@ import SnapKit
 final class DiaryLoggingMoodViewController: ViewController {
     
     // Delegates
-    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var dataCollector: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Add A Note", .largeScreen)
-    lazy var forwardButton = IconButton(UIImage(named: "down-circle")!, action: #selector(goForward), .standard)
     
     lazy var diaryTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
@@ -21,7 +20,10 @@ final class DiaryLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
+    
+    // Properties
+    var wildcard: Mood.Wildcard?
 }
 
 // MARK: - Override Methods
@@ -30,72 +32,122 @@ extension DiaryLoggingMoodViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
+        setupTextField()
         view.backgroundColor = .clear
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        diaryTextFieldWithLabel.textField.text = dataCollector?.headline
+        diaryTextFieldWithLabel.textField.placeholder = "I'm feeling \(dataCollector?.emotion?.adj ?? "...")"
+        
+        if validateHeadline() == nil {
+            diaryTextFieldWithLabel.resetHint()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        screenSliderDelegate?.forwardNavigationEnabled = false
-        setupKeyboard()
+        /// At this point forward navigation and gestureswping are enabled
+        screenSliderDelegate?.backwardNavigationEnabled = true
+        screenSliderDelegate?.gestureScrollingEnabled = true
+        /// The page indicator is also visible on this page
+        screenSliderDelegate?.pageIndicator.isVisible = true
+        screenSliderDelegate?.backwardButton.isVisible = true
+        screenSliderDelegate?.forwardButton.isVisible = true
+        /// Add the tap gesture
+        view.addGestureRecognizer(tapGesture)
+        /// Finally, once the view has louaded, make the textfield Active if validation fails
+        if validateHeadline() == nil {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+            diaryTextFieldWithLabel.textField.becomeFirstResponder()
+        } else {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        /// If the view is about to dissapear we can resign the first responder
+        diaryTextFieldWithLabel.textField.resignFirstResponder()
+    }
 }
 
 // MARK: - Class Methods
 extension DiaryLoggingMoodViewController {
     
     @objc func validateHeadline() -> String? {
+        
+        /// Validation Checks
         guard
-            let note: String = self.diaryTextFieldWithLabel.textField.text?.trim(),
-            self.diaryTextFieldWithLabel.textField.text!.trim().count > 1
-            else { return nil }
-        moodLogDataCollectionDelegate?.note = note
-        diaryTextFieldWithLabel.resetHint()
-        self.diaryTextFieldWithLabel.textField.text = note
-        return note
+            let text: String = self.diaryTextFieldWithLabel.textField.text?.trim(),
+            diaryTextFieldWithLabel.textField.text!.trim().count > 1
+            
+            /// Return nil if it fails
+            else {
+                diaryTextFieldWithLabel.resetHint()
+                screenSliderDelegate?.forwardNavigationEnabled = false
+                dataCollector?.headline = nil
+                return nil
+        }
+        
+        /// If it passes, reset the hint
+        diaryTextFieldWithLabel.resetHint(withText: "✓ Press next when you're ready", for: .info)
+        screenSliderDelegate?.forwardNavigationEnabled = true
+        
+        /// Then update the textfield and send the value to the delegate
+        diaryTextFieldWithLabel.textField.text = text
+        dataCollector?.headline = text
+        /// Finally return the validated value to the caller
+        return text
     }
 }
 
 // MARK: - TextField Delegate Methods
 extension DiaryLoggingMoodViewController: UITextFieldDelegate {
-    func setupKeyboard() {
-        diaryTextFieldWithLabel.textField.delegate = self
-        self.diaryTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
-        view.addGestureRecognizer(tapToTogglekeyboardGesture)
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let note = validateHeadline() {
-            diaryTextFieldWithLabel.textField.resignFirstResponder()
-            goForward()
-            moodLogDataCollectionDelegate?.note = note
-            return true
-        } else {
-            moodLogDataCollectionDelegate?.note = nil
+        guard validateHeadline() != nil else {
+            dataCollector?.headline = nil
             diaryTextFieldWithLabel.textField.shake()
-            diaryTextFieldWithLabel.resetHint(withText: "Your note should be at least 2 characters")
+            diaryTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+            return false
         }
+        
+        screenSliderDelegate?.goToNextScreen()
         return false
     }
     
-    @objc func processTap() {
-        if !diaryTextFieldWithLabel.textField.isFirstResponder {
-            diaryTextFieldWithLabel.textField.becomeFirstResponder()
-        }
-        
-        if validateHeadline() != nil {
-            screenSliderDelegate?.forwardNavigationEnabled = true
-            screenSliderDelegate?.goToNextScreen()
-        }
+    func setupTextField() {
+        diaryTextFieldWithLabel.textField.delegate = self
+        diaryTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
     }
 }
 
-// MARK: - Buttons
+
+// MARK: - TextField Delegate Methods
 extension DiaryLoggingMoodViewController {
-    
-    @objc func goForward() {
-        screenSliderDelegate?.forwardNavigationEnabled = true
-        self.screenSliderDelegate?.goToNextScreen()
+}
+
+// Gestures
+extension DiaryLoggingMoodViewController {
+    @objc func processTap() {
+        /// See if the current text validates
+        guard validateHeadline() == nil else {
+            /// If it does, enable forward navigation and go to the next screen
+            screenSliderDelegate?.goToNextScreen()
+            return
+        }
+        /// Disable forward navigation and reset the value since they tried to proceed
+        dataCollector?.headline = nil
+        /// If it fails and the keyboard isn't displayed, show the keyboard
+        guard diaryTextFieldWithLabel.textField.isFirstResponder else {
+            diaryTextFieldWithLabel.textField.becomeFirstResponder()
+            return
+        }
+        /// If the keyboard is displayed, shake the textfield and prvide a hint
+        diaryTextFieldWithLabel.textField.shake()
+        diaryTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
     }
 }
 
@@ -105,22 +157,13 @@ extension DiaryLoggingMoodViewController: ViewBuilding {
     func setupChildViews() {
         self.view.addSubview(headerLabel)
         self.view.addSubview(diaryTextFieldWithLabel)
-        self.view.addSubview(forwardButton)
-        headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(40)
-        }
+        
+        headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
+        
         diaryTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
-        }
-        forwardButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(30)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
         }
     }
 }
