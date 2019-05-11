@@ -36,9 +36,16 @@ extension OverviewLoggingMoodViewController {
         view.backgroundColor = .clear
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        screenSliderDelegate?.pageIndicator.isHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         screenSliderDelegate?.backwardNavigationEnabled = false
+        screenSliderDelegate?.liveGestureSwipingEnabled = false
+        screenSliderDelegate?.pageIndicator.isHidden = true
         dismissKeyboard()
     }
     

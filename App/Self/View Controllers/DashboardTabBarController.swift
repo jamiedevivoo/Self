@@ -7,6 +7,8 @@ extension DashboardTabBarController {
 
 class DashboardTabBarController: UITabBarController {
     
+    var rootVisible = true
+    
     lazy var leftSwipe: UISwipeGestureRecognizer = {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
@@ -23,7 +25,7 @@ class DashboardTabBarController: UITabBarController {
     }()
     lazy var profileButton = IconButton(UIImage(named: "menu-vertical")!, action: #selector(showMenu), .standard)
     lazy var helpButton = IconButton(UIImage(named: "safety-float")!, action: #selector(showHelp), .standard)
-    lazy var overlays: [UIView] = []
+    lazy var overlays: [(view: UIView, originalAlpha: CGFloat)] = []
 }
 
 // MARK: - INIT
@@ -70,6 +72,7 @@ extension DashboardTabBarController {
 extension DashboardTabBarController {
     
     func setupTabBar() {
+        tabBar.frame.origin.y -= 20
         tabBar.backgroundImage = UIImage()
         tabBar.clipsToBounds = true
         tabBar.isTranslucent = true
@@ -86,7 +89,7 @@ extension DashboardTabBarController {
         frost.alpha = 0.0
         
         tabBar.insertSubview(frost, at: 0)
-        overlays.append(tabBar)
+        overlays.append((tabBar, 1))
     }
 }
 
@@ -101,7 +104,7 @@ extension DashboardTabBarController {
             make.height.equalTo(40)
             make.width.equalTo(40)
         }
-        overlays.append(profileButton)
+        overlays.append((profileButton, profileButton.alpha))
     }
     
     func setupHelpButton() {
@@ -112,7 +115,7 @@ extension DashboardTabBarController {
             make.height.equalTo(40)
             make.width.equalTo(40)
         }
-        overlays.append(helpButton)
+        overlays.append((helpButton, profileButton.alpha))
     }
     
     @objc func showMenu() {
@@ -134,13 +137,39 @@ extension DashboardTabBarController {
     }
     
     override func returnedToRootView() {
-        for overlay in overlays {
-            overlay.isHidden = false
+        if !rootVisible {
+            for overlay in overlays {
+                UIView.animate(
+                    withDuration: 0.2,
+                    delay: 0,
+                    usingSpringWithDamping: 1,
+                    initialSpringVelocity: 1,
+                    options: [.curveEaseInOut],
+                    animations: {
+                        overlay.view.alpha = overlay.originalAlpha
+                        overlay.view.frame.origin = CGPoint(x: overlay.view.frame.origin.x, y: overlay.view.frame.origin.y - 20)
+                }, completion: { [unowned self] _ in
+                    self.rootVisible = true
+                })
+            }
         }
     }
     override func leavingRootView() {
-        for overlay in overlays {
-            overlay.isHidden = true
+        if rootVisible {
+            for overlay in overlays {
+                UIView.animate(
+                    withDuration: 0.2,
+                    delay: 0,
+                    usingSpringWithDamping: 1,
+                    initialSpringVelocity: 1,
+                    options: [.curveEaseInOut],
+                    animations: {
+                        overlay.view.alpha = 0
+                        overlay.view.frame.origin = CGPoint(x: overlay.view.frame.origin.x, y: overlay.view.frame.origin.y + 20)
+                }, completion: { [unowned self] _ in
+                    self.rootVisible = false
+                })
+            }
         }
     }
 }

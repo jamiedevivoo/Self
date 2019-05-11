@@ -52,8 +52,11 @@ extension HighlightsViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.returnedToRootView()
         addHighlights()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        tabBarController?.returnedToRootView()
     }
     
 }
@@ -61,20 +64,20 @@ extension HighlightsViewController {
 // MARK: - Class Methods
 extension HighlightsViewController {
     func addHighlights() {
-        actionManager.user(accountManager.accountRef!).getCompleteActions { [unowned self] actions in
-            self.loader.removeFromSuperview()
+        actionManager.user(accountManager.accountRef!).getCompleteActions { [weak self] actions in
+            self?.loader.removeFromSuperview()
             
             // Check actions were returned
             guard let actions = actions, actions.count > 0 else {
-                self.addNoHighlightsView()
-                self.highlightCollectionView.removeFromSuperview()
+                self?.addNoHighlightsView()
+                self?.highlightCollectionView.removeFromSuperview()
                 return
             }
             
-            self.actionLogs = actions
-            self.noHighlightsView.removeFromSuperview()
-            self.addHighlightsCollectionView()
-            self.highlightCollectionView.reloadData()
+            self?.actionLogs = actions
+            self?.noHighlightsView.removeFromSuperview()
+            self?.addHighlightsCollectionView()
+            self?.highlightCollectionView.reloadData()
         }
     }
 }

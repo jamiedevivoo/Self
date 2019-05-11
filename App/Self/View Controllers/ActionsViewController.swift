@@ -50,6 +50,10 @@ extension ActionsViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         tabBarController?.returnedToRootView()
     }
 }

@@ -39,6 +39,7 @@ extension NameOnboardingViewController {
         super.viewDidLoad()
         screenSliderDelegate?.forwardNavigationEnabled = false
         nameTextFieldWithLabel.textField.becomeFirstResponder()
+        screenSliderDelegate?.pageIndicator.isVisible = false
     }
     
 }
@@ -51,16 +52,16 @@ extension NameOnboardingViewController {
             let name: String = self.nameTextFieldWithLabel.textField.text?.trim(),
             self.nameTextFieldWithLabel.textField.text!.trim().count > 1
         else {
+            nameTextFieldWithLabel.resetHint()
             screenSliderDelegate?.forwardNavigationEnabled = false
             return nil
         }
         screenSliderDelegate?.forwardNavigationEnabled = true
         dataCollector?.name = name
         nameTextFieldWithLabel.textField.text = name
-        nameTextFieldWithLabel.resetHint()
+        nameTextFieldWithLabel.resetHint(withText: "✓ Ready to go, press next to continue")
         return name
     }
-    
 }
 
 // MARK: - TextField Delegate Methods
@@ -68,10 +69,12 @@ extension NameOnboardingViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if validateName() != nil {
+            screenSliderDelegate?.forwardNavigationEnabled = true
             screenSliderDelegate?.goToNextScreen()
             return true
         } else {
             dataCollector?.name = nil
+            screenSliderDelegate?.forwardNavigationEnabled = false
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters", for: .error)
         }

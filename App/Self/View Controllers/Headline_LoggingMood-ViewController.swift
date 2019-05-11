@@ -5,7 +5,7 @@ import Firebase
 final class HeadlineLoggingMoodViewController: ViewController {
     
     // Delegates
-    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var dataCollector: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
@@ -21,6 +21,9 @@ final class HeadlineLoggingMoodViewController: ViewController {
         textFieldWithLabel.labelTitle = "Describe how you're feeling"
         return textFieldWithLabel
     }()
+    
+    lazy var tapToToggleKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+
 }
 
 // MARK: - Override Methods
@@ -35,14 +38,14 @@ extension HeadlineLoggingMoodViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        headLineTextFieldWithLabel.textField.placeholder = "I'm Feeling \(moodLogDataCollectionDelegate?.emotion?.adj ?? "")..."
+        headLineTextFieldWithLabel.textField.placeholder = "I'm Feeling \(dataCollector?.emotion?.adj ?? "")..."
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         screenSliderDelegate?.backwardNavigationEnabled = false
         headLineTextFieldWithLabel.becomeFirstResponder()
-        becomeFirstResponder()
+        screenSliderDelegate?.pageIndicator.isVisible = false
     }
     
 }
@@ -54,40 +57,55 @@ extension HeadlineLoggingMoodViewController {
         
         /// Validation Checks
         guard
-            let headline: String = self.headLineTextFieldWithLabel.textField.text?.trim(),
-            self.headLineTextFieldWithLabel.textField.text!.trim().count > 1
+            let text: String = self.headLineTextFieldWithLabel.textField.text?.trim(),
+            headLineTextFieldWithLabel.textField.text!.trim().count > 1
+            
         /// Return nil if it fails
-        else { return nil }
+        else {
+            headLineTextFieldWithLabel.resetHint()
+            screenSliderDelegate?.forwardNavigationEnabled = false
+            return nil
+        }
         
         /// If it passes, reset the hint
-        headLineTextFieldWithLabel.resetHint(withText: "Press next to continue", for: .info)
+        headLineTextFieldWithLabel.resetHint(withText: "✓ Press next when you're ready", for: .info)
+        screenSliderDelegate?.forwardNavigationEnabled = true
+        
         /// Then update the textfield and send the value to the delegate
-        self.headLineTextFieldWithLabel.textField.text = headline
-        moodLogDataCollectionDelegate?.headline = headline
+        headLineTextFieldWithLabel.textField.text = text
+        dataCollector?.headline = text
         /// Finally return the validated value to the caller
-        return headline
+        return text
     }
 }
 
 // MARK: - TextField Delegate Methods
 extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
-    func setupTextField() {
-        headLineTextFieldWithLabel.textField.delegate = self
-        headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let headline = validateHeadline() {
+        if validateHeadline() != nil {
+            screenSliderDelegate?.forwardNavigationEnabled = true
             screenSliderDelegate?.goToNextScreen()
-            moodLogDataCollectionDelegate?.headline = headline
-            
             return false
         } else {
-            moodLogDataCollectionDelegate?.headline = nil
+            dataCollector?.headline = nil
+            screenSliderDelegate?.forwardNavigationEnabled = false
             headLineTextFieldWithLabel.textField.shake()
             headLineTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
         }
         return false
+    }
+    
+    func setupTextField() {
+        headLineTextFieldWithLabel.textField.delegate = self
+        headLineTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+        view.addGestureRecognizer(tapToToggleKeyboard)
+    }
+    
+    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
+        if !headLineTextFieldWithLabel.textField.isFirstResponder {
+            headLineTextFieldWithLabel.textField.becomeFirstResponder()
+        }
     }
 }
 

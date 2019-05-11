@@ -343,6 +343,7 @@
 				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
 				7D47AC67225FD380004BF898 /* Button.swift */,
 				7D21FEDA228410EE0001FE62 /* IconButton.swift */,
+				A3683566226E0B0D005C8600 /* PageIndicator.swift */,
 				A334099422457023004CBB2A /* Loader.swift */,
 			);
 			path = "Standard Reusable Views";
@@ -416,7 +417,6 @@
 				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
 				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
 				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
-				A3683566226E0B0D005C8600 /* PageIndicator.swift */,
 				7D77E549227F942200946FB7 /* ExpandableCell.swift */,
 			);
 			path = Views;

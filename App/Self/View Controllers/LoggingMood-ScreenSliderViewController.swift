@@ -66,7 +66,7 @@ extension LoggingAMoodScreenSliderViewController {
         moodStage!.screenSliderDelegate = self
         
         headlineStage = HeadlineLoggingMoodViewController()
-        headlineStage!.moodLogDataCollectionDelegate = self
+        headlineStage!.dataCollector = self
         headlineStage!.screenSliderDelegate = self
         
         tagsStage = TagsLoggingMoodViewController()

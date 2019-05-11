@@ -45,6 +45,7 @@ extension LandingOnboardingViewController {
         super.viewDidAppear(animated)
         view.addGestureRecognizer(swipeLeftForOnboarding)
         sliderView.view.addGestureRecognizer(swipeLeftForOnboarding)
+        screenSliderDelegate?.pageIndicator.isVisible = true
 
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +67,7 @@ extension LandingOnboardingViewController {
     }
     @objc func navigateToRegister() {
         screenSliderDelegate?.liveGestureSwipingEnabled = true
+        screenSliderDelegate?.forwardNavigationEnabled = true
         screenSliderDelegate?.goToNextScreen()
     }
 }
@@ -107,7 +109,7 @@ private extension LandingOnboardingViewController {
 }
 
 extension LandingOnboardingViewController: ViewSliderDelegate {
-    func continueFromLastPage() {
+    func continueAfterLastPage() {
         navigateToRegister()
     }
 }

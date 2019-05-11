@@ -9,13 +9,17 @@ class ScreenSliderViewController: UIPageViewController {
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
     /// Page Indicator View
-    lazy var pageIndicator: UIPageControl = PageIndicator()
+    lazy var pageIndicator: PageIndicator = PageIndicator()
     
     /// Accessing UIPageViewController's child ScrollView
     var scrollView: UIScrollView?
     
     /// References to all screens in slider. (The View, enabled)
-    var screens: [(vc: UIViewController, enabled: Bool)] = []
+    var screens: [(vc: UIViewController, enabled: Bool)] = [] {
+        didSet {
+            self.pageIndicator.numberOfPages = self.screens.filter({$0.enabled == true}).count
+        }
+    }
     
     /// Options for Screen Slider setup
     var initialScreenIndex: Int = 0
@@ -78,17 +82,29 @@ extension ScreenSliderViewController {
     /// Setup the pageIndicator
     private func setupPageIndicator() {
         guard pageIndicatorEnabled == true else { return }
-        self.pageIndicator.numberOfPages = self.screens.count
+        self.pageIndicator.numberOfPages = self.screens.filter({$0.enabled == true}).count
         self.pageIndicator.currentPage = initialScreenIndex
         
         self.view.addSubview(pageIndicator)
-        pageIndicator.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-25)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(10)
+        
+        switch navigationOrientation {
+        case .horizontal:
+            pageIndicator.snp.makeConstraints { (make) in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-30)
+                make.centerX.equalToSuperview()
+                make.height.equalTo(10)
+            }
+            return
+        case .vertical:
+            pageIndicator.snp.makeConstraints { (make) in
+                make.right.equalTo(self.view.safeAreaLayoutGuide).offset(65)
+                make.centerY.equalToSuperview()
+                make.height.equalTo(10)
+                make.width.equalTo(200)
+            }
+            pageIndicator.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         }
     }
-    
     /// Setup the ScrollView
     private func setupScrollView() {
         self.scrollView = (view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView)
@@ -101,22 +117,21 @@ extension ScreenSliderViewController {
     
     // Manually transition to the next screen
     func goToNextScreen() {
-        guard let viewControllerIndex: Int = screens.firstIndex(where: {$0.vc == viewControllers![0]}) else { return }
-        
-        let remainingScreens = screens[(viewControllerIndex+1)...]
-        
-        guard let nextEnabledScreenIndex = remainingScreens.firstIndex(where: {$0.enabled == true}) else { return }
-        
-        screens[nextEnabledScreenIndex].enabled = true
+//        guard let viewControllerIndex: Int = screens.firstIndex(where: {$0.vc == viewControllers![0]}) else { return }
+//        let remainingScreens = screens[(viewControllerIndex+1)...]
+//        guard let nextEnabledScreenIndex = remainingScreens.firstIndex(where: {$0.enabled == true}) else { return }
+//        screens[nextEnabledScreenIndex].enabled = true
         
         guard let screen = pageViewController(self, viewControllerAfter: viewControllers![0]) else { return }
         setViewControllers([screen], direction: .forward, animated: true, completion: nil)
+        pageIndicator.currentPage = screens.firstIndex(where: {$0.vc == viewControllers![0]})!
     }
     
     // Manually transition to the previous screen
     func goToPreviousScreen() {
         guard let screen: UIViewController = pageViewController(self, viewControllerBefore: viewControllers![0]) else { return }
         setViewControllers([screen], direction: .reverse, animated: true, completion: nil)
+        pageIndicator.currentPage = screens.firstIndex(where: {$0.vc == viewControllers![0]})!
     }
 }
 

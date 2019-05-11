@@ -1,3 +1,3 @@
 protocol ViewSliderDelegate: class {
-    func continueFromLastPage()
+    func continueAfterLastPage()
 }

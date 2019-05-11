@@ -119,7 +119,9 @@ extension MoodLoggingMoodViewController {
         view.backgroundColor = .clear
         setupChildViews()
         screenSliderDelegate?.forwardNavigationEnabled = false
+        screenSliderDelegate?.liveGestureSwipingEnabled = false
         super.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         exitButton.tintColor = UIColor.darkText
         navigationController?.isToolbarHidden = true
     }
@@ -128,6 +130,7 @@ extension MoodLoggingMoodViewController {
         screenSliderDelegate?.liveGestureSwipingEnabled = false
         markSpotlight.add(pulseAnimations, forKey: nil)
         tapToConfirm.isEnabled = true
+        screenSliderDelegate?.pageIndicator.isVisible = true
     }
 }
 

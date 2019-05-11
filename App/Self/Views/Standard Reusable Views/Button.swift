@@ -118,8 +118,6 @@ extension Button {
     func focusButton(_ button: UIButton) {
         let duration = 0.3
         
-        pulseAnimation()
-        
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
@@ -134,20 +132,9 @@ extension Button {
                        initialSpringVelocity: 1,
                        options: [.curveEaseInOut],
                        animations: {
-                        button.alpha += 0.2
+                        button.alpha -= 0.2
                         button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         })
-    }
-    
-    func pulseAnimation() {
-        let pulseAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
-            pulseAnimation.duration = 1
-            pulseAnimation.fromValue = 0
-            pulseAnimation.toValue = 1
-            pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-            pulseAnimation.autoreverses = true
-            pulseAnimation.repeatCount = 1
-            layer.add(pulseAnimation, forKey: "animateOpacity")
     }
     
     func unFocusButton(_ button: UIButton) {
@@ -167,7 +154,7 @@ extension Button {
                        initialSpringVelocity: 1,
                        options: [.curveEaseInOut],
                        animations: {
-                        button.alpha -= 0.2
+                        button.alpha += 0.2
                         button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
     }

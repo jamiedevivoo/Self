@@ -63,13 +63,16 @@ extension ViewSliderViewController: UIScrollViewDelegate {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    }
 }
 
 // MARK: - Class Methods
 extension ViewSliderViewController {
     func nextStage() {
         guard pageControl.currentPage < (pageControl.numberOfPages - 1) else {
-            delegate?.continueFromLastPage()
+            delegate?.continueAfterLastPage()
             return
         }
         
@@ -96,7 +99,9 @@ extension ViewSliderViewController: ViewBuilding {
             make.bottom.equalTo(pageControl.snp.top).offset(-20)
         }
         pageControl.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalTo(200)
+            make.centerX.equalToSuperview()
             make.height.equalTo(10)
         }
     }
