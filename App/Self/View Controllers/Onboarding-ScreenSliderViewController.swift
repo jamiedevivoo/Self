@@ -11,8 +11,9 @@ extension OnboardingScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, enableSwiping: false)
+        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, showPageIndicator: true, isLooped: false, enableSwiping: false)
         pageIndicatorEnabled = true
+        liveGestureSwipingEnabled = false
     }
     
 }

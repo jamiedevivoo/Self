@@ -101,8 +101,10 @@ extension ActionsViewController {
         let actionSelectionViewController = DailyActionBriefSelectorViewController()
         actionSelectionViewController.delegate = self
         actionSelectionViewController.actionManager = actionManager
-        self.modalTransitionStyle = .coverVertical
-        self.navigationController?.pushViewController(actionSelectionViewController, animated: true)
+        actionSelectionViewController.modalPresentationStyle = .popover
+        modalTransitionStyle = .coverVertical
+        definesPresentationContext = true
+        navigationController?.pushViewController(actionSelectionViewController, animated: true)
     }
 }
 

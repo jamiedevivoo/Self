@@ -15,6 +15,7 @@ extension DashboardNavigationController {
     
     func setup() {
         navigationBar.isHidden = true
+        isNavigationBarHidden = true
         navigationBar.barTintColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
@@ -24,6 +25,12 @@ extension DashboardNavigationController {
         tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 5)
     }
     
+    override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+        tabBarController?.returnedToRootView()
+        isNavigationBarHidden = true
+        return super.popToRootViewController(animated: animated)
+    }
+        
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         tabBarController?.leavingRootView()
         super.pushViewController(viewController, animated: animated)

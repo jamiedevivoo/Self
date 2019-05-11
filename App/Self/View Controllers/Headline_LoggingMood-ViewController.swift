@@ -43,9 +43,10 @@ extension HeadlineLoggingMoodViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        screenSliderDelegate?.backwardNavigationEnabled = false
         headLineTextFieldWithLabel.becomeFirstResponder()
-        screenSliderDelegate?.pageIndicator.isVisible = false
+        screenSliderDelegate?.pageIndicator.isVisible = true
+        screenSliderDelegate?.backwardNavigationEnabled = false
+        screenSliderDelegate?.liveGestureSwipingEnabled = true
     }
     
 }
@@ -126,19 +127,19 @@ extension HeadlineLoggingMoodViewController: ViewBuilding {
         view.addSubview(backButton)
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
             make.height.equalTo(40)
             make.width.equalTo(40)
         }
         headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(50)
+            make.height.greaterThanOrEqualTo(40)
         }
         headLineTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
     }

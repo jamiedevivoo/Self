@@ -96,28 +96,6 @@ extension DashboardTabBarController {
 // MARK: - Handle Buttons
 extension DashboardTabBarController {
     
-    func setupProfileButton() {
-        self.view.addSubview(profileButton)
-        profileButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
-        overlays.append((profileButton, profileButton.alpha))
-    }
-    
-    func setupHelpButton() {
-        self.view.addSubview(helpButton)
-        helpButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(60)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-        }
-        overlays.append((helpButton, profileButton.alpha))
-    }
-    
     @objc func showMenu() {
         let settings = SettingsViewController()
         settings.modalPresentationStyle = .overFullScreen
@@ -135,10 +113,14 @@ extension DashboardTabBarController {
         let currentNavigationController = viewControllers![selectedIndex] as! DashboardNavigationController
         currentNavigationController.pushViewController(help, animated: true)
     }
-    
+}
+
+// MARK: - Delegate Methods
+extension DashboardTabBarController {
     override func returnedToRootView() {
         if !rootVisible {
             for overlay in overlays {
+                overlay.view.isHidden = false
                 UIView.animate(
                     withDuration: 0.2,
                     delay: 0,
@@ -168,6 +150,7 @@ extension DashboardTabBarController {
                         overlay.view.frame.origin = CGPoint(x: overlay.view.frame.origin.x, y: overlay.view.frame.origin.y + 20)
                 }, completion: { [unowned self] _ in
                     self.rootVisible = false
+                    overlay.view.isHidden = true
                 })
             }
         }
@@ -238,5 +221,30 @@ extension DashboardTabBarController {
             self.selectedIndex = toIndex
             self.view.isUserInteractionEnabled = true
         })
+    }
+}
+
+// View building
+extension DashboardTabBarController {
+    func setupProfileButton() {
+        self.view.addSubview(profileButton)
+        profileButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
+        overlays.append((profileButton, profileButton.alpha))
+    }
+    
+    func setupHelpButton() {
+        self.view.addSubview(helpButton)
+        helpButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(60)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
+        overlays.append((helpButton, profileButton.alpha))
     }
 }

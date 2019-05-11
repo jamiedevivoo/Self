@@ -171,18 +171,18 @@ extension TagsLoggingMoodViewController: ViewBuilding {
         
         configureForwardButtonPosition()
         headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(50)
+            make.height.greaterThanOrEqualTo(40)
         }
         tagTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
         tagsStack.snp.makeConstraints { (make) in
             make.top.equalTo(tagTextFieldWithLabel.snp.bottom).offset(25)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(40)
         }
     }

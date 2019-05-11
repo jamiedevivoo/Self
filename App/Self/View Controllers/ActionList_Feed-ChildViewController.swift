@@ -11,7 +11,7 @@ class FeedActionListChildViewController: UIViewController {
         stackView.distribution = .equalCentering
         stackView.isBaselineRelativeArrangement = false
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.spacing = UIStackView.spacingUseSystem
+        stackView.spacing = 10.0
         return stackView
     }()
     
@@ -20,7 +20,6 @@ class FeedActionListChildViewController: UIViewController {
     lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
     lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
     lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount), type: .dashboard)
-    
     
     var accountRef: Account?
     
@@ -87,7 +86,7 @@ extension FeedActionListChildViewController: ViewBuilding {
     
     func setupChildViews() {
         actionHeaderLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(actionButtonStack.snp.top).offset(-20)
+            make.bottom.equalTo(actionButtonStack.snp.top).offset(-15)
             make.left.right.equalToSuperview()
             make.height.greaterThanOrEqualTo(20)
         }

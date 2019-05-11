@@ -46,13 +46,10 @@ extension LoggingAMoodScreenSliderViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, showPageIndicator: true, isLooped: false, enableSwiping:  false)
+        configurePageViewController(self, withPages: setupScreens(), withDelegate: self, showPageIndicator: true, isLooped: false, enableSwiping: false)
         navigationController?.navigationBar.isHidden = true
-        self.view.layer.insertSublayer(background, at: 0)
-        view.backgroundColor = UIColor.App.Background.primary()
-        let baseColour = UIColor(red: 0.5, green: 0.6, blue: 0.6, alpha: 0.4)
-        background.colors = [baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor]
         self.modalTransitionStyle = .crossDissolve
+        setupBackground()
     }
     
 }
@@ -60,7 +57,7 @@ extension LoggingAMoodScreenSliderViewController {
 // MARK: - Setup Methods
 extension LoggingAMoodScreenSliderViewController {
     
-    func setupScreens() -> [(UIViewController,Bool)] {
+    func setupScreens() -> [(UIViewController, Bool)] {
         moodStage = MoodLoggingMoodViewController()
         moodStage!.moodLogDataCollectionDelegate = self
         moodStage!.screenSliderDelegate = self
@@ -92,6 +89,13 @@ extension LoggingAMoodScreenSliderViewController {
                 (wildcardStage!, false),
                 (diaryStage!, false),
                 (overviewStage!, true)]
+    }
+    
+    func setupBackground() {
+        view.backgroundColor = UIColor.App.Background.primary()
+        self.view.layer.insertSublayer(background, at: 0)
+        let baseColour = UIColor(red: 0.5, green: 0.6, blue: 0.6, alpha: 0.4)
+        background.colors = [baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor, baseColour.cgColor]
     }
     
 }

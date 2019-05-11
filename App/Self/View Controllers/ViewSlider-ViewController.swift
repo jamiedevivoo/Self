@@ -41,6 +41,7 @@ extension ViewSliderViewController {
     private func setupScrolllView() {
         scrollView.contentSize = CGSize(width: (view.frame.width * CGFloat(slides.count)), height: scrollView.frame.height)
         scrollView.isPagingEnabled = true
+        scrollView.bounces = true
         
         for slideIndex in 0 ..< slides.count {
             slides[slideIndex].frame = CGRect(x: (view.frame.width * CGFloat(slideIndex)),
@@ -60,11 +61,25 @@ extension ViewSliderViewController {
 // MARK: - Delegate Methods
 extension ViewSliderViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.x)
+        
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
+        
+        if Int(pageIndex) == slides.count - 1 {
+            scrollView.bounces = true
+        } else {
+            scrollView.bounces = false
+        }
+        
+        let width = view.frame.width
+        if scrollView.contentOffset.x > (width * CGFloat(slides.count - 1)) {
+            delegate?.continueAfterLastPage()
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
     }
 }
 

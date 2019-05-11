@@ -118,19 +118,17 @@ extension MoodLoggingMoodViewController {
         view.layer.addSublayer(markSpotlight)
         view.backgroundColor = .clear
         setupChildViews()
-        screenSliderDelegate?.forwardNavigationEnabled = false
-        screenSliderDelegate?.liveGestureSwipingEnabled = false
-        super.navigationController?.isNavigationBarHidden = true
-        navigationController?.isNavigationBarHidden = true
         exitButton.tintColor = UIColor.darkText
-        navigationController?.isToolbarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        screenSliderDelegate?.liveGestureSwipingEnabled = false
         markSpotlight.add(pulseAnimations, forKey: nil)
         tapToConfirm.isEnabled = true
-        screenSliderDelegate?.pageIndicator.isVisible = true
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        screenSliderDelegate?.pageIndicator.isVisible = false
+        screenSliderDelegate?.forwardNavigationEnabled = false
     }
 }
 

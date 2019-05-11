@@ -75,10 +75,8 @@ extension HighlightsViewController {
                 animations: {
                     self?.loader.alpha = 0
             }, completion: { [weak self] _ in
-                
+            
             self?.loader.removeFromSuperview()
-                
-            print("stuff")
                 
             // Check actions were returned
             guard let actions = actions, actions.count > 0 else {

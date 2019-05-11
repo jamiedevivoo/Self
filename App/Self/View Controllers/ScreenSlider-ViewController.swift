@@ -117,14 +117,10 @@ extension ScreenSliderViewController {
     
     // Manually transition to the next screen
     func goToNextScreen() {
-//        guard let viewControllerIndex: Int = screens.firstIndex(where: {$0.vc == viewControllers![0]}) else { return }
-//        let remainingScreens = screens[(viewControllerIndex+1)...]
-//        guard let nextEnabledScreenIndex = remainingScreens.firstIndex(where: {$0.enabled == true}) else { return }
-//        screens[nextEnabledScreenIndex].enabled = true
-        
         guard let screen = pageViewController(self, viewControllerAfter: viewControllers![0]) else { return }
         setViewControllers([screen], direction: .forward, animated: true, completion: nil)
         pageIndicator.currentPage = screens.firstIndex(where: {$0.vc == viewControllers![0]})!
+        print(self)
     }
     
     // Manually transition to the previous screen
@@ -132,6 +128,7 @@ extension ScreenSliderViewController {
         guard let screen: UIViewController = pageViewController(self, viewControllerBefore: viewControllers![0]) else { return }
         setViewControllers([screen], direction: .reverse, animated: true, completion: nil)
         pageIndicator.currentPage = screens.firstIndex(where: {$0.vc == viewControllers![0]})!
+        print(self)
     }
 }
 

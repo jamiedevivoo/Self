@@ -18,6 +18,7 @@ final class LandingOnboardingViewController: ViewController {
         label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
         label.textAlignment = .center
         label.textColor = UIColor.App.Text.text()
+        label.isUserInteractionEnabled = false
         return label
     }()
     
@@ -30,6 +31,8 @@ final class LandingOnboardingViewController: ViewController {
         swipeGesture.direction = .left
         return swipeGesture
     }()
+
+    lazy var tapGestureForViewSlider = UITapGestureRecognizer(target: self, action: #selector(continueViewSlider))
     
 }
 
@@ -37,16 +40,19 @@ final class LandingOnboardingViewController: ViewController {
 extension LandingOnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        sliderView.slides = createOnboardingScreens()
         setupChildViews()
+        sliderView.slides = createOnboardingScreens()
+        sliderView.delegate = self
+        sliderView.view.addGestureRecognizer(tapGestureForViewSlider)
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        screenSliderDelegate?.pageIndicator.isVisible = false
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         view.addGestureRecognizer(swipeLeftForOnboarding)
         sliderView.view.addGestureRecognizer(swipeLeftForOnboarding)
-        screenSliderDelegate?.pageIndicator.isVisible = true
-
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -66,9 +72,11 @@ extension LandingOnboardingViewController {
         self.present(LoginViewController(), animated: true)
     }
     @objc func navigateToRegister() {
-        screenSliderDelegate?.liveGestureSwipingEnabled = true
         screenSliderDelegate?.forwardNavigationEnabled = true
         screenSliderDelegate?.goToNextScreen()
+    }
+    @objc func continueViewSlider() {
+        sliderView.nextStage()
     }
 }
 
@@ -110,6 +118,7 @@ private extension LandingOnboardingViewController {
 
 extension LandingOnboardingViewController: ViewSliderDelegate {
     func continueAfterLastPage() {
+        print("HEY")
         navigateToRegister()
     }
 }
@@ -125,7 +134,7 @@ extension LandingOnboardingViewController: ViewBuilding {
         
         welcomeLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
-            make.left.right.equalToSuperview().inset(20)
+            make.left.right.equalToSuperview().inset(30)
         }
         sliderView.view.snp.makeConstraints { (make) in
             make.top.equalTo(welcomeLabel.snp.bottom).offset(50)
@@ -134,12 +143,12 @@ extension LandingOnboardingViewController: ViewBuilding {
         }
         registerButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(loginButton.snp.top).offset(-20)
-            make.left.right.equalToSuperview().inset(20)
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
         }
         loginButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
-            make.left.right.equalToSuperview().inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(30)
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
         }
     }

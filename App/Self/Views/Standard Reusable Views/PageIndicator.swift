@@ -4,7 +4,7 @@ class PageIndicator: UIPageControl {
     
     var isVisible: Bool = true {
         willSet(newValue) {
-            if newValue == true {
+            if newValue == false {
                 UIView.animate(withDuration: 0.3,
                                animations: {
                                 self.alpha = 0

@@ -28,6 +28,7 @@ extension NameOnboardingViewController {
         super.viewDidLoad()
         setupChildViews()
         setupKeyboard()
+        screenSliderDelegate?.forwardNavigationEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,9 +38,10 @@ extension NameOnboardingViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
-        screenSliderDelegate?.forwardNavigationEnabled = false
+        screenSliderDelegate?.backwardNavigationEnabled = true
+        screenSliderDelegate?.liveGestureSwipingEnabled = true
         nameTextFieldWithLabel.textField.becomeFirstResponder()
-        screenSliderDelegate?.pageIndicator.isVisible = false
+        screenSliderDelegate?.pageIndicator.isVisible = true
     }
     
 }
@@ -102,13 +104,13 @@ extension NameOnboardingViewController: ViewBuilding {
         self.view.addSubview(headerLabel)
         self.view.addSubview(nameTextFieldWithLabel)
         headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
         nameTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(50)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
     }

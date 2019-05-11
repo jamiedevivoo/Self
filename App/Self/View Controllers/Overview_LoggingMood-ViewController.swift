@@ -38,14 +38,17 @@ extension OverviewLoggingMoodViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        screenSliderDelegate?.pageIndicator.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        screenSliderDelegate?.pageIndicator.isVisible = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         screenSliderDelegate?.backwardNavigationEnabled = false
         screenSliderDelegate?.liveGestureSwipingEnabled = false
-        screenSliderDelegate?.pageIndicator.isHidden = true
         dismissKeyboard()
     }
     
@@ -108,12 +111,12 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
         
         // UI
         headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
             make.height.equalTo(40)
             make.width.equalTo(40)
@@ -194,7 +197,7 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
         }
         
         saveButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(50)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
             make.height.equalTo(60)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()

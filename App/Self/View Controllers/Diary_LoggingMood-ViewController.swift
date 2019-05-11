@@ -104,17 +104,17 @@ extension DiaryLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(diaryTextFieldWithLabel)
         self.view.addSubview(forwardButton)
         headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.greaterThanOrEqualTo(50)
+            make.height.greaterThanOrEqualTo(40)
         }
         diaryTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
         forwardButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(30)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
             make.height.equalTo(40)
             make.width.equalTo(40)

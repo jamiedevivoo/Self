@@ -14,21 +14,6 @@ extension FeedViewController {
         super.viewDidLoad()
         addSubViews()
         setupChildViews()
-        
-        let collectionRef = Firestore.firestore().collection("user").document(Auth.auth().currentUser!.uid).collection("mood_logs")
-        collectionRef.getDocuments { snapshot, error in
-            guard let snapshot = snapshot, error == nil else {
-                if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
-                return
-            }
-            print(snapshot)
-            for document in snapshot.documents {
-                var documentData = document.data()
-                documentData["uid"] = document.documentID
-                print(documentData as AnyObject)
-                print(Mood.Log(documentData).dictionary as AnyObject)
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +43,7 @@ extension FeedViewController: ViewBuilding {
     
     func setupChildViews() {
         messageViewController.view.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).inset(30)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(30)
             make.bottom.equalTo(actionListViewController.view.snp.top).offset(-20)

@@ -56,19 +56,19 @@ extension InductionOnboardingViewController: ViewBuilding {
         self.view.addSubview(continueButton)
         
         headerLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(50)
         }
         
         paraLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(50)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(50)
         }
         continueButton.snp.makeConstraints { (make) in
             make.top.equalTo(paraLabel.snp.bottom).offset(50)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.equalTo(60)
         }
     }

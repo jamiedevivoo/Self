@@ -16,5 +16,6 @@ extension ViewController {
 extension ViewController {
     func setupViewController() {
         view.backgroundColor = UIColor.App.Background.primary()
+        navigationController?.isNavigationBarHidden = true
     }
 }
