@@ -10,7 +10,8 @@ final class DiaryLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Add A Note", .largeScreen)
-    
+    lazy var hintOneLabel = ParaLabel("This is just for you, no one will see it 💡", .standard)
+
     lazy var diaryTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
@@ -38,10 +39,9 @@ extension DiaryLoggingMoodViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        diaryTextFieldWithLabel.textField.text = dataCollector?.headline
-        diaryTextFieldWithLabel.textField.placeholder = "I'm feeling \(dataCollector?.emotion?.adj ?? "...")"
+        diaryTextFieldWithLabel.textField.text = dataCollector?.note?.text
         
-        if validateHeadline() == nil {
+        if validateNote() == nil {
             diaryTextFieldWithLabel.resetHint()
         }
     }
@@ -58,11 +58,8 @@ extension DiaryLoggingMoodViewController {
         /// Add the tap gesture
         view.addGestureRecognizer(tapGesture)
         /// Finally, once the view has louaded, make the textfield Active if validation fails
-        if validateHeadline() == nil {
-            screenSliderDelegate?.forwardNavigationEnabled = false
-            diaryTextFieldWithLabel.textField.becomeFirstResponder()
-        } else {
-            screenSliderDelegate?.forwardNavigationEnabled = true
+        if validateNote() == nil {
+//            diaryTextFieldWithLabel.textField.becomeFirstResponder()
         }
     }
     
@@ -76,7 +73,7 @@ extension DiaryLoggingMoodViewController {
 // MARK: - Class Methods
 extension DiaryLoggingMoodViewController {
     
-    @objc func validateHeadline() -> String? {
+    @objc func validateNote() -> String? {
         
         /// Validation Checks
         guard
@@ -86,18 +83,16 @@ extension DiaryLoggingMoodViewController {
             /// Return nil if it fails
             else {
                 diaryTextFieldWithLabel.resetHint()
-                screenSliderDelegate?.forwardNavigationEnabled = false
-                dataCollector?.headline = nil
+                dataCollector?.note = nil
                 return nil
         }
         
         /// If it passes, reset the hint
         diaryTextFieldWithLabel.resetHint(withText: "✓ Press next when you're ready", for: .info)
-        screenSliderDelegate?.forwardNavigationEnabled = true
         
         /// Then update the textfield and send the value to the delegate
         diaryTextFieldWithLabel.textField.text = text
-        dataCollector?.headline = text
+        dataCollector?.note = Note(text: text)
         /// Finally return the validated value to the caller
         return text
     }
@@ -107,10 +102,10 @@ extension DiaryLoggingMoodViewController {
 extension DiaryLoggingMoodViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard validateHeadline() != nil else {
-            dataCollector?.headline = nil
+        guard validateNote() != nil else {
+            dataCollector?.note = nil
             diaryTextFieldWithLabel.textField.shake()
-            diaryTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+            diaryTextFieldWithLabel.resetHint(withText: "Your Note needs to be at least 2 characters", for: .error)
             return false
         }
         
@@ -120,7 +115,7 @@ extension DiaryLoggingMoodViewController: UITextFieldDelegate {
     
     func setupTextField() {
         diaryTextFieldWithLabel.textField.delegate = self
-        diaryTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+        diaryTextFieldWithLabel.textField.addTarget(self, action: #selector(validateNote), for: .editingChanged)
     }
 }
 
@@ -133,13 +128,13 @@ extension DiaryLoggingMoodViewController {
 extension DiaryLoggingMoodViewController {
     @objc func processTap() {
         /// See if the current text validates
-        guard validateHeadline() == nil else {
+        guard validateNote() == nil else {
             /// If it does, enable forward navigation and go to the next screen
             screenSliderDelegate?.goToNextScreen()
             return
         }
         /// Disable forward navigation and reset the value since they tried to proceed
-        dataCollector?.headline = nil
+        dataCollector?.note = nil
         /// If it fails and the keyboard isn't displayed, show the keyboard
         guard diaryTextFieldWithLabel.textField.isFirstResponder else {
             diaryTextFieldWithLabel.textField.becomeFirstResponder()
@@ -147,7 +142,7 @@ extension DiaryLoggingMoodViewController {
         }
         /// If the keyboard is displayed, shake the textfield and prvide a hint
         diaryTextFieldWithLabel.textField.shake()
-        diaryTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+        diaryTextFieldWithLabel.resetHint(withText: "Your note needs to be at least 2 characters", for: .error)
     }
 }
 
@@ -158,8 +153,16 @@ extension DiaryLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(headerLabel)
         self.view.addSubview(diaryTextFieldWithLabel)
         
+        view.addSubview(hintOneLabel)
+        hintOneLabel.alpha = 0.5
+        hintOneLabel.textAlignment = .left
         headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
-        
+        hintOneLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-38)
+            make.width.equalToSuperview().multipliedBy(0.6)
+            make.left.equalToSuperview().offset(30)
+            make.height.greaterThanOrEqualTo(30)
+        }
         diaryTextFieldWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)

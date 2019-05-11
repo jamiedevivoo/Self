@@ -7,7 +7,6 @@ protocol UpdateAccountViews {
 protocol AccountInfoObject { }
 
 protocol DataCollectionSequenceDelegate: class {
-    func setData(_ dataDict: [String: Any?])
-    func isDataCollectionComplete() -> Bool
+    func isDataCollectionComplete() -> [String: Any]?
     func finishDataCollection()
 }

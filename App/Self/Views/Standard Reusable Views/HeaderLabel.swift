@@ -53,7 +53,7 @@ final class HeaderLabel: UILabel {
                 make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(30)
                 make.left.equalToSuperview().offset(30)
                 make.right.equalToSuperview().inset(100)
-                make.height.lessThanOrEqualTo(40)
+                make.height.greaterThanOrEqualTo(30)
             }
         })
     }

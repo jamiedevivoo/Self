@@ -9,8 +9,9 @@ final class WildcardLoggingMoodViewController: ViewController {
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
     // Views
-    lazy var headerLabel = HeaderLabel("Wildcard Question", .largeScreen)
+    lazy var headerLabel = HeaderLabel("Question Of The Day", .largeScreen)
     lazy var questionLabel = HeaderLabel("", .smallScreen)
+    lazy var hintOneLabel = ParaLabel("These thought provoking questions help you frame your mind 💡", .standard)
     
     lazy var wildcardTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
@@ -23,7 +24,7 @@ final class WildcardLoggingMoodViewController: ViewController {
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
 
-    // Properties
+    // Stored Properties
     var wildcard: Mood.Wildcard?
 }
 
@@ -36,15 +37,16 @@ extension WildcardLoggingMoodViewController {
         setupTextField()
         view.backgroundColor = .clear
         view.layer.backgroundColor = UIColor.clear.cgColor
+        getWildcard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        wildcardTextFieldWithLabel.textField.text = dataCollector?.headline
-        wildcardTextFieldWithLabel.textField.placeholder = "I'm feeling \(dataCollector?.emotion?.adj ?? "...")"
+        wildcardTextFieldWithLabel.textField.text = dataCollector?.wildcard?.answer
         
-        if validateHeadline() == nil {
+        if validateWildcard() == nil {
             wildcardTextFieldWithLabel.resetHint()
+            wildcard?.isComplete = false
         }
     }
     
@@ -60,11 +62,8 @@ extension WildcardLoggingMoodViewController {
         /// Add the tap gesture
         view.addGestureRecognizer(tapGesture)
         /// Finally, once the view has louaded, make the textfield Active if validation fails
-        if validateHeadline() == nil {
-            screenSliderDelegate?.forwardNavigationEnabled = false
-            wildcardTextFieldWithLabel.textField.becomeFirstResponder()
-        } else {
-            screenSliderDelegate?.forwardNavigationEnabled = true
+        if validateWildcard() == nil {
+//            wildcardTextFieldWithLabel.textField.becomeFirstResponder()
         }
     }
     
@@ -78,7 +77,7 @@ extension WildcardLoggingMoodViewController {
 // MARK: - Class Methods
 extension WildcardLoggingMoodViewController {
     
-    @objc func validateHeadline() -> String? {
+    @objc func validateWildcard() -> String? {
         
         /// Validation Checks
         guard
@@ -88,18 +87,19 @@ extension WildcardLoggingMoodViewController {
             /// Return nil if it fails
             else {
                 wildcardTextFieldWithLabel.resetHint()
-                screenSliderDelegate?.forwardNavigationEnabled = false
-                dataCollector?.headline = nil
+                dataCollector?.wildcard = nil
+                wildcard?.isComplete = false
                 return nil
         }
         
         /// If it passes, reset the hint
         wildcardTextFieldWithLabel.resetHint(withText: "✓ Press next when you're ready", for: .info)
-        screenSliderDelegate?.forwardNavigationEnabled = true
         
         /// Then update the textfield and send the value to the delegate
         wildcardTextFieldWithLabel.textField.text = text
-        dataCollector?.headline = text
+        self.wildcard?.answer = text
+        self.wildcard?.isComplete = true
+        dataCollector?.wildcard = self.wildcard
         /// Finally return the validated value to the caller
         return text
     }
@@ -109,10 +109,11 @@ extension WildcardLoggingMoodViewController {
 extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard validateHeadline() != nil else {
-            dataCollector?.headline = nil
+        guard validateWildcard() != nil else {
+            dataCollector?.wildcard = nil
+            self.wildcard?.isComplete = false
             wildcardTextFieldWithLabel.textField.shake()
-            wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+            wildcardTextFieldWithLabel.resetHint(withText: "Your response isn't long enough", for: .error)
             return false
         }
         
@@ -122,7 +123,7 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
     
     func setupTextField() {
         wildcardTextFieldWithLabel.textField.delegate = self
-        wildcardTextFieldWithLabel.textField.addTarget(self, action: #selector(validateHeadline), for: .editingChanged)
+        wildcardTextFieldWithLabel.textField.addTarget(self, action: #selector(validateWildcard), for: .editingChanged)
     }
 }
 
@@ -130,13 +131,14 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
 extension WildcardLoggingMoodViewController {
     @objc func processTap() {
         /// See if the current text validates
-        guard validateHeadline() == nil else {
+        guard validateWildcard() == nil else {
             /// If it does, enable forward navigation and go to the next screen
             screenSliderDelegate?.goToNextScreen()
             return
         }
         /// Disable forward navigation and reset the value since they tried to proceed
-        dataCollector?.headline = nil
+        dataCollector?.wildcard = nil
+        self.wildcard?.isComplete = false
         /// If it fails and the keyboard isn't displayed, show the keyboard
         guard wildcardTextFieldWithLabel.textField.isFirstResponder else {
             wildcardTextFieldWithLabel.textField.becomeFirstResponder()
@@ -144,7 +146,7 @@ extension WildcardLoggingMoodViewController {
         }
         /// If the keyboard is displayed, shake the textfield and prvide a hint
         wildcardTextFieldWithLabel.textField.shake()
-        wildcardTextFieldWithLabel.resetHint(withText: "Your title needs to be at least 2 characters", for: .error)
+        wildcardTextFieldWithLabel.resetHint(withText: "Your response isn't long enough", for: .error)
     }
 }
 
@@ -153,11 +155,28 @@ extension WildcardLoggingMoodViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
+        self.view.addSubview(questionLabel)
         self.view.addSubview(wildcardTextFieldWithLabel)
         
+        view.addSubview(hintOneLabel)
+        hintOneLabel.alpha = 0.5
+        hintOneLabel.textAlignment = .left
+        
+        hintOneLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-38)
+            make.width.equalToSuperview().multipliedBy(0.6)
+            make.left.equalToSuperview().offset(30)
+            make.height.greaterThanOrEqualTo(30)
+        }
+        
         headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
+        questionLabel.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(20)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+            make.height.greaterThanOrEqualTo(50)
+        }
         wildcardTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(headerLabel.snp.bottom).offset(25)
+            make.top.equalTo(questionLabel.snp.bottom).offset(30)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
@@ -175,12 +194,14 @@ extension WildcardLoggingMoodViewController {
                 print("Error Loading Actions.")
                 return
             }
-            guard let questionData = documentSnapshot.data()?["question"] else {
+            guard var questionData: [String: Any] = documentSnapshot.data(), let _ = documentSnapshot.data()?["question"] else {
                 self.screenSliderDelegate?.goToNextScreen()
                 return
             }
-            self.wildcard = Mood.Wildcard(questionData as! [String: Any])
+            questionData["wildcard_ref"] = documentSnapshot.reference
+            self.wildcard = Mood.Wildcard(questionData)
             self.questionLabel.text = self.wildcard?.question
+            print(self.wildcard as AnyObject)
         }
     }
 }

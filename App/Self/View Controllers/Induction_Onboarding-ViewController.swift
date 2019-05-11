@@ -34,7 +34,7 @@ extension InductionOnboardingViewController {
 extension InductionOnboardingViewController {
     
     func checkCompletion() {
-        if dataCollector!.isDataCollectionComplete() {
+        if dataCollector!.isDataCollectionComplete() != nil {
             continueButton.applyState(.normal)
         } else {
             continueButton.applyState(.disabled)

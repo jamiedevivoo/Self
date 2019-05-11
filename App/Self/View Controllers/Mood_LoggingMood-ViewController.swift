@@ -126,11 +126,15 @@ extension MoodLoggingMoodViewController {
         super.viewDidAppear(animated)
         markSpotlight.add(pulseAnimations, forKey: nil)
         screenSliderDelegate?.gestureScrollingEnabled = false
+        screenSliderDelegate?.pageIndicator.isVisible = false
+        screenSliderDelegate?.backwardButton.isVisible = false
+        screenSliderDelegate?.forwardButton.isVisible = false
         screenSliderDelegate?.forwardNavigationEnabled = false
         tapToConfirm.isEnabled = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        screenSliderDelegate?.gestureScrollingEnabled = false
         screenSliderDelegate?.pageIndicator.isVisible = false
         screenSliderDelegate?.backwardButton.isVisible = false
         screenSliderDelegate?.forwardButton.isVisible = false

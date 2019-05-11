@@ -50,7 +50,6 @@ extension LoggingAMoodScreenSliderViewController {
         navigationController?.navigationBar.isHidden = true
         self.modalTransitionStyle = .crossDissolve
         setupBackground()
-        addObservers()
     }
     
 }
@@ -80,7 +79,7 @@ extension LoggingAMoodScreenSliderViewController {
         wildcardStage!.screenSliderDelegate = self
         
         overviewStage = OverviewLoggingMoodViewController()
-        overviewStage!.moodLogDataCollectionDelegate = self
+        overviewStage!.dataCollector = self
         overviewStage!.screenSliderDelegate = self
         
         // Return initial screens
@@ -128,46 +127,35 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
     
     func setData(_ dataDict: [String: Any?]) {}
     
-    func isDataCollectionComplete() -> Bool {
-//        guard let _ = self.name else { return false }
-        return true
+    func isDataCollectionComplete() -> [String: Any]? {
+        guard let headline = self.headline else { return nil }
+        guard let valenceRating = self.valenceRating else { return nil }
+        guard let arousalRating = self.arousalRating else { return nil }
+        var tags: [[String: Any]]
+        if self.tags.count > 0 {
+            tags = self.tags.map({$0.dictionary})
+        } else { return nil }
+        return ["headline": headline,
+                "arousal_rating": arousalRating,
+                "valence_rating": valenceRating,
+                "tags": tags
+        ]
     }
     
     func finishDataCollection() {
-//        guard let name = self.name else { return }
-//        signInAnonymously(withName: name)
-    }
-    
-}
+        guard var moodData = isDataCollectionComplete() else { return }
+        moodData["timestamp"] = Date()
+        if self.wildcard != nil {
+            moodData["wildcard"] = self.wildcard!.dictionary
+        }
+        if self.note != nil {
+            moodData["note"] = self.note!.dictionary
+        }
 
-// Observers
-extension LoggingAMoodScreenSliderViewController {
-    
-    private func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let mood: Mood.Log = Mood.Log(moodData)
+        print(mood)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else {return}
-        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
-        let keyboardFrame = keyboardSize.cgRectValue
-        guard let pageIndicator = screenSliderDelegate?.pageIndicator else { return }
-        if (pageIndicator.frame.origin.y + pageIndicator.frame.height) > (self.view.frame.height - keyboardFrame.height) {
-            pageIndicator.frame.origin.y -= keyboardFrame.height
-        }
-        if (forwardButton.frame.origin.y + forwardButton.frame.height) > (self.view.frame.height - keyboardFrame.height) {
-            forwardButton.frame.origin.y -= keyboardFrame.height
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else {return}
-        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
-        let keyboardFrame = keyboardSize.cgRectValue
-        pageIndicator.frame.origin.y -= keyboardFrame.height
-        forwardButton.frame.origin.y -= keyboardFrame.height
-    }
 }
 
 // MARK: - ScreenSliderViewControllerDelegate Methods

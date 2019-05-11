@@ -77,6 +77,7 @@ extension ScreenSliderViewController {
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
+        addObservers()
     }
     
 }
@@ -269,4 +270,34 @@ extension ScreenSliderViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     }
     
+}
+
+// Observers
+extension ScreenSliderViewController {
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        guard let pageIndicator = screenSliderDelegate?.pageIndicator else { return }
+        if (pageIndicator.frame.origin.y + pageIndicator.frame.height) > (self.view.frame.height - keyboardFrame.height) {
+            pageIndicator.frame.origin.y -= keyboardFrame.height
+        }
+        if (forwardButton.frame.origin.y + forwardButton.frame.height) > (self.view.frame.height - keyboardFrame.height) {
+            forwardButton.frame.origin.y -= keyboardFrame.height
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        pageIndicator.frame.origin.y -= keyboardFrame.height
+        forwardButton.frame.origin.y -= keyboardFrame.height
+    }
 }

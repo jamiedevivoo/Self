@@ -44,14 +44,14 @@ extension OnboardingScreenSliderViewController: OnboardingDataCollectorDelegate 
     
     func setData(_ dataDict: [String: Any?]) {}
     
-    func isDataCollectionComplete() -> Bool {
-        guard self.name != nil else { return false }
-        return true
+    func isDataCollectionComplete() -> [String: Any]? {
+        guard let name: String = self.name else { return nil }
+        return ["name": name]
     }
     
     func finishDataCollection() {
-        guard let name = self.name else { return }
-        signInAnonymously(withName: name)
+        guard let data = isDataCollectionComplete() else { return }
+        signInAnonymously(withName: data["name"] as! String)
     }
     
 }

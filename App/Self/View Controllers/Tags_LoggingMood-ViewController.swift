@@ -10,6 +10,7 @@ final class TagsLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Tag Your Log", .largeScreen)
+    lazy var hintOneLabel = ParaLabel("Tags can be anything you want, from what you've done to how you felt 💡", .standard)
     
     lazy var tagTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
@@ -28,8 +29,8 @@ final class TagsLoggingMoodViewController: ViewController {
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
+//        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -37,9 +38,14 @@ final class TagsLoggingMoodViewController: ViewController {
         return collectionView
     }()
     
-    lazy var tags: [Tag] = []
-    
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
+    
+    // Stored Properties
+    var tags: [Tag] = [] {
+        didSet {
+            tagsCollectionView.reloadData()
+        }
+    }
 }
 
 // MARK: - Override Methods
@@ -102,6 +108,9 @@ extension TagsLoggingMoodViewController {
             if (dataCollector?.tags.count)! < 1 {
                 tagTextFieldWithLabel.resetHint()
                 screenSliderDelegate?.forwardNavigationEnabled = false
+            } else {
+                tagTextFieldWithLabel.resetHint(withText: "✓ Add another tag or press next again to continue", for: .info)
+                screenSliderDelegate?.forwardNavigationEnabled = true
             }
             return nil
         }
@@ -135,15 +144,15 @@ extension TagsLoggingMoodViewController {
 // MARK: - TextField Delegate Methods
 extension TagsLoggingMoodViewController: UITextFieldDelegate {
 
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return false
-    }
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//        return false
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let tagTitle = validateTagName() else {
             
             // If the user has already added at least one tag, let them proceed with an error
-            if dataCollector?.tags.count ?? 0 > 0 {
+            if (dataCollector?.tags.count)! > 0 {
                 screenSliderDelegate?.goToNextScreen()
                 return true
             }
@@ -204,23 +213,22 @@ extension TagsLoggingMoodViewController {
             screenSliderDelegate?.goToNextScreen()
             return
         }
+        
+        /// If they have at elast one tag, let them proceed
+        if (dataCollector?.tags.count)! > 0 {
+            screenSliderDelegate?.goToNextScreen()
+            return
+        }
+        
         /// If it fails and the keyboard isn't displayed, show the keyboard
         guard tagTextFieldWithLabel.textField.isFirstResponder else {
             tagTextFieldWithLabel.textField.becomeFirstResponder()
             return
         }
+        
         /// If the keyboard is displayed, shake the textfield and prvide a hint
         tagTextFieldWithLabel.textField.shake()
         tagTextFieldWithLabel.resetHint(withText: "Your log needs at least 1 tag (of 2 characters or more)", for: .error)
-    }
-}
-
-// MARK: - Buttons
-extension TagsLoggingMoodViewController {
-    
-    @objc func goForward() {
-        screenSliderDelegate?.forwardNavigationEnabled = true
-        self.screenSliderDelegate?.goToNextScreen()
     }
 }
 
@@ -231,6 +239,16 @@ extension TagsLoggingMoodViewController: ViewBuilding {
         self.view.addSubview(headerLabel)
         self.view.addSubview(tagTextFieldWithLabel)
         view.addSubview(tagsCollectionView)
+        view.addSubview(hintOneLabel)
+        hintOneLabel.alpha = 0.5
+        hintOneLabel.textAlignment = .left
+        
+        hintOneLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-38)
+            make.width.equalToSuperview().multipliedBy(0.65)
+            make.left.equalToSuperview().offset(30)
+            make.height.greaterThanOrEqualTo(30)
+        }
         
         headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
         tagTextFieldWithLabel.snp.makeConstraints { (make) in

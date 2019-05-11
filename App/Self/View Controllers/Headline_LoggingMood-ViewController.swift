@@ -53,9 +53,10 @@ extension HeadlineLoggingMoodViewController {
         /// The page indicator is also visible on this page
         screenSliderDelegate?.pageIndicator.isVisible = true
         screenSliderDelegate?.forwardButton.isVisible = true
-        screenSliderDelegate?.backwardButton.isVisible = true
-        screenSliderDelegate?.backwardButton.isEnabledStyle = true
-        screenSliderDelegate?.backwardButton.alpha = 0.35
+        UIView.animate(withDuration: 0.3, animations: {
+            self.screenSliderDelegate?.backwardButton.alpha = 0.35
+            self.screenSliderDelegate?.backwardButton.isEnabled = true
+        })
         /// Add the tap gesture
         view.addGestureRecognizer(tapGesture)
         /// Finally, once the view has louaded, make the textfield Active if validation fails

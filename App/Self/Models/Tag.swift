@@ -7,15 +7,17 @@ struct Tag {
     var category: Tag.TagCategory = .personal
 
     var origin: TagOrigin = .unknown
-    var valenceInfluence: Double?
-    var arousalInfluence: Double?
+    var valenceInfluence: Double = 1
+    var arousalInfluence: Double = 1
 }
 
 // MARK: - Convenience Iniitialiser
 extension Tag {
     init(_ tagDictionary: [String: Any]) {
         self.title              = (tagDictionary["title"] as! String)
-        self.description        = (tagDictionary["description"] as! String)
+        if tagDictionary["description"] != nil {
+            self.description        = (tagDictionary["description"] as! String)
+        }
         self.valenceInfluence   = (tagDictionary["valence_influene"] as? Double ?? valenceInfluence)
         self.arousalInfluence   = (tagDictionary["arousal_influence"] as? Double ?? arousalInfluence)
         self.origin             = TagOrigin.matchCase(string: tagDictionary["origin"] as? String ?? "")
@@ -34,7 +36,7 @@ extension Tag: DictionaryConvertable {
             "category": category.rawValue as Any,
             "valence_influence": valenceInfluence as Any,
             "arousal_influence": arousalInfluence as Any
-        ]
+            ].filter({$0.value != nil})
     }
     var logTagDictionary: [String: Any] {
         return [

@@ -5,23 +5,53 @@ import SnapKit
 final class OverviewLoggingMoodViewController: ViewController {
     
     // Delegates and Dependencies
-    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    weak var dataCollector: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Log Overview", .largeScreen)
     
     lazy var logTitleLabel = HeaderLabel("Title", .subheader)
-    lazy var logTitle = HeaderLabel(moodLogDataCollectionDelegate!.headline!, .centerPageText)
+    lazy var logTitle = HeaderLabel(dataCollector!.headline!, .centerPageText)
     
     lazy var logTagsLabel = HeaderLabel("Log Tags", .subheader)
     lazy var tags = Button(title: "Tags", action: #selector(saveLog), type: .secondary)
 
+    lazy var wildcardView = UIView()
     lazy var logWildcardLabel = HeaderLabel("Question of the day", .subheader)
-    lazy var wildcardButton = Button(title: "+ Answer a question", action: #selector(addWildcard), type: .secondary)
+    lazy var logWildcardQuestion: UILabel = {
+        let label = HeaderLabel(dataCollector!.wildcard?.question ?? "", .centerPageText)
+        label.textAlignment = .center
+        label.textColor = UIColor.App.General.blackWhite().withAlphaComponent(0.9)
+        return label
+    }()
+    lazy var wildcardButton: UIButton = {
+        let button = Button(title: "+ Answer a question", action: #selector(addWildcard), type: .secondary)
+        button.setTitleColor(UIColor.App.General.blackWhite().withAlphaComponent(0.8), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = UIColor.App.General.blackWhite().withAlphaComponent(0.4).cgColor
+        button.layer.cornerRadius = 20
+        button.layer.borderWidth = 1
+        return button
+    }()
 
+    lazy var noteView = UIView()
     lazy var logNoteLabel = HeaderLabel("Personal Note", .subheader)
-    lazy var noteButton = Button(title: "+ Add a note", action: #selector(addNote), type: .secondary)
+    lazy var logNote: UILabel = {
+        let label = HeaderLabel(dataCollector!.note?.text ?? "", .centerPageText)
+        label.textAlignment = .center
+        label.textColor = UIColor.App.General.blackWhite().withAlphaComponent(0.9)
+        return label
+    }()
+    lazy var noteButton: UIButton = {
+        let button = Button(title: "+ Add a note", action: #selector(addNote), type: .secondary)
+        button.setTitleColor(UIColor.App.General.blackWhite().withAlphaComponent(0.8), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = UIColor.App.General.blackWhite().withAlphaComponent(0.4).cgColor
+        button.layer.cornerRadius = 20
+        button.layer.borderWidth = 1
+        return button
+    }()
 
     lazy var saveButton = Button(title: "✓ Save log", action: #selector(saveLog), type: .primary)
 }
@@ -43,7 +73,50 @@ extension OverviewLoggingMoodViewController {
         super.viewWillAppear(animated)
         screenSliderDelegate?.pageIndicator.isVisible = false
         screenSliderDelegate?.forwardButton.isVisible = false
-        screenSliderDelegate?.backwardButton.isVisible = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.screenSliderDelegate?.backwardButton.alpha = 0.35
+            self.screenSliderDelegate?.backwardButton.isEnabled = true
+        })
+        print(dataCollector?.wildcard)
+        print(dataCollector?.note)
+        if dataCollector?.wildcard != nil {
+            wildcardButton.removeFromSuperview()
+            wildcardView.addSubview(logWildcardQuestion)
+            logWildcardQuestion.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.height.equalTo(40)
+                make.width.equalToSuperview()
+                make.centerX.equalToSuperview()
+            }
+        } else {
+            logWildcardQuestion.removeFromSuperview()
+            wildcardView.addSubview(wildcardButton)
+            wildcardButton.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.height.equalTo(40)
+                make.width.equalToSuperview()
+                make.centerX.equalToSuperview()
+            }
+        }
+        if dataCollector?.note != nil {
+            noteButton.removeFromSuperview()
+            noteView.addSubview(logNote)
+            logNote.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.height.equalTo(40)
+                make.width.equalToSuperview()
+                make.centerX.equalToSuperview()
+            }
+        } else {
+            logNote.removeFromSuperview()
+            noteView.addSubview(noteButton)
+            noteButton.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.height.equalTo(40)
+                make.width.equalToSuperview()
+                make.centerX.equalToSuperview()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +134,7 @@ extension OverviewLoggingMoodViewController {
     
     @objc func saveLog() {
         screenSliderDelegate?.backwardNavigationEnabled = true
-        self.screenSliderDelegate?.goToNextScreen()
+        dataCollector?.finishDataCollection()
     }
     @objc func addWildcard() {
         guard let wildcardScreenIndex = screenSliderDelegate?.screens.firstIndex(where: {$0.vc.isKind(of: WildcardLoggingMoodViewController.self)}) else { return }
@@ -82,12 +155,16 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
         // Log
         self.view.addSubview(logTitleLabel)
         self.view.addSubview(logTitle)
+        
         self.view.addSubview(logTagsLabel)
         self.view.addSubview(tags)
+        
         self.view.addSubview(logWildcardLabel)
-        self.view.addSubview(wildcardButton)
+        view.addSubview(wildcardView)
+        
         self.view.addSubview(logNoteLabel)
-        self.view.addSubview(noteButton)
+        view.addSubview(noteView)
+        
         self.view.addSubview(saveButton)
         
         // UI
@@ -102,7 +179,7 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
             make.height.greaterThanOrEqualTo(20)
         }
         logTitle.textAlignment = .center
-        logTitle.textColor = UIColor.white.withAlphaComponent(0.9)
+        logTitle.textColor = UIColor.App.General.blackWhite().withAlphaComponent(0.9)
         logTitle.snp.makeConstraints { (make) in
             make.top.equalTo(logTitleLabel.snp.bottom).offset(10)
             make.width.equalToSuperview().multipliedBy(0.8)
@@ -117,9 +194,9 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
             make.centerX.equalToSuperview()
             make.height.greaterThanOrEqualTo(20)
         }
-        tags.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .normal)
+        tags.setTitleColor(UIColor.App.General.blackWhite().withAlphaComponent(0.8), for: .normal)
         tags.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        tags.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
+        tags.layer.borderColor = UIColor.App.General.blackWhite().withAlphaComponent(0.4).cgColor
         tags.layer.cornerRadius = 20
         tags.layer.borderWidth = 1
         tags.snp.makeConstraints { make in
@@ -136,35 +213,25 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
             make.centerX.equalToSuperview()
             make.height.greaterThanOrEqualTo(20)
         }
-        wildcardButton.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .normal)
-        wildcardButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        wildcardButton.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
-        wildcardButton.layer.cornerRadius = 20
-        wildcardButton.layer.borderWidth = 1
-        wildcardButton.snp.makeConstraints { make in
+        wildcardView.snp.makeConstraints { (make) in
             make.top.equalTo(logWildcardLabel.snp.bottom).offset(10)
-            make.height.equalTo(40)
-            make.width.equalToSuperview().multipliedBy(0.5)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()
+            make.height.greaterThanOrEqualTo(50)
         }
         
         logNoteLabel.textAlignment = .center
         logNoteLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(wildcardButton.snp.bottom).offset(25)
-            make.width.equalToSuperview().multipliedBy(0.8)
+            make.top.equalTo(wildcardView.snp.bottom).offset(25)
+            make.width.equalToSuperview().multipliedBy(0.6)
             make.centerX.equalToSuperview()
             make.height.greaterThanOrEqualTo(20)
         }
-        noteButton.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .normal)
-        noteButton.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
-        noteButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        noteButton.layer.cornerRadius = 20
-        noteButton.layer.borderWidth = 1
-        noteButton.snp.makeConstraints { make in
+        noteView.snp.makeConstraints { (make) in
             make.top.equalTo(logNoteLabel.snp.bottom).offset(10)
-            make.height.equalTo(40)
-            make.width.equalToSuperview().multipliedBy(0.5)
+            make.width.equalToSuperview().multipliedBy(0.6)
             make.centerX.equalToSuperview()
+            make.height.greaterThanOrEqualTo(50)
         }
         
         saveButton.snp.makeConstraints { make in
