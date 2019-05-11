@@ -20,15 +20,24 @@ final class TagsLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tagsStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .equalSpacing
-        stack.alignment = .trailing
-        return stack
+    lazy var tagsCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.register(TagCell.self, forCellWithReuseIdentifier: TagCell.reuseId)
+        
+        collectionView.backgroundColor = .white
+        collectionView.contentInsetAdjustmentBehavior = .always
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
+
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        return collectionView
     }()
     
-    lazy var tags: [String] = []
+    lazy var tags: [Tag] = []
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
 }
@@ -46,7 +55,6 @@ extension TagsLoggingMoodViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         /// Update the textfield with the latest value
-        tagTextFieldWithLabel.textField.text = dataCollector?.tags.first
         tagTextFieldWithLabel.textField.placeholder = "A tag for \(dataCollector?.headline ?? "")"
         /// Revalidate the value and disable or enable navigation accordingly.
         if (dataCollector?.tags.count)! < 1 {
@@ -87,22 +95,24 @@ extension TagsLoggingMoodViewController {
     @objc func validateTagName() -> String? {
         /// Validation Checks
         guard
-            let tag: String = self.tagTextFieldWithLabel.textField.text?.trim(),
+            let tagTitle: String = self.tagTextFieldWithLabel.textField.text?.trim(),
             self.tagTextFieldWithLabel.textField.text!.trim().count > 1
         /// Return nil if it fails
         else {
-            tagTextFieldWithLabel.resetHint()
-            screenSliderDelegate?.forwardNavigationEnabled = false
+            if (dataCollector?.tags.count)! < 1 {
+                tagTextFieldWithLabel.resetHint()
+                screenSliderDelegate?.forwardNavigationEnabled = false
+            }
             return nil
         }
+        
         screenSliderDelegate?.forwardNavigationEnabled = true
         /// If it passes, reset the hint and show the next button
-        tagTextFieldWithLabel.resetHint(withText: "+ Press next to add \(tag) as a tag", for: .info)
+        tagTextFieldWithLabel.resetHint(withText: "+ Press next to add \(tagTitle) as a tag", for: .info)
         /// Then update the textfield
-        dataCollector?.tags.append(tag)
         tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.next
         /// Finally return the validated value to the caller
-        return tag
+        return tagTitle
     }
 
 //    func createTag(tagName: String) -> Tag {
@@ -113,7 +123,7 @@ extension TagsLoggingMoodViewController {
         let button = UIButton()
         button.setTitle(tagName, for: .normal)
         button.addTarget(nil, action: #selector(removeTag), for: .touchUpInside)
-        tagsStack.addArrangedSubview(button)
+//        tags.addArrangedSubview(button)
         return button
     }
     
@@ -125,12 +135,12 @@ extension TagsLoggingMoodViewController {
 // MARK: - TextField Delegate Methods
 extension TagsLoggingMoodViewController: UITextFieldDelegate {
 
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        return false
-//    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return false
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let tag = validateTagName() else {
+        guard let tagTitle = validateTagName() else {
             
             // If the user has already added at least one tag, let them proceed with an error
             if dataCollector?.tags.count ?? 0 > 0 {
@@ -146,8 +156,8 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
         tagTextFieldWithLabel.textField.placeholder = "Another tag..."
         tagTextFieldWithLabel.resetHint(withText: "✓ Add another tag or press next again to continue", for: .info)
         textField.text = nil
-        let tagButton = createTagButton(tagName: tag)
-        dataCollector?.tags.append(tagButton.titleLabel!.text!)
+        self.tags.append(Tag(title: tagTitle, description: "", category: .personal, origin: .mood, valenceInfluence: 0, arousalInfluence: 0))
+        dataCollector?.tags = self.tags
         return true
         
         }
@@ -155,6 +165,33 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
     func setupTextfield() {
         tagTextFieldWithLabel.textField.delegate = self
         tagTextFieldWithLabel.textField.addTarget(self, action: #selector(validateTagName), for: .editingChanged)
+    }
+}
+
+extension TagsLoggingMoodViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    
+    // MARK: - UICollectionViewDataSource -
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.reuseId, for: indexPath) as! TagCell
+        cell.configure(text: tags[indexPath.row].title)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags.count
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout -
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+        let referenceHeight: CGFloat = 100 // Approximate height of your cell
+        let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
+            - sectionInset.left
+            - sectionInset.right
+            - collectionView.contentInset.left
+            - collectionView.contentInset.right
+        return CGSize(width: referenceWidth, height: referenceHeight)
     }
 }
 
@@ -193,7 +230,7 @@ extension TagsLoggingMoodViewController: ViewBuilding {
     func setupChildViews() {
         self.view.addSubview(headerLabel)
         self.view.addSubview(tagTextFieldWithLabel)
-        self.view.addSubview(tagsStack)
+        view.addSubview(tagsCollectionView)
         
         headerLabel.applyDefaultScreenHeaderConstraints(usingVC: self)
         tagTextFieldWithLabel.snp.makeConstraints { (make) in
@@ -201,7 +238,7 @@ extension TagsLoggingMoodViewController: ViewBuilding {
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
-        tagsStack.snp.makeConstraints { (make) in
+        tagsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(tagTextFieldWithLabel.snp.bottom).offset(25)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(40)

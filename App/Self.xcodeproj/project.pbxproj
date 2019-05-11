@@ -32,6 +32,10 @@
 		7D47AC68225FD380004BF898 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC67225FD380004BF898 /* Button.swift */; };
 		7D47AC6F22600DCF004BF898 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC6E22600DCF004BF898 /* Textfield.swift */; };
 		7D47AC7122601349004BF898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47AC7022601349004BF898 /* ViewController.swift */; };
+		7D519CC122870C6200EE3CEC /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D519CC022870C6200EE3CEC /* TagButton.swift */; };
+		7D519CC32287168800EE3CEC /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D519CC22287168800EE3CEC /* TagCell.swift */; };
+		7D519CC522871AFF00EE3CEC /* TagRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D519CC422871AFF00EE3CEC /* TagRecord.swift */; };
+		7D519CC722871EB400EE3CEC /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D519CC622871EB400EE3CEC /* Note.swift */; };
 		7D6B745D2260286C006F9CD1 /* FinishCreatingAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */; };
 		7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B745E226028B5006F9CD1 /* Name_Onboarding-ViewController.swift */; };
 		7D6B746122602C56006F9CD1 /* Induction_Onboarding-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B746022602C56006F9CD1 /* Induction_Onboarding-ViewController.swift */; };
@@ -181,6 +185,10 @@
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7D47AC6E22600DCF004BF898 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7D47AC7022601349004BF898 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Self/View Controllers/ViewController.swift"; sourceTree = SOURCE_ROOT; };
+		7D519CC022870C6200EE3CEC /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		7D519CC22287168800EE3CEC /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		7D519CC422871AFF00EE3CEC /* TagRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRecord.swift; sourceTree = "<group>"; };
+		7D519CC622871EB400EE3CEC /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		7D6B745C2260286C006F9CD1 /* FinishCreatingAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishCreatingAccountViewController.swift; sourceTree = "<group>"; };
 		7D6B745E226028B5006F9CD1 /* Name_Onboarding-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Name_Onboarding-ViewController.swift"; sourceTree = "<group>"; };
 		7D6B746022602C56006F9CD1 /* Induction_Onboarding-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Induction_Onboarding-ViewController.swift"; sourceTree = "<group>"; };
@@ -342,6 +350,7 @@
 				7D47AC6E22600DCF004BF898 /* Textfield.swift */,
 				7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */,
 				7D47AC67225FD380004BF898 /* Button.swift */,
+				7D519CC022870C6200EE3CEC /* TagButton.swift */,
 				7D21FEDA228410EE0001FE62 /* IconButton.swift */,
 				A3683566226E0B0D005C8600 /* PageIndicator.swift */,
 				A334099422457023004CBB2A /* Loader.swift */,
@@ -418,6 +427,7 @@
 				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
 				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
 				7D77E549227F942200946FB7 /* ExpandableCell.swift */,
+				7D519CC22287168800EE3CEC /* TagCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -567,6 +577,7 @@
 				A3CF9513224E714600D0EC31 /* MoodLog.swift */,
 				7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */,
 				7DF14B50225F296C0090D299 /* MoodEmotion.swift */,
+				7D519CC622871EB400EE3CEC /* Note.swift */,
 			);
 			name = MOOD;
 			sourceTree = "<group>";
@@ -620,6 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				7DF14B4C225F25A00090D299 /* Tag.swift */,
+				7D519CC422871AFF00EE3CEC /* TagRecord.swift */,
 			);
 			name = TAG;
 			sourceTree = "<group>";
@@ -996,6 +1008,7 @@
 				7D8E432B227E803600243139 /* FeedStatus.swift in Sources */,
 				A35EA86E22456FB800592D88 /* ViewBuilding.swift in Sources */,
 				A33409902245701D004CBB2A /* LandingSlide-View.swift in Sources */,
+				7D519CC32287168800EE3CEC /* TagCell.swift in Sources */,
 				7DD6CC0A2266B71500F47E63 /* FindCommunityViewController.swift in Sources */,
 				7D77E54A227F942200946FB7 /* ExpandableCell.swift in Sources */,
 				7D77E5E1227FA30D00946FB7 /* DismissStoryViewAnimationController.swift in Sources */,
@@ -1008,12 +1021,14 @@
 				7D8E4321227E5B2000243139 /* Mood.swift in Sources */,
 				7D77E53E227F805900946FB7 /* ActionSelector-Protocol.swift in Sources */,
 				7D21FED32283FD940001FE62 /* Tags_LoggingMood-ViewController.swift in Sources */,
+				7D519CC122870C6200EE3CEC /* TagButton.swift in Sources */,
 				7DD6CC102266C02900F47E63 /* HighlightCell.swift in Sources */,
 				A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */,
 				7D77E602227FA35400946FB7 /* UICollectionView+Reusable.swift in Sources */,
 				7DF14B59225F2D170090D299 /* FeedStatusResponse.swift in Sources */,
 				7DEABF8C22803E1100E72D39 /* MoodLogging-Protocol.swift in Sources */,
 				A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */,
+				7D519CC722871EB400EE3CEC /* Note.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */,
 				A3CF9516224E9C8900D0EC31 /* FeedStatusMessage.swift in Sources */,
@@ -1075,6 +1090,7 @@
 				A368356B226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift in Sources */,
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
 				A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */,
+				7D519CC522871AFF00EE3CEC /* TagRecord.swift in Sources */,
 				A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */,
 				7DD6CBFE2266B50300F47E63 /* Help-ViewController.swift in Sources */,
 			);

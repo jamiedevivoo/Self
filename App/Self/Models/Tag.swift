@@ -3,26 +3,17 @@ import Firebase
 struct Tag {
     // Universal States
     var title: String
-    var description: String
+    var description: String?
     var category: Tag.TagCategory = .personal
-    
-    // Log View
-    var uid: String?
 
-    // Log state only
-    var tagRef: DocumentReference?
-    
-    // Creation state Only
     var origin: TagOrigin = .unknown
-    var valenceInfluence: Double = 0
-    var arousalInfluence: Double = 0
+    var valenceInfluence: Double?
+    var arousalInfluence: Double?
 }
 
 // MARK: - Convenience Iniitialiser
 extension Tag {
     init(_ tagDictionary: [String: Any]) {
-        self.uid                = (tagDictionary["uid"] as? String ?? nil)
-        self.tagRef             = (tagDictionary["tag_ref"] as? DocumentReference ?? nil)
         self.title              = (tagDictionary["title"] as! String)
         self.description        = (tagDictionary["description"] as! String)
         self.valenceInfluence   = (tagDictionary["valence_influene"] as? Double ?? valenceInfluence)
@@ -37,8 +28,6 @@ extension Tag {
 extension Tag: DictionaryConvertable {
     var dictionary: [String: Any] {
         return [
-            "uid": uid as Any,
-            "tag_ref": tagRef as Any,
             "title": title as Any,
             "description": description as Any,
             "origin": origin.rawValue as Any,
@@ -49,7 +38,6 @@ extension Tag: DictionaryConvertable {
     }
     var logTagDictionary: [String: Any] {
         return [
-            "tag_ref": tagRef!,
             "title": title as Any,
             "description": description as Any,
             "category": category.rawValue as Any
@@ -57,7 +45,6 @@ extension Tag: DictionaryConvertable {
     }
     var actionTagDictionary: [String: Any] {
         return [
-            "tag_ref": tagRef!,
             "title": title as Any,
             "description": description as Any,
             "category": category.rawValue as Any

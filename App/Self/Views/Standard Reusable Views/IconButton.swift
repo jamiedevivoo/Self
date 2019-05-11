@@ -64,7 +64,7 @@ extension IconButton {
         case .standard:
             imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
             isUserInteractionEnabled = true
-            tintColor = UIColor.white
+            tintColor = UIColor.App.General.blackWhite()
             alpha = 0.5
             layer.shadowRadius = 3.0
             layer.shadowOpacity = 0.5

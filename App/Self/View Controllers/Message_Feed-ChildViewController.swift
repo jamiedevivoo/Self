@@ -49,7 +49,8 @@ extension FeedMessageChildViewController: ViewBuilding {
     func setupChildViews() {
         messageStackView.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.view.snp.centerY)
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(100)
         }
     }

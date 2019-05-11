@@ -7,9 +7,13 @@ extension UIColor {
     struct App {
         struct General {
             static func blackWhite() -> UIColor { switch ColorManager.getActiveColorMode() {
-        case .dark: return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-        default:    return UIColor(red: 000/255, green: 000/255, blue: 000/255, alpha: 1)
-            }}
+            case .dark: return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+            default:    return UIColor(red: 000/255, green: 000/255, blue: 000/255, alpha: 1)
+                }}
+            static func contrastBlackWhite() -> UIColor { switch ColorManager.getActiveColorMode() {
+            case .dark: return UIColor(red: 000/255, green: 000/255, blue: 000/255, alpha: 1)
+            default: return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+                }}
         }
         struct Background {
             static func primary() -> UIColor { switch ColorManager.getActiveColorMode() {
@@ -64,6 +68,12 @@ extension UIColor {
                 default:    return UIColor(red: 094/255, green: 086/255, blue: 113/255, alpha: 0.8)
                 }}
             }
+        }
+        struct Effects {
+            static func blurEffect() -> UIVisualEffect { switch ColorManager.getActiveColorMode() {
+            case .dark: return UIBlurEffect(style: .dark)
+            default:    return UIBlurEffect(style: .light)
+            }}
         }
     }
 }

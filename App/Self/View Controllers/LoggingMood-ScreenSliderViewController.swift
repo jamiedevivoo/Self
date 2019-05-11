@@ -6,13 +6,13 @@ extension LoggingAMoodScreenSliderViewController: MoodLoggingDelegate { }
 final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     
     var headline: String?
-    var note: String?
+    var note: Note?
     var arousalRating: Double?
     var valenceRating: Double?
 
     var wildcard: Mood.Wildcard?
     var emotion: Mood.Emotion?
-    var tags = [String]()
+    var tags = [Tag]()
     
     var moodStage: MoodLoggingMoodViewController?
     var headlineStage: HeadlineLoggingMoodViewController?
