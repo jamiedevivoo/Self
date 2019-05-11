@@ -28,8 +28,8 @@ class ScreenSliderViewController: UIPageViewController {
     var forwardNavigationEnabled: Bool = true
     var backwardNavigationEnabled: Bool = true
 
-    var liveGestureSwipingEnabled: Bool = true {
-        didSet { scrollView?.isScrollEnabled = liveGestureSwipingEnabled }
+    var isLiveGestureSwipingEnabled: Bool = true {
+        didSet { scrollView?.isScrollEnabled = isLiveGestureSwipingEnabled }
     }
     var pageIndicatorEnabled: Bool = false {
         didSet { setupPageIndicator()  }
@@ -109,6 +109,7 @@ extension ScreenSliderViewController {
     private func setupScrollView() {
         self.scrollView = (view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView)
         scrollView?.delegate = self
+        scrollView?.isScrollEnabled = isLiveGestureSwipingEnabled
     }
 }
 

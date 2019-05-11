@@ -21,18 +21,23 @@ final class LandingOnboardingViewController: ViewController {
         label.isUserInteractionEnabled = false
         return label
     }()
-    
     lazy var registerButton = Button(title: "Get Started", action: #selector(navigateToRegister), type: .primary)
     lazy var loginButton = Button(title: "Login", action: #selector(navigateToLogin), type: .secondary)
     
-    lazy var swipeLeftForOnboarding: UISwipeGestureRecognizer = {
+    lazy var swipeForward: UISwipeGestureRecognizer = {
         let swipeGesture = UISwipeGestureRecognizer()
-        swipeGesture.addTarget(self, action: #selector(handleSwipes))
+        swipeGesture.addTarget(self, action: #selector(nextStep))
         swipeGesture.direction = .left
         return swipeGesture
     }()
-
-    lazy var tapGestureForViewSlider = UITapGestureRecognizer(target: self, action: #selector(continueViewSlider))
+    lazy var swipeBackward: UISwipeGestureRecognizer = {
+        let swipeGesture = UISwipeGestureRecognizer()
+        swipeGesture.addTarget(self, action: #selector(previousStep))
+        swipeGesture.direction = .right
+        return swipeGesture
+    }()
+    
+    lazy var tapGestureForViewSlider = UITapGestureRecognizer(target: self, action: #selector(nextStep))
     
 }
 
@@ -43,7 +48,10 @@ extension LandingOnboardingViewController {
         setupChildViews()
         sliderView.slides = createOnboardingScreens()
         sliderView.delegate = self
-        sliderView.view.addGestureRecognizer(tapGestureForViewSlider)
+        view.addGestureRecognizer(tapGestureForViewSlider)
+        view.addGestureRecognizer(swipeForward)
+        view.addGestureRecognizer(swipeBackward)
+        screenSliderDelegate?.isLiveGestureSwipingEnabled = false
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,13 +59,8 @@ extension LandingOnboardingViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        view.addGestureRecognizer(swipeLeftForOnboarding)
-        sliderView.view.addGestureRecognizer(swipeLeftForOnboarding)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        view.removeGestureRecognizer(swipeLeftForOnboarding)
-        sliderView.view.removeGestureRecognizer(swipeLeftForOnboarding)
+        screenSliderDelegate?.isLiveGestureSwipingEnabled = false
+        screenSliderDelegate?.forwardNavigationEnabled = false
     }
 }
 
@@ -75,8 +78,11 @@ extension LandingOnboardingViewController {
         screenSliderDelegate?.forwardNavigationEnabled = true
         screenSliderDelegate?.goToNextScreen()
     }
-    @objc func continueViewSlider() {
+    @objc func nextStep() {
         sliderView.nextStage()
+    }
+    @objc func previousStep() {
+        sliderView.previousStage()
     }
 }
 
@@ -118,7 +124,6 @@ private extension LandingOnboardingViewController {
 
 extension LandingOnboardingViewController: ViewSliderDelegate {
     func continueAfterLastPage() {
-        print("HEY")
         navigateToRegister()
     }
 }

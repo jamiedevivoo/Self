@@ -61,7 +61,6 @@ extension ViewSliderViewController {
 // MARK: - Delegate Methods
 extension ViewSliderViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
         
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)

@@ -22,7 +22,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapToToggleKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var tapToToggleKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
 
 }
 
@@ -46,7 +46,7 @@ extension HeadlineLoggingMoodViewController {
         headLineTextFieldWithLabel.becomeFirstResponder()
         screenSliderDelegate?.pageIndicator.isVisible = true
         screenSliderDelegate?.backwardNavigationEnabled = false
-        screenSliderDelegate?.liveGestureSwipingEnabled = true
+        screenSliderDelegate?.isLiveGestureSwipingEnabled = true
     }
     
 }
@@ -103,9 +103,14 @@ extension HeadlineLoggingMoodViewController: UITextFieldDelegate {
         view.addGestureRecognizer(tapToToggleKeyboard)
     }
     
-    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
+    @objc func processTap() {
         if !headLineTextFieldWithLabel.textField.isFirstResponder {
             headLineTextFieldWithLabel.textField.becomeFirstResponder()
+        }
+        
+        if validateHeadline() != nil {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+            screenSliderDelegate?.goToNextScreen()
         }
     }
 }

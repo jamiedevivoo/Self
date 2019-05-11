@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ScreenSliderDelegate: ScreenSliderViewController {
+protocol ScreenSliderDelegate: class, ScreenSliderViewController {
     func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool
     // Delegate protocol for controlling a PageViewController (Subclass of UIPageViewController, with built in PageControl).
     //// The delegate should set itself as the Delegate for a PageViewController.
@@ -15,7 +15,7 @@ extension ScreenSliderDelegate {
     /// And I wanted to try creating a generic method...
     func configurePageViewController<T: ScreenSliderDelegate>(
         _ screenSliderViewController: ScreenSliderViewController,
-        withPages pages: [(UIViewController,Bool)],
+        withPages pages: [(UIViewController, Bool)],
         withDelegate delegate: T,
         showPageIndicator pageIndicator: Bool = false,
         isLooped loop: Bool = false,
@@ -26,7 +26,7 @@ extension ScreenSliderDelegate {
         screenSliderViewController.screenSliderDelegate = delegate
         screenSliderViewController.pageIndicatorEnabled = pageIndicator
         screenSliderViewController.sliderShouldloop = loop
-        screenSliderViewController.liveGestureSwipingEnabled = enableSwiping
+        screenSliderViewController.isLiveGestureSwipingEnabled = enableSwiping
         optionalSetup()
     }
 }

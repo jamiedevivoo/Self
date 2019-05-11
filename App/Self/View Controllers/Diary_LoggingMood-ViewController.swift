@@ -21,7 +21,7 @@ final class DiaryLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
 }
 
 // MARK: - Override Methods
@@ -78,11 +78,14 @@ extension DiaryLoggingMoodViewController: UITextFieldDelegate {
         return false
     }
     
-    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if diaryTextFieldWithLabel.textField.isFirstResponder {
-            diaryTextFieldWithLabel.textField.resignFirstResponder()
-        } else {
+    @objc func processTap() {
+        if !diaryTextFieldWithLabel.textField.isFirstResponder {
             diaryTextFieldWithLabel.textField.becomeFirstResponder()
+        }
+        
+        if validateHeadline() != nil {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+            screenSliderDelegate?.goToNextScreen()
         }
     }
 }

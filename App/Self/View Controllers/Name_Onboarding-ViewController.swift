@@ -18,7 +18,8 @@ final class NameOnboardingViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapToToggleKeyboard = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
+    
 }
 
 // MARK: - Override Methods
@@ -28,20 +29,49 @@ extension NameOnboardingViewController {
         super.viewDidLoad()
         setupChildViews()
         setupKeyboard()
-        screenSliderDelegate?.forwardNavigationEnabled = false
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        /// Update the textfield with the latest value
         nameTextFieldWithLabel.textField.text = dataCollector?.name
+        
+        /// Revalidate the value and disable or enable navigation accordingly.
+        if validateName() == nil {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+            nameTextFieldWithLabel.resetHint()
+        } else {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
+        /// At this point forward navigation and gestureswping are enabled
         screenSliderDelegate?.backwardNavigationEnabled = true
-        screenSliderDelegate?.liveGestureSwipingEnabled = true
-        nameTextFieldWithLabel.textField.becomeFirstResponder()
+        screenSliderDelegate?.isLiveGestureSwipingEnabled = true
+        
+        /// The page indicator is also visible on this page
         screenSliderDelegate?.pageIndicator.isVisible = true
+        
+        /// Add the tap gesture
+        view.addGestureRecognizer(tapGesture)
+        
+        /// Finally, once the view has louaded, make the textfield Active if validation fails
+        if validateName() == nil {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+            nameTextFieldWithLabel.textField.becomeFirstResponder()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        /// If the view is about to dissapear we can resign the first responder
+        nameTextFieldWithLabel.textField.resignFirstResponder()
     }
     
 }
@@ -50,18 +80,25 @@ extension NameOnboardingViewController {
 extension NameOnboardingViewController {
     
     @objc func validateName() -> String? {
+        /// Continuous Validation conditions to check for
         guard
             let name: String = self.nameTextFieldWithLabel.textField.text?.trim(),
             self.nameTextFieldWithLabel.textField.text!.trim().count > 1
+            
+        /// If validaiton fails, disable forward navigationa nd show the hint
         else {
             nameTextFieldWithLabel.resetHint()
             screenSliderDelegate?.forwardNavigationEnabled = false
             return nil
         }
+        
+        /// Otherwise enable navigation and update the field and delegate with the validated version
         screenSliderDelegate?.forwardNavigationEnabled = true
         dataCollector?.name = name
         nameTextFieldWithLabel.textField.text = name
-        nameTextFieldWithLabel.resetHint(withText: "✓ Ready to go, press next to continue")
+        
+        /// Also display a hint to let the user know they can continue
+        nameTextFieldWithLabel.resetHint(withText: "✓ Looks good \(name)! Press next when you're ready")
         return name
     }
 }
@@ -70,31 +107,74 @@ extension NameOnboardingViewController {
 extension NameOnboardingViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if validateName() != nil {
-            screenSliderDelegate?.forwardNavigationEnabled = true
-            screenSliderDelegate?.goToNextScreen()
-            return true
-        } else {
+        /// Validate the text before returning
+        guard validateName() != nil else {
+            
+            /// If validation fails (with the user attempting to return), update the delegates value to nil
             dataCollector?.name = nil
-            screenSliderDelegate?.forwardNavigationEnabled = false
+            
+            /// Also disable forward navigation
+            
+            /// Shake the textfield and update the hint
             nameTextFieldWithLabel.textField.shake()
             nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters", for: .error)
+            /// Then refuse the request to return
+            return false
         }
-        return false
+
+        /// Otherwise, vslidation succeeded so enable forward navigation and go to the next screen
+        screenSliderDelegate?.goToNextScreen()
+        return true
+    }
+    
+    @objc func processTap() {
+        
+        /// See if the current text validates
+        guard validateName() == nil else {
+            
+            /// If it does, enable forward navigation and go to the next screen
+            screenSliderDelegate?.goToNextScreen()
+            return
+        }
+        
+        /// Disable forward navigation and reset the value since they tried to proceed
+        dataCollector?.name = nil
+        
+        /// If it fails and the keyboard isn't displayed, show the keyboard
+        guard nameTextFieldWithLabel.textField.isFirstResponder else {
+            nameTextFieldWithLabel.textField.becomeFirstResponder()
+            return
+        }
+        
+        /// If the keyboard is displayed, shake the textfield and prvide a hint
+        nameTextFieldWithLabel.textField.shake()
+        nameTextFieldWithLabel.resetHint(withText: "A nickname needs to be at least 2 characters", for: .error)
     }
     
     func setupKeyboard() {
         nameTextFieldWithLabel.textField.delegate = self
         nameTextFieldWithLabel.textField.addTarget(self, action: #selector(validateName), for: .editingChanged)
-        view.addGestureRecognizer(tapToToggleKeyboard)
     }
     
-    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if !nameTextFieldWithLabel.textField.isFirstResponder {
-            nameTextFieldWithLabel.textField.becomeFirstResponder()
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        guard let pageIndicator = screenSliderDelegate?.pageIndicator else { return }
+        if (pageIndicator.frame.origin.y + pageIndicator.frame.height) > (self.view.frame.height - keyboardFrame.height) {
+            screenSliderDelegate?.pageIndicator.frame.origin.y -= keyboardFrame.height
         }
     }
-    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        guard let pageIndicator = screenSliderDelegate?.pageIndicator else { return }
+        screenSliderDelegate?.pageIndicator.frame.origin.y = keyboardFrame.height
+        if (pageIndicator.frame.origin.y + pageIndicator.frame.height) == (self.view.frame.height - keyboardFrame.height) {
+            screenSliderDelegate?.pageIndicator.frame.origin.y -= keyboardFrame.height
+        }
+    }
 }
 
 // MARK: - View Building

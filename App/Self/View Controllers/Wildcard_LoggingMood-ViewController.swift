@@ -21,7 +21,7 @@ final class WildcardLoggingMoodViewController: ViewController {
         return textFieldWithLabel
     }()
     
-    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
     
     // Properties
     var wildcard: Mood.Wildcard?
@@ -87,11 +87,14 @@ extension WildcardLoggingMoodViewController: UITextFieldDelegate {
         return false
     }
     
-    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if wildcardTextFieldWithLabel.textField.isFirstResponder {
-            wildcardTextFieldWithLabel.textField.resignFirstResponder()
-        } else {
+    @objc func processTap() {
+        if !wildcardTextFieldWithLabel.textField.isFirstResponder {
             wildcardTextFieldWithLabel.textField.becomeFirstResponder()
+        }
+        
+        if validateHeadline() != nil {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+            screenSliderDelegate?.goToNextScreen()
         }
     }
 }

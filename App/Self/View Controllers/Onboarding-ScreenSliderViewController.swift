@@ -13,7 +13,7 @@ extension OnboardingScreenSliderViewController {
         super.viewDidLoad()
         configurePageViewController(self, withPages: setupScreens(), withDelegate: self, showPageIndicator: true, isLooped: false, enableSwiping: false)
         pageIndicatorEnabled = true
-        liveGestureSwipingEnabled = false
+        isLiveGestureSwipingEnabled = false
     }
     
 }
@@ -67,7 +67,7 @@ extension OnboardingScreenSliderViewController: ScreenSliderDelegate {
                 return true
             }
         }
-        print("validation duccess")
+        print("Validation success")
         return true
     }
     

@@ -29,7 +29,7 @@ final class TagsLoggingMoodViewController: ViewController {
         return stack
     }()
     
-    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.toggleFirstResponder(_:)))
+    lazy var tapToTogglekeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
 }
 
 // MARK: - Override Methods
@@ -133,11 +133,14 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
         return false
     }
     
-    @objc func toggleFirstResponder(_ sender: UITapGestureRecognizer? = nil) {
-        if tagTextFieldWithLabel.textField.isFirstResponder {
-            tagTextFieldWithLabel.textField.resignFirstResponder()
-        } else {
+    @objc func processTap() {
+        if !tagTextFieldWithLabel.textField.isFirstResponder {
             tagTextFieldWithLabel.textField.becomeFirstResponder()
+        }
+        
+        if validateTagName() != nil {
+            screenSliderDelegate?.forwardNavigationEnabled = true
+            screenSliderDelegate?.goToNextScreen()
         }
     }
 }

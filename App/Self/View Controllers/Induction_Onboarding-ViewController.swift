@@ -9,7 +9,7 @@ final class InductionOnboardingViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel("Hey...", .largeScreen)
-    lazy var paraLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["text"].stringValue, .standard)
+    lazy var paraLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["text"].stringValue, .doubleStandard)
     
     lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .primary)
 }
@@ -24,7 +24,8 @@ extension InductionOnboardingViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        headerLabel.text = "Hey \(dataCollector?.name ?? "...")"
+        headerLabel.text = "Hi \(dataCollector?.name ?? "...")!"
+        screenSliderDelegate?.pageIndicator.isVisible = false
         checkCompletion()
     }
 }
@@ -67,9 +68,9 @@ extension InductionOnboardingViewController: ViewBuilding {
             make.height.greaterThanOrEqualTo(50)
         }
         continueButton.snp.makeConstraints { (make) in
-            make.top.equalTo(paraLabel.snp.bottom).offset(50)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.equalTo(60)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(30)
         }
     }
     

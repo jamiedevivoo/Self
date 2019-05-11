@@ -445,7 +445,7 @@ extension MoodLoggingMoodViewController {
         
         /// Enable forward navigation and gestureSwiping again
         self.screenSliderDelegate?.forwardNavigationEnabled = true
-        self.screenSliderDelegate?.liveGestureSwipingEnabled = true
+        self.screenSliderDelegate?.isLiveGestureSwipingEnabled = true
         
         /// Informt he delegate to attempt to proceed
         self.screenSliderDelegate?.goToNextScreen()

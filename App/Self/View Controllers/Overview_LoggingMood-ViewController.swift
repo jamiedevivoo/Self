@@ -48,7 +48,7 @@ extension OverviewLoggingMoodViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         screenSliderDelegate?.backwardNavigationEnabled = false
-        screenSliderDelegate?.liveGestureSwipingEnabled = false
+        screenSliderDelegate?.isLiveGestureSwipingEnabled = false
         dismissKeyboard()
     }
     
