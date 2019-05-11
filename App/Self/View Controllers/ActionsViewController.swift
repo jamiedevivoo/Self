@@ -145,7 +145,7 @@ extension ActionsViewController {
         view.addSubview(actionCollectionView)
         actionCollectionView.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
-            make.right.left.equalToSuperview().inset(20)
+            make.right.left.equalToSuperview().inset(30)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }

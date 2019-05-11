@@ -59,15 +59,15 @@ extension FeedViewController: ViewBuilding {
     func setupChildViews() {
         messageViewController.view.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).inset(30)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(30)
             make.bottom.equalTo(actionListViewController.view.snp.top).offset(-20)
             make.height.greaterThanOrEqualTo(messageViewController.messageStackView.snp.height).priority(.required)
         }
         actionListViewController.view.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-30)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).inset(30)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(30)
             make.height.equalTo(actionListViewController.actionButtonStack.snp.height).offset(50)
         }
     }
