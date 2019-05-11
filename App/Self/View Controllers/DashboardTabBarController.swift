@@ -99,7 +99,7 @@ extension DashboardTabBarController {
     func setupProfileButton() {
         self.view.addSubview(profileButton)
         profileButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(15)
             make.height.equalTo(40)
             make.width.equalTo(40)
@@ -110,7 +110,7 @@ extension DashboardTabBarController {
     func setupHelpButton() {
         self.view.addSubview(helpButton)
         helpButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(22)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(60)
             make.height.equalTo(40)
             make.width.equalTo(40)

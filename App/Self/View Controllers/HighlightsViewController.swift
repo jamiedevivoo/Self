@@ -34,7 +34,7 @@ class HighlightsViewController: UIViewController {
     // MARK: - Properties
     var actionLogs = [ActionManager.Log]() {
         didSet {
-            addHighlights()
+            self.highlightCollectionView.reloadData()
         }
     }
     
@@ -54,6 +54,7 @@ extension HighlightsViewController {
         super.viewWillAppear(animated)
         addHighlights()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         tabBarController?.returnedToRootView()
@@ -65,8 +66,20 @@ extension HighlightsViewController {
 extension HighlightsViewController {
     func addHighlights() {
         actionManager.user(accountManager.accountRef!).getCompleteActions { [weak self] actions in
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: [.curveEaseInOut],
+                animations: {
+                    self?.loader.alpha = 0
+            }, completion: { [weak self] _ in
+                
             self?.loader.removeFromSuperview()
-            
+                
+            print("stuff")
+                
             // Check actions were returned
             guard let actions = actions, actions.count > 0 else {
                 self?.addNoHighlightsView()
@@ -77,7 +90,7 @@ extension HighlightsViewController {
             self?.actionLogs = actions
             self?.noHighlightsView.removeFromSuperview()
             self?.addHighlightsCollectionView()
-            self?.highlightCollectionView.reloadData()
+            })
         }
     }
 }
@@ -105,21 +118,41 @@ extension HighlightsViewController: UICollectionViewDataSource, UICollectionView
 // Mark - Adding Appropriate Views
 extension HighlightsViewController {
     func addNoHighlightsView() {
+        noHighlightsView.alpha = 0
         view.addSubview(noHighlightsView)
         noHighlightsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(125)
         }
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: [.curveEaseInOut],
+            animations: {
+                self.noHighlightsView.alpha = 1
+        })
     }
     
     func addHighlightsCollectionView() {
+        highlightCollectionView.alpha = 0
         view.addSubview(highlightCollectionView)
         highlightCollectionView.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.right.left.equalToSuperview().inset(30)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: [.curveEaseInOut],
+            animations: {
+                self.highlightCollectionView.alpha = 1
+        })
     }
 }
 

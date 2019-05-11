@@ -62,22 +62,34 @@ extension ActionsViewController {
 extension ActionsViewController {
     func configureActionView() {
         actionManager.user(accountManager.accountRef!).getIncompleteActions { [unowned self] actions in
-            self.loader.removeFromSuperview()
-
-            // Check actions were returned
-            guard let actions = actions, actions.count > 0 else {
-                self.addNoActionsView()
-                return
-            }
             
-            // Check actions aren't completed
-            guard let action = actions.first, actions.first?.completed == false else {
-                self.addNoActionsView()
-                return
-            }
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: [.curveEaseInOut],
+                animations: {
+                    self.loader.alpha = 0
+            }, completion: { [unowned self] _ in
+                self.loader.removeFromSuperview()
             
-            // Set actions
-            self.actionLogs = [action]
+                // Check actions were returned
+                guard let actions = actions, actions.count > 0 else {
+                    self.addNoActionsView()
+                    return
+                }
+                
+                // Check actions aren't completed
+                guard let action = actions.first, actions.first?.completed == false else {
+                    self.addNoActionsView()
+                    return
+                }
+                
+                // Set actions
+                self.actionLogs = [action]
+                
+            })
         }
     }
 }
@@ -89,6 +101,7 @@ extension ActionsViewController {
         let actionSelectionViewController = DailyActionBriefSelectorViewController()
         actionSelectionViewController.delegate = self
         actionSelectionViewController.actionManager = actionManager
+        self.modalTransitionStyle = .coverVertical
         self.navigationController?.pushViewController(actionSelectionViewController, animated: true)
     }
 }
@@ -133,21 +146,41 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
 // Mark - Adding Appropriate Views
 extension ActionsViewController {
     func addNoActionsView() {
+        noActionsView.alpha = 0
         view.addSubview(noActionsView)
         noActionsView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.greaterThanOrEqualTo(300)
         }
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: [.curveEaseInOut],
+            animations: {
+                self.noActionsView.alpha = 1
+        })
     }
     
     func addActionViews() {
+        actionCollectionView.alpha = 0
         view.addSubview(actionCollectionView)
         actionCollectionView.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.right.left.equalToSuperview().inset(30)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
+        UIView.animate(
+            withDuration: 0.25,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: [.curveEaseInOut],
+            animations: {
+                self.actionCollectionView.alpha = 1
+        })
     }
 }
 

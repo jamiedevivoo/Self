@@ -87,13 +87,13 @@ extension DailyActionBriefSelectorViewController: ViewBuilding {
 
         subHeaderLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().inset(20)
+            make.left.equalToSuperview().offset(30)
+            make.right.equalToSuperview().inset(30)
             make.height.lessThanOrEqualTo(50)
         }
         actionCollectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(subHeaderLabel.snp.bottom).offset(20)
-            make.right.left.equalToSuperview().inset(20)
+            make.top.equalTo(subHeaderLabel.snp.bottom).offset(30)
+            make.right.left.equalToSuperview().inset(30)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
