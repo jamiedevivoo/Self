@@ -43,16 +43,24 @@ extension Mood.Log {
 //// values as a dictionary (e.g. for Firebase)
 extension Mood.Log: DictionaryConvertable {
     var dictionary: [String: Any] {
-        return [
+        var dictionary = [
             "uid": uid as Any,
             "timestamp": timestamp as Any,
             "headline": headline as Any,
-            "note": note?.dictionary as Any,
             "arousal_rating": arousalRating as Any,
             "valence_rating": valenceRating as Any,
             "tags": tags.map({$0.dictionary}) as Any,
-            "wildcard": wildcard?.dictionary as Any
-            ].filter({$0.value != nil})
+        ]
+        
+        if self.wildcard != nil {
+            dictionary["wildcard"] = wildcard!.dictionary as [String: Any]
+        }
+        
+        if self.note != nil {
+            dictionary["note"] = note!.dictionary as [String: Any]
+        }
+        
+        return dictionary
     }
 }
 

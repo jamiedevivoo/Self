@@ -16,7 +16,7 @@ extension Tag {
     init(_ tagDictionary: [String: Any]) {
         self.title              = (tagDictionary["title"] as! String)
         if tagDictionary["description"] != nil {
-            self.description        = (tagDictionary["description"] as! String)
+            self.description = (tagDictionary["description"] as! String)
         }
         self.valenceInfluence   = (tagDictionary["valence_influene"] as? Double ?? valenceInfluence)
         self.arousalInfluence   = (tagDictionary["arousal_influence"] as? Double ?? arousalInfluence)
@@ -29,14 +29,19 @@ extension Tag {
 //// values as a dictionary (e.g. for Firebase)
 extension Tag: DictionaryConvertable {
     var dictionary: [String: Any] {
-        return [
+        var dictionary = [
             "title": title as Any,
-            "description": description as Any,
             "origin": origin.rawValue as Any,
             "category": category.rawValue as Any,
             "valence_influence": valenceInfluence as Any,
             "arousal_influence": arousalInfluence as Any
-            ].filter({$0.value != nil})
+        ]
+        
+        if self.description != nil {
+            dictionary["description"] = self.description as Any
+        }
+        
+        return dictionary
     }
     var logTagDictionary: [String: Any] {
         return [

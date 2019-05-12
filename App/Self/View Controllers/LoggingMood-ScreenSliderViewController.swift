@@ -149,7 +149,7 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
             moodData["wildcard"] = self.wildcard!.dictionary
         }
         if self.note != nil {
-            moodData["note"] = self.note!.dictionary
+            moodData["note"] = self.note?.dictionary
         }
 
         let mood: Mood.Log = Mood.Log(moodData)

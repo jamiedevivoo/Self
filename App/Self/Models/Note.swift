@@ -11,6 +11,6 @@ extension Note {
 // MARL: - Output / Describing the model
 extension Note: DictionaryConvertable {
     var dictionary: [String: Any] {
-        return ["note": text as String]
+        return ["text": text as String]
     }
 }

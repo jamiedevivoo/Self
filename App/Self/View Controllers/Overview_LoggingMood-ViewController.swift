@@ -23,6 +23,7 @@ final class OverviewLoggingMoodViewController: ViewController {
         let label = HeaderLabel(dataCollector!.wildcard?.question ?? "", .centerPageText)
         label.textAlignment = .center
         label.textColor = UIColor.App.General.blackWhite().withAlphaComponent(0.9)
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     lazy var wildcardButton: UIButton = {
@@ -41,6 +42,7 @@ final class OverviewLoggingMoodViewController: ViewController {
         let label = HeaderLabel(dataCollector!.note?.text ?? "", .centerPageText)
         label.textAlignment = .center
         label.textColor = UIColor.App.General.blackWhite().withAlphaComponent(0.9)
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     lazy var noteButton: UIButton = {
@@ -77,23 +79,23 @@ extension OverviewLoggingMoodViewController {
             self.screenSliderDelegate?.backwardButton.alpha = 0.35
             self.screenSliderDelegate?.backwardButton.isEnabled = true
         })
-        print(dataCollector?.wildcard)
-        print(dataCollector?.note)
         if dataCollector?.wildcard != nil {
             wildcardButton.removeFromSuperview()
             wildcardView.addSubview(logWildcardQuestion)
             logWildcardQuestion.snp.makeConstraints { make in
                 make.top.equalToSuperview()
-                make.height.equalTo(40)
+                make.height.greaterThanOrEqualTo(20)
                 make.width.equalToSuperview()
                 make.centerX.equalToSuperview()
             }
+            guard let wildcardText: String = dataCollector?.wildcard?.answer else { return }
+            logWildcardQuestion.text = wildcardText
         } else {
             logWildcardQuestion.removeFromSuperview()
             wildcardView.addSubview(wildcardButton)
             wildcardButton.snp.makeConstraints { make in
                 make.top.equalToSuperview()
-                make.height.equalTo(40)
+                make.height.greaterThanOrEqualTo(40)
                 make.width.equalToSuperview()
                 make.centerX.equalToSuperview()
             }
@@ -103,16 +105,18 @@ extension OverviewLoggingMoodViewController {
             noteView.addSubview(logNote)
             logNote.snp.makeConstraints { make in
                 make.top.equalToSuperview()
-                make.height.equalTo(40)
+                make.height.greaterThanOrEqualTo(20)
                 make.width.equalToSuperview()
                 make.centerX.equalToSuperview()
             }
+            guard let noteText: String = dataCollector?.note?.text else { return }
+            logNote.text = noteText
         } else {
             logNote.removeFromSuperview()
             noteView.addSubview(noteButton)
             noteButton.snp.makeConstraints { make in
                 make.top.equalToSuperview()
-                make.height.equalTo(40)
+                make.height.greaterThanOrEqualTo(40)
                 make.width.equalToSuperview()
                 make.centerX.equalToSuperview()
             }
@@ -215,7 +219,7 @@ extension OverviewLoggingMoodViewController: ViewBuilding {
         }
         wildcardView.snp.makeConstraints { (make) in
             make.top.equalTo(logWildcardLabel.snp.bottom).offset(10)
-            make.width.equalToSuperview().multipliedBy(0.8)
+            make.width.equalToSuperview().multipliedBy(0.6)
             make.centerX.equalToSuperview()
             make.height.greaterThanOrEqualTo(50)
         }
