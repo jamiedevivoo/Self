@@ -54,28 +54,28 @@ extension ActionManager.User {
 
 // Set Actions
 extension ActionManager.User {
-    private func updateLog(_ actionLog: ActionManager.Log) -> ActionManager.Log {
-        var updatedLog = actionLog
-        
-        /// Check if the Log already has a UID (If it was created from a Brief then it won't, so create one)
-        if updatedLog.uid == nil {
-            updatedLog.uid = userActionLogsReference.document().documentID
-        }
-        
-        /// Check if the Action is marked as completed, if it is and a timestamp doesn't exist we will create one
-        if updatedLog.completed == true && updatedLog.completeTimestamp == nil {
-            updatedLog.completeTimestamp = Date()
-        }
-        
-        userActionLogsReference.document(updatedLog.uid!).setData(updatedLog.dictionary, merge: true) { error in
-            guard error == nil else {
-                print("\(error!.localizedDescription)")
-                return
+        private func updateLog(_ actionLog: ActionManager.Log) -> ActionManager.Log {
+            var updatedLog = actionLog
+            
+            /// Check if the Log already has a UID (If it was created from a Brief then it won't, so create one)
+            if updatedLog.uid == nil {
+                updatedLog.uid = userActionLogsReference.document().documentID
             }
+            
+            /// Check if the Action is marked as completed, if it is and a timestamp doesn't exist we will create one
+            if updatedLog.completed == true && updatedLog.completeTimestamp == nil {
+                updatedLog.completeTimestamp = Date()
+            }
+            
+            userActionLogsReference.document(updatedLog.uid!).setData(updatedLog.dictionary, merge: true) { error in
+                guard error == nil else {
+                    print("\(error!.localizedDescription)")
+                    return
+                }
+            }
+            /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
+            return updatedLog
         }
-        /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
-        return updatedLog
-    }
     
     func markLogComplete(_ actionLog: ActionManager.Log) -> ActionManager.Log {
         var completedLog = actionLog

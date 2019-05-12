@@ -16,7 +16,8 @@ final class OverviewLoggingMoodViewController: ViewController {
     
     lazy var logTagsLabel = HeaderLabel("Log Tags", .subheader)
     lazy var tags = Button(title: "Tags", action: #selector(saveLog), type: .secondary)
-
+    lazy var tagsView = UIView()
+    
     lazy var wildcardView = UIView()
     lazy var logWildcardLabel = HeaderLabel("Question of the day", .subheader)
     lazy var logWildcardQuestion: UILabel = {
@@ -56,15 +57,31 @@ final class OverviewLoggingMoodViewController: ViewController {
     }()
 
     lazy var saveButton = Button(title: "✓ Save log", action: #selector(saveLog), type: .primary)
+    
+    lazy var tapTitle = UITapGestureRecognizer(target: self, action: #selector(OverviewLoggingMoodViewController.editTitle))
+    lazy var tapTags = UITapGestureRecognizer(target: self, action: #selector(OverviewLoggingMoodViewController.editTags))
+    lazy var tapWildcard = UITapGestureRecognizer(target: self, action: #selector(OverviewLoggingMoodViewController.addWildcard))
+    lazy var tapNote = UITapGestureRecognizer(target: self, action: #selector(OverviewLoggingMoodViewController.addNote))
+
 }
 
 // MARK: - Override Methods
-extension OverviewLoggingMoodViewController {
+extension OverviewLoggingMoodViewController: UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildViews()
         view.backgroundColor = .clear
+        logTitleLabel.isUserInteractionEnabled = true
+        logTitleLabel.addGestureRecognizer(tapTitle)
+        logTitle.addGestureRecognizer(tapTitle)
+        logTagsLabel.addGestureRecognizer(tapTitle)
+        //        tagsView.addGestureRecognizer(tapTitle)
+        wildcardView.addGestureRecognizer(tapWildcard)
+        logWildcardLabel.addGestureRecognizer(tapWildcard)
+        noteView.isUserInteractionEnabled = true
+        noteView.addGestureRecognizer(tapNote)
+        logNoteLabel.addGestureRecognizer(tapNote)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -139,6 +156,14 @@ extension OverviewLoggingMoodViewController {
     @objc func saveLog() {
         screenSliderDelegate?.backwardNavigationEnabled = true
         dataCollector?.finishDataCollection()
+    }
+    @objc func editTitle() {
+        guard let screen = screenSliderDelegate?.screens.firstIndex(where: {$0.vc.isKind(of: HeadlineLoggingMoodViewController.self)}) else { return }
+        screenSliderDelegate?.goTo(index: screen)
+    }
+    @objc func editTags() {
+        guard let screen = screenSliderDelegate?.screens.firstIndex(where: {$0.vc.isKind(of: TagsLoggingMoodViewController.self)}) else { return }
+        screenSliderDelegate?.goTo(index: screen)
     }
     @objc func addWildcard() {
         guard let wildcardScreenIndex = screenSliderDelegate?.screens.firstIndex(where: {$0.vc.isKind(of: WildcardLoggingMoodViewController.self)}) else { return }

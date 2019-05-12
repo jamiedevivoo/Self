@@ -145,15 +145,17 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
     func finishDataCollection() {
         guard var moodData = isDataCollectionComplete() else { return }
         moodData["timestamp"] = Date()
-        if self.wildcard != nil {
-            moodData["wildcard"] = self.wildcard!.dictionary
+        if let wildcard = self.wildcard {
+            moodData["wildcard"] = wildcard.dictionary
         }
-        if self.note != nil {
-            moodData["note"] = self.note?.dictionary
+        if let note = self.note {
+            moodData["note"] = note.dictionary
         }
 
         let mood: Mood.Log = Mood.Log(moodData)
-        print(mood)
+        let moodManager = MoodManager(account: AccountManager.shared().accountRef!)
+        moodManager.updateMood(mood)
+        navigationController?.popToRootViewController(animated: true)
     }
     
 }

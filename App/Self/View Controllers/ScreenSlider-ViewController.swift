@@ -250,10 +250,19 @@ extension ScreenSliderViewController: UIPageViewControllerDelegate {
     
     // The PageViewController is about to transition
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        view.isUserInteractionEnabled = false
+        scrollView?.isUserInteractionEnabled = false
+        pageViewController.view.isUserInteractionEnabled = false
     }
     
     // The pageViewController finished the transition
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            view.isUserInteractionEnabled = true
+            scrollView?.isUserInteractionEnabled = true
+            pageViewController.view.isUserInteractionEnabled = true
+
+        }
         /// Set the pageControl.currentPage to the index of the current viewController in screens
         if let viewControllers = pageViewController.viewControllers {
             if let viewControllerIndex = self.screens.firstIndex(where: {$0.vc == viewControllers[0]}) {

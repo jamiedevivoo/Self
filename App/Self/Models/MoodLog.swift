@@ -22,12 +22,15 @@ extension Mood.Log {
         self.timestamp          = (moodDictionary["timestamp"] as! Date)
         self.arousalRating      = (moodDictionary["arousal_rating"] as! Double)
         self.valenceRating      = (moodDictionary["valence_rating"] as! Double)
-        if moodDictionary["note"] != nil {
-            self.note = Note(moodDictionary["note"] as! [String: Any])
+        
+        if let note: [String: Any] = moodDictionary["note"] as? [String: Any] {
+            self.note = Note(note)
         }
-        if moodDictionary["wildcard"] != nil {
-            self.wildcard = Mood.Wildcard(moodDictionary["wildcard"] as! [String: Any])
+        
+        if let wildcard: [String: Any] = moodDictionary["wildcard"] as? [String: Any] {
+            self.wildcard = Mood.Wildcard(wildcard)
         }
+        
         self.emotion = EmotionManager.getEmotion(
             withValence: moodDictionary["valence_rating"] as! Double,
             withArousal: moodDictionary["arousal_rating"] as! Double)
@@ -49,15 +52,15 @@ extension Mood.Log: DictionaryConvertable {
             "headline": headline as Any,
             "arousal_rating": arousalRating as Any,
             "valence_rating": valenceRating as Any,
-            "tags": tags.map({$0.dictionary}) as Any,
+            "tags": tags.map({$0.dictionary}) as Any
         ]
         
-        if self.wildcard != nil {
-            dictionary["wildcard"] = wildcard!.dictionary as [String: Any]
+        if let wildcard = self.wildcard {
+            dictionary["wildcard"] = wildcard.dictionary
         }
         
-        if self.note != nil {
-            dictionary["note"] = note!.dictionary as [String: Any]
+        if let note = self.note {
+            dictionary["note"] = note.dictionary
         }
         
         return dictionary
