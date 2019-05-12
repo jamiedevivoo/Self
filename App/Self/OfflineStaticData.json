@@ -10,6 +10,7 @@
             "text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."
         }
     },
+    
     "onboarding": {
         "nameScreen": {
             "title": "Welcome to Self! What should we call you?"
@@ -20,11 +21,13 @@
             "text": "Placeholder: Use the app to log moods and complete challenges"
         }
     },
+    
     "login": {
         "welcome": {
             "text": "Welcome back! Login below to continue."
         }
     },
+    
     "helpScreen": {
         "moodLogging": {
             "title": "Logging A Mood",
@@ -39,6 +42,7 @@
             "text": "Looking after your wellbeing is more than just being positive about it. Just like with diet and fitness, improving and maintaining wellbeing means making sure you're completing a range of healthy acitons reguarly. Every day we'll select 3 challenges that users can complete, from there you can pick the one you want to focus on for that day. Good Luck!"
         }
     },
+    
     "feed": {
         "message": {
             "fact": [
@@ -109,11 +113,22 @@
             ]
         }
     },
+    
     "notification": {
-        "mood": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
-        "challenge": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
-        "highlight": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." }
+        "mood": [
+            { "text": "How are you? Don't forget to log your daily mood." },
+            { "text": "What's up? Don't forget to log your daily mood." }
+        ],
+        "challenge":  [
+            { "text": "Been busy? If you've got time we've got challenges. See what today's are now." },
+            { "text": "Check out todays challenges and see if any tickle your fancy" }
+        ],
+        "highlight":  [
+            { "text": "Feeling down? It's important to spend some time reflecting on your highlights" },
+            { "text": "Reflect on your highlights to help reframe thoughts" }
+        ]
     },
+    
     "hint": {
         "moodTitle": [
             { "text": "Tap anywhere on the screen to continue to the next step 💡" },
@@ -132,33 +147,22 @@
             { "text": "This is a good place for you to store your personal notes on the day 💡" }
         ]
     },
+    
     "stateMessage": {
         "highlight": {
             "missing": {
                 "title": "Check back later 👩‍🔬 ...",
                 "text": "Keep using the app to unlock more features like Highlights and Insights."
-            },
-            "completedDaily": {
-                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
-                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
-            },
-            "newDaily": {
-                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
-                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
             }
         },
         "mood": {
             "missing": {
-                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
-                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+                "title": "No mood for today",
+                "text": "Looks like you haven't added a mood for today, ready to add one?"
             },
-            "completedDaily": {
-                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
-                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
-            },
-            "newDaily": {
-                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
-                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+            "added": {
+                "title": "Well done!",
+                "text": "You've added another mood. Moods are a useful way for you to track your wellbeing."
             }
         },
         "challenge": {
@@ -167,17 +171,18 @@
                 "text": "You've completed all your Challenges for today."
             },
             "completedDaily": {
-                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
-                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+                "title": "Smashed it!",
+                "text": "Well done on completing your daily challenge!"
             },
             "newDaily": {
-                "title": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns.",
-                "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."
+                "title": "Todays Challenge",
+                "text": "Todays challenges are available, ready to check them out?"
             }
         }
     },
+    
     "errorMessage": {
-        "default": {"text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns."}
+        "default": {"text": "Sorry, Looks like something went wrong, try restarting the app."}
     }
+    
 }
-
