@@ -45,6 +45,7 @@ extension Account: CustomStringConvertible, DictionaryConvertable {
     var dictionary: [String: Any] {
         return ["user": user.dictionary,
                 "flags": flags.dictionary,
-                "settings": settings.dictionary]
+                "settings": settings.dictionary,
+                "milestones": milestones.dictionary]
     }
 }

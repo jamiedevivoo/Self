@@ -188,7 +188,7 @@ extension DashboardTabBarController: UITabBarControllerDelegate {
 }
 
 // MARK: - Animate ViewControllers
-extension DashboardTabBarController {
+extension UITabBarController {
     func transitionViewController(toIndex: Int) {
         guard let tabViewControllers = viewControllers,
             let selectedVC = selectedViewController,

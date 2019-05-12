@@ -56,7 +56,6 @@ final class IconButton: UIButton {
     }
 }
 
-
 extension IconButton {
     func setup(_ type: IconButtonType) {
 

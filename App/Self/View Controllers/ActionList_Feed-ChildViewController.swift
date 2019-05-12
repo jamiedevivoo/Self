@@ -17,8 +17,8 @@ class FeedActionListChildViewController: UIViewController {
     
     lazy var actionHeaderLabel = HeaderLabel("Your Recommended Actions", .section)
     lazy var moodButton = Button(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood), type: .dashboard)
-    lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
-    lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.messageResponse), type: .dashboard)
+    lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.showActions), type: .dashboard)
+    lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.showHighlights), type: .dashboard)
     lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount), type: .dashboard)
     
     var accountRef: Account?
@@ -34,20 +34,16 @@ class FeedActionListChildViewController: UIViewController {
 extension FeedActionListChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addSubViews()
         setupChildViews()
-        
-        if Auth.auth().currentUser!.isAnonymous {
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if AccountManager.shared().accountRef?.flags.accountIsComplete == false {
             self.actionButtonStack.addArrangedSubview(finishAccountButton)
         } else {
             self.finishAccountButton.removeFromSuperview()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if Auth.auth().currentUser!.isAnonymous {
-            self.actionButtonStack.addArrangedSubview(finishAccountButton)
         }
     }
 }
@@ -56,20 +52,18 @@ extension FeedActionListChildViewController {
 extension FeedActionListChildViewController {
     @objc func logNewMood() {
         navigationController?.pushViewController(LoggingAMoodScreenSliderViewController(), animated: true)
-        navigationController?.navigationBar.isHidden = false
     }
-    
-    @objc func messageResponse() {
-        AccountManager.logout()
+    @objc func showActions() {
+        tabBarController?.transitionViewController(toIndex: 2)
     }
-    @objc func settings() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
+    @objc func showHighlights() {
+        tabBarController?.transitionViewController(toIndex: 0)
+    }
+    @objc func selectDailyChallenge() {
+        tabBarController?.transitionViewController(toIndex: 2)
     }
     @objc func finishAccount() {
         navigationController?.pushViewController(FinishCreatingAccountViewController(), animated: true)
-    }
-    @objc func logout() {
-        AccountManager.logout()
     }
 }
 
