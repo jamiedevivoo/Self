@@ -180,7 +180,7 @@ extension FeedManager {
             }
             
             // 4.3 Mood reminders "Reflect on this mood"
-            guard (accountManager.checkMilestone("reflectOnDailyMood") == true) else {
+            guard (accountManager.checkMilestone("reflectOnHighlight") == true) else {
                 return (
                     [Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["reflectOnHighlight"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["reflectOnHighlight"][1]["text"].stringValue, tags: [])

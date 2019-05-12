@@ -16,8 +16,13 @@
         },
         "induction": {
             "title": "Placeholder: Title",
-            "congrats": "Placeholder: You've begun a journey to your better self. (cheesy)"
+            "congrats": "Placeholder: You've begun a journey to your better self. (cheesy)",
             "text": "Placeholder: Use the app to log moods and complete challenges"
+        }
+    },
+    "login": {
+        "welcome": {
+            "text": "Welcome back! Login below to continue."
         }
     },
     "helpScreen": {
@@ -32,7 +37,7 @@
         "challenges": {
             "title": "Challenges",
             "text": "Looking after your wellbeing is more than just being positive about it. Just like with diet and fitness, improving and maintaining wellbeing means making sure you're completing a range of healthy acitons reguarly. Every day we'll select 3 challenges that users can complete, from there you can pick the one you want to focus on for that day. Good Luck!"
-        },
+        }
     },
     "feed": {
         "message": {
@@ -75,10 +80,6 @@
             "reflectOnHighlight": [
                 { "text": "We've been through the archives and chosen a highlight for you to reflect on" },
                 { "text": "It's important to reflect on old successes to reframe them in a positive way, want to try one now?"}
-            ],
-            "insightPrompt": [
-                { "text": "Looks like you have a new insight! Head to the highlights page to see what it is." },
-                { "text": "We've got a new insight for you!, head to the highlights page to see it."}
             ],
             "lowMood": [
                 { "text": "Looks like you've been down recently, if you need help or someone to talk to don't forget to use our help page." },
