@@ -229,14 +229,15 @@ extension MoodLoggingMoodViewController {
         button.layer.shadowOffset = CGSize(width: button.layer.shadowOffset.width - 0.5, height: button.layer.shadowOffset.height - 4.0)
         CATransaction.commit()
         
-        UIView.animate(withDuration: duration,
-                       delay: 0,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 1,
-                       options: [.curveEaseInOut],
-                       animations: {
-                        button.alpha -= 0.2
-                        button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 1,
+            options: [.curveEaseInOut],
+            animations: {
+                button.alpha -= 0.2
+                button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         })
         self.tapToConfirm.layer.add(shadowAnimation, forKey: nil)
     }
