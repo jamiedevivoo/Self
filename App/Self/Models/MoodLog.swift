@@ -66,9 +66,3 @@ extension Mood.Log: DictionaryConvertable {
         return dictionary
     }
 }
-
-enum SentimentTrend {
-    case positive
-    case negative
-    case neutral
-}

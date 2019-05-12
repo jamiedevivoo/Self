@@ -68,6 +68,7 @@
 		7D77E603227FA35400946FB7 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77E5FE227FA35300946FB7 /* Reusable.swift */; };
 		7D77E604227FA35400946FB7 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77E5FF227FA35400946FB7 /* UIView+Constraints.swift */; };
 		7D77E606227FA35800946FB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D77E605227FA35800946FB7 /* Main.storyboard */; };
+		7D8CD8F92287E4CE008E961B /* SentimentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8CD8F82287E4CE008E961B /* SentimentManager.swift */; };
 		7D8E4321227E5B2000243139 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4320227E5B2000243139 /* Mood.swift */; };
 		7D8E4323227E5D0100243139 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4322227E5D0100243139 /* Feed.swift */; };
 		7D8E4325227E5EF300243139 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4324227E5EF300243139 /* Sentiment.swift */; };
@@ -221,6 +222,7 @@
 		7D77E5FE227FA35300946FB7 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		7D77E5FF227FA35400946FB7 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		7D77E605227FA35800946FB7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7D8CD8F82287E4CE008E961B /* SentimentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentimentManager.swift; sourceTree = "<group>"; };
 		7D8E4320227E5B2000243139 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		7D8E4322227E5D0100243139 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7D8E4324227E5EF300243139 /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
@@ -748,6 +750,7 @@
 				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
 				7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */,
 				7DF14B46225F24870090D299 /* MoodManager.swift */,
+				7D8CD8F82287E4CE008E961B /* SentimentManager.swift */,
 				7DD6CBF122663B0900F47E63 /* EmotionManager.swift */,
 				A3D75735225D4F1B00E87F67 /* ColorManager.swift */,
 				7D7758D2225D878A003CCD1F /* InsightManager.swift */,
@@ -1047,6 +1050,7 @@
 				7D3FCC072286209A000378F4 /* ViewSliderDelegate.swift in Sources */,
 				7D21FED52284035B0001FE62 /* Diary_LoggingMood-ViewController.swift in Sources */,
 				7D77E548227F93B900946FB7 /* Expandable-Protocol.swift in Sources */,
+				7D8CD8F92287E4CE008E961B /* SentimentManager.swift in Sources */,
 				7D6B745F226028B5006F9CD1 /* Name_Onboarding-ViewController.swift in Sources */,
 				272325922260C92000BB6924 /* BackgroundManager.swift in Sources */,
 				A30EC35522565BEF0092A4E2 /* Message_Feed-ChildViewController.swift in Sources */,
