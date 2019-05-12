@@ -427,8 +427,6 @@
 			isa = PBXGroup;
 			children = (
 				7D21FED922840ED30001FE62 /* Standard Reusable Views */,
-				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
-				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
 				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
 				7D77E549227F942200946FB7 /* ExpandableCell.swift */,
 				7D519CC22287168800EE3CEC /* TagCell.swift */,
@@ -667,6 +665,8 @@
 				A33409AC224570BC004CBB2A /* Feed-ViewController.swift */,
 				A30EC35422565BEF0092A4E2 /* Message_Feed-ChildViewController.swift */,
 				A30EC35222564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift */,
+				7DFEF05A2263617C004F625F /* MessageStackView.swift */,
+				7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */,
 			);
 			name = HOME;
 			sourceTree = "<group>";

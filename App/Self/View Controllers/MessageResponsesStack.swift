@@ -21,6 +21,8 @@ extension MessageResponsesStack {
     func addActions(usingResponses responses: [Feed.Status.Response]) {
         for action in responses {
             let button = Button(title: action.title, action: action.action, type: .dashboard)
+//            button.addTarget(FeedActionListChildViewController, action: action.action, for: .touchUpInside)
+            print(button, button.allTargets)
             addArrangedSubview(button)
         }
     }

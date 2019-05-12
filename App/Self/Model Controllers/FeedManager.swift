@@ -1,4 +1,5 @@
 import UIKit
+// swiftlint:disable function_body_length
 
 final class FeedManager {
     static fileprivate var sharedInstance: FeedManager?
@@ -55,26 +56,26 @@ extension FeedManager {
                 [Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstMood"][0]["text"].stringValue, tags: []),
                  Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstMood"][0]["text"].stringValue, tags: [])
                 ].randomElement()!,
-                [Feed.Status.Response(title: "✏️ Log my first mood", action: #selector(FeedMessageChildViewController.logNewMood), sentimentTrend: .neutral)])
+                [Feed.Status.Response(title: "✏️ Log my first mood", action: #selector(DashboardNavigationController.logNewMood), sentimentTrend: .neutral)])
             }
             
             /// Priority 0.2 - Catch users who haven't responded to a message
-            guard (accountManager.checkMilestone("first_message_tapped") == true) else {
+            guard accountManager.checkMilestone("first_message_tapped") == true else {
                 return (
                 [Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstMessageInteraction"][0]["text"].stringValue, tags: []),
                  Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstMessageInteraction"][0]["text"].stringValue, tags: [])
                 ].randomElement()!,
-                [Feed.Status.Response(title: "🎉", action: #selector(FeedMessageChildViewController.logNewMood), sentimentTrend: .neutral),
-                 Feed.Status.Response(title: "🤔", action: #selector(FeedMessageChildViewController.logNewMood), sentimentTrend: .neutral)])
+                [Feed.Status.Response(title: "🎉", sentimentTrend: .neutral),
+                 Feed.Status.Response(title: "🤔", sentimentTrend: .neutral)])
             }
             
             /// Priority 0.3 - Catch users who haven't tapped SOS yet
-            guard (accountManager.checkMilestone("first_sos_tap") == true) else {
+            guard accountManager.checkMilestone("first_sos_tap") == true else {
                 return (
                 [Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstSOS"][0]["text"].stringValue, tags: []),
                  Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstSOS"][1]["text"].stringValue, tags: [])
                 ].randomElement()!,
-                [Feed.Status.Response(title: "🆘", action: #selector(FeedMessageChildViewController.logNewMood), sentimentTrend: .neutral)])
+                [Feed.Status.Response(title: "🆘", action: #selector(DashboardTabBarController.showHelp), sentimentTrend: .neutral)])
             }
 
             /// Priority 0.4 - Catch users who haven't chosen a challenge yet
@@ -83,8 +84,7 @@ extension FeedManager {
                 [Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstChallenge"][0]["text"].stringValue, tags: []),
                  Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["firstChallenge"][1]["text"].stringValue, tags: [])
                 ].randomElement()!,
-                [Feed.Status.Response(title: "👍", action: #selector(FeedMessageChildViewController.logNewMood), sentimentTrend: .neutral),
-                 Feed.Status.Response(title: "👎", action: #selector(FeedMessageChildViewController.logNewMood), sentimentTrend: .neutral)])
+                [Feed.Status.Response(title: "👍", action: #selector(DashboardNavigationController.showActions), sentimentTrend: .neutral)])
             }
             
             /// Priority 0.5 - Catch users who haven't completed their account yet
@@ -93,7 +93,7 @@ extension FeedManager {
                 [Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["completeAccount"][0]["text"].stringValue, tags: []),
                  Feed.Status.Message(type: .tutorial, text: StaticMessages.get["feed"]["tutorial"]["completeAccount"][1]["text"].stringValue, tags: [])
                 ].randomElement()!,
-                [Feed.Status.Response(title: "✓ Complete my account", action: #selector(FeedMessageChildViewController.comple), sentimentTrend: .neutral)])
+                [Feed.Status.Response(title: "✓ Complete my account", action: #selector(DashboardNavigationController.finishAccount), sentimentTrend: .neutral)])
             }
             
         }
@@ -105,25 +105,25 @@ extension FeedManager {
         
         /// 1.1 New unviewed Insight
         if randomNumber < 9 {
-            guard (accountManager.checkMilestone("new_insight") == true) else {
+            guard accountManager.checkMilestone("new_insight") == false else {
                 return (
                     [Feed.Status.Message(type: .insight, text: StaticMessages.get["feed"]["message"]["insightPrompt"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .insight, text: StaticMessages.get["feed"]["message"]["insightPrompt"][1]["text"].stringValue, tags: [])
                         ].randomElement()!,
-                    [Feed.Status.Response(title: "💡", action: #selector(FeedMessageChildViewController.comple), sentimentTrend: .neutral)])
+                    [Feed.Status.Response(title: "💡", action: #selector(DashboardNavigationController.showHighlights), sentimentTrend: .neutral)])
                 }
         }
         
         /// Priority 2.0 - Abnormal behaviour (low mood, no recent moods, no recent actions)
         /// 2.1 Low mood
         if randomNumber < 8 {
-            guard (accountManager.checkMilestone("low_mood") == true) else {
+            guard accountManager.checkMilestone("low_mood") == false else {
                 return (
                     [Feed.Status.Message(type: .other, text: StaticMessages.get["feed"]["message"]["lowMood"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .other, text: StaticMessages.get["feed"]["message"]["lowMood"][1]["text"].stringValue, tags: [])
                         ].randomElement()!,
                     [Feed.Status.Response(title: "👍", sentimentTrend: .positive),
-                     Feed.Status.Response(title: "👎", sentimentTrend: .negative)])
+                     Feed.Status.Response(title: "👎", action: #selector(DashboardTabBarController.showHelp), sentimentTrend: .negative)])
             }
         }
 
@@ -131,37 +131,38 @@ extension FeedManager {
         if randomNumber > 2 {
             
             // 3.1 Unlock today's Challenge!
-            guard (accountManager.checkMilestone("dailyMoodComplete") == true) else {
+            guard accountManager.checkMilestone("dailyMoodComplete") == false else {
                 return (
                     [Feed.Status.Message(type: .mood, text: StaticMessages.get["feed"]["message"]["moodPrompt"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .mood, text: StaticMessages.get["feed"]["message"]["moodPrompt"][1]["text"].stringValue, tags: [])
                         ].randomElement()!,
-                    [Feed.Status.Response(title: "+ Log a mood", action: #selector(FeedMessageChildViewController.), sentimentTrend: .neutral)])
+                    [Feed.Status.Response(title: "+ Log a mood", action: #selector(DashboardNavigationController.logNewMood), sentimentTrend: .neutral)])
             }
             
             // 3.2 Log a mood for today
-            guard (accountManager.checkMilestone("dailyActionComplete") == true) else {
+            guard accountManager.checkMilestone("dailyActionComplete") == false else {
                 return (
                     [Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["actionPrompt"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["actionPrompt"][1]["text"].stringValue, tags: [])
                         ].randomElement()!,
-                    [Feed.Status.Response(title: "📦 Open todays challenge", action: #selector(FeedMessageChildViewController.comple), sentimentTrend: .neutral)])
+                    [Feed.Status.Response(title: "📦 Open todays challenge", action: #selector(DashboardNavigationController.showActions), sentimentTrend: .neutral)])
             }
             
             // 3.2 New Highlight added
-            guard (accountManager.checkMilestone("newHighlightAdded") == true) else {
+            guard accountManager.checkMilestone("newHighlightAdded") == false else {
                 return (
                     [Feed.Status.Message(type: .other, text: StaticMessages.get["feed"]["message"]["highlightPrompt"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .other, text: StaticMessages.get["feed"]["message"]["highlightPrompt"][1]["text"].stringValue, tags: [])
                         ].randomElement()!,
-                    [Feed.Status.Response(title: "🎉 View new highlight", action: #selector(FeedMessageChildViewController.comple), sentimentTrend: .neutral)])
+                    [Feed.Status.Response(title: "🎉 View new highlight", action: #selector(DashboardNavigationController.showHighlights), sentimentTrend: .neutral)])
             }
         }
         
         /// Priority 4.0 - Generic reminders
         if randomNumber > 5 {
+            
             // 4.1 How is the daily challenge going?
-            guard (accountManager.checkMilestone("dailyChallengeExistsButNotComplete") == true) else {
+            guard accountManager.checkMilestone("dailyChallengeExistsButNotComplete") == false else {
                 return (
                     [Feed.Status.Message(type: .mood, text: StaticMessages.get["feed"]["message"]["challengeNeedsCompleting"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .mood, text: StaticMessages.get["feed"]["message"]["challengeNeedsCompleting"][1]["text"].stringValue, tags: [])
@@ -171,21 +172,21 @@ extension FeedManager {
             }
             
             // 4.2 Mood logged but no wildcard question
-            guard (accountManager.checkMilestone("moodLoggedButWithoutWildcard") == true) else {
+            guard accountManager.checkMilestone("moodLoggedButWithoutWildcard") == false else {
                 return (
                     [Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["moodWithoutWildcard"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["moodWithoutWildcard"][1]["text"].stringValue, tags: [])
                         ].randomElement()!,
-                    [Feed.Status.Response(title: "+ Answer the question of the day", action: #selector(FeedMessageChildViewController.comple), sentimentTrend: .neutral)])
+                    [Feed.Status.Response(title: "+ Answer the question of the day", action: #selector(DashboardNavigationController.logNewMood), sentimentTrend: .neutral)])
             }
             
             // 4.3 Mood reminders "Reflect on this mood"
-            guard (accountManager.checkMilestone("reflectOnHighlight") == true) else {
+            guard accountManager.checkMilestone("reflectOnHighlight") == false else {
                 return (
                     [Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["reflectOnHighlight"][0]["text"].stringValue, tags: []),
                      Feed.Status.Message(type: .dailyAction, text: StaticMessages.get["feed"]["message"]["reflectOnHighlight"][1]["text"].stringValue, tags: [])
                         ].randomElement()!,
-                    [Feed.Status.Response(title: "+ Add reflection", action: #selector(FeedMessageChildViewController.comple), sentimentTrend: .neutral)])
+                    [Feed.Status.Response(title: "+ Add reflection", action: #selector(DashboardNavigationController.showHighlights), sentimentTrend: .neutral)])
             }
         }
         

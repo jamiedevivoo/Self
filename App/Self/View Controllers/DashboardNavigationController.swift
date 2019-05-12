@@ -41,3 +41,22 @@ extension DashboardNavigationController {
 extension DashboardNavigationController: UINavigationControllerDelegate {
     
 }
+
+// Controller Actions
+extension DashboardNavigationController {
+    @objc func logNewMood() {
+        pushViewController(LoggingAMoodScreenSliderViewController(), animated: true)
+    }
+    @objc func showActions() {
+        tabBarController?.transitionViewController(toIndex: 2)
+    }
+    @objc func showHighlights() {
+        tabBarController?.transitionViewController(toIndex: 0)
+    }
+    @objc func selectDailyChallenge() {
+        tabBarController?.transitionViewController(toIndex: 2)
+    }
+    @objc func finishAccount() {
+        pushViewController(FinishCreatingAccountViewController(), animated: true)
+    }
+}

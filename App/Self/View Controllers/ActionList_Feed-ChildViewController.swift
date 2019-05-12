@@ -16,10 +16,10 @@ class FeedActionListChildViewController: UIViewController {
     }()
     
     lazy var actionHeaderLabel = HeaderLabel("Your Recommended Actions", .section)
-    lazy var moodButton = Button(title: "+ Log a mood", action: #selector(FeedActionListChildViewController.logNewMood), type: .dashboard)
-    lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(FeedActionListChildViewController.showActions), type: .dashboard)
-    lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(FeedActionListChildViewController.showHighlights), type: .dashboard)
-    lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(FeedActionListChildViewController.finishAccount), type: .dashboard)
+    lazy var moodButton = Button(title: "+ Log a mood", action: #selector(DashboardNavigationController.logNewMood), type: .dashboard)
+    lazy var revealChallengesButton = Button(title: "+ Reveal today's challenges", action: #selector(DashboardNavigationController.showActions), type: .dashboard)
+    lazy var newHighlightButton = Button(title: "+ View new highlight", action: #selector(DashboardNavigationController.showHighlights), type: .dashboard)
+    lazy var finishAccountButton = Button(title: "Finish Creating Account", action: #selector(DashboardNavigationController.finishAccount), type: .dashboard)
     
     var accountRef: Account?
     
@@ -50,21 +50,6 @@ extension FeedActionListChildViewController {
 
 // MARK: - Functions
 extension FeedActionListChildViewController {
-    @objc func logNewMood() {
-        navigationController?.pushViewController(LoggingAMoodScreenSliderViewController(), animated: true)
-    }
-    @objc func showActions() {
-        tabBarController?.transitionViewController(toIndex: 2)
-    }
-    @objc func showHighlights() {
-        tabBarController?.transitionViewController(toIndex: 0)
-    }
-    @objc func selectDailyChallenge() {
-        tabBarController?.transitionViewController(toIndex: 2)
-    }
-    @objc func finishAccount() {
-        navigationController?.pushViewController(FinishCreatingAccountViewController(), animated: true)
-    }
 }
 
 // MARK: - View Building
