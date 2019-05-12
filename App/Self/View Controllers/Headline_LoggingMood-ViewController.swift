@@ -10,7 +10,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Add A Title", .largeScreen)
-    lazy var hintOneLabel = ParaLabel(StaticMessages.get["hint"]["moodTitle"][Int.random(in: 0 ..< 1)]["text"].stringValue, .standard)
+    lazy var hintOneLabel = ParaLabel(StaticMessages.get["hint"]["moodTitle"][Int.random(in: 0 ..< StaticMessages.get["hint"]["moodTitle"].count)]["text"].stringValue, .standard)
     
     lazy var headLineTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()

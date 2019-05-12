@@ -10,7 +10,7 @@ final class TagsLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Tag Your Log", .largeScreen)
-    lazy var hintOneLabel = ParaLabel(StaticMessages.get["hint"]["moodTag"][Int.random(in: 0 ..< 1)]["text"].stringValue, .standard)
+    lazy var hintOneLabel = ParaLabel(StaticMessages.get["hint"]["moodTag"][Int.random(in: 0 ..< StaticMessages.get["hint"]["moodTag"].count)]["text"].stringValue, .standard)
     
     lazy var tagTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()

@@ -10,7 +10,7 @@ final class DiaryLoggingMoodViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Add A Note", .largeScreen)
-    lazy var hintOneLabel = ParaLabel(StaticMessages.get["hint"]["moodNote"][Int.random(in: 0 ..< 1)]["text"].stringValue, .standard)
+    lazy var hintOneLabel = ParaLabel(StaticMessages.get["hint"]["moodNote"][Int.random(in: 0 ..< StaticMessages.get["hint"]["moodNote"].count)]["text"].stringValue, .standard)
 
 
     lazy var diaryTextFieldWithLabel: TextFieldWithLabel = {

@@ -7,7 +7,7 @@ class FeedMessageChildViewController: UIViewController {
     
     init(accountRef: Account) {
         let message = FeedManager.shared().generateMessage(
-            forAccount: AccountManager.shared().accountRef!,
+            forAccount: AccountManager.shared(),
             withMoods: [],
             withInsight: [],
             withActions: [],
