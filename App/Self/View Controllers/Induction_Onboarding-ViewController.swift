@@ -9,8 +9,8 @@ final class InductionOnboardingViewController: ViewController {
     
     // Views
     lazy var headerLabel = HeaderLabel("Hey...", .largeScreen)
+    lazy var congratsLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["congrats"].stringValue, .doubleStandard)
     lazy var paraLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["text"].stringValue, .doubleStandard)
-    
     lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .primary)
 }
 
@@ -62,8 +62,13 @@ extension InductionOnboardingViewController: ViewBuilding {
             make.height.greaterThanOrEqualTo(50)
         }
         
-        paraLabel.snp.makeConstraints { (make) in
+        congratsLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerLabel.snp.bottom).offset(50)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+            make.height.greaterThanOrEqualTo(50)
+        }
+        paraLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(congratsLabel.snp.bottom).offset(20)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(50)
         }

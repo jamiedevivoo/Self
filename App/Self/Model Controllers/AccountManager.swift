@@ -3,6 +3,7 @@ import Firebase
 class AccountManager {
     static fileprivate var sharedInstance: AccountManager? // Singleton
     fileprivate var accountDBRef: DocumentReference?
+    private var accountObserver: ListenerRegistration?
     var accountRef: Account? // fileprivate(set)
 
     private init() {
@@ -18,10 +19,11 @@ class AccountManager {
 // MARK: - Manage Account
 extension AccountManager {
     func loadAccount(completion: @escaping () -> Void) {
+        
         let authUser = Auth.auth().currentUser!
         accountDBRef = Firestore.firestore().collection("user").document(authUser.uid)
         
-        accountDBRef?.getDocument { snapshot, error in
+        accountObserver = accountDBRef?.addSnapshotListener { snapshot, error in
             guard let snapshot = snapshot, snapshot.exists, error == nil else {
                 if let error = error { print("Error Loading User Data: \(error.localizedDescription)") }
                 print("Error Loading User Data. Forcing logout") 
@@ -29,7 +31,7 @@ extension AccountManager {
                 return
             }
             self.accountRef = Account(withSnapshot: snapshot)
-            print(AccountManager.shared().accountRef?.dictionary as AnyObject)
+            print("Account Data Updated:", AccountManager.shared().accountRef?.dictionary as AnyObject)
             completion()
         }
     }
@@ -49,6 +51,12 @@ extension AccountManager {
             }
         }
     }
+    
+    func checkMilestone(_ milestone: String) -> Bool {
+        guard let milestone = accountRef?.milestones.milestones[milestone] else { return false }
+        guard milestone == true else { return false }
+        return true
+        }
 }
 
 // MARK: - Manage Instance

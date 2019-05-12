@@ -11,7 +11,7 @@ final class WildcardLoggingMoodViewController: ViewController {
     // Views
     lazy var headerLabel = HeaderLabel("Question Of The Day", .largeScreen)
     lazy var questionLabel = HeaderLabel("", .smallScreen)
-    lazy var hintOneLabel = ParaLabel("These thought provoking questions help you frame your mind 💡", .standard)
+    lazy var hintOneLabel = ParaLabel(StaticMessages.get["hint"]["moodWildcard"][Int.random(in: 0 ..< 1)]["text"].stringValue, .standard)
     
     lazy var wildcardTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()

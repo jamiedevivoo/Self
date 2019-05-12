@@ -16,38 +16,73 @@
         },
         "induction": {
             "title": "Placeholder: Title",
-            "text": "Placeholder: You've begun a journey to your better self. (cheesy)"
+            "congrats": "Placeholder: You've begun a journey to your better self. (cheesy)"
+            "text": "Placeholder: Use the app to log moods and complete challenges"
         }
     },
     "helpScreen": {
         "moodLogging": {
             "title": "Logging A Mood",
-            "text": "Placeholder text for now. To create a new log, first mark your current mood by tapping on the screen. If you feel your mood is positive, mark yourself further to the right. If you are feeling negative, mark nearer to the left. If this feeling is mild, mark nearer the bottom, if this feeling is intense mark nearer the top. As you fill in more mood logs they will start to appear on this page so that you can mark your mood relative to other days."
+            "text": "To create a new log, first mark your current mood by tapping on the screen. If you feel your mood is positive, mark yourself further to the right. If you are feeling negative, mark nearer to the left. If this feeling is mild, mark nearer the bottom, if this feeling is intense mark nearer the top. As you fill in more mood logs they will start to appear on this page so that you can mark your mood relative to other days."
         },
-        "highlights": { "text": "How to log a mood..." },
-        "challenges": { "text": "How to log a mood..." }
+        "highlights": {
+            "title": "What are highlights?",
+            "text": "Highlights are a way for you to collect and reflect on all the highlights you've shared with the app. Here you'll find all the moods you've added as well as all the actions you've completed."
+        },
+        "challenges": {
+            "title": "Challenges",
+            "text": "Looking after your wellbeing is more than just being positive about it. Just like with diet and fitness, improving and maintaining wellbeing means making sure you're completing a range of healthy acitons reguarly. Every day we'll select 3 challenges that users can complete, from there you can pick the one you want to focus on for that day. Good Luck!"
+        },
     },
     "feed": {
         "message": {
-            "default": [
-                { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing."},
-                { "text": "Keep track of your best moments, your mood and gain insights and suggestions based on what affects your wellbeing."}
+            "fact": [
+                { "text": "Here's a random fact about wellbeing" },
+                { "text": "Here's another random fact about wellbeing"}
+            ],
+            "friendly": [
+                { "text": "Here's a random message to motivate you." },
+                { "text": "Here's another random message to motivate you."}
+            ],
+            "support": [
+                { "text": "Here's a supportive message to enourage positive activity." },
+                { "text": "Here's a slightly longer supportive message to enourage positive activity and test the constraints."}
             ],
             "moodPrompt": [
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+                { "text": "You haven't logged a mood for today, let's log one now" },
+                { "text": "Don't forget to log a mood each day to help you reflect" }
             ],
             "actionPrompt": [
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+                { "text": "You haven't unlocked an challenge to focus on today, add one now." },
+                { "text": "Ready to open todays challenge?" }
             ],
             "highlightPrompt": [
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." },
-                { "text": "Challenge yourself with positive wellbeing tasks and a community of people all improving their wellbeing." }
+                { "text": "Well done! We've added the latest action and mood you completed to your highlights" },
+                { "text": "Another in in the collection. Well done one your recent mood or highlight!" }
+            ],
+            "insightPrompt": [
+                { "text": "Looks like you have a new insight! Head to the highlights page to see what it is." },
+                { "text": "We've got a new insight for you!, head to the highlights page to see it."}
+            ],
+            "challengeNeedsCompleting": [
+                { "text": "Hey how's the daily challenge going?" },
+                { "text": "Good luck with your daily challenge!"}
+            ],
+            "moodWithoutWildcard": [
+                { "text": "Hey looks like you didn't answer the question of the day on your last mood log, want to add it now?" },
+                { "text": "Answer the question of the day to help you reflect positively on your day"}
+            ],
+            "reflectOnHighlight": [
+                { "text": "We've been through the archives and chosen a highlight for you to reflect on" },
+                { "text": "It's important to reflect on old successes to reframe them in a positive way, want to try one now?"}
+            ],
+            "insightPrompt": [
+                { "text": "Looks like you have a new insight! Head to the highlights page to see what it is." },
+                { "text": "We've got a new insight for you!, head to the highlights page to see it."}
+            ],
+            "lowMood": [
+                { "text": "Looks like you've been down recently, if you need help or someone to talk to don't forget to use our help page." },
+                { "text": "Our help page contains useful link and information if you're ever feeling down." }
             ]
         },
         "tutorial": {
@@ -77,6 +112,24 @@
         "mood": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
         "challenge": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." },
         "highlight": { "text": "Self is all about you. Every day you'll get a unique message based on what you share and what it learns." }
+    },
+    "hint": {
+        "moodTitle": [
+            { "text": "Tap anywhere on the screen to continue to the next step 💡" },
+            { "text": "You can tap anywhere on the screen to continue to the next step 💡" }
+        ],
+        "moodTag": [
+            { "text": "Tags can be anything you want, from what you've done to how you felt 💡" },
+            { "text": "What have you done today? Tags can be anything you want 💡" }
+        ],
+        "moodWildcard": [
+            { "text": "These thought provoking questions help you frame your mind 💡" },
+            { "text": "These questions help you reflect on the day 💡" }
+        ],
+        "moodNote": [
+            { "text": "This is just for you, no one will see it 💡" },
+            { "text": "This is a good place for you to store your personal notes on the day 💡" }
+        ]
     },
     "stateMessage": {
         "highlight": {

@@ -20,7 +20,7 @@ extension MessageResponsesStack {
     
     func addActions(usingResponses responses: [Feed.Status.Response]) {
         for action in responses {
-            let button = Button(title: action.title, action: #selector(FeedMessageChildViewController.logNewMood), type: .dashboard)
+            let button = Button(title: action.title, action: action.action, type: .dashboard)
             addArrangedSubview(button)
         }
     }

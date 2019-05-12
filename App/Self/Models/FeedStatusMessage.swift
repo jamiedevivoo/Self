@@ -1,5 +1,6 @@
 extension Feed.Status {
-    struct Message {
+    struct Message  {
+        
         var type: FeedMessageType
         var text: String
         var tags: [Tag]? = []

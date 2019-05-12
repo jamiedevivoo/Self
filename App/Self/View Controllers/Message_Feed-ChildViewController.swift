@@ -30,13 +30,9 @@ extension FeedMessageChildViewController {
 
 // MARK: - Functions
 extension FeedMessageChildViewController {
-    @objc func logNewMood() {
-        navigationController?.pushViewController(MoodLoggingMoodViewController(), animated: false)
-        navigationController?.navigationBar.isHidden = false
-    }
-    
+//    withResponse response: Feed.Status.Response, forMessage message: Feed.Status.Message
     @objc func messageResponse() {
-        
+        print("Message Tapped")
     }
 }
 
