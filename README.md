@@ -73,7 +73,28 @@ $ pod install
 ```bash
 $ cd /Users/[username]/Desktop/Self/Cloud 
 ```
-- Further instructions coming soon...
+- Install node and npm with homebrew in terminal
+```bash
+brew install node
+```
+- Install Firebase Commandline tools
+```bash
+npm install -g firebase-tools
+```
+- Login to firebase using the browser that pops up from running the following command
+```bash
+ firebase login
+ ```
+ - Install the firebase dependencies
+ ```bash
+ firebase init functions
+ ```
+ - Write the commands you want to deploy in TypeScript
+ - Then deploy the function to Firebase Cloud Function
+ ```bash
+ firebase deploy --only functions
+ ```
+ - You can use the URL that's returned to test your function
 
 ## Support + Contributing
 Pull requests, feedback, advice are all are welcome.
