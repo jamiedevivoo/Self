@@ -1,8 +1,26 @@
 
 
 # The Self App - IOS
-Some documentation and ongoing notes by the author during the development of this project.
+Some documentation (technical and detailed) and ongoing notes by the author during the development of this project.
 
+## Quick Summary ##
+[**Skip to full documentaiton (ongoing)**](#documentation)
+
+- The app project is built in XCode 10.2 and Swift 5.
+- The project requires devices to be running at least IOS 12.
+- The project uses CocoaPods for Dependency Management
+- Current Dependencies are available in the pods file at the root of the App Directory in this GitHub Project.
+- Firebase is used for dataManagement.
+- This project **Does Not** use Storyboards.
+- SnapKit is used for, when possible, onveniently creating constrains programatically.
+- The project is split up into a M-MC-VC-V pattern (explained below) - however this is currently inconsistent.
+- The project is currently being converted to use a dependency injection system and rely more on the protocol-delegate pattern to reduce coupling between objects.
+- The project allows for anonymous users ot sign up initially, only requesting registration information once they complete the tutorial.
+- The project uses Lottie for animations
+- For static offline messages the project stores most messages in one file, allowing for easy updating.
+- Daily challenges are selected for all users by a Cron job
+
+## Full Documentation
 - [**Methodology**](#programming-design--methodology)
 -   [**Overview**](#programming-design--methodology)
 - [**M-MC-VC-V**](#m-mc-vc-v)
@@ -10,6 +28,8 @@ Some documentation and ongoing notes by the author during the development of thi
 - [**Model Controllers**](#model-controllers-mc)
 - [**View Controllers**](#view-controllers-vc)
 - [**Views**](#views-v)
+- [**ScreenSliderViewController**](#screenSliderViewcontroller)
+- [**ViewSliderViewController**](#viewsliderviewcontroller)
 
 # Programming Design + Methodology
 **Overview**
@@ -124,3 +144,25 @@ Value types such as structs can be useful for storing objects that represent phy
 Another advantage of using structs is that they come with built in initialisers, which makes smaller, more 'raw' objects easier to initialise. Although generally another initialiser is needed to create the instance from a dictionary or Firebase Snapshot.
 
 By contrast if a class is responsible for keeping track of and maintaining state or needs to capture updates from a delegate or controller then it makes more sense to use classes as these can be more flexible and easier to manage without every method needing to be specified as mutating.
+
+# ScreenSliderViewcontroller
+**Subclass of UIPageViewController**
+
+This class is used to create the slide onboarding screens. *It is one of the more extensive viewcontrollers and currently considered a "Massive view Controller". It needs to be refactored.* 
+
+It is designed to be subclassed for it's various uses (For example currently it is subclassed as an OnboardingSliderViewController for the onboarding flow and as a MoodLoggingSliderViewController for the mood logging flow). After being subclassed and set up alongside a protocol to send it the data collected during the flow it is more or less plug and play.
+
+The screens of the Slider are only required to be UIViewControllers, so most existing ViewControllers cna be easily used withint he Slider.
+
+The UIPageviewController comes with a built in Scrollview and UIPageController which can be configured using it's properties. Any children can configure these to show or hide them as or before their *viewDidAppear/viewWillAppear* override methods. This allows them to be hidden when they aren't neccesary or when they can't be used (for example until data is entered, as seen int he mood logging sequence)
+
+The children can also enable or disable forward and backward navigation (disabling any attempt to manually scroll or send the user to the screen using the *goForward* method. This can be used to disable progression when data isn't valid, as seen on the Onboarding and Mood logging flows.
+
+Alternatively you can also configure the *gestureSwipingEnabled* property to just enable or disable the users ablity to swipe to the next screen. You can then manually send the user to screens.
+
+The SliderViewController will also automatically position the UIPageIndicator and buttons for if you set it's navigationDirection to horizontal or vertical.
+
+## ViewSliderviewcontroller
+If you wish to only include views in a slider format (for example if their only function is to present information and not be interactive) then you might consider using the *ViewSliverViewcontroller* instead. As oppose to being built ontop of the UIPageViewController this class is a subclass of UIView with an included paged ScrollView and UIPageIndicator. It has similar functionality to the ScreenSliderviewController but it more lightwait and accepts an array of UIVIews as it's screen property. 
+
+You might consider enabling looping on this, adding a gestureRecogniser on the last screen or making use of it's delegates scrolledPastLasSlide method to process and action when the user gets to the end. This is done on the onboarding screen int he app to send the user to the next ScreenSlider screen when the ViewSlider is finished (and most of the time works pretty seemlessly).
