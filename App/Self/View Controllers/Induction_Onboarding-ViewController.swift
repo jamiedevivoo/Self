@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Lottie
 
 final class InductionOnboardingViewController: ViewController {
 
@@ -12,6 +13,18 @@ final class InductionOnboardingViewController: ViewController {
     lazy var congratsLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["congrats"].stringValue, .doubleStandard)
     lazy var paraLabel = ParaLabel(StaticMessages.get["onboarding"]["induction"]["text"].stringValue, .doubleStandard)
     lazy var continueButton = Button(title: "Continue", action: #selector(InductionOnboardingViewController.continueOnboarding), type: .primary)
+    
+    lazy var animationView: AnimationView = {
+        let animationView = AnimationView()
+        animationView.tintAdjustmentMode = UIView.TintAdjustmentMode.dimmed
+        animationView.tintColor = UIColor.black
+        animationView.loopMode = LottieLoopMode.playOnce
+        animationView.animation = Animation.named("green-tick")
+        animationView.animationSpeed = 0.6
+        animationView.contentMode = .scaleAspectFit
+        animationView.alpha = 0
+        return animationView
+    }()
 }
 
 // MARK: - Override Methods
@@ -36,8 +49,12 @@ extension InductionOnboardingViewController {
     func checkCompletion() {
         if dataCollector!.isDataCollectionComplete() != nil {
             continueButton.applyState(.normal)
+            animationView.alpha = 1
+            animationView.currentFrame = 0
+            animationView.play()
         } else {
             continueButton.applyState(.disabled)
+            animationView.alpha = 0
         }
     }
     
@@ -53,6 +70,8 @@ extension InductionOnboardingViewController: ViewBuilding {
     
     func setupChildViews() {
         self.view.addSubview(headerLabel)
+        self.view.addSubview(animationView)
+        self.view.addSubview(congratsLabel)
         self.view.addSubview(paraLabel)
         self.view.addSubview(continueButton)
         
@@ -62,13 +81,20 @@ extension InductionOnboardingViewController: ViewBuilding {
             make.height.greaterThanOrEqualTo(50)
         }
         
+        animationView.snp.makeConstraints { (make) in
+            make.top.equalTo(headerLabel.snp.bottom).offset(30)
+            make.width.equalToSuperview().multipliedBy(0.7)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(congratsLabel.snp.top).offset(-50)
+        }
+        
         congratsLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(headerLabel.snp.bottom).offset(50)
+            make.bottom.equalTo(paraLabel.snp.top).offset(-30)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(50)
         }
         paraLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(congratsLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(continueButton.snp.top).offset(-30)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(50)
         }

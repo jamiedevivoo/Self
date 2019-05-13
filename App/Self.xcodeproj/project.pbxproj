@@ -75,7 +75,7 @@
 		7D8E4323227E5D0100243139 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4322227E5D0100243139 /* Feed.swift */; };
 		7D8E4325227E5EF300243139 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4324227E5EF300243139 /* Sentiment.swift */; };
 		7D8E432B227E803600243139 /* FeedStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432A227E803600243139 /* FeedStatus.swift */; };
-		7D8E432D227E852D00243139 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432C227E852D00243139 /* ActionInfo.swift */; };
+		7D8E432D227E852D00243139 /* ActionBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432C227E852D00243139 /* ActionBrief.swift */; };
 		7D8E432F227E971900243139 /* ActionManagerUserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */; };
 		7D8E4331227EF81200243139 /* NoActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4330227EF81200243139 /* NoActionsView.swift */; };
 		7DAEEB76228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */; };
@@ -111,6 +111,7 @@
 		7DDF39232261929B00C761B4 /* Label+Spacing–Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39222261929B00C761B4 /* Label+Spacing–Extensions.swift */; };
 		7DDF392722625F1500C761B4 /* AccountFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF392622625F1400C761B4 /* AccountFlags.swift */; };
 		7DDF39292262B75300C761B4 /* AccountSettingsFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */; };
+		7DE9A2562289678C0048A479 /* green-tick.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DE9A2552289678B0048A479 /* green-tick.json */; };
 		7DEABF8C22803E1100E72D39 /* MoodLogging-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEABF8B22803E1100E72D39 /* MoodLogging-Protocol.swift */; };
 		7DF14B47225F24870090D299 /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B46225F24870090D299 /* MoodManager.swift */; };
 		7DF14B49225F24A10090D299 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B48225F24A10090D299 /* Insight.swift */; };
@@ -232,7 +233,7 @@
 		7D8E4322227E5D0100243139 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7D8E4324227E5EF300243139 /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
 		7D8E432A227E803600243139 /* FeedStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatus.swift; sourceTree = "<group>"; };
-		7D8E432C227E852D00243139 /* ActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionInfo.swift; sourceTree = "<group>"; };
+		7D8E432C227E852D00243139 /* ActionBrief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBrief.swift; sourceTree = "<group>"; };
 		7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManagerUserExtension.swift; sourceTree = "<group>"; };
 		7D8E4330227EF81200243139 /* NoActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActionsView.swift; sourceTree = "<group>"; };
 		7DAEEB75228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Help_Mood_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
@@ -268,6 +269,7 @@
 		7DDF39222261929B00C761B4 /* Label+Spacing–Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+Spacing–Extensions.swift"; sourceTree = "<group>"; };
 		7DDF392622625F1400C761B4 /* AccountFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountFlags.swift; sourceTree = "<group>"; };
 		7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsFeatures.swift; sourceTree = "<group>"; };
+		7DE9A2552289678B0048A479 /* green-tick.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "green-tick.json"; sourceTree = "<group>"; };
 		7DEABF8B22803E1100E72D39 /* MoodLogging-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoodLogging-Protocol.swift"; sourceTree = "<group>"; };
 		7DF14B46225F24870090D299 /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		7DF14B48225F24A10090D299 /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 		A30F5412227C5D4C00306AAA /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				7DE9A2552289678B0048A479 /* green-tick.json */,
 				7DCF195A2284AF1C00289DCC /* avatarLoaded.json */,
 				7DCF19612284AF1E00289DCC /* checkWithParticles.json */,
 				7DCF19602284AF1E00289DCC /* circleLoading.json */,
@@ -593,7 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				A35EA85722456F9600592D88 /* ActionLog.swift */,
-				7D8E432C227E852D00243139 /* ActionInfo.swift */,
+				7D8E432C227E852D00243139 /* ActionBrief.swift */,
 			);
 			name = ACTION;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				7DCF19692284AF2000289DCC /* goal.json in Resources */,
 				7DCF19702284AF2000289DCC /* thumbLike.json in Resources */,
 				7D77E5F7227FA33900946FB7 /* WorldPremiereCell.xib in Resources */,
+				7DE9A2562289678C0048A479 /* green-tick.json in Resources */,
 				7D77E5F4227FA33900946FB7 /* AppOfTheDayCell.xib in Resources */,
 				7D77E606227FA35800946FB7 /* Main.storyboard in Resources */,
 				7DCF19672284AF2000289DCC /* avatarLoaded.json in Resources */,
@@ -1093,7 +1097,7 @@
 				7DAEEB76228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift in Sources */,
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
 				7DD6CC062266B6CF00F47E63 /* Community.swift in Sources */,
-				7D8E432D227E852D00243139 /* ActionInfo.swift in Sources */,
+				7D8E432D227E852D00243139 /* ActionBrief.swift in Sources */,
 				7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */,
 				7DF8AC14227FFA7D00E4441A /* NoHighlightsView.swift in Sources */,
 				7DD6CC1B2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift in Sources */,

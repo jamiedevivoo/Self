@@ -8,6 +8,7 @@ class ActionsViewController: UIViewController {
     // MARK: - Dependencies & Delegates
     var actionManager: ActionManager = ActionManager()
     var accountManager: AccountManager = AccountManager.shared()
+    var tagManager: TagManager = TagManager(account: AccountManager.shared().accountRef!)
 
     // MARK: - Views
     lazy var headerLabel = HeaderLabel("Your Actions 🙌", .smallScreen)
@@ -97,7 +98,6 @@ extension ActionsViewController {
 // MARK: - Interaction Methods
 extension ActionsViewController {
     @objc func unlockAction() {
-        print("Clicked Unlick")
         let actionSelectionViewController = DailyActionBriefSelectorViewController()
         actionSelectionViewController.delegate = self
         actionSelectionViewController.actionManager = actionManager
@@ -111,7 +111,9 @@ extension ActionsViewController {
 // MARK: - ActionSelectorDelegate Methods
 extension ActionsViewController: ActionSelectorDelegate {
     func actionBriefSelected(actionBrief: ActionManager.Brief) {
-        let action = actionManager.user(accountManager.accountRef!).constructActionLog(fromBrief: actionBrief)
+        var brief = actionBrief
+        brief.tags = tagManager.updateTag(actionBrief.tags)
+        let action = actionManager.user(accountManager.accountRef!).constructActionLog(fromBrief: brief)
         actionLogs.append(action)
         navigationController?.popToRootViewController(animated: true)
         noActionsView.removeFromSuperview()
