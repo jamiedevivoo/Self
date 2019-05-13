@@ -5,6 +5,10 @@ extension LoggingAMoodScreenSliderViewController: MoodLoggingDelegate { }
 
 final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     
+    // Delegates and Dependencies
+    var moodManager: MoodManager = MoodManager(account: AccountManager.shared().accountRef!)
+    
+    // Stored Properties
     var headline: String?
     var note: Note?
     var arousalRating: Double?
@@ -21,6 +25,7 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     var wildcardStage: WildcardLoggingMoodViewController?
     var overviewStage: OverviewLoggingMoodViewController?
     
+    // Views
     lazy var background: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.frame = self.view.layer.frame
@@ -31,6 +36,7 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
         return layer
     }()
     
+    // Instance Manager
     init() {
         super.init(navigationOrientation: .vertical)
     }
@@ -59,7 +65,7 @@ extension LoggingAMoodScreenSliderViewController {
     
     func setupScreens() -> [(UIViewController, Bool)] {
         moodStage = MoodLoggingMoodViewController()
-        moodStage!.moodLogDataCollectionDelegate = self
+        moodStage!.dataCollector = self
         moodStage!.screenSliderDelegate = self
         
         headlineStage = HeadlineLoggingMoodViewController()

@@ -3,9 +3,13 @@ import Firebase
 class MoodManager {
     // Dependencies
     let userMoodLogsReference: CollectionReference
-    
+    private var userLogsObserver: ListenerRegistration?
+
     init(account: Account) {
         userMoodLogsReference = Firestore.firestore().collection("user").document(account.uid).collection("mood_logs")
+    }
+    deinit {
+        userLogsObserver?.remove()
     }
 }
 
@@ -33,6 +37,26 @@ extension MoodManager {
 // Get All Mood Logs
 extension MoodManager {
     func getAllMoodlogs(completion: @escaping ([Mood.Log]?) -> Void) {
+        userLogsObserver = userMoodLogsReference.addSnapshotListener { querySnapshot, error in
+            guard let querySnapshot = querySnapshot, error == nil else {
+                print("Error Loading Moods: \(error!.localizedDescription)")
+                return
+            }
+            
+            var moods: [Mood.Log] = []
+            for document in querySnapshot.documents {
+                var moodData = document.data()
+                moodData["uid"] = document.documentID
+                moodData["timestamp"] = (moodData["timestamp"] as! Timestamp).dateValue()
+                let mood = Mood.Log(moodData)
+                moods.append(mood)
+            }
+            
+            completion(moods)
+        }
+    }
+    
+    func getLatestMoodlog(completion: @escaping ([Mood.Log]?) -> Void) {
         userMoodLogsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot = querySnapshot, error == nil else {
                 print("Error Loading Moods: \(error!.localizedDescription)")
@@ -48,5 +72,4 @@ extension MoodManager {
             completion(moods)
         }
     }
-    
 }

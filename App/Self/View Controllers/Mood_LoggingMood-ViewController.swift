@@ -4,8 +4,10 @@ import SnapKit
 //: TODO: This class needs a lot of tidying up
 final class MoodLoggingMoodViewController: ViewController {
     
-    weak var moodLogDataCollectionDelegate: MoodLoggingDelegate?
+    // Dependencies and Delegates
+    weak var dataCollector: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderDelegate?
+    var emotionManager: EmotionManager = EmotionManager()
     
     lazy var initialPrompt: UILabel = {
         let label = ParaLabel("Log your Mood by tapping on the screen", .centerPageText)
@@ -114,7 +116,7 @@ extension MoodLoggingMoodViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addEmotionLabels()
+        addBackgroundLabels()
         view.layer.addSublayer(markSpotlight)
         view.backgroundColor = .clear
         view.layer.backgroundColor = UIColor.clear.cgColor
@@ -257,11 +259,14 @@ extension MoodLoggingMoodViewController {
             x: location.x,
             y: location.y
         )
-        emotion = EmotionManager.getEmotion(
+        
+        emotionManager.getEmotion(
             withValence: userRatings.valence,
             withArousal: userRatings.arousal
-        )
-        
+        ) { emotion in
+            self.emotion = emotion
+        }
+            
         updateLabelsRelativeToPosition(tapPosition: (location.x, location.y))
         updateBackground(xScale: (location.x / view.frame.width), yScale: (location.y / view.frame.height))
         
@@ -429,21 +434,21 @@ extension MoodLoggingMoodViewController {
         self.tapToConfirm.isEnabled = false
         
         /// Send this screens data to the delegate before attempting to continue
-        moodLogDataCollectionDelegate?.valenceRating = userRatings.valence
-        moodLogDataCollectionDelegate?.arousalRating = userRatings.arousal
-        moodLogDataCollectionDelegate?.emotion = emotion
+        dataCollector?.valenceRating = userRatings.valence
+        dataCollector?.arousalRating = userRatings.arousal
+        dataCollector?.emotion = emotion
         
         /// Animate the delegates background
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.3)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
-        moodLogDataCollectionDelegate?.background.startPoint = CGPoint(x: (moodLogDataCollectionDelegate?.background.startPoint.x)!, y: 0)
+        dataCollector?.background.startPoint = CGPoint(x: (dataCollector?.background.startPoint.x)!, y: 0)
         CATransaction.commit()
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(1.5)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn))
-        moodLogDataCollectionDelegate?.background.colors =
+        dataCollector?.background.colors =
             [primaryBackgroundColour.cgColor,
              primaryBackgroundColour.cgColor,
              primaryBackgroundColour.cgColor,
@@ -504,15 +509,24 @@ extension  MoodLoggingMoodViewController {
         markSpotlight.colors = [primaryBackgroundColour.withAlphaComponent(0.9).cgColor,
                                 primaryBackgroundColour.withAlphaComponent(0.5).cgColor,
                                 primaryBackgroundColour.withAlphaComponent(0).cgColor]
-        moodLogDataCollectionDelegate?.background.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
-        moodLogDataCollectionDelegate?.background.startPoint = CGPoint(x: xScale, y: yScale)
+        dataCollector?.background.colors = [topLeft, topRight, bottomRight, bottomLeft, topLeft]
+        dataCollector?.background.startPoint = CGPoint(x: xScale, y: yScale)
         CATransaction.commit()
         
     }
     
-    func addEmotionLabels() {
-        for emotion in EmotionManager.allEmotions {
-            
+    func addBackgroundLabels() {
+        dataCollector?.moodManager.getAllMoodlogs { moods in
+            guard let moods = moods, moods.count > 0 else {
+                self.addEmotionLabels()
+                return
+            }
+            self.addMoodRecords(moods)
+        }
+    }
+    
+    func addMoodRecords(_ moodRecords: [Mood.Log]) {
+        for log in moodRecords {
             /// - Create and style the label
             let label = CATextLayer()
             label.font = CGFont(UIFont.systemFont(ofSize: 0, weight: UIFont.Weight.ultraLight).fontName as CFString)
@@ -528,23 +542,63 @@ extension  MoodLoggingMoodViewController {
             label.allowsFontSubpixelQuantization = false
             
             /// - Add the emotion name
-            label.string = emotion.adj
+            label.string = "\(log.headline)"
             
             /// - Work out the labels center position
             var left: CGFloat   = CGFloat(self.view.frame.width / 2) - (label.frame.width / 2)          /// Get the center horizontal position of the view and label
             var top: CGFloat    = CGFloat(self.view.frame.height / 2) - (label.frame.height / 2)        /// Get the center vertical position of the view and label
             
             /// - adjust the position by the emotion multiplier
-            left = left * CGFloat(emotion.valenceMultiplier)                           /// Adjust that position by the multiplier
-            top = self.view.frame.height - (top * CGFloat(emotion.arousalMultiplier))  /// Adjust that position by the multiplier (also reverse it so it aligns with the scale, bottom to top)
+            left = left * CGFloat(log.valenceRating + 1)                           /// Adjust that position by the multiplier
+            top = self.view.frame.height - (top * CGFloat(log.arousalRating + 1))  /// Adjust that position by the multiplier (also reverse it so it aligns with the scale, bottom to top)
             
             /// - Set the position
             label.frame.origin.x = left
             label.frame.origin.y = top
             
             /// - Add the label
-            view.layer.addSublayer(label)
-            emotionLabelCollection.append(label)
+            self.view.layer.addSublayer(label)
+            self.emotionLabelCollection.append(label)
+        }
+    }
+    
+    func addEmotionLabels() {
+        emotionManager.emotions { allemotions in
+            for emotion in allemotions {
+                
+                /// - Create and style the label
+                let label = CATextLayer()
+                label.font = CGFont(UIFont.systemFont(ofSize: 0, weight: UIFont.Weight.ultraLight).fontName as CFString)
+                label.opacity = 0
+                label.fontSize = 0.0
+                label.shadowRadius = 0
+                label.shadowOpacity = 0
+                label.contentsScale = UIScreen.main.scale
+                label.alignmentMode = .center
+                label.frame.size = CGSize(width: 200, height: 20)
+                label.foregroundColor = UIColor.App.Text.text().cgColor
+                label.shadowOffset = CGSize(width: 0, height: 0)
+                label.allowsFontSubpixelQuantization = false
+                
+                /// - Add the emotion name
+                label.string = "\(emotion.emoji) \(emotion.friendly)"
+                
+                /// - Work out the labels center position
+                var left: CGFloat   = CGFloat(self.view.frame.width / 2) - (label.frame.width / 2)          /// Get the center horizontal position of the view and label
+                var top: CGFloat    = CGFloat(self.view.frame.height / 2) - (label.frame.height / 2)        /// Get the center vertical position of the view and label
+                
+                /// - adjust the position by the emotion multiplier
+                left = left * CGFloat(emotion.valenceMultiplier)                           /// Adjust that position by the multiplier
+                top = self.view.frame.height - (top * CGFloat(emotion.arousalMultiplier))  /// Adjust that position by the multiplier (also reverse it so it aligns with the scale, bottom to top)
+                
+                /// - Set the position
+                label.frame.origin.x = left
+                label.frame.origin.y = top
+                
+                /// - Add the label
+                self.view.layer.addSublayer(label)
+                self.emotionLabelCollection.append(label)
+            }
         }
     }
     

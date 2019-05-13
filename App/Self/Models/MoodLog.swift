@@ -10,7 +10,6 @@ extension Mood {
         var valenceRating: Double
         
         var wildcard: Wildcard?
-        var emotion: Emotion
         var tags = [Tag]()
     }
 }
@@ -31,10 +30,6 @@ extension Mood.Log {
             self.wildcard = Mood.Wildcard(wildcard)
         }
         
-        self.emotion = EmotionManager.getEmotion(
-            withValence: moodDictionary["valence_rating"] as! Double,
-            withArousal: moodDictionary["arousal_rating"] as! Double)
-        
         for tag in moodDictionary["tags"] as! [[String: Any]] {
             let tag = Tag(tag)
             self.tags.append(tag)
@@ -52,7 +47,9 @@ extension Mood.Log: DictionaryConvertable {
             "headline": headline as Any,
             "arousal_rating": arousalRating as Any,
             "valence_rating": valenceRating as Any,
-            "tags": tags.map({$0.dictionary}) as Any
+            "tags": tags.map({
+                $0.dictionary
+            }) as Any
         ]
         
         if let wildcard = self.wildcard {
