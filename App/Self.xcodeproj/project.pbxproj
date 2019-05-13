@@ -70,6 +70,7 @@
 		7D77E606227FA35800946FB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D77E605227FA35800946FB7 /* Main.storyboard */; };
 		7D8CD8F92287E4CE008E961B /* SentimentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8CD8F82287E4CE008E961B /* SentimentManager.swift */; };
 		7D8CD8FB2287EDCE008E961B /* AccountMilestones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8CD8FA2287EDCE008E961B /* AccountMilestones.swift */; };
+		7D8CD8FD2288F835008E961B /* MoogLoggingBackgroundLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8CD8FC2288F835008E961B /* MoogLoggingBackgroundLabelTextView.swift */; };
 		7D8E4321227E5B2000243139 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4320227E5B2000243139 /* Mood.swift */; };
 		7D8E4323227E5D0100243139 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4322227E5D0100243139 /* Feed.swift */; };
 		7D8E4325227E5EF300243139 /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4324227E5EF300243139 /* Sentiment.swift */; };
@@ -225,6 +226,7 @@
 		7D77E605227FA35800946FB7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7D8CD8F82287E4CE008E961B /* SentimentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentimentManager.swift; sourceTree = "<group>"; };
 		7D8CD8FA2287EDCE008E961B /* AccountMilestones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMilestones.swift; sourceTree = "<group>"; };
+		7D8CD8FC2288F835008E961B /* MoogLoggingBackgroundLabelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MoogLoggingBackgroundLabelTextView.swift; path = "Standard Reusable Views/MoogLoggingBackgroundLabelTextView.swift"; sourceTree = "<group>"; };
 		7D8E4320227E5B2000243139 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		7D8E4322227E5D0100243139 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7D8E4324227E5EF300243139 /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				7D21FED922840ED30001FE62 /* Standard Reusable Views */,
 				A334098A2245701B004CBB2A /* LandingSlide-View.swift */,
 				7D77E549227F942200946FB7 /* ExpandableCell.swift */,
+				7D8CD8FC2288F835008E961B /* MoogLoggingBackgroundLabelTextView.swift */,
 				7D519CC22287168800EE3CEC /* TagCell.swift */,
 			);
 			path = Views;
@@ -1098,6 +1101,7 @@
 				A368356B226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift in Sources */,
 				A33409B2224570D2004CBB2A /* ActionsViewController.swift in Sources */,
 				A3B76ADB227CE7CB00282ECB /* SentimentLog.swift in Sources */,
+				7D8CD8FD2288F835008E961B /* MoogLoggingBackgroundLabelTextView.swift in Sources */,
 				7D519CC522871AFF00EE3CEC /* TagRecord.swift in Sources */,
 				A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */,
 				7DD6CBFE2266B50300F47E63 /* Help-ViewController.swift in Sources */,

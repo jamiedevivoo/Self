@@ -38,7 +38,7 @@ extension HeadlineLoggingMoodViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         headLineTextFieldWithLabel.textField.text = dataCollector?.headline
-        headLineTextFieldWithLabel.textField.placeholder = "I'm feeling \(dataCollector?.emotion?.adj ?? "...")"
+        headLineTextFieldWithLabel.textField.placeholder = "I'm feeling \(dataCollector?.emotion?.friendly ?? "...")"
         
         if validateHeadline() == nil {
             headLineTextFieldWithLabel.resetHint()

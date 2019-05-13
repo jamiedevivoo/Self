@@ -14,6 +14,8 @@ final class MoodLoggingMoodViewController: ViewController {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 26.0)
         label.alpha = 0.4
+        label.shadowColor = UIColor.App.Background.primary().withAlphaComponent(0.4)
+        label.shadowOffset = CGSize(width: 0, height: 1)
         return label
     }()
     
@@ -107,7 +109,7 @@ final class MoodLoggingMoodViewController: ViewController {
     var userRatings: (valence: Double, arousal: Double) = (0, 0)
     var emotion: Mood.Emotion?
     
-    var emotionLabelCollection: [CATextLayer] = []
+    var backgroundLabels: [(label: CATextLayer, moodLog: Mood.Log?)] = []
     
 }
 
@@ -122,6 +124,7 @@ extension MoodLoggingMoodViewController {
         view.layer.backgroundColor = UIColor.clear.cgColor
         setupChildViews()
         exitButton.tintColor = UIColor.darkText
+        view.bringSubviewToFront(initialPrompt)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -525,11 +528,11 @@ extension  MoodLoggingMoodViewController {
         }
     }
     
-    func addMoodRecords(_ moodRecords: [Mood.Log]) {
+    private func addMoodRecords(_ moodRecords: [Mood.Log]) {
         for log in moodRecords {
             /// - Create and style the label
             let label = CATextLayer()
-            label.font = CGFont(UIFont.systemFont(ofSize: 0, weight: UIFont.Weight.ultraLight).fontName as CFString)
+            label.font = CGFont(UIFont.systemFont(ofSize: 0, weight: UIFont.Weight.light).fontName as CFString)
             label.opacity = 0
             label.fontSize = 0.0
             label.shadowRadius = 0
@@ -556,10 +559,53 @@ extension  MoodLoggingMoodViewController {
             label.frame.origin.x = left
             label.frame.origin.y = top
             
-            /// - Add the label
             self.view.layer.addSublayer(label)
-            self.emotionLabelCollection.append(label)
+            self.backgroundLabels.append((label, log))
+            
+            let moodDateLabel = CATextLayer()
+            let dateformatter = DateFormatter()
+            dateformatter.dateStyle = DateFormatter.Style.short
+            moodDateLabel.string = dateformatter.string(from: log.timestamp)
+            moodDateLabel.allowsFontSubpixelQuantization = false
+            moodDateLabel.contentsScale = UIScreen.main.scale
+            moodDateLabel.fontSize = 10
+            moodDateLabel.opacity = 0.8
+            moodDateLabel.alignmentMode = .center
+            moodDateLabel.font = CGFont(UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.ultraLight).fontName as CFString)
+            moodDateLabel.frame.size = label.frame.size
+            moodDateLabel.frame.origin = CGPoint(x: moodDateLabel.frame.origin.x, y: 5 - moodDateLabel.frame.size.height)
+            moodDateLabel.foregroundColor = label.foregroundColor
+            
+            print(label.frame, moodDateLabel.frame)
+
+            /// - Add the label
+            label.addSublayer(moodDateLabel)
         }
+        
+        // Force unqrapping here isn't ideal, but since this would only be run if the collection contains mood labels it should be okay
+        var latestLog: (label: CATextLayer, moodLog: Mood.Log?)
+        if backgroundLabels.count < 2 {
+            latestLog = backgroundLabels.min { a, b in a.moodLog!.timestamp > b.moodLog!.timestamp }!
+        } else {
+            latestLog = backgroundLabels.first!
+        }
+        let latestLogLabel = latestLog.label
+        latestLogLabel.opacity = 0.8
+        latestLogLabel.fontSize = 14
+        
+        let latestLogTitle = CATextLayer()
+        latestLogTitle.string = "Your Last Log"
+        latestLogTitle.opacity = 0.8
+        latestLogTitle.allowsFontSubpixelQuantization = false
+        latestLogTitle.contentsScale = UIScreen.main.scale
+        latestLogTitle.fontSize = 12
+        latestLogTitle.alignmentMode = .center
+        latestLogTitle.font = CGFont(UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium).fontName as CFString)
+        latestLogTitle.frame.size = CGSize(width: latestLogLabel.frame.size.width, height: 20)
+        latestLogTitle.frame.origin.x = CGFloat(latestLogTitle.frame.origin.x)
+        latestLogTitle.frame.origin.y -= (latestLogLabel.frame.size.height + 15)
+        
+        latestLogLabel.addSublayer(latestLogTitle)
     }
     
     func addEmotionLabels() {
@@ -569,13 +615,14 @@ extension  MoodLoggingMoodViewController {
                 /// - Create and style the label
                 let label = CATextLayer()
                 label.font = CGFont(UIFont.systemFont(ofSize: 0, weight: UIFont.Weight.ultraLight).fontName as CFString)
+                label.masksToBounds = false
                 label.opacity = 0
                 label.fontSize = 0.0
                 label.shadowRadius = 0
                 label.shadowOpacity = 0
                 label.contentsScale = UIScreen.main.scale
                 label.alignmentMode = .center
-                label.frame.size = CGSize(width: 200, height: 20)
+                label.frame.size = CGSize(width: 200, height: 30)
                 label.foregroundColor = UIColor.App.Text.text().cgColor
                 label.shadowOffset = CGSize(width: 0, height: 0)
                 label.allowsFontSubpixelQuantization = false
@@ -597,27 +644,28 @@ extension  MoodLoggingMoodViewController {
                 
                 /// - Add the label
                 self.view.layer.addSublayer(label)
-                self.emotionLabelCollection.append(label)
+                self.backgroundLabels.append((label, nil))
             }
         }
     }
     
     func updateLabelsRelativeToPosition(tapPosition tap:(x: CGFloat, y: CGFloat)) {
         
-        for emotionLabel in emotionLabelCollection {
+        for label in backgroundLabels {
+            let label = label.label
             
             let largestScreenDistance = (view.frame.size.width / 2) + (view.frame.size.height / 2)
             
             /// - Calculate the frame radius now (axis size divide by 2), to help keep the code clean later on.
             let radius: (width: CGFloat, height: CGFloat) = (
-                width: emotionLabel.frame.width / 2,
-                height: emotionLabel.frame.height / 2
+                width: label.frame.width / 2,
+                height: label.frame.height / 2
             )
             
             /// - Calculate the position of the center of the label
             let position: (x: CGFloat, y: CGFloat) = (
-                x: emotionLabel.frame.origin.x + radius.width,
-                y: emotionLabel.frame.origin.y + radius.height
+                x: label.frame.origin.x + radius.width,
+                y: label.frame.origin.y + radius.height
             )
             
             /// - Work out how close the user is to this emotion
@@ -638,11 +686,22 @@ extension  MoodLoggingMoodViewController {
             CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
             
             /// - Apply the Multipliers
-            emotionLabel.opacity = Float(0.7 * multiplier)                                              /// Fade the label in as the tap gets closer, up to 0.9 opacity
-            emotionLabel.fontSize = (14 * multiplier)                                                   /// Make the label larger as the tap gets closer, up to size 12
-            emotionLabel.shadowRadius = CGFloat(3.0 * multiplier)                                       /// Animate shadow
-            emotionLabel.shadowOpacity = Float(0.8 * multiplier)                                        /// Animate opacity
-            emotionLabel.shadowOffset = CGSize(width: 0, height: CGFloat(6.0 * multiplier).rounded())   /// Animate offset to give layer depth
+            label.opacity = Float(0.7 * multiplier)                                              /// Fade the label in as the tap gets closer, up to 0.9 opacity
+            label.fontSize = (14 * multiplier)                                                   /// Make the label larger as the tap gets closer, up to size 12
+            if let dateLayer = label.sublayers?.first(where: {$0.isMember(of: CATextLayer.self)}) as? CATextLayer {
+                dateLayer.fontSize = (10 * multiplier)
+                dateLayer.frame.origin.y = (5 - dateLayer.frame.size.height) * multiplier
+                
+                if let headline = label.sublayers?.last(where: {$0.isMember(of: CATextLayer.self)}) as? CATextLayer {
+                    if headline != dateLayer {
+                        headline.fontSize = (14 * multiplier)
+                        headline.frame.origin.y = (label.frame.size.height) * multiplier
+                    }
+                }
+            }
+            label.shadowRadius = CGFloat(3.0 * multiplier)                                       /// Animate shadow
+            label.shadowOpacity = Float(0.8 * multiplier)                                        /// Animate opacity
+            label.shadowOffset = CGSize(width: 0, height: CGFloat(6.0 * multiplier).rounded())   /// Animate offset to give layer depth
             markSpotlight.frame.origin = CGPoint(x: tap.x - (markSpotlight.frame.width / 2), y: tap.y - (markSpotlight.frame.width / 2))
             
             CATransaction.commit()
