@@ -60,7 +60,17 @@ extension InductionOnboardingViewController {
     
     @objc func continueOnboarding(_ sender: UIButton) {
         dataCollector?.finishDataCollection()
-        sender.isEnabled = false
+        animationView.animation = Animation.named("circleLoading")
+        animationView.loopMode = .loop
+        animationView.play()
+        UIView.animate(withDuration: 0.3) {
+            self.headerLabel.alpha = 0.5
+            self.congratsLabel.alpha = 0.5
+            self.paraLabel.alpha = 0.5
+            self.continueButton.alpha = 0.7
+            sender.isEnabled = false
+            self.continueButton.applyState(.disabled)
+        }
     }
     
 }
@@ -94,7 +104,7 @@ extension InductionOnboardingViewController: ViewBuilding {
             make.height.greaterThanOrEqualTo(50)
         }
         paraLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(continueButton.snp.top).offset(-30)
+            make.bottom.equalTo(continueButton.snp.top).offset(-50)
             make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(50)
         }

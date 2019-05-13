@@ -28,6 +28,10 @@
         }
     },
     
+    "completeAccount": {
+        "text": "To keep your account safe and make sure you can always acess it, we just need an email and password."
+    },
+    
     "helpScreen": {
         "moodLogging": {
             "title": "Logging A Mood",

@@ -20,6 +20,7 @@ final class SpecialLabel: UILabel {
         case .messageName:
             font = UIFont.systemFont(ofSize: 46, weight: UIFont.Weight.bold)
             textColor = UIColor.App.Text.text()
+            adjustsFontSizeToFitWidth = true
             return
         case .messageText:
             font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.light)

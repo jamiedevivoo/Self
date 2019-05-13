@@ -4,8 +4,9 @@ import SnapKit
 
 class LoginViewController: ViewController {
     
-    var containingScrollView = UIScrollView()
-    
+    lazy var headerLabel = HeaderLabel("Welcome back! 👋", .largeScreen)
+    lazy var subHeaderLabel = HeaderLabel(StaticMessages.get["login"]["welcome"]["text"].stringValue, .subheader)
+
     lazy var emailTextFieldWithLabel: TextFieldWithLabel = {
         let textFieldWithLabel = TextFieldWithLabel()
         textFieldWithLabel.textField.customiseTextField(for: .email)
@@ -26,17 +27,6 @@ class LoginViewController: ViewController {
     }()
     lazy var loginButton = Button(title: "Log In", action: #selector(LoginViewController.loginButtonAction), type: .primary)
     lazy var cancelButton = Button(title: "Cancel", action: #selector(LoginViewController.cancelAction), type: .secondary)
-
-    private lazy var loginStackView: UIStackView = { [unowned self] in
-        let stackView = UIStackView(arrangedSubviews: [self.emailTextFieldWithLabel, self.passwordTextFieldWithLabel, self.loginButton, self.cancelButton])
-        stackView.axis = .vertical
-        stackView.alignment = .leading // .leading .firstBaseline .center .trailing .lastBaseline
-        stackView.distribution = .equalCentering // .fillEqually .fillProportionally .equalSpacing .equalCentering
-        stackView.isBaselineRelativeArrangement = false
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.spacing = 10
-        return stackView
-    }()
 }
 
 // Override Methods
@@ -46,26 +36,29 @@ extension LoginViewController: UITextFieldDelegate {
         title = "Login"
         setupChildViews()
         configureKeyboardBehaviour()
+        addObservers()
+        passwordTextFieldWithLabel.textField.delegate = self
+        emailTextFieldWithLabel.textField.delegate = self
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupScrollView()
-//        emailTextFieldWithLabel.textField.becomeFirstResponder()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailTextFieldWithLabel.textField:
+            passwordTextFieldWithLabel.textField.becomeFirstResponder()
+            return false
+        case passwordTextFieldWithLabel.textField:
+            loginButtonAction()
+            return true
+        default:
+            return true
+        }
     }
-}
 
-// Setup Methods
-extension LoginViewController {
-    private func setupScrollView() {
-        containingScrollView.contentSize = loginStackView.frame.size
-        containingScrollView.frame = self.view.frame
-    }
 }
 
 // Button Methods
 extension LoginViewController {
-    @objc func loginButtonAction(_ sender: Any) {
+    @objc func loginButtonAction() {
         print("Log in with details: \(String(describing: emailTextFieldWithLabel.textField.text))  \(String(describing: passwordTextFieldWithLabel.textField.text))")
         
         guard let email = emailTextFieldWithLabel.textField.text?.trim() else {
@@ -103,6 +96,38 @@ extension LoginViewController {
             }
         }
     }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        
+        let bottomElement = view.subviews.max { a, b in a.frame.origin.y < b.frame.origin.y }
+        let scrollDistance = (view.frame.size.height - keyboardFrame.height - (bottomElement!.frame.origin.y + bottomElement!.frame.size.height + 10))
+            
+        for subview in view.subviews {
+            subview.frame.origin.y += scrollDistance
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        print(notification)
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+
+        let topElement = view.subviews.max { a, b in a.frame.origin.y > b.frame.origin.y }
+        let scrollDistance = view.frame.origin.y - topElement!.frame.origin.y
+
+        for subview in view.subviews {
+            subview.frame.origin.y -= scrollDistance
+        }
+    }
 }
 
 // MARK: - View Building
@@ -110,30 +135,44 @@ extension LoginViewController: ViewBuilding {
     
     func setupChildViews() {
         
-        self.view.addSubview(containingScrollView)
-        containingScrollView.addSubview(loginStackView)
+        self.view.addSubview(headerLabel)
+        self.view.addSubview(subHeaderLabel)
+        self.view.addSubview(emailTextFieldWithLabel)
+        self.view.addSubview(passwordTextFieldWithLabel)
+        self.view.addSubview(loginButton)
+        self.view.addSubview(cancelButton)
 
-        loginStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide).inset(50)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(20)
-            make.centerX.equalToSuperview()
+        headerLabel.snp.makeConstraints { (make) in
+            make.top.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.greaterThanOrEqualTo(50)
         }
+        subHeaderLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+            make.top.equalTo(headerLabel.snp.bottom)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.greaterThanOrEqualTo(50)
+        }
+
         emailTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
+            make.top.equalTo(subHeaderLabel.snp.bottom).offset(30)
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
         }
         passwordTextFieldWithLabel.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
             make.height.greaterThanOrEqualTo(60)
+            make.top.equalTo(emailTextFieldWithLabel.snp.bottom).offset(10)
         }
         loginButton.snp.makeConstraints { (make) in
             make.height.equalTo(60)
-            make.width.equalToSuperview()
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+            make.top.equalTo(passwordTextFieldWithLabel.snp.bottom).offset(20)
         }
         cancelButton.snp.makeConstraints { (make) in
             make.height.equalTo(60)
-            make.width.equalToSuperview()
-            
+            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
         }
     }
     
