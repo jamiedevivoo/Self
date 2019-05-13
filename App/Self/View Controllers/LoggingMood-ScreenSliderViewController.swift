@@ -7,6 +7,7 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
     
     // Delegates and Dependencies
     var moodManager: MoodManager = MoodManager(account: AccountManager.shared().accountRef!)
+    var tagManager: TagManager = TagManager(account: AccountManager.shared().accountRef!)
     
     // Stored Properties
     var headline: String?
@@ -159,8 +160,8 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
         }
 
         let mood: Mood.Log = Mood.Log(moodData)
-        let moodManager = MoodManager(account: AccountManager.shared().accountRef!)
-        moodManager.updateMood(mood)
+        _ = moodManager.updateMood(mood)
+        _ = tagManager.updateTag(self.tags)
         navigationController?.popToRootViewController(animated: true)
     }
     

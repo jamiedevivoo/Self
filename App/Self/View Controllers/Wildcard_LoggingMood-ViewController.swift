@@ -18,6 +18,7 @@ final class WildcardLoggingMoodViewController: ViewController {
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "Your response..."
+        textFieldWithLabel.textField.textColor = UIColor.App.Text.text().withAlphaComponent(0.9)
         textFieldWithLabel.labelTitle = "There's no right or wrong answers."
         return textFieldWithLabel
     }()

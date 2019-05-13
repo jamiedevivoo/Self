@@ -585,7 +585,7 @@ extension  MoodLoggingMoodViewController {
         // Force unqrapping here isn't ideal, but since this would only be run if the collection contains mood labels it should be okay
         var latestLog: (label: CATextLayer, moodLog: Mood.Log?)
         if backgroundLabels.count < 2 {
-            latestLog = backgroundLabels.min { a, b in a.moodLog!.timestamp > b.moodLog!.timestamp }!
+            latestLog = backgroundLabels.min { a, b in a.moodLog!.timestamp < b.moodLog!.timestamp }!
         } else {
             latestLog = backgroundLabels.first!
         }
@@ -598,10 +598,10 @@ extension  MoodLoggingMoodViewController {
         latestLogTitle.opacity = 0.8
         latestLogTitle.allowsFontSubpixelQuantization = false
         latestLogTitle.contentsScale = UIScreen.main.scale
-        latestLogTitle.fontSize = 12
+        latestLogTitle.fontSize = 10
         latestLogTitle.alignmentMode = .center
-        latestLogTitle.font = CGFont(UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium).fontName as CFString)
-        latestLogTitle.frame.size = CGSize(width: latestLogLabel.frame.size.width, height: 20)
+        latestLogTitle.font = CGFont(UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.light).fontName as CFString)
+        latestLogTitle.frame.size = CGSize(width: latestLogLabel.frame.size.width, height: 15)
         latestLogTitle.frame.origin.x = CGFloat(latestLogTitle.frame.origin.x)
         latestLogTitle.frame.origin.y -= (latestLogLabel.frame.size.height + 15)
         
@@ -694,8 +694,8 @@ extension  MoodLoggingMoodViewController {
                 
                 if let headline = label.sublayers?.last(where: {$0.isMember(of: CATextLayer.self)}) as? CATextLayer {
                     if headline != dateLayer {
-                        headline.fontSize = (14 * multiplier)
-                        headline.frame.origin.y = (label.frame.size.height) * multiplier
+                        headline.fontSize = (10 * multiplier)
+                        headline.frame.origin.y = (-label.frame.size.height - headline.frame.size.height) * multiplier
                     }
                 }
             }

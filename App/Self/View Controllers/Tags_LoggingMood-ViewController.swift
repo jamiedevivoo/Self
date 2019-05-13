@@ -4,7 +4,7 @@ import Firebase
 
 final class TagsLoggingMoodViewController: ViewController {
     
-    // Delegates
+    // Delegates and dependencies
     weak var dataCollector: MoodLoggingDelegate?
     weak var screenSliderDelegate: ScreenSliderDelegate?
     
@@ -17,35 +17,45 @@ final class TagsLoggingMoodViewController: ViewController {
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "Tag name ..."
+        textFieldWithLabel.textField.textColor = UIColor.App.Text.text().withAlphaComponent(0.9)
         textFieldWithLabel.labelTitle = "For example, what have you done today?"
         return textFieldWithLabel
     }()
     
     lazy var tagsCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = 2
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        flowLayout.sectionInsetReference = .fromLayoutMargins
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.register(TagCell.self, forCellWithReuseIdentifier: TagCell.reuseId)
         
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        
-//        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
 
         collectionView.dataSource = self
         collectionView.delegate = self
         
         return collectionView
-    }()
+        }()
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
     
-    // Stored Properties
-    var tags: [Tag] = [] {
+    var tagHistory = [Tag]()
+    
+    var tags = [Tag]() {
         didSet {
-            tagsCollectionView.reloadData()
+            self.tagsCollectionView.reloadData()
+            print(tags as AnyObject)
         }
     }
+    
+    var autoCompleteCharacterCount = 0
+    var timer = Timer()
 }
 
 // MARK: - Override Methods
@@ -56,6 +66,11 @@ extension TagsLoggingMoodViewController {
         setupChildViews()
         setupTextfield()
         view.backgroundColor = UIColor.white.withAlphaComponent(0)
+        dataCollector?.tagManager.getAllTags { [unowned self] tags in
+            if let tags = tags, tags.count > 0 {
+                self.tagHistory = tags
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,38 +130,29 @@ extension TagsLoggingMoodViewController {
             return nil
         }
         
+        guard !tags.contains(where: {$0.title == tagTitle}) else {
+            screenSliderDelegate?.forwardNavigationEnabled = false
+            tagTextFieldWithLabel.resetHint(withText: "❗️You've already added this tag", for: .info)
+            return nil
+        }
+        
         screenSliderDelegate?.forwardNavigationEnabled = true
         /// If it passes, reset the hint and show the next button
         tagTextFieldWithLabel.resetHint(withText: "+ Press next to add \(tagTitle) as a tag", for: .info)
         /// Then update the textfield
+        tagTextFieldWithLabel.textField.text = tagTitle
         tagTextFieldWithLabel.textField.returnKeyType = UIReturnKeyType.next
         /// Finally return the validated value to the caller
         return tagTitle
     }
-
-//    func createTag(tagName: String) -> Tag {
-//        return Tag()
-//    }
     
-    func createTagButton(tagName: String) -> UIButton {
-        let button = UIButton()
-        button.setTitle(tagName, for: .normal)
-        button.addTarget(nil, action: #selector(removeTag), for: .touchUpInside)
-//        tags.addArrangedSubview(button)
-        return button
-    }
-    
-    @objc func removeTag(sender: UIButton) {
-        sender.removeFromSuperview()
+    @objc func removeTag(sender: TagButton) {
+        tags = tags.filter({$0.title != sender.accountTag.title })
     }
 }
 
 // MARK: - TextField Delegate Methods
 extension TagsLoggingMoodViewController: UITextFieldDelegate {
-
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        return false
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let tagTitle = validateTagName() else {
@@ -165,7 +171,19 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
         tagTextFieldWithLabel.textField.placeholder = "Another tag..."
         tagTextFieldWithLabel.resetHint(withText: "✓ Add another tag or press next again to continue", for: .info)
         textField.text = nil
-        self.tags.append(Tag(title: tagTitle, description: "", category: .personal, origin: .mood, valenceInfluence: 0, arousalInfluence: 0))
+        let newTag = Tag(uid: nil, title: tagTitle, description: "", category: .personal, origin: .mood, valenceInfluence: 0, arousalInfluence: 0)
+        
+        guard !tags.contains(where: {$0.title == newTag.title}) else {
+            return false
+        }
+        
+        if let originalTag = tagHistory.first(where: {$0.title == newTag.title}) {
+            self.tags.append(originalTag)
+            dataCollector?.tags = self.tags
+            return true
+        }
+        
+        self.tags.append(newTag)
         dataCollector?.tags = self.tags
         return true
         
@@ -179,27 +197,25 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
 
 extension TagsLoggingMoodViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    
     // MARK: - UICollectionViewDataSource -
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.reuseId, for: indexPath) as! TagCell
-        cell.configure(text: tags[indexPath.row].title)
+        cell.configure(tag: tags[indexPath.row])
+        cell.button.addTarget(nil, action: #selector(removeTag), for: .touchUpInside)
+        print(cell)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(collectionView, section)
         return tags.count
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout -
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
-        let referenceHeight: CGFloat = 100 // Approximate height of your cell
-        let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
-            - sectionInset.left
-            - sectionInset.right
-            - collectionView.contentInset.left
-            - collectionView.contentInset.right
+        print(indexPath)
+        let referenceHeight: CGFloat = 40 // Approximate height of your cell
+        let referenceWidth: CGFloat = 100 
         return CGSize(width: referenceWidth, height: referenceHeight)
     }
 }
@@ -232,6 +248,78 @@ extension TagsLoggingMoodViewController {
     }
 }
 
+extension TagsLoggingMoodViewController {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { //1
+        var subString = (textField.text!.capitalized as NSString).replacingCharacters(in: range, with: string) // 2
+        subString = formatSubstring(subString: subString)
+        
+        if subString.count == 0 { // 3 when a user clears the textField
+            resetValues()
+        } else {
+            searchAutocompleteEntriesWIthSubstring(substring: subString) //4
+        }
+        return true
+    }
+    func formatSubstring(subString: String) -> String {
+        let formatted = String(subString.dropLast(autoCompleteCharacterCount)).lowercased().capitalized //5
+        return formatted
+    }
+
+    func resetValues() {
+        autoCompleteCharacterCount = 0
+        tagTextFieldWithLabel.textField.text = ""
+    }
+    
+    func searchAutocompleteEntriesWIthSubstring(substring: String) {
+        let userQuery = substring
+        let suggestions = getAutocompleteSuggestions(userText: substring) //1
+        
+        if suggestions.count > 0 {
+            timer = .scheduledTimer(withTimeInterval: 0.01, repeats: false, block: { (timer) in //2
+                let autocompleteResult = self.formatAutocompleteResult(substring: substring, possibleMatches: suggestions) // 3
+                self.putColourFormattedTextInTextField(autocompleteResult: autocompleteResult, userQuery: userQuery) //4
+                self.moveCaretToEndOfUserQueryPosition(userQuery: userQuery) //5
+            })
+        } else {
+            timer = .scheduledTimer(withTimeInterval: 0.01, repeats: false, block: { (timer) in //7
+                self.tagTextFieldWithLabel.textField.text = substring
+            })
+            autoCompleteCharacterCount = 0
+        }
+    }
+    
+    func getAutocompleteSuggestions(userText: String) -> [String]{
+        var possibleMatches: [String] = []
+        for tag in tagHistory { //2
+            let myString: NSString! = tag.title as NSString
+            let substringRange: NSRange! = myString.range(of: userText)
+            
+            if (substringRange.location == 0) {
+                possibleMatches.append(tag.title)
+            }
+        }
+        return possibleMatches
+    }
+    
+    func putColourFormattedTextInTextField(autocompleteResult: String, userQuery: String) {
+        let colouredString: NSMutableAttributedString = NSMutableAttributedString(string: userQuery + autocompleteResult)
+        colouredString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.App.Text.text().withAlphaComponent(0.2), range: NSRange(location: userQuery.count,length:autocompleteResult.count))
+        self.tagTextFieldWithLabel.textField.attributedText = colouredString
+    }
+    func moveCaretToEndOfUserQueryPosition(userQuery: String) {
+        if let newPosition = self.tagTextFieldWithLabel.textField.position(from: self.tagTextFieldWithLabel.textField.beginningOfDocument, offset: userQuery.count) {
+            self.tagTextFieldWithLabel.textField.selectedTextRange = self.tagTextFieldWithLabel.textField.textRange(from: newPosition, to: newPosition)
+        }
+        let selectedRange: UITextRange? = tagTextFieldWithLabel.textField.selectedTextRange
+        tagTextFieldWithLabel.textField.offset(from: tagTextFieldWithLabel.textField.beginningOfDocument, to: (selectedRange?.start)!)
+    }
+    func formatAutocompleteResult(substring: String, possibleMatches: [String]) -> String {
+        var autoCompleteResult = possibleMatches[0]
+        autoCompleteResult.removeSubrange(autoCompleteResult.startIndex..<autoCompleteResult.index(autoCompleteResult.startIndex, offsetBy: substring.count))
+        autoCompleteCharacterCount = autoCompleteResult.count
+        return autoCompleteResult
+    }
+}
 // MARK: - View Building
 extension TagsLoggingMoodViewController: ViewBuilding {
     
@@ -257,9 +345,11 @@ extension TagsLoggingMoodViewController: ViewBuilding {
             make.height.greaterThanOrEqualTo(60)
         }
         tagsCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(tagTextFieldWithLabel.snp.bottom).offset(25)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-            make.height.greaterThanOrEqualTo(40)
+            make.top.equalTo(tagTextFieldWithLabel.snp.bottom).offset(20)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).inset(30)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).inset(60)
+            make.bottom.equalToSuperview().offset(-100)
+            
         }
     }
 }

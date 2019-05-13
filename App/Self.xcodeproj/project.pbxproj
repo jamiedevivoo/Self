@@ -92,6 +92,7 @@
 		7DCF19712284AF2000289DCC /* loadingIcon.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19642284AF1F00289DCC /* loadingIcon.json */; };
 		7DCF19722284AF2000289DCC /* starsCelebrating.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19652284AF2000289DCC /* starsCelebrating.json */; };
 		7DCF19742284B30A00289DCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF19732284B30A00289DCC /* LaunchScreen.storyboard */; };
+		7DD6438322893F5F0056868D /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6438222893F5F0056868D /* TagManager.swift */; };
 		7DD6CBEA226630D200F47E63 /* MoodWildcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */; };
 		7DD6CBF222663B0900F47E63 /* EmotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBF122663B0900F47E63 /* EmotionManager.swift */; };
 		7DD6CBFE2266B50300F47E63 /* Help-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CBFD2266B50300F47E63 /* Help-ViewController.swift */; };
@@ -248,6 +249,7 @@
 		7DCF19642284AF1F00289DCC /* loadingIcon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingIcon.json; sourceTree = "<group>"; };
 		7DCF19652284AF2000289DCC /* starsCelebrating.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starsCelebrating.json; sourceTree = "<group>"; };
 		7DCF19732284B30A00289DCC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Views/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7DD6438222893F5F0056868D /* TagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
 		7DD6CBE9226630D200F47E63 /* MoodWildcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodWildcard.swift; sourceTree = "<group>"; };
 		7DD6CBF122663B0900F47E63 /* EmotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionManager.swift; sourceTree = "<group>"; };
 		7DD6CBFD2266B50300F47E63 /* Help-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Help-ViewController.swift"; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				7D7758D4225D87B0003CCD1F /* ActionManager.swift */,
 				7D8E432E227E971900243139 /* ActionManagerUserExtension.swift */,
 				7DF14B46225F24870090D299 /* MoodManager.swift */,
+				7DD6438222893F5F0056868D /* TagManager.swift */,
 				7D8CD8F82287E4CE008E961B /* SentimentManager.swift */,
 				7DD6CBF122663B0900F47E63 /* EmotionManager.swift */,
 				A3D75735225D4F1B00E87F67 /* ColorManager.swift */,
@@ -1053,6 +1056,7 @@
 				A33409B8224570DA004CBB2A /* DashboardTabBarController.swift in Sources */,
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
 				7D77E5F2227FA33900946FB7 /* BaseRoundedCardCell.swift in Sources */,
+				7DD6438322893F5F0056868D /* TagManager.swift in Sources */,
 				7D10F5E7226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift in Sources */,
 				7D3FCC072286209A000378F4 /* ViewSliderDelegate.swift in Sources */,
 				7D21FED52284035B0001FE62 /* Diary_LoggingMood-ViewController.swift in Sources */,

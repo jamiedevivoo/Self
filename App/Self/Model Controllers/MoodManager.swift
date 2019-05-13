@@ -29,6 +29,7 @@ extension MoodManager {
                 return
             }
         }
+        
         /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
         return moodLog
     }

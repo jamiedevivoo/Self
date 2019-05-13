@@ -17,6 +17,7 @@ final class HeadlineLoggingMoodViewController: ViewController {
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "I'm feeling..."
+        textFieldWithLabel.textField.textColor = UIColor.App.Text.text().withAlphaComponent(0.9)
         textFieldWithLabel.labelTitle = "Describe how you're feeling"
         return textFieldWithLabel
     }()

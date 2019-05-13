@@ -2,6 +2,7 @@ import UIKit
 
 protocol MoodLoggingDelegate: DataCollectionSequenceDelegate {
     var moodManager: MoodManager { get set }
+    var tagManager: TagManager { get set }
     var background: CAGradientLayer { get set }
     var headline: String? { get set }
     var note: Note? { get set }

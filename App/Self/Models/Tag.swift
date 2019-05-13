@@ -2,8 +2,10 @@ import Firebase
 
 struct Tag {
     // Universal States
+    
+    var uid: String? = nil
     var title: String
-    var description: String?
+    var description: String? = nil
     var category: Tag.TagCategory = .personal
 
     var origin: TagOrigin = .unknown
@@ -14,6 +16,11 @@ struct Tag {
 // MARK: - Convenience Iniitialiser
 extension Tag {
     init(_ tagDictionary: [String: Any]) {
+        
+        if let uid: String = tagDictionary["uid"] as? String {
+            self.uid = uid
+        }
+        
         self.title              = (tagDictionary["title"] as! String)
         if tagDictionary["description"] != nil {
             self.description = (tagDictionary["description"] as! String)
@@ -57,15 +64,6 @@ extension Tag: DictionaryConvertable {
             "category": category.rawValue as Any
         ]
     }
-
-//    var dictionary: [String: Any] {
-//        return [
-//            "tagRef":       tagRef! as DocumentReference,
-//            "title":        title as Any,
-//            "description":  description as Any,
-//            "category":     category.rawValue as Any
-//        ]
-//    }
 }
 
 // MARK: - Types
