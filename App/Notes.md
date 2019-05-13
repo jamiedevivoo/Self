@@ -4,7 +4,7 @@
 Some documentation (technical and detailed) and ongoing notes by the author during the development of this project.
 
 ## Quick Summary ##
-[**Skip to full documentaiton (ongoing)**](#fulldocumentation)
+[**Skip to full documentaiton (ongoing)**](#full-documentation)
 - The app project is built in XCode 10.2 and Swift 5.
 - The project requires devices to be running at least IOS 12.
 - The project uses CocoaPods for Dependency Management
