@@ -23,9 +23,15 @@ extension TagManager {
             var tag = tag
             
             /// Check if the Log already has a UID (If it was created from a Brief then it won't, so create one)
-            if tag.uid == nil {
+            if tag.uid == nil || tag.uid!.count < 1 {
                 tag.uid = userTagsReference.document().documentID
             }
+            
+            if tag.tagRef == nil {
+                tag.tagRef = userTagsReference.document(tag.uid!)
+            }
+            
+            print(tag as AnyObject)
             
             userTagsReference.document(tag.uid!).setData(tag.dictionary, merge: true) { error in
                 guard error == nil else {
@@ -33,9 +39,11 @@ extension TagManager {
                     return
                 }
             }
+            
             updatedTags.append(tag)
         }
         /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
+        print(updatedTags as AnyObject)
         return updatedTags
     }
 }
@@ -53,6 +61,7 @@ extension TagManager {
             for document in querySnapshot.documents {
                 var tagData = document.data()
                 tagData["uid"] = document.documentID
+                tagData["tag_ref"] = document.reference
                 let tag = Tag(tagData)
                 tags.append(tag)
             }

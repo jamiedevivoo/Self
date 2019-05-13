@@ -3,9 +3,11 @@ import Firebase
 struct Tag {
     // Universal States
     
-    var uid: String? = nil
+    var uid: String?
+    var tagRef: DocumentReference?
+    
     var title: String
-    var description: String? = nil
+    var description: String?
     var category: Tag.TagCategory = .personal
 
     var origin: TagOrigin = .unknown
@@ -16,15 +18,20 @@ struct Tag {
 // MARK: - Convenience Iniitialiser
 extension Tag {
     init(_ tagDictionary: [String: Any]) {
+        self.title = (tagDictionary["title"] as! String)
         
-        if let uid: String = tagDictionary["uid"] as? String {
+        if let uid: String = tagDictionary["uid"] as? String, uid.count > 0 {
             self.uid = uid
         }
         
-        self.title              = (tagDictionary["title"] as! String)
-        if tagDictionary["description"] != nil {
-            self.description = (tagDictionary["description"] as! String)
+        if let description: String = tagDictionary["description"] as? String, description.count > 0 {
+            self.description = description
         }
+        
+        if let tagRef: DocumentReference = tagDictionary["tagRef"] as? DocumentReference {
+            self.tagRef = tagRef
+        }
+        
         self.valenceInfluence   = (tagDictionary["valence_influene"] as? Double ?? valenceInfluence)
         self.arousalInfluence   = (tagDictionary["arousal_influence"] as? Double ?? arousalInfluence)
         self.origin             = TagOrigin.matchCase(string: tagDictionary["origin"] as? String ?? "")
@@ -44,25 +51,15 @@ extension Tag: DictionaryConvertable {
             "arousal_influence": arousalInfluence as Any
         ]
         
-        if self.description != nil {
-            dictionary["description"] = self.description as Any
+        if let description = self.description, description.count > 0 {
+            dictionary["description"] = description as Any
+        }
+        
+        if let tagRef: DocumentReference = self.tagRef {
+            dictionary["tag_ref"] = tagRef
         }
         
         return dictionary
-    }
-    var logTagDictionary: [String: Any] {
-        return [
-            "title": title as Any,
-            "description": description as Any,
-            "category": category.rawValue as Any
-        ]
-    }
-    var actionTagDictionary: [String: Any] {
-        return [
-            "title": title as Any,
-            "description": description as Any,
-            "category": category.rawValue as Any
-        ]
     }
 }
 

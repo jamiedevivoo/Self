@@ -138,14 +138,10 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
         guard let headline = self.headline else { return nil }
         guard let valenceRating = self.valenceRating else { return nil }
         guard let arousalRating = self.arousalRating else { return nil }
-        var tags: [[String: Any]]
-        if self.tags.count > 0 {
-            tags = self.tags.map({$0.dictionary})
-        } else { return nil }
+        guard self.tags.count > 0 else { return nil }
         return ["headline": headline,
                 "arousal_rating": arousalRating,
                 "valence_rating": valenceRating,
-                "tags": tags
         ]
     }
     
@@ -158,10 +154,16 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
         if let note = self.note {
             moodData["note"] = note.dictionary
         }
-
+        
+        /// first create the tags with uid's and ref's
+        tags = tagManager.updateTag(self.tags)
+        
+        moodData["tags"] = tags.map({$0.dictionary})
+        
+        /// Then create the mood using them
         let mood: Mood.Log = Mood.Log(moodData)
         _ = moodManager.updateMood(mood)
-        _ = tagManager.updateTag(self.tags)
+        
         navigationController?.popToRootViewController(animated: true)
     }
     

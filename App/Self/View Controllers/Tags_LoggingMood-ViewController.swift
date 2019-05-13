@@ -171,7 +171,7 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
         tagTextFieldWithLabel.textField.placeholder = "Another tag..."
         tagTextFieldWithLabel.resetHint(withText: "✓ Add another tag or press next again to continue", for: .info)
         textField.text = nil
-        let newTag = Tag(uid: nil, title: tagTitle, description: "", category: .personal, origin: .mood, valenceInfluence: 0, arousalInfluence: 0)
+        let newTag = Tag(uid: nil, tagRef: nil, title: tagTitle, description: "", category: .personal, origin: .mood, valenceInfluence: 0, arousalInfluence: 0)
         
         guard !tags.contains(where: {$0.title == newTag.title}) else {
             return false
