@@ -21,13 +21,13 @@ Some documentation (technical and detailed) and ongoing notes by the author duri
 
 ## Full Documentation
 - [**Methodology**](#programming-design--methodology)
--   [**Overview**](#programming-design--methodology)
-- [**M-MC-VC-V**](#m-mc-vc-v)
-- [**Models**](#models-m)
-- [**Model Controllers**](#model-controllers-mc)
-- [**View Controllers**](#view-controllers-vc)
-- [**Views**](#views-v)
-- [**ScreenSliderViewController**](#screenSliderViewcontroller)
+  - [**Overview**](#programming-design--methodology)
+  - [**M-MC-VC-V**](#m-mc-vc-v)
+  - [**Models**](#models-m)
+  - [**Model Controllers**](#model-controllers-mc)
+  - [**View Controllers**](#view-controllers-vc)
+  - [**Views**](#views-v)
+- [**ScreenSliderViewController**](#screensliderviewcontroller)
 - [**ViewSliderViewController**](#viewsliderviewcontroller)
 
 # Programming Design + Methodology
@@ -144,7 +144,7 @@ Another advantage of using structs is that they come with built in initialisers,
 
 By contrast if a class is responsible for keeping track of and maintaining state or needs to capture updates from a delegate or controller then it makes more sense to use classes as these can be more flexible and easier to manage without every method needing to be specified as mutating.
 
-# ScreenSliderViewcontroller
+# ScreenSliderViewController
 **Subclass of UIPageViewController**
 
 This class is used to create the slide onboarding screens. *It is one of the more extensive viewcontrollers and currently considered a "Massive view Controller". It needs to be refactored.* 
@@ -161,7 +161,7 @@ Alternatively you can also configure the *gestureSwipingEnabled* property to jus
 
 The SliderViewController will also automatically position the UIPageIndicator and buttons for if you set it's navigationDirection to horizontal or vertical.
 
-## ViewSliderviewcontroller
+## ViewSliderViewController
 If you wish to only include views in a slider format (for example if their only function is to present information and not be interactive) then you might consider using the *ViewSliverViewcontroller* instead. As oppose to being built ontop of the UIPageViewController this class is a subclass of UIView with an included paged ScrollView and UIPageIndicator. It has similar functionality to the ScreenSliderviewController but it more lightwait and accepts an array of UIVIews as it's screen property. 
 
 You might consider enabling looping on this, adding a gestureRecogniser on the last screen or making use of it's delegates scrolledPastLasSlide method to process and action when the user gets to the end. This is done on the onboarding screen int he app to send the user to the next ScreenSlider screen when the ViewSlider is finished (and most of the time works pretty seemlessly).
