@@ -122,8 +122,8 @@ extension FinishCreatingAccountViewController: UITextFieldDelegate {
     }
 
 private func addObservers() {
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 }
     
 @objc func keyboardWillShow(notification: NSNotification) {
@@ -135,11 +135,11 @@ private func addObservers() {
     let currentFirstResponder = textFields.first(where: {$0.isFirstResponder})
     
     let scrollDistance = (view.frame.size.height - keyboardFrame.height - (currentFirstResponder!.frame.origin.y + currentFirstResponder!.frame.size.height + 10))
-//    if scrollDistance < 0 {
+    if scrollDistance < 0 {
         for subview in view.subviews {
             subview.frame.origin.y += scrollDistance
         }
-//    }
+    }
 }
 
 @objc func keyboardWillHide(notification: NSNotification) {
