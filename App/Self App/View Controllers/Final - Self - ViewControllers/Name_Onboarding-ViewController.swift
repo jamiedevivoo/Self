@@ -5,7 +5,7 @@ final class NameOnboardingViewController: ViewController {
     
     // Delegates
     weak var dataCollector: OnboardingDataCollectorDelegate?
-    weak var screenSliderDelegate: ScreenSliderDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
     lazy var headerLabel = HeaderLabel("Welcome to Self! What should we call you?", .largeScreen)

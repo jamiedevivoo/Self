@@ -6,7 +6,7 @@ final class InductionOnboardingViewController: ViewController {
 
     // Delegates
     weak var dataCollector: OnboardingDataCollectorDelegate?
-    weak var screenSliderDelegate: ScreenSliderDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
     lazy var headerLabel = HeaderLabel("Hey...", .largeScreen)

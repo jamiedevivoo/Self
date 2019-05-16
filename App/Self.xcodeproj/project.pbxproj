@@ -12,7 +12,7 @@
 		7D10F5DF226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */; };
 		7D10F5E1226DEEC50063CEB8 /* UIView+Shake-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */; };
 		7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */; };
-		7D10F5E5226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */; };
+		7D10F5E5226E5F590063CEB8 /* MoodLogging-ScreenSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E4226E5F590063CEB8 /* MoodLogging-ScreenSlider.swift */; };
 		7D10F5E7226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */; };
 		7D10F5E9226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */; };
 		7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */; };
@@ -129,7 +129,7 @@
 		A3169F93224C4D98001B7C90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */; };
 		A316E709224AF18F00283547 /* Landing_Onboarding-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316E708224AF18F00283547 /* Landing_Onboarding-ViewController.swift */; };
 		A33409902245701D004CBB2A /* Landing-SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098A2245701B004CBB2A /* Landing-SlideView.swift */; };
-		A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098B2245701C004CBB2A /* Onboarding-ScreenSliderViewController.swift */; };
+		A33409912245701D004CBB2A /* Onboarding-ScreenSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334098B2245701C004CBB2A /* Onboarding-ScreenSlider.swift */; };
 		A334099522457023004CBB2A /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334099422457023004CBB2A /* Loader.swift */; };
 		A33409A3224570A4004CBB2A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334099F224570A2004CBB2A /* AccountSettingsViewController.swift */; };
 		A33409A4224570A4004CBB2A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33409A0224570A3004CBB2A /* SettingsViewController.swift */; };
@@ -174,7 +174,7 @@
 		7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+TapGestureRecogniser-Extension.swift"; path = "../Reusable - Extensions/UIView+TapGestureRecogniser-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Shake-Extension.swift"; path = "../Reusable - Extensions/UIView+Shake-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+Trim-Extension.swift"; path = "../Reusable - Extensions/String+Trim-Extension.swift"; sourceTree = "<group>"; };
-		7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LoggingMood-ScreenSliderViewController.swift"; path = "Final - Self - ViewControllers/LoggingMood-ScreenSliderViewController.swift"; sourceTree = "<group>"; };
+		7D10F5E4226E5F590063CEB8 /* MoodLogging-ScreenSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MoodLogging-ScreenSlider.swift"; path = "Final - Self - ViewControllers/MoodLogging-ScreenSlider.swift"; sourceTree = "<group>"; };
 		7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Headline_LoggingMood-ViewController.swift"; path = "Final - Self - ViewControllers/Headline_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Mood_LoggingMood-ViewController.swift"; path = "Final - Self - ViewControllers/Mood_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Wildcard_LoggingMood-ViewController.swift"; path = "Final - Self - ViewControllers/Wildcard_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 		A3169F92224C4D98001B7C90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Assets/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A316E708224AF18F00283547 /* Landing_Onboarding-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Landing_Onboarding-ViewController.swift"; path = "Final - Self - ViewControllers/Landing_Onboarding-ViewController.swift"; sourceTree = "<group>"; };
 		A334098A2245701B004CBB2A /* Landing-SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Landing-SlideView.swift"; sourceTree = "<group>"; };
-		A334098B2245701C004CBB2A /* Onboarding-ScreenSliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Onboarding-ScreenSliderViewController.swift"; path = "Final - Self - ViewControllers/Onboarding-ScreenSliderViewController.swift"; sourceTree = "<group>"; };
+		A334098B2245701C004CBB2A /* Onboarding-ScreenSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Onboarding-ScreenSlider.swift"; path = "Final - Self - ViewControllers/Onboarding-ScreenSlider.swift"; sourceTree = "<group>"; };
 		A334099422457023004CBB2A /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A334099F224570A2004CBB2A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingsViewController.swift; path = "Final - Self - ViewControllers/AccountSettingsViewController.swift"; sourceTree = "<group>"; };
 		A33409A0224570A3004CBB2A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "Final - Self - ViewControllers/SettingsViewController.swift"; sourceTree = "<group>"; };
@@ -584,7 +584,7 @@
 		A3B9F867228D997600D3E682 /* Self - MOOD */ = {
 			isa = PBXGroup;
 			children = (
-				7D10F5E4226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift */,
+				7D10F5E4226E5F590063CEB8 /* MoodLogging-ScreenSlider.swift */,
 				7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */,
 				7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */,
 				7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */,
@@ -620,7 +620,7 @@
 		A3B9F86B228D999F00D3E682 /* Self - ONBOARDING */ = {
 			isa = PBXGroup;
 			children = (
-				A334098B2245701C004CBB2A /* Onboarding-ScreenSliderViewController.swift */,
+				A334098B2245701C004CBB2A /* Onboarding-ScreenSlider.swift */,
 				A316E708224AF18F00283547 /* Landing_Onboarding-ViewController.swift */,
 				7D6B745E226028B5006F9CD1 /* Name_Onboarding-ViewController.swift */,
 				7D6B746022602C56006F9CD1 /* Induction_Onboarding-ViewController.swift */,
@@ -873,12 +873,12 @@
 			isa = PBXGroup;
 			children = (
 				A35EA86522456FB700592D88 /* ViewBuilding.swift */,
-				A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */,
 				A3683568226E1B5D005C8600 /* ScreenSlider-Protocol.swift */,
 				7DD6CC1122672E1B00F47E63 /* Loading-Protocol.swift */,
 				7D3FCC042286168D000378F4 /* OnboardingDataCollectorProtocol.swift */,
 				7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */,
 				7D3FCC062286209A000378F4 /* ViewSliderDelegate.swift */,
+				A368356A226E1BB4005C8600 /* DataCollectionSequenceDelegate-Protocol.swift */,
 				7D77E547227F93B900946FB7 /* Expandable-Protocol.swift */,
 			);
 			name = "Reusable Protocols";
@@ -1158,7 +1158,7 @@
 				A33409B7224570DA004CBB2A /* SidebarViewController.swift in Sources */,
 				7DF14B5D225F36CD0090D299 /* Account.swift in Sources */,
 				7D77E5F1227FA33900946FB7 /* WorldPremiereCell.swift in Sources */,
-				7D10F5E5226E5F590063CEB8 /* LoggingMood-ScreenSliderViewController.swift in Sources */,
+				7D10F5E5226E5F590063CEB8 /* MoodLogging-ScreenSlider.swift in Sources */,
 				7D77E5F9227FA33900946FB7 /* AppOfTheDayCell.swift in Sources */,
 				7DD6CC1D2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift in Sources */,
 				7D8E432F227E971900243139 /* ActionManagerUserExtension.swift in Sources */,
@@ -1185,7 +1185,7 @@
 				7D77E602227FA35400946FB7 /* UICollectionView+Reusable.swift in Sources */,
 				7DF14B59225F2D170090D299 /* FeedStatusResponse.swift in Sources */,
 				7DEABF8C22803E1100E72D39 /* MoodLogging-Protocol.swift in Sources */,
-				A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */,
+				A33409912245701D004CBB2A /* Onboarding-ScreenSlider.swift in Sources */,
 				7D519CC722871EB400EE3CEC /* Note.swift in Sources */,
 				7DF24EDC228D6C0E00BC827E /* ActionBriefCell.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
@@ -1388,7 +1388,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95F452WV2M;
-				INFOPLIST_FILE = Self/Info.plist;
+				INFOPLIST_FILE = "Self App/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1410,7 +1410,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95F452WV2M;
-				INFOPLIST_FILE = Self/Info.plist;
+				INFOPLIST_FILE = "Self App/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -6,7 +6,7 @@ final class TagsLoggingMoodViewController: ViewController {
     
     // Delegates and dependencies
     weak var dataCollector: MoodLoggingDelegate?
-    weak var screenSliderDelegate: ScreenSliderDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
     lazy var headerLabel = HeaderLabel.init("Tag Your Log", .largeScreen)

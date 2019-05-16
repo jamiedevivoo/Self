@@ -46,6 +46,6 @@ extension TagButton {
 
 extension TagButton {
     @objc func showDescription(_ sender: TagButton) {
-        print("Show Description:", sender.accountTag.description)
+        print("Show Description:", sender.accountTag.description ?? "Sorry, the description isn't available")
     }
 }

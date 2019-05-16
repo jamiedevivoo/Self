@@ -18,7 +18,7 @@ final class DiaryLoggingMoodViewController: ViewController {
         textFieldWithLabel.textField.font = UIFont.systemFont(ofSize: 36, weight: .light)
         textFieldWithLabel.textField.adjustsFontSizeToFitWidth = true
         textFieldWithLabel.textField.placeholder = "Personal note..."
-        textFieldWithLabel.textField.textColor = UIColor.App.Text.text().withAlphaComponent(0.9)
+        textFieldWithLabel.textField.textColor=UIColor.App.Text.text().withAlphaComponent(0.9)
         textFieldWithLabel.labelTitle = "Make your log more meaningful by adding context."
         return textFieldWithLabel
     }()

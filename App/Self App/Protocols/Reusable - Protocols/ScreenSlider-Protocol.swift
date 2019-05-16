@@ -1,19 +1,15 @@
 import UIKit
 
-protocol ScreenSliderDelegate: class, ScreenSliderViewController {
-    func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool
-    // Delegate protocol for controlling a PageViewController (Subclass of UIPageViewController, with built in PageControl).
-    //// The delegate should set itself as the Delegate for a PageViewController.
-    //// The delagate should set the methods for out of range indexes (including ending the slider) as well as set the pages property.
-    //// The declare can also set whether the pageViewController should loop (false by default), and the initial page (0 by default).
-//    func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController)
-//    func reachedFinalIndex(_ pageSliderViewController: ScreenSliderViewController)
+// Delegate for controller a ScreenSliderViewController.
+protocol ScreenSliderDelegate: class {
+    func validateDataBeforeNextScreen(_ sender: ScreenSliderViewController, currentViewController: UIViewController, nextViewController: UIViewController) -> Bool
 }
 
-extension ScreenSliderDelegate {
+extension ScreenSliderDelegate where Self: ScreenSliderViewController {
+
     // Optional helper method to set up a PageViewController. Method will set a a PageViewControllers delegate to self by default.
     /// And I wanted to try creating a generic method...
-    func configurePageViewController<T: ScreenSliderDelegate>(
+    func configurePageViewController<T>(
         _ screenSliderViewController: ScreenSliderViewController,
         withPages pages: [(UIViewController, Bool)],
         withDelegate delegate: T,
@@ -21,9 +17,10 @@ extension ScreenSliderDelegate {
         isLooped loop: Bool = false,
         enableSwiping: Bool = true,
         optionalSetup: @escaping () -> Void = {})
+    where T: ScreenSliderDelegate
     {
         screenSliderViewController.screens = pages
-        screenSliderViewController.screenSliderDelegate = delegate
+        screenSliderViewController.screenSliderDelegate = delegate as? ScreenSliderViewController
         screenSliderViewController.pageIndicatorEnabled = pageIndicator
         screenSliderViewController.sliderShouldloop = loop
         screenSliderViewController.gestureScrollingEnabled = enableSwiping

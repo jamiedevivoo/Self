@@ -7,7 +7,7 @@ final class LandingOnboardingViewController: ViewController {
     
     // Delegates
     weak var dataCollector: OnboardingDataCollectorDelegate?
-    weak var screenSliderDelegate: ScreenSliderDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
     lazy var sliderView = ViewSliderViewController()

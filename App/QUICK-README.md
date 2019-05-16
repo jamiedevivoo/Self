@@ -1,7 +1,7 @@
 # The Self App - IOS
-This is a 1 min QUIC-README to get started with the project in Xcode. 
+This is a 1 min QUICK-README to get started with the project in Xcode. 
 
-*You're advised to read the full developer **Notes** documentation in the same directory  as this file when you get the chance.*
+*You're advised to read the full developer **Notes** documentation in the same directory as this file when you get the chance.*
 
 
 ## Get Started
@@ -20,7 +20,7 @@ This is a 1 min QUIC-README to get started with the project in Xcode.
 -  **Extensions** - Extensions of framework classes.
 -  **Assets** - Static assets the project relies on (inc. content and configurations).
 
-Each of these are further split up into *Generic Reusables* and *Final Classes*.
+Each of these are further split up into *Generic Reusables* and *Final Classes*, more information about this is in the documentation notes.
 
 
 

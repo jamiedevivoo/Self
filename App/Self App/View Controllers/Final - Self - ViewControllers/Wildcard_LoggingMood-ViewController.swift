@@ -6,7 +6,7 @@ final class WildcardLoggingMoodViewController: ViewController {
     
     // Delegates
     weak var dataCollector: MoodLoggingDelegate?
-    weak var screenSliderDelegate: ScreenSliderDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     
     // Views
     lazy var headerLabel = HeaderLabel("Question Of The Day", .largeScreen)

@@ -1,9 +1,9 @@
 import UIKit
 import Firebase
 
-extension LoggingAMoodScreenSliderViewController: MoodLoggingDelegate { }
+extension MoodLoggingScreenSlider: MoodLoggingDelegate { }
 
-final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
+final class MoodLoggingScreenSlider: ScreenSliderViewController {
     
     // Delegates and Dependencies
     var moodManager: MoodManager = MoodManager(account: AccountManager.shared().accountRef!)
@@ -49,7 +49,7 @@ final class LoggingAMoodScreenSliderViewController: ScreenSliderViewController {
 }
 
 // MARK: - Override Methods
-extension LoggingAMoodScreenSliderViewController {
+extension MoodLoggingScreenSlider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ extension LoggingAMoodScreenSliderViewController {
 }
 
 // MARK: - Setup Methods
-extension LoggingAMoodScreenSliderViewController {
+extension MoodLoggingScreenSlider {
     
     func setupScreens() -> [(UIViewController, Bool)] {
         moodStage = MoodLoggingMoodViewController()
@@ -108,9 +108,9 @@ extension LoggingAMoodScreenSliderViewController {
 }
 
 // MARK: - Class Methods
-extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate, ScreenSliderDelegate {
+extension MoodLoggingScreenSlider: DataCollectionSequenceDelegate, ScreenSliderDelegate {
     
-    func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
+    func validateDataBeforeNextScreen(_ sender: ScreenSliderViewController, currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
         if currentViewController.isKind(of: MoodLoggingMoodViewController.self) {
             guard arousalRating != nil, valenceRating != nil, emotion != nil else {
                 return false
@@ -170,7 +170,7 @@ extension LoggingAMoodScreenSliderViewController: DataCollectionSequenceDelegate
 }
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension LoggingAMoodScreenSliderViewController {
+extension MoodLoggingScreenSlider {
     func reachedFirstIndex(_ pageSliderViewController: ScreenSliderViewController) {
         
     }

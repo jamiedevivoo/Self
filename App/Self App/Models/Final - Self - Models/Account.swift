@@ -26,6 +26,7 @@ extension Account {
 // MARK: - Convenience Initialisers
 extension Account {
     init(withSnapshot snapshot: DocumentSnapshot) {
+        print(snapshot.data() as AnyObject)
         self.init(
             uid: snapshot.documentID,
             accountUser: Account.User(snapshot.get("user")                      as! [String: Any]),

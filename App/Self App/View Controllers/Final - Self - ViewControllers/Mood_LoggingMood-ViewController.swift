@@ -6,7 +6,7 @@ final class MoodLoggingMoodViewController: ViewController {
     
     // Dependencies and Delegates
     weak var dataCollector: MoodLoggingDelegate?
-    weak var screenSliderDelegate: ScreenSliderDelegate?
+    weak var screenSliderDelegate: ScreenSliderViewController?
     var emotionManager: EmotionManager = EmotionManager()
     
     lazy var initialPrompt: UILabel = {

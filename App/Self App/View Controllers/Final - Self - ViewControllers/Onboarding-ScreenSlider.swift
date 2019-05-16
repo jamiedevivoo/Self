@@ -2,12 +2,12 @@ import UIKit
 import Firebase
 import SwiftyJSON
 
-final class OnboardingScreenSliderViewController: ScreenSliderViewController {
+final class OnboardingScreenSlider: ScreenSliderViewController {
     var name: String?
 }
 
 // MARK: - Override Methods
-extension OnboardingScreenSliderViewController {
+extension OnboardingScreenSlider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,7 @@ extension OnboardingScreenSliderViewController {
 }
 
 // MARK: - Setup Methods
-private extension OnboardingScreenSliderViewController {
+private extension OnboardingScreenSlider {
     
     func setupScreens() -> [(vc: UIViewController, enabled: Bool)] {
         let landingOnboardingVC = LandingOnboardingViewController()
@@ -40,7 +40,7 @@ private extension OnboardingScreenSliderViewController {
 }
 
 // MARK: - Class Methods
-extension OnboardingScreenSliderViewController: OnboardingDataCollectorDelegate {
+extension OnboardingScreenSlider: OnboardingDataCollectorDelegate {
     
     func setData(_ dataDict: [String: Any?]) {}
     
@@ -57,8 +57,9 @@ extension OnboardingScreenSliderViewController: OnboardingDataCollectorDelegate 
 }
 
 // MARK: - ScreenSliderViewControllerDelegate Methods
-extension OnboardingScreenSliderViewController: ScreenSliderDelegate {
-    func validateDataBeforeNextScreen(currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
+extension OnboardingScreenSlider: ScreenSliderDelegate {
+    
+    func validateDataBeforeNextScreen(_ sender: ScreenSliderViewController, currentViewController: UIViewController, nextViewController: UIViewController) -> Bool {
         if nextViewController.isMember(of: InductionOnboardingViewController.self) {
             guard name != nil else {
                 return true
@@ -80,7 +81,7 @@ extension OnboardingScreenSliderViewController: ScreenSliderDelegate {
 }
 
 // MARK: - OnboardingDelegate Methods
-extension OnboardingScreenSliderViewController {
+extension OnboardingScreenSlider {
     
     func signInAnonymously(withName name: String) {
         Auth.auth().signInAnonymously { (authResult, error) in

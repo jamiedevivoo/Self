@@ -24,7 +24,7 @@ extension AppManager {
             
             guard user != nil else {
                 print("... User no longer exists.")
-                self.appContainer.present(OnboardingScreenSliderViewController(), animated: true, completion: nil)
+                self.appContainer.present(OnboardingScreenSlider(), animated: true, completion: nil)
                 return
             }
             

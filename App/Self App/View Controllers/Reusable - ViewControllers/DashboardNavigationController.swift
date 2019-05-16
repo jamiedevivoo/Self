@@ -45,7 +45,7 @@ extension DashboardNavigationController: UINavigationControllerDelegate {
 // Controller Actions
 extension DashboardNavigationController {
     @objc func logNewMood() {
-        pushViewController(LoggingAMoodScreenSliderViewController(), animated: true)
+        pushViewController(MoodLoggingScreenSlider(), animated: true)
     }
     @objc func showActions() {
         tabBarController?.transitionViewController(toIndex: 2)
