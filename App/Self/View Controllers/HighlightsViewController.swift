@@ -140,6 +140,11 @@ extension HighlightsViewController: UICollectionViewDataSource, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HighlightCell
         let highlight = highlightsArray[indexPath.row]
         cell.actionCardTitleLabel.text = highlight.title
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = DateFormatter.Style.short
+        cell.date.text = dateformatter.string(from: highlight.timestamp)
+        
         cell.actionCardDescriptionLabel.text = highlight.text
         return cell
     }

@@ -12,6 +12,14 @@ class HighlightCell: UICollectionViewCell {
     }()
     var tags: [UIButton] = []
     
+    lazy var date: UILabel = {
+        let label = UILabel()
+        label.text = "Today"
+        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.textColor = UIColor.App.Text.text()
+        return label
+    }()
+    
     lazy var actionCardTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Go for a walk"
@@ -70,6 +78,7 @@ extension HighlightCell: ViewBuilding {
     func addSubViews() {
         contentView.addSubview(actionCardTagsStack)
         contentView.addSubview(actionCardTitleLabel)
+        contentView.addSubview(date)
         contentView.addSubview(actionCardDescriptionLabel)
     }
     
@@ -84,8 +93,15 @@ extension HighlightCell: ViewBuilding {
             make.left.right.equalToSuperview().inset(20)
             make.height.greaterThanOrEqualTo(10)
         }
+        
+        date.snp.makeConstraints { (make) in
+            make.top.equalTo(actionCardTitleLabel.snp.bottom)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.greaterThanOrEqualTo(10)
+        }
+        
         actionCardDescriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(actionCardTitleLabel.snp.bottom).offset(10)
+            make.top.equalTo(date.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(20)
             make.height.greaterThanOrEqualTo(10)
         }

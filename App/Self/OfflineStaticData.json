@@ -17,8 +17,8 @@
         },
         "induction": {
             "title": "Placeholder: Title",
-            "congrats": "Placeholder: You've begun a journey to your better self. (cheesy)",
-            "text": "Placeholder: Use the app to log moods and complete challenges"
+            "congrats": "You've begun a journey to your better self.",
+            "text": "Use the app to log moods and complete challenges."
         }
     },
     
