@@ -3,7 +3,6 @@ import Firebase
 final class SentimentManager {
     // Dependencies
     let userSentimentLogsReference: CollectionReference
-    
     init(account: Account) {
         userSentimentLogsReference = Firestore.firestore().collection("user").document(account.uid).collection("mood_logs")
     }

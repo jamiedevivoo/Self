@@ -4,11 +4,13 @@ import SnapKit
 final class TagCell: UICollectionViewCell {
     static let reuseId = "TagCellReuseId"
     
+    var tagObject: Tag?
     var button: UIButton = UIButton()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = .clear
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -20,8 +22,10 @@ final class TagCell: UICollectionViewCell {
         super.prepareForReuse()
     }
     
-    func configure(tag: Tag) {
+    func configure() {
+        guard let tag = tagObject else { return }
         button = TagButton(tag)
+        
         guard !button.isDescendant(of: self) else {
             return
         }

@@ -157,6 +157,8 @@
 		A3B9F885228DA64900D3E682 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B9F884228DA64900D3E682 /* Community.swift */; };
 		A3B9F88B228DA9CB00D3E682 /* QUICK-README.md in Resources */ = {isa = PBXBuildFile; fileRef = A3B9F88A228DA9CB00D3E682 /* QUICK-README.md */; };
 		A3B9F88F228DAD3C00D3E682 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3B9F88E228DAD3C00D3E682 /* Default-568h@2x.png */; };
+		A3B9F895228DC3B800D3E682 /* TagsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B9F894228DC3B800D3E682 /* TagsCollectionView.swift */; };
+		A3B9F8A1228DE7C900D3E682 /* TimeStamp+TimeAgo-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B9F8A0228DE7C900D3E682 /* TimeStamp+TimeAgo-Extension.swift */; };
 		A3CF950B224D4B4600D0EC31 /* Colours+App-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF950A224D4B4600D0EC31 /* Colours+App-Extension.swift */; };
 		A3CF9514224E714600D0EC31 /* MoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9513224E714600D0EC31 /* MoodLog.swift */; };
 		A3CF9516224E9C8900D0EC31 /* FeedStatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */; };
@@ -171,9 +173,9 @@
 		272325912260C92000BB6924 /* BackgroundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundManager.swift; path = "Self App/Model Controllers/Final - Self - ModelControllers/BackgroundManager.swift"; sourceTree = SOURCE_ROOT; };
 		3195708A3A9E109844A87C3E /* Pods-Self.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Self.release.xcconfig"; path = "Pods/Target Support Files/Pods-Self/Pods-Self.release.xcconfig"; sourceTree = "<group>"; };
 		7D10F5DC226DCF760063CEB8 /* TextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabel.swift; sourceTree = "<group>"; };
-		7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+TapGestureRecogniser-Extension.swift"; path = "../Reusable - Extensions/UIView+TapGestureRecogniser-Extension.swift"; sourceTree = "<group>"; };
-		7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Shake-Extension.swift"; path = "../Reusable - Extensions/UIView+Shake-Extension.swift"; sourceTree = "<group>"; };
-		7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+Trim-Extension.swift"; path = "../Reusable - Extensions/String+Trim-Extension.swift"; sourceTree = "<group>"; };
+		7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TapGestureRecogniser-Extension.swift"; sourceTree = "<group>"; };
+		7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shake-Extension.swift"; sourceTree = "<group>"; };
+		7D10F5E2226DF2E70063CEB8 /* String+Trim-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trim-Extension.swift"; sourceTree = "<group>"; };
 		7D10F5E4226E5F590063CEB8 /* MoodLogging-ScreenSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MoodLogging-ScreenSlider.swift"; path = "Final - Self - ViewControllers/MoodLogging-ScreenSlider.swift"; sourceTree = "<group>"; };
 		7D10F5E6226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Headline_LoggingMood-ViewController.swift"; path = "Final - Self - ViewControllers/Headline_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Mood_LoggingMood-ViewController.swift"; path = "Final - Self - ViewControllers/Mood_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
@@ -185,8 +187,8 @@
 		7D21FED42284035B0001FE62 /* Diary_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Diary_LoggingMood-ViewController.swift"; path = "Final - Self - ViewControllers/Diary_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D21FED622840C490001FE62 /* SpecialLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialLabel.swift; sourceTree = "<group>"; };
 		7D21FEDA228410EE0001FE62 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
-		7D21FEDC22841B9A0001FE62 /* UITabBarController+RootViewStatus-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UITabBarController+RootViewStatus-Extension.swift"; path = "../Reusable - Extensions/UITabBarController+RootViewStatus-Extension.swift"; sourceTree = "<group>"; };
-		7D21FEDE228425B90001FE62 /* UIViewController+FindParentPageViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+FindParentPageViewController-Extension.swift"; path = "../Reusable - Extensions/UIViewController+FindParentPageViewController-Extension.swift"; sourceTree = "<group>"; };
+		7D21FEDC22841B9A0001FE62 /* UITabBarController+RootViewStatus-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+RootViewStatus-Extension.swift"; sourceTree = "<group>"; };
+		7D21FEDE228425B90001FE62 /* UIViewController+FindParentPageViewController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FindParentPageViewController-Extension.swift"; sourceTree = "<group>"; };
 		7D3FCC042286168D000378F4 /* OnboardingDataCollectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataCollectorProtocol.swift; sourceTree = "<group>"; };
 		7D3FCC062286209A000378F4 /* ViewSliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSliderDelegate.swift; sourceTree = "<group>"; };
 		7D47AC67225FD380004BF898 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -264,9 +266,9 @@
 		7DD6CC1322672E3600F47E63 /* Achivement-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achivement-Protocol.swift"; sourceTree = "<group>"; };
 		7DD6CC1522673DA700F47E63 /* DailyActionBriefSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DailyActionBriefSelectorViewController.swift; path = "Final - Self - ViewControllers/DailyActionBriefSelectorViewController.swift"; sourceTree = "<group>"; };
 		7DD6CC172268B71600F47E63 /* ViewSlider-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewSlider-ViewController.swift"; path = "Reusable - ViewControllers/ViewSlider-ViewController.swift"; sourceTree = "<group>"; };
-		7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+KeyboardBehaviour-Extension.swift"; path = "../Reusable - Extensions/UIViewController+KeyboardBehaviour-Extension.swift"; sourceTree = "<group>"; };
-		7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+ChildViewControllers-Extension.swift"; path = "../Reusable - Extensions/UIViewController+ChildViewControllers-Extension.swift"; sourceTree = "<group>"; };
-		7DDF39222261929B00C761B4 /* Label+Spacing–Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Label+Spacing–Extensions.swift"; path = "../Reusable - Extensions/Label+Spacing–Extensions.swift"; sourceTree = "<group>"; };
+		7DD6CC1A2269120C00F47E63 /* UIViewController+KeyboardBehaviour-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardBehaviour-Extension.swift"; sourceTree = "<group>"; };
+		7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewControllers-Extension.swift"; sourceTree = "<group>"; };
+		7DDF39222261929B00C761B4 /* Label+Spacing–Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+Spacing–Extensions.swift"; sourceTree = "<group>"; };
 		7DDF392622625F1400C761B4 /* AccountFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountFlags.swift; sourceTree = "<group>"; };
 		7DDF39282262B75300C761B4 /* AccountSettingsFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsFeatures.swift; sourceTree = "<group>"; };
 		7DE9A2552289678B0048A479 /* green-tick.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "green-tick.json"; sourceTree = "<group>"; };
@@ -321,6 +323,8 @@
 		A3B9F884228DA64900D3E682 /* Community.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		A3B9F88A228DA9CB00D3E682 /* QUICK-README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "QUICK-README.md"; sourceTree = "<group>"; };
 		A3B9F88E228DAD3C00D3E682 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A3B9F894228DC3B800D3E682 /* TagsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCollectionView.swift; sourceTree = "<group>"; };
+		A3B9F8A0228DE7C900D3E682 /* TimeStamp+TimeAgo-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeStamp+TimeAgo-Extension.swift"; sourceTree = "<group>"; };
 		A3CF950A224D4B4600D0EC31 /* Colours+App-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colours+App-Extension.swift"; sourceTree = "<group>"; };
 		A3CF9513224E714600D0EC31 /* MoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLog.swift; sourceTree = "<group>"; };
 		A3CF9515224E9C8900D0EC31 /* FeedStatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatusMessage.swift; sourceTree = "<group>"; };
@@ -529,12 +533,13 @@
 			children = (
 				A3B9F862228D979E00D3E682 /* Reusable Controllers */,
 				A3B9F86B228D999F00D3E682 /* Self - ONBOARDING */,
-				A3B9F869228D998600D3E682 /* Self - COMMUNITY */,
-				A3B9F868228D997F00D3E682 /* Self - SETTINGS */,
-				A3B9F867228D997600D3E682 /* Self - MOOD */,
-				A3B9F866228D996100D3E682 /* Self - HIGHLIGHTS */,
 				A3B76AEC227D050900282ECB /* Self - HOME */,
 				A3B9F865228D993400D3E682 /* Self - ACTIONS */,
+				A3B9F866228D996100D3E682 /* Self - HIGHLIGHTS */,
+				A3B9F867228D997600D3E682 /* Self - MOOD */,
+				A3B9F869228D998600D3E682 /* Self - COMMUNITY */,
+				A3B9F868228D997F00D3E682 /* Self - SETTINGS */,
+				A3B9F892228DC24200D3E682 /* Self - HELP */,
 				7D77E5D6227FA2E000946FB7 /* TODAY */,
 			);
 			path = "View Controllers";
@@ -559,7 +564,6 @@
 				7D6B7462226030C0006F9CD1 /* ScreenSlider-ViewController.swift */,
 				7DD6CC172268B71600F47E63 /* ViewSlider-ViewController.swift */,
 				A3B9F86C228D9A3800D3E682 /* TagViewController.swift */,
-				7DD6CBFD2266B50300F47E63 /* Help-ViewController.swift */,
 			);
 			name = "Reusable Controllers";
 			sourceTree = "<group>";
@@ -754,6 +758,7 @@
 		A3B9F87A228DA51B00D3E682 /* Final Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3B9F893228DC38C00D3E682 /* Self - COLLECTION views */,
 				A3B9F875228D9C3100D3E682 /* Self - CELL views */,
 				A3B9F874228D9C0400D3E682 /* Self - BUTTON Views */,
 				A3B9F873228D9BF700D3E682 /* Self - SLIDE views */,
@@ -856,8 +861,10 @@
 				7DD6CC1C2269122600F47E63 /* UIViewController+ChildViewControllers-Extension.swift */,
 				7D10F5DE226DDC700063CEB8 /* UIView+TapGestureRecogniser-Extension.swift */,
 				7D10F5E0226DEEC50063CEB8 /* UIView+Shake-Extension.swift */,
+				A3B9F8A0228DE7C900D3E682 /* TimeStamp+TimeAgo-Extension.swift */,
 			);
-			path = "Reusable Extensions";
+			name = "Reusable Extensions";
+			path = "Reusable - Extensions";
 			sourceTree = "<group>";
 		};
 		A3B9F887228DA72C00D3E682 /* Final Extensions */ = {
@@ -901,6 +908,22 @@
 				A3B9F88E228DAD3C00D3E682 /* Default-568h@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		A3B9F892228DC24200D3E682 /* Self - HELP */ = {
+			isa = PBXGroup;
+			children = (
+				7DD6CBFD2266B50300F47E63 /* Help-ViewController.swift */,
+			);
+			name = "Self - HELP";
+			sourceTree = "<group>";
+		};
+		A3B9F893228DC38C00D3E682 /* Self - COLLECTION views */ = {
+			isa = PBXGroup;
+			children = (
+				A3B9F894228DC3B800D3E682 /* TagsCollectionView.swift */,
+			);
+			name = "Self - COLLECTION views";
 			sourceTree = "<group>";
 		};
 		A3C860B6227B5DA9000D4034 /* Model Controllers */ = {
@@ -1203,6 +1226,7 @@
 				A33409AB224570B6004CBB2A /* HighlightsViewController.swift in Sources */,
 				7D77E5F2227FA33900946FB7 /* BaseRoundedCardCell.swift in Sources */,
 				7DD6438322893F5F0056868D /* TagManager.swift in Sources */,
+				A3B9F8A1228DE7C900D3E682 /* TimeStamp+TimeAgo-Extension.swift in Sources */,
 				7D10F5E7226E5FAE0063CEB8 /* Headline_LoggingMood-ViewController.swift in Sources */,
 				7D3FCC072286209A000378F4 /* ViewSliderDelegate.swift in Sources */,
 				7D21FED52284035B0001FE62 /* Diary_LoggingMood-ViewController.swift in Sources */,
@@ -1223,6 +1247,7 @@
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
 				A30EC35322564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift in Sources */,
 				7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */,
+				A3B9F895228DC3B800D3E682 /* TagsCollectionView.swift in Sources */,
 				A33409A5224570A4004CBB2A /* AppSettingsViewController.swift in Sources */,
 				7D8E4323227E5D0100243139 /* Feed.swift in Sources */,
 				7DD6CC1622673DA700F47E63 /* DailyActionBriefSelectorViewController.swift in Sources */,

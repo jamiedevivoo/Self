@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-//: TODO: This class needs a lot of tidying up
+//: TODO: This class needs a lot of tidying up - MassiveVC
 final class MoodLoggingMoodViewController: ViewController {
     
     // Dependencies and Delegates
@@ -563,9 +563,7 @@ extension  MoodLoggingMoodViewController {
             self.backgroundLabels.append((label, log))
             
             let moodDateLabel = CATextLayer()
-            let dateformatter = DateFormatter()
-            dateformatter.dateStyle = DateFormatter.Style.short
-            moodDateLabel.string = dateformatter.string(from: log.timestamp)
+            moodDateLabel.string = log.timestamp.formatTimeAgoFrom()
             moodDateLabel.allowsFontSubpixelQuantization = false
             moodDateLabel.contentsScale = UIScreen.main.scale
             moodDateLabel.fontSize = 10
@@ -582,28 +580,29 @@ extension  MoodLoggingMoodViewController {
             label.addSublayer(moodDateLabel)
         }
         
-        // Force unqrapping here isn't ideal, but since this would only be run if the collection contains mood labels it should be okay
         var latestLog: (label: CATextLayer, moodLog: Mood.Log?)
         if backgroundLabels.count < 2 {
-            latestLog = backgroundLabels.min { a, b in a.moodLog!.timestamp < b.moodLog!.timestamp }!
+            
+        // Force unqrapping here isn't ideal, but since this would only be run if the collection contains mood labels it should be okay
+            latestLog = backgroundLabels.max(by: { $0.moodLog!.timestamp.timeIntervalSinceNow < $1.moodLog!.timestamp.timeIntervalSinceNow })!
         } else {
             latestLog = backgroundLabels.first!
         }
         let latestLogLabel = latestLog.label
-        latestLogLabel.opacity = 0.8
+        latestLogLabel.opacity = 0.5
         latestLogLabel.fontSize = 14
         
         let latestLogTitle = CATextLayer()
-        latestLogTitle.string = "Your Last Log"
+        latestLogTitle.string = "Most recent"
         latestLogTitle.opacity = 0.8
         latestLogTitle.allowsFontSubpixelQuantization = false
         latestLogTitle.contentsScale = UIScreen.main.scale
         latestLogTitle.fontSize = 10
         latestLogTitle.alignmentMode = .center
-        latestLogTitle.font = CGFont(UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.light).fontName as CFString)
+        latestLogTitle.font = CGFont(UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.regular).fontName as CFString)
         latestLogTitle.frame.size = CGSize(width: latestLogLabel.frame.size.width, height: 15)
         latestLogTitle.frame.origin.x = CGFloat(latestLogTitle.frame.origin.x)
-        latestLogTitle.frame.origin.y -= (latestLogLabel.frame.size.height + 15)
+        latestLogTitle.frame.origin.y -= (latestLogLabel.frame.size.height + 10)
         
         latestLogLabel.addSublayer(latestLogTitle)
     }
@@ -695,7 +694,7 @@ extension  MoodLoggingMoodViewController {
                 if let headline = label.sublayers?.last(where: {$0.isMember(of: CATextLayer.self)}) as? CATextLayer {
                     if headline != dateLayer {
                         headline.fontSize = (10 * multiplier)
-                        headline.frame.origin.y = (-label.frame.size.height - headline.frame.size.height) * multiplier
+                        headline.frame.origin.y = (-label.frame.size.height - headline.frame.size.height + 5) * multiplier
                     }
                 }
             }

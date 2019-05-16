@@ -3,14 +3,7 @@ import SnapKit
 
 final class ActionLogCell: UICollectionViewCell {
     
-    lazy var actionCardTagsStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .equalSpacing
-        stack.alignment = .trailing
-        return stack
-    }()
-    var tags: [UIButton] = []
+    var tags: [Tag] = []
     
     lazy var actionCardTitleLabel: UILabel = {
         let label = UILabel()
@@ -27,6 +20,26 @@ final class ActionLogCell: UICollectionViewCell {
         label.textColor = UIColor.App.Text.text()
         label.numberOfLines = 0
         return label
+    }()
+    
+    lazy var tagsCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = 2
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        flowLayout.sectionInsetReference = .fromContentInset
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.register(TagCell.self, forCellWithReuseIdentifier: TagCell.reuseId)
+        
+        collectionView.backgroundColor = .clear
+        collectionView.contentInsetAdjustmentBehavior = .always
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        return collectionView
     }()
     
     lazy var note: UILabel = {
@@ -55,11 +68,9 @@ final class ActionLogCell: UICollectionViewCell {
 // MARK: - Setup View
 extension ActionLogCell {
     private func setupView() {
-        addSubViews()
-        for tag in tags {
-            actionCardTagsStack.addArrangedSubview(tag)
-        }
         setupChildViews()
+        print(tags
+        )
         contentView.layer.cornerRadius = 15
         contentView.backgroundColor = UIColor.App.Button.Tag.fill().withAlphaComponent(0.8)
         contentView.clipsToBounds = true
@@ -73,23 +84,44 @@ extension ActionLogCell {
     }
 }
 
+
+extension ActionLogCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    // MARK: - UICollectionViewDelegateFlowLayout -
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let referenceHeight: CGFloat = 40 // Approximate height of your cell
+        let referenceWidth: CGFloat = 100
+        return CGSize(width: referenceWidth, height: referenceHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags.count
+    }
+    
+    // MARK: - UICollectionViewDataSource -
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.reuseId, for: indexPath) as! TagCell
+        cell.tagObject = tags[indexPath.row]
+        cell.configure()
+        return cell
+    }
+}
+
 // MARK: - View Building
 extension ActionLogCell: ViewBuilding {
-    func addSubViews() {
-        contentView.addSubview(actionCardTagsStack)
+    func setupChildViews() {
+        contentView.addSubview(tagsCollectionView)
         contentView.addSubview(actionCardTitleLabel)
         contentView.addSubview(actionCardDescriptionLabel)
         contentView.addSubview(note)
-    }
-    
-    func setupChildViews() {
-        actionCardTagsStack.snp.makeConstraints { (make) in
+        
+        tagsCollectionView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(10)
             make.left.right.equalToSuperview().inset(20)
-            make.height.greaterThanOrEqualTo(10)
+            make.height.greaterThanOrEqualTo(20)
         }
         actionCardTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(actionCardTagsStack.snp.bottom).offset(0)
+            make.top.equalTo(tagsCollectionView.snp.bottom).offset(0)
             make.left.right.equalToSuperview().inset(20)
             make.height.greaterThanOrEqualTo(10)
         }

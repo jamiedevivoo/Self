@@ -133,7 +133,7 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 180)
+        return CGSize(width: collectionView.frame.size.width, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -143,6 +143,7 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionLogCell
         let action = actionLogs[indexPath.row]
+        cell.tags = action.tags
         cell.actionCardTitleLabel.text = action.title
         cell.actionCardDescriptionLabel.text = action.description
         return cell

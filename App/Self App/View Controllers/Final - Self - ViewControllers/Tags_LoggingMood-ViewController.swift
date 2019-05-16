@@ -41,7 +41,7 @@ final class TagsLoggingMoodViewController: ViewController {
         collectionView.delegate = self
         
         return collectionView
-        }()
+    }()
     
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.processTap))
     
@@ -50,7 +50,6 @@ final class TagsLoggingMoodViewController: ViewController {
     var tags = [Tag]() {
         didSet {
             self.tagsCollectionView.reloadData()
-            print(tags as AnyObject)
         }
     }
     
@@ -196,27 +195,32 @@ extension TagsLoggingMoodViewController: UITextFieldDelegate {
 }
 
 extension TagsLoggingMoodViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let actionLog = actionLogs[indexPath.row]
+//        _ = actionManager.user(accountManager.accountRef!).markLogComplete(actionLog)
+//        actionLogs.remove(at: indexPath.row)
+//        addNoActionsView()
+//    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout -
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let referenceHeight: CGFloat = 40 // Approximate height of your cell
+        let referenceWidth: CGFloat = 100
+        return CGSize(width: referenceWidth, height: referenceHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags.count
+    }
     
     // MARK: - UICollectionViewDataSource -
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.reuseId, for: indexPath) as! TagCell
-        cell.configure(tag: tags[indexPath.row])
+        cell.tagObject = tags[indexPath.row]
+        cell.configure()
         cell.button.addTarget(nil, action: #selector(removeTag), for: .touchUpInside)
-        print(cell)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(collectionView, section)
-        return tags.count
-    }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout -
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(indexPath)
-        let referenceHeight: CGFloat = 40 // Approximate height of your cell
-        let referenceWidth: CGFloat = 100 
-        return CGSize(width: referenceWidth, height: referenceHeight)
     }
 }
 

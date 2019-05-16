@@ -127,25 +127,30 @@ extension HighlightsViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var highlightsArray = [(title: String, text: String, timestamp: Date)]()
+        
+        print("moods:", moodLogs.map({"\($0.headline) \($0.timestamp)"}) as AnyObject)
+        print("actions:", actionLogs.map({"\($0.title) \($0.completeTimestamp)"}) as AnyObject)
+
         for mood in moodLogs {
             highlightsArray.append((mood.headline, mood.headline, mood.timestamp))
         }
         for action in actionLogs {
             highlightsArray.append((action.title, action.description, action.completeTimestamp!))
         }
-        print(highlightsArray)
-        highlightsArray = highlightsArray.sorted(by: { $0.timestamp > $1.timestamp })
-        print(highlightsArray)
+        
+        print("before:", highlightsArray.map({"\($0.title) \($0.timestamp)"}))
+        
+        highlightsArray = highlightsArray.sorted(by: { $0.timestamp.timeIntervalSinceNow > $1.timestamp.timeIntervalSinceNow })
+        
+        print("after:", highlightsArray.map({"\($0.title) \($0.timestamp)"}))
+
+        let highlight = highlightsArray[indexPath.row]
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HighlightCell
-        let highlight = highlightsArray[indexPath.row]
         cell.actionCardTitleLabel.text = highlight.title
-        
-        let dateformatter = DateFormatter()
-        dateformatter.dateStyle = DateFormatter.Style.short
-        cell.date.text = dateformatter.string(from: highlight.timestamp)
-        
+        cell.date.text = highlight.timestamp.formatTimeAgoFrom()
         cell.actionCardDescriptionLabel.text = highlight.text
+        
         return cell
     }
     

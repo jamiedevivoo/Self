@@ -117,9 +117,9 @@ extension LoginViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         print(notification)
-        guard let userInfo = notification.userInfo else {return}
-        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
-        let keyboardFrame = keyboardSize.cgRectValue
+//        guard let userInfo = notification.userInfo else {return}
+//        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+//        let keyboardFrame = keyboardSize.cgRectValue
 
         let topElement = view.subviews.max { a, b in a.frame.origin.y > b.frame.origin.y }
         let scrollDistance = view.frame.origin.y - topElement!.frame.origin.y

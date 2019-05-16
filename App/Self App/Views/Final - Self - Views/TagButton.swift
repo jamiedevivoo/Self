@@ -1,8 +1,18 @@
 import UIKit
+import SnapKit
 
 final class TagButton: UIButton {
     
     var accountTag: Tag
+    
+    private lazy var infoIcon: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "info-circle")?.withRenderingMode(.alwaysTemplate)
+        print("making info")
+        button.setImage(image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        return button
+    }()
     
     init(_ tag: Tag) {
         self.accountTag = tag
@@ -19,13 +29,15 @@ final class TagButton: UIButton {
 
 extension TagButton {
     func setup() {
-        if let description = accountTag.description {
-            let image = UIImage(named: "info-circle")?.withRenderingMode(.alwaysTemplate)
-            setImage(image, for: .normal)
-            imageEdgeInsets = UIEdgeInsets(top: 10, left: (bounds.width - 35), bottom: 10, right: 10)
-            titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: (imageView?.frame.width)!)
-            addTarget(self, action: #selector(TagButton.showDescription), for: .touchUpInside)
-            imageView?.contentMode = .scaleAspectFit
+        if let _ = accountTag.description {
+            print("adding info")
+            addSubview(infoIcon)
+            infoIcon.snp.makeConstraints { make in
+                make.left.equalToSuperview().offset(5)
+                make.height.width.equalTo(10)
+                make.centerX.equalToSuperview()
+            }
+            infoIcon.addTarget(self, action: #selector(self.showDescription), for: .touchUpInside)
         }
         
         setTitle(accountTag.title, for: .normal)

@@ -9,7 +9,8 @@ extension ActionManager {
             completed: Bool,
             wasDailyAction: Bool,
             description: String,
-            title: String
+            title: String,
+            tags: [Tag] = []
     }
 }
 // MARK: - Convenience Iniitialiser
@@ -25,6 +26,12 @@ extension ActionManager.Log {
         if self.completed == true {
             self.completeTimestamp  = (actionDictionary["complete_timestamp"] as! Date)
         }
+        
+        for tag in actionDictionary["tags"] as! [[String: Any]] {
+            let tag = Tag(tag)
+            self.tags.append(tag)
+        }
+        
     }
 }
 
@@ -40,7 +47,8 @@ extension ActionManager.Log: DictionaryConvertable {
             "description": description as String,
             "added_timestamp": addedTimestamp as Date,
             "completed": completed as Bool,
-            "complete_timestamp": completeTimestamp ?? ""
+            "complete_timestamp": completeTimestamp ?? "",
+            "tags": tags.map({$0.dictionary}),
         ]
         /// Timestamps aren't included in the dictionary, these are only set by the modelController when needed. This is because the dictionary is used to update the log and repetedly converting the timestamp into a date would corrupt it.
         

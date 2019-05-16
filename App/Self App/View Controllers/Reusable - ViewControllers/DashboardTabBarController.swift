@@ -119,6 +119,7 @@ extension DashboardTabBarController {
 extension DashboardTabBarController {
     override func returnedToRootView() {
         if !rootVisible {
+            viewControllers![selectedIndex].navigationController?.isNavigationBarHidden = true
             for overlay in overlays {
                 overlay.view.isHidden = false
                 UIView.animate(
