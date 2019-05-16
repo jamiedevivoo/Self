@@ -21,6 +21,7 @@ Some documentation (technical and detailed) and ongoing notes by the author duri
 
 ## Full Documentation
 - [**Methodology**](#programming-design--methodology)
+- [**Project Structure**](#project-structure)
   - [**Overview**](#programming-design--methodology)
   - [**M-MC-VC-V**](#m-mc-vc-v)
   - [**Models**](#models-m)
@@ -29,6 +30,27 @@ Some documentation (technical and detailed) and ongoing notes by the author duri
   - [**Views**](#views-v)
 - [**ScreenSliderViewController**](#screensliderviewcontroller)
 - [**ViewSliderViewController**](#viewsliderviewcontroller)
+
+# Project Structure
+**How the project is laid out in Xcode**
+
+### /
+The root folder, where this notes file is found, includes 6 files.
+- README (quick overview, tldr - Need to know)
+- Notes (This file)
+- Podfile (Contains the required dependencies, used by cocoapods)
+- Podfile.lock (Marks the current dependency versions the project uses)
+- Self App/ (The project source files)
+- Self.xcodeproj (The base Xcode project file - **Don't work from this file!**)
+- Self.xcworkspace (The Xcode project file)
+
+### /Self App/
+The folder contains the app's source files. The source files are broken down into folders with a certain strucure.
+- **Key files.** Files stored directly in this directory are the projects key files. This includes the AppDelegate, AppManager and initial ViewController (AppContainerViewController). 
+- **Assets.**  This is where the static content of the app is stored. This contains everything from visual assets to static copy to configuratin files.
+- The rest of the folders break down the source files by what they define. Within each of these folders they are broken down further.
+  -  **Reusables.** Reusable files are files with generic base code that can be reused to form a specific aspect of the app. None of these files should be *final* and generally they would't be used directly in the app without being subclassed or extended. Theoretically most of this code can be reused in other projects.
+  - **Final.** The files stored in the Final subdirectory are files with code that is responsible for specific parts of the app. These generally build ontop of reusables or generic imported frameworks by subclassing or extending them. They should be *final* as they shouldn't need to be subclassed or extended. If files need to be broken down further inside then they should be done so inside xcode (wiithout an actual reference folder), this helps prevent the project getting too deep.
 
 # Programming Design + Methodology
 **Overview**
