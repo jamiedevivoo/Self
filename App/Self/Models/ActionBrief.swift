@@ -17,8 +17,8 @@ extension ActionManager.Brief {
         self.isTodaysAction     = (actionDictionary["daily_action"] as! Bool)
         self.title              = (actionDictionary["title"] as! String)
         self.description        = (actionDictionary["description"] as! String)
-        self.completionCount    = (actionDictionary["completion_count"] as! Int)
-        self.selectionCount     = (actionDictionary["selection_count"] as! Int)
+        self.completionCount    = (actionDictionary["daily_completion_count"] as! Int)
+        self.selectionCount     = (actionDictionary["daily_selection_count"] as! Int)
         self.timeRequired       = Double(actionDictionary["time_required"] as? String ?? "")
         
         for tag in actionDictionary["tags"] as! [[String: Any]] {
@@ -27,7 +27,6 @@ extension ActionManager.Brief {
         }
     }
 }
-
 
 // MARK: - Outputting
 //// values as a dictionary (e.g. for Firebase)
@@ -38,8 +37,8 @@ extension ActionManager.Brief: DictionaryConvertable {
             "was_daily_action": isTodaysAction as Bool,
             "title": title as String,
             "description": description as String,
-            "completion_count": completionCount as Int,
-            "selection_count": selectionCount as Int,
+            "daily_completion_count": completionCount as Int,
+            "daily_selection_count": selectionCount as Int,
             "tags": tags.map({$0.dictionary}),
             "time_required": timeRequired as Any
         ]

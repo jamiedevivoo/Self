@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class ActionCell: UICollectionViewCell {
+class ActionBriefCell: UICollectionViewCell {
     
     lazy var actionCardTagsStack: UIStackView = {
         let stack = UIStackView()
@@ -19,6 +19,23 @@ class ActionCell: UICollectionViewCell {
         label.textColor = UIColor.App.Text.text()
         return label
     }()
+    
+    lazy var completedBy: UILabel = {
+        let label = UILabel()
+        label.text = "Completes: 0 users"
+        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.textColor = UIColor.App.Text.text()
+        return label
+    }()
+    
+    lazy var selectedBy: UILabel = {
+        let label = UILabel()
+        label.text = "Selects: 0 users"
+        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.textColor = UIColor.App.Text.text()
+        return label
+    }()
+    
     lazy var actionCardDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14.0, weight: .light)
@@ -44,7 +61,7 @@ class ActionCell: UICollectionViewCell {
 }
 
 // MARK: - Setup View
-extension ActionCell {
+extension ActionBriefCell {
     private func setupView() {
         addSubViews()
         for tag in tags {
@@ -65,25 +82,43 @@ extension ActionCell {
 }
 
 // MARK: - View Building
-extension ActionCell: ViewBuilding {
+extension ActionBriefCell: ViewBuilding {
     func addSubViews() {
         contentView.addSubview(actionCardTagsStack)
+        contentView.addSubview(completedBy)
+        contentView.addSubview(selectedBy)
         contentView.addSubview(actionCardTitleLabel)
         contentView.addSubview(actionCardDescriptionLabel)
     }
     
     func setupChildViews() {
         actionCardTagsStack.snp.makeConstraints { (make) in
-            make.left.top.right.equalToSuperview().inset(20)
-            make.height.equalTo(30)
+
+            make.top.equalToSuperview().inset(10)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.greaterThanOrEqualTo(10)
         }
         actionCardTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(actionCardTagsStack.snp.bottom).offset(20)
+            make.top.equalTo(actionCardTagsStack.snp.bottom).offset(0)
             make.left.right.equalToSuperview().inset(20)
+            make.height.greaterThanOrEqualTo(10)
+        }
+        completedBy.snp.makeConstraints { (make) in
+            make.top.equalTo(actionCardTitleLabel.snp.bottom)
+            make.left.equalToSuperview().inset(20)
+            make.height.greaterThanOrEqualTo(10)
+            make.width.equalToSuperview().multipliedBy(0.45)
+        }
+        selectedBy.snp.makeConstraints { (make) in
+            make.top.equalTo(actionCardTitleLabel.snp.bottom)
+            make.right.equalToSuperview().inset(20)
+            make.width.equalToSuperview().multipliedBy(0.45)
+            make.height.greaterThanOrEqualTo(10)
         }
         actionCardDescriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(actionCardTitleLabel.snp.bottom).offset(10)
+            make.top.equalTo(selectedBy.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(20)
+            make.height.greaterThanOrEqualTo(10)
         }
     }
 }

@@ -55,3 +55,35 @@ extension ActionManager {
         }
     }
 }
+    
+extension ActionManager {
+    func updateBriefCompletion(_ actionBrief: ActionManager.Brief) ->  ActionManager.Brief {
+        var updatedBrief = actionBrief
+        
+        updatedBrief.completionCount += 1
+        
+        actionsFirebaseReference.document(updatedBrief.uid).setData(updatedBrief.dictionary, merge: true) { error in
+            guard error == nil else {
+                print("\(error!.localizedDescription)")
+                return
+            }
+        }
+        /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
+        return updatedBrief
+    }
+    
+    func updateBriefSelection(_ actionBrief: ActionManager.Brief) ->  ActionManager.Brief {
+        var updatedBrief = actionBrief
+        
+        updatedBrief.selectionCount += 1
+        
+        actionsFirebaseReference.document(updatedBrief.uid).setData(updatedBrief.dictionary, merge: true) { error in
+            guard error == nil else {
+                print("\(error!.localizedDescription)")
+                return
+            }
+        }
+        /// Mathod returns new version of log (with updated UID and and/or completeTimestamp from the new dictionary)
+        return updatedBrief
+    }
+}

@@ -18,7 +18,7 @@ class DailyActionBriefSelectorViewController: ViewController {
         flowLayout.minimumInteritemSpacing = 20
         flowLayout.minimumLineSpacing = 20
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.register(ActionCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(ActionBriefCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -62,9 +62,11 @@ extension DailyActionBriefSelectorViewController: UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionBriefCell
         let action = actionsData[indexPath.row]
         cell.actionCardTitleLabel.text = action.title
+        cell.completedBy.text = "Completed by \(action.completionCount) users - "
+        cell.selectedBy.text = "Selected by \(action.selectionCount) users."
         cell.actionCardDescriptionLabel.text = action.description
         for tag in action.tags {
             let tagButton = Button(title: tag.title, action: nil, type: .tag)

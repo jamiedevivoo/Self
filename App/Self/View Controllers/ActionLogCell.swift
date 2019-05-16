@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class HighlightCell: UICollectionViewCell {
+class ActionLogCell: UICollectionViewCell {
     
     lazy var actionCardTagsStack: UIStackView = {
         let stack = UIStackView()
@@ -29,6 +29,14 @@ class HighlightCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var note: UILabel = {
+        let label = UILabel()
+        label.text = "Tap to mark complete."
+        label.font = UIFont.systemFont(ofSize: 12.0, weight: .medium)
+        label.textColor = UIColor.App.Text.text()
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .clear
@@ -45,7 +53,7 @@ class HighlightCell: UICollectionViewCell {
 }
 
 // MARK: - Setup View
-extension HighlightCell {
+extension ActionLogCell {
     private func setupView() {
         addSubViews()
         for tag in tags {
@@ -66,11 +74,12 @@ extension HighlightCell {
 }
 
 // MARK: - View Building
-extension HighlightCell: ViewBuilding {
+extension ActionLogCell: ViewBuilding {
     func addSubViews() {
         contentView.addSubview(actionCardTagsStack)
         contentView.addSubview(actionCardTitleLabel)
         contentView.addSubview(actionCardDescriptionLabel)
+        contentView.addSubview(note)
     }
     
     func setupChildViews() {
@@ -86,6 +95,11 @@ extension HighlightCell: ViewBuilding {
         }
         actionCardDescriptionLabel.snp.makeConstraints { (make) in
             make.top.equalTo(actionCardTitleLabel.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.greaterThanOrEqualTo(10)
+        }
+        note.snp.makeConstraints { (make) in
+            make.top.equalTo(actionCardDescriptionLabel.snp.bottom).offset(2)
             make.left.right.equalToSuperview().inset(20)
             make.height.greaterThanOrEqualTo(10)
         }

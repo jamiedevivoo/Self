@@ -18,7 +18,7 @@
 		7D10F5E9226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */; };
 		7D10F5EB226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */; };
 		7D10F5ED226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */; };
-		7D187F122258D1A000A9E9AE /* ActionCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionCell2.swift */; };
+		7D187F122258D1A000A9E9AE /* ActionCellOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D187F112258D1A000A9E9AE /* ActionCellOld.swift */; };
 		7D21FECD2283B4EA0001FE62 /* OfflineStaticData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */; };
 		7D21FECF2283C8C40001FE62 /* StaticMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FECE2283C8C40001FE62 /* StaticMessageManager.swift */; };
 		7D21FED32283FD940001FE62 /* Tags_LoggingMood-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */; };
@@ -121,6 +121,8 @@
 		7DF14B59225F2D170090D299 /* FeedStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B58225F2D170090D299 /* FeedStatusResponse.swift */; };
 		7DF14B5B225F32450090D299 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5A225F32450090D299 /* AccountSettings.swift */; };
 		7DF14B5D225F36CD0090D299 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF14B5C225F36CD0090D299 /* Account.swift */; };
+		7DF24EDC228D6C0E00BC827E /* ActionBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF24EDB228D6C0E00BC827E /* ActionBriefCell.swift */; };
+		7DF24EDE228D6C2D00BC827E /* ActionLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF24EDD228D6C2D00BC827E /* ActionLogCell.swift */; };
 		7DF8AC14227FFA7D00E4441A /* NoHighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8AC13227FFA7D00E4441A /* NoHighlightsView.swift */; };
 		7DFEF05B2263617C004F625F /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05A2263617C004F625F /* MessageStackView.swift */; };
 		7DFEF05D226361AF004F625F /* MessageResponsesStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */; };
@@ -176,7 +178,7 @@
 		7D10F5E8226E60120063CEB8 /* Mood_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5EA226E8C6A0063CEB8 /* Wildcard_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wildcard_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
 		7D10F5EC226E8D9D0063CEB8 /* Overview_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Overview_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
-		7D187F112258D1A000A9E9AE /* ActionCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell2.swift; sourceTree = "<group>"; };
+		7D187F112258D1A000A9E9AE /* ActionCellOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCellOld.swift; sourceTree = "<group>"; };
 		7D21FECC2283B4E90001FE62 /* OfflineStaticData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OfflineStaticData.json; sourceTree = "<group>"; };
 		7D21FECE2283C8C40001FE62 /* StaticMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticMessageManager.swift; sourceTree = "<group>"; };
 		7D21FED22283FD930001FE62 /* Tags_LoggingMood-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tags_LoggingMood-ViewController.swift"; sourceTree = "<group>"; };
@@ -279,6 +281,8 @@
 		7DF14B58225F2D170090D299 /* FeedStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStatusResponse.swift; sourceTree = "<group>"; };
 		7DF14B5A225F32450090D299 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		7DF14B5C225F36CD0090D299 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		7DF24EDB228D6C0E00BC827E /* ActionBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBriefCell.swift; sourceTree = "<group>"; };
+		7DF24EDD228D6C2D00BC827E /* ActionLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionLogCell.swift; sourceTree = "<group>"; };
 		7DF8AC13227FFA7D00E4441A /* NoHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHighlightsView.swift; sourceTree = "<group>"; };
 		7DFEF05A2263617C004F625F /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
 		7DFEF05C226361AF004F625F /* MessageResponsesStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponsesStack.swift; sourceTree = "<group>"; };
@@ -718,7 +722,9 @@
 			children = (
 				A33409B1224570D2004CBB2A /* ActionsViewController.swift */,
 				7DD6CC1522673DA700F47E63 /* DailyActionBriefSelectorViewController.swift */,
-				7D187F112258D1A000A9E9AE /* ActionCell2.swift */,
+				7D187F112258D1A000A9E9AE /* ActionCellOld.swift */,
+				7DF24EDB228D6C0E00BC827E /* ActionBriefCell.swift */,
+				7DF24EDD228D6C2D00BC827E /* ActionLogCell.swift */,
 				7D8E4330227EF81200243139 /* NoActionsView.swift */,
 			);
 			name = ACTIONS;
@@ -1046,6 +1052,7 @@
 				7DEABF8C22803E1100E72D39 /* MoodLogging-Protocol.swift in Sources */,
 				A33409912245701D004CBB2A /* Onboarding-ScreenSliderViewController.swift in Sources */,
 				7D519CC722871EB400EE3CEC /* Note.swift in Sources */,
+				7DF24EDC228D6C0E00BC827E /* ActionBriefCell.swift in Sources */,
 				7DF14B49225F24A10090D299 /* Insight.swift in Sources */,
 				7D10F5E3226DF2E70063CEB8 /* String+Trim-Extension.swift in Sources */,
 				A3CF9516224E9C8900D0EC31 /* FeedStatusMessage.swift in Sources */,
@@ -1077,7 +1084,7 @@
 				A35EA86D22456FB800592D88 /* AppManager.swift in Sources */,
 				7D77E5E5227FA32200946FB7 /* TodaySectionHeader.swift in Sources */,
 				7DF14B47225F24870090D299 /* MoodManager.swift in Sources */,
-				7D187F122258D1A000A9E9AE /* ActionCell2.swift in Sources */,
+				7D187F122258D1A000A9E9AE /* ActionCellOld.swift in Sources */,
 				7DD6CC1222672E1B00F47E63 /* Loading-Protocol.swift in Sources */,
 				7D47AC7122601349004BF898 /* ViewController.swift in Sources */,
 				A30EC35322564FC60092A4E2 /* ActionList_Feed-ChildViewController.swift in Sources */,
@@ -1096,6 +1103,7 @@
 				7D21FECF2283C8C40001FE62 /* StaticMessageManager.swift in Sources */,
 				7DAEEB76228358FB00EB839C /* Help_Mood_LoggingMood-ViewController.swift in Sources */,
 				A35EA86B22456FB800592D88 /* AccountManager.swift in Sources */,
+				7DF24EDE228D6C2D00BC827E /* ActionLogCell.swift in Sources */,
 				7DD6CC062266B6CF00F47E63 /* Community.swift in Sources */,
 				7D8E432D227E852D00243139 /* ActionBrief.swift in Sources */,
 				7DF14B55225F2B940090D299 /* AccountSettingsNotifications.swift in Sources */,

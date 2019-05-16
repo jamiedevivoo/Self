@@ -19,7 +19,7 @@ class ActionsViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 20
         flowLayout.minimumLineSpacing = 20
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.register(ActionCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(ActionLogCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -111,10 +111,12 @@ extension ActionsViewController {
 // MARK: - ActionSelectorDelegate Methods
 extension ActionsViewController: ActionSelectorDelegate {
     func actionBriefSelected(actionBrief: ActionManager.Brief) {
-        var brief = actionBrief
+        var brief = actionManager.updateBriefSelection(actionBrief)
+        _ = actionManager.updateBriefCompletion(brief)
         brief.tags = tagManager.updateTag(actionBrief.tags)
-        let action = actionManager.user(accountManager.accountRef!).constructActionLog(fromBrief: brief)
-        actionLogs.append(action)
+        
+        let actionLog = actionManager.user(accountManager.accountRef!).constructActionLog(fromBrief: brief)
+        actionLogs.append(actionLog)
         navigationController?.popToRootViewController(animated: true)
         noActionsView.removeFromSuperview()
     }
@@ -125,7 +127,7 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let actionLog = actionLogs[indexPath.row]
-        actionManager.user(accountManager.accountRef!).markLogComplete(actionLog)
+        _ = actionManager.user(accountManager.accountRef!).markLogComplete(actionLog)
         actionLogs.remove(at: indexPath.row)
         addNoActionsView()
     }
@@ -139,7 +141,7 @@ extension ActionsViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ActionLogCell
         let action = actionLogs[indexPath.row]
         cell.actionCardTitleLabel.text = action.title
         cell.actionCardDescriptionLabel.text = action.description

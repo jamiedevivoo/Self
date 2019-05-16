@@ -16,6 +16,11 @@ class TagCell: UICollectionViewCell {
         fatalError("Storyboards are quicker, easier, more seductive. Not stronger then Code.")
     }
     
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     func configure(tag: Tag) {
         button = TagButton(tag)
         guard !button.isDescendant(of: self) else {
