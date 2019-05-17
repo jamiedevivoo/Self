@@ -17,7 +17,6 @@ extension Button {
     private func addAction(_ action: Selector?) {
         addTarget(self, action: #selector(buttonActive), for: [.touchDown, .touchDragEnter])
         addTarget(self, action: #selector(buttonCancelled), for: [.touchDragExit, .touchCancel, .touchUpInside])
-        
         if action != nil {
             addTarget(nil, action: action!, for: .touchUpInside)
             print(action!)
@@ -37,6 +36,7 @@ extension Button {
         
         switch type {
         case .primary:
+            setTitleColor(UIColor.App.Button.Primary.text(), for: .normal)
             backgroundColor = UIColor.App.Button.Primary.fill()
             layer.borderColor = UIColor.App.Button.Primary.fill().withAlphaComponent(0.5).cgColor
             layer.cornerRadius = 30

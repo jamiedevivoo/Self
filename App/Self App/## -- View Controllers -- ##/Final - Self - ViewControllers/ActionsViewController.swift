@@ -11,7 +11,7 @@ final class ActionsViewController: UIViewController {
     var tagManager: TagManager = TagManager(account: AccountManager.shared().accountRef!)
 
     // MARK: - Views
-    lazy var headerLabel = HeaderLabel("Your Actions 🙌", .smallScreen)
+    lazy var headerLabel = HeaderLabel("Your Actions 🙌", .SmallScreen)
     
     lazy var actionCollectionView: UICollectionView = { [unowned self] in
         let flowLayout = UICollectionViewFlowLayout()

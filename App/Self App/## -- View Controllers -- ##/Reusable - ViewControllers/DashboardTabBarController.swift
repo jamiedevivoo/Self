@@ -1,51 +1,33 @@
 import UIKit
 import SnapKit
 
-extension DashboardTabBarController {
-    
-}
-
 class DashboardTabBarController: UITabBarController {
     
-    var rootVisible = true
+    // Dependencies and Delegates
+    /// None
     
-    lazy var leftSwipe: UISwipeGestureRecognizer = {
-        let swipeGesture = UISwipeGestureRecognizer()
-        swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
-        swipeGesture.direction = .left
-        swipeGesture.delegate = self
-        return swipeGesture
-    }()
-    lazy var rightSwipe: UISwipeGestureRecognizer = {
-        let swipeGesture = UISwipeGestureRecognizer()
-        swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
-        swipeGesture.direction = .right
-        swipeGesture.delegate = self
-        return swipeGesture
-    }()
-    lazy var profileButton = IconButton(UIImage(named: "menu-vertical")!, action: #selector(showMenu), .standard)
-    lazy var helpButton = IconButton(UIImage(named: "safety-float")!, action: #selector(showHelp), .standard)
+    // Stored Properties
+    var rootVisible = true
     lazy var overlays: [(view: UIView, originalAlpha: CGFloat)] = []
-}
-
-// MARK: - INIT
-extension DashboardTabBarController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.delegate = self
-        BackgroundManager.shared.backgroundContainer = self
-        
-        setUpTabBarViewControllers()
-        setupTabBar()
-        setupProfileButton()
-        setupHelpButton()
-        
-        self.view.addGestureRecognizer(leftSwipe)
-        self.view.addGestureRecognizer(rightSwipe)
+    
+    // Views
+    var leftSwipe: UISwipeGestureRecognizer!
+    var rightSwipe: UISwipeGestureRecognizer!
+    var profileButton: IconButton!
+    var helpButton:  IconButton!
+    
+    // Init
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        setup()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
     }
 }
 
-// MARK: - Add Items
+// MARK: - Add Tab bar Items
 extension DashboardTabBarController {
     func setUpTabBarViewControllers() {
         let homeViewController = FeedViewController()
@@ -106,7 +88,7 @@ extension DashboardTabBarController {
     }
     
     @objc func showHelp() {
-        let help = HelpViewController()
+        let help = HelpSOSViewController()
         help.modalPresentationStyle = .overFullScreen
         self.definesPresentationContext = true
         
@@ -222,6 +204,54 @@ extension UITabBarController {
             self.selectedIndex = toIndex
             self.view.isUserInteractionEnabled = true
         })
+    }
+}
+
+// View Setup
+extension DashboardTabBarController {
+    private func setup() {
+        leftSwipe = {
+            let swipeGesture = UISwipeGestureRecognizer()
+            swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
+            swipeGesture.direction = .left
+            swipeGesture.delegate = self
+            return swipeGesture
+        }()
+        rightSwipe = {
+            let swipeGesture = UISwipeGestureRecognizer()
+            swipeGesture.addTarget(self, action: #selector(handleSwipes(_:)))
+            swipeGesture.direction = .right
+            swipeGesture.delegate = self
+            return swipeGesture
+        }()
+        profileButton = IconButton(UIImage(named: "menu-vertical")!, action: #selector(showMenu), .standard)
+        helpButton = IconButton(UIImage(named: "safety-float")!, action: #selector(showHelp), .standard)
+        BackgroundManager.shared.backgroundContainer = self
+        ColorManager.updateColorMode()
+        BackgroundManager.shared.updateBackgroundColours()
+    }
+}
+
+// MARK: - View Overrides
+extension DashboardTabBarController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setup()
+        self.delegate = self
+        
+        setUpTabBarViewControllers()
+        setupTabBar()
+        setupProfileButton()
+        setupHelpButton()
+        
+        self.view.addGestureRecognizer(leftSwipe)
+        self.view.addGestureRecognizer(rightSwipe)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setup()
     }
 }
 

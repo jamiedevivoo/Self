@@ -13,7 +13,7 @@ final class HeaderLabel: UILabel {
         numberOfLines = 0
         lineBreakMode = .byWordWrapping
         switch type {
-        case .smallScreen:
+        case .SmallScreen:
             font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
             textColor = UIColor.App.Text.text()
             return
@@ -44,13 +44,14 @@ final class HeaderLabel: UILabel {
     }
     
     enum HeaderType {
-        case smallScreen, section, subheader, centerPageTitle, centerPageText, largeScreen
+        case SmallScreen, section, subheader, centerPageTitle, centerPageText, largeScreen
     }
     
     func applyDefaultScreenHeaderConstraints(usingVC vc: UIViewController) {
         UIView.animate(withDuration: 0.3, animations: {
             self.snp.remakeConstraints { (make) in
-                make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(30)
+                make.top.greaterThanOrEqualTo(75)
+//                make.top.equalTo(vc.view.safeAreaLayoutGuide.snp.top).offset(30).priority(.high)
                 make.left.equalToSuperview().offset(30)
                 make.right.equalToSuperview().inset(100)
                 make.height.greaterThanOrEqualTo(30)

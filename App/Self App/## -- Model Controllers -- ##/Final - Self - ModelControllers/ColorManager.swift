@@ -26,6 +26,7 @@ extension ColorManager {
 // MARK: - Updating the Color Mode
 extension ColorManager {
     static func updateColorMode() {
+        print(AccountManager.shared().accountRef?.settings.userColorMode)
         switch AccountManager.shared().accountRef?.settings.userColorMode {
         case .light?:
                 sharedInstance!.colorMode = .light

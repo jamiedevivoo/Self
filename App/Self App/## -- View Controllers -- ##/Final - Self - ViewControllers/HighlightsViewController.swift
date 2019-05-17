@@ -11,7 +11,7 @@ final class HighlightsViewController: UIViewController {
     weak var insightManager: InsightManager?
     
     // MARK: - Views
-    lazy var headerLabel = HeaderLabel("Your Highlights 💪", .smallScreen)
+    lazy var headerLabel = HeaderLabel("Your Highlights 💪", .SmallScreen)
     
     lazy var loader = Loader(.content)
     

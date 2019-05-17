@@ -7,6 +7,7 @@ final class BackgroundManager {
         didSet {
             BackgroundManager.shared.addBackgroundToView()
             resetBackground()
+            print("background reset")
         }
     }
     
@@ -18,13 +19,18 @@ final class BackgroundManager {
         return shapeLayer
     }()
     
+    func updateBackgroundColours() {
+        background.fillColor = UIColor.App.Background.secondary().cgColor
+        backgroundContainer?.view.backgroundColor = UIColor.App.Background.primary()
+        print(background.fillColor, backgroundContainer?.view.backgroundColor)
+    }
 }
 
 // MARK: - Setup Functions
 extension BackgroundManager {
     func addBackgroundToView() {
         self.backgroundContainer?.view.layer.addSublayer(background)
-        self.backgroundContainer?.view.backgroundColor = UIColor.App.Background.primary()
+        updateBackgroundColours()
     }
 }
 

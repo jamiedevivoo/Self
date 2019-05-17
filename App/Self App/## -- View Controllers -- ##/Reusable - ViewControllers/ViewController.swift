@@ -10,12 +10,19 @@ extension ViewController {
         super.viewDidLoad()
         setupViewController()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 }
 
 // MARK: - Set Up
 extension ViewController {
     func setupViewController() {
-        view.backgroundColor = UIColor.App.Background.primary()
+        updateBackgroundColour()
         navigationController?.isNavigationBarHidden = true
+    }
+    func updateBackgroundColour() {
+        view.backgroundColor = UIColor.App.Background.primary()
     }
 }

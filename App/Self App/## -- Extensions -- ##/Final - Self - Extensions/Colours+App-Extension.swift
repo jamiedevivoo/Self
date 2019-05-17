@@ -5,6 +5,25 @@ import UIKit
 extension UIColor {
     
     struct App {
+        enum ColourName {
+            case Red, Teal, Orange, Yellow, WashedPurple, SkyBlue, Mauve, Turquoise, StrongRed, Black, White
+        }
+        static func Colour(_ colour: ColourName) -> UIColor {
+            switch colour {
+            case .Red: return UIColor(red: 254/255, green: 133/255, blue: 142/255, alpha: 1)
+            case .Teal: return UIColor(red: 134/255, green: 208/255, blue: 171/255, alpha: 1)
+            case .Orange: return UIColor(red: 245/255, green: 165/255, blue: 114/255, alpha: 1)
+            case .Yellow: return UIColor(red: 249/255, green: 194/255, blue: 98/255, alpha: 1)
+            case .WashedPurple: return UIColor(red: 138/255, green: 155/255, blue: 237/255, alpha: 1)
+            case .SkyBlue: return UIColor(red: 116/255, green: 199/255, blue: 229/255, alpha: 1)
+            case .Mauve: return UIColor(red: 214/255, green: 165/255, blue: 210/255, alpha: 1)
+            case .Turquoise: return UIColor(red: 86/255, green: 193/255, blue: 187/255, alpha: 1)
+            case .StrongRed: return UIColor(red: 241/255, green: 110/255, blue: 29/255, alpha: 1)
+            case .Black: return UIColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1)
+            case .White: return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+            }
+        }
+        
         struct General {
             static func blackWhite() -> UIColor { switch ColorManager.getActiveColorMode() {
             case .dark: return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)

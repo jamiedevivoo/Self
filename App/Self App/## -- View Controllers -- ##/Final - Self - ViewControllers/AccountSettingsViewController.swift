@@ -3,13 +3,14 @@ import SnapKit
 import Firebase
 import NotificationBannerSwift
 
-final class AccountSettingsViewController: UIViewController {
+final class AccountSettingsViewController: ViewController {
     
     // MARK: - Properties
     var user: Account.User!
     
     // MARK: - SubViews
-    
+    lazy var headerLabel = HeaderLabel("Account Settings", HeaderLabel.HeaderType.section)
+    lazy var exitButton = IconButton(UIImage(named: "back")!, action: #selector(exit), .standard)
     lazy var topView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.App.Background.secondary()
@@ -31,11 +32,7 @@ final class AccountSettingsViewController: UIViewController {
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Account Settings"
-        view.backgroundColor = UIColor.App.Background.primary()
         self.hideKeyboardWhenTappedAround()
-        addSubViews()
         setupChildViews()
         
         self.user = AccountManager.shared().accountRef!.user
@@ -70,7 +67,7 @@ final class AccountSettingsViewController: UIViewController {
                     AccountManager.shared().accountRef?.user.name = name
                     AccountManager.shared().updateAccount {
                         let banner = NotificationBanner(title: "Success", subtitle: "Account updated", style: .success)
-                        banner.show()
+                        banner.show(bannerPosition: .bottom)
                     }
                 }
             }
@@ -88,7 +85,14 @@ final class AccountSettingsViewController: UIViewController {
 //                }
 //            }
         }
+    
+    
+    // Target Actions
+    @objc func exit() {
+        navigationController?.popViewController(animated: true)
     }
+    
+}
     
 extension AccountSettingsViewController {
     func hideKeyboardWhenTappedAround() {
@@ -100,38 +104,43 @@ extension AccountSettingsViewController {
 
 extension AccountSettingsViewController: ViewBuilding {
     
-    func addSubViews() {
-        self.view.addSubview(topView)
-            topView.addSubview(pageTipLabel)
-        self.view.addSubview(nameTextField)
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(updateButton)
-    }
-    
     func setupChildViews() {
+        view.addSubview(topView)
+        topView.addSubview(headerLabel)
+        topView.addSubview(pageTipLabel)
+        topView.addSubview(exitButton)
+        view.addSubview(nameTextField)
+        view.addSubview(emailTextField)
+        view.addSubview(updateButton)
+        
         topView.snp.makeConstraints { (make) in
-            make.width.equalTo(self.view)
-            make.height.greaterThanOrEqualTo(pageTipLabel.snp.height).offset(150)
+            make.left.top.right.equalToSuperview()
+            make.bottom.equalTo(pageTipLabel.snp.bottom).offset(20)
         }
-        pageTipLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(topView.snp.left).offset(20)
-            make.right.equalTo(topView.snp.right).offset(-20)
-            make.top.equalTo(topView.snp.top).offset(100)
-        }
+            exitButton.applyConstraints(forPosition: .topLeft, inVC: self)
+            headerLabel.snp.makeConstraints { make in
+                make.centerY.equalTo(exitButton.snp.centerY)
+                make.right.equalToSuperview().inset(30)
+                make.left.equalTo(exitButton.snp.right).offset(5)
+            }
+            pageTipLabel.snp.makeConstraints { (make) in
+                make.left.right.equalToSuperview().inset(30)
+                make.top.equalTo(headerLabel.snp.bottom).offset(10)
+            }
         nameTextField.snp.makeConstraints { (make) in
-            make.left.right.equalTo(50)
+            make.top.equalTo(topView.snp.bottom).offset(50)
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(30)
-            make.top.equalTo(view.snp.centerY)
         }
         emailTextField.snp.makeConstraints { (make) in
-            make.left.right.equalTo(50)
+            make.left.right.equalTo(30)
             make.height.equalTo(30)
             make.top.equalTo(nameTextField.snp.bottom).offset(20)
         }
         updateButton.snp.makeConstraints { (make) in
-            make.size.equalTo(nameTextField)
             make.centerX.equalTo(self.view)
             make.height.equalTo(60)
+            make.width.equalToSuperview().inset(30)
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
         }
     }
